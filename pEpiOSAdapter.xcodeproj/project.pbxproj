@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		350F0ED31B4D642200D9964F /* PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 350F0ED21B4D642200D9964F /* PEPSession.m */; };
+		350F0ED91B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 350F0ED81B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m */; };
+		352988AE1AEF964100FA7E2E /* PEPiOSAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 352988AD1AEF964100FA7E2E /* PEPiOSAdapter.h */; };
+		352988B01AEF964100FA7E2E /* PEPiOSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 352988AF1AEF964100FA7E2E /* PEPiOSAdapter.m */; };
+		352988B61AEF964100FA7E2E /* libpEpiOSAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */; };
+		352988EF1AEF968C00FA7E2E /* bloblist.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988C41AEF968C00FA7E2E /* bloblist.c */; };
+		352988F01AEF968C00FA7E2E /* cryptotech.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988C61AEF968C00FA7E2E /* cryptotech.c */; };
+		352988F11AEF968C00FA7E2E /* email.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988C91AEF968C00FA7E2E /* email.c */; };
+		352988F21AEF968C00FA7E2E /* etpan_mime.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988CB1AEF968C00FA7E2E /* etpan_mime.c */; };
+		352988F31AEF968C00FA7E2E /* identity_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988CD1AEF968C00FA7E2E /* identity_list.c */; };
+		352988F41AEF968C00FA7E2E /* keymanagement.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988CF1AEF968C00FA7E2E /* keymanagement.c */; };
+		352988F51AEF968C00FA7E2E /* message_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988D11AEF968C00FA7E2E /* message_api.c */; };
+		352988F61AEF968C00FA7E2E /* message.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988D31AEF968C00FA7E2E /* message.c */; };
+		352988F71AEF968C00FA7E2E /* mime.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988D51AEF968C00FA7E2E /* mime.c */; };
+		352988F81AEF968C00FA7E2E /* pEpEngine.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988D81AEF968C00FA7E2E /* pEpEngine.c */; };
+		352988F91AEF968C00FA7E2E /* pgp_netpgp.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988DB1AEF968C00FA7E2E /* pgp_netpgp.c */; };
+		352988FA1AEF968C00FA7E2E /* platform_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988DD1AEF968C00FA7E2E /* platform_unix.c */; };
+		352988FB1AEF968C00FA7E2E /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988E11AEF968C00FA7E2E /* sqlite3.c */; };
+		352988FC1AEF968C00FA7E2E /* stringlist.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988E31AEF968C00FA7E2E /* stringlist.c */; };
+		352988FD1AEF968C00FA7E2E /* stringpair.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988E51AEF968C00FA7E2E /* stringpair.c */; };
+		352988FE1AEF968C00FA7E2E /* timestamp.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988E71AEF968C00FA7E2E /* timestamp.c */; };
+		352988FF1AEF968C00FA7E2E /* trans_auto.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988E91AEF968C00FA7E2E /* trans_auto.c */; };
+		352989001AEF968C00FA7E2E /* transport.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988EB1AEF968C00FA7E2E /* transport.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		350F0EBE1B4D5BFB00D9964F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C64EA537169E772200778456;
+			remoteInfo = "static mailcore2 osx";
+		};
+		350F0EC01B4D5BFB00D9964F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C6BA2C191705F4E6003F0E9E;
+			remoteInfo = "static mailcore2 ios";
+		};
+		350F0EC21B4D5BFB00D9964F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C64EA78C169F259200778456;
+			remoteInfo = tests;
+		};
+		350F0EC41B4D5BFB00D9964F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C6A81B911706840C00882C15;
+			remoteInfo = "test-ios";
+		};
+		350F0EC61B4D5BFB00D9964F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C6BD288D170BD71100A91AC1;
+			remoteInfo = "mailcore osx";
+		};
+		350F0EC81B4D5BFB00D9964F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27780C3A19CF9CD100C77E44;
+			remoteInfo = "mailcore ios";
+		};
+		350F0ECA1B4D5BFB00D9964F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C6B5AE0219F630B3001352A6;
+			remoteInfo = unittest;
+		};
+		350F0ECC1B4D5BFB00D9964F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C600B6141A242C3F000728F1;
+			remoteInfo = unittestcpp;
+		};
+		352988B71AEF964100FA7E2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 352988A21AEF964100FA7E2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 352988A91AEF964100FA7E2E;
+			remoteInfo = pEpiOSAdapter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		352988A81AEF964100FA7E2E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				352988AE1AEF964100FA7E2E /* PEPiOSAdapter.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../MailCore2/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
+		350F0ED11B4D642200D9964F /* PEPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSession.h; sourceTree = "<group>"; };
+		350F0ED21B4D642200D9964F /* PEPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPSession.m; sourceTree = "<group>"; };
+		350F0ED71B4E997300D9964F /* MCOAbstractMessage+PEPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCOAbstractMessage+PEPMessage.h"; sourceTree = "<group>"; };
+		350F0ED81B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MCOAbstractMessage+PEPMessage.m"; sourceTree = "<group>"; };
+		352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpiOSAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		352988AD1AEF964100FA7E2E /* PEPiOSAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPiOSAdapter.h; sourceTree = "<group>"; };
+		352988AF1AEF964100FA7E2E /* PEPiOSAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPiOSAdapter.m; sourceTree = "<group>"; };
+		352988B51AEF964100FA7E2E /* pEpiOSAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpiOSAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		352988BB1AEF964100FA7E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		352988C41AEF968C00FA7E2E /* bloblist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bloblist.c; path = ../../pEpEngine/src/bloblist.c; sourceTree = "<group>"; };
+		352988C51AEF968C00FA7E2E /* bloblist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bloblist.h; path = ../../pEpEngine/src/bloblist.h; sourceTree = "<group>"; };
+		352988C61AEF968C00FA7E2E /* cryptotech.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cryptotech.c; path = ../../pEpEngine/src/cryptotech.c; sourceTree = "<group>"; };
+		352988C71AEF968C00FA7E2E /* cryptotech.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cryptotech.h; path = ../../pEpEngine/src/cryptotech.h; sourceTree = "<group>"; };
+		352988C81AEF968C00FA7E2E /* dynamic_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dynamic_api.h; path = ../../pEpEngine/src/dynamic_api.h; sourceTree = "<group>"; };
+		352988C91AEF968C00FA7E2E /* email.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = email.c; path = ../../pEpEngine/src/email.c; sourceTree = "<group>"; };
+		352988CA1AEF968C00FA7E2E /* email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = email.h; path = ../../pEpEngine/src/email.h; sourceTree = "<group>"; };
+		352988CB1AEF968C00FA7E2E /* etpan_mime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = etpan_mime.c; path = ../../pEpEngine/src/etpan_mime.c; sourceTree = "<group>"; };
+		352988CC1AEF968C00FA7E2E /* etpan_mime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = etpan_mime.h; path = ../../pEpEngine/src/etpan_mime.h; sourceTree = "<group>"; };
+		352988CD1AEF968C00FA7E2E /* identity_list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = identity_list.c; path = ../../pEpEngine/src/identity_list.c; sourceTree = "<group>"; };
+		352988CE1AEF968C00FA7E2E /* identity_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = identity_list.h; path = ../../pEpEngine/src/identity_list.h; sourceTree = "<group>"; };
+		352988CF1AEF968C00FA7E2E /* keymanagement.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = keymanagement.c; path = ../../pEpEngine/src/keymanagement.c; sourceTree = "<group>"; };
+		352988D01AEF968C00FA7E2E /* keymanagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keymanagement.h; path = ../../pEpEngine/src/keymanagement.h; sourceTree = "<group>"; };
+		352988D11AEF968C00FA7E2E /* message_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message_api.c; path = ../../pEpEngine/src/message_api.c; sourceTree = "<group>"; };
+		352988D21AEF968C00FA7E2E /* message_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message_api.h; path = ../../pEpEngine/src/message_api.h; sourceTree = "<group>"; };
+		352988D31AEF968C00FA7E2E /* message.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = message.c; path = ../../pEpEngine/src/message.c; sourceTree = "<group>"; };
+		352988D41AEF968C00FA7E2E /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = ../../pEpEngine/src/message.h; sourceTree = "<group>"; };
+		352988D51AEF968C00FA7E2E /* mime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mime.c; path = ../../pEpEngine/src/mime.c; sourceTree = "<group>"; };
+		352988D61AEF968C00FA7E2E /* mime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mime.h; path = ../../pEpEngine/src/mime.h; sourceTree = "<group>"; };
+		352988D71AEF968C00FA7E2E /* pEp_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pEp_internal.h; path = ../../pEpEngine/src/pEp_internal.h; sourceTree = "<group>"; };
+		352988D81AEF968C00FA7E2E /* pEpEngine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pEpEngine.c; path = ../../pEpEngine/src/pEpEngine.c; sourceTree = "<group>"; };
+		352988D91AEF968C00FA7E2E /* pEpEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pEpEngine.h; path = ../../pEpEngine/src/pEpEngine.h; sourceTree = "<group>"; };
+		352988DA1AEF968C00FA7E2E /* pgp_netpgp_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pgp_netpgp_internal.h; path = ../../pEpEngine/src/pgp_netpgp_internal.h; sourceTree = "<group>"; };
+		352988DB1AEF968C00FA7E2E /* pgp_netpgp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pgp_netpgp.c; path = ../../pEpEngine/src/pgp_netpgp.c; sourceTree = "<group>"; };
+		352988DC1AEF968C00FA7E2E /* pgp_netpgp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pgp_netpgp.h; path = ../../pEpEngine/src/pgp_netpgp.h; sourceTree = "<group>"; };
+		352988DD1AEF968C00FA7E2E /* platform_unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = platform_unix.c; path = ../../pEpEngine/src/platform_unix.c; sourceTree = "<group>"; };
+		352988DE1AEF968C00FA7E2E /* platform_unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform_unix.h; path = ../../pEpEngine/src/platform_unix.h; sourceTree = "<group>"; };
+		352988DF1AEF968C00FA7E2E /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = platform.h; path = ../../pEpEngine/src/platform.h; sourceTree = "<group>"; };
+		352988E01AEF968C00FA7E2E /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource.h; path = ../../pEpEngine/src/resource.h; sourceTree = "<group>"; };
+		352988E11AEF968C00FA7E2E /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../pEpEngine/src/sqlite3.c; sourceTree = "<group>"; };
+		352988E21AEF968C00FA7E2E /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../pEpEngine/src/sqlite3.h; sourceTree = "<group>"; };
+		352988E31AEF968C00FA7E2E /* stringlist.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = stringlist.c; path = ../../pEpEngine/src/stringlist.c; sourceTree = "<group>"; };
+		352988E41AEF968C00FA7E2E /* stringlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stringlist.h; path = ../../pEpEngine/src/stringlist.h; sourceTree = "<group>"; };
+		352988E51AEF968C00FA7E2E /* stringpair.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = stringpair.c; path = ../../pEpEngine/src/stringpair.c; sourceTree = "<group>"; };
+		352988E61AEF968C00FA7E2E /* stringpair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stringpair.h; path = ../../pEpEngine/src/stringpair.h; sourceTree = "<group>"; };
+		352988E71AEF968C00FA7E2E /* timestamp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = timestamp.c; path = ../../pEpEngine/src/timestamp.c; sourceTree = "<group>"; };
+		352988E81AEF968C00FA7E2E /* timestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timestamp.h; path = ../../pEpEngine/src/timestamp.h; sourceTree = "<group>"; };
+		352988E91AEF968C00FA7E2E /* trans_auto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = trans_auto.c; path = ../../pEpEngine/src/trans_auto.c; sourceTree = "<group>"; };
+		352988EA1AEF968C00FA7E2E /* trans_auto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = trans_auto.h; path = ../../pEpEngine/src/trans_auto.h; sourceTree = "<group>"; };
+		352988EB1AEF968C00FA7E2E /* transport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = transport.c; path = ../../pEpEngine/src/transport.c; sourceTree = "<group>"; };
+		352988EC1AEF968C00FA7E2E /* transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = transport.h; path = ../../pEpEngine/src/transport.h; sourceTree = "<group>"; };
+		352988ED1AEF968C00FA7E2E /* update.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = update.sql; path = ../../pEpEngine/src/update.sql; sourceTree = "<group>"; };
+		352988EE1AEF968C00FA7E2E /* wrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrappers.h; path = ../../pEpEngine/src/wrappers.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		352988A71AEF964100FA7E2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		352988B21AEF964100FA7E2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				352988B61AEF964100FA7E2E /* libpEpiOSAdapter.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		350F0EB41B4D5BFB00D9964F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				350F0EBF1B4D5BFB00D9964F /* libMailCore.a */,
+				350F0EC11B4D5BFB00D9964F /* libMailCore-ios.a */,
+				350F0EC31B4D5BFB00D9964F /* tests */,
+				350F0EC51B4D5BFB00D9964F /* test-ios.app */,
+				350F0EC71B4D5BFB00D9964F /* MailCore.framework */,
+				350F0EC91B4D5BFB00D9964F /* MailCore.framework */,
+				350F0ECB1B4D5BFB00D9964F /* unittest.xctest */,
+				350F0ECD1B4D5BFB00D9964F /* unittestcpp */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		352988A11AEF964100FA7E2E = {
+			isa = PBXGroup;
+			children = (
+				350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */,
+				352988AC1AEF964100FA7E2E /* pEpiOSAdapter */,
+				352988B91AEF964100FA7E2E /* pEpiOSAdapterTests */,
+				352988AB1AEF964100FA7E2E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		352988AB1AEF964100FA7E2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */,
+				352988B51AEF964100FA7E2E /* pEpiOSAdapterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		352988AC1AEF964100FA7E2E /* pEpiOSAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				352988C41AEF968C00FA7E2E /* bloblist.c */,
+				352988C51AEF968C00FA7E2E /* bloblist.h */,
+				352988C61AEF968C00FA7E2E /* cryptotech.c */,
+				352988C71AEF968C00FA7E2E /* cryptotech.h */,
+				352988C81AEF968C00FA7E2E /* dynamic_api.h */,
+				352988C91AEF968C00FA7E2E /* email.c */,
+				352988CA1AEF968C00FA7E2E /* email.h */,
+				352988CB1AEF968C00FA7E2E /* etpan_mime.c */,
+				352988CC1AEF968C00FA7E2E /* etpan_mime.h */,
+				352988CD1AEF968C00FA7E2E /* identity_list.c */,
+				352988CE1AEF968C00FA7E2E /* identity_list.h */,
+				352988CF1AEF968C00FA7E2E /* keymanagement.c */,
+				352988D01AEF968C00FA7E2E /* keymanagement.h */,
+				352988D11AEF968C00FA7E2E /* message_api.c */,
+				352988D21AEF968C00FA7E2E /* message_api.h */,
+				352988D31AEF968C00FA7E2E /* message.c */,
+				352988D41AEF968C00FA7E2E /* message.h */,
+				352988D51AEF968C00FA7E2E /* mime.c */,
+				352988D61AEF968C00FA7E2E /* mime.h */,
+				352988D71AEF968C00FA7E2E /* pEp_internal.h */,
+				352988D81AEF968C00FA7E2E /* pEpEngine.c */,
+				352988D91AEF968C00FA7E2E /* pEpEngine.h */,
+				352988DA1AEF968C00FA7E2E /* pgp_netpgp_internal.h */,
+				352988DB1AEF968C00FA7E2E /* pgp_netpgp.c */,
+				352988DC1AEF968C00FA7E2E /* pgp_netpgp.h */,
+				352988DD1AEF968C00FA7E2E /* platform_unix.c */,
+				352988DE1AEF968C00FA7E2E /* platform_unix.h */,
+				352988DF1AEF968C00FA7E2E /* platform.h */,
+				352988E01AEF968C00FA7E2E /* resource.h */,
+				352988E11AEF968C00FA7E2E /* sqlite3.c */,
+				352988E21AEF968C00FA7E2E /* sqlite3.h */,
+				352988E31AEF968C00FA7E2E /* stringlist.c */,
+				352988E41AEF968C00FA7E2E /* stringlist.h */,
+				352988E51AEF968C00FA7E2E /* stringpair.c */,
+				352988E61AEF968C00FA7E2E /* stringpair.h */,
+				352988E71AEF968C00FA7E2E /* timestamp.c */,
+				352988E81AEF968C00FA7E2E /* timestamp.h */,
+				352988E91AEF968C00FA7E2E /* trans_auto.c */,
+				352988EA1AEF968C00FA7E2E /* trans_auto.h */,
+				352988EB1AEF968C00FA7E2E /* transport.c */,
+				352988EC1AEF968C00FA7E2E /* transport.h */,
+				352988ED1AEF968C00FA7E2E /* update.sql */,
+				352988EE1AEF968C00FA7E2E /* wrappers.h */,
+				352988AD1AEF964100FA7E2E /* PEPiOSAdapter.h */,
+				352988AF1AEF964100FA7E2E /* PEPiOSAdapter.m */,
+				350F0ED11B4D642200D9964F /* PEPSession.h */,
+				350F0ED21B4D642200D9964F /* PEPSession.m */,
+				350F0ED71B4E997300D9964F /* MCOAbstractMessage+PEPMessage.h */,
+				350F0ED81B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m */,
+			);
+			path = pEpiOSAdapter;
+			sourceTree = "<group>";
+		};
+		352988B91AEF964100FA7E2E /* pEpiOSAdapterTests */ = {
+			isa = PBXGroup;
+			children = (
+				352988BA1AEF964100FA7E2E /* Supporting Files */,
+			);
+			path = pEpiOSAdapterTests;
+			sourceTree = "<group>";
+		};
+		352988BA1AEF964100FA7E2E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				352988BB1AEF964100FA7E2E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		352988A91AEF964100FA7E2E /* pEpiOSAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 352988BE1AEF964100FA7E2E /* Build configuration list for PBXNativeTarget "pEpiOSAdapter" */;
+			buildPhases = (
+				352988A61AEF964100FA7E2E /* Sources */,
+				352988A71AEF964100FA7E2E /* Frameworks */,
+				352988A81AEF964100FA7E2E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pEpiOSAdapter;
+			productName = pEpiOSAdapter;
+			productReference = 352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		352988B41AEF964100FA7E2E /* pEpiOSAdapterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 352988C11AEF964100FA7E2E /* Build configuration list for PBXNativeTarget "pEpiOSAdapterTests" */;
+			buildPhases = (
+				352988B11AEF964100FA7E2E /* Sources */,
+				352988B21AEF964100FA7E2E /* Frameworks */,
+				352988B31AEF964100FA7E2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				352988B81AEF964100FA7E2E /* PBXTargetDependency */,
+			);
+			name = pEpiOSAdapterTests;
+			productName = pEpiOSAdapterTests;
+			productReference = 352988B51AEF964100FA7E2E /* pEpiOSAdapterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		352988A21AEF964100FA7E2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PEP;
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "p≡p";
+				TargetAttributes = {
+					352988A91AEF964100FA7E2E = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					352988B41AEF964100FA7E2E = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 352988A51AEF964100FA7E2E /* Build configuration list for PBXProject "pEpiOSAdapter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 352988A11AEF964100FA7E2E;
+			productRefGroup = 352988AB1AEF964100FA7E2E /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 350F0EB41B4D5BFB00D9964F /* Products */;
+					ProjectRef = 350F0EB31B4D5BFB00D9964F /* mailcore2.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				352988A91AEF964100FA7E2E /* pEpiOSAdapter */,
+				352988B41AEF964100FA7E2E /* pEpiOSAdapterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		350F0EBF1B4D5BFB00D9964F /* libMailCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMailCore.a;
+			remoteRef = 350F0EBE1B4D5BFB00D9964F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		350F0EC11B4D5BFB00D9964F /* libMailCore-ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libMailCore-ios.a";
+			remoteRef = 350F0EC01B4D5BFB00D9964F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		350F0EC31B4D5BFB00D9964F /* tests */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = tests;
+			remoteRef = 350F0EC21B4D5BFB00D9964F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		350F0EC51B4D5BFB00D9964F /* test-ios.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "test-ios.app";
+			remoteRef = 350F0EC41B4D5BFB00D9964F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		350F0EC71B4D5BFB00D9964F /* MailCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MailCore.framework;
+			remoteRef = 350F0EC61B4D5BFB00D9964F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		350F0EC91B4D5BFB00D9964F /* MailCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MailCore.framework;
+			remoteRef = 350F0EC81B4D5BFB00D9964F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		350F0ECB1B4D5BFB00D9964F /* unittest.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = unittest.xctest;
+			remoteRef = 350F0ECA1B4D5BFB00D9964F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		350F0ECD1B4D5BFB00D9964F /* unittestcpp */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = unittestcpp;
+			remoteRef = 350F0ECC1B4D5BFB00D9964F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		352988B31AEF964100FA7E2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		352988A61AEF964100FA7E2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				352988FD1AEF968C00FA7E2E /* stringpair.c in Sources */,
+				352988F61AEF968C00FA7E2E /* message.c in Sources */,
+				352988F91AEF968C00FA7E2E /* pgp_netpgp.c in Sources */,
+				352988F21AEF968C00FA7E2E /* etpan_mime.c in Sources */,
+				352988FA1AEF968C00FA7E2E /* platform_unix.c in Sources */,
+				352988FC1AEF968C00FA7E2E /* stringlist.c in Sources */,
+				352988F41AEF968C00FA7E2E /* keymanagement.c in Sources */,
+				352988FB1AEF968C00FA7E2E /* sqlite3.c in Sources */,
+				350F0ED31B4D642200D9964F /* PEPSession.m in Sources */,
+				352988F31AEF968C00FA7E2E /* identity_list.c in Sources */,
+				352988FF1AEF968C00FA7E2E /* trans_auto.c in Sources */,
+				352988F11AEF968C00FA7E2E /* email.c in Sources */,
+				352988F71AEF968C00FA7E2E /* mime.c in Sources */,
+				352989001AEF968C00FA7E2E /* transport.c in Sources */,
+				352988F81AEF968C00FA7E2E /* pEpEngine.c in Sources */,
+				352988F51AEF968C00FA7E2E /* message_api.c in Sources */,
+				350F0ED91B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m in Sources */,
+				352988FE1AEF968C00FA7E2E /* timestamp.c in Sources */,
+				352988F01AEF968C00FA7E2E /* cryptotech.c in Sources */,
+				352988EF1AEF968C00FA7E2E /* bloblist.c in Sources */,
+				352988B01AEF964100FA7E2E /* PEPiOSAdapter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		352988B11AEF964100FA7E2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		352988B81AEF964100FA7E2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 352988A91AEF964100FA7E2E /* pEpiOSAdapter */;
+			targetProxy = 352988B71AEF964100FA7E2E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		352988BC1AEF964100FA7E2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		352988BD1AEF964100FA7E2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		352988BF1AEF964100FA7E2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "~/MailCore2/src";
+			};
+			name = Debug;
+		};
+		352988C01AEF964100FA7E2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "~/MailCore2/src";
+			};
+			name = Release;
+		};
+		352988C21AEF964100FA7E2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = pEpiOSAdapterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		352988C31AEF964100FA7E2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = pEpiOSAdapterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		352988A51AEF964100FA7E2E /* Build configuration list for PBXProject "pEpiOSAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				352988BC1AEF964100FA7E2E /* Debug */,
+				352988BD1AEF964100FA7E2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		352988BE1AEF964100FA7E2E /* Build configuration list for PBXNativeTarget "pEpiOSAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				352988BF1AEF964100FA7E2E /* Debug */,
+				352988C01AEF964100FA7E2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		352988C11AEF964100FA7E2E /* Build configuration list for PBXNativeTarget "pEpiOSAdapterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				352988C21AEF964100FA7E2E /* Debug */,
+				352988C31AEF964100FA7E2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 352988A21AEF964100FA7E2E /* Project object */;
+}
