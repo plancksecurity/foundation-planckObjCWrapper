@@ -30,6 +30,7 @@
 		352988FE1AEF968C00FA7E2E /* timestamp.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988E71AEF968C00FA7E2E /* timestamp.c */; };
 		352988FF1AEF968C00FA7E2E /* trans_auto.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988E91AEF968C00FA7E2E /* trans_auto.c */; };
 		352989001AEF968C00FA7E2E /* transport.c in Sources */ = {isa = PBXBuildFile; fileRef = 352988EB1AEF968C00FA7E2E /* transport.c */; };
+		35EA58151B565643000B4CC5 /* PEPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA58141B565643000B4CC5 /* PEPQueue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,8 @@
 		352988EC1AEF968C00FA7E2E /* transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = transport.h; path = ../../pEpEngine/src/transport.h; sourceTree = "<group>"; };
 		352988ED1AEF968C00FA7E2E /* update.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = update.sql; path = ../../pEpEngine/src/update.sql; sourceTree = "<group>"; };
 		352988EE1AEF968C00FA7E2E /* wrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wrappers.h; path = ../../pEpEngine/src/wrappers.h; sourceTree = "<group>"; };
+		35EA58131B565643000B4CC5 /* PEPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPQueue.h; sourceTree = "<group>"; };
+		35EA58141B565643000B4CC5 /* PEPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPQueue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +275,8 @@
 				350F0ED21B4D642200D9964F /* PEPSession.m */,
 				350F0ED71B4E997300D9964F /* MCOAbstractMessage+PEPMessage.h */,
 				350F0ED81B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m */,
+				35EA58131B565643000B4CC5 /* PEPQueue.h */,
+				35EA58141B565643000B4CC5 /* PEPQueue.m */,
 			);
 			path = pEpiOSAdapter;
 			sourceTree = "<group>";
@@ -447,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				352988FD1AEF968C00FA7E2E /* stringpair.c in Sources */,
+				35EA58151B565643000B4CC5 /* PEPQueue.m in Sources */,
 				352988F61AEF968C00FA7E2E /* message.c in Sources */,
 				352988F91AEF968C00FA7E2E /* pgp_netpgp.c in Sources */,
 				352988F21AEF968C00FA7E2E /* etpan_mime.c in Sources */,
