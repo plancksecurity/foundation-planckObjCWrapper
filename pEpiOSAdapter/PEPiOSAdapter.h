@@ -17,7 +17,7 @@
 + (void)startKeyserverLookup;
 + (void)stopKeyserverLookup;
 
-// this message is for internal use only
+// this message is for internal use only; do not call
 
 + (void)registerExamineFunction:(PEP_SESSION)session;
 

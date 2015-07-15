@@ -67,16 +67,30 @@ PEP_SESSION _session;
 
 - (void)mySelf:(NSMutableDictionary *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
-    update_identity(_session, ident);
-    PEP_identityFromStruct(identity, ident);
+    @synchronized(self) {
+        pEp_identity *ident = PEP_identityToStruct(identity);
+        update_identity(_session, ident);
+        PEP_identityFromStruct(identity, ident);
+        free_identity(ident);
+    }
 }
 
 - (void)updateIdentity:(NSMutableDictionary *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
-    update_identity(_session, ident);
-    PEP_identityFromStruct(identity, ident);
+    @synchronized(self) {
+        pEp_identity *ident = PEP_identityToStruct(identity);
+        update_identity(_session, ident);
+        PEP_identityFromStruct(identity, ident);
+        free_identity(ident);
+    }
+}
+
+- (void)keyCompromized:(NSString *)fpr
+{
+    @synchronized(self) {
+        const char *str = [[fpr precomposedStringWithCanonicalMapping] UTF8String];
+        key_compromized(_session, str);
+    }
 }
 
 @end
