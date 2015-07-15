@@ -7,11 +7,10 @@
 //
 
 #import "PEPSession.h"
+#import "PEPiOSAdapter.h"
 #import "MCOAbstractMessage+PEPMessage.h"
 
 @implementation PEPSession
-
-@class MCOAbstractMessage;
 
 PEP_SESSION _session;
 
@@ -55,8 +54,14 @@ PEP_SESSION _session;
 
 - (PEP_color)outgoingMessageColor:(MCOAbstractMessage *)msg
 {
+    message *_msg = [msg PEP_toStruct];
     
-    return PEP_rating_undefined;
+    PEP_color color;
+    outgoing_message_color(_session, _msg, &color);
+    
+    free_message(_msg);
+    
+    return color;
 }
 
 - (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened

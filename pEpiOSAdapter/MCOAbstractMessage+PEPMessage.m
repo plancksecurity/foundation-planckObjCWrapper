@@ -125,8 +125,6 @@ identity_list *PEP_arrayToIdentityList(NSArray *array)
     return il;
 }
 
-@class MCOAbstractMessage;
-
 @implementation MCOAbstractMessage (PEPMessage)
 
 - (void)PEP_fromStruct:(message *)msg
@@ -136,7 +134,9 @@ identity_list *PEP_arrayToIdentityList(NSArray *array)
 
 - (message *)PEP_toStruct
 {
-    return NULL;
+    message *_msg = new_message(PEP_dir_incoming);
+    
+    return _msg;
 }
 
 @end

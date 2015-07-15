@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PEPiOSAdapter.h"
-#import "objc/MCObjC.h"
+#import "objc/abstract/MCOAbstractMessage.h"
 
 @interface PEPSession : NSObject
 
