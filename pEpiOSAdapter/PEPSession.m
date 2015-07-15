@@ -61,8 +61,26 @@ PEP_SESSION _session;
 
 - (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened
 {
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (int i = 0; i < [fpr length]; i += 4) {
+        if (shortened && i >= 20)
+            break;
+        
+        NSString *str = [fpr substringWithRange:NSRange(i, 4)];
 
-    return nil;
+        unsigned int value;
+        [[NSScanner scannerWithString:str] scanHexInt:&value];
+        
+        char *word;
+        size_t size;
+        trustword(_session, value, [languageID UTF8String], &word, &size);
+        
+        [array addObject:[NSString stringWithUTF8String:word]];
+        free(word);
+    }
+    
+    return array;
 }
 
 - (void)mySelf:(NSMutableDictionary *)identity

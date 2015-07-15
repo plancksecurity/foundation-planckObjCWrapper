@@ -18,15 +18,19 @@
 + (PEPSession *)session;
 
 // decrypt a message
+
 - (PEP_color)decryptMessage:(MCOAbstractMessage *)src dest:(MCOAbstractMessage *)dst keys:(NSArray **)keys;
 
 // encrypt a message
+
 - (void)encryptMessage:(MCOAbstractMessage *)src extra:(NSArray *)keys dest:(MCOAbstractMessage *)dst;
 
 // message is to be sent
+
 - (PEP_color)outgoingMessageColor:(MCOAbstractMessage *)msg;
 
 // get trustwords for a fingerprint
+
 - (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened;
 
 /*

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "pEpEngine.h"
+#include "message_api.h"
 
 @interface PEPiOSAdapter : NSObject
 
