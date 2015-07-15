@@ -26,7 +26,7 @@ static pEp_identity *retrieve_next_identity(void *management)
 
 @implementation PEPiOSAdapter
 
-static NSMutableArray *queue = nil;
+static PEPQueue *queue = nil;
 static NSThread *keyserver_thread = nil;
 
 + (void)keyserverThread:(id)object
@@ -49,7 +49,7 @@ static NSThread *keyserver_thread = nil;
 + (void)stopKeyserverLookup
 {
     if (queue) {
-        queue = nil;
+        [queue queue: ]
     }
 }
 
