@@ -10,7 +10,7 @@
 
 @interface PEPQueue : NSMutableArray
 
-- (void)queue:(id)object;
+- (void)enqueue:(id)object;
 - (id)dequeue;
 
 @end

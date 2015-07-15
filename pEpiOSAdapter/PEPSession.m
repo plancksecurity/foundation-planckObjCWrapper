@@ -32,6 +32,8 @@ PEP_SESSION _session;
         
         @throw myException;
     }
+    
+    [PEPiOSAdapter registerExamineFunction:_session];
     return self;
 }
 

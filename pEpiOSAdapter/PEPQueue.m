@@ -10,7 +10,7 @@
 
 @implementation PEPQueue
 
-- (void)queue:(id)object
+- (void)enqueue:(id)object
 {
     @synchronized(self) {
         [self insertObject:object atIndex:0];

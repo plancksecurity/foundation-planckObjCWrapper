@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include "pEpEngine.h"
 
 @interface PEPiOSAdapter : NSObject
 
@@ -15,5 +16,9 @@
 
 + (void)startKeyserverLookup;
 + (void)stopKeyserverLookup;
+
+// this message is for internal use only
+
++ (void)registerExamineFunction:(PEP_SESSION)session;
 
 @end
