@@ -33,8 +33,10 @@ stringlist_t *PEP_arrayToStringlist(NSArray *array)
     return sl;
 }
 
-void PEP_identityFromStruct(NSMutableDictionary *dict, pEp_identity *ident)
+NSMutableDictionary *PEP_identityFromStruct(pEp_identity *ident)
 {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
     if (ident) {
         if (ident->address && ident->address[0])
             [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:@"address"];
@@ -58,6 +60,8 @@ void PEP_identityFromStruct(NSMutableDictionary *dict, pEp_identity *ident)
         else
             [dict setObject:@NO forKey:@"me"];
     }
+    
+    return dict;
 }
 
 pEp_identity *PEP_identityToStruct(NSDictionary *dict)
@@ -103,8 +107,7 @@ NSArray *PEP_arrayFromIdentityList(identity_list *il)
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-        PEP_identityFromStruct(dict, il->ident);
+        NSMutableDictionary * dict = PEP_identityFromStruct(il->ident);
         [array addObject:dict];
     }
     
@@ -125,7 +128,57 @@ identity_list *PEP_arrayToIdentityList(NSArray *array)
     return il;
 }
 
+pEp_identity *PEP_MCOAddressToStruct(MCOAddress *address)
+{
+    pEp_identity *ident = new_identity([[address.mailbox precomposedStringWithCanonicalMapping] UTF8String], NULL, NULL, [[address.displayName precomposedStringWithCanonicalMapping] UTF8String]);
+    return ident;
+}
+
+MCOAddress *PEP_MCOAddressFromStruct(pEp_identity *ident)
+{
+    MCOAddress *address = [MCOAddress addressWithDisplayName:[NSString stringWithUTF8String:ident->username] mailbox:[NSString stringWithUTF8String:ident->address]];
+    return address;
+}
+
+identity_list *PEP_MCOAddressArrayToList(NSArray *array)
+{
+    identity_list *il = new_identity_list(NULL);
+    if (!il)
+        return NULL;
+    
+    identity_list *_il = il;
+    for (MCOAddress *address in array) {
+        _il = identity_list_add(_il, PEP_MCOAddressToStruct(address));
+    }
+    
+    return il;
+}
+
+NSMutableArray *PEP_MCOAddressArrayFromList(identity_list *il)
+{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
+        MCOAddress * address = PEP_MCOAddressFromStruct(il->ident);
+        [array addObject:address];
+    }
+    
+    return array;
+}
+
 @implementation MCOAbstractMessage (PEPMessage)
+
+BOOL _outgoing;
+
+- (BOOL)outgoing
+{
+    return _outgoing;
+}
+
+- (void)setOutgoing:(BOOL)outgoing
+{
+    _outgoing = outgoing;
+}
 
 - (void)PEP_fromStruct:(message *)msg
 {
@@ -134,8 +187,75 @@ identity_list *PEP_arrayToIdentityList(NSArray *array)
 
 - (message *)PEP_toStruct
 {
-    message *_msg = new_message(PEP_dir_incoming);
+    message *_msg = new_message([self outgoing] ? PEP_dir_outgoing : PEP_dir_incoming);
     
+    _msg->id = strdup([self.header.messageID UTF8String]);
+    _msg->shortmsg = strdup([[self.header.subject precomposedStringWithCanonicalMapping] UTF8String]);
+    _msg->sent = new_timestamp([self.header.date timeIntervalSince1970]);
+    _msg->recv = new_timestamp([self.header.receivedDate timeIntervalSince1970]);
+    _msg->from = PEP_MCOAddressToStruct(self.header.from);
+    _msg->to = PEP_MCOAddressArrayToList(self.header.to);
+    _msg->recv_by = PEP_MCOAddressToStruct(self.header.sender);
+    _msg->cc = PEP_MCOAddressArrayToList(self.header.cc);
+    _msg->bcc = PEP_MCOAddressArrayToList(self.header.bcc);
+    _msg->reply_to = PEP_MCOAddressArrayToList(self.header.replyTo);
+    _msg->in_reply_to = PEP_arrayToStringlist(self.header.inReplyTo);
+    _msg->references = PEP_arrayToStringlist(self.header.references);
+    
+    if (![self.header.userAgent isEqual: @""])
+        _msg->opt_fields = new_stringpair_list(new_stringpair("X-Mailer", [[self.header.userAgent precomposedStringWithCanonicalMapping] UTF8String]));
+    
+    NSString *html;
+    NSString *plain;
+    
+    if ([self isKindOfClass: [MCOMessageBuilder class]]) {
+        MCOMessageBuilder * me = (MCOMessageBuilder *) self;
+        html = me.htmlBodyRendering;
+        plain = me.plainTextRendering;
+    }
+    else if ([self isKindOfClass: [MCOMessageParser class]]) {
+        MCOMessageParser * me = (MCOMessageParser *) self;
+        html = me.htmlBodyRendering;
+        plain = me.plainTextRendering;
+    }
+    else if ([self isKindOfClass: [MCOIMAPMessage class]]) {
+        assert(0); // an MCOIMAPMessage cannot be rendered directly but this is needed
+    }
+    
+    _msg->longmsg = strdup([[plain precomposedStringWithCanonicalMapping] UTF8String]);
+    _msg->longmsg_formatted = strdup([[html precomposedStringWithCanonicalMapping] UTF8String]);
+    
+    if ([self.htmlInlineAttachments count]) {
+        _msg->attachments = new_bloblist(NULL, 0, NULL, NULL);
+        
+        bloblist_t *_bl = _msg->attachments;
+        for (MCOAttachment *attachment in self.htmlInlineAttachments) {
+            size_t size = [[attachment data] length];
+            
+            char *data = malloc(size);
+            assert(data);
+            memcpy(data, [[attachment data] bytes], size);
+            
+            _bl = bloblist_add(_bl, data, size, [[attachment mimeType] UTF8String], [[[attachment filename] precomposedStringWithCanonicalMapping] UTF8String]);
+        }
+    }
+
+    if ([self.attachments count]) {
+        if (_msg->attachments == NULL)
+            _msg->attachments = new_bloblist(NULL, 0, NULL, NULL);
+        
+        bloblist_t *_bl = _msg->attachments;
+        for (MCOAttachment *attachment in self.attachments) {
+            size_t size = [[attachment data] length];
+            
+            char *data = malloc(size);
+            assert(data);
+            memcpy(data, [[attachment data] bytes], size);
+
+            _bl = bloblist_add(_bl, data, size, [[attachment mimeType] UTF8String], [[[attachment filename] precomposedStringWithCanonicalMapping] UTF8String]);
+        }
+    }
+
     return _msg;
 }
 

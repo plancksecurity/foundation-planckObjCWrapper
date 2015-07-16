@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "objc/MCObjC.h"
+#import <MailCore/MailCore.h>
 #include "message_api.h"
 
 pEp_identity *PEP_identityToStruct(NSDictionary *dict);
-void PEP_identityFromStruct(NSMutableDictionary *dict, pEp_identity *ident);
+NSMutableDictionary *PEP_identityFromStruct(pEp_identity *ident);
 
 @interface MCOAbstractMessage (PEPMessage)
+
+@property BOOL outgoing;
 
 - (void)PEP_fromStruct:(message *)msg;
 - (message *)PEP_toStruct;

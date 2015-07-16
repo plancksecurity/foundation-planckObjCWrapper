@@ -18,10 +18,9 @@ int examine_identity(pEp_identity *ident, void *management)
 {
     PEPQueue *q = (__bridge PEPQueue *)management;
 
-    NSDictionary *identity = [NSDictionary dictionary];
-    PEP_identityFromStruct(identity, ident);
+    NSDictionary *identity = PEP_identityFromStruct(ident);
     
-    [q enqueue::identity];
+    [q enqueue:identity];
     return 0;
 }
 
@@ -47,7 +46,7 @@ static NSThread *keyserver_thread = nil;
 
 + (void)keyserverThread:(id)object
 {
-    do_keymanagement(retrieve_next_identity, (void *)queue);
+    do_keymanagement(retrieve_next_identity, (__bridge void *)queue);
 }
 
 + (void)startKeyserverLookup
@@ -70,7 +69,7 @@ static NSThread *keyserver_thread = nil;
 
 + (void)registerExamineFunction:(PEP_SESSION)session
 {
-    register_examine_function(session, examine_identity, (void *)queue);
+    register_examine_function(session, examine_identity, (__bridge void *)queue);
 }
 
 @end
