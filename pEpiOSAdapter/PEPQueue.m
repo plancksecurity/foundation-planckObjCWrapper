@@ -20,7 +20,7 @@
 - (id)dequeue
 {
     @synchronized(self) {
-        id object = [[self lastObject] copy];
+        id object = [self lastObject];
         [self removeLastObject];
         return object;
     }
