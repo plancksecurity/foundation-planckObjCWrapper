@@ -11,7 +11,7 @@
 #include "message_api.h"
 
 pEp_identity *PEP_identityToStruct(NSDictionary *dict);
-NSMutableDictionary *PEP_identityFromStruct(pEp_identity *ident);
+void PEP_identityFromStruct(NSMutableDictionary *dict, pEp_identity *ident);
 
 @interface MCOAbstractMessage (PEPMessage)
 

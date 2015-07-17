@@ -33,10 +33,8 @@ stringlist_t *PEP_arrayToStringlist(NSArray *array)
     return sl;
 }
 
-NSMutableDictionary *PEP_identityFromStruct(pEp_identity *ident)
+void PEP_identityFromStruct(NSMutableDictionary *dict, pEp_identity *ident)
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    
     if (ident) {
         if (ident->address && ident->address[0])
             [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:@"address"];
@@ -60,8 +58,6 @@ NSMutableDictionary *PEP_identityFromStruct(pEp_identity *ident)
         else
             [dict setObject:@NO forKey:@"me"];
     }
-    
-    return dict;
 }
 
 pEp_identity *PEP_identityToStruct(NSDictionary *dict)
@@ -107,7 +103,8 @@ NSArray *PEP_arrayFromIdentityList(identity_list *il)
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        NSMutableDictionary * dict = PEP_identityFromStruct(il->ident);
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        PEP_identityFromStruct(dict, il->ident);
         [array addObject:dict];
     }
     
