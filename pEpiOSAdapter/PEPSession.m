@@ -43,20 +43,52 @@ PEP_SESSION _session;
 
 - (PEP_color)decryptMessage:(MCOAbstractMessage *)src dest:(MCOAbstractMessage *)dst keys:(NSArray **)keys
 {
-    
-    return PEP_rating_undefined;
+    message * _src = [src PEP_toStruct];
+    message * _dst = NULL;
+    stringlist_t *_keys = NULL;
+    PEP_color color = PEP_rating_undefined;
+
+    decrypt_message(_session, _src, &_dst, &_keys, &color);
+
+    if (_dst) {
+        [dst PEP_fromStruct:_dst];
+    }
+    else {
+        [dst PEP_fromStruct:_src];
+    }
+
+    free_message(_src);
+    free_message(_dst);
+    free_stringlist(_keys);
+
+    return color;
 }
 
 - (void)encryptMessage:(MCOAbstractMessage *)src extra:(NSArray *)keys dest:(MCOAbstractMessage *)dst
 {
-    
+    message * _src = [src PEP_toStruct];
+    message * _dst = NULL;
+    stringlist_t *_keys = PEP_arrayToStringlist(keys);
+
+    encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME);
+
+    if (_dst) {
+        [dst PEP_fromStruct:_dst];
+    }
+    else {
+        [dst PEP_fromStruct:_src];
+    }
+
+    free_message(_src);
+    free_message(_dst);
+    free_stringlist(_keys);
 }
 
 - (PEP_color)outgoingMessageColor:(MCOAbstractMessage *)msg
 {
     message *_msg = [msg PEP_toStruct];
-    
-    PEP_color color;
+    PEP_color color = PEP_rating_undefined;
+
     outgoing_message_color(_session, _msg, &color);
     
     free_message(_msg);
