@@ -48,13 +48,16 @@ PEP_SESSION _session;
     stringlist_t *_keys = NULL;
     PEP_color color = PEP_rating_undefined;
 
-    decrypt_message(_session, _src, &_dst, &_keys, &color);
+    @synchronized (self) {
+        decrypt_message(_session, _src, &_dst, &_keys, &color);
 
-    if (_dst) {
-        [dst PEP_fromStruct:_dst];
-    }
-    else {
-        [dst PEP_fromStruct:_src];
+
+        if (_dst) {
+            [dst PEP_fromStruct:_dst];
+        }
+        else {
+            [dst PEP_fromStruct:_src];
+        }
     }
 
     free_message(_src);
@@ -70,13 +73,15 @@ PEP_SESSION _session;
     message * _dst = NULL;
     stringlist_t *_keys = PEP_arrayToStringlist(keys);
 
-    encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME);
+    @synchronized (self) {
+        encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME);
 
-    if (_dst) {
-        [dst PEP_fromStruct:_dst];
-    }
-    else {
-        [dst PEP_fromStruct:_src];
+        if (_dst) {
+            [dst PEP_fromStruct:_dst];
+        }
+        else {
+            [dst PEP_fromStruct:_src];
+        }
     }
 
     free_message(_src);
@@ -89,8 +94,10 @@ PEP_SESSION _session;
     message *_msg = [msg PEP_toStruct];
     PEP_color color = PEP_rating_undefined;
 
-    outgoing_message_color(_session, _msg, &color);
-    
+    @synchronized (self) {
+        outgoing_message_color(_session, _msg, &color);
+    }
+
     free_message(_msg);
     
     return color;
@@ -111,8 +118,11 @@ PEP_SESSION _session;
         
         char *word;
         size_t size;
-        trustword(_session, value, [languageID UTF8String], &word, &size);
-        
+
+        @synchronized (self) {
+            trustword(_session, value, [languageID UTF8String], &word, &size);
+        }
+
         [array addObject:[NSString stringWithUTF8String:word]];
         free(word);
     }
@@ -142,8 +152,9 @@ PEP_SESSION _session;
 
 - (void)keyCompromized:(NSString *)fpr
 {
+    const char *str = [[fpr precomposedStringWithCanonicalMapping] UTF8String];
+
     @synchronized(self) {
-        const char *str = [[fpr precomposedStringWithCanonicalMapping] UTF8String];
         key_compromized(_session, str);
     }
 }
