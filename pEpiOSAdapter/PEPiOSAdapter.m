@@ -17,8 +17,9 @@
 int examine_identity(pEp_identity *ident, void *management)
 {
     PEPQueue *q = (__bridge PEPQueue *)management;
-
-    NSDictionary *identity = PEP_identityFromStruct(ident);
+    
+    NSMutableDictionary *identity = [[NSMutableDictionary alloc] init];
+    PEP_identityFromStruct(identity, ident);
     
     [q enqueue:identity];
     return 0;
