@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "pEpOSXAdapter.h"
+#import "pEpiOSAdapter.h"
 #import <MailCore/mailcore.h>
 
 @interface PEPSession : NSObject

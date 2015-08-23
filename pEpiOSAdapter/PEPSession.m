@@ -7,7 +7,7 @@
 //
 
 #import "PEPSession.h"
-#import "pEpOSXAdapter.h"
+#import "pEpiOSAdapter.h"
 #import "MCOAbstractMessage+PEPMessage.h"
 
 @implementation PEPSession
