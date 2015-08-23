@@ -61,7 +61,7 @@ PEP_SESSION _session;
         [dst_ PEP_fromStruct:_src];
     }
 
-    NSArray * keys_ = NULL;
+    NSArray * keys_ = nil;
     if (_keys)
         keys_ = PEP_arrayFromStringlist(_keys);
 
