@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PEPiOSAdapter.h"
+#import "pEpOSXAdapter.h"
 #import <MailCore/mailcore.h>
 
 @interface PEPSession : NSObject
@@ -19,11 +19,11 @@
 
 // decrypt a message
 
-- (PEP_color)decryptMessage:(MCOAbstractMessage *)src dest:(MCOAbstractMessage *)dst keys:(NSArray **)keys;
+- (PEP_color)decryptMessage:(MCOAbstractMessage *)src dest:(MCOAbstractMessage **)dst keys:(NSArray **)keys;
 
 // encrypt a message
 
-- (void)encryptMessage:(MCOAbstractMessage *)src extra:(NSArray *)keys dest:(MCOAbstractMessage *)dst;
+- (void)encryptMessage:(MCOAbstractMessage *)src extra:(NSArray *)keys dest:(MCOAbstractMessage **)dst;
 
 // message is to be sent
 
