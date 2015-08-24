@@ -32,7 +32,7 @@ PEP_SESSION _session;
         @throw myException;
     }
     
-    [pEpOSXAdapter registerExamineFunction:_session];
+    [PEPiOSAdapter registerExamineFunction:_session];
     return self;
 }
 
