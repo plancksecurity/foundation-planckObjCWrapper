@@ -12,9 +12,8 @@
 		352988AE1AEF964100FA7E2E /* PEPiOSAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 352988AD1AEF964100FA7E2E /* PEPiOSAdapter.h */; };
 		352988B01AEF964100FA7E2E /* PEPiOSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 352988AF1AEF964100FA7E2E /* PEPiOSAdapter.m */; };
 		35EA58151B565643000B4CC5 /* PEPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA58141B565643000B4CC5 /* PEPQueue.m */; };
-		35FB0ABC1B57F97E00377032 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABB1B57F97E00377032 /* CFNetwork.framework */; };
-		35FB0ABE1B57F99D00377032 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; };
-		64422EE91B8B7332000AF908 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
+		6400FB911B8CA543005221E3 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
+		6400FB921B8CA559005221E3 /* libMailCore-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64DA242E1B83323B000BEE80 /* libMailCore-ios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,9 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64422EE91B8B7332000AF908 /* libpEpEngine.a in Frameworks */,
-				35FB0ABE1B57F99D00377032 /* Security.framework in Frameworks */,
-				35FB0ABC1B57F97E00377032 /* CFNetwork.framework in Frameworks */,
+				6400FB921B8CA559005221E3 /* libMailCore-ios.a in Frameworks */,
+				6400FB911B8CA543005221E3 /* libpEpEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,9 +357,6 @@
 		352988BC1AEF964100FA7E2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -377,14 +372,12 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -393,7 +386,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -401,9 +393,6 @@
 		352988BD1AEF964100FA7E2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -437,11 +426,6 @@
 		352988BF1AEF964100FA7E2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/pEp-iOS-gtbigzjcintbskexdmmkdrzxuewm/Build/Products/Debug-iphoneos",
-					"/Users/ed/src/MailCore2/build-mac/build/Debug-iphoneos",
-				);
 				OTHER_LDFLAGS = (
 					"-lctemplate-ios",
 					"-letpan-ios",
@@ -450,24 +434,19 @@
 					"-liconv",
 					"-ltidy",
 					"-lz",
-					"-lc++",
+					"-lstdc++",
 					"-lresolv",
 					"-stdlib=libc++",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
 		};
 		352988C01AEF964100FA7E2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/pEp-iOS-gtbigzjcintbskexdmmkdrzxuewm/Build/Products/Debug-iphoneos",
-					"/Users/ed/src/MailCore2/build-mac/build/Debug-iphoneos",
-				);
 				OTHER_LDFLAGS = (
 					"-lctemplate-ios",
 					"-letpan-ios",
@@ -476,13 +455,13 @@
 					"-liconv",
 					"-ltidy",
 					"-lz",
-					"-lc++",
+					"-lstdc++",
 					"-lresolv",
 					"-stdlib=libc++",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Release;
 		};
