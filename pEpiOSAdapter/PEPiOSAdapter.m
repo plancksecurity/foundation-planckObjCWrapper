@@ -14,6 +14,8 @@
 #import "PEPQueue.h"
 #include "keymanagement.h"
 
+const char* _Nullable SystemDB = NULL;
+
 int examine_identity(pEp_identity *ident, void *management)
 {
     PEPQueue *q = (__bridge PEPQueue *)management;
@@ -42,6 +44,48 @@ static pEp_identity *retrieve_next_identity(void *management)
 
 @implementation PEPiOSAdapter
 
+
+#define BUNDLE_NAME       @"pEpTrustWords.bundle"
+#define BUNDLE_PATH       [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: BUNDLE_NAME]
+#define BUNDLE_OBJ        [NSBundle bundleWithPath: BUNDLE_PATH]
+
++ (NSString *) getBundlePathFor: (NSString *) filename
+{
+    NSBundle *libBundle = BUNDLE_OBJ;
+    if( libBundle && filename ){
+        return [[libBundle resourcePath] stringByAppendingPathComponent: filename];
+    }
+    return nil;
+}
+
++ (const char * _Nullable) copyAssetIntoDocumentsDirectory:(NSString *)dbFilename{
+    
+    // Set the documents directory path to the documentsDirectory property.
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    // Check if the database file exists in the documents directory.
+    NSString *destinationPath = [documentsDirectory stringByAppendingPathComponent:dbFilename];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
+        
+        // The database file does not exist in the documents directory, so copy it from the main bundle now.
+        NSString *sourcePath = [PEPiOSAdapter getBundlePathFor: dbFilename];
+        NSError *error;
+        [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destinationPath error:&error];
+        
+        // Check if any error occurred during copying and display it.
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }
+    return [destinationPath UTF8String];
+}
+
++ (void)setupTrustWordsDB
+{
+    SystemDB = [PEPiOSAdapter copyAssetIntoDocumentsDirectory:@"system.db"];
+}
+
 static PEPQueue *queue = nil;
 static NSThread *keyserver_thread = nil;
 
@@ -61,6 +105,7 @@ static NSThread *keyserver_thread = nil;
 
 + (void)stopKeyserverLookup
 {
+    
     if (queue) {
         [queue enqueue:[NSDictionary dictionaryWithObject:@"THE_END" forKey:@"THE_END"]];
         keyserver_thread = nil;

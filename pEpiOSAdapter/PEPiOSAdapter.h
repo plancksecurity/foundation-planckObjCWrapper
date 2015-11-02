@@ -16,6 +16,7 @@
 
 + (void)startKeyserverLookup;
 + (void)stopKeyserverLookup;
++ (void)setupTrustWordsDB;
 
 // this message is for internal use only; do not call
 
