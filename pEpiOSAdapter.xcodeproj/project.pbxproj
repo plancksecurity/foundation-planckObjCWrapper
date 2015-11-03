@@ -16,6 +16,12 @@
 		640037FA1BE1A7EF00F0014E /* PEPQueue.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35EA58131B565643000B4CC5 /* PEPQueue.h */; };
 		6400FB911B8CA543005221E3 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		6400FB921B8CA559005221E3 /* libMailCore-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64DA242E1B83323B000BEE80 /* libMailCore-ios.a */; };
+		64415E1A1BE94FCB00F6CBB2 /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64415E191BE94FCB00F6CBB2 /* iOSTests.m */; };
+		64415E1C1BE94FCB00F6CBB2 /* libpEpiOSAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */; };
+		64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */; };
+		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; };
+		64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABB1B57F97E00377032 /* CFNetwork.framework */; };
+		64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +52,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = C6BA2B091705F4E6003F0E9E;
 			remoteInfo = "static mailcore2 ios";
+		};
+		64415E1D1BE94FCB00F6CBB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 352988A21AEF964100FA7E2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 352988A91AEF964100FA7E2E;
+			remoteInfo = pEpiOSAdapter;
+		};
+		64415E3F1BE95B2000F6CBB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 644297BE1BE11C65002BC73B;
+			remoteInfo = pEpTrustWords;
 		};
 		64AE6B201BE15E3A000867E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -139,6 +159,10 @@
 		35EA58141B565643000B4CC5 /* PEPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPQueue.m; sourceTree = "<group>"; };
 		35FB0ABB1B57F97E00377032 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35FB0ABD1B57F99D00377032 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		64415E171BE94FCB00F6CBB2 /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		64415E191BE94FCB00F6CBB2 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
+		64415E1B1BE94FCB00F6CBB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = ../../../../usr/lib/libbz2.1.0.dylib; sourceTree = "<group>"; };
 		64DA24201B83323B000BEE80 /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../mailcore2/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
 		64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpEngine.xcodeproj; path = "../pEpEngine/build-mac/pEpEngine.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,17 +177,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64415E141BE94FCB00F6CBB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */,
+				64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */,
+				64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */,
+				64415E1C1BE94FCB00F6CBB2 /* libpEpiOSAdapter.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
+				64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */,
 				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				64DA24201B83323B000BEE80 /* mailcore2.xcodeproj */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
 				352988AC1AEF964100FA7E2E /* pEpiOSAdapter */,
+				64415E181BE94FCB00F6CBB2 /* iOSTests */,
 				352988AB1AEF964100FA7E2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -172,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */,
+				64415E171BE94FCB00F6CBB2 /* iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +236,15 @@
 				64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		64415E181BE94FCB00F6CBB2 /* iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				64415E191BE94FCB00F6CBB2 /* iOSTests.m */,
+				64415E1B1BE94FCB00F6CBB2 /* Info.plist */,
+			);
+			path = iOSTests;
 			sourceTree = "<group>";
 		};
 		64DA24211B83323B000BEE80 /* Products */ = {
@@ -238,6 +285,25 @@
 			productReference = 352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		64415E161BE94FCB00F6CBB2 /* iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64415E281BE94FCB00F6CBB2 /* Build configuration list for PBXNativeTarget "iOSTests" */;
+			buildPhases = (
+				64415E131BE94FCB00F6CBB2 /* Sources */,
+				64415E141BE94FCB00F6CBB2 /* Frameworks */,
+				64415E151BE94FCB00F6CBB2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				64415E401BE95B2000F6CBB2 /* PBXTargetDependency */,
+				64415E1E1BE94FCB00F6CBB2 /* PBXTargetDependency */,
+			);
+			name = iOSTests;
+			productName = iOSTests;
+			productReference = 64415E171BE94FCB00F6CBB2 /* iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -250,6 +316,9 @@
 				TargetAttributes = {
 					352988A91AEF964100FA7E2E = {
 						CreatedOnToolsVersion = 6.3.1;
+					};
+					64415E161BE94FCB00F6CBB2 = {
+						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
@@ -276,6 +345,7 @@
 			projectRoot = "";
 			targets = (
 				352988A91AEF964100FA7E2E /* pEpiOSAdapter */,
+				64415E161BE94FCB00F6CBB2 /* iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -353,6 +423,17 @@
 		};
 /* End PBXReferenceProxy section */
 
+/* Begin PBXResourcesBuildPhase section */
+		64415E151BE94FCB00F6CBB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		352988A61AEF964100FA7E2E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -362,6 +443,14 @@
 				350F0ED31B4D642200D9964F /* PEPSession.m in Sources */,
 				350F0ED91B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m in Sources */,
 				352988B01AEF964100FA7E2E /* PEPiOSAdapter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64415E131BE94FCB00F6CBB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64415E1A1BE94FCB00F6CBB2 /* iOSTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +471,16 @@
 			isa = PBXTargetDependency;
 			name = "static mailcore2 ios";
 			targetProxy = 64289E591B8B710F00FC617B /* PBXContainerItemProxy */;
+		};
+		64415E1E1BE94FCB00F6CBB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 352988A91AEF964100FA7E2E /* pEpiOSAdapter */;
+			targetProxy = 64415E1D1BE94FCB00F6CBB2 /* PBXContainerItemProxy */;
+		};
+		64415E401BE95B2000F6CBB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pEpTrustWords;
+			targetProxy = 64415E3F1BE95B2000F6CBB2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -497,6 +596,66 @@
 			};
 			name = Release;
 		};
+		64415E1F1BE94FCB00F6CBB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lctemplate-ios",
+					"-letpan-ios",
+					"-lxml2",
+					"-lsasl2",
+					"-liconv",
+					"-ltidy",
+					"-lz",
+					"-lc++",
+					"-lresolv",
+					"-stdlib=libc++",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pep.iOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		64415E201BE94FCB00F6CBB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-lctemplate-ios",
+					"-letpan-ios",
+					"-lxml2",
+					"-lsasl2",
+					"-liconv",
+					"-ltidy",
+					"-lz",
+					"-lc++",
+					"-lresolv",
+					"-stdlib=libc++",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pep.iOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -514,6 +673,15 @@
 			buildConfigurations = (
 				352988BF1AEF964100FA7E2E /* Debug */,
 				352988C01AEF964100FA7E2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64415E281BE94FCB00F6CBB2 /* Build configuration list for PBXNativeTarget "iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64415E1F1BE94FCB00F6CBB2 /* Debug */,
+				64415E201BE94FCB00F6CBB2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

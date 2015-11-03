@@ -46,44 +46,54 @@ static pEp_identity *retrieve_next_identity(void *management)
 
 
 #define BUNDLE_NAME       @"pEpTrustWords.bundle"
-#define BUNDLE_PATH       [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: BUNDLE_NAME]
-#define BUNDLE_OBJ        [NSBundle bundleWithPath: BUNDLE_PATH]
+#define BUNDLE_PATH
+#define BUNDLE_OBJ
 
 + (NSString *) getBundlePathFor: (NSString *) filename
 {
-    NSBundle *libBundle = BUNDLE_OBJ;
-    if( libBundle && filename ){
-        return [[libBundle resourcePath] stringByAppendingPathComponent: filename];
-    }
     return nil;
 }
 
-+ (const char * _Nullable) copyAssetIntoDocumentsDirectory:(NSString *)dbFilename{
++ (const char * _Nullable) copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
+                                                          :(NSString *)bundleName
+                                                          :(NSString *)fileName{
     
     // Set the documents directory path to the documentsDirectory property.
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
+    if(!(bundleName && fileName))
+        return nil;
     // Check if the database file exists in the documents directory.
-    NSString *destinationPath = [documentsDirectory stringByAppendingPathComponent:dbFilename];
+    NSString *destinationPath = [documentsDirectory stringByAppendingPathComponent:fileName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
         
         // The database file does not exist in the documents directory, so copy it from the main bundle now.
-        NSString *sourcePath = [PEPiOSAdapter getBundlePathFor: dbFilename];
+        NSBundle *bundleObj = [NSBundle bundleWithPath: [[rootBundle resourcePath] stringByAppendingPathComponent: bundleName]];
+        if(!bundleObj)
+            return nil;
+        NSString *sourcePath =[[bundleObj resourcePath] stringByAppendingPathComponent: fileName];
         NSError *error;
         [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destinationPath error:&error];
         
         // Check if any error occurred during copying and display it.
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+            return nil;
         }
     }
     return [destinationPath UTF8String];
 }
 
++ (void)setupTrustWordsDB:(NSBundle *)rootBundle{
+    SystemDB = [PEPiOSAdapter copyAssetIntoDocumentsDirectory:rootBundle
+                                                             :@"pEpTrustWords.bundle"
+                                                             :@"system.db"];
+}
+
 + (void)setupTrustWordsDB
 {
-    SystemDB = [PEPiOSAdapter copyAssetIntoDocumentsDirectory:@"system.db"];
+    [PEPiOSAdapter setupTrustWordsDB:[NSBundle mainBundle]];
 }
 
 static PEPQueue *queue = nil;

@@ -17,6 +17,7 @@
 + (void)startKeyserverLookup;
 + (void)stopKeyserverLookup;
 + (void)setupTrustWordsDB;
++ (void)setupTrustWordsDB:(NSBundle *)rootBundle;
 
 // this message is for internal use only; do not call
 
