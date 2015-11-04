@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-
 @import Foundation;
 
 #import "PEPiOSAdapter.h"
@@ -44,11 +43,6 @@ static pEp_identity *retrieve_next_identity(void *management)
 
 @implementation PEPiOSAdapter
 
-
-#define BUNDLE_NAME       @"pEpTrustWords.bundle"
-#define BUNDLE_PATH
-#define BUNDLE_OBJ
-
 + (NSString *) getBundlePathFor: (NSString *) filename
 {
     return nil;
@@ -64,15 +58,19 @@ static pEp_identity *retrieve_next_identity(void *management)
     
     if(!(bundleName && fileName))
         return nil;
+    
     // Check if the database file exists in the documents directory.
     NSString *destinationPath = [documentsDirectory stringByAppendingPathComponent:fileName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
         
-        // The database file does not exist in the documents directory, so copy it from the main bundle now.
+        // The file does not exist in the documents directory, so copy it from bundle now.
         NSBundle *bundleObj = [NSBundle bundleWithPath: [[rootBundle resourcePath] stringByAppendingPathComponent: bundleName]];
+        
         if(!bundleObj)
             return nil;
+        
         NSString *sourcePath =[[bundleObj resourcePath] stringByAppendingPathComponent: fileName];
+        
         NSError *error;
         [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destinationPath error:&error];
         

@@ -17,9 +17,13 @@
 
 @implementation iOSTests
 
+PEPSession *session;
+
 - (void)setUp {
     [super setUp];
     [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+    session = [[PEPSession alloc]init];
+    XCTAssert(session);
 }
 
 - (void)tearDown {
@@ -27,10 +31,20 @@
 }
 
 - (void)testSession {
-    id session;
-    session = [[PEPSession alloc]init];
-    XCTAssert(session);
+    PEPSession *otherSession;
+    
+    [super setUp];
+    otherSession = [[PEPSession alloc]init];
+    XCTAssert(otherSession);
 }
 
-
+- (void)testExample {
+    
+    NSArray *trustwords = [session trustwords:@"DB4713183660A12ABAFA7714EBE90D44146F62F4" forLanguage:@"en" shortened:false];
+    XCTAssertEqual([trustwords count], 10);
+    XCTAssertEqualObjects([trustwords firstObject], @"BAPTISMAL");
+    
+    MCOAddress * from = [MCOAddress addressWithDisplayName:@"Volker Birk" mailbox:@"vb@dingens.org"];
+    MCOAddress * to1 = [MCOAddress addressWithDisplayName:@"Outlook Test" mailbox:@"outlooktest@dingens.org"];
+}
 @end
