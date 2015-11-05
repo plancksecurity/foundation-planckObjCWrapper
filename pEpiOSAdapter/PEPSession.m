@@ -172,4 +172,13 @@ PEP_SESSION _session;
     }
 }
 
+- (void)importKey:(NSString *)keydata
+{
+    @synchronized(self) {
+        import_key(_session, [keydata UTF8String], [keydata length]);
+    }
+
+}
+
+
 @end

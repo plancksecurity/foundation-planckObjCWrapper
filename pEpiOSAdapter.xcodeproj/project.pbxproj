@@ -22,6 +22,13 @@
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; };
 		64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABB1B57F97E00377032 /* CFNetwork.framework */; };
 		64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
+		64415E481BEA523300F6CBB2 /* 0x6FF00E97.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E421BEA523300F6CBB2 /* 0x6FF00E97.asc */; };
+		64415E491BEA523300F6CBB2 /* 6FF00E97_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E431BEA523300F6CBB2 /* 6FF00E97_sec.asc */; };
+		64415E4A1BEA523300F6CBB2 /* 0x70DCF575.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E441BEA523300F6CBB2 /* 0x70DCF575.asc */; };
+		64415E4B1BEA523300F6CBB2 /* 70DCF575_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E451BEA523300F6CBB2 /* 70DCF575_sec.asc */; };
+		64415E4C1BEA523300F6CBB2 /* 0xC9C2EE39.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E461BEA523300F6CBB2 /* 0xC9C2EE39.asc */; };
+		64415E4D1BEA523300F6CBB2 /* C9C2EE39_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E471BEA523300F6CBB2 /* C9C2EE39_sec.asc */; };
+		64415E4E1BEB8ECD00F6CBB2 /* MCOAbstractMessage+PEPMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 350F0ED71B4E997300D9964F /* MCOAbstractMessage+PEPMessage.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +149,7 @@
 				640037FA1BE1A7EF00F0014E /* PEPQueue.h in CopyFiles */,
 				640037F91BE1A7DE00F0014E /* PEPSession.h in CopyFiles */,
 				352988AE1AEF964100FA7E2E /* PEPiOSAdapter.h in CopyFiles */,
+				64415E4E1BEB8ECD00F6CBB2 /* MCOAbstractMessage+PEPMessage.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +171,12 @@
 		64415E191BE94FCB00F6CBB2 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		64415E1B1BE94FCB00F6CBB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = ../../../../usr/lib/libbz2.1.0.dylib; sourceTree = "<group>"; };
+		64415E421BEA523300F6CBB2 /* 0x6FF00E97.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0x6FF00E97.asc; path = ../../pEpEngine/test/0x6FF00E97.asc; sourceTree = "<group>"; };
+		64415E431BEA523300F6CBB2 /* 6FF00E97_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 6FF00E97_sec.asc; path = ../../pEpEngine/test/6FF00E97_sec.asc; sourceTree = "<group>"; };
+		64415E441BEA523300F6CBB2 /* 0x70DCF575.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0x70DCF575.asc; path = ../../pEpEngine/test/0x70DCF575.asc; sourceTree = "<group>"; };
+		64415E451BEA523300F6CBB2 /* 70DCF575_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 70DCF575_sec.asc; path = ../../pEpEngine/test/70DCF575_sec.asc; sourceTree = "<group>"; };
+		64415E461BEA523300F6CBB2 /* 0xC9C2EE39.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0xC9C2EE39.asc; path = ../../pEpEngine/test/0xC9C2EE39.asc; sourceTree = "<group>"; };
+		64415E471BEA523300F6CBB2 /* C9C2EE39_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = C9C2EE39_sec.asc; path = ../../pEpEngine/test/C9C2EE39_sec.asc; sourceTree = "<group>"; };
 		64DA24201B83323B000BEE80 /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../mailcore2/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
 		64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpEngine.xcodeproj; path = "../pEpEngine/build-mac/pEpEngine.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,6 +255,12 @@
 		64415E181BE94FCB00F6CBB2 /* iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				64415E421BEA523300F6CBB2 /* 0x6FF00E97.asc */,
+				64415E431BEA523300F6CBB2 /* 6FF00E97_sec.asc */,
+				64415E441BEA523300F6CBB2 /* 0x70DCF575.asc */,
+				64415E451BEA523300F6CBB2 /* 70DCF575_sec.asc */,
+				64415E461BEA523300F6CBB2 /* 0xC9C2EE39.asc */,
+				64415E471BEA523300F6CBB2 /* C9C2EE39_sec.asc */,
 				64415E191BE94FCB00F6CBB2 /* iOSTests.m */,
 				64415E1B1BE94FCB00F6CBB2 /* Info.plist */,
 			);
@@ -428,6 +448,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64415E4C1BEA523300F6CBB2 /* 0xC9C2EE39.asc in Resources */,
+				64415E4D1BEA523300F6CBB2 /* C9C2EE39_sec.asc in Resources */,
+				64415E4A1BEA523300F6CBB2 /* 0x70DCF575.asc in Resources */,
+				64415E4B1BEA523300F6CBB2 /* 70DCF575_sec.asc in Resources */,
+				64415E491BEA523300F6CBB2 /* 6FF00E97_sec.asc in Resources */,
+				64415E481BEA523300F6CBB2 /* 0x6FF00E97.asc in Resources */,
 				64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

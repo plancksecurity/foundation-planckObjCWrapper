@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "pEpiOSAdapter.h"
+#import "pEpiOSAdapter/MCOAbstractMessage+PEPMessage.h"
 #import <MailCore/mailcore.h>
 
 @interface PEPSession : NSObject
@@ -69,5 +70,9 @@
 // if a key gets comprimized tell this using this message
 
 - (void)keyCompromized:(NSString *)fpr;
+
+// for testing purpose, manual key import
+
+- (void)importKey:(NSString *)keydata;
 
 @end

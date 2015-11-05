@@ -7,6 +7,7 @@
 //
 
 #import "MCOAbstractMessage+PEPMessage.h"
+#import <MailCore/MailCore.h>
 
 NSArray *PEP_arrayFromStringlist(stringlist_t *sl)
 {
@@ -284,7 +285,7 @@ BOOL _outgoing;
     if (self.header.references.count)
         msg->references = PEP_arrayToStringlist(self.header.references);
     
-    if (![self.header.userAgent isEqual: @""])
+    if (self.header.userAgent && ![self.header.userAgent isEqual: @""])
         msg->opt_fields = new_stringpair_list(new_stringpair("X-Mailer", [[self.header.userAgent precomposedStringWithCanonicalMapping] UTF8String]));
     
     NSString *html;

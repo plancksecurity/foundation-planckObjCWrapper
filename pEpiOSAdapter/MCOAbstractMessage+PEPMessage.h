@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MailCore/MailCore.h>
+#import <MailCore/MCOAbstract.h>
 #include "message_api.h"
 
 NSArray *PEP_arrayFromStringlist(stringlist_t *sl);
