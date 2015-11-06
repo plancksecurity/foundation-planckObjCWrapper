@@ -145,6 +145,7 @@ PEP_SESSION _session;
 
     @synchronized(self) {
         update_identity(_session, ident);
+        myself(_session, ident);
     }
 
     PEP_identityFromStruct(identity, ident);
