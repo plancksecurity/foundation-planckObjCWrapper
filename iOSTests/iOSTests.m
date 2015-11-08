@@ -50,17 +50,13 @@ PEPSession *session;
     session=nil;
 }
 
-- (void)test0Session {
-    PEPSession *otherSession;
-    otherSession = [[PEPSession alloc]init];
-    XCTAssert(otherSession);
-    
-    sleep(1); // FIXME : sqlite makes mutex error without that.
-    
-    otherSession = nil;
+- (void)testEmptySession {
+    // Do nothing.
+    // Setup and TearDown create and destroy
+    // session in that thread alredy
 }
 
-- (void)test1TrustWords {
+- (void)testTrustWords {
     
     NSArray *trustwords = [session trustwords:@"DB4713183660A12ABAFA7714EBE90D44146F62F4" forLanguage:@"en" shortened:false];
     XCTAssertEqual([trustwords count], 10);
@@ -76,7 +72,7 @@ PEPSession *session;
     [session importKey:txtFileContents];
 }
 
-- (void)test2OutgoingColors {
+- (void)testOutgoingColors {
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
