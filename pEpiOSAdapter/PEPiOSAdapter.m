@@ -80,6 +80,7 @@ static pEp_identity *retrieve_next_identity(void *management)
             return nil;
         }
     }
+    NSLog(@"Asset %@ copied into %@", fileName, destinationPath);
     return [destinationPath UTF8String];
 }
 

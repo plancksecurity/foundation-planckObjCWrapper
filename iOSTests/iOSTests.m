@@ -11,8 +11,6 @@
 #import "pEpiOSAdapter/PEPiOSAdapter.h"
 #import "pEpiOSAdapter/PEPSession.h"
 
-static BOOL first = YES;
-
 @interface iOSTests : XCTestCase
 
 @end
@@ -37,14 +35,11 @@ PEPSession *session;
 
 - (void)setUp {
     [super setUp];
-    if(first){
-        NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
-        
-        [self delFile:[home stringByAppendingPathComponent:@".pEp_management.db"]];
-        [self delFile:[home stringByAppendingPathComponent:@".gnupg"]];
-        
-        first = NO;
-    }
+    NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
+    
+    [self delFile:[home stringByAppendingPathComponent:@".pEp_management.db"]];
+    [self delFile:[home stringByAppendingPathComponent:@".gnupg"]];
+    
     [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
     session = [[PEPSession alloc]init];
     XCTAssert(session);
@@ -55,12 +50,13 @@ PEPSession *session;
     session=nil;
 }
 
- - (void)test0Session {
+- (void)test0Session {
     PEPSession *otherSession;
-    
-    [super setUp];
     otherSession = [[PEPSession alloc]init];
     XCTAssert(otherSession);
+    
+    sleep(1); // FIXME : sqlite makes mutex error without that.
+    
     otherSession = nil;
 }
 
@@ -80,7 +76,7 @@ PEPSession *session;
     [session importKey:txtFileContents];
 }
 
-- (void)testOutgoingColors {
+- (void)test2OutgoingColors {
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
@@ -129,10 +125,7 @@ PEPSession *session;
     XCTAssert( clr == PEP_rating_yellow);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
-    [identBob setObject:[NSNumber
-                 numberWithInt:
-                         PEP_ct_confirmed | [[identBob objectForKey:@"comm_type"] intValue]]
-                 forKey:@"comm_type"];
+    [session trustPersonalKey:identBob];
 
     [session updateIdentity:identBob];
 
