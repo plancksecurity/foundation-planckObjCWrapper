@@ -67,6 +67,10 @@
 
 - (void)updateIdentity:(NSMutableDictionary *)identity;
 
+//  mark a key as trusted with a person
+
+- (void)trustPersonalKey:(NSMutableDictionary *)identity;
+
 // if a key gets comprimized tell this using this message
 
 - (void)keyCompromized:(NSString *)fpr;

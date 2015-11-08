@@ -144,7 +144,6 @@ PEP_SESSION _session;
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
-        update_identity(_session, ident);
         myself(_session, ident);
     }
 
@@ -160,6 +159,18 @@ PEP_SESSION _session;
         update_identity(_session, ident);
     }
 
+    PEP_identityFromStruct(identity, ident);
+    free_identity(ident);
+}
+
+- (void)trustPersonalKey:(NSMutableDictionary *)identity
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    
+    @synchronized(self) {
+        trust_personal_key(_session, ident);
+    }
+    
     PEP_identityFromStruct(identity, ident);
     free_identity(ident);
 }
