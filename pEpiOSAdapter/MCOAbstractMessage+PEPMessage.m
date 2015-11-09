@@ -45,10 +45,10 @@ void PEP_identityFromStruct(NSMutableDictionary *dict, pEp_identity *ident)
         
         if (ident->user_id && ident->user_id[0])
             [dict setObject:[NSString stringWithUTF8String:ident->user_id] forKey:@"user_id"];
-
+        
         if (ident->username && ident->username[0])
             [dict setObject:[NSString stringWithUTF8String:ident->username] forKey:@"username"];
-
+        
         if (ident->lang[0])
             [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
         
@@ -76,10 +76,12 @@ pEp_identity *PEP_identityToStruct(NSDictionary *dict)
                                 [[[dict objectForKey:@"fpr"] precomposedStringWithCanonicalMapping] UTF8String]
                                 );
         
-        if ([dict objectForKey:@"user_id"])
+        if ([dict objectForKey:@"user_id"]){
             ident->user_id = strdup(
                                     [[[dict objectForKey:@"user_id"] precomposedStringWithCanonicalMapping] UTF8String]
                                     );
+            ident->user_id_size = ident->user_id ? strlen(ident->user_id) : 0;
+        }
         
         if ([dict objectForKey:@"username"])
             ident->username = strdup(
@@ -126,18 +128,6 @@ identity_list *PEP_arrayToIdentityList(NSArray *array)
     return il;
 }
 
-pEp_identity *PEP_MCOAddressToStruct(MCOAddress *address)
-{
-    pEp_identity *ident = new_identity([[address.mailbox precomposedStringWithCanonicalMapping] UTF8String], NULL, NULL, [[address.displayName precomposedStringWithCanonicalMapping] UTF8String]);
-    return ident;
-}
-
-MCOAddress *PEP_MCOAddressFromStruct(pEp_identity *ident)
-{
-    MCOAddress *address = [MCOAddress addressWithDisplayName:[NSString stringWithUTF8String:ident->username] mailbox:[NSString stringWithUTF8String:ident->address]];
-    return address;
-}
-
 identity_list *PEP_MCOAddressArrayToList(NSArray *array)
 {
     identity_list *il = new_identity_list(NULL);
@@ -146,7 +136,7 @@ identity_list *PEP_MCOAddressArrayToList(NSArray *array)
     
     identity_list *_il = il;
     for (MCOAddress *address in array) {
-        _il = identity_list_add(_il, PEP_MCOAddressToStruct(address));
+        _il = identity_list_add(_il, [address PEP_toStruct]);
     }
     
     return il;
@@ -157,7 +147,8 @@ NSMutableArray *PEP_MCOAddressArrayFromList(identity_list *il)
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        MCOAddress * address = PEP_MCOAddressFromStruct(il->ident);
+        MCOAddress * address = [[MCOAddress alloc]init];
+        [address PEP_fromStruct:il->ident];
         [array addObject:address];
     }
     
@@ -194,13 +185,13 @@ BOOL _outgoing;
             self.header.receivedDate = [NSDate dateWithTimeIntervalSince1970:mktime(msg->recv)];
         
         if (msg->from)
-            self.header.from = PEP_MCOAddressFromStruct(msg->from);
+            self.header.from = [[MCOAddress alloc] initWithStruct:msg->from];
         
         if (msg->to && msg->to->ident)
             self.header.to = PEP_MCOAddressArrayFromList(msg->to);
         
         if (msg->recv_by)
-            self.header.sender = PEP_MCOAddressFromStruct(msg->recv_by);
+            self.header.sender = [[MCOAddress alloc] initWithStruct:msg->recv_by];
         
         if (msg->cc && msg->cc->ident)
             self.header.cc = PEP_MCOAddressArrayFromList(msg->cc);
@@ -262,13 +253,13 @@ BOOL _outgoing;
         msg->recv = new_timestamp([self.header.receivedDate timeIntervalSince1970]);
     
     if (self.header.from)
-        msg->from = PEP_MCOAddressToStruct(self.header.from);
+        msg->from = [self.header.from PEP_toStruct];
     
     if (self.header.to.count)
         msg->to = PEP_MCOAddressArrayToList(self.header.to);
     
     if (self.header.sender)
-        msg->recv_by = PEP_MCOAddressToStruct(self.header.sender);
+        msg->recv_by = [self.header.sender PEP_toStruct];
     
     if (self.header.cc.count)
         msg->cc = PEP_MCOAddressArrayToList(self.header.cc);

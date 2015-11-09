@@ -7,7 +7,6 @@
 //
 
 #import <XCTest/XCTest.h>
-
 #import "pEpiOSAdapter/PEPiOSAdapter.h"
 #import "pEpiOSAdapter/PEPSession.h"
 
@@ -116,8 +115,11 @@ PEPSession *session;
  
     [session mySelf:identAlice];
     
+    // MCOAddress.userId MUST be set to same as identity[@"user_id"]
+    // for any MCOAddress referring own user, i.e. msg->from
+    MCOAddress * from = [[MCOAddress alloc] initWithDict:identAlice];
+
     // Make a mail message, with (for now) unknown peer Bob
-    MCOAddress * from = [MCOAddress addressWithDisplayName:@"pEp Test Alice" mailbox:@"pep.test.alice@pep-project.org"];
     MCOAddress * to1 = [MCOAddress addressWithDisplayName:@"pEp Test Bob" mailbox:@"pep.test.bob@pep-project.org"];
 
     MCOMessageBuilder * builder = [[MCOMessageBuilder alloc] init];

@@ -29,6 +29,7 @@
 		64415E4C1BEA523300F6CBB2 /* 0xC9C2EE39.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E461BEA523300F6CBB2 /* 0xC9C2EE39.asc */; };
 		64415E4D1BEA523300F6CBB2 /* C9C2EE39_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E471BEA523300F6CBB2 /* C9C2EE39_sec.asc */; };
 		64415E4E1BEB8ECD00F6CBB2 /* MCOAbstractMessage+PEPMessage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 350F0ED71B4E997300D9964F /* MCOAbstractMessage+PEPMessage.h */; };
+		64415E591BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 64415E581BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +178,8 @@
 		64415E451BEA523300F6CBB2 /* 70DCF575_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 70DCF575_sec.asc; path = ../../pEpEngine/test/70DCF575_sec.asc; sourceTree = "<group>"; };
 		64415E461BEA523300F6CBB2 /* 0xC9C2EE39.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0xC9C2EE39.asc; path = ../../pEpEngine/test/0xC9C2EE39.asc; sourceTree = "<group>"; };
 		64415E471BEA523300F6CBB2 /* C9C2EE39_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = C9C2EE39_sec.asc; path = ../../pEpEngine/test/C9C2EE39_sec.asc; sourceTree = "<group>"; };
+		64415E571BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCOAddress+PEPIdentity.h"; sourceTree = "<group>"; };
+		64415E581BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MCOAddress+PEPIdentity.m"; sourceTree = "<group>"; };
 		64DA24201B83323B000BEE80 /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../mailcore2/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
 		64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpEngine.xcodeproj; path = "../pEpEngine/build-mac/pEpEngine.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +234,8 @@
 		352988AC1AEF964100FA7E2E /* pEpiOSAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				64415E571BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.h */,
+				64415E581BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.m */,
 				352988AD1AEF964100FA7E2E /* PEPiOSAdapter.h */,
 				352988AF1AEF964100FA7E2E /* PEPiOSAdapter.m */,
 				350F0ED11B4D642200D9964F /* PEPSession.h */,
@@ -467,6 +472,7 @@
 			files = (
 				35EA58151B565643000B4CC5 /* PEPQueue.m in Sources */,
 				350F0ED31B4D642200D9964F /* PEPSession.m in Sources */,
+				64415E591BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.m in Sources */,
 				350F0ED91B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m in Sources */,
 				352988B01AEF964100FA7E2E /* PEPiOSAdapter.m in Sources */,
 			);
