@@ -33,34 +33,60 @@ PEPSession *session;
     }
 }
 
-- (void)setUp {
-    [super setUp];
+- (void)pEpCleanUp {
+    session=nil;
+    
+    // Only remove files whose conten is affected by tests.
     NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
-    
+    NSString* gpgHome = [home stringByAppendingPathComponent:@".gnupg"];
     [self delFile:[home stringByAppendingPathComponent:@".pEp_management.db"]];
-    [self delFile:[home stringByAppendingPathComponent:@".gnupg"]];
-    
+    [self delFile:[gpgHome stringByAppendingPathComponent:@"pubring.gpg"]];
+    [self delFile:[gpgHome stringByAppendingPathComponent:@"secring.gpg"]];
+}
+
+- (void)pEpSetUp {
     [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
     session = [[PEPSession alloc]init];
     XCTAssert(session);
 }
 
-- (void)tearDown {
-    [super tearDown];
-    session=nil;
-}
 
 - (void)testEmptySession {
+    
+    [self pEpSetUp];
+
     // Do nothing.
-    // Setup and TearDown create and destroy
-    // session in that thread alredy
+    
+    [self pEpCleanUp];
+    
 }
 
 - (void)testTrustWords {
-    
+    [self pEpSetUp];
+
     NSArray *trustwords = [session trustwords:@"DB4713183660A12ABAFA7714EBE90D44146F62F4" forLanguage:@"en" shortened:false];
     XCTAssertEqual([trustwords count], 10);
     XCTAssertEqualObjects([trustwords firstObject], @"BAPTISMAL");
+    
+    [self pEpCleanUp];
+    
+}
+
+- (void)testGenKey {
+    
+    [self pEpSetUp];
+    
+    NSMutableDictionary *identMe = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test iOS GenKey", @"username",
+                                       @"pep.test.iosgenkey@pep-project.org", @"address",
+                                       @"Me", @"user_id",
+                                       nil];
+    
+    [session mySelf:identMe];
+    
+    XCTAssert(identMe[@"fpr"]);
+
+    [self pEpCleanUp];
     
 }
 
@@ -73,6 +99,9 @@ PEPSession *session;
 }
 
 - (void)testOutgoingColors {
+
+    [self pEpSetUp];
+
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
@@ -150,5 +179,9 @@ PEPSession *session;
     clr = [session outgoingMessageColor:builder];
     XCTAssert( clr == PEP_rating_yellow);
 
+    MCOMessageBuilder * encBuilder;
+    [session encryptMessage:builder extra:@[] dest:&encBuilder];
+    
+    [self pEpCleanUp];
 }
 @end
