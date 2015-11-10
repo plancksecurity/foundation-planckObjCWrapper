@@ -30,15 +30,14 @@ static pEp_identity *retrieve_next_identity(void *management)
 {
     PEPQueue *q = (__bridge PEPQueue *)management;
     
-    while (![q count])
-        usleep(100);
-    
+    // Dequeue is a blocking operation
+    // that returns nil when queue is killed
     NSDictionary *ident = [q dequeue];
     
-    if ([ident objectForKey:@"THE_END"])
-        return NULL;
-    else
+    if (ident)
         return PEP_identityToStruct(ident);
+    else
+        return NULL;
 }
 
 @implementation PEPiOSAdapter
@@ -97,16 +96,27 @@ static pEp_identity *retrieve_next_identity(void *management)
 
 static PEPQueue *queue = nil;
 static NSThread *keyserver_thread = nil;
+static NSConditionLock *joinCond = nil;
 
 + (void)keyserverThread:(id)object
 {
+    [joinCond lock];
+    
     do_keymanagement(retrieve_next_identity, (__bridge void *)queue);
+    
+    // Set and signal join()
+    [joinCond unlockWithCondition:YES];
 }
 
 + (void)startKeyserverLookup
 {
-    if (!queue) {
-        queue = [PEPQueue init];
+    if (!queue)
+    {
+        queue = [[PEPQueue alloc]init];
+        
+        // There is no join() call on NSThreads.
+        joinCond = [[NSConditionLock alloc] initWithCondition:NO];
+        
         keyserver_thread = [[NSThread alloc] initWithTarget:self selector:@selector(keyserverThread:) object:nil];
         [keyserver_thread start];
     }
@@ -115,10 +125,18 @@ static NSThread *keyserver_thread = nil;
 + (void)stopKeyserverLookup
 {
     
-    if (queue) {
-        [queue enqueue:[NSDictionary dictionaryWithObject:@"THE_END" forKey:@"THE_END"]];
+    if (queue)
+    {
+        // Flush queue and kick the consumer
+        [queue kill];
+        
+        // Thread then bailout. Wait fo that.
+        [joinCond lockWhenCondition:YES];
+        [joinCond unlock];
+        
         keyserver_thread = nil;
         queue = nil;
+        joinCond = nil;
     }
 }
 

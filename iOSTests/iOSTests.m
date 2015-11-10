@@ -60,6 +60,18 @@ PEPSession *session;
     
 }
 
+- (void)testShortKeyServerLookup {
+    
+    [self pEpSetUp];
+    [PEPiOSAdapter startKeyserverLookup];
+    
+    // Do nothing.
+    
+    [PEPiOSAdapter stopKeyserverLookup];
+    [self pEpCleanUp];
+    
+}
+
 - (void)testTrustWords {
     [self pEpSetUp];
 

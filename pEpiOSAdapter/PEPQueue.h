@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PEPQueue : NSMutableArray
+@interface PEPQueue : NSObject
 
 - (void)enqueue:(id)object;
+
 - (id)dequeue;
+
+- (void)kill;
+
+- (NSUInteger)count;
 
 @end
