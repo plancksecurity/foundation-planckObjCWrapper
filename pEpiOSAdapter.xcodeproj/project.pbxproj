@@ -180,6 +180,7 @@
 		64415E471BEA523300F6CBB2 /* C9C2EE39_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = C9C2EE39_sec.asc; path = ../../pEpEngine/test/C9C2EE39_sec.asc; sourceTree = "<group>"; };
 		64415E571BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MCOAddress+PEPIdentity.h"; sourceTree = "<group>"; };
 		64415E581BF0EE1800F6CBB2 /* MCOAddress+PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MCOAddress+PEPIdentity.m"; sourceTree = "<group>"; };
+		64415E5A1BF3840500F6CBB2 /* PEPIOSAdapter+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIOSAdapter+Internal.h"; sourceTree = "<group>"; };
 		64DA24201B83323B000BEE80 /* mailcore2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = mailcore2.xcodeproj; path = "../mailcore2/build-mac/mailcore2.xcodeproj"; sourceTree = "<group>"; };
 		64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpEngine.xcodeproj; path = "../pEpEngine/build-mac/pEpEngine.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,6 +245,7 @@
 				350F0ED81B4E997300D9964F /* MCOAbstractMessage+PEPMessage.m */,
 				35EA58131B565643000B4CC5 /* PEPQueue.h */,
 				35EA58141B565643000B4CC5 /* PEPQueue.m */,
+				64415E5A1BF3840500F6CBB2 /* PEPIOSAdapter+Internal.h */,
 			);
 			path = pEpiOSAdapter;
 			sourceTree = "<group>";

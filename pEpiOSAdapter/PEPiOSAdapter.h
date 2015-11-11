@@ -19,8 +19,4 @@
 + (void)setupTrustWordsDB;
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle;
 
-// this message is for internal use only; do not call
-
-+ (void)registerExamineFunction:(PEP_SESSION)session;
-
 @end

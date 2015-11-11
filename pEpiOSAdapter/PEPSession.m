@@ -8,6 +8,7 @@
 
 #import "PEPSession.h"
 #import "pEpiOSAdapter.h"
+#import "PEPIOSAdapter+Internal.h"
 #import "MCOAbstractMessage+PEPMessage.h"
 
 @implementation PEPSession

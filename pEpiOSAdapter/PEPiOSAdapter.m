@@ -9,15 +9,16 @@
 @import Foundation;
 
 #import "PEPiOSAdapter.h"
+#import "PEPIOSAdapter+Internal.h"
 #import "MCOAbstractMessage+PEPMessage.h"
-#import "PEPQueue.h"
 #include "keymanagement.h"
 
 const char* _Nullable SystemDB = NULL;
 
 int examine_identity(pEp_identity *ident, void *management)
 {
-    PEPQueue *q = (__bridge PEPQueue *)management;
+    //PEPQueue *q = (__bridge PEPQueue *)management;
+    PEPQueue *q = [PEPiOSAdapter getQueue];
     
     NSMutableDictionary *identity = [[NSMutableDictionary alloc] init];
     PEP_identityFromStruct(identity, ident);
@@ -28,7 +29,8 @@ int examine_identity(pEp_identity *ident, void *management)
 
 static pEp_identity *retrieve_next_identity(void *management)
 {
-    PEPQueue *q = (__bridge PEPQueue *)management;
+    //PEPQueue *q = (__bridge PEPQueue *)management;
+    PEPQueue *q = [PEPiOSAdapter getQueue];
     
     // Dequeue is a blocking operation
     // that returns nil when queue is killed
@@ -101,8 +103,9 @@ static NSConditionLock *joinCond = nil;
 + (void)keyserverThread:(id)object
 {
     [joinCond lock];
-    
-    do_keymanagement(retrieve_next_identity, (__bridge void *)queue);
+
+    // FIXME: do_KeyManagement asserts if management is null.
+    do_keymanagement(retrieve_next_identity, "NOTNULL" /* (__bridge void *)queue */);
     
     // Set and signal join()
     [joinCond unlockWithCondition:YES];
@@ -142,7 +145,12 @@ static NSConditionLock *joinCond = nil;
 
 + (void)registerExamineFunction:(PEP_SESSION)session
 {
-    register_examine_function(session, examine_identity, (__bridge void *)queue);
+    register_examine_function(session, examine_identity, NULL /* (__bridge void *)queue */);
+}
+
++ (PEPQueue*)getQueue
+{
+    return queue;
 }
 
 @end

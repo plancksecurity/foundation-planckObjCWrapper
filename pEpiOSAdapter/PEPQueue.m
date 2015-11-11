@@ -33,14 +33,23 @@
 
 - (void)enqueue:(id)object
 {
-    [_cond lock];
-    
-    if (_queue)
-        [_queue insertObject:object atIndex:0];
+
+    @synchronized(self) {
+        if (_queue)
+            [_queue insertObject:object atIndex:0];
+    }
     
     [_cond signal];
     
-    [_cond unlock];
+}
+
+- (BOOL)condwait
+{
+    BOOL res;
+    @synchronized(self) {
+        res = _queue && _queue.count == 0;
+    }
+    return res;
 }
 
 - (id)dequeue
@@ -49,18 +58,19 @@
     
     [_cond lock];
     
-    while (_queue && _queue.count == 0)
+    while ([self condwait])
     {
         [_cond wait];
     }
     
-    if (_queue)
-    {
-        tmp = [_queue lastObject];
-        
-        [_queue removeLastObject];
+    @synchronized(self) {
+        if (_queue)
+        {
+            tmp = [_queue lastObject];
+            
+            [_queue removeLastObject];
+        }
     }
-    
     [_cond unlock];
     
     return tmp;
@@ -68,13 +78,9 @@
 
 - (void)kill
 {
-    [_cond lock];
-    
     _queue = nil;
     
     [_cond signal];
-    
-    [_cond unlock];
 }
 
 - (NSUInteger)count

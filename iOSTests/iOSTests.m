@@ -72,6 +72,30 @@ PEPSession *session;
     
 }
 
+- (void)testLongKeyServerLookup {
+    
+    [self pEpSetUp];
+    [PEPiOSAdapter startKeyserverLookup];
+    
+    NSMutableDictionary *ident = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    @"pEpDontAssert", @"username",
+                                    @"vb@ulm.ccc.de", @"address",
+                                    @"SsI6H9", @"user_id",
+                                    nil];
+    
+    [session updateIdentity:ident];
+    
+    sleep(2);
+
+    [session updateIdentity:ident];
+    
+    XCTAssert(ident[@"fpr"]);
+    
+    [PEPiOSAdapter stopKeyserverLookup];
+    [self pEpCleanUp];
+    
+}
+
 - (void)testTrustWords {
     [self pEpSetUp];
 
