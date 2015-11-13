@@ -225,7 +225,7 @@ BOOL _outgoing;
                 for (bloblist_t *_bl = msg->attachments; _bl && _bl->value; _bl = _bl->next) {
                     MCOAttachment * attachment = [MCOAttachment attachmentWithData:[NSData dataWithBytes:_bl->value length:_bl->size] filename:[NSString stringWithUTF8String:_bl->filename]];
                     attachment.mimeType = [NSString stringWithUTF8String:_bl->mime_type];
-                    me.attachments = [me.attachments arrayByAddingObject:attachment];
+                    [me addAttachment:attachment];
                 }
             }
         }

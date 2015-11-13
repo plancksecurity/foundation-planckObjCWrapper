@@ -6,6 +6,7 @@
 //  Copyright © 2015 p≡p. All rights reserved.
 //
 
+#include <regex.h>
 #import <XCTest/XCTest.h>
 #import "pEpiOSAdapter/PEPiOSAdapter.h"
 #import "pEpiOSAdapter/PEPSession.h"
@@ -18,35 +19,80 @@
 
 PEPSession *session;
 
--(void)delFile : (NSString *)path {
+-(void)delFile : (NSString *)path : (NSString *)bkpsfx {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     BOOL fileExists = [fileManager fileExistsAtPath:path];
-    NSLog(@"Path to file: %@", path);
-    NSLog(@"File exists: %d", fileExists);
-    NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:path]);
     if (fileExists)
     {
-        BOOL success = [fileManager removeItemAtPath:path error:&error];
+        BOOL success;
+        if(!bkpsfx)
+        {
+            success = [fileManager removeItemAtPath:path error:&error];
+        }else{
+            success = [fileManager moveItemAtPath:path
+                                   toPath:[path stringByAppendingString:bkpsfx]
+                                   error:&error];
+        }
         if (!success) NSLog(@"Error: %@", [error localizedDescription]);
     }
 }
 
-- (void)pEpCleanUp {
-    session=nil;
-    
-    // Only remove files whose conten is affected by tests.
-    NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
-    NSString* gpgHome = [home stringByAppendingPathComponent:@".gnupg"];
-    [self delFile:[home stringByAppendingPathComponent:@".pEp_management.db"]];
-    [self delFile:[gpgHome stringByAppendingPathComponent:@"pubring.gpg"]];
-    [self delFile:[gpgHome stringByAppendingPathComponent:@"secring.gpg"]];
+-(void)undelFile : (NSString *)path : (NSString *)bkpsfx {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSString* bpath = [path stringByAppendingString:bkpsfx];
+    BOOL fileExists = [fileManager fileExistsAtPath:bpath];
+    if (fileExists)
+    {
+        BOOL success;
+        success = [fileManager moveItemAtPath:bpath
+                                       toPath:path
+                                        error:&error];
+        if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+    }
 }
 
-- (void)pEpSetUp {
+- (NSArray*)pEpWorkFiles
+{
+    // Only files whose content is affected by tests.
+    NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
+    NSString* gpgHome = [home stringByAppendingPathComponent:@".gnupg"];
+    return @[[home stringByAppendingPathComponent:@".pEp_management.db"],
+             [gpgHome stringByAppendingPathComponent:@"pubring.gpg"],
+             [gpgHome stringByAppendingPathComponent:@"secring.gpg"]];
+    
+}
+
+- (void)pEpCleanUp : (NSString*)backup {
+    session=nil;
+    
+    for(id path in [self pEpWorkFiles])
+        [self delFile:path :backup];
+
+}
+- (void)pEpCleanUp
+{
+    [self pEpCleanUp:NULL];
+}
+
+- (void)pEpSetUp : (NSString*)restore{
+    
+    for(id path in [self pEpWorkFiles])
+        [self delFile:path:NULL];
+
+    if(restore)
+        for(id path in [self pEpWorkFiles])
+            [self undelFile:path:restore];
+
     [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
     session = [[PEPSession alloc]init];
     XCTAssert(session);
+    
+}
+- (void)pEpSetUp
+{
+    [self pEpSetUp:NULL];
 }
 
 
@@ -87,6 +133,7 @@ PEPSession *session;
     
     sleep(2);
 
+    // FIXME: updateIdentity should not assert if username is not provided
     [session updateIdentity:ident];
     
     XCTAssert(ident[@"fpr"]);
@@ -222,4 +269,91 @@ PEPSession *session;
     
     [self pEpCleanUp];
 }
+
+- (void)testTwoNewUsers {
+    
+    [self pEpSetUp];
+    
+    NSMutableDictionary *identPetra = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    @"Petra", @"username",
+                                    @"pep.test.petra@pep-project.org", @"address",
+                                    @"Me", @"user_id",
+                                    nil];
+    
+    [session mySelf:identPetra];
+    
+    XCTAssert(identPetra[@"fpr"]);
+
+    NSData* petrasMsg;
+    
+    @autoreleasepool {
+        MCOAddress * from = [[MCOAddress alloc] initWithDict:identPetra];
+        
+        MCOAddress * to = [MCOAddress addressWithDisplayName:@"Miro" mailbox:@"pep.test.miro@pep-project.org"];
+        
+        MCOMessageBuilder * builder = [[MCOMessageBuilder alloc] init];
+        [[builder header] setFrom:from];
+        [[builder header] setTo:@[to]];
+        [[builder header] setSubject:@"Lets use pEP"];
+        [builder setTextBody:@"Dear I just installed pEp, you should do the same !"];
+        builder.outgoing = YES;
+        
+        MCOMessageBuilder * encBuilder;
+        [session encryptMessage:builder extra:@[] dest:&encBuilder];
+        
+        petrasMsg = [encBuilder data];
+    }
+    
+    [self pEpCleanUp:@"Petra"];
+    
+    [self pEpSetUp];
+    
+    NSMutableDictionary *identMiro = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"Miro", @"username",
+                                       @"pep.test.miro@pep-project.org", @"address",
+                                       @"Me", @"user_id",
+                                       nil];
+    
+    [session mySelf:identMiro];
+    
+    XCTAssert(identMiro[@"fpr"]);
+    
+    @autoreleasepool {
+        MCOMessageBuilder * builder;
+        // Parse and try to decrypt Petra's message, this should import Petra's key.
+        MCOMessageParser* parser = [[MCOMessageParser alloc] initWithData:petrasMsg ];
+        NSArray* keys;
+        [session decryptMessage:parser dest:&builder keys:&keys];
+    }
+
+    NSData* mirosMsg;
+    
+    @autoreleasepool {
+        MCOAddress * from = [[MCOAddress alloc] initWithDict:identMiro];
+        
+        MCOAddress * to = [MCOAddress addressWithDisplayName:@"Petra" mailbox:@"pep.test.petra@pep-project.org"];
+        
+        MCOMessageBuilder * builder = [[MCOMessageBuilder alloc] init];
+        [[builder header] setFrom:from];
+        [[builder header] setTo:@[to]];
+        [[builder header] setSubject:@"re:Lets use pEP"];
+        [builder setTextBody:@"That was so easy !"];
+        builder.outgoing = YES;
+        
+        // Yellow ?
+        PEP_color clr = [session outgoingMessageColor:builder];
+        XCTAssert( clr == PEP_rating_yellow);
+
+        
+        MCOMessageBuilder * encBuilder;
+        [session encryptMessage:builder extra:@[] dest:&encBuilder];
+        
+        mirosMsg = [encBuilder data];
+    }
+    
+    [self pEpCleanUp:@"Miro"];
+    
+}
+
+
 @end

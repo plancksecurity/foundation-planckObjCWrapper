@@ -87,11 +87,14 @@ PEP_SESSION _session;
 
     MCOAbstractMessage * dst_ = [MCOMessageBuilder new];
 
-    if (_dst) {
-        [dst_ PEP_fromStruct:_dst];
-    }
-    else {
-        [dst_ PEP_fromStruct:_src];
+    if (dst_) {
+        if (_dst) {
+            [dst_ PEP_fromStruct:_dst];
+        }
+        else {
+            [dst_ PEP_fromStruct:_src];
+        }
+        *dst = dst_;
     }
 
     free_message(_src);
