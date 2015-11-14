@@ -306,9 +306,10 @@ BOOL _outgoing;
         for (MCOAttachment *attachment in self.htmlInlineAttachments) {
             size_t size = [[attachment data] length];
             
-            char *data = malloc(size);
+            char *data = malloc(size+1);
             assert(data);
             memcpy(data, [[attachment data] bytes], size);
+            data[size]='\0';
             
             _bl = bloblist_add(_bl, data, size, [[attachment mimeType] UTF8String], [[[attachment filename] precomposedStringWithCanonicalMapping] UTF8String]);
         }
@@ -322,9 +323,10 @@ BOOL _outgoing;
         for (MCOAttachment *attachment in self.attachments) {
             size_t size = [[attachment data] length];
             
-            char *data = malloc(size);
+            char *data = malloc(size+1);
             assert(data);
             memcpy(data, [[attachment data] bytes], size);
+            data[size]='\0';
 
             _bl = bloblist_add(_bl, data, size, [[attachment mimeType] UTF8String], [[[attachment filename] precomposedStringWithCanonicalMapping] UTF8String]);
         }
