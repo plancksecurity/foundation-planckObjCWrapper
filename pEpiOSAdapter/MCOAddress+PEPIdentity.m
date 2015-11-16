@@ -8,19 +8,21 @@
 
 #import "MCOAddress+PEPIdentity.h"
 #import "MCOAbstractMessage+PEPMessage.h"
+#import <objc/runtime.h>
+
+// Pointer of that uninitialized static is used as a
+// constant key to associate userId property to the object
+static char userId_key;
 
 @implementation MCOAddress (PEPIdentity)
 
-NSString * _userId;
-
-- (NSString*)userId
-{
-    return _userId;
+- (void)setUserId:(NSString*)uid {
+    objc_setAssociatedObject(self, &userId_key, uid, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)setUserId:(NSString *)userId
-{
-    _userId = userId;
+- (NSString*)userId {
+    NSString* res = objc_getAssociatedObject(self, &userId_key);
+    return res;
 }
 
 - (id)initWithStruct:(pEp_identity *)ident

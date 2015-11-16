@@ -8,6 +8,7 @@
 
 #import "MCOAbstractMessage+PEPMessage.h"
 #import <MailCore/MailCore.h>
+#import <objc/runtime.h>
 
 NSArray *PEP_arrayFromStringlist(stringlist_t *sl)
 {
@@ -155,18 +156,16 @@ NSMutableArray *PEP_MCOAddressArrayFromList(identity_list *il)
     return array;
 }
 
+static char outgoing_key;
+
 @implementation MCOAbstractMessage (PEPMessage)
 
-BOOL _outgoing;
-
-- (BOOL)outgoing
-{
-    return _outgoing;
+- (void)setOutgoing:(BOOL)outgoing {
+    objc_setAssociatedObject(self, &outgoing_key, [NSNumber numberWithBool:outgoing], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)setOutgoing:(BOOL)outgoing
-{
-    _outgoing = outgoing;
+- (BOOL)outgoing {
+    return ((NSNumber*)objc_getAssociatedObject(self, &outgoing_key)).boolValue;
 }
 
 - (void)PEP_fromStruct:(message *)msg

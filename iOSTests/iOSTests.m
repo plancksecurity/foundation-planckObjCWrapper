@@ -286,7 +286,7 @@ PEPSession *session;
 
     NSData* petrasMsg;
     
-    @autoreleasepool {
+    {
         MCOAddress * from = [[MCOAddress alloc] initWithDict:identPetra];
         
         MCOAddress * to = [MCOAddress addressWithDisplayName:@"Miro" mailbox:@"pep.test.miro@pep-project.org"];
@@ -318,7 +318,7 @@ PEPSession *session;
     
     XCTAssert(identMiro[@"fpr"]);
     
-    @autoreleasepool {
+    {
         MCOMessageBuilder * builder;
         // Parse and try to decrypt Petra's message, this should import Petra's key.
         MCOMessageParser* parser = [[MCOMessageParser alloc] initWithData:petrasMsg ];
@@ -328,7 +328,7 @@ PEPSession *session;
 
     NSData* mirosMsg;
     
-    @autoreleasepool {
+    {
         MCOAddress * from = [[MCOAddress alloc] initWithDict:identMiro];
         
         MCOAddress * to = [MCOAddress addressWithDisplayName:@"Petra" mailbox:@"pep.test.petra@pep-project.org"];
@@ -352,6 +352,18 @@ PEPSession *session;
     }
     
     [self pEpCleanUp:@"Miro"];
+    
+    [self pEpSetUp:@"Petra"];
+    {
+        MCOMessageBuilder * builder;
+        // Parse and decrypt Miros's message.
+        MCOMessageParser* parser = [[MCOMessageParser alloc] initWithData:mirosMsg ];
+        NSArray* keys;
+        [session decryptMessage:parser dest:&builder keys:&keys];
+        XCTAssert(builder);
+        XCTAssertEqual(builder.textBody,  @"That was so easy !");
+    }
+    [self pEpCleanUp:@"Petra"];
     
 }
 

@@ -12,7 +12,7 @@
 
 @interface MCOAddress (PEPIdentity)
 
-@property NSString* userId;
+@property (nonatomic, strong) NSString* userId;
 
 - (id)initWithStruct:(pEp_identity *)ident;
 - (id)initWithDict:(NSMutableDictionary *)dict;
