@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "pEpiOSAdapter.h"
-#import "pEpiOSAdapter/MCOAbstractMessage+PEPMessage.h"
-#import <MailCore/mailcore.h>
+#import "PEPMessage.h"
 
 @interface PEPSession : NSObject
 
@@ -20,15 +19,15 @@
 
 // decrypt a message
 
-- (PEP_color)decryptMessage:(MCOAbstractMessage *)src dest:(MCOAbstractMessage **)dst keys:(NSArray **)keys;
+- (PEP_color)decryptMessage:(NSMutableDictionary *)src dest:(NSMutableDictionary **)dst keys:(NSArray **)keys;
 
 // encrypt a message
 
-- (void)encryptMessage:(MCOAbstractMessage *)src extra:(NSArray *)keys dest:(MCOAbstractMessage **)dst;
+- (PEP_STATUS)encryptMessage:(NSMutableDictionary *)src extra:(NSArray *)keys dest:(NSMutableDictionary **)dst;
 
 // message is to be sent
 
-- (PEP_color)outgoingMessageColor:(MCOAbstractMessage *)msg;
+- (PEP_color)outgoingMessageColor:(NSMutableDictionary *)msg;
 
 // get trustwords for a fingerprint
 
@@ -73,7 +72,7 @@
 
 // if a key gets comprimized tell this using this message
 
-- (void)keyCompromized:(NSString *)fpr;
+- (void)keyCompromized:(NSMutableDictionary *)identity;
 
 // for testing purpose, manual key import
 

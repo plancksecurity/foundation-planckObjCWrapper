@@ -9,7 +9,7 @@
 #import "PEPSession.h"
 #import "pEpiOSAdapter.h"
 #import "PEPIOSAdapter+Internal.h"
-#import "MCOAbstractMessage+PEPMessage.h"
+#import "PEPMessage.h"
 
 @implementation PEPSession
 
@@ -42,9 +42,9 @@ PEP_SESSION _session;
     release(_session);
 }
 
-- (PEP_color)decryptMessage:(MCOAbstractMessage *)src dest:(MCOAbstractMessage **)dst keys:(NSArray **)keys
+- (PEP_color)decryptMessage:(NSMutableDictionary *)src dest:(NSMutableDictionary **)dst keys:(NSArray **)keys
 {
-    message * _src = [src PEP_toStruct];
+    message * _src = PEP_messageToStruct(src);
     message * _dst = NULL;
     stringlist_t * _keys = NULL;
     PEP_color color = PEP_rating_undefined;
@@ -53,13 +53,13 @@ PEP_SESSION _session;
         decrypt_message(_session, _src, &_dst, &_keys, &color);
     }
 
-    MCOAbstractMessage * dst_ = [MCOMessageBuilder new];
+    NSMutableDictionary * dst_;
 
     if (_dst) {
-        [dst_ PEP_fromStruct:_dst];
+        dst_ = PEP_messageFromStruct(_dst);
     }
     else {
-        [dst_ PEP_fromStruct:_src];
+        dst_ = PEP_messageFromStruct(_src);
     }
 
     NSArray * keys_ = nil;
@@ -75,36 +75,37 @@ PEP_SESSION _session;
     return color;
 }
 
-- (void)encryptMessage:(MCOAbstractMessage *)src extra:(NSArray *)keys dest:(MCOAbstractMessage **)dst
+- (PEP_STATUS)encryptMessage:(NSMutableDictionary *)src extra:(NSArray *)keys dest:(NSMutableDictionary **)dst
 {
-    message * _src = [src PEP_toStruct];
+    PEP_STATUS status;
+    message * _src = PEP_messageToStruct(src);
     message * _dst = NULL;
     stringlist_t * _keys = PEP_arrayToStringlist(keys);
 
     @synchronized (self) {
-        encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME);
+        status = encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME);
     }
 
-    MCOAbstractMessage * dst_ = [MCOMessageBuilder new];
+    NSMutableDictionary * dst_;
 
-    if (dst_) {
-        if (_dst) {
-            [dst_ PEP_fromStruct:_dst];
-        }
-        else {
-            [dst_ PEP_fromStruct:_src];
-        }
-        *dst = dst_;
+    if (_dst) {
+        dst_ = PEP_messageFromStruct(_dst);
     }
+    else {
+        dst_ = PEP_messageFromStruct(_src);
+    }
+    *dst = dst_;
 
     free_message(_src);
     free_message(_dst);
     free_stringlist(_keys);
+    
+    return status;
 }
 
-- (PEP_color)outgoingMessageColor:(MCOAbstractMessage *)msg
+- (PEP_color)outgoingMessageColor:(NSMutableDictionary *)msg
 {
-    message *_msg = [msg PEP_toStruct];
+    message * _msg = PEP_messageToStruct(msg);
     PEP_color color = PEP_rating_undefined;
 
     @synchronized (self) {
@@ -151,7 +152,7 @@ PEP_SESSION _session;
         myself(_session, ident);
     }
 
-    PEP_identityFromStruct(identity, ident);
+    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
     free_identity(ident);
 }
 
@@ -163,7 +164,7 @@ PEP_SESSION _session;
         update_identity(_session, ident);
     }
 
-    PEP_identityFromStruct(identity, ident);
+    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
     free_identity(ident);
 }
 
@@ -175,17 +176,20 @@ PEP_SESSION _session;
         trust_personal_key(_session, ident);
     }
     
-    PEP_identityFromStruct(identity, ident);
+    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
     free_identity(ident);
 }
 
-- (void)keyCompromized:(NSString *)fpr
+- (void)keyCompromized:(NSMutableDictionary *)identity
 {
-    const char *str = [[fpr precomposedStringWithCanonicalMapping] UTF8String];
-
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    
     @synchronized(self) {
-        key_compromized(_session, str);
+        key_compromized(_session, ident);
     }
+    
+    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
+    free_identity(ident);
 }
 
 - (void)importKey:(NSString *)keydata

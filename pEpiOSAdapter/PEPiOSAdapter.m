@@ -10,7 +10,7 @@
 
 #import "PEPiOSAdapter.h"
 #import "PEPIOSAdapter+Internal.h"
-#import "MCOAbstractMessage+PEPMessage.h"
+#import "PEPMessage.h"
 #include "keymanagement.h"
 
 const char* _Nullable SystemDB = NULL;
@@ -20,8 +20,7 @@ int examine_identity(pEp_identity *ident, void *management)
     //PEPQueue *q = (__bridge PEPQueue *)management;
     PEPQueue *q = [PEPiOSAdapter getQueue];
     
-    NSMutableDictionary *identity = [[NSMutableDictionary alloc] init];
-    PEP_identityFromStruct(identity, ident);
+    NSMutableDictionary *identity = PEP_identityFromStruct(ident);
     
     [q enqueue:identity];
     return 0;

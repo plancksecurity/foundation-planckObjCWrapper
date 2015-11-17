@@ -198,22 +198,21 @@ PEPSession *session;
  
     [session mySelf:identAlice];
     
-    // MCOAddress.userId MUST be set to same as identity[@"user_id"]
-    // for any MCOAddress referring own user, i.e. msg->from
-    MCOAddress * from = [[MCOAddress alloc] initWithDict:identAlice];
-
-    // Make a mail message, with (for now) unknown peer Bob
-    MCOAddress * to1 = [MCOAddress addressWithDisplayName:@"pEp Test Bob" mailbox:@"pep.test.bob@pep-project.org"];
-
-    MCOMessageBuilder * builder = [[MCOMessageBuilder alloc] init];
-    [[builder header] setFrom:from];
-    [[builder header] setTo:@[to1]];
-    [[builder header] setSubject:@"All Green Test"];
-    [builder setTextBody:@"This is a text content"];
-    builder.outgoing = YES;
+    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       identAlice, @"from",
+                                       [NSMutableArray arrayWithObjects:
+                                            [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                                 @"pEp Test Bob", @"username",
+                                                 @"pep.test.bob@pep-project.org", @"address",
+                                                 nil],
+                                            nil], @"to",
+                                        @"All Green Test", @"shortmsg",
+                                        @"This is a text content", @"longmsg",
+                                        @YES, @"outgoing",
+                                       nil];
 
     // Test with unknown Bob
-    PEP_color clr = [session outgoingMessageColor:builder];
+    PEP_color clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
 
     // Now let see with bob's pubkey already known
@@ -231,7 +230,7 @@ PEPSession *session;
     [session updateIdentity:identBob];
 
     // Should be yellow, since no handshake happened.
-    clr = [session outgoingMessageColor:builder];
+    clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_yellow);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
@@ -240,7 +239,7 @@ PEPSession *session;
     [session updateIdentity:identBob];
 
     // This time it should be green
-    clr = [session outgoingMessageColor:builder];
+    clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_green);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
@@ -256,16 +255,21 @@ PEPSession *session;
                                       nil];
     
     [session updateIdentity:identJohn];
-    
-    MCOAddress * to2 = [MCOAddress addressWithDisplayName:@"pEp Test John" mailbox:@"pep.test.john@pep-project.org"];
-    [[builder header] setCc:@[to2]];
+
+    [msg setObject:[NSMutableArray arrayWithObjects:
+     [NSMutableDictionary dictionaryWithObjectsAndKeys:
+      @"pEp Test John", @"username",
+      @"pep.test.john@pep-project.org", @"address",
+      nil], nil] forKey:@"cc"];
 
     // Yellow ?
-    clr = [session outgoingMessageColor:builder];
+    clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_yellow);
 
-    MCOMessageBuilder * encBuilder;
-    [session encryptMessage:builder extra:@[] dest:&encBuilder];
+    NSMutableDictionary *encmsg;
+    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+    
+    XCTAssert(status == PEP_STATUS_OK);
     
     [self pEpCleanUp];
 }
@@ -284,28 +288,34 @@ PEPSession *session;
     
     XCTAssert(identPetra[@"fpr"]);
 
-    NSData* petrasMsg;
+    NSMutableDictionary* petrasMsg;
     
     {
-        MCOAddress * from = [[MCOAddress alloc] initWithDict:identPetra];
         
-        MCOAddress * to = [MCOAddress addressWithDisplayName:@"Miro" mailbox:@"pep.test.miro@pep-project.org"];
+        NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    identPetra, @"from",
+                                    [NSMutableArray arrayWithObjects:
+                                     [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      @"Miro", @"username",
+                                      @"pep.test.miro@pep-project.org", @"address",
+                                      nil],
+                                     nil], @"to",
+                                    @"Lets use pEp", @"shortmsg",
+                                    @"Dear, I just installed pEp, you should do the same !", @"longmsg",
+                                    @YES, @"outgoing",
+                                    nil];
         
-        MCOMessageBuilder * builder = [[MCOMessageBuilder alloc] init];
-        [[builder header] setFrom:from];
-        [[builder header] setTo:@[to]];
-        [[builder header] setSubject:@"Lets use pEP"];
-        [builder setTextBody:@"Dear I just installed pEp, you should do the same !"];
-        builder.outgoing = YES;
-        
-        MCOMessageBuilder * encBuilder;
-        [session encryptMessage:builder extra:@[] dest:&encBuilder];
-        
-        petrasMsg = [encBuilder data];
+        PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&petrasMsg];
+        XCTAssert(status == PEP_UNENCRYPTED);
+
     }
     
     [self pEpCleanUp:@"Petra"];
-    
+
+    // Meanwhile, Petra's outgoing message goes through the Internet,
+    // and becomes incomming message to Miro
+    petrasMsg[@"outgoing"] = @NO;
+
     [self pEpSetUp];
     
     NSMutableDictionary *identMiro = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -318,50 +328,49 @@ PEPSession *session;
     
     XCTAssert(identMiro[@"fpr"]);
     
-    {
-        MCOMessageBuilder * builder;
-        // Parse and try to decrypt Petra's message, this should import Petra's key.
-        MCOMessageParser* parser = [[MCOMessageParser alloc] initWithData:petrasMsg ];
-        NSArray* keys;
-        [session decryptMessage:parser dest:&builder keys:&keys];
-    }
-
-    NSData* mirosMsg;
     
     {
-        MCOAddress * from = [[MCOAddress alloc] initWithDict:identMiro];
-        
-        MCOAddress * to = [MCOAddress addressWithDisplayName:@"Petra" mailbox:@"pep.test.petra@pep-project.org"];
-        
-        MCOMessageBuilder * builder = [[MCOMessageBuilder alloc] init];
-        [[builder header] setFrom:from];
-        [[builder header] setTo:@[to]];
-        [[builder header] setSubject:@"re:Lets use pEP"];
-        [builder setTextBody:@"That was so easy !"];
-        builder.outgoing = YES;
-        
-        // Yellow ?
-        PEP_color clr = [session outgoingMessageColor:builder];
-        XCTAssert( clr == PEP_rating_yellow);
+        NSMutableDictionary *decmsg;
+        NSArray* keys;
+        PEP_color clr = [session decryptMessage:petrasMsg dest:&decmsg keys:&keys];
+        XCTAssert(clr == PEP_rating_unencrypted);
 
+    }
+
+    NSMutableDictionary* mirosMsg;
+    
+    {
         
-        MCOMessageBuilder * encBuilder;
-        [session encryptMessage:builder extra:@[] dest:&encBuilder];
+        NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                    identMiro, @"from",
+                                    [NSMutableArray arrayWithObjects:
+                                     [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      @"Petra", @"username",
+                                      @"pep.test.petra@pep-project.org", @"address",
+                                      nil],
+                                     nil], @"to",
+                                    @"re:Lets use pEp", @"shortmsg",
+                                    @"That was so easy !", @"longmsg",
+                                    @YES, @"outgoing",
+                                    nil];
         
-        mirosMsg = [encBuilder data];
+        PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&mirosMsg];
+        XCTAssert(status == PEP_STATUS_OK);
+        
     }
     
     [self pEpCleanUp:@"Miro"];
     
+    // Again, outgoing flips into incoming
+    mirosMsg[@"outgoing"] = @NO;
+    
     [self pEpSetUp:@"Petra"];
     {
-        MCOMessageBuilder * builder;
-        // Parse and decrypt Miros's message.
-        MCOMessageParser* parser = [[MCOMessageParser alloc] initWithData:mirosMsg ];
+        NSMutableDictionary *decmsg;
         NSArray* keys;
-        [session decryptMessage:parser dest:&builder keys:&keys];
-        XCTAssert(builder);
-        XCTAssertEqual(builder.textBody,  @"That was so easy !");
+        PEP_color clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
+        XCTAssert(clr == PEP_rating_reliable);
+        XCTAssertEqual(decmsg[@"longmsg"],  @"That was so easy !");
     }
     [self pEpCleanUp:@"Petra"];
     
