@@ -75,10 +75,12 @@ NSArray *PEP_arrayFromBloblist(bloblist_t *bl)
                                  length:_bl->size]
               forKey:@"data"];
         
-        [blob setObject:[NSString stringWithUTF8String:_bl->filename]
+        if(_bl->filename && _bl->filename[0])
+            [blob setObject:[NSString stringWithUTF8String:_bl->filename]
                  forKey:@"filename"];
         
-        [blob setObject: [NSString stringWithUTF8String:_bl->mime_type]
+        if(_bl->mime_type && _bl->mime_type[0])
+            [blob setObject: [NSString stringWithUTF8String:_bl->mime_type]
                  forKey:@"mimeType"];
         
         [array addObject:blob];
