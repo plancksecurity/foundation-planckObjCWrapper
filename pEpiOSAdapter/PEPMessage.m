@@ -91,6 +91,7 @@ NSArray *PEP_arrayFromBloblist(bloblist_t *bl)
 bloblist_t *PEP_arrayToBloblist(NSArray *array)
 {
     bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL);
+    bloblist_t *bl =_bl;
     for (NSMutableDictionary *blob in array) {
         NSData *data = blob[@"data"];
         size_t size = [data length];
@@ -101,9 +102,9 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
         memcpy(buf, [data bytes], size);
         buf[size]='\0';
         
-        _bl = bloblist_add(_bl, buf, size,
-                           [blob[@"mimeType"] UTF8String],
-                           [[blob[@"filename"] precomposedStringWithCanonicalMapping] UTF8String]);
+        bl = bloblist_add(bl, buf, size,
+                          [blob[@"mimeType"] UTF8String],
+                          [[blob[@"filename"] precomposedStringWithCanonicalMapping] UTF8String]);
     }
     return _bl;
 }

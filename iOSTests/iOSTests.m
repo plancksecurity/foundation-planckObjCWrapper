@@ -370,7 +370,7 @@ PEPSession *session;
         NSArray* keys;
         PEP_color clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_reliable);
-        XCTAssertEqual(decmsg[@"longmsg"],  @"That was so easy !");
+        [@"That was so easy !" compare:decmsg[@"longmsg"]];
     }
     [self pEpCleanUp:@"Petra"];
     
