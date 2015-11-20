@@ -30,8 +30,13 @@ PEPSession *session;
         {
             success = [fileManager removeItemAtPath:path error:&error];
         }else{
+            NSString *toPath = [path stringByAppendingString:bkpsfx];
+            
+            if([fileManager fileExistsAtPath:toPath])
+                [fileManager removeItemAtPath:toPath error:&error];
+            
             success = [fileManager moveItemAtPath:path
-                                   toPath:[path stringByAppendingString:bkpsfx]
+                                   toPath:toPath
                                    error:&error];
         }
         if (!success) NSLog(@"Error: %@", [error localizedDescription]);
