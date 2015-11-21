@@ -280,30 +280,31 @@ PEPSession *session;
 }
 
 - (void)testTwoNewUsers {
-    
-    [self pEpSetUp];
-    
-    NSMutableDictionary *identPetra = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"Petra", @"username",
-                                    @"pep.test.petra@pep-project.org", @"address",
-                                    @"Me", @"user_id",
-                                    nil];
-    
-    [session mySelf:identPetra];
-    
-    XCTAssert(identPetra[@"fpr"]);
 
     NSMutableDictionary* petrasMsg;
+    NSMutableDictionary *identMiroAtPetra =
+    [NSMutableDictionary dictionaryWithObjectsAndKeys:
+     @"Miro", @"username",
+     @"pep.test.miro@pep-project.org", @"address",
+     @"Him", @"user_id",
+     nil];
+
     
+    [self pEpSetUp];
+
     {
+        NSMutableDictionary *identPetra = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                        @"Petra", @"username",
+                                        @"pep.test.petra@pep-project.org", @"address",
+                                        @"Me", @"user_id",
+                                        nil];
+        
+        [session mySelf:identPetra];
+        XCTAssert(identPetra[@"fpr"]);
         
         NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                     identPetra, @"from",
-                                    [NSMutableArray arrayWithObjects:
-                                     [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      @"Miro", @"username",
-                                      @"pep.test.miro@pep-project.org", @"address",
-                                      nil],
+                                    [NSMutableArray arrayWithObjects: identMiroAtPetra,
                                      nil], @"to",
                                     @"Lets use pEp", @"shortmsg",
                                     @"Dear, I just installed pEp, you should do the same !", @"longmsg",
@@ -321,31 +322,25 @@ PEPSession *session;
     // and becomes incomming message to Miro
     petrasMsg[@"outgoing"] = @NO;
 
+    NSMutableDictionary* mirosMsg;
+    
     [self pEpSetUp];
     
-    NSMutableDictionary *identMiro = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+    {
+        NSMutableDictionary *identMiro = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        @"Miro", @"username",
                                        @"pep.test.miro@pep-project.org", @"address",
                                        @"Me", @"user_id",
                                        nil];
     
-    [session mySelf:identMiro];
+        [session mySelf:identMiro];
+        XCTAssert(identMiro[@"fpr"]);
     
-    XCTAssert(identMiro[@"fpr"]);
-    
-    
-    {
         NSMutableDictionary *decmsg;
         NSArray* keys;
         PEP_color clr = [session decryptMessage:petrasMsg dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_unencrypted);
 
-    }
-
-    NSMutableDictionary* mirosMsg;
-    
-    {
-        
         NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                     identMiro, @"from",
                                     [NSMutableArray arrayWithObjects:
@@ -373,9 +368,21 @@ PEPSession *session;
     {
         NSMutableDictionary *decmsg;
         NSArray* keys;
+        
         PEP_color clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
+        XCTAssert(clr == PEP_rating_unreliable);
+        
+        [session updateIdentity:identMiroAtPetra];
+
+        XCTAssert(identMiroAtPetra[@"fpr"]);
+
+        [session trustPersonalKey:identMiroAtPetra];
+
+        clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_reliable);
-        [@"That was so easy !" compare:decmsg[@"longmsg"]];
+        
+        XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
+        
     }
     [self pEpCleanUp:@"Petra"];
     
