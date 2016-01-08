@@ -62,8 +62,9 @@ PEPSession *session;
 {
     // Only files whose content is affected by tests.
     NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
+    NSString* lib = [home stringByAppendingPathComponent:@"Library"];
     NSString* gpgHome = [home stringByAppendingPathComponent:@".gnupg"];
-    return @[[home stringByAppendingPathComponent:@".pEp_management.db"],
+    return @[[lib stringByAppendingPathComponent:@".pEp_management.db"],
              [gpgHome stringByAppendingPathComponent:@"pubring.gpg"],
              [gpgHome stringByAppendingPathComponent:@"secring.gpg"]];
     
