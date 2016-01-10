@@ -62,9 +62,8 @@ PEPSession *session;
 {
     // Only files whose content is affected by tests.
     NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
-    NSString* lib = [home stringByAppendingPathComponent:@"Library"];
     NSString* gpgHome = [home stringByAppendingPathComponent:@".gnupg"];
-    return @[[lib stringByAppendingPathComponent:@".pEp_management.db"],
+    return @[[home stringByAppendingPathComponent:@".pEp_management.db"],
              [gpgHome stringByAppendingPathComponent:@"pubring.gpg"],
              [gpgHome stringByAppendingPathComponent:@"secring.gpg"]];
     
@@ -83,7 +82,9 @@ PEPSession *session;
 }
 
 - (void)pEpSetUp : (NSString*)restore{
-    
+    // Must be the first thing you do before using anything pEp-related
+    [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+
     for(id path in [self pEpWorkFiles])
         [self delFile:path:NULL];
 
@@ -91,7 +92,6 @@ PEPSession *session;
         for(id path in [self pEpWorkFiles])
             [self undelFile:path:restore];
 
-    [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
     session = [[PEPSession alloc]init];
     XCTAssert(session);
     

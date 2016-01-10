@@ -43,6 +43,47 @@ static pEp_identity *retrieve_next_identity(void *management)
 
 @implementation PEPiOSAdapter
 
++ (NSURL *)createApplicationDirectory
+{
+    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    if (!bundleID) {
+        // This can happen in unit tests
+        bundleID = @"test";
+    }
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *dirPath = nil;
+
+    // Find the application support directory in the home directory.
+    NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                        inDomains:NSUserDomainMask];
+    if ([appSupportDir count] > 0)
+    {
+        // Append the bundle ID to the URL for the
+        // Application Support directory.
+        // Mainly needed for OS X, but doesn't do any harm on iOS
+        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:bundleID];
+
+        // If the directory does not exist, this method creates it.
+        // This method is only available in OS X v10.7 and iOS 5.0 or later.
+        NSError *theError = nil;
+        if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                           attributes:nil error:&theError])
+        {
+            // Handle the error.
+            return nil;
+        }
+    }
+
+    return dirPath;
+}
+
++ (NSURL *)createAndSetHomeDirectory
+{
+    NSURL *homeUrl = [self createApplicationDirectory];
+    setenv("HOME", [[homeUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+    return homeUrl;
+}
+
 + (NSString *) getBundlePathFor: (NSString *) filename
 {
     return nil;
@@ -51,12 +92,11 @@ static pEp_identity *retrieve_next_identity(void *management)
 + (const char * _Nullable) copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
                                                           :(NSString *)bundleName
                                                           :(NSString *)fileName{
+
+    NSURL *homeUrl = [PEPiOSAdapter createAndSetHomeDirectory];
+    NSString *documentsDirectory = [homeUrl path];
     
-    // Set the documents directory path to the documentsDirectory property.
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    if(!(bundleName && fileName))
+    if(!(documentsDirectory && bundleName && fileName))
         return nil;
     
     // Check if the database file exists in the documents directory.
