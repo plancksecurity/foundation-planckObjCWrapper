@@ -24,13 +24,9 @@ PEP_SESSION _session;
 - (id)init
 {
     PEP_STATUS status = init(&_session);
+
     if (status != PEP_STATUS_OK) {
-        NSException* myException = [NSException
-                                    exceptionWithName:@"PEPInitError"
-                                    reason:@"Cannot initialize pEp engine"
-                                    userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInteger: status] forKey: @"status"]];
-        
-        @throw myException;
+        return nil;
     }
     
     [PEPiOSAdapter registerExamineFunction:_session];
