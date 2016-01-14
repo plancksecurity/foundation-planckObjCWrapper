@@ -371,16 +371,26 @@ PEPSession *session;
         NSArray* keys;
         
         PEP_color clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
+        
+        // At that time, Miro is still not in pEp's database.
         XCTAssert(clr == PEP_rating_unreliable);
         
+        // This will add Miro in pEp db, matching key stored in pgp keyring,
+        // and imported at decrypt.
         [session updateIdentity:identMiroAtPetra];
 
         XCTAssert(identMiroAtPetra[@"fpr"]);
 
+        clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
+        
+        // Now Miro is in pEp's database.
+        XCTAssert(clr == PEP_rating_reliable);
+
+        // Add some trust to that contact
         [session trustPersonalKey:identMiroAtPetra];
 
         clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
-        XCTAssert(clr == PEP_rating_reliable);
+        XCTAssert(clr == PEP_rating_trusted);
         
         XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
         
