@@ -393,7 +393,7 @@ PEPSession *session;
         XCTAssert(clr == PEP_rating_trusted);
 
         // Lose trust to that contact
-        [session resetTrust:identMiroAtPetra];
+        [session keyResetTrust:identMiroAtPetra];
         
         clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_trusted);

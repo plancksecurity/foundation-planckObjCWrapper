@@ -176,12 +176,12 @@ PEP_SESSION _session;
     free_identity(ident);
 }
 
-- (void)resetTrust:(NSMutableDictionary *)identity
+- (void)keyResetTrust:(NSMutableDictionary *)identity
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     
     @synchronized(self) {
-        reset_trust(_session, ident);
+        key_reset_trust(_session, ident);
     }
     
     [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
