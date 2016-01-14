@@ -176,6 +176,18 @@ PEP_SESSION _session;
     free_identity(ident);
 }
 
+- (void)resetTrust:(NSMutableDictionary *)identity
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    
+    @synchronized(self) {
+        reset_trust(_session, ident);
+    }
+    
+    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
+    free_identity(ident);
+}
+
 - (void)keyCompromized:(NSMutableDictionary *)identity
 {
     pEp_identity *ident = PEP_identityToStruct(identity);

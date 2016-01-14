@@ -74,6 +74,10 @@
 
 - (void)keyCompromized:(NSMutableDictionary *)identity;
 
+// use this to undo keyCompromized or trustPersonalKey
+
+- (void)resetTrust:(NSMutableDictionary*)identity;
+
 // for testing purpose, manual key import
 
 - (void)importKey:(NSString *)keydata;
