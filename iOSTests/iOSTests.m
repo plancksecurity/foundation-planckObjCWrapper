@@ -432,7 +432,7 @@ PEPSession *session;
         [session keyResetTrust:identMiroAtPetra];
         
         clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
-        XCTAssert(clr == PEP_rating_reliable);
+        XCTAssert(clr == PEP_rating_unreliable);
 
         
         XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
