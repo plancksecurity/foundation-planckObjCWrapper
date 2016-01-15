@@ -11,9 +11,11 @@
 #import "PEPIOSAdapter+Internal.h"
 #import "PEPMessage.h"
 
-@implementation PEPSession
-
-PEP_SESSION _session;
+@implementation PEPSession {
+    
+    PEP_SESSION _session;
+    
+}
 
 + (PEPSession *)session
 {

@@ -13,7 +13,6 @@
 @interface PEPSession : NSObject
 
 // creates a PEPSession
-// there must be one PEPSession per thread
 
 + (PEPSession *)session;
 
