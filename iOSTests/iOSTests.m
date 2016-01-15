@@ -107,6 +107,42 @@ PEPSession *session;
     [self pEpSetUp];
 
     // Do nothing.
+
+    
+    [self pEpCleanUp];
+    
+}
+
+
+- (void)testOverlapingSessions {
+    
+    PEPSession *session2;
+    [self pEpSetUp];
+    
+    session2 = session;
+    
+    session = [[PEPSession alloc]init];
+    XCTAssert(session);
+
+    sleep(1);
+
+    session2 = nil;
+    
+    [self pEpCleanUp];
+
+}
+
+- (void)testNestedSessions {
+    
+    PEPSession *session2;
+    [self pEpSetUp];
+    
+    session2 = [[PEPSession alloc]init];
+    XCTAssert(session2);
+
+    sleep(1);
+   
+    session2 = nil;
     
     [self pEpCleanUp];
     
@@ -396,7 +432,7 @@ PEPSession *session;
         [session keyResetTrust:identMiroAtPetra];
         
         clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
-        XCTAssert(clr == PEP_rating_trusted);
+        XCTAssert(clr == PEP_rating_reliable);
 
         
         XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
