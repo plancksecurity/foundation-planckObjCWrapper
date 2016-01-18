@@ -79,8 +79,14 @@ static pEp_identity *retrieve_next_identity(void *management)
 
 + (NSURL *)createAndSetHomeDirectory
 {
+    // create and set home directory
     NSURL *homeUrl = [self createApplicationDirectory];
     setenv("HOME", [[homeUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+
+    // create and set temp directory
+    NSLog(@"tmpDirUrl: %@", tmpDirUrl);
+    setenv("TEMP", [[tmpDirUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+
     return homeUrl;
 }
 
