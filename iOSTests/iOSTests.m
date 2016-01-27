@@ -432,7 +432,7 @@ PEPSession *session;
         [session keyResetTrust:identMiroAtPetra];
         
         clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
-        XCTAssert(clr == PEP_rating_unreliable);
+        XCTAssertEqual(clr, PEP_rating_unreliable, @"keyResetTrust didn't work?");
 
         
         XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
@@ -442,5 +442,43 @@ PEPSession *session;
     
 }
 
+
+- (void)testEncryptedMailFromOutlook
+{
+
+    [self pEpSetUp];
+
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"B623F674_sec.asc"];
+
+    NSMutableDictionary *identMe = @{ @"username": @"Test 001",
+                                     @"address": @"test001@peptest.ch",
+                                     @"user_id": @"B623F674" }.mutableCopy;
+    NSMutableDictionary *identMeOutlook = @{ @"username": @"Outlook 1",
+                                             @"address": @"outlook1@peptest.ch",
+                                             @"user_id": @"outlook1" }.mutableCopy;
+
+    NSString *msgFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath]
+                             stringByAppendingPathComponent:@"msg_to_B623F674.asc"];
+    NSString *msgFileContents = [NSString stringWithContentsOfFile:msgFilePath
+                                                          encoding:NSASCIIStringEncoding error:NULL];
+
+    NSMutableDictionary *msg = @{ @"from": identMe,
+                                  @"to": @[identMeOutlook],
+                                  @"shortmsg": @"Some subject",
+                                  @"longmsg": msgFileContents,
+                                  @"incoming": @YES }.mutableCopy;
+
+    // Should happen quite fast, since test001@peptest.ch already has a secret key
+    [session mySelf:identMe];
+    XCTAssert(identMe[@"fpr"]);
+
+    NSArray *keys;
+    NSMutableDictionary *decMsg;
+    PEP_color clr = [session decryptMessage:msg dest:&decMsg keys:&keys];
+    XCTAssertEqual(clr, PEP_rating_reliable);
+
+    [self pEpCleanUp];
+}
 
 @end
