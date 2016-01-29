@@ -415,7 +415,9 @@ PEPSession *session;
         // and imported at decrypt.
         [session updateIdentity:identMiroAtPetra];
 
-        XCTAssert(identMiroAtPetra[@"fpr"]);
+        XCTAssertNotNil(identMiroAtPetra[@"fpr"]);
+        
+        NSLog(@"Test fpr %@",identMiroAtPetra[@"fpr"]);
 
         clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
         
@@ -432,7 +434,7 @@ PEPSession *session;
         [session keyResetTrust:identMiroAtPetra];
         
         clr = [session decryptMessage:mirosMsg dest:&decmsg keys:&keys];
-        XCTAssertEqual(clr, PEP_rating_unreliable, @"keyResetTrust didn't work?");
+        XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
 
         
         XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
