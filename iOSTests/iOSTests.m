@@ -444,7 +444,6 @@ PEPSession *session;
     
 }
 
-
 - (void)testEncryptedMailFromOutlook
 {
 

@@ -17,10 +17,39 @@
     
 }
 
+// serialize all session access
++ (dispatch_queue_t)sharedSessionQueue
+{
+    static dispatch_once_t once;
+    static dispatch_queue_t sharedSessionQueue;
+    dispatch_once(&once, ^{
+        sharedSessionQueue = dispatch_queue_create("pEp session queue", DISPATCH_QUEUE_SERIAL);
+    });
+    return sharedSessionQueue;
+}
+
 + (PEPSession *)session
 {
     PEPSession *_session = [[PEPSession alloc] init];
     return _session;
+}
+
++ (void)dispatchAsyncOnSession:(PEPSessionBlock)block
+{
+    dispatch_async([self sharedSessionQueue], ^{
+        [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+        PEPSession *pepSession = [[PEPSession alloc] init];
+        block(pepSession);
+    });
+}
+
++ (void)dispatchSyncOnSession:(PEPSessionBlock)block
+{
+    dispatch_sync([self sharedSessionQueue], ^{
+        [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+        PEPSession *pepSession = [[PEPSession alloc] init];
+        block(pepSession);
+    });
 }
 
 - (id)init
@@ -209,6 +238,5 @@
     }
 
 }
-
 
 @end

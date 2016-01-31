@@ -7,34 +7,48 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "pEpiOSAdapter.h"
 #import "PEPMessage.h"
 
+@class PEPSession;
+
+/** NSError parameters will use this domain */
+extern NSString *const PEPSessionErrorDomain;
+
+/** Callback type for doing something with a session */
+typedef void (^PEPSessionBlock)(PEPSession *session);
+
 @interface PEPSession : NSObject
 
-// creates a PEPSession
+/**
+ Execute a block concurrently on a session.
+ The session is created solely for execution of the block.
+ */
++ (void)dispatchAsyncOnSession:(PEPSessionBlock)block;
 
-+ (PEPSession *)session;
+/**
+ Execute a block on a session and wait for it.
+ The session is created solely for execution of the block.
+ */
++ (void)dispatchSyncOnSession:(PEPSessionBlock)block;
 
-// decrypt a message
-
+/** Decrypt a message */
 - (PEP_color)decryptMessage:(NSMutableDictionary *)src dest:(NSMutableDictionary **)dst keys:(NSArray **)keys;
 
-// encrypt a message
-
+/** Encrypt a message */
 - (PEP_STATUS)encryptMessage:(NSMutableDictionary *)src extra:(NSArray *)keys dest:(NSMutableDictionary **)dst;
 
-// message is to be sent
-
+/** Determine the status color of a message to be sent */
 - (PEP_color)outgoingMessageColor:(NSMutableDictionary *)msg;
 
-// get trustwords for a fingerprint
-
+/** Get trustwords for a fingerprint */
 - (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened;
 
-/*
- 
- An identity is a NSMutableDictionary mapping a field name as NSString to different values.
+/**
+ Supply an account used by our user himself. The identity is supplemented with the missing parts
+
+ An identity is a `NSMutableDictionary` mapping a field name as `NSString` to different values.
  An identity can have the following fields (all other keys are ignored).
  It is not necessary to supply all fields; missing fields are supplemented by p≡p engine.
  
@@ -55,30 +69,33 @@
  @"23", @"user_id", nil];
  
 */
-
-// supply an account used by our user himself
-// the identity is supplemented with the missing parts
-
 - (void)mySelf:(NSMutableDictionary *)identity;
 
-// supplement missing information for an arbitrary identity (used for communication partners)
-
+/**
+ Supplement missing information for an arbitrary identity (used for communication partners).
+ See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
+ */
 - (void)updateIdentity:(NSMutableDictionary *)identity;
 
-//  mark a key as trusted with a person
-
+/**
+ Mark a key as trusted with a person.
+ See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
+ */
 - (void)trustPersonalKey:(NSMutableDictionary *)identity;
 
-// if a key gets comprimized tell this using this message
-
+/**
+ if a key gets comprimized tell this using this message
+ See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
+ */
 - (void)keyCompromized:(NSMutableDictionary *)identity;
 
-// use this to undo keyCompromized or trustPersonalKey
-
+/**
+ Use this to undo keyCompromized or trustPersonalKey
+ See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
+*/
 - (void)keyResetTrust:(NSMutableDictionary*)identity;
 
-// for testing purpose, manual key import
-
+/** For testing purpose, manual key import */
 - (void)importKey:(NSString *)keydata;
 
 @end
