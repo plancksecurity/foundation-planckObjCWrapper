@@ -19,6 +19,8 @@
 
 PEPSession *session;
 
+#pragma mark -- Helpers
+
 -(void)delFile : (NSString *)path : (NSString *)bkpsfx {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
@@ -101,6 +103,25 @@ PEPSession *session;
     [self pEpSetUp:NULL];
 }
 
+- (void)importBundledKey : (NSString*)item {
+
+    NSString *txtFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath] stringByAppendingPathComponent:item];
+    NSString *txtFileContents = [NSString stringWithContentsOfFile:txtFilePath encoding:NSUTF8StringEncoding error:NULL];
+    //[keysStrings setObject:txtFileContents forKey:txtFilePath];
+    [session importKey:txtFileContents];
+}
+
+- (NSDictionary *)unarchiveDictionary:(NSString *)fileName
+{
+    NSString *filePath = [[[NSBundle bundleForClass:[self class]] resourcePath] stringByAppendingPathComponent:fileName];
+    NSMutableData *data = [NSMutableData dataWithContentsOfFile:filePath];
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    NSDictionary *dict = [unarchiver decodeObject];
+    [unarchiver finishDecoding];
+    return dict;
+}
+
+#pragma mark -- Tests
 
 - (void)testEmptySession {
     
@@ -212,14 +233,6 @@ PEPSession *session;
 
     [self pEpCleanUp];
     
-}
-
-- (void)importBundledKey : (NSString*)item {
-    
-    NSString *txtFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath] stringByAppendingPathComponent:item];
-    NSString *txtFileContents = [NSString stringWithContentsOfFile:txtFilePath encoding:NSUTF8StringEncoding error:NULL];
-    //[keysStrings setObject:txtFileContents forKey:txtFilePath];
-    [session importKey:txtFileContents];
 }
 
 - (void)testOutgoingColors {
@@ -478,6 +491,36 @@ PEPSession *session;
     NSMutableDictionary *decMsg;
     PEP_color clr = [session decryptMessage:msg dest:&decMsg keys:&keys];
     XCTAssertEqual(clr, PEP_rating_reliable);
+
+    [self pEpCleanUp];
+}
+
+- (void)testEncryptedMailFromOutlook2
+{
+    [self pEpSetUp];
+
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"78EE1DBC_sec.asc"];
+
+    // Some mail outlook from outlook, already processed into message dict
+    // by the app.
+    NSMutableDictionary *msgDict = [self unarchiveDictionary:@"msg_to_78EE1DBC_from_outlook.ser"].mutableCopy;
+
+    // Also extracted "live" from the app.
+    NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_78EE1DBC.ser"].mutableCopy;
+
+    PEP_color colors[2];
+    for (int i = 0; i < 2; ++i) {
+        [session updateIdentity:msgDict[@"from"]];
+
+        [session mySelf:accountDict];
+        XCTAssertNotNil(accountDict[@"fpr"]);
+
+        NSArray* keys;
+        NSMutableDictionary *pepDecryptedMail;
+        colors[i] = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    }
+    XCTAssertEqual(colors[0], colors[1]);
 
     [self pEpCleanUp];
 }
