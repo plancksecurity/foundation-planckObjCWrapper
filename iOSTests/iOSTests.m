@@ -419,7 +419,7 @@ PEPSession *session;
         NSMutableDictionary *decmsg;
         NSArray* keys;
         NSMutableDictionary *encmsg = mirosMsg.mutableCopy;
-        [encmsg setObject:identMiroAtPetra forKey:@"from"];
+        [encmsg setObject:identMiroAtPetra.mutableCopy forKey:@"from"];
         
         
         PEP_color clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
@@ -433,18 +433,35 @@ PEPSession *session;
         
         NSLog(@"Test fpr %@",identMiroAtPetra[@"fpr"]);
 
-        // Add some trust to that contact
+        // Trust to that identity
         [session trustPersonalKey:identMiroAtPetra];
 
         clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted, @"Not trusted");
 
-        // Lose trust to that contact
+        // Undo trust
         [session keyResetTrust:identMiroAtPetra];
         
         clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
+        
+        // Try compromized
+        [session keyCompromized:identMiroAtPetra];
 
+        clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        XCTAssertEqual(clr, PEP_rating_mistrust, @"Not mistrusted");
+        
+        // Regret
+        [session keyResetTrust:identMiroAtPetra];
+        
+        clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
+        
+        // Trust again.
+        [session trustPersonalKey:identMiroAtPetra];
+        
+        clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        XCTAssertEqual(clr, PEP_rating_trusted, @"Not trusted");
         
         XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
         
