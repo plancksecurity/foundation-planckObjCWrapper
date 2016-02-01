@@ -502,18 +502,15 @@ PEPSession *session;
     // This is the secret key for test001@peptest.ch
     [self importBundledKey:@"78EE1DBC_sec.asc"];
 
-    // Some mail outlook from outlook, already processed into message dict
-    // by the app.
+    // Mail from outlook, already processed into message dict by the app.
     NSMutableDictionary *msgDict = [self unarchiveDictionary:@"msg_to_78EE1DBC_from_outlook.ser"].mutableCopy;
-    msgDict[@"from"][@"me"] = NO;
 
     // Also extracted "live" from the app.
     NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_78EE1DBC.ser"].mutableCopy;
 
-    PEP_color colors[2];
-    for (int i = 0; i < 2; ++i) {
-        //[session updateIdentity:msgDict[@"from"]];
-
+    const int numPasses = 3;
+    PEP_color colors[numPasses];
+    for (int i = 0; i < numPasses; ++i) {
         [session mySelf:accountDict];
         XCTAssertNotNil(accountDict[@"fpr"]);
 
@@ -521,7 +518,9 @@ PEPSession *session;
         NSMutableDictionary *pepDecryptedMail;
         colors[i] = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
     }
-    XCTAssertEqual(colors[0], colors[1]);
+    for (int i = 0; i < numPasses - 1; ++i) {
+        XCTAssertEqual(colors[i], colors[i + 1]);
+    }
 
     [self pEpCleanUp];
 }
