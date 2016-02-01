@@ -505,6 +505,7 @@ PEPSession *session;
     // Some mail outlook from outlook, already processed into message dict
     // by the app.
     NSMutableDictionary *msgDict = [self unarchiveDictionary:@"msg_to_78EE1DBC_from_outlook.ser"].mutableCopy;
+    msgDict[@"from"][@"me"] = NO;
 
     // Also extracted "live" from the app.
     NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_78EE1DBC.ser"].mutableCopy;
