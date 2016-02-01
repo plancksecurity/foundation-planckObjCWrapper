@@ -13,6 +13,34 @@
 
 @class PEPSession;
 
+#pragma mark -- Constants
+
+extern NSString *const kPepFrom;
+extern NSString *const kPepTo;
+extern NSString *const kPepShortMessage;
+extern NSString *const kPepLongMessage;
+extern NSString *const kPepOutgoing;
+extern NSString *const kPepUsername;
+extern NSString *const kPepAddress;
+extern NSString *const kPepUserID;
+extern NSString *const kPepFingerprint;
+extern NSString *const kPepID;
+extern NSString *const kPepSent;
+extern NSString *const kPepReceived;
+extern NSString *const kPepReceivedBy;
+extern NSString *const kPepCC;
+extern NSString *const kPepBCC;
+extern NSString *const kPepReplyTo;
+extern NSString *const kPepInReplyTo;
+extern NSString *const kPepReferences;
+extern NSString *const kPepOptFields;
+extern NSString *const kPepLongMessageFormatted;
+extern NSString *const kPepAttachments;
+extern NSString *const kPepMimeData;
+extern NSString *const kPepMimeFilename;
+extern NSString *const kPepMimeType;
+extern NSString *const kPepIsMe;
+
 /** NSError parameters will use this domain */
 extern NSString *const PEPSessionErrorDomain;
 
@@ -20,6 +48,8 @@ extern NSString *const PEPSessionErrorDomain;
 typedef void (^PEPSessionBlock)(PEPSession *session);
 
 @interface PEPSession : NSObject
+
+#pragma mark -- Public API
 
 /**
  Execute a block concurrently on a session.
@@ -94,6 +124,8 @@ typedef void (^PEPSessionBlock)(PEPSession *session);
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
 */
 - (void)keyResetTrust:(NSMutableDictionary*)identity;
+
+#pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
 - (void)importKey:(NSString *)keydata;
