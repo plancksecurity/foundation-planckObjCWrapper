@@ -291,12 +291,38 @@ PEPSession *session;
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     [session trustPersonalKey:identBob];
 
-    [session updateIdentity:identBob];
-
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_green);
 
+    // Let' say we undo handshake
+    [session keyResetTrust:identBob];
+    
+    // Yellow ?
+    clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_yellow);
+
+    // mistrust Bob
+    [session keyCompromized:identBob];
+    
+    // Gray == PEP_rating_unencrypted
+    clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_unencrypted);
+    
+    // Forget
+    [session keyResetTrust:identBob];
+    
+    // Back to yellow
+    clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_yellow);
+
+    // Trust again
+    [session trustPersonalKey:identBob];
+    
+    // Back to green
+    clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_green);
+    
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
