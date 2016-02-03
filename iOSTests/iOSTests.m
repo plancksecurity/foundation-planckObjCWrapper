@@ -525,19 +525,39 @@ PEPSession *session;
     // Also extracted "live" from the app.
     NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_78EE1DBC.ser"].mutableCopy;
 
-    const int numPasses = 3;
-    PEP_color colors[numPasses];
-    for (int i = 0; i < numPasses; ++i) {
-        [session mySelf:accountDict];
-        XCTAssertNotNil(accountDict[@"fpr"]);
+    [session mySelf:accountDict];
+    XCTAssertNotNil(accountDict[@"fpr"]);
 
-        NSArray* keys;
-        NSMutableDictionary *pepDecryptedMail;
-        colors[i] = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
-    }
-    for (int i = 0; i < numPasses; ++i) {
-        XCTAssertEqual(colors[i], PEP_rating_reliable);
-    }
+    NSArray* keys;
+    NSMutableDictionary *pepDecryptedMail;
+    PEP_color color = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    XCTAssertEqual(color, PEP_rating_reliable);
+
+    [self pEpCleanUp];
+}
+
+- (void)testEncryptedMailFromOutlook2
+{
+    [self pEpSetUp];
+
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"80D111EF_sec.asc"];
+
+    // Mail from outlook, already processed into message dict by the app.
+    NSMutableDictionary *msgDict = [self unarchiveDictionary:@"msg_to_80D111EF_from_outlook.ser"].mutableCopy;
+
+    // Also extracted "live" from the app.
+    NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_80D111EF.ser"].mutableCopy;
+    [accountDict removeObjectForKey:@"comm_type"];
+    [accountDict removeObjectForKey:@"fpr"];
+
+    [session mySelf:accountDict];
+    XCTAssertNotNil(accountDict[@"fpr"]);
+
+    NSArray* keys;
+    NSMutableDictionary *pepDecryptedMail;
+    PEP_color color = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
 }
