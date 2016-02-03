@@ -512,7 +512,7 @@ PEPSession *session;
 }
 #endif
 
-- (void)testEncryptedMailFromOutlook2
+- (void)testEncryptedMailFromOutlook
 {
     [self pEpSetUp];
 
@@ -535,8 +535,8 @@ PEPSession *session;
         NSMutableDictionary *pepDecryptedMail;
         colors[i] = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
     }
-    for (int i = 0; i < numPasses - 1; ++i) {
-        XCTAssertEqual(colors[i], colors[i + 1]);
+    for (int i = 0; i < numPasses; ++i) {
+        XCTAssertEqual(colors[i], PEP_rating_reliable);
     }
 
     [self pEpCleanUp];
