@@ -96,7 +96,6 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
         NSData *data = blob[@"data"];
         size_t size = [data length];
         
-        // Ensure null terminated blobs
         char *buf = malloc(size);
         assert(buf);
         memcpy(buf, [data bytes], size);
