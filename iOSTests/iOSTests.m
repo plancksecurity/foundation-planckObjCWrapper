@@ -643,4 +643,33 @@ PEPSession *session;
     [self pEpCleanUp];
 }
 
+- (void)testEncryptedMailFromMutt
+{
+    [self pEpSetUp];
+
+    // This is the public key for test001@peptest.ch
+    [self importBundledKey:@"A3FC7F0A.asc"];
+
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"A3FC7F0A_sec.asc"];
+
+    // Mail from outlook, already processed into message dict by the app.
+    NSMutableDictionary *msgDict = [self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"].mutableCopy;
+
+    // Also extracted "live" from the app.
+    NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"].mutableCopy;
+    [accountDict removeObjectForKey:@"comm_type"];
+    [accountDict removeObjectForKey:@"fpr"];
+
+    [session mySelf:accountDict];
+    XCTAssertNotNil(accountDict[@"fpr"]);
+
+    NSArray* keys;
+    NSMutableDictionary *pepDecryptedMail;
+    PEP_color color = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    XCTAssertEqual(color, PEP_rating_reliable);
+
+    [self pEpCleanUp];
+}
+
 @end
