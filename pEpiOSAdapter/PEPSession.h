@@ -52,11 +52,6 @@ typedef void (^PEPSessionBlock)(PEPSession *session);
 #pragma mark -- Public API
 
 /**
- This has to be called once before anything else with pEp is done.
- */
-+ (void)setup;
-
-/**
  Execute a block concurrently on a session.
  The session is created solely for execution of the block.
  */
