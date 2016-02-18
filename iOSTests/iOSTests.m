@@ -287,12 +287,18 @@ PEPSession *session;
     // Should be yellow, since no handshake happened.
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_yellow);
+
+    clr = [session identityColor:identBob];
+    XCTAssert( clr == PEP_rating_yellow);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     [session trustPersonalKey:identBob];
 
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_green);
+
+    clr = [session identityColor:identBob];
     XCTAssert( clr == PEP_rating_green);
 
     // Let' say we undo handshake

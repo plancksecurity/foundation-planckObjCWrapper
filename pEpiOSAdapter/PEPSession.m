@@ -172,6 +172,27 @@ NSString *const kPepIsMe = @"me";
     return color;
 }
 
+- (PEP_color)identityColor:(NSMutableDictionary *)identity
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    PEP_color color = PEP_rating_undefined;
+    
+    @synchronized (self) {
+        identity_color(_session, ident, &color);
+    }
+    
+    free_identity(ident);
+    
+    return color;
+}
+
+DYNAMIC_API PEP_STATUS identity_color(
+                                      PEP_SESSION session,
+                                      pEp_identity *ident,
+                                      PEP_color *color
+                                      );
+
+
 - (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened
 {
     NSMutableArray *array = [NSMutableArray array];
