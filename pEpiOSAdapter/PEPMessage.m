@@ -221,7 +221,7 @@ NSMutableArray *PEP_identityArrayFromList(identity_list *il)
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        NSMutableDictionary *address = PEP_identityFromStruct(il->ident);
+        NSMutableDictionary *address = PEP_identityFromStruct(_il->ident);
         [array addObject:address];
     }
     
