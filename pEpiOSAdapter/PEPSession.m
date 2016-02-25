@@ -195,13 +195,15 @@ DYNAMIC_API PEP_STATUS identity_color(
 
 - (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened
 {
+    NSString *fprStripped = [fpr stringByReplacingOccurrencesOfString:@" " withString:@""];
+
     NSMutableArray *array = [NSMutableArray array];
 
-    for (int i = 0; i < [fpr length]; i += 4) {
+    for (int i = 0; i < [fprStripped length]; i += 4) {
         if (shortened && i >= 20)
             break;
         
-        NSString *str = [fpr substringWithRange:NSMakeRange(i, 4)];
+        NSString *str = [fprStripped substringWithRange:NSMakeRange(i, 4)];
 
         unsigned int value;
         [[NSScanner scannerWithString:str] scanHexInt:&value];
