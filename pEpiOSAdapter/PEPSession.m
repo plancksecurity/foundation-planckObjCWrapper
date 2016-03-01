@@ -290,4 +290,9 @@ DYNAMIC_API PEP_STATUS identity_color(
 
 }
 
+- (void)resetPeptestHack
+{
+    reset_peptest_hack(_session);
+}
+
 @end

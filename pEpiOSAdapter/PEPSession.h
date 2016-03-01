@@ -133,4 +133,6 @@ typedef void (^PEPSessionBlock)(PEPSession *session);
 /** For testing purpose, manual key import */
 - (void)importKey:(NSString *)keydata;
 
+- (void)resetPeptestHack;
+
 @end
