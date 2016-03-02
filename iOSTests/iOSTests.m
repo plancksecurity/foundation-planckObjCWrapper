@@ -209,10 +209,12 @@ PEPSession *session;
 - (void)testTrustWords {
     [self pEpSetUp];
 
-    NSArray *trustwords = [session trustwords:@"DB4713183660A12ABAFA7714EBE90D44146F62F4" forLanguage:@"en" shortened:false];
+    NSArray *trustwords = [session trustwords:@"DB47DB47DB47DB47DB47DB47DB47DB47DB47DB47" forLanguage:@"en" shortened:false];
     XCTAssertEqual([trustwords count], 10);
-    XCTAssertEqualObjects([trustwords firstObject], @"BAPTISMAL");
     
+    for(id word in trustwords)
+        XCTAssertEqualObjects(word, @"BAPTISMAL");
+
     [self pEpCleanUp];
     
 }
@@ -315,6 +317,14 @@ PEPSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
     
+    /*
+    identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                @"pEp Test Bob", @"username",
+                @"pep.test.bob@pep-project.org", @"address",
+                @"42", @"user_id",
+                @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                nil];
+*/
     // Forget
     [session keyResetTrust:identBob];
     
