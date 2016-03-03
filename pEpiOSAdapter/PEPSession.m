@@ -65,7 +65,7 @@ NSString *const kPepIsMe = @"me";
 + (void)dispatchAsyncOnSession:(PEPSessionBlock)block
 {
     dispatch_async([self sharedSessionQueue], ^{
-        [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+        [self setupTrustWordsDB];
         PEPSession *pepSession = [[PEPSession alloc] init];
         block(pepSession);
     });
@@ -73,10 +73,16 @@ NSString *const kPepIsMe = @"me";
 
 + (void)dispatchSyncOnSession:(PEPSessionBlock)block
 {
-    dispatch_sync([self sharedSessionQueue], ^{
+    [self setupTrustWordsDB];
+    PEPSession *pepSession = [[PEPSession alloc] init];
+    block(pepSession);
+}
+
++ (void)setupTrustWordsDB
+{
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
         [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
-        PEPSession *pepSession = [[PEPSession alloc] init];
-        block(pepSession);
     });
 }
 
