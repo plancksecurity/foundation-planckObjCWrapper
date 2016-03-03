@@ -697,8 +697,8 @@ PEPSession *session;
 }
 
 /**
- Checks whether the engine silently encrypts for BCCs.
- The current state is that it does this, and thus this test is successful.
+ Checks whether the engine silently ignores BCCs when encrypting.
+ Currently BCCs are ignored when encrypting.
  If in the future this test fails, then the engine behavior might have changed.
  */
 - (void)testEncryptEngineBcc
@@ -710,41 +710,43 @@ PEPSession *session;
     NSMutableDictionary *partner1Orig = @{ kPepAddress: @"partner1@dontcare.me",
                                            kPepUserID: @"partner1",
                                            kPepUsername: @"partner1" }.mutableCopy;
+    NSMutableDictionary *meOrig = @{ kPepAddress: @"me@dontcare.me",
+                                     kPepUserID: @"me",
+                                     kPepUsername: @"me" }.mutableCopy;
 
-    NSString *keyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
-    XCTAssertNotNil(keyPartner1);
-    NSString *keyPartner2 = [self loadStringByName:@"partner2_F9D9CCD0A401311F_pub.asc"];
-    XCTAssertNotNil(keyPartner2);
-    NSString *keyMePub = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_pub.asc"];
-    XCTAssertNotNil(keyMePub);
-    NSString *keyMeSec = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
-    XCTAssertNotNil(keyMeSec);
+    NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
+    XCTAssertNotNil(pubKeyPartner1);
+    NSString *pubKeyPartner2 = [self loadStringByName:@"partner2_F9D9CCD0A401311F_pub.asc"];
+    XCTAssertNotNil(pubKeyPartner2);
+    NSString *pubKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_pub.asc"];
+    XCTAssertNotNil(pubKeyMe);
+    NSString *secKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
+    XCTAssertNotNil(secKeyMe);
 
     __block NSMutableDictionary *pepEncMail;
     {
-        NSMutableDictionary *me = @{ kPepAddress: @"me@dontcare.me",
-                                     kPepUserID: @"me",
-                                     kPepUsername: @"me" }.mutableCopy;
+        NSMutableDictionary *me = meOrig.mutableCopy;
 
         NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
 
         NSMutableDictionary *partner2 = @{ kPepAddress: @"partner2@dontcare.me",
                                            kPepUserID: @"partner2",
                                            kPepUsername: @"partner2" }.mutableCopy;
-        NSMutableDictionary *mail = @{ kPepFrom: me, kPepTo: @[partner1],
+        NSMutableDictionary *mail = @{ kPepFrom: me, kPepTo: @[partner2],
                                        kPepLongMessage: theMessage,
-                                       kPepBCC: @[partner2] }.mutableCopy;
+                                       kPepBCC: @[partner1] }.mutableCopy;
 
         [PEPSession dispatchSyncOnSession:^(PEPSession *session) {
-            [session importKey:keyMePub];
-            [session importKey:keyMeSec];
+            [session importKey:pubKeyMe];
+            [session importKey:secKeyMe];
             [session mySelf:me];
             XCTAssertNotNil(me[kPepFingerprint]);
             XCTAssertEqualObjects(me[kPepFingerprint], [@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"
                                                         lowercaseString]);
-            [session importKey:keyPartner1];
-            [session importKey:keyPartner2];
-            [session encryptMessage:mail extra:nil dest:&pepEncMail];
+            [session importKey:pubKeyPartner1];
+            [session importKey:pubKeyPartner2];
+            PEP_STATUS status = [session encryptMessage:mail extra:nil dest:&pepEncMail];
+            XCTAssertEqual(status, PEP_STATUS_OK);
         }];
     }
 
@@ -757,6 +759,12 @@ PEPSession *session;
         [PEPSession dispatchSyncOnSession:^(PEPSession *session) {
             NSString *privateKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
             [session importKey:privateKeyPartner1];
+            XCTAssertNotNil(privateKeyPartner1);
+
+            [session importKey:pubKeyPartner1];
+            [session importKey:pubKeyPartner2];
+            [session importKey:pubKeyMe];
+
             [session mySelf:partner1];
             XCTAssertNotNil(partner1[kPepFingerprint]);
             XCTAssertEqualObjects(partner1[kPepFingerprint],
@@ -764,16 +772,15 @@ PEPSession *session;
                                    stringByReplacingOccurrencesOfString:@" " withString:@""]
                                   lowercaseString]);
 
-            [session importKey:keyPartner1];
-            [session importKey:keyPartner2];
-            XCTAssertNotNil(privateKeyPartner1);
-            [session importKey:privateKeyPartner1];
+            NSMutableDictionary *me = meOrig.mutableCopy;
+            [session updateIdentity:me];
+
             NSMutableDictionary *pepDecryptedMail;
             NSArray *keys = [NSArray array];
             [session decryptMessage:pepEncMail dest:&pepDecryptedMail keys:&keys];
 
-            // If this assert holds, then the engine silently will encrypt for BCCs
-            XCTAssertEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
+            // If this assert holds, then the engine ignores BCCs when encrypting
+            XCTAssertNotEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
         }];
     }
 }
