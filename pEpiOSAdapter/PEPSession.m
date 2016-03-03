@@ -51,7 +51,7 @@ NSString *const kPepIsMe = @"me";
     static dispatch_once_t once;
     static dispatch_queue_t sharedSessionQueue;
     dispatch_once(&once, ^{
-        sharedSessionQueue = dispatch_queue_create("pEp session queue", DISPATCH_QUEUE_SERIAL);
+        sharedSessionQueue = dispatch_queue_create("pEp session queue", DISPATCH_QUEUE_CONCURRENT);
     });
     return sharedSessionQueue;
 }

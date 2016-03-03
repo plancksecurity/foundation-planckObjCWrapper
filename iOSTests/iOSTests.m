@@ -785,4 +785,35 @@ PEPSession *session;
     }
 }
 
+- (void)doSomeWorkOnSession:(PEPSession *)session
+{
+    NSMutableDictionary *me = @{ kPepAddress: @"me@dontcare.me",
+                                 kPepUserID: @"me",
+                                 kPepUsername: @"me" }.mutableCopy;
+    [session mySelf:me];
+    XCTAssertNotNil(me[kPepFingerprint]);
+}
+
+- (void)testParallelSessions
+{
+    [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+
+    PEPSession *session = [PEPSession session];
+
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
+
+    for (int i = 0; i < 3; ++i) {
+        dispatch_group_async(group, queue, ^{
+            PEPSession *innerSession = [PEPSession session];
+            [self doSomeWorkOnSession:innerSession];
+        });
+    }
+
+    [self doSomeWorkOnSession:session];
+
+    long result = dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    XCTAssertEqual(result, 0);
+}
+
 @end
