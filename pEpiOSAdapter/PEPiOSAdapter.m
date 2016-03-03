@@ -95,7 +95,7 @@ static pEp_identity *retrieve_next_identity(void *management)
     return nil;
 }
 
-+ (const char * _Nullable) copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
++ (NSString *) copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
                                                           :(NSString *)bundleName
                                                           :(NSString *)fileName{
 
@@ -127,13 +127,17 @@ static pEp_identity *retrieve_next_identity(void *management)
         }
     }
     NSLog(@"Asset %@ copied into %@", fileName, destinationPath);
-    return [destinationPath UTF8String];
+    return destinationPath;
 }
 
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle{
-    SystemDB = [PEPiOSAdapter copyAssetIntoDocumentsDirectory:rootBundle
-                                                             :@"pEpTrustWords.bundle"
-                                                             :@"system.db"];
+    NSString *systemDBPath = [PEPiOSAdapter copyAssetIntoDocumentsDirectory:rootBundle
+                                                                           :@"pEpTrustWords.bundle"
+                                                                           :@"system.db"];
+    if (SystemDB) {
+        free((void *) SystemDB);
+    }
+    SystemDB = strdup(systemDBPath.UTF8String);
 }
 
 + (void)setupTrustWordsDB
