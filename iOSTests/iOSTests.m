@@ -690,4 +690,92 @@ PEPSession *session;
     [self pEpCleanUp];
 }
 
+- (NSString *)loadStringByName:(NSString *)name
+{
+    NSURL *url = [[NSBundle bundleForClass:[self class]] URLForResource:name withExtension:nil];
+    return [NSString stringWithContentsOfURL:url usedEncoding:nil error:nil];
+}
+
+/**
+ Checks whether the engine silently encrypts for BCCs.
+ The current state is that it does this, and thus this test is successful.
+ If in the future this test fails, then the engine behavior might have changed.
+ */
+- (void)testEncryptEngineBcc
+{
+    NSString *theMessage = @"THE MESSAGE";
+
+    [self pEpSetUp];
+
+    NSMutableDictionary *partner1Orig = @{ kPepAddress: @"partner1@dontcare.me",
+                                           kPepUserID: @"partner1",
+                                           kPepUsername: @"partner1" }.mutableCopy;
+
+    NSString *keyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
+    XCTAssertNotNil(keyPartner1);
+    NSString *keyPartner2 = [self loadStringByName:@"partner2_F9D9CCD0A401311F_pub.asc"];
+    XCTAssertNotNil(keyPartner2);
+    NSString *keyMePub = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_pub.asc"];
+    XCTAssertNotNil(keyMePub);
+    NSString *keyMeSec = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
+    XCTAssertNotNil(keyMeSec);
+
+    __block NSMutableDictionary *pepEncMail;
+    {
+        NSMutableDictionary *me = @{ kPepAddress: @"me@dontcare.me",
+                                     kPepUserID: @"me",
+                                     kPepUsername: @"me" }.mutableCopy;
+
+        NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
+
+        NSMutableDictionary *partner2 = @{ kPepAddress: @"partner2@dontcare.me",
+                                           kPepUserID: @"partner2",
+                                           kPepUsername: @"partner2" }.mutableCopy;
+        NSMutableDictionary *mail = @{ kPepFrom: me, kPepTo: @[partner1],
+                                       kPepLongMessage: theMessage,
+                                       kPepBCC: @[partner2] }.mutableCopy;
+
+        [PEPSession dispatchSyncOnSession:^(PEPSession *session) {
+            [session importKey:keyMePub];
+            [session importKey:keyMeSec];
+            [session mySelf:me];
+            XCTAssertNotNil(me[kPepFingerprint]);
+            XCTAssertEqualObjects(me[kPepFingerprint], [@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"
+                                                        lowercaseString]);
+            [session importKey:keyPartner1];
+            [session importKey:keyPartner2];
+            [session encryptMessage:mail extra:nil dest:&pepEncMail];
+        }];
+    }
+
+    [self pEpCleanUp];
+
+    [self pEpSetUp];
+    {
+        NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
+
+        [PEPSession dispatchSyncOnSession:^(PEPSession *session) {
+            NSString *privateKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
+            [session importKey:privateKeyPartner1];
+            [session mySelf:partner1];
+            XCTAssertNotNil(partner1[kPepFingerprint]);
+            XCTAssertEqualObjects(partner1[kPepFingerprint],
+                                  [[@"F0CD 3F7B 422E 5D58 7ABD  885B F2D2 81C2 789D D7F6"
+                                   stringByReplacingOccurrencesOfString:@" " withString:@""]
+                                  lowercaseString]);
+
+            [session importKey:keyPartner1];
+            [session importKey:keyPartner2];
+            XCTAssertNotNil(privateKeyPartner1);
+            [session importKey:privateKeyPartner1];
+            NSMutableDictionary *pepDecryptedMail;
+            NSArray *keys = [NSArray array];
+            [session decryptMessage:pepEncMail dest:&pepDecryptedMail keys:&keys];
+
+            // If this assert holds, then the engine silently will encrypt for BCCs
+            XCTAssertEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
+        }];
+    }
+}
+
 @end
