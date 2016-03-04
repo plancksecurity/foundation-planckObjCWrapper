@@ -787,11 +787,11 @@ PEPSession *session;
     [self pEpCleanUp];
 }
 
-- (void)doSomeWorkOnSession:(PEPSession *)session
+- (void)doSomeWorkOnSession:(PEPSession *)session count:(NSInteger)count
 {
-    NSMutableDictionary *me = @{ kPepAddress: @"me@dontcare.me",
-                                 kPepUserID: @"me",
-                                 kPepUsername: @"me" }.mutableCopy;
+    NSMutableDictionary *me = @{ kPepAddress: [NSString stringWithFormat:@"me%d@dontcare.me", count],
+                                 kPepUserID: [NSString stringWithFormat:@"me%d", count],
+                                 kPepUsername: [NSString stringWithFormat:@"me%d", count] }.mutableCopy;
     [session mySelf:me];
     XCTAssertNotNil(me[kPepFingerprint]);
 }
@@ -800,22 +800,24 @@ PEPSession *session;
 {
     [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 
+    // Currently, the first session use MUST be on the main thread
     PEPSession *session = [PEPSession session];
+    [self doSomeWorkOnSession:session count:0];
 
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_queue_create("test", DISPATCH_QUEUE_CONCURRENT);
 
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 1; i < 3; ++i) {
         dispatch_group_async(group, queue, ^{
             PEPSession *innerSession = [PEPSession session];
-            [self doSomeWorkOnSession:innerSession];
+            [self doSomeWorkOnSession:innerSession count:i];
         });
     }
 
-    [self doSomeWorkOnSession:session];
-
     long result = dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     XCTAssertEqual(result, 0);
+
+    [self pEpCleanUp];
 }
 
 @end
