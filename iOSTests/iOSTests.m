@@ -783,6 +783,8 @@ PEPSession *session;
             XCTAssertNotEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
         }];
     }
+
+    [self pEpCleanUp];
 }
 
 - (void)doSomeWorkOnSession:(PEPSession *)session
