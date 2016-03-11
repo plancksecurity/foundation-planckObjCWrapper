@@ -20,7 +20,7 @@ int examine_identity(pEp_identity *ident, void *management)
     //PEPQueue *q = (__bridge PEPQueue *)management;
     PEPQueue *q = [PEPiOSAdapter getQueue];
     
-    NSMutableDictionary *identity = PEP_identityFromStruct(ident);
+    NSDictionary *identity = PEP_identityDictFromStruct(ident);
     
     [q enqueue:identity];
     return 0;
@@ -36,7 +36,7 @@ static pEp_identity *retrieve_next_identity(void *management)
     NSDictionary *ident = [q dequeue];
     
     if (ident)
-        return PEP_identityToStruct(ident);
+        return PEP_identityDictToStruct(ident);
     else
         return NULL;
 }

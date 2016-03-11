@@ -107,7 +107,7 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
     return _bl;
 }
 
-NSMutableDictionary *PEP_identityFromStruct(pEp_identity *ident)
+NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
 
@@ -137,7 +137,7 @@ NSMutableDictionary *PEP_identityFromStruct(pEp_identity *ident)
     return dict;
 }
 
-pEp_identity *PEP_identityToStruct(NSDictionary *dict)
+pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
 {
     pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
     
@@ -182,7 +182,7 @@ NSArray *PEP_arrayFromIdentityList(identity_list *il)
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        [array addObject:PEP_identityFromStruct(il->ident)];
+        [array addObject:PEP_identityDictFromStruct(il->ident)];
     }
     
     return array;
@@ -196,7 +196,7 @@ identity_list *PEP_arrayToIdentityList(NSArray *array)
     
     identity_list *_il = il;
     for (NSDictionary *dict in array) {
-        _il = identity_list_add(_il, PEP_identityToStruct(dict));
+        _il = identity_list_add(_il, PEP_identityDictToStruct(dict));
     }
     
     return il;
@@ -210,25 +210,25 @@ identity_list *PEP_identityArrayToList(NSArray *array)
     
     identity_list *_il = il;
     for (NSMutableDictionary *address in array) {
-        _il = identity_list_add(_il, PEP_identityToStruct(address));
+        _il = identity_list_add(_il, PEP_identityDictToStruct(address));
     }
     
     return il;
 }
 
-NSMutableArray *PEP_identityArrayFromList(identity_list *il)
+NSArray *PEP_identityArrayFromList(identity_list *il)
 {
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        NSMutableDictionary *address = PEP_identityFromStruct(_il->ident);
+        NSDictionary *address = PEP_identityDictFromStruct(_il->ident);
         [array addObject:address];
     }
     
     return array;
 }
 
-NSMutableDictionary *PEP_messageFromStruct(message *msg)
+NSDictionary *PEP_messageDictFromStruct(message *msg)
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
     if (msg && dict) {
@@ -248,13 +248,13 @@ NSMutableDictionary *PEP_messageFromStruct(message *msg)
             [dict setObject:[NSDate dateWithTimeIntervalSince1970:mktime(msg->recv)] forKey:@"recv"];
         
         if (msg->from)
-            [dict setObject:PEP_identityFromStruct(msg->from) forKey:@"from"];
+            [dict setObject:PEP_identityDictFromStruct(msg->from) forKey:@"from"];
         
         if (msg->to && msg->to->ident)
             [dict setObject:PEP_identityArrayFromList(msg->to) forKey:@"to"];
         
         if (msg->recv_by)
-            [dict setObject:PEP_identityFromStruct(msg->recv_by) forKey:@"recv_by"];
+            [dict setObject:PEP_identityDictFromStruct(msg->recv_by) forKey:@"recv_by"];
         
         if (msg->cc && msg->cc->ident)
             [dict setObject:PEP_identityArrayFromList(msg->cc) forKey:@"cc"];
@@ -275,7 +275,8 @@ NSMutableDictionary *PEP_messageFromStruct(message *msg)
             [dict setObject:PEP_arrayFromStringPairlist(msg->opt_fields) forKey:@"opt_fields"];
         
         if (msg->longmsg_formatted)
-            [dict setObject:[NSString stringWithUTF8String:msg->longmsg_formatted] forKey:@"longmsg_formatted"];
+            [dict setObject:[NSString stringWithUTF8String:msg->longmsg_formatted]
+                     forKey:@"longmsg_formatted"];
 
         if (msg->longmsg)
             [dict setObject:[NSString stringWithUTF8String:msg->longmsg] forKey:@"longmsg"];
@@ -289,7 +290,7 @@ NSMutableDictionary *PEP_messageFromStruct(message *msg)
 }
 
 
-message *PEP_messageToStruct(NSMutableDictionary *dict)
+message *PEP_messageDictToStruct(NSDictionary *dict)
 {
     // Direction default to incoming
     PEP_msg_direction dir = PEP_dir_incoming;
@@ -303,11 +304,13 @@ message *PEP_messageToStruct(NSMutableDictionary *dict)
         return NULL;
     
     if ([dict objectForKey:@"id"])
-        msg->id = strdup([[[dict objectForKey:@"id"] precomposedStringWithCanonicalMapping] UTF8String]);
+        msg->id = strdup([[[dict objectForKey:@"id"] precomposedStringWithCanonicalMapping]
+                          UTF8String]);
     
     if ([dict objectForKey:@"shortmsg"])
-        msg->shortmsg = strdup([[[dict objectForKey:@"shortmsg"] precomposedStringWithCanonicalMapping] UTF8String]);
-    
+        msg->shortmsg = strdup([[[dict objectForKey:@"shortmsg"]
+                                 precomposedStringWithCanonicalMapping] UTF8String]);
+
     if ([dict objectForKey:@"sent"])
         msg->sent = new_timestamp([[dict objectForKey:@"sent"] timeIntervalSince1970]);
     
@@ -315,13 +318,13 @@ message *PEP_messageToStruct(NSMutableDictionary *dict)
         msg->recv = new_timestamp([[dict objectForKey:@"recv"] timeIntervalSince1970]);
     
     if ([dict objectForKey:@"from"])
-        msg->from = PEP_identityToStruct([dict objectForKey:@"from"]);
+        msg->from = PEP_identityDictToStruct([dict objectForKey:@"from"]);
 
     if ([dict objectForKey:@"to"])
         msg->to = PEP_identityArrayToList([dict objectForKey:@"to"]);
 
     if ([dict objectForKey:@"recv_by"])
-        msg->recv_by = PEP_identityToStruct([dict objectForKey:@"recv_by"]);
+        msg->recv_by = PEP_identityDictToStruct([dict objectForKey:@"recv_by"]);
 
     if ([dict objectForKey:@"cc"])
         msg->cc = PEP_identityArrayToList([dict objectForKey:@"cc"]);

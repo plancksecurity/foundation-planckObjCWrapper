@@ -66,10 +66,10 @@ typedef void (^PEPSessionBlock)(PEPSession *session);
 + (void)dispatchSyncOnSession:(PEPSessionBlock)block;
 
 /** Decrypt a message */
-- (PEP_color)decryptMessage:(NSMutableDictionary *)src dest:(NSMutableDictionary **)dst keys:(NSArray **)keys;
+- (PEP_color)decryptMessageDict:(NSDictionary *)src dest:(NSDictionary **)dst keys:(NSArray **)keys;
 
 /** Encrypt a message */
-- (PEP_STATUS)encryptMessage:(NSMutableDictionary *)src extra:(NSArray *)keys dest:(NSMutableDictionary **)dst;
+- (PEP_STATUS)encryptMessageDict:(NSDictionary *)src extra:(NSArray *)keys dest:(NSDictionary **)dst;
 
 /** Determine the status color of a message to be sent */
 - (PEP_color)outgoingMessageColor:(NSMutableDictionary *)msg;

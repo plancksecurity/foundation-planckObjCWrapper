@@ -103,9 +103,9 @@ NSString *const kPepIsMe = @"me";
     release(_session);
 }
 
-- (PEP_color)decryptMessage:(NSMutableDictionary *)src dest:(NSMutableDictionary **)dst keys:(NSArray **)keys
+- (PEP_color)decryptMessageDict:(NSDictionary *)src dest:(NSDictionary **)dst keys:(NSArray **)keys
 {
-    message * _src = PEP_messageToStruct(src);
+    message * _src = PEP_messageDictToStruct(src);
     message * _dst = NULL;
     stringlist_t * _keys = NULL;
     PEP_color color = PEP_rating_undefined;
@@ -114,13 +114,13 @@ NSString *const kPepIsMe = @"me";
         decrypt_message(_session, _src, &_dst, &_keys, &color);
     }
 
-    NSMutableDictionary * dst_;
+    NSDictionary * dst_;
 
     if (_dst) {
-        dst_ = PEP_messageFromStruct(_dst);
+        dst_ = PEP_messageDictFromStruct(_dst);
     }
     else {
-        dst_ = PEP_messageFromStruct(_src);
+        dst_ = PEP_messageDictFromStruct(_src);
     }
 
     NSArray * keys_ = nil;
@@ -136,10 +136,10 @@ NSString *const kPepIsMe = @"me";
     return color;
 }
 
-- (PEP_STATUS)encryptMessage:(NSMutableDictionary *)src extra:(NSArray *)keys dest:(NSMutableDictionary **)dst
+- (PEP_STATUS)encryptMessageDict:(NSDictionary *)src extra:(NSArray *)keys dest:(NSDictionary **)dst
 {
     PEP_STATUS status;
-    message * _src = PEP_messageToStruct(src);
+    message * _src = PEP_messageDictToStruct(src);
     message * _dst = NULL;
     stringlist_t * _keys = PEP_arrayToStringlist(keys);
 
@@ -147,13 +147,13 @@ NSString *const kPepIsMe = @"me";
         status = encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME);
     }
 
-    NSMutableDictionary * dst_;
+    NSDictionary * dst_;
 
     if (_dst) {
-        dst_ = PEP_messageFromStruct(_dst);
+        dst_ = PEP_messageDictFromStruct(_dst);
     }
     else {
-        dst_ = PEP_messageFromStruct(_src);
+        dst_ = PEP_messageDictFromStruct(_src);
     }
     *dst = dst_;
 
@@ -166,7 +166,7 @@ NSString *const kPepIsMe = @"me";
 
 - (PEP_color)outgoingMessageColor:(NSMutableDictionary *)msg
 {
-    message * _msg = PEP_messageToStruct(msg);
+    message * _msg = PEP_messageDictToStruct(msg);
     PEP_color color = PEP_rating_undefined;
 
     @synchronized (self) {
@@ -180,7 +180,7 @@ NSString *const kPepIsMe = @"me";
 
 - (PEP_color)identityColor:(NSMutableDictionary *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    pEp_identity *ident = PEP_identityDictToStruct(identity);
     PEP_color color = PEP_rating_undefined;
     
     @synchronized (self) {
@@ -228,61 +228,61 @@ DYNAMIC_API PEP_STATUS identity_color(
 
 - (void)mySelf:(NSMutableDictionary *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    pEp_identity *ident = PEP_identityDictToStruct(identity);
 
     @synchronized(self) {
         myself(_session, ident);
     }
 
-    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
+    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 }
 
 - (void)updateIdentity:(NSMutableDictionary *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    pEp_identity *ident = PEP_identityDictToStruct(identity);
 
     @synchronized(self) {
         update_identity(_session, ident);
     }
 
-    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
+    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 }
 
 - (void)trustPersonalKey:(NSMutableDictionary *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    pEp_identity *ident = PEP_identityDictToStruct(identity);
     
     @synchronized(self) {
         trust_personal_key(_session, ident);
     }
     
-    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
+    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 }
 
 - (void)keyResetTrust:(NSMutableDictionary *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    pEp_identity *ident = PEP_identityDictToStruct(identity);
     
     @synchronized(self) {
         key_reset_trust(_session, ident);
     }
     
-    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
+    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 }
 
 - (void)keyCompromized:(NSMutableDictionary *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    pEp_identity *ident = PEP_identityDictToStruct(identity);
     
     @synchronized(self) {
         key_compromized(_session, ident);
     }
     
-    [identity setValuesForKeysWithDictionary:PEP_identityFromStruct(ident)];
+    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 }
 

@@ -364,7 +364,7 @@ PEPSession *session;
     XCTAssert( clr == PEP_rating_yellow);
 
     NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
     
     XCTAssert(status == PEP_STATUS_OK);
     
@@ -403,7 +403,7 @@ PEPSession *session;
                                     @YES, @"outgoing",
                                     nil];
         
-        PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&petrasMsg];
+        PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&petrasMsg];
         XCTAssert(status == PEP_UNENCRYPTED);
 
     }
@@ -430,7 +430,7 @@ PEPSession *session;
     
         NSMutableDictionary *decmsg;
         NSArray* keys;
-        PEP_color clr = [session decryptMessage:petrasMsg dest:&decmsg keys:&keys];
+        PEP_color clr = [session decryptMessageDict:petrasMsg dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_unencrypted);
 
         NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -446,7 +446,7 @@ PEPSession *session;
                                     @YES, @"outgoing",
                                     nil];
         
-        PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&mirosMsg];
+        PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&mirosMsg];
         XCTAssert(status == PEP_STATUS_OK);
         
     }
@@ -464,7 +464,7 @@ PEPSession *session;
         [encmsg setObject:identMiroAtPetra.mutableCopy forKey:@"from"];
         
         
-        PEP_color clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        PEP_color clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         
         XCTAssert(clr == PEP_rating_reliable);
         
@@ -478,31 +478,31 @@ PEPSession *session;
         // Trust to that identity
         [session trustPersonalKey:identMiroAtPetra];
 
-        clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted, @"Not trusted");
 
         // Undo trust
         [session keyResetTrust:identMiroAtPetra];
         
-        clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Try compromized
         [session keyCompromized:identMiroAtPetra];
 
-        clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_mistrust, @"Not mistrusted");
         
         // Regret
         [session keyResetTrust:identMiroAtPetra];
         
-        clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Trust again.
         [session trustPersonalKey:identMiroAtPetra];
         
-        clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted, @"Not trusted");
         
         XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
@@ -572,7 +572,7 @@ PEPSession *session;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    PEP_color color = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    PEP_color color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -598,7 +598,7 @@ PEPSession *session;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    PEP_color color = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    PEP_color color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -624,7 +624,7 @@ PEPSession *session;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    PEP_color color = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    PEP_color color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -653,7 +653,7 @@ PEPSession *session;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    PEP_color color = [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    PEP_color color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -684,7 +684,7 @@ PEPSession *session;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    [session decryptMessage:msgDict dest:&pepDecryptedMail keys:&keys];
+    [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertNotNil(pepDecryptedMail[kPepLongMessage]);
 
     [self pEpCleanUp];
@@ -745,7 +745,7 @@ PEPSession *session;
                                                         lowercaseString]);
             [session importKey:pubKeyPartner1];
             [session importKey:pubKeyPartner2];
-            PEP_STATUS status = [session encryptMessage:mail extra:nil dest:&pepEncMail];
+            PEP_STATUS status = [session encryptMessageDict:mail extra:nil dest:&pepEncMail];
             XCTAssertEqual(status, PEP_STATUS_OK);
         }];
     }
@@ -777,7 +777,7 @@ PEPSession *session;
 
             NSMutableDictionary *pepDecryptedMail;
             NSArray *keys = [NSArray array];
-            [session decryptMessage:pepEncMail dest:&pepDecryptedMail keys:&keys];
+            [session decryptMessageDict:pepEncMail dest:&pepDecryptedMail keys:&keys];
 
             // If this assert holds, then the engine ignores BCCs when encrypting
             XCTAssertNotEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);

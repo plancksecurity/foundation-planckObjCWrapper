@@ -12,8 +12,8 @@
 NSArray *PEP_arrayFromStringlist(stringlist_t *sl);
 stringlist_t *PEP_arrayToStringlist(NSArray *array);
 
-pEp_identity *PEP_identityToStruct(NSDictionary *dict);
-NSMutableDictionary *PEP_identityFromStruct(pEp_identity *ident);
+pEp_identity *PEP_identityDictToStruct(NSDictionary *dict);
+NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident);
 
-message *PEP_messageToStruct(NSMutableDictionary *dict);
-NSMutableDictionary *PEP_messageFromStruct(message *msg);
+message *PEP_messageDictToStruct(NSDictionary *dict);
+NSDictionary *PEP_messageDictFromStruct(message *msg);
