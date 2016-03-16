@@ -371,6 +371,51 @@ PEPSession *session;
     [self pEpCleanUp];
 }
 
+- (void)testMailToMyself {
+    
+    [self pEpSetUp];
+    
+    // Our test user :
+    // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
+    // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
+    [self importBundledKey:@"6FF00E97_sec.asc"];
+    
+    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test Alice", @"username",
+                                       @"pep.test.alice@pep-project.org", @"address",
+                                       @"23", @"user_id",
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       nil];
+    
+    [session mySelf:identAlice];
+    
+    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                identAlice, @"from",
+                                [NSMutableArray arrayWithObjects: identAlice,
+                                 nil], @"to",
+                                @"Mail to Myself", @"shortmsg",
+                                @"This is a text content", @"longmsg",
+                                @YES, @"outgoing",
+                                nil];
+    
+    // Test with unknown Bob
+    PEP_color clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_trusted_and_anonymized);
+    
+    NSMutableDictionary *encmsg;
+    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+    
+    XCTAssert(status == PEP_STATUS_OK);
+    
+    NSArray* keys;
+    NSMutableDictionary *decmsg;
+
+    clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+    XCTAssert( clr == PEP_rating_trusted_and_anonymized);
+    
+    [self pEpCleanUp];
+}
+
 - (void)testTwoNewUsers {
 
     NSMutableDictionary* petrasMsg;
