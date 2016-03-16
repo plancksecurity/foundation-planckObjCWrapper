@@ -371,6 +371,70 @@ PEPSession *session;
     [self pEpCleanUp];
 }
 
+- (void)testDontEncryptForMistrusted {
+    
+    [self pEpSetUp];
+    
+    // Our test user :
+    // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
+    // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
+    [self importBundledKey:@"6FF00E97_sec.asc"];
+    
+    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test Alice", @"username",
+                                       @"pep.test.alice@pep-project.org", @"address",
+                                       @"23", @"user_id",
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       nil];
+    
+    [session mySelf:identAlice];
+    
+    // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
+    // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
+    [self importBundledKey:@"0xC9C2EE39.asc"];
+    
+    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     @"pEp Test Bob", @"username",
+                                     @"pep.test.bob@pep-project.org", @"address",
+                                     @"42", @"user_id",
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     nil];
+    
+    [session updateIdentity:identBob];
+
+    // mistrust Bob
+    [session keyCompromized:identBob];
+    
+    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                identAlice, @"from",
+                                [NSMutableArray arrayWithObjects:
+                                 [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                  @"pEp Test Bob", @"username",
+                                  @"pep.test.bob@pep-project.org", @"address",
+                                  nil],
+                                 nil], @"to",
+                                @"All Green Test", @"shortmsg",
+                                @"This is a text content", @"longmsg",
+                                @YES, @"outgoing",
+                                nil];
+    
+
+    // Gray == PEP_rating_unencrypted
+    PEP_color clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_unencrypted);
+
+    NSMutableDictionary *encmsg;
+    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
+    
+    XCTAssert(status == PEP_STATUS_OK);
+
+    XCTAssert(![(NSString *)(encmsg[@"attachments"][0][@"mimeType"]) isEqualToString: @"application/pgp-encrypted"]);
+
+    [self pEpCleanUp];
+}
+
+
+
 - (void)testMailToMyself {
     
     [self pEpSetUp];
@@ -403,14 +467,14 @@ PEPSession *session;
     XCTAssert( clr == PEP_rating_trusted_and_anonymized);
     
     NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
     
     XCTAssert(status == PEP_STATUS_OK);
     
     NSArray* keys;
     NSMutableDictionary *decmsg;
 
-    clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+    clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
     XCTAssert( clr == PEP_rating_trusted_and_anonymized);
     
     [self pEpCleanUp];
