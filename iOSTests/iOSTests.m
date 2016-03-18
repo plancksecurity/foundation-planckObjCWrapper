@@ -426,14 +426,52 @@ PEPSession *session;
     NSMutableDictionary *encmsg;
     PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
     
-    XCTAssert(status == PEP_STATUS_OK);
+    XCTAssert(status == PEP_UNENCRYPTED);
 
     XCTAssert(![(NSString *)(encmsg[@"attachments"][0][@"mimeType"]) isEqualToString: @"application/pgp-encrypted"]);
 
     [self pEpCleanUp];
 }
 
+- (void)testRenewExpired {
+    
+    [self pEpSetUp];
+    
+    // Our expired test user :
+    // pEp Test Hector (old test key don't use) <pep.test.hector@pep-project.org>
+    [self importBundledKey:@"5CB2C182_sec.asc"];
+    
+    NSMutableDictionary *identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test Hector", @"username",
+                                       @"pep.test.hector@pep-project.org", @"address",
+                                       @"fc2d33", @"user_id",
+                                       @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
+                                       nil];
+    
+    // Check that this key is indeed expired
+    [session updateIdentity:identHector];
+    XCTAssert([[NSNumber numberWithInt:PEP_ct_key_expired] isEqualToNumber: identHector[@"comm_type"]]);
+    
+    // Myself automatically renew expired key.
+    [session mySelf:identHector];
+    XCTAssert([[NSNumber numberWithInt:PEP_ct_pEp] isEqualToNumber: identHector[@"comm_type"]]);
+    
+    /* FIXME : what should be comm_type obtained here ?
+     
+    NSMutableDictionary *_identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                        @"pEp Test Hector", @"username",
+                                        @"pep.test.hector@pep-project.org", @"address",
+                                        @"fc2d33", @"user_id",
+                                        @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
+                                        nil];
 
+    [session updateIdentity:_identHector];
+    XCTAssert([[NSNumber numberWithInt:PEP_ct_key_expired] isEqualToNumber: _identHector[@"comm_type"]]);
+    */
+    
+    [self pEpCleanUp];
+
+}
 
 - (void)testMailToMyself {
     

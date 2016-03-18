@@ -42,6 +42,8 @@
 		640037F91BE1A7DE00F0014E /* PEPSession.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 350F0ED11B4D642200D9964F /* PEPSession.h */; };
 		640037FA1BE1A7EF00F0014E /* PEPQueue.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35EA58131B565643000B4CC5 /* PEPQueue.h */; };
 		6400FB911B8CA543005221E3 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
+		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
+		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E1A1BE94FCB00F6CBB2 /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64415E191BE94FCB00F6CBB2 /* iOSTests.m */; };
 		64415E1C1BE94FCB00F6CBB2 /* libpEpiOSAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */; };
 		64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */; };
@@ -157,6 +159,8 @@
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
 		43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = account_A3FC7F0A.ser; sourceTree = "<group>"; };
 		43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_A3FC7F0A_from_mutt.ser; sourceTree = "<group>"; };
+		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
+		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64415E191BE94FCB00F6CBB2 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		64415E1B1BE94FCB00F6CBB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 		64415E181BE94FCB00F6CBB2 /* iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
+				640F79221C9B517C00DBEC4E /* 5CB2C182.asc */,
 				432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */,
 				432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */,
 				432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */,
@@ -389,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				432FA2D41C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc in Resources */,
+				640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */,
 				432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */,
 				435A64971C633D4000E857B0 /* msg_to_80D111EF_from_outlook_2.ser in Resources */,
 				64415E4C1BEA523300F6CBB2 /* 0xC9C2EE39.asc in Resources */,
@@ -402,6 +409,7 @@
 				4369AA3E1C6258B800D66556 /* msg_to_80D111EF_from_outlook.ser in Resources */,
 				64415E4A1BEA523300F6CBB2 /* 0x70DCF575.asc in Resources */,
 				64415E4B1BEA523300F6CBB2 /* 70DCF575_sec.asc in Resources */,
+				640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */,
 				432EF60D1C58B77900B6782A /* B623F674_sec.asc in Resources */,
 				43C028C51C6915410097DD74 /* B45CCEB6_sec.asc in Resources */,
 				43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */,
