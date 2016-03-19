@@ -147,10 +147,12 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
                                     [[[dict objectForKey:@"address"] precomposedStringWithCanonicalMapping] UTF8String]
                                     );
         
-        if ([dict objectForKey:@"fpr"])
+        if ([dict objectForKey:@"fpr"]){
             ident->fpr = strdup(
                                 [[[dict objectForKey:@"fpr"] precomposedStringWithCanonicalMapping] UTF8String]
                                 );
+            ident->fpr_size = ident->fpr ? strlen(ident->fpr) : 0;
+        }
         
         if ([dict objectForKey:@"user_id"]){
             ident->user_id = strdup(

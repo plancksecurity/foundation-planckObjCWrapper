@@ -456,8 +456,6 @@ PEPSession *session;
     [session mySelf:identHector];
     XCTAssert([[NSNumber numberWithInt:PEP_ct_pEp] isEqualToNumber: identHector[@"comm_type"]]);
     
-    /* FIXME : what should be comm_type obtained here ?
-     
     NSMutableDictionary *_identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                         @"pEp Test Hector", @"username",
                                         @"pep.test.hector@pep-project.org", @"address",
@@ -466,8 +464,7 @@ PEPSession *session;
                                         nil];
 
     [session updateIdentity:_identHector];
-    XCTAssert([[NSNumber numberWithInt:PEP_ct_key_expired] isEqualToNumber: _identHector[@"comm_type"]]);
-    */
+    XCTAssert([[NSNumber numberWithInt:PEP_ct_pEp] isEqualToNumber: _identHector[@"comm_type"]]);
     
     [self pEpCleanUp];
 
@@ -517,6 +514,151 @@ PEPSession *session;
     
     [self pEpCleanUp];
 }
+
+
+- (void)testMessMisTrust {
+NSMutableDictionary *encmsg;
+{
+    
+    [self pEpSetUp];
+    
+    // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
+    // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
+    [self importBundledKey:@"6FF00E97_sec.asc"];
+    
+    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test Alice", @"username",
+                                       @"pep.test.alice@pep-project.org", @"address",
+                                       @"23", @"user_id",
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       nil];
+    
+    [session mySelf:identAlice];
+
+    // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
+    // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
+    [self importBundledKey:@"0xC9C2EE39.asc"];
+    
+    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     @"pEp Test Bob", @"username",
+                                     @"pep.test.bob@pep-project.org", @"address",
+                                     @"42", @"user_id",
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     nil];
+    
+    [session updateIdentity:identBob];
+    
+    
+    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                identAlice, @"from",
+                                [NSMutableArray arrayWithObjects:
+                                 identBob,
+                                 nil], @"to",
+                                @"All Green Test", @"shortmsg",
+                                @"This is a text content", @"longmsg",
+                                @YES, @"outgoing",
+                                nil];
+    
+    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
+    XCTAssert(status == PEP_STATUS_OK);
+    
+    [self pEpCleanUp];
+}
+
+encmsg[@"outgoing"] = @NO;
+    
+{
+    [self pEpSetUp];
+    
+    
+    // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
+    // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
+    [self importBundledKey:@"C9C2EE39_sec.asc"];
+    
+    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     @"pEp Test Bob", @"username",
+                                     @"pep.test.bob@pep-project.org", @"address",
+                                     @"42", @"user_id",
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     nil];
+    
+    [session mySelf:identBob];
+
+    NSMutableDictionary *decmsg;
+    NSArray* keys;
+    PEP_color clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+    XCTAssert(clr == PEP_rating_reliable);
+    
+    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test Alice", @"username",
+                                       @"pep.test.alice@pep-project.org", @"address",
+                                       @"new_id_from_mail", @"user_id",
+                                       nil];
+    
+    [session updateIdentity:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_yellow);
+
+    [session keyCompromized:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_mistrust);
+
+    [session keyResetTrust:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_yellow);
+    
+    [session trustPersonalKey:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_green);
+    
+    [self pEpCleanUp:@"Bob"];
+    
+}{ // This is simulating a shutdown.
+
+    [self pEpSetUp:@"Bob"];
+    
+    PEP_color clr;
+    {
+        NSArray* keys;
+        NSMutableDictionary *decmsg;
+        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+    }
+    XCTAssert(clr == PEP_rating_green);
+    
+    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test Alice", @"username",
+                                       @"pep.test.alice@pep-project.org", @"address",
+                                       @"new_id_from_mail", @"user_id",
+                                       nil];
+    
+    [session updateIdentity:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_green);
+    
+    [session keyCompromized:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_mistrust);
+    
+    [session keyResetTrust:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_yellow);
+    
+    [session trustPersonalKey:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_green);
+
+    {
+        NSArray* keys;
+        NSMutableDictionary *decmsg;
+        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+    }
+    XCTAssert(clr == PEP_rating_green);
+    
+    [self pEpCleanUp];
+    
+}}
+
+
 
 - (void)testTwoNewUsers {
 
