@@ -103,12 +103,19 @@ PEPSession *session;
     [self pEpSetUp:NULL];
 }
 
-- (void)importBundledKey : (NSString*)item {
+- (void)importBundledKey:(NSString *)item
+{
+    [self importBundledKey:item intoSession:session];
+}
 
-    NSString *txtFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath] stringByAppendingPathComponent:item];
-    NSString *txtFileContents = [NSString stringWithContentsOfFile:txtFilePath encoding:NSUTF8StringEncoding error:NULL];
-    //[keysStrings setObject:txtFileContents forKey:txtFilePath];
-    [session importKey:txtFileContents];
+- (void)importBundledKey:(NSString *)item intoSession:(PEPSession *)theSession
+{
+
+    NSString *txtFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath]
+                             stringByAppendingPathComponent:item];
+    NSString *txtFileContents = [NSString stringWithContentsOfFile:txtFilePath
+                                                          encoding:NSUTF8StringEncoding error:NULL];
+    [theSession importKey:txtFileContents];
 }
 
 - (NSDictionary *)unarchiveDictionary:(NSString *)fileName
@@ -1105,6 +1112,64 @@ encmsg[@"outgoing"] = @NO;
 
     long result = dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     XCTAssertEqual(result, 0);
+
+    [self pEpCleanUp];
+}
+
+- (void)testParallelDecryptionTest
+{
+    // Have one session open at all times, from main thread
+    [self pEpSetUp];
+
+    // Mail from outlook1@peptest.ch to test001@peptest.ch, extracted from the app
+    NSDictionary *msgDict = [self unarchiveDictionary:@"msg_to_78EE1DBC_from_outlook.ser"];
+
+    // Also extracted "live" from the app.
+    NSDictionary *accountDict = [self unarchiveDictionary:@"account_78EE1DBC.ser"];
+
+    PEPSession *someSession = [PEPSession session];
+
+    // This is the public key for test001@peptest.ch
+    [self importBundledKey:@"78EE1DBC.asc" intoSession:someSession];
+
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"78EE1DBC_sec.asc" intoSession:someSession];
+
+    someSession = nil;
+
+    dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
+                                                   DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_t group = dispatch_group_create();
+
+    void (^decryptionBlock)(int) = ^(int index) {
+        PEPSession *innerSession = [PEPSession session];
+
+        NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
+        [innerSession mySelf:innerAccountDict];
+        XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
+
+        NSArray* keys;
+        NSMutableDictionary *pepDecryptedMail;
+        PEP_color color = [innerSession decryptMessageDict:msgDict dest:&pepDecryptedMail
+                                                      keys:&keys];
+        XCTAssertEqual(color, PEP_rating_reliable);
+        NSLog(@"%d: decryption color -> %d", index, color);
+
+        dispatch_group_leave(group);
+    };
+
+    // Test single decryption on main thread
+    dispatch_group_enter(group);
+    decryptionBlock(0);
+
+    for (int i = 1; i < 21; ++i) {
+        dispatch_group_enter(group);
+        dispatch_async(queue, ^{
+            decryptionBlock(i);
+        });
+    }
+
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 
     [self pEpCleanUp];
 }
