@@ -1174,4 +1174,89 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp];
 }
 
+/**
+ Simulate accessing a sent folder with about 20 messages in it, and trying to decrypt them
+ all at once.
+ */
+- (void)testLoadMassiveSentFolder
+{
+    // Have one session open at all times, from main thread
+    [self pEpSetUp];
+
+    NSDictionary *meOrig = @{ kPepAddress: @"test000@dontcare.me",
+                              kPepUserID: @"test000",
+                              kPepUsername: @"Test 000" };
+
+    NSDictionary *partner = @{ kPepAddress: @"test001@peptest.ch",
+                               kPepUserID: @"test001",
+                               kPepUsername: @"Test 001" };
+
+    dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
+                                                   DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_t group = dispatch_group_create();
+
+    // Set up keys in a background thread
+    dispatch_group_enter(group);
+    dispatch_async(queue, ^{
+        PEPSession *someSession = [PEPSession session];
+        NSMutableDictionary *mySelf = meOrig.mutableCopy;
+        [someSession mySelf:mySelf];
+        XCTAssertNotNil(mySelf[kPepFingerprint]);
+
+        // This is the public key for test001@peptest.ch
+        [self importBundledKey:@"78EE1DBC.asc" intoSession:someSession];
+        dispatch_group_leave(group);
+    });
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    // Write a couple of mails to 78EE1DBC
+    NSMutableArray *sentMails = @[].mutableCopy;
+    dispatch_group_enter(group);
+    dispatch_async(queue, ^{
+        PEPSession *someSession = [PEPSession session];
+        NSMutableDictionary *mySelf = meOrig.mutableCopy;
+        [someSession mySelf:mySelf];
+        XCTAssertNotNil(mySelf[kPepFingerprint]);
+
+        for (int i = 0; i < 20; i++) {
+            NSDictionary *mail = @{ kPepFrom: mySelf,
+                                    kPepTo: @[partner],
+                                    kPepShortMessage: [NSString
+                                                       stringWithFormat:@"Message %d",
+                                                       i + 1],
+                                    kPepLongMessage: [NSString
+                                                      stringWithFormat:@"Message Content %d",
+                                                       i + 1],
+                                    @"incoming": @NO};
+
+            NSDictionary *encryptedMail;
+            PEP_STATUS status = [someSession encryptMessageDict:mail extra:@[] dest:&encryptedMail];
+            XCTAssert(status == PEP_STATUS_OK);
+
+            [sentMails addObject:encryptedMail];
+        }
+
+        dispatch_group_leave(group);
+    });
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    // massively decrypt
+    for (NSDictionary *sentMail in sentMails) {
+        dispatch_group_enter(group);
+        dispatch_async(queue, ^{
+            PEPSession *someSession = [PEPSession session];
+            NSDictionary *decryptedMail;
+            NSArray *keys;
+            PEP_color color = [someSession decryptMessageDict:sentMail dest:&decryptedMail
+                                                         keys:&keys];
+            NSLog(@"Decrypted %@: %d", decryptedMail[kPepShortMessage], color);
+            XCTAssertEqual(color, PEP_rating_reliable);
+            dispatch_group_leave(group);
+        });
+    }
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    [self pEpCleanUp];
+}
+
 @end
