@@ -573,8 +573,16 @@ NSMutableDictionary *encmsg;
 }
 
 encmsg[@"outgoing"] = @NO;
-    
+[encmsg[@"from"] removeObjectForKey:@"fpr"];
+[encmsg[@"from"] removeObjectForKey:@"user_id"];
+[encmsg[@"from"] removeObjectForKey:@"me"];
+[encmsg[@"to"][0] removeObjectForKey:@"fpr"];
+[encmsg[@"to"][0] removeObjectForKey:@"user_id"];
+[encmsg[@"to"][0] removeObjectForKey:@"me"];
+
 {
+    NSMutableDictionary *msg = [encmsg copy];
+
     [self pEpSetUp];
     
     
@@ -591,9 +599,11 @@ encmsg[@"outgoing"] = @NO;
     
     [session mySelf:identBob];
 
+    msg[@"from"][@"user_id"] = @"new_id_from_mail";
+    
     NSMutableDictionary *decmsg;
     NSArray* keys;
-    PEP_color clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+    PEP_color clr = [session decryptMessageDict:msg dest:&decmsg keys:&keys];
     XCTAssert(clr == PEP_rating_reliable);
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -621,6 +631,9 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp:@"Bob"];
     
 }{ // This is simulating a shutdown.
+    NSMutableDictionary *msg = [encmsg copy];
+
+    msg[@"from"][@"user_id"] = @"new_id_from_mail";
 
     [self pEpSetUp:@"Bob"];
     
@@ -628,7 +641,7 @@ encmsg[@"outgoing"] = @NO;
     {
         NSArray* keys;
         NSMutableDictionary *decmsg;
-        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:msg dest:&decmsg keys:&keys];
     }
     XCTAssert(clr == PEP_rating_green);
     
@@ -657,7 +670,7 @@ encmsg[@"outgoing"] = @NO;
     {
         NSArray* keys;
         NSMutableDictionary *decmsg;
-        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:msg dest:&decmsg keys:&keys];
     }
     XCTAssert(clr == PEP_rating_green);
     
