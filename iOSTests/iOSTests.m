@@ -616,17 +616,13 @@ encmsg[@"outgoing"] = @NO;
     clr = [session identityColor:identAlice];
     XCTAssert( clr == PEP_rating_yellow);
 
-    [session keyCompromized:identAlice];
-    clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_mistrust);
-
-    [session keyResetTrust:identAlice];
-    clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_yellow);
-    
     [session trustPersonalKey:identAlice];
     clr = [session identityColor:identAlice];
     XCTAssert( clr == PEP_rating_green);
+    
+    [session keyResetTrust:identAlice];
+    clr = [session identityColor:identAlice];
+    XCTAssert( clr == PEP_rating_yellow);
     
     [self pEpCleanUp:@"Bob"];
     
@@ -643,7 +639,7 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *decmsg;
         clr = [session decryptMessageDict:msg dest:&decmsg keys:&keys];
     }
-    XCTAssert(clr == PEP_rating_green);
+    XCTAssert(clr == PEP_rating_reliable);
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        @"pEp Test Alice", @"username",
@@ -653,7 +649,7 @@ encmsg[@"outgoing"] = @NO;
     
     [session updateIdentity:identAlice];
     clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_yellow);
     
     [session keyCompromized:identAlice];
     clr = [session identityColor:identAlice];
@@ -666,7 +662,12 @@ encmsg[@"outgoing"] = @NO;
     [session trustPersonalKey:identAlice];
     clr = [session identityColor:identAlice];
     XCTAssert( clr == PEP_rating_green);
+    
+}{
+    NSMutableDictionary *msg = [encmsg copy];
+    PEP_color clr;
 
+    msg[@"from"][@"user_id"] = @"new_id_from_mail";
     {
         NSArray* keys;
         NSMutableDictionary *decmsg;
