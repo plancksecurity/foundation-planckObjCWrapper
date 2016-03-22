@@ -39,11 +39,14 @@ NSString *const kPepMimeFilename = @"filename";
 NSString *const kPepMimeType = @"mimeType";
 NSString *const kPepIsMe = @"me";
 
-@implementation PEPSession {
-    
-    PEP_SESSION _session;
-    
-}
+@interface PEPSession ()
+
+@property (nonatomic) PEP_SESSION session;
+
+@end
+
+@implementation PEPSession
+
 
 // serialize all session access
 + (dispatch_queue_t)sharedSessionQueue
@@ -297,6 +300,23 @@ DYNAMIC_API PEP_STATUS identity_color(
 - (void)resetPeptestHack
 {
     reset_peptest_hack(_session);
+}
+
+- (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
+     description:(nullable NSString *)description comment:(nullable NSString *)comment
+{
+    log_event(self.session, [[title precomposedStringWithCanonicalMapping] UTF8String],
+              [[entity precomposedStringWithCanonicalMapping] UTF8String],
+              [[description precomposedStringWithCanonicalMapping] UTF8String],
+              [[comment precomposedStringWithCanonicalMapping] UTF8String]);
+}
+
+- (nonnull NSString *)getLog
+{
+    char *data;
+    get_crashdump_log(self.session, 0, &data);
+    NSString *logString = [NSString stringWithUTF8String:data];
+    return logString;
 }
 
 @end

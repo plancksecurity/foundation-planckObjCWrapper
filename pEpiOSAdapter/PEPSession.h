@@ -15,70 +15,75 @@
 
 #pragma mark -- Constants
 
-extern NSString *const kPepFrom;
-extern NSString *const kPepTo;
-extern NSString *const kPepShortMessage;
-extern NSString *const kPepLongMessage;
-extern NSString *const kPepOutgoing;
-extern NSString *const kPepUsername;
-extern NSString *const kPepAddress;
-extern NSString *const kPepUserID;
-extern NSString *const kPepFingerprint;
-extern NSString *const kPepID;
-extern NSString *const kPepSent;
-extern NSString *const kPepReceived;
-extern NSString *const kPepReceivedBy;
-extern NSString *const kPepCC;
-extern NSString *const kPepBCC;
-extern NSString *const kPepReplyTo;
-extern NSString *const kPepInReplyTo;
-extern NSString *const kPepReferences;
-extern NSString *const kPepOptFields;
-extern NSString *const kPepLongMessageFormatted;
-extern NSString *const kPepAttachments;
-extern NSString *const kPepMimeData;
-extern NSString *const kPepMimeFilename;
-extern NSString *const kPepMimeType;
-extern NSString *const kPepIsMe;
+extern NSString *const _Nonnull kPepFrom;
+extern NSString *const _Nonnull kPepTo;
+extern NSString *const _Nonnull kPepShortMessage;
+extern NSString *const _Nonnull kPepLongMessage;
+extern NSString *const _Nonnull kPepOutgoing;
+extern NSString *const _Nonnull kPepUsername;
+extern NSString *const _Nonnull kPepAddress;
+extern NSString *const _Nonnull kPepUserID;
+extern NSString *const _Nonnull kPepFingerprint;
+extern NSString *const _Nonnull kPepID;
+extern NSString *const _Nonnull kPepSent;
+extern NSString *const _Nonnull kPepReceived;
+extern NSString *const _Nonnull kPepReceivedBy;
+extern NSString *const _Nonnull kPepCC;
+extern NSString *const _Nonnull kPepBCC;
+extern NSString *const _Nonnull kPepReplyTo;
+extern NSString *const _Nonnull kPepInReplyTo;
+extern NSString *const _Nonnull kPepReferences;
+extern NSString *const _Nonnull kPepOptFields;
+extern NSString *const _Nonnull kPepLongMessageFormatted;
+extern NSString *const _Nonnull kPepAttachments;
+extern NSString *const _Nonnull kPepMimeData;
+extern NSString *const _Nonnull kPepMimeFilename;
+extern NSString *const _Nonnull kPepMimeType;
+extern NSString *const _Nonnull kPepIsMe;
 
 /** NSError parameters will use this domain */
-extern NSString *const PEPSessionErrorDomain;
+extern NSString *const _Nonnull PEPSessionErrorDomain;
 
 /** Callback type for doing something with a session */
-typedef void (^PEPSessionBlock)(PEPSession *session);
+typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 
 @interface PEPSession : NSObject
 
 #pragma mark -- Public API
 
-+ (PEPSession *)session;
++ (nonnull PEPSession *)session;
 
 /**
  Execute a block concurrently on a session.
  The session is created solely for execution of the block.
  */
-+ (void)dispatchAsyncOnSession:(PEPSessionBlock)block;
++ (void)dispatchAsyncOnSession:(nonnull PEPSessionBlock)block;
 
 /**
  Execute a block on a session and wait for it.
  The session is created solely for execution of the block.
  */
-+ (void)dispatchSyncOnSession:(PEPSessionBlock)block;
++ (void)dispatchSyncOnSession:(nonnull PEPSessionBlock)block;
 
 /** Decrypt a message */
-- (PEP_color)decryptMessageDict:(NSDictionary *)src dest:(NSDictionary **)dst keys:(NSArray **)keys;
+- (PEP_color)decryptMessageDict:(nonnull NSDictionary *)src
+                           dest:(NSDictionary * _Nonnull * _Nonnull)dst
+                           keys:(NSArray * _Nonnull * _Nullable)keys;
 
 /** Encrypt a message */
-- (PEP_STATUS)encryptMessageDict:(NSDictionary *)src extra:(NSArray *)keys dest:(NSDictionary **)dst;
+- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
+                           extra:(nullable NSArray *)keys
+                            dest:(NSDictionary * _Nonnull * _Nullable)dst;
 
 /** Determine the status color of a message to be sent */
-- (PEP_color)outgoingMessageColor:(NSMutableDictionary *)msg;
+- (PEP_color)outgoingMessageColor:(nonnull NSMutableDictionary *)msg;
 
 /** Determine the status color of a message to be sent */
-- (PEP_color)identityColor:(NSMutableDictionary *)identity;
+- (PEP_color)identityColor:(nonnull NSMutableDictionary *)identity;
 
 /** Get trustwords for a fingerprint */
-- (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened;
+- (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
+                      shortened:(BOOL)shortened;
 
 /**
  Supply an account used by our user himself. The identity is supplemented with the missing parts
@@ -104,37 +109,42 @@ typedef void (^PEPSessionBlock)(PEPSession *session);
  @"23", @"user_id", nil];
  
 */
-- (void)mySelf:(NSMutableDictionary *)identity;
+- (void)mySelf:(nonnull NSMutableDictionary *)identity;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)updateIdentity:(NSMutableDictionary *)identity;
+- (void)updateIdentity:(nonnull NSMutableDictionary *)identity;
 
 /**
  Mark a key as trusted with a person.
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)trustPersonalKey:(NSMutableDictionary *)identity;
+- (void)trustPersonalKey:(nonnull NSMutableDictionary *)identity;
 
 /**
  if a key gets comprimized tell this using this message
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyCompromized:(NSMutableDictionary *)identity;
+- (void)keyCompromized:(nonnull NSMutableDictionary *)identity;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
 */
-- (void)keyResetTrust:(NSMutableDictionary*)identity;
+- (void)keyResetTrust:(nonnull NSMutableDictionary*)identity;
 
 #pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
-- (void)importKey:(NSString *)keydata;
+- (void)importKey:(nonnull NSString *)keydata;
 
 - (void)resetPeptestHack;
+
+- (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
+     description:(nullable NSString *)description comment:(nullable NSString *)comment;
+
+- (nonnull NSString *)getLog;
 
 @end
