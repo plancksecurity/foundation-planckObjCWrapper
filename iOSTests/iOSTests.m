@@ -463,18 +463,88 @@ PEPSession *session;
     [session mySelf:identHector];
     XCTAssert([[NSNumber numberWithInt:PEP_ct_pEp] isEqualToNumber: identHector[@"comm_type"]]);
     
+    [self pEpCleanUp:@"Bob"];
+    
+    
+    [self pEpSetUp:@"Bob"];
+    
     NSMutableDictionary *_identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                        @"pEp Test Hector", @"username",
-                                        @"pep.test.hector@pep-project.org", @"address",
-                                        @"fc2d33", @"user_id",
-                                        @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
-                                        nil];
-
+                                         @"pEp Test Hector", @"username",
+                                         @"pep.test.hector@pep-project.org", @"address",
+                                         @"fc2d33", @"user_id",
+                                         @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
+                                         nil];
+    
     [session updateIdentity:_identHector];
     XCTAssert([[NSNumber numberWithInt:PEP_ct_pEp] isEqualToNumber: _identHector[@"comm_type"]]);
     
     [self pEpCleanUp];
 
+}
+
+- (void)testRevoke {
+    
+    [self pEpSetUp];
+    
+    // Our test user :
+    // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
+    // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
+    [self importBundledKey:@"6FF00E97_sec.asc"];
+    
+    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test Alice", @"username",
+                                       @"pep.test.alice@pep-project.org", @"address",
+                                       @"23", @"user_id",
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       nil];
+    
+    [session mySelf:identAlice];
+    
+    // This will revoke key
+    [session keyCompromized:identAlice];
+
+    // Should it regenerate a key ?
+    [session mySelf:identAlice];
+
+    // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
+    // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
+    [self importBundledKey:@"0xC9C2EE39.asc"];
+    
+    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     @"pEp Test Bob", @"username",
+                                     @"pep.test.bob@pep-project.org", @"address",
+                                     @"42", @"user_id",
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     nil];
+    
+    [session updateIdentity:identBob];
+    
+    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                identAlice, @"from",
+                                [NSMutableArray arrayWithObjects:
+                                 [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                  @"pEp Test Bob", @"username",
+                                  @"pep.test.bob@pep-project.org", @"address",
+                                  nil],
+                                 nil], @"to",
+                                @"All Green Test", @"shortmsg",
+                                @"This is a text content", @"longmsg",
+                                @YES, @"outgoing",
+                                nil];
+    
+    
+    // Should it be unencrypted ?
+    PEP_color clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_unencrypted);
+    
+    NSMutableDictionary *encmsg;
+    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
+    
+    XCTAssert(status == PEP_UNENCRYPTED);
+    
+    XCTAssert(![(NSString *)(encmsg[@"attachments"][0][@"mimeType"]) isEqualToString: @"application/pgp-encrypted"]);
+    
+    [self pEpCleanUp];
 }
 
 - (void)testMailToMyself {
