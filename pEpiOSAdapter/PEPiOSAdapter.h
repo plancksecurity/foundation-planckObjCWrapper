@@ -9,14 +9,29 @@
 #import <Foundation/Foundation.h>
 #include "message_api.h"
 
+@protocol PEPKeyManagementDelegate <NSObject>
+
+- (void)identityUpdated:(id)identity;
+
+@end
+
 @interface PEPiOSAdapter : NSObject
 
-// start or stop keyserver lookup
-// there is only one keyserver lookup thread
-
+/**
+ Start keyserver lookup.
+ - Note: There is only one keyserver lookup thread
+ */
 + (void)startKeyserverLookup;
+
+/**
+ Stop keyserver lookup.
+ */
 + (void)stopKeyserverLookup;
+
 + (void)setupTrustWordsDB;
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle;
+
++ (void)startKeyManagementWithDelegate:(id<PEPKeyManagementDelegate>)delegate;
++ (void)setKeyManagementDelegate:(id<PEPKeyManagementDelegate>)delegate;
 
 @end
