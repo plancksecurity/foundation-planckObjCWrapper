@@ -1,3 +1,4 @@
 syntax: regexp
 .*xcuserdata/
 \.DS_Store
+\.orig$
