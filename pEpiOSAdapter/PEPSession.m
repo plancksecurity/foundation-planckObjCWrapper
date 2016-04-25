@@ -282,7 +282,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
     @synchronized(self) {
-        key_compromized(_session, ident);
+        key_misstrusted(_session, ident);
     }
     
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];

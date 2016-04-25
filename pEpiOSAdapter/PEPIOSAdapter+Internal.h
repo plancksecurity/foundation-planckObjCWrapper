@@ -17,6 +17,8 @@
 
 + (void)registerExamineFunction:(PEP_SESSION)session;
 + (PEPQueue*)getQueue;
++ (id<PEPKeyManagementDelegate>)getkeyManagementDelegate;
+
 
 @end
 

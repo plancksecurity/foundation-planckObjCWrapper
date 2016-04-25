@@ -11,27 +11,30 @@
 
 @protocol PEPKeyManagementDelegate <NSObject>
 
-- (void)identityUpdated:(id)identity;
+- (void)identityWillBeUpdated:(id)identity;
+- (void)identityWasUpdated:(id)identity;
+- (void)managementIdle;
+- (void)managementBusy;
+- (void)managementStarted;
+- (void)managementFinishing;
+
+@property bool allowKeyserverLookup;
 
 @end
 
 @interface PEPiOSAdapter : NSObject
 
-/**
- Start keyserver lookup.
- - Note: There is only one keyserver lookup thread
- */
-+ (void)startKeyserverLookup;
-
-/**
- Stop keyserver lookup.
- */
-+ (void)stopKeyserverLookup;
-
 + (void)setupTrustWordsDB;
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle;
 
-+ (void)startKeyManagementWithDelegate:(id<PEPKeyManagementDelegate>)delegate;
 + (void)setKeyManagementDelegate:(id<PEPKeyManagementDelegate>)delegate;
+
+/**
+ Start key management thread.
+ - Note: There is only one keyserver lookup thread
+ */
++ (void)startKeyManagement;
++ (void)stopKeyManagement;
+
 
 @end

@@ -15,9 +15,69 @@
 
 @end
 
+@interface iOSTestsKeyManagementDelegate : NSObject <PEPKeyManagementDelegate>
+{
+    bool allowKeyserverLookup;
+    NSConditionLock *idleCond;
+}
+
+- (void)WaitIdle;
+
+@end
+
+@implementation iOSTestsKeyManagementDelegate
+
+@synthesize allowKeyserverLookup;
+
+- (void)identityWillBeUpdated:(id)identity
+{
+    // TODO : blah
+}
+
+- (void)identityWasUpdated:(id)identity
+{
+    // TODO : blah
+}
+
+- (void)managementBusy
+{
+    [idleCond tryLock];
+}
+
+- (void)managementIdle
+{
+    [idleCond unlockWithCondition:YES];
+}
+
+- (void)managementStarted
+{
+    // TODO : blah
+}
+
+- (void)managementFinishing
+{
+    // TODO : blah
+}
+
+
+- (id)init
+{
+    idleCond = [[NSConditionLock alloc] initWithCondition:NO];
+    return self;
+}
+
+- (void)WaitIdle
+{
+    [idleCond lockWhenCondition:YES];
+    [idleCond unlock];
+}
+
+@end
+
 @implementation iOSTests
 
 PEPSession *session;
+iOSTestsKeyManagementDelegate *delegate;
 
 #pragma mark -- Helpers
 
@@ -71,19 +131,27 @@ PEPSession *session;
     
 }
 
-- (void)pEpCleanUp : (NSString*)backup {
-    session=nil;
+- (void)pEpCleanUp : (NSString*)backup
+{
+    [PEPiOSAdapter stopKeyManagement];
+    
+    session = nil;
+
+    delegate = nil;
     
     for(id path in [self pEpWorkFiles])
         [self delFile:path :backup];
 
 }
+
 - (void)pEpCleanUp
 {
     [self pEpCleanUp:NULL];
 }
 
-- (void)pEpSetUp : (NSString*)restore{
+- (iOSTestsKeyManagementDelegate*)pEpSetUp : (NSString*)restore
+                                           : (bool)allowKeyserverLookup
+{
     // Must be the first thing you do before using anything pEp-related
     [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 
@@ -94,13 +162,30 @@ PEPSession *session;
         for(id path in [self pEpWorkFiles])
             [self undelFile:path:restore];
 
+    delegate = [[iOSTestsKeyManagementDelegate alloc]init];
+    
+    delegate.allowKeyserverLookup = allowKeyserverLookup;
+
+    [PEPiOSAdapter setKeyManagementDelegate:delegate];
+    
+    // It is preferable to initialize first session from main thread
     session = [[PEPSession alloc]init];
+    
+    // Key management spawns its own thread with a session
+    [PEPiOSAdapter startKeyManagement];
+
     XCTAssert(session);
     
 }
-- (void)pEpSetUp
+
+- (iOSTestsKeyManagementDelegate*)pEpSetUp : (NSString*)restore
 {
-    [self pEpSetUp:NULL];
+    return [self pEpSetUp:restore:false];
+}
+
+- (iOSTestsKeyManagementDelegate*)pEpSetUp
+{
+    return [self pEpSetUp:nil:false];
 }
 
 - (void)importBundledKey:(NSString *)item
@@ -134,13 +219,19 @@ PEPSession *session;
     
     [self pEpSetUp];
 
-    // Do nothing.
-
+    sleep(1);
     
     [self pEpCleanUp];
     
 }
 
+- (void)testShortLivedSession {
+    
+    [self pEpSetUp];
+    
+    [self pEpCleanUp];
+    
+}
 
 - (void)testOverlapingSessions {
     
@@ -176,22 +267,9 @@ PEPSession *session;
     
 }
 
-- (void)testShortKeyServerLookup {
-    
-    [self pEpSetUp];
-    [PEPiOSAdapter startKeyserverLookup];
-    
-    // Do nothing.
-    
-    [PEPiOSAdapter stopKeyserverLookup];
-    [self pEpCleanUp];
-    
-}
-
 - (void)testLongKeyServerLookup {
     
-    [self pEpSetUp];
-    [PEPiOSAdapter startKeyserverLookup];
+    [self pEpSetUp: nil: true];
     
     NSMutableDictionary *ident = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                     @"pEpDontAssert", @"username",
@@ -208,7 +286,6 @@ PEPSession *session;
     
     XCTAssert(ident[@"fpr"]);
     
-    [PEPiOSAdapter stopKeyserverLookup];
     [self pEpCleanUp];
     
 }
