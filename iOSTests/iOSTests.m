@@ -321,6 +321,10 @@ iOSTestsKeyManagementDelegate *delegate;
                                        nil];
     
     [session mySelf:identMe];
+
+    [delegate WaitIdle];
+
+    [session mySelf:identMe];
     
     XCTAssert(identMe[@"fpr"]);
 
