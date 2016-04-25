@@ -72,6 +72,13 @@
     [idleCond unlock];
 }
 
+- (void)WaitIdleTimeout : (NSTimeInterval)timeout
+{
+    NSDate* lockDelay;
+    lockDelay  = [NSDate dateWithTimeIntervalSinceNow:timeout];
+    [idleCond lockWhenCondition:YES beforeDate:lockDelay];
+    [idleCond unlock];
+}
 @end
 
 @implementation iOSTests
@@ -267,7 +274,7 @@ iOSTestsKeyManagementDelegate *delegate;
     
 }
 
-- (void)testLongKeyServerLookup {
+- (void)testKeyServerLookup {
     
     [self pEpSetUp: nil: true];
     
@@ -279,8 +286,8 @@ iOSTestsKeyManagementDelegate *delegate;
     
     [session updateIdentity:ident];
     
-    sleep(2);
-
+    [delegate WaitIdle];
+    
     // FIXME: updateIdentity should not assert if username is not provided
     [session updateIdentity:ident];
     
