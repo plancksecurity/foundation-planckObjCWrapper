@@ -378,6 +378,120 @@ PEPSession *session;
     [self pEpCleanUp];
 }
 
+
+- (void)testOutgoingBccColors {
+    
+    [self pEpSetUp];
+    
+    // Our test user :
+    // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
+    // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
+    [self importBundledKey:@"6FF00E97_sec.asc"];
+    
+    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"pEp Test Alice", @"username",
+                                       @"pep.test.alice@pep-project.org", @"address",
+                                       @"23", @"user_id",
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       nil];
+    
+    [session mySelf:identAlice];
+    
+    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                identAlice, @"from",
+                                [NSMutableArray arrayWithObjects:
+                                 [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                  @"pEp Test Bob", @"username",
+                                  @"pep.test.bob@pep-project.org", @"address",
+                                  nil],
+                                 nil], @"to",
+                                @"All Green Test", @"shortmsg",
+                                @"This is a text content", @"longmsg",
+                                @YES, @"outgoing",
+                                nil];
+    
+    // Test with unknown Bob
+    PEP_color clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_unencrypted);
+    
+    // Now let see with bob's pubkey already known
+    // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
+    // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
+    [self importBundledKey:@"0xC9C2EE39.asc"];
+    
+    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                     @"pEp Test Bob", @"username",
+                                     @"pep.test.bob@pep-project.org", @"address",
+                                     @"42", @"user_id",
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     nil];
+    
+    [session updateIdentity:identBob];
+    
+    // Should be yellow, since no handshake happened.
+    clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_yellow);
+    
+    clr = [session identityColor:identBob];
+    XCTAssert( clr == PEP_rating_yellow);
+    
+    // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
+    [session trustPersonalKey:identBob];
+    
+    // This time it should be green
+    clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_green);
+    
+    clr = [session identityColor:identBob];
+    XCTAssert( clr == PEP_rating_green);
+
+    // Now let see if it turns back yellow if we add an unconfirmed folk.
+    // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
+    // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
+    [self importBundledKey:@"0x70DCF575.asc"];
+    
+    NSMutableDictionary *identJohn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      @"pEp Test John", @"username",
+                                      @"pep.test.john@pep-project.org", @"address",
+                                      @"101", @"user_id",
+                                      @"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575",@"fpr",
+                                      nil];
+    
+    [session updateIdentity:identJohn];
+    
+    [msg setObject:[NSMutableArray arrayWithObjects:
+                    [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                     @"pEp Test John", @"username",
+                     @"pep.test.john@pep-project.org", @"address",
+                     nil], nil] forKey:@"bcc"];
+    
+    // Yellow ?
+    clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_yellow);
+    
+    [session trustPersonalKey:identJohn];
+    
+    // This time it should be green
+    clr = [session outgoingMessageColor:msg];
+    XCTAssert( clr == PEP_rating_green);
+    
+    clr = [session identityColor:identJohn];
+    XCTAssert( clr == PEP_rating_green);
+
+    /* 
+     
+    
+    NSMutableDictionary *encmsg;
+    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
+    
+    XCTAssert(status == PEP_STATUS_OK);
+    */
+    
+    [self pEpCleanUp];
+}
+
+
+
 - (void)testDontEncryptForMistrusted {
     
     [self pEpSetUp];
@@ -1077,11 +1191,11 @@ encmsg[@"outgoing"] = @NO;
 }
 
 /**
- Checks whether the engine silently ignores BCCs when encrypting.
- Currently BCCs are ignored when encrypting.
- If in the future this test fails, then the engine behavior might have changed.
+ Checks reduced BCCs support when encrypting.
+ Currently only one BCCs recipient is supported for encrypting.
+ In that case no single TO oc CC are allowed.
  */
-- (void)testEncryptEngineBcc
+- (void)testEncryptBcc
 {
     NSString *theMessage = @"THE MESSAGE";
 
@@ -1096,8 +1210,6 @@ encmsg[@"outgoing"] = @NO;
 
     NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);
-    NSString *pubKeyPartner2 = [self loadStringByName:@"partner2_F9D9CCD0A401311F_pub.asc"];
-    XCTAssertNotNil(pubKeyPartner2);
     NSString *pubKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_pub.asc"];
     XCTAssertNotNil(pubKeyMe);
     NSString *secKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
@@ -1109,10 +1221,7 @@ encmsg[@"outgoing"] = @NO;
 
         NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
 
-        NSMutableDictionary *partner2 = @{ kPepAddress: @"partner2@dontcare.me",
-                                           kPepUserID: @"partner2",
-                                           kPepUsername: @"partner2" }.mutableCopy;
-        NSMutableDictionary *mail = @{ kPepFrom: me, kPepTo: @[partner2],
+        NSMutableDictionary *mail = @{ kPepFrom: me,
                                        kPepLongMessage: theMessage,
                                        kPepBCC: @[partner1] }.mutableCopy;
 
@@ -1124,7 +1233,6 @@ encmsg[@"outgoing"] = @NO;
             XCTAssertEqualObjects(me[kPepFingerprint], [@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"
                                                         lowercaseString]);
             [session importKey:pubKeyPartner1];
-            [session importKey:pubKeyPartner2];
             PEP_STATUS status = [session encryptMessageDict:mail extra:nil dest:&pepEncMail];
             XCTAssertEqual(status, PEP_STATUS_OK);
         }];
@@ -1142,7 +1250,6 @@ encmsg[@"outgoing"] = @NO;
             XCTAssertNotNil(privateKeyPartner1);
 
             [session importKey:pubKeyPartner1];
-            [session importKey:pubKeyPartner2];
             [session importKey:pubKeyMe];
 
             [session mySelf:partner1];
@@ -1160,7 +1267,7 @@ encmsg[@"outgoing"] = @NO;
             [session decryptMessageDict:pepEncMail dest:&pepDecryptedMail keys:&keys];
 
             // If this assert holds, then the engine ignores BCCs when encrypting
-            XCTAssertNotEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
+            XCTAssertEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
         }];
     }
 
