@@ -1274,6 +1274,56 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp];
 }
 
+- (void)testAttachOwnKey
+{
+    NSString *theMessage = @"THE MESSAGE";
+    
+    [self pEpSetUp];
+    
+    NSMutableDictionary *partner1Orig = @{ kPepAddress: @"partner1@dontcare.me",
+                                           kPepUserID: @"partner1",
+                                           kPepUsername: @"partner1" }.mutableCopy;
+    NSMutableDictionary *meOrig = @{ kPepAddress: @"me@dontcare.me",
+                                     kPepUserID: @"me",
+                                     kPepUsername: @"me" }.mutableCopy;
+    
+    NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
+    XCTAssertNotNil(pubKeyPartner1);
+    NSString *pubKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_pub.asc"];
+    XCTAssertNotNil(pubKeyMe);
+    NSString *secKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
+    XCTAssertNotNil(secKeyMe);
+    
+    __block NSMutableDictionary *pepEncMail;
+    {
+        NSMutableDictionary *me = meOrig.mutableCopy;
+        
+        NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
+        
+        NSMutableDictionary *mail = @{ kPepFrom: me,
+                                       kPepLongMessage: theMessage,
+                                       kPepOutgoing: @YES,
+                                       kPepBCC: @[partner1] }.mutableCopy;
+        
+        [PEPSession dispatchSyncOnSession:^(PEPSession *session) {
+            [session importKey:pubKeyMe];
+            [session importKey:secKeyMe];
+            [session mySelf:me];
+            XCTAssertNotNil(me[kPepFingerprint]);
+            XCTAssertEqualObjects(me[kPepFingerprint], [@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"
+                                                        lowercaseString]);
+            [session importKey:pubKeyPartner1];
+            PEP_STATUS status = [session attachOwnKey:mail dest:&pepEncMail];
+            XCTAssertEqual(status, PEP_UNENCRYPTED);
+            XCTAssertEqualObjects(pepEncMail[kPepAttachments][0][kPepMimeFilename], @"pEpkey.asc");
+
+        }];
+    }
+    
+}
+
+
+
 - (void)doSomeWorkOnSession:(PEPSession *)session count:(NSInteger)count
 {
     NSMutableDictionary *me = @{ kPepAddress: [NSString stringWithFormat:@"me%d@dontcare.me", count],
