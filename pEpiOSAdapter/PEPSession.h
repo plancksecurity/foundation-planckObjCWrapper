@@ -75,11 +75,6 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
                            extra:(nullable NSArray *)keys
                             dest:(NSDictionary * _Nonnull * _Nullable)dst;
 
-/** Attach own key to a message */
-- (PEP_STATUS)attachOwnKey:(nonnull NSDictionary *)src
-                            dest:(NSDictionary * _Nonnull * _Nullable)dst;
-
-
 /** Determine the status color of a message to be sent */
 - (PEP_color)outgoingMessageColor:(nonnull NSMutableDictionary *)msg;
 

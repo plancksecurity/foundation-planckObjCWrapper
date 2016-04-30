@@ -150,34 +150,19 @@ NSString *const kPepIsMe = @"me";
         status = encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME);
     }
 
+    NSDictionary * dst_;
+
     if (_dst) {
-        *dst = PEP_messageDictFromStruct(_dst);
+        dst_ = PEP_messageDictFromStruct(_dst);
     }
     else {
-        *dst = PEP_messageDictFromStruct(_src);
+        dst_ = PEP_messageDictFromStruct(_src);
     }
+    *dst = dst_;
 
     free_message(_src);
     free_message(_dst);
     free_stringlist(_keys);
-    
-    return status;
-}
-
-- (PEP_STATUS)attachOwnKey:(NSDictionary *)src dest:(NSDictionary *__autoreleasing  _Nonnull *)dst
-{
-    PEP_STATUS status;
-    message * _src = PEP_messageDictToStruct(src);
-    message * _dst = NULL;
-    
-    @synchronized (self) {
-        status = encrypt_message(_session, _src, NULL, &_dst, PEP_enc_none);
-    }
-    
-    *dst = PEP_messageDictFromStruct(_src);;
-    
-    free_message(_src);
-    free_message(_dst);
     
     return status;
 }
