@@ -1222,6 +1222,7 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
 
         NSMutableDictionary *mail = @{ kPepFrom: me,
+                                       kPepOutgoing: @YES,
                                        kPepLongMessage: theMessage,
                                        kPepBCC: @[partner1] }.mutableCopy;
 
