@@ -268,6 +268,7 @@ PEPSession *session;
                                             [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                                  @"pEp Test Bob", @"username",
                                                  @"pep.test.bob@pep-project.org", @"address",
+                                                 @"42", @"user_id",
                                                  nil],
                                             nil], @"to",
                                         @"All Green Test", @"shortmsg",
@@ -403,6 +404,7 @@ PEPSession *session;
                                  [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   @"pEp Test Bob", @"username",
                                   @"pep.test.bob@pep-project.org", @"address",
+                                  @"42", @"user_id",
                                   nil],
                                  nil], @"to",
                                 @"All Green Test", @"shortmsg",
@@ -463,6 +465,7 @@ PEPSession *session;
                     [NSMutableDictionary dictionaryWithObjectsAndKeys:
                      @"pEp Test John", @"username",
                      @"pep.test.john@pep-project.org", @"address",
+                     @"101", @"user_id",
                      nil], nil] forKey:@"bcc"];
     
     // Yellow ?
@@ -532,6 +535,7 @@ PEPSession *session;
                                  [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   @"pEp Test Bob", @"username",
                                   @"pep.test.bob@pep-project.org", @"address",
+                                  @"42", @"user_id",
                                   nil],
                                  nil], @"to",
                                 @"All Green Test", @"shortmsg",
