@@ -555,7 +555,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
-					"-lctemplate-ios",
 					"-letpan-ios",
 					"-lxml2",
 					"-lsasl2",
@@ -578,7 +577,6 @@
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
-					"-lctemplate-ios",
 					"-letpan-ios",
 					"-lxml2",
 					"-lsasl2",
@@ -611,7 +609,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
-					"-lctemplate-ios",
 					"-letpan-ios",
 					"-lxml2",
 					"-lsasl2",
@@ -639,7 +636,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
-					"-lctemplate-ios",
 					"-letpan-ios",
 					"-lxml2",
 					"-lsasl2",
