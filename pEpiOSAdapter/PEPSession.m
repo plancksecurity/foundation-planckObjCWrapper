@@ -231,6 +231,8 @@ DYNAMIC_API PEP_STATUS identity_color(
 
 - (void)mySelf:(NSMutableDictionary *)identity
 {
+    [identity removeObjectForKey:kPepUserID];
+
     pEp_identity *ident = PEP_identityDictToStruct(identity);
 
     @synchronized(self) {
