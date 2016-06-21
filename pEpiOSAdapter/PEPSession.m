@@ -112,9 +112,10 @@ NSString *const kPepIsMe = @"me";
     message * _dst = NULL;
     stringlist_t * _keys = NULL;
     PEP_color color = PEP_rating_undefined;
+    PEP_decrypt_flags_t flags = 0;
 
     @synchronized (self) {
-        decrypt_message(_session, _src, &_dst, &_keys, &color);
+        decrypt_message(_session, _src, &_dst, &_keys, &color, &flags);
     }
 
     NSDictionary * dst_;
@@ -294,7 +295,7 @@ DYNAMIC_API PEP_STATUS identity_color(
 - (void)importKey:(NSString *)keydata
 {
     @synchronized(self) {
-        import_key(_session, [keydata UTF8String], [keydata length]);
+        import_key(_session, [keydata UTF8String], [keydata length], NULL);
     }
 
 }
