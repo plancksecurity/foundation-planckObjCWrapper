@@ -1387,6 +1387,7 @@ encmsg[@"outgoing"] = @NO;
 
     NSDictionary *partner = @{ kPepAddress: @"test001@peptest.ch",
                                kPepUserID: @"test001",
+                               kPepFingerprint: @"FEBFEAC4AB3E870C447C8427BD7B7A3478EE1DBC",
                                kPepUsername: @"Test 001" };
 
     dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
@@ -1401,7 +1402,7 @@ encmsg[@"outgoing"] = @NO;
         [someSession mySelf:mySelf];
         XCTAssertNotNil(mySelf[kPepFingerprint]);
 
-        // This is the public key for test001@peptest.ch
+        // This is the public key for test001@peptest.ch (partner)
         [self importBundledKey:@"78EE1DBC.asc" intoSession:someSession];
         dispatch_group_leave(group);
     });
@@ -1425,11 +1426,11 @@ encmsg[@"outgoing"] = @NO;
                                     kPepLongMessage: [NSString
                                                       stringWithFormat:@"Message Content %d",
                                                        i + 1],
-                                    @"incoming": @NO};
+                                    kPepOutgoing: @YES};
 
             NSDictionary *encryptedMail;
             PEP_STATUS status = [someSession encryptMessageDict:mail extra:@[] dest:&encryptedMail];
-            XCTAssert(status == PEP_STATUS_OK);
+            XCTAssertEqual(status, PEP_STATUS_OK);
 
             [sentMails addObject:encryptedMail];
         }
@@ -1448,7 +1449,7 @@ encmsg[@"outgoing"] = @NO;
             PEP_color color = [someSession decryptMessageDict:sentMail dest:&decryptedMail
                                                          keys:&keys];
             NSLog(@"Decrypted %@: %d", decryptedMail[kPepShortMessage], color);
-            XCTAssertEqual(color, PEP_rating_reliable);
+            XCTAssertGreaterThanOrEqual(color, PEP_rating_reliable);
             dispatch_group_leave(group);
         });
     }
