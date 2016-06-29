@@ -140,10 +140,28 @@ NSString *const kPepIsMe = @"me";
     return color;
 }
 
+- (void)removeEmptyArrayKey:(NSString *)key inDict:(NSMutableDictionary *)dict
+{
+    if ([[dict objectForKey:key] count] == 0) {
+        [dict removeObjectForKey:key];
+    }
+}
+
+- (NSDictionary *)removeEmptyRecipients:(NSDictionary *)src
+{
+    NSMutableDictionary *dest = src.mutableCopy;
+
+    [self removeEmptyArrayKey:kPepTo inDict:dest];
+    [self removeEmptyArrayKey:kPepCC inDict:dest];
+    [self removeEmptyArrayKey:kPepBCC inDict:dest];
+
+    return [NSDictionary dictionaryWithDictionary:dest];
+}
+
 - (PEP_STATUS)encryptMessageDict:(NSDictionary *)src extra:(NSArray *)keys dest:(NSDictionary **)dst
 {
     PEP_STATUS status;
-    message * _src = PEP_messageDictToStruct(src);
+    message * _src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
     message * _dst = NULL;
     stringlist_t * _keys = PEP_arrayToStringlist(keys);
 

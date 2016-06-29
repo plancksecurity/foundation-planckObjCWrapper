@@ -1284,9 +1284,11 @@ encmsg[@"outgoing"] = @NO;
 
 - (void)doSomeWorkOnSession:(PEPSession *)session count:(NSInteger)count
 {
-    NSMutableDictionary *me = @{ kPepAddress: [NSString stringWithFormat:@"me%d@dontcare.me", count],
-                                 kPepUserID: [NSString stringWithFormat:@"me%d", count],
-                                 kPepUsername: [NSString stringWithFormat:@"me%d", count] }.mutableCopy;
+    NSMutableDictionary *me = @{ kPepAddress: [NSString stringWithFormat:@"me%ld@dontcare.me",
+                                               (long)count],
+                                 kPepUserID: [NSString stringWithFormat:@"me%ld", (long)count],
+                                 kPepUsername: [NSString stringWithFormat:@"me%ld",
+                                                (long)count] }.mutableCopy;
     [session mySelf:me];
     XCTAssertNotNil(me[kPepFingerprint]);
 }
