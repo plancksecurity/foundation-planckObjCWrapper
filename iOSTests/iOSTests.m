@@ -1205,12 +1205,17 @@ encmsg[@"outgoing"] = @NO;
 
     [self pEpSetUp];
 
-    NSMutableDictionary *partner1Orig = @{ kPepAddress: @"partner1@dontcare.me",
-                                           kPepUserID: @"partner1",
-                                           kPepUsername: @"partner1" }.mutableCopy;
-    NSMutableDictionary *meOrig = @{ kPepAddress: @"me@dontcare.me",
-                                     kPepUserID: @"me",
-                                     kPepUsername: @"me" }.mutableCopy;
+    NSMutableDictionary *partner1Orig =
+    @{ kPepAddress: @"partner1@dontcare.me",
+       kPepUserID: @"partner1",
+       kPepFingerprint: @"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6",
+       kPepUsername: @"partner1" }.mutableCopy;
+
+    NSMutableDictionary *meOrig =
+    @{ kPepAddress: @"me@dontcare.me",
+       kPepUserID: @"me",
+       kPepFingerprint: @"CC1F73F6FB774BF08B197691E3BFBCA9248FC681",
+       kPepUsername: @"me" }.mutableCopy;
 
     NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);
@@ -1235,8 +1240,7 @@ encmsg[@"outgoing"] = @NO;
             [session importKey:secKeyMe];
             [session mySelf:me];
             XCTAssertNotNil(me[kPepFingerprint]);
-            XCTAssertEqualObjects(me[kPepFingerprint], [@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"
-                                                        lowercaseString]);
+            XCTAssertEqualObjects(me[kPepFingerprint], meOrig[kPepFingerprint]);
             [session importKey:pubKeyPartner1];
             PEP_STATUS status = [session encryptMessageDict:mail extra:nil dest:&pepEncMail];
             XCTAssertEqual(status, PEP_STATUS_OK);
@@ -1250,7 +1254,8 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
 
         [PEPSession dispatchSyncOnSession:^(PEPSession *session) {
-            NSString *privateKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
+            NSString *privateKeyPartner1 = [self
+                                            loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
             [session importKey:privateKeyPartner1];
             XCTAssertNotNil(privateKeyPartner1);
 
@@ -1259,10 +1264,7 @@ encmsg[@"outgoing"] = @NO;
 
             [session mySelf:partner1];
             XCTAssertNotNil(partner1[kPepFingerprint]);
-            XCTAssertEqualObjects(partner1[kPepFingerprint],
-                                  [[@"F0CD 3F7B 422E 5D58 7ABD  885B F2D2 81C2 789D D7F6"
-                                   stringByReplacingOccurrencesOfString:@" " withString:@""]
-                                  lowercaseString]);
+            XCTAssertEqualObjects(partner1[kPepFingerprint], partner1Orig[kPepFingerprint]);
 
             NSMutableDictionary *me = meOrig.mutableCopy;
             [session updateIdentity:me];
