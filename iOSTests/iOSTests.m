@@ -594,7 +594,7 @@ PEPSession *session;
                                          nil];
     
     [session updateIdentity:_identHector];
-    XCTAssert([[NSNumber numberWithInt:PEP_ct_pEp] isEqualToNumber: _identHector[@"comm_type"]]);
+    XCTAssertEqual(PEP_ct_pEp, [_identHector[@"comm_type"] integerValue]);
     
     [self pEpCleanUp];
 
@@ -653,14 +653,15 @@ PEPSession *session;
     
     // Should it be unencrypted ?
     PEP_color clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_unencrypted);
+    XCTAssertEqual(clr, PEP_rating_unencrypted);
     
     NSMutableDictionary *encmsg;
     PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
     
-    XCTAssert(status == PEP_UNENCRYPTED);
+    XCTAssertEqual(status, PEP_UNENCRYPTED);
     
-    XCTAssert(![(NSString *)(encmsg[@"attachments"][0][@"mimeType"]) isEqualToString: @"application/pgp-encrypted"]);
+    XCTAssertNotEqual(encmsg[@"attachments"][0][@"mimeType"],
+                      @"application/pgp-encrypted");
     
     [self pEpCleanUp];
 }
