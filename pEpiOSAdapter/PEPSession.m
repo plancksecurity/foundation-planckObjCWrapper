@@ -13,16 +13,17 @@
 
 #pragma mark -- Constants
 
+NSString *const kPepUsername = @"username";
+NSString *const kPepAddress = @"address";
+NSString *const kPepUserID = @"user_id";
+NSString *const kPepFingerprint = @"fpr";
+NSString *const kPepIsMe = @"me";
+
 NSString *const kPepFrom = @"from";
 NSString *const kPepTo = @"to";
 NSString *const kPepShortMessage = @"shortmsg";
 NSString *const kPepLongMessage = @"longmsg";
 NSString *const kPepOutgoing = @"outgoing";
-NSString *const kPepUsername = @"username";
-NSString *const kPepAddress = @"address";
-NSString *const kPepUserID = @"user_id";
-NSString *const kPepFingerprint = @"fpr";
-NSString *const kPepID = @"id";
 NSString *const kPepSent = @"sent";
 NSString *const kPepReceived = @"recv";
 NSString *const kPepReceivedBy = @"recv_by";
@@ -34,10 +35,11 @@ NSString *const kPepReferences = @"references";
 NSString *const kPepOptFields = @"opt_fields";
 NSString *const kPepLongMessageFormatted = @"longmsg_formatted";
 NSString *const kPepAttachments = @"attachments";
+NSString *const kPepID = @"id";
+
 NSString *const kPepMimeData = @"data";
 NSString *const kPepMimeFilename = @"filename";
 NSString *const kPepMimeType = @"mimeType";
-NSString *const kPepIsMe = @"me";
 
 @interface PEPSession ()
 
