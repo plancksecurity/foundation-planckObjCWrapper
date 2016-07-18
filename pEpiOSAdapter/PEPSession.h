@@ -78,10 +78,10 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
                             dest:(NSDictionary * _Nonnull * _Nullable)dst;
 
 /** Determine the status color of a message to be sent */
-- (PEP_color)outgoingMessageColor:(nonnull NSMutableDictionary *)msg;
+- (PEP_color)outgoingMessageColor:(nonnull NSDictionary *)msg;
 
 /** Determine the status color of a message to be sent */
-- (PEP_color)identityColor:(nonnull NSMutableDictionary *)identity;
+- (PEP_color)identityColor:(nonnull NSDictionary *)identity;
 
 /** Get trustwords for a fingerprint */
 - (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
@@ -90,7 +90,7 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /**
  Supply an account used by our user himself. The identity is supplemented with the missing parts
 
- An identity is a `NSMutableDictionary` mapping a field name as `NSString` to different values.
+ An identity is a `NSDictionary` mapping a field name as `NSString` to different values.
  An identity can have the following fields (all other keys are ignored).
  It is not necessary to supply all fields; missing fields are supplemented by p≡p engine.
  
@@ -106,7 +106,7 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  
  User has a mailbox. The mail address is "Dipul Khatri <dipul@inboxcube.com>". Then this would be:
  
- NSMutableDictionary *ident = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+ NSDictionary *ident = [NSDictionary dictionaryWithObjectsAndKeys:
  @"Dipul Khatri", @"username", @"dipul@inboxcube.com", @"address", 
  @"23", @"user_id", nil];
  
@@ -123,19 +123,19 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  Mark a key as trusted with a person.
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)trustPersonalKey:(nonnull NSMutableDictionary *)identity;
+- (void)trustPersonalKey:(nonnull NSDictionary *)identity;
 
 /**
  if a key gets comprimized tell this using this message
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyCompromized:(nonnull NSMutableDictionary *)identity;
+- (void)keyCompromized:(nonnull NSDictionary *)identity;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
 */
-- (void)keyResetTrust:(nonnull NSMutableDictionary*)identity;
+- (void)keyResetTrust:(nonnull NSDictionary*)identity;
 
 #pragma mark -- Internal API (testing etc.)
 

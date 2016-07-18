@@ -188,7 +188,7 @@ NSString *const kPepMimeType = @"mimeType";
     return status;
 }
 
-- (PEP_color)outgoingMessageColor:(NSMutableDictionary *)msg
+- (PEP_color)outgoingMessageColor:(NSDictionary *)msg
 {
     message * _msg = PEP_messageDictToStruct(msg);
     PEP_color color = PEP_rating_undefined;
@@ -202,7 +202,7 @@ NSString *const kPepMimeType = @"mimeType";
     return color;
 }
 
-- (PEP_color)identityColor:(NSMutableDictionary *)identity
+- (PEP_color)identityColor:(NSDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     PEP_color color = PEP_rating_undefined;
@@ -276,7 +276,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     free_identity(ident);
 }
 
-- (void)trustPersonalKey:(NSMutableDictionary *)identity
+- (void)trustPersonalKey:(NSDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
@@ -288,7 +288,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     free_identity(ident);
 }
 
-- (void)keyResetTrust:(NSMutableDictionary *)identity
+- (void)keyResetTrust:(NSDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
@@ -300,7 +300,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     free_identity(ident);
 }
 
-- (void)keyCompromized:(NSMutableDictionary *)identity
+- (void)keyCompromized:(NSDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
