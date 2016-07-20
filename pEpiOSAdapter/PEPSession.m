@@ -41,6 +41,8 @@ NSString *const kPepMimeData = @"data";
 NSString *const kPepMimeFilename = @"filename";
 NSString *const kPepMimeType = @"mimeType";
 
+NSString *const kPepCommType = @"comm_type";
+
 @interface PEPSession ()
 
 @property (nonatomic) PEP_SESSION session;

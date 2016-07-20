@@ -43,6 +43,8 @@ extern NSString *const _Nonnull kPepMimeData;
 extern NSString *const _Nonnull kPepMimeFilename;
 extern NSString *const _Nonnull kPepMimeType;
 
+extern NSString *const _Nonnull kPepCommType;
+
 /** NSError parameters will use this domain */
 extern NSString *const _Nonnull PEPSessionErrorDomain;
 

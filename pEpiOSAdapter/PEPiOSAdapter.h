@@ -31,7 +31,4 @@
 + (void)setupTrustWordsDB;
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle;
 
-+ (void)startKeyManagementWithDelegate:(id<PEPKeyManagementDelegate>)delegate;
-+ (void)setKeyManagementDelegate:(id<PEPKeyManagementDelegate>)delegate;
-
 @end
