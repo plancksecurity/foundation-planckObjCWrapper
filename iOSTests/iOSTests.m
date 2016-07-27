@@ -1003,9 +1003,8 @@ encmsg[@"outgoing"] = @NO;
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted, @"Not trusted");
-        
-        XCTAssert([@"That was so easy !" compare:decmsg[@"longmsg"]]==0);
-        
+
+        XCTAssertEqualObjects(decmsg[@"longmsg"], @"That was so easy !");
     }
     [self pEpCleanUp:@"Petra"];
     
