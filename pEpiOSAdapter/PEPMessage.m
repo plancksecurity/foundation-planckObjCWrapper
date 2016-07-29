@@ -8,6 +8,58 @@
 
 #import "PEPMessage.h"
 
+#pragma mark -- Constants
+
+NSString *const kPepUsername = @"username";
+
+NSString *const kPepAddress = @"address";
+
+NSString *const kPepUserID = @"user_id";
+
+NSString *const kPepFingerprint = @"fpr";
+
+NSString *const kPepIsMe = @"me";
+
+NSString *const kPepFrom = @"from";
+
+NSString *const kPepTo = @"to";
+
+NSString *const kPepCC = @"cc";
+
+NSString *const kPepBCC = @"bcc";
+
+NSString *const kPepShortMessage = @"shortmsg";
+
+NSString *const kPepLongMessage = @"longmsg";
+
+NSString *const kPepLongMessageFormatted = @"longmsg_formatted";
+
+NSString *const kPepOutgoing = @"outgoing";
+
+NSString *const kPepSent = @"sent";
+
+NSString *const kPepReceived = @"recv";
+
+NSString *const kPepID = @"id";
+
+NSString *const kPepReceivedBy = @"recv_by";
+NSString *const kPepReplyTo = @"reply_to";
+NSString *const kPepInReplyTo = @"in_reply_to";
+NSString *const kPepReferences = @"references";
+NSString *const kPepOptFields = @"opt_fields";
+
+NSString *const kPepAttachments = @"attachments";
+
+NSString *const kPepMimeData = @"data";
+
+NSString *const kPepMimeFilename = @"filename";
+
+NSString *const kPepMimeType = @"mimeType";
+
+NSString *const kPepCommType = @"comm_type";
+
+NSString *const kPepRawMessage = @"raw_message";
+
 NSArray *PEP_arrayFromStringlist(stringlist_t *sl)
 {
     NSMutableArray *array = [NSMutableArray array];
@@ -288,7 +340,6 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
     }
     return nil;
 }
-
 
 message *PEP_messageDictToStruct(NSDictionary *dict)
 {

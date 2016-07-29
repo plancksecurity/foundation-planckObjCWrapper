@@ -13,41 +13,6 @@
 
 @class PEPSession;
 
-#pragma mark -- Constants
-
-extern NSString *const _Nonnull kPepUsername;
-extern NSString *const _Nonnull kPepAddress;
-extern NSString *const _Nonnull kPepUserID;
-extern NSString *const _Nonnull kPepFingerprint;
-extern NSString *const _Nonnull kPepIsMe;
-
-extern NSString *const _Nonnull kPepFrom;
-extern NSString *const _Nonnull kPepTo;
-extern NSString *const _Nonnull kPepShortMessage;
-extern NSString *const _Nonnull kPepLongMessage;
-extern NSString *const _Nonnull kPepOutgoing;
-extern NSString *const _Nonnull kPepSent;
-extern NSString *const _Nonnull kPepReceived;
-extern NSString *const _Nonnull kPepReceivedBy;
-extern NSString *const _Nonnull kPepCC;
-extern NSString *const _Nonnull kPepBCC;
-extern NSString *const _Nonnull kPepReplyTo;
-extern NSString *const _Nonnull kPepInReplyTo;
-extern NSString *const _Nonnull kPepReferences;
-extern NSString *const _Nonnull kPepOptFields;
-extern NSString *const _Nonnull kPepLongMessageFormatted;
-extern NSString *const _Nonnull kPepAttachments;
-extern NSString *const _Nonnull kPepID;
-
-extern NSString *const _Nonnull kPepMimeData;
-extern NSString *const _Nonnull kPepMimeFilename;
-extern NSString *const _Nonnull kPepMimeType;
-
-extern NSString *const _Nonnull kPepCommType;
-
-/** NSError parameters will use this domain */
-extern NSString *const _Nonnull PEPSessionErrorDomain;
-
 /** Callback type for doing something with a session */
 typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 
