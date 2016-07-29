@@ -336,6 +336,11 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
         if (msg->attachments && msg->attachments->value)
             [dict setObject: PEP_arrayFromBloblist(msg->attachments) forKey:@"attachments"];
 
+        if (msg->rawmsg_size > 0 && *msg->rawmsg_ref) {
+            NSData *data = [NSData dataWithBytes:msg->rawmsg_ref length:msg->rawmsg_size];
+            dict[kPepRawMessage] = data;
+        }
+
         return dict;
     }
     return nil;
