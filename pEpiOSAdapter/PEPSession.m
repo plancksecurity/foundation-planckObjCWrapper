@@ -133,12 +133,14 @@
 - (PEP_STATUS)encryptMessageDict:(NSDictionary *)src extra:(NSArray *)keys dest:(NSDictionary **)dst
 {
     PEP_STATUS status;
+    PEP_encrypt_flags_t flags;
+
     message * _src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
     message * _dst = NULL;
     stringlist_t * _keys = PEP_arrayToStringlist(keys);
 
     @synchronized (self) {
-        status = encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME);
+        status = encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME, flags);
     }
 
     NSDictionary * dst_;
