@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #include "message_api.h"
 
-NSArray *PEP_arrayFromStringlist(stringlist_t *sl);
-stringlist_t *PEP_arrayToStringlist(NSArray *array);
+NSArray * _Nonnull PEP_arrayFromStringlist(stringlist_t * _Nonnull sl);
+stringlist_t * _Nullable PEP_arrayToStringlist(NSArray * _Nullable array);
 
-pEp_identity *PEP_identityDictToStruct(NSDictionary *dict);
-NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident);
+pEp_identity * _Nullable PEP_identityDictToStruct(NSDictionary * _Nullable dict);
+NSDictionary * _Nonnull PEP_identityDictFromStruct(pEp_identity * _Nullable ident);
 
-message *PEP_messageDictToStruct(NSDictionary *dict);
-NSDictionary *PEP_messageDictFromStruct(message *msg);
+message * _Nullable PEP_messageDictToStruct(NSDictionary * _Nullable dict);
+NSDictionary * _Nonnull PEP_messageDictFromStruct(message * _Nullable msg);
 
 #pragma mark -- Constants
 
