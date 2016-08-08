@@ -292,11 +292,6 @@ DYNAMIC_API PEP_STATUS identity_color(
 
 }
 
-- (void)resetPeptestHack
-{
-    reset_peptest_hack(_session);
-}
-
 - (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
      description:(nullable NSString *)description comment:(nullable NSString *)comment
 {

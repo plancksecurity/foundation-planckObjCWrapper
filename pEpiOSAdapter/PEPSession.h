@@ -109,8 +109,6 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /** For testing purpose, manual key import */
 - (void)importKey:(nonnull NSString *)keydata;
 
-- (void)resetPeptestHack;
-
 - (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
      description:(nullable NSString *)description comment:(nullable NSString *)comment;
 
