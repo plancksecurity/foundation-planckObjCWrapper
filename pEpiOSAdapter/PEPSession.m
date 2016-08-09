@@ -248,7 +248,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     free_identity(ident);
 }
 
-- (void)trustPersonalKey:(NSDictionary *)identity
+- (void)trustPersonalKey:(NSMutableDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
@@ -260,7 +260,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     free_identity(ident);
 }
 
-- (void)keyResetTrust:(NSDictionary *)identity
+- (void)keyResetTrust:(NSMutableDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
@@ -272,7 +272,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     free_identity(ident);
 }
 
-- (void)keyCompromized:(NSDictionary *)identity
+- (void)keyCompromized:(NSMutableDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     

@@ -90,19 +90,19 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  Mark a key as trusted with a person.
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)trustPersonalKey:(nonnull NSDictionary *)identity;
+- (void)trustPersonalKey:(nonnull NSMutableDictionary *)identity;
 
 /**
  if a key gets comprimized tell this using this message
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyCompromized:(nonnull NSDictionary *)identity;
+- (void)keyCompromized:(nonnull NSMutableDictionary *)identity;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
 */
-- (void)keyResetTrust:(nonnull NSDictionary*)identity;
+- (void)keyResetTrust:(nonnull NSMutableDictionary*)identity;
 
 #pragma mark -- Internal API (testing etc.)
 
