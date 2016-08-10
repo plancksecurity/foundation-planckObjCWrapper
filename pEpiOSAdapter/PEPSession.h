@@ -112,6 +112,15 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 - (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
      description:(nullable NSString *)description comment:(nullable NSString *)comment;
 
+/**
+ Retrieves the log from the engine.
+ */
 - (nonnull NSString *)getLog;
+
+/**
+ Outgoing message color for a fake message from `from` to `contact`.
+ */
+- (PEP_color)outgoingColorFrom:(nonnull NSDictionary *)from
+                            to:(nonnull NSDictionary *)to;
 
 @end

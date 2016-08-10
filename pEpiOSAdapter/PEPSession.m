@@ -309,4 +309,22 @@ DYNAMIC_API PEP_STATUS identity_color(
     return logString;
 }
 
+- (PEP_color)outgoingColorFrom:(nonnull NSDictionary *)from
+                            to:(nonnull NSDictionary *)to
+{
+    NSMutableDictionary *mTo = to.mutableCopy;
+    [self updateIdentity:mTo];
+    NSMutableDictionary *mFrom = from.mutableCopy;
+    [self mySelf:mFrom];
+
+    NSMutableDictionary *fakeMail = [NSMutableDictionary dictionary];
+    fakeMail[kPepFrom] = mFrom;
+    fakeMail[kPepOutgoing] = @YES;
+    fakeMail[kPepTo] = @[mTo];
+    fakeMail[kPepShortMessage] = @"Some fake subject";
+    fakeMail[kPepLongMessage] = @"Some fake long message";
+    PEP_color color = [self outgoingMessageColor:fakeMail];
+    return color;
+}
+
 @end
