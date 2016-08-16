@@ -252,7 +252,7 @@ PEPSession *session;
                                        nil];
 
     // Test with unknown Bob
-    PEP_color clr = [session outgoingMessageColor:msg];
+    PEP_rating clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
 
     // Now let see with bob's pubkey already known
@@ -271,27 +271,27 @@ PEPSession *session;
 
     // Should be yellow, since no handshake happened.
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
 
     clr = [session identityColor:identBob];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     [session trustPersonalKey:identBob];
 
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
 
     clr = [session identityColor:identBob];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
 
     // Let' say we undo handshake
     [session keyResetTrust:identBob];
     
     // Yellow ?
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
 
     // mistrust Bob
     [session keyCompromized:identBob];
@@ -313,14 +313,14 @@ PEPSession *session;
     
     // Back to yellow
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
 
     // Trust again
     [session trustPersonalKey:identBob];
     
     // Back to green
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
     
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
@@ -344,7 +344,7 @@ PEPSession *session;
 
     // Yellow ?
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
 
     NSMutableDictionary *encmsg;
     PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
@@ -388,7 +388,7 @@ PEPSession *session;
                                 nil];
     
     // Test with unknown Bob
-    PEP_color clr = [session outgoingMessageColor:msg];
+    PEP_rating clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
     
     // Now let see with bob's pubkey already known
@@ -407,20 +407,20 @@ PEPSession *session;
     
     // Should be yellow, since no handshake happened.
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
     
     clr = [session identityColor:identBob];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     [session trustPersonalKey:identBob];
     
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
     
     clr = [session identityColor:identBob];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
@@ -445,16 +445,16 @@ PEPSession *session;
     
     // Yellow ?
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
     
     [session trustPersonalKey:identJohn];
     
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
     
     clr = [session identityColor:identJohn];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
 
     /* 
      
@@ -520,7 +520,7 @@ PEPSession *session;
     
 
     // Gray == PEP_rating_unencrypted
-    PEP_color clr = [session outgoingMessageColor:msg];
+    PEP_rating clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
 
     NSMutableDictionary *encmsg;
@@ -627,7 +627,7 @@ PEPSession *session;
     
     
     // Should it be unencrypted ?
-    PEP_color clr = [session outgoingMessageColor:msg];
+    PEP_rating clr = [session outgoingMessageColor:msg];
     XCTAssertEqual(clr, PEP_rating_unencrypted);
     
     NSMutableDictionary *encmsg;
@@ -669,7 +669,7 @@ PEPSession *session;
                                 nil];
     
     // Test with unknown Bob
-    PEP_color clr = [session outgoingMessageColor:msg];
+    PEP_rating clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted_and_anonymized);
     
     NSMutableDictionary *encmsg;
@@ -767,7 +767,7 @@ encmsg[@"outgoing"] = @NO;
     
     NSMutableDictionary *decmsg;
     NSArray* keys;
-    PEP_color clr = [session decryptMessageDict:msg dest:&decmsg keys:&keys];
+    PEP_rating clr = [session decryptMessageDict:msg dest:&decmsg keys:&keys];
     XCTAssert(clr == PEP_rating_reliable);
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -778,15 +778,15 @@ encmsg[@"outgoing"] = @NO;
     
     [session updateIdentity:identAlice];
     clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
 
     [session trustPersonalKey:identAlice];
     clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
     
     [session keyResetTrust:identAlice];
     clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
     
     [self pEpCleanUp:@"Bob"];
     
@@ -797,7 +797,7 @@ encmsg[@"outgoing"] = @NO;
 
     [self pEpSetUp:@"Bob"];
     
-    PEP_color clr;
+    PEP_rating clr;
     {
         NSArray* keys;
         NSMutableDictionary *decmsg;
@@ -813,7 +813,7 @@ encmsg[@"outgoing"] = @NO;
     
     [session updateIdentity:identAlice];
     clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
     
     [session keyCompromized:identAlice];
     clr = [session identityColor:identAlice];
@@ -821,15 +821,15 @@ encmsg[@"outgoing"] = @NO;
     
     [session keyResetTrust:identAlice];
     clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_yellow);
+    XCTAssert( clr == PEP_rating_reliable);
     
     [session trustPersonalKey:identAlice];
     clr = [session identityColor:identAlice];
-    XCTAssert( clr == PEP_rating_green);
+    XCTAssert( clr == PEP_rating_trusted);
     
 }{
     NSMutableDictionary *msg = [encmsg copy];
-    PEP_color clr;
+    PEP_rating clr;
 
     msg[@"from"][@"user_id"] = @"new_id_from_mail";
     {
@@ -837,7 +837,7 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *decmsg;
         clr = [session decryptMessageDict:msg dest:&decmsg keys:&keys];
     }
-    XCTAssert(clr == PEP_rating_green);
+    XCTAssert(clr == PEP_rating_trusted);
     
     [self pEpCleanUp];
     
@@ -904,7 +904,7 @@ encmsg[@"outgoing"] = @NO;
     
         NSMutableDictionary *decmsg;
         NSArray* keys;
-        PEP_color clr = [session decryptMessageDict:petrasMsg dest:&decmsg keys:&keys];
+        PEP_rating clr = [session decryptMessageDict:petrasMsg dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_unencrypted);
 
         NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -938,7 +938,7 @@ encmsg[@"outgoing"] = @NO;
         [encmsg setObject:identMiroAtPetra.mutableCopy forKey:@"from"];
         
         
-        PEP_color clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        PEP_rating clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         
         XCTAssertEqual(clr, PEP_rating_reliable);
         
@@ -1020,7 +1020,7 @@ encmsg[@"outgoing"] = @NO;
 
     NSArray *keys;
     NSMutableDictionary *decMsg;
-    PEP_color clr = [session decryptMessage:msg dest:&decMsg keys:&keys];
+    PEP_rating clr = [session decryptMessage:msg dest:&decMsg keys:&keys];
     XCTAssertEqual(clr, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -1045,7 +1045,7 @@ encmsg[@"outgoing"] = @NO;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    PEP_color color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
+    PEP_rating color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -1071,7 +1071,7 @@ encmsg[@"outgoing"] = @NO;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    PEP_color color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
+    PEP_rating color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -1097,7 +1097,7 @@ encmsg[@"outgoing"] = @NO;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    PEP_color color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
+    PEP_rating color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -1126,7 +1126,7 @@ encmsg[@"outgoing"] = @NO;
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
-    PEP_color color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
+    PEP_rating color = [session decryptMessageDict:msgDict dest:&pepDecryptedMail keys:&keys];
     XCTAssertEqual(color, PEP_rating_reliable);
 
     [self pEpCleanUp];
@@ -1326,7 +1326,7 @@ encmsg[@"outgoing"] = @NO;
 
         NSArray* keys;
         NSMutableDictionary *pepDecryptedMail;
-        PEP_color color = [innerSession decryptMessageDict:msgDict dest:&pepDecryptedMail
+        PEP_rating color = [innerSession decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                       keys:&keys];
         XCTAssertEqual(color, PEP_rating_reliable);
         NSLog(@"%d: decryption color -> %d", index, color);
@@ -1426,7 +1426,7 @@ encmsg[@"outgoing"] = @NO;
             PEPSession *someSession = [PEPSession session];
             NSDictionary *decryptedMail;
             NSArray *keys;
-            PEP_color color = [someSession decryptMessageDict:sentMail dest:&decryptedMail
+            PEP_rating color = [someSession decryptMessageDict:sentMail dest:&decryptedMail
                                                          keys:&keys];
             NSLog(@"Decrypted %@: %d", decryptedMail[kPepShortMessage], color);
             XCTAssertGreaterThanOrEqual(color, PEP_rating_reliable);
@@ -1454,8 +1454,8 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertNotNil(pubKeyPartner1);
     [session importKey:pubKeyPartner1];
 
-    PEP_color color = [session outgoingColorFrom:me to:partner1Orig];
-    XCTAssertEqual(color, PEP_rating_yellow);
+    PEP_rating color = [session outgoingColorFrom:me to:partner1Orig];
+    XCTAssertEqual(color, PEP_rating_reliable);
 }
 
 @end

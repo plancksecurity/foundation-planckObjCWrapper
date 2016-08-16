@@ -78,12 +78,12 @@
     release(_session);
 }
 
-- (PEP_color)decryptMessageDict:(NSDictionary *)src dest:(NSDictionary **)dst keys:(NSArray **)keys
+- (PEP_rating)decryptMessageDict:(NSDictionary *)src dest:(NSDictionary **)dst keys:(NSArray **)keys
 {
     message * _src = PEP_messageDictToStruct(src);
     message * _dst = NULL;
     stringlist_t * _keys = NULL;
-    PEP_color color = PEP_rating_undefined;
+    PEP_rating color = PEP_rating_undefined;
     PEP_decrypt_flags_t flags = 0;
 
     @synchronized (self) {
@@ -160,13 +160,13 @@
     return status;
 }
 
-- (PEP_color)outgoingMessageColor:(NSDictionary *)msg
+- (PEP_rating)outgoingMessageColor:(NSDictionary *)msg
 {
     message * _msg = PEP_messageDictToStruct(msg);
-    PEP_color color = PEP_rating_undefined;
+    PEP_rating color = PEP_rating_undefined;
 
     @synchronized (self) {
-        outgoing_message_color(_session, _msg, &color);
+        outgoing_message_rating(_session, _msg, &color);
     }
 
     free_message(_msg);
@@ -174,13 +174,13 @@
     return color;
 }
 
-- (PEP_color)identityColor:(NSDictionary *)identity
+- (PEP_rating)identityColor:(NSDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
-    PEP_color color = PEP_rating_undefined;
+    PEP_rating color = PEP_rating_undefined;
     
     @synchronized (self) {
-        identity_color(_session, ident, &color);
+        identity_rating(_session, ident, &color);
     }
     
     free_identity(ident);
@@ -188,10 +188,10 @@
     return color;
 }
 
-DYNAMIC_API PEP_STATUS identity_color(
+DYNAMIC_API PEP_STATUS identity_rating(
                                       PEP_SESSION session,
                                       pEp_identity *ident,
-                                      PEP_color *color
+                                      PEP_rating *color
                                       );
 
 
@@ -309,7 +309,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     return logString;
 }
 
-- (PEP_color)outgoingColorFrom:(nonnull NSDictionary *)from
+- (PEP_rating)outgoingColorFrom:(nonnull NSDictionary *)from
                             to:(nonnull NSDictionary *)to
 {
     NSMutableDictionary *mTo = to.mutableCopy;
@@ -323,7 +323,7 @@ DYNAMIC_API PEP_STATUS identity_color(
     fakeMail[kPepTo] = @[mTo];
     fakeMail[kPepShortMessage] = @"Some fake subject";
     fakeMail[kPepLongMessage] = @"Some fake long message";
-    PEP_color color = [self outgoingMessageColor:fakeMail];
+    PEP_rating color = [self outgoingMessageColor:fakeMail];
     return color;
 }
 

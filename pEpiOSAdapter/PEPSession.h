@@ -35,7 +35,7 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 + (void)dispatchSyncOnSession:(nonnull PEPSessionBlock)block;
 
 /** Decrypt a message */
-- (PEP_color)decryptMessageDict:(nonnull NSDictionary *)src
+- (PEP_rating)decryptMessageDict:(nonnull NSDictionary *)src
                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
                            keys:(NSArray * _Nonnull * _Nullable)keys;
 
@@ -45,10 +45,10 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
                             dest:(NSDictionary * _Nonnull * _Nullable)dst;
 
 /** Determine the status color of a message to be sent */
-- (PEP_color)outgoingMessageColor:(nonnull NSDictionary *)msg;
+- (PEP_rating)outgoingMessageColor:(nonnull NSDictionary *)msg;
 
 /** Determine the status color of a message to be sent */
-- (PEP_color)identityColor:(nonnull NSDictionary *)identity;
+- (PEP_rating)identityColor:(nonnull NSDictionary *)identity;
 
 /** Get trustwords for a fingerprint */
 - (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
@@ -120,7 +120,7 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /**
  Outgoing message color for a fake message from `from` to `contact`.
  */
-- (PEP_color)outgoingColorFrom:(nonnull NSDictionary *)from
+- (PEP_rating)outgoingColorFrom:(nonnull NSDictionary *)from
                             to:(nonnull NSDictionary *)to;
 
 @end
