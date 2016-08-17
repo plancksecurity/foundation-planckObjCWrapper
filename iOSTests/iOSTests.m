@@ -6,8 +6,8 @@
 //  Copyright © 2015 p≡p. All rights reserved.
 //
 
-#include <regex.h>
 #import <XCTest/XCTest.h>
+
 #import "pEpiOSAdapter/PEPiOSAdapter.h"
 #import "pEpiOSAdapter/PEPSession.h"
 
@@ -1456,6 +1456,33 @@ encmsg[@"outgoing"] = @NO;
 
     PEP_rating color = [session outgoingColorFrom:me to:partner1Orig];
     XCTAssertEqual(color, PEP_rating_reliable);
+}
+
+- (void)testEncryptToMySelf
+{
+    [self pEpSetUp];
+
+    NSMutableDictionary *me = @{kPepUsername: @"username",
+                                kPepAddress: @"me@peptest.ch"}.mutableCopy;
+    [session mySelf:me];
+    XCTAssertNotNil(me[kPepFingerprint]);
+
+    // Create draft
+    NSDictionary *mail = @{ kPepFrom: me,
+                            kPepShortMessage: @"Subject",
+                            kPepLongMessage: @"Oh, this is a long body text!",
+                            kPepOutgoing: @YES};
+
+    NSMutableDictionary *encDict;
+    PEP_STATUS status = [session encryptMessageDict:mail identity:me dest:&encDict];
+    XCTAssertEqual(status, 0);
+    XCTAssertEqualObjects(encDict[kPepShortMessage], @"pEp");
+
+    NSMutableDictionary *unencDict;
+    PEP_rating rating = [session decryptMessageDict:encDict dest:&unencDict keys:nil];
+    XCTAssertGreaterThanOrEqual(rating, PEP_rating_reliable);
+
+    [self pEpCleanUp];
 }
 
 @end

@@ -36,13 +36,18 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull NSDictionary *)src
-                           dest:(NSDictionary * _Nonnull * _Nonnull)dst
-                           keys:(NSArray * _Nonnull * _Nullable)keys;
+                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
+                            keys:(NSArray * _Nullable * _Nullable)keys;
 
 /** Encrypt a message */
 - (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
                            extra:(nullable NSArray *)keys
-                            dest:(NSDictionary * _Nonnull * _Nullable)dst;
+                            dest:(NSDictionary * _Nonnull * _Nonnull)dst;
+
+/** Encrypt a message for the given identity */
+- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
+                        identity:(nonnull NSDictionary *)identity
+                            dest:(NSDictionary * _Nonnull * _Nonnull)dst;
 
 /** Determine the status color of a message to be sent */
 - (PEP_rating)outgoingMessageColor:(nonnull NSDictionary *)msg;

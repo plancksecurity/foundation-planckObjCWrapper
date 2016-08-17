@@ -78,7 +78,9 @@
     release(_session);
 }
 
-- (PEP_rating)decryptMessageDict:(NSDictionary *)src dest:(NSDictionary **)dst keys:(NSArray **)keys
+- (PEP_rating)decryptMessageDict:(nonnull NSDictionary *)src
+                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
+                            keys:(NSArray * _Nullable * _Nullable)keys
 {
     message * _src = PEP_messageDictToStruct(src);
     message * _dst = NULL;
@@ -108,7 +110,9 @@
     free_stringlist(_keys);
 
     *dst = dst_;
-    *keys = keys_;
+    if (keys) {
+        *keys = keys_;
+    }
     return color;
 }
 
@@ -130,7 +134,9 @@
     return [NSDictionary dictionaryWithDictionary:dest];
 }
 
-- (PEP_STATUS)encryptMessageDict:(NSDictionary *)src extra:(NSArray *)keys dest:(NSDictionary **)dst
+- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
+                           extra:(nullable NSArray *)keys
+                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
 {
     PEP_STATUS status;
     PEP_encrypt_flags_t flags;
@@ -157,6 +163,37 @@
     free_message(_dst);
     free_stringlist(_keys);
     
+    return status;
+}
+
+- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
+                        identity:(nonnull NSDictionary *)identity
+                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
+{
+    PEP_STATUS status;
+
+    message * _src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
+    pEp_identity *ident = PEP_identityDictToStruct(identity);
+    message * _dst = NULL;
+
+    @synchronized (self) {
+        status = encrypt_message_for_self(_session, ident, _src, &_dst, PEP_enc_PGP_MIME);
+    }
+
+    NSDictionary * dst_;
+
+    if (_dst) {
+        dst_ = PEP_messageDictFromStruct(_dst);
+    }
+    else {
+        dst_ = PEP_messageDictFromStruct(_src);
+    }
+    *dst = dst_;
+
+    free_message(_src);
+    free_message(_dst);
+    free_identity(ident);
+
     return status;
 }
 
