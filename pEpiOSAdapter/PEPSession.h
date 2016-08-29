@@ -44,7 +44,7 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
                            extra:(nullable NSArray *)keys
                             dest:(NSDictionary * _Nonnull * _Nonnull)dst;
 
-/** Encrypt a message for the given identity */
+/** Encrypt a message for the given identity, which is usually a mySelf identity */
 - (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
                         identity:(nonnull NSDictionary *)identity
                             dest:(NSDictionary * _Nonnull * _Nonnull)dst;
