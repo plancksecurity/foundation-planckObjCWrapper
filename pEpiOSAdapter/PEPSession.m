@@ -309,12 +309,12 @@ DYNAMIC_API PEP_STATUS identity_rating(
     free_identity(ident);
 }
 
-- (void)keyCompromized:(NSMutableDictionary *)identity
+- (void)keyMistrusted:(NSMutableDictionary *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
     @synchronized(self) {
-        key_compromized(_session, ident);
+        key_mistrusted(_session, ident);
     }
     
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];

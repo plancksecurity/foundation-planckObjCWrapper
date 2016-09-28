@@ -98,10 +98,10 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 - (void)trustPersonalKey:(nonnull NSMutableDictionary *)identity;
 
 /**
- if a key gets comprimized tell this using this message
+ if a key is not trusted by the user tell this using this message
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyCompromized:(nonnull NSMutableDictionary *)identity;
+- (void)keyMistrusted:(nonnull NSMutableDictionary *)identity;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
