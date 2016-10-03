@@ -138,7 +138,7 @@
 
 - (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
                            extra:(nullable NSArray *)keys
-                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
+                            dest:(NSDictionary * _Nullable * _Nullable)dst
 {
     PEP_STATUS status;
     PEP_encrypt_flags_t flags;
@@ -159,7 +159,9 @@
     else {
         dst_ = PEP_messageDictFromStruct(_src);
     }
-    *dst = dst_;
+    if (dst) {
+        *dst = dst_;
+    }
 
     free_message(_src);
     free_message(_dst);
@@ -170,7 +172,7 @@
 
 - (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
                         identity:(nonnull NSDictionary *)identity
-                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
+                            dest:(NSDictionary * _Nullable * _Nullable)dst
 {
     PEP_STATUS status;
 
@@ -190,7 +192,10 @@
     else {
         dst_ = PEP_messageDictFromStruct(_src);
     }
-    *dst = dst_;
+
+    if (dst) {
+        *dst = dst_;
+    }
 
     free_message(_src);
     free_message(_dst);
