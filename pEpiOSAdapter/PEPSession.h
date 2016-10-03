@@ -36,7 +36,7 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull NSDictionary *)src
-                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
+                            dest:(NSDictionary * _Nullable * _Nullable)dst
                             keys:(NSArray * _Nullable * _Nullable)keys;
 
 /** Encrypt a message */

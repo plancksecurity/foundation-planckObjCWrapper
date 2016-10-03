@@ -79,7 +79,7 @@
 }
 
 - (PEP_rating)decryptMessageDict:(nonnull NSDictionary *)src
-                            dest:(NSDictionary * _Nonnull * _Nonnull)dst
+                            dest:(NSDictionary * _Nullable * _Nullable)dst
                             keys:(NSArray * _Nullable * _Nullable)keys
 {
     message * _src = PEP_messageDictToStruct(src);
@@ -109,7 +109,9 @@
     free_message(_dst);
     free_stringlist(_keys);
 
-    *dst = dst_;
+    if (dst) {
+        *dst = dst_;
+    }
     if (keys) {
         *keys = keys_;
     }
