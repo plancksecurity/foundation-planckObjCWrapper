@@ -371,4 +371,29 @@ DYNAMIC_API PEP_STATUS identity_rating(
     return color;
 }
 
+- (nullable NSString *)getTrustwordsIdentity1:(nonnull NSDictionary *)identity1
+                                    identity2:(nonnull NSDictionary *)identity2
+                                     language:(nullable NSString *)language
+                                         full:(BOOL)full
+{
+    NSString *result = nil;
+    char *trustwords = nil;
+    size_t sizeWritten = 0;
+
+    pEp_identity *ident1 = PEP_identityDictToStruct(identity1);
+    pEp_identity *ident2 = PEP_identityDictToStruct(identity2);
+    PEP_STATUS status =  get_trustwords(_session, ident1, ident2,
+                                        [[language precomposedStringWithCanonicalMapping]
+                                         UTF8String],
+                                        &trustwords, &sizeWritten, full);
+    if (status == PEP_STATUS_OK) {
+        result = [NSString stringWithCString:trustwords
+                                    encoding:NSUTF8StringEncoding];
+    }
+    if (trustwords) {
+        free(trustwords);
+    }
+    return result;
+}
+
 @end

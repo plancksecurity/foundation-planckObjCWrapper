@@ -128,4 +128,10 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 - (PEP_rating)outgoingColorFrom:(nonnull NSDictionary *)from
                             to:(nonnull NSDictionary *)to;
 
+/** Determine trustwords for two identities */
+- (nullable NSString *)getTrustwordsIdentity1:(nonnull NSDictionary *)identity1
+                                    identity2:(nonnull NSDictionary *)identity2
+                                     language:(nullable NSString *)language
+                                         full:(BOOL)full;
+
 @end

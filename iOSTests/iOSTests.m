@@ -1485,4 +1485,47 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp];
 }
 
+- (void)testGetTrustwords
+{
+    [self pEpSetUp];
+
+    NSDictionary *partner1Orig =
+    @{ kPepAddress: @"partner1@dontcare.me",
+       kPepUserID: @"partner1",
+       kPepFingerprint: @"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6",
+       kPepUsername: @"partner1" }.mutableCopy;
+
+    NSDictionary *meOrig =
+    @{ kPepAddress: @"me@dontcare.me",
+       kPepUserID: @"me",
+       kPepFingerprint: @"CC1F73F6FB774BF08B197691E3BFBCA9248FC681",
+       kPepUsername: @"me" }.mutableCopy;
+
+    NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
+    XCTAssertNotNil(pubKeyPartner1);
+    NSString *pubKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_pub.asc"];
+    XCTAssertNotNil(pubKeyMe);
+    NSString *secKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
+    XCTAssertNotNil(secKeyMe);
+
+    NSArray *trustwordsArray = [session trustwords:meOrig[kPepFingerprint] forLanguage:@"en"
+                                         shortened:false];
+    XCTAssertEqual([trustwordsArray count], 10);
+    NSString *trustwordsOld = [trustwordsArray componentsJoinedByString:@" "];
+
+    NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
+                                                  language:nil full:YES];
+    XCTAssertTrue([trustwordsFull containsString:trustwordsOld]);
+    XCTAssertEqualObjects(trustwordsFull,
+                          @"ABRIDGE MAURISE DATER GALSWORTHY PHEROMONE MICELLES BRAINTEASER TRUNDLER CLINGING WESTERLY COALITIONIST ERYN EXTINCTION INCUNABULUM MOST PATRIZIUS COMPETITOR OBVIOUS MISSOURI ASYNCHRON");
+
+    NSString *trustwordsFullEnglish = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
+                                                             language:@"en" full:YES];
+    XCTAssertEqualObjects(trustwordsFullEnglish, trustwordsFull);
+
+    NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
+                                                           language:@"ZZ" full:YES];
+    XCTAssertNil(trustwordsUndefined);
+}
+
 @end
