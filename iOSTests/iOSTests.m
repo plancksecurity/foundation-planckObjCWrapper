@@ -294,7 +294,7 @@ PEPSession *session;
     XCTAssert( clr == PEP_rating_reliable);
 
     // mistrust Bob
-    [session keyCompromized:identBob];
+    [session keyMistrusted:identBob];
     
     // Gray == PEP_rating_unencrypted
     clr = [session outgoingMessageColor:msg];
@@ -502,7 +502,7 @@ PEPSession *session;
     [session updateIdentity:identBob];
 
     // mistrust Bob
-    [session keyCompromized:identBob];
+    [session keyMistrusted:identBob];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                 identAlice, @"from",
@@ -594,7 +594,7 @@ PEPSession *session;
     [session mySelf:identAlice];
     
     // This will revoke key
-    [session keyCompromized:identAlice];
+    [session keyMistrusted:identAlice];
 
     // Should it regenerate a key ?
     [session mySelf:identAlice];
@@ -815,7 +815,7 @@ encmsg[@"outgoing"] = @NO;
     clr = [session identityColor:identAlice];
     XCTAssert( clr == PEP_rating_reliable);
     
-    [session keyCompromized:identAlice];
+    [session keyMistrusted:identAlice];
     clr = [session identityColor:identAlice];
     XCTAssert( clr == PEP_rating_mistrust);
     
@@ -962,7 +962,7 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Try compromized
-        [session keyCompromized:identMiroAtPetra];
+        [session keyMistrusted:identMiroAtPetra];
 
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_mistrust, @"Not mistrusted");
