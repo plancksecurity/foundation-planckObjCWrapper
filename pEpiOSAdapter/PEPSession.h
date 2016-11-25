@@ -35,25 +35,25 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 + (void)dispatchSyncOnSession:(nonnull PEPSessionBlock)block;
 
 /** Decrypt a message */
-- (PEP_rating)decryptMessageDict:(nonnull NSDictionary *)src
-                            dest:(NSDictionary * _Nullable * _Nullable)dst
+- (PEP_rating)decryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
+                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
                             keys:(NSArray * _Nullable * _Nullable)keys;
 
 /** Encrypt a message */
-- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
+- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
                            extra:(nullable NSArray *)keys
-                            dest:(NSDictionary * _Nullable * _Nullable)dst;
+                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst;
 
 /** Encrypt a message for the given identity, which is usually a mySelf identity */
-- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary *)src
-                        identity:(nonnull NSDictionary *)identity
-                            dest:(NSDictionary * _Nullable * _Nullable)dst;
+- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
+                        identity:(nonnull NSDictionary<NSString *, id> *)identity
+                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst;
 
 /** Determine the status color of a message to be sent */
-- (PEP_rating)outgoingMessageColor:(nonnull NSDictionary *)msg;
+- (PEP_rating)outgoingMessageColor:(nonnull NSDictionary<NSString *, id> *)msg;
 
 /** Determine the status color of a message to be sent */
-- (PEP_rating)identityColor:(nonnull NSDictionary *)identity;
+- (PEP_rating)identityColor:(nonnull NSDictionary<NSString *, id> *)identity;
 
 /** Get trustwords for a fingerprint */
 - (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
@@ -83,31 +83,31 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  @"23", @"user_id", nil];
  
 */
-- (void)mySelf:(nonnull NSMutableDictionary *)identity;
+- (void)mySelf:(nonnull NSMutableDictionary<NSString *, id> *)identity;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)updateIdentity:(nonnull NSMutableDictionary *)identity;
+- (void)updateIdentity:(nonnull NSMutableDictionary<NSString *, id> *)identity;
 
 /**
  Mark a key as trusted with a person.
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)trustPersonalKey:(nonnull NSMutableDictionary *)identity;
+- (void)trustPersonalKey:(nonnull NSMutableDictionary<NSString *, id> *)identity;
 
 /**
  if a key is not trusted by the user tell this using this message
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyMistrusted:(nonnull NSMutableDictionary *)identity;
+- (void)keyMistrusted:(nonnull NSMutableDictionary<NSString *, id> *)identity;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
 */
-- (void)keyResetTrust:(nonnull NSMutableDictionary*)identity;
+- (void)keyResetTrust:(nonnull NSMutableDictionary<NSString *, id> *)identity;
 
 #pragma mark -- Internal API (testing etc.)
 
@@ -125,12 +125,12 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /**
  Outgoing message color for a fake message from `from` to `contact`.
  */
-- (PEP_rating)outgoingColorFrom:(nonnull NSDictionary *)from
-                            to:(nonnull NSDictionary *)to;
+- (PEP_rating)outgoingColorFrom:(nonnull NSDictionary<NSString *, id> *)from
+                            to:(nonnull NSDictionary<NSString *, id> *)to;
 
 /** Determine trustwords for two identities */
-- (nullable NSString *)getTrustwordsIdentity1:(nonnull NSDictionary *)identity1
-                                    identity2:(nonnull NSDictionary *)identity2
+- (nullable NSString *)getTrustwordsIdentity1:(nonnull NSDictionary<NSString *, id> *)identity1
+                                    identity2:(nonnull NSDictionary<NSString *, id> *)identity2
                                      language:(nullable NSString *)language
                                          full:(BOOL)full;
 
