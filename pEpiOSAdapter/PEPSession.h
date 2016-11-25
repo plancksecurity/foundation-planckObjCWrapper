@@ -52,8 +52,8 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /** Determine the status color of a message to be sent */
 - (PEP_rating)outgoingMessageColor:(nonnull NSDictionary<NSString *, id> *)msg;
 
-/** Determine the status color of a message to be sent */
-- (PEP_rating)identityColor:(nonnull NSDictionary<NSString *, id> *)identity;
+/** Determine the rating of an identity */
+- (PEP_rating)identityRating:(nonnull NSDictionary<NSString *, id> *)identity;
 
 /** Get trustwords for a fingerprint */
 - (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID

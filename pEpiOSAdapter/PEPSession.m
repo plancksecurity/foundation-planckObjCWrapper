@@ -218,7 +218,7 @@
     return color;
 }
 
-- (PEP_rating)identityColor:(NSDictionary<NSString *, id> *)identity
+- (PEP_rating)identityRating:(nonnull NSDictionary<NSString *, id> *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     PEP_rating color = PEP_rating_undefined;
