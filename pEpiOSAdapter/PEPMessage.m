@@ -142,6 +142,10 @@ NSArray *PEP_arrayFromBloblist(bloblist_t *bl)
 
 bloblist_t *PEP_arrayToBloblist(NSArray *array)
 {
+    if (array.count == 0) {
+        return nil;
+    }
+
     bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL);
     bloblist_t *bl =_bl;
     for (NSMutableDictionary *blob in array) {
