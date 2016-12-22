@@ -18,6 +18,11 @@
 @interface PEPiOSAdapter : NSObject
 
 /**
+ The HOME URL, where all pEp related files will be stored.
+ */
++ (NSURL *)homeURL;
+
+/**
  Start keyserver lookup.
  - Note: There is only one keyserver lookup thread
  */

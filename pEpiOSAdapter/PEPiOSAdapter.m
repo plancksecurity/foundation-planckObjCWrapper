@@ -14,6 +14,7 @@
 #include "keymanagement.h"
 
 const char* _Nullable SystemDB = NULL;
+NSURL *s_homeURL;
 
 int examine_identity(pEp_identity *ident, void *management)
 {
@@ -42,6 +43,16 @@ static pEp_identity *retrieve_next_identity(void *management)
 }
 
 @implementation PEPiOSAdapter
+
++ (void)initialize
+{
+    s_homeURL = [self createApplicationDirectory];
+}
+
++ (NSURL *)homeURL
+{
+    return s_homeURL;
+}
 
 + (NSURL *)createApplicationDirectory
 {
@@ -80,14 +91,13 @@ static pEp_identity *retrieve_next_identity(void *management)
 + (NSURL *)createAndSetHomeDirectory
 {
     // create and set home directory
-    NSURL *homeUrl = [self createApplicationDirectory];
-    setenv("HOME", [[homeUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+    setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
 
     // create and set temp directory
     NSURL *tmpDirUrl = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
     setenv("TEMP", [[tmpDirUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
 
-    return homeUrl;
+    return s_homeURL;
 }
 
 + (NSString *) getBundlePathFor: (NSString *) filename
