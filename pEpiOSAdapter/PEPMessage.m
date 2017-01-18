@@ -46,6 +46,7 @@ NSString *const kPepReceivedBy = @"recv_by";
 NSString *const kPepReplyTo = @"reply_to";
 NSString *const kPepInReplyTo = @"in_reply_to";
 NSString *const kPepReferences = @"references";
+NSString *const kPepKeywords = @"keywords";
 NSString *const kPepOptFields = @"opt_fields";
 
 NSString *const kPepAttachments = @"attachments";
@@ -325,8 +326,11 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
             [dict setObject:PEP_arrayFromStringlist(msg->in_reply_to) forKey:@"in_reply_to"];
 
         if (msg->references && msg->references->value)
-            [dict setObject:PEP_arrayFromStringlist(msg->references) forKey:@"references"];
-        
+            [dict setObject:PEP_arrayFromStringlist(msg->references) forKey:kPepKeywords];
+
+        if (msg->keywords && msg->keywords->value)
+            [dict setObject:PEP_arrayFromStringlist(msg->keywords) forKey:@"keywords"];
+
         if (msg->opt_fields)
             [dict setObject:PEP_arrayFromStringPairlist(msg->opt_fields) forKey:@"opt_fields"];
         
@@ -401,6 +405,9 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
     if ([dict objectForKey:@"references"])
         msg->references = PEP_arrayToStringlist([dict objectForKey:@"references"]);
     
+    if ([dict objectForKey:kPepKeywords])
+        msg->keywords = PEP_arrayToStringlist([dict objectForKey:kPepKeywords]);
+
     if ([dict objectForKey:@"opt_fields"])
         msg->opt_fields = PEP_arrayToStringPairlist([dict objectForKey:@"opt_fields"]);
     

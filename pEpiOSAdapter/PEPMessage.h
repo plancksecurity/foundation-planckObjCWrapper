@@ -77,6 +77,7 @@ extern NSString *const _Nonnull kPepReceivedBy;
 extern NSString *const _Nonnull kPepReplyTo;
 extern NSString *const _Nonnull kPepInReplyTo;
 extern NSString *const _Nonnull kPepReferences;
+extern NSString *const _Nonnull kPepKeywords;
 extern NSString *const _Nonnull kPepOptFields;
 
 /** NSArray of attachment dicts */
