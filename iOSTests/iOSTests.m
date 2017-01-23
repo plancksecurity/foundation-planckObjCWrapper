@@ -273,7 +273,7 @@ PEPSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
-    clr = [session identityColor:identBob];
+    clr = [session identityRating:identBob];
     XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
@@ -283,7 +283,7 @@ PEPSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
 
-    clr = [session identityColor:identBob];
+    clr = [session identityRating:identBob];
     XCTAssert( clr == PEP_rating_trusted);
 
     // Let' say we undo handshake
@@ -409,7 +409,7 @@ PEPSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
     
-    clr = [session identityColor:identBob];
+    clr = [session identityRating:identBob];
     XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
@@ -419,7 +419,7 @@ PEPSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
-    clr = [session identityColor:identBob];
+    clr = [session identityRating:identBob];
     XCTAssert( clr == PEP_rating_trusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
@@ -453,7 +453,7 @@ PEPSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
-    clr = [session identityColor:identJohn];
+    clr = [session identityRating:identJohn];
     XCTAssert( clr == PEP_rating_trusted);
 
     /* 
@@ -777,15 +777,15 @@ encmsg[@"outgoing"] = @NO;
                                        nil];
     
     [session updateIdentity:identAlice];
-    clr = [session identityColor:identAlice];
+    clr = [session identityRating:identAlice];
     XCTAssert( clr == PEP_rating_reliable);
 
     [session trustPersonalKey:identAlice];
-    clr = [session identityColor:identAlice];
+    clr = [session identityRating:identAlice];
     XCTAssert( clr == PEP_rating_trusted);
     
     [session keyResetTrust:identAlice];
-    clr = [session identityColor:identAlice];
+    clr = [session identityRating:identAlice];
     XCTAssert( clr == PEP_rating_reliable);
     
     [self pEpCleanUp:@"Bob"];
@@ -812,19 +812,19 @@ encmsg[@"outgoing"] = @NO;
                                        nil];
     
     [session updateIdentity:identAlice];
-    clr = [session identityColor:identAlice];
+    clr = [session identityRating:identAlice];
     XCTAssert( clr == PEP_rating_reliable);
     
     [session keyMistrusted:identAlice];
-    clr = [session identityColor:identAlice];
+    clr = [session identityRating:identAlice];
     XCTAssert( clr == PEP_rating_mistrust);
     
     [session keyResetTrust:identAlice];
-    clr = [session identityColor:identAlice];
+    clr = [session identityRating:identAlice];
     XCTAssert( clr == PEP_rating_reliable);
     
     [session trustPersonalKey:identAlice];
-    clr = [session identityColor:identAlice];
+    clr = [session identityRating:identAlice];
     XCTAssert( clr == PEP_rating_trusted);
     
 }{
