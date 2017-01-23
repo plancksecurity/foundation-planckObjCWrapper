@@ -108,13 +108,19 @@ PEPSession *session;
     [self importBundledKey:item intoSession:session];
 }
 
+- (NSString *)loadStringFromFileName:(NSString *)fileName
+{
+    NSString *txtFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath]
+                             stringByAppendingPathComponent:fileName];
+    NSString *txtFileContents = [NSString stringWithContentsOfFile:txtFilePath
+                                                          encoding:NSUTF8StringEncoding error:NULL];
+    return txtFileContents;
+}
+
 - (void)importBundledKey:(NSString *)item intoSession:(PEPSession *)theSession
 {
 
-    NSString *txtFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath]
-                             stringByAppendingPathComponent:item];
-    NSString *txtFileContents = [NSString stringWithContentsOfFile:txtFilePath
-                                                          encoding:NSUTF8StringEncoding error:NULL];
+    NSString *txtFileContents = [self loadStringFromFileName:item];
     [theSession importKey:txtFileContents];
 }
 
@@ -1527,5 +1533,25 @@ encmsg[@"outgoing"] = @NO;
                                                            language:@"ZZ" full:YES];
     XCTAssertNil(trustwordsUndefined);
 }
+
+/*
+- (void)testDecryptMessageHeapBufferOverflow
+{
+    PEPSession *session = [[PEPSession alloc] init];
+    NSString *mimeTxt = [self loadStringFromFileName:@"MessageHeapBufferOverflow.txt"];
+    const char *msgTxt = [mimeTxt cStringUsingEncoding:NSUTF8StringEncoding];
+    NSUInteger dataLength = 4096 * 1024;
+    NSMutableData *decryptedData = [NSMutableData dataWithLength:dataLength];
+    XCTAssertEqual(decryptedData.length, dataLength);
+    stringlist_t *keylist;
+    PEP_rating rating;
+    PEP_decrypt_flags flags;
+    PEP_STATUS status = MIME_decrypt_message((__bridge PEP_SESSION)(session), msgTxt,
+                                             decryptedData.length,
+                                             [decryptedData mutableBytes],
+                                             &keylist, &rating, &flags);
+    XCTAssertEqual(status, PEP_STATUS_OK);
+}
+ */
 
 @end

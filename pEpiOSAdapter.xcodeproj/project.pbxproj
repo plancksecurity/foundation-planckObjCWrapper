@@ -34,6 +34,7 @@
 		43C028C61C6915410097DD74 /* B45CCEB6.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43C028C31C6915410097DD74 /* B45CCEB6.asc */; };
 		43C028C71C6915410097DD74 /* msg_to_B45CCEB6_from_outlook_unknown_signer.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43C028C41C6915410097DD74 /* msg_to_B45CCEB6_from_outlook_unknown_signer.ser */; };
 		43C028C91C69161A0097DD74 /* account_B45CCEB6.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43C028C81C69161A0097DD74 /* account_B45CCEB6.ser */; };
+		43DFB03E1E36122200175C9C /* MessageHeapBufferOverflow.txt in Resources */ = {isa = PBXBuildFile; fileRef = 43DFB03D1E36122200175C9C /* MessageHeapBufferOverflow.txt */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
 		43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */; };
@@ -155,6 +156,7 @@
 		43C028C31C6915410097DD74 /* B45CCEB6.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B45CCEB6.asc; sourceTree = "<group>"; };
 		43C028C41C6915410097DD74 /* msg_to_B45CCEB6_from_outlook_unknown_signer.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_B45CCEB6_from_outlook_unknown_signer.ser; sourceTree = "<group>"; };
 		43C028C81C69161A0097DD74 /* account_B45CCEB6.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = account_B45CCEB6.ser; sourceTree = "<group>"; };
+		43DFB03D1E36122200175C9C /* MessageHeapBufferOverflow.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MessageHeapBufferOverflow.txt; sourceTree = "<group>"; };
 		43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A_sec.asc; sourceTree = "<group>"; };
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
 		43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = account_A3FC7F0A.ser; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		64415E181BE94FCB00F6CBB2 /* iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				43DFB03D1E36122200175C9C /* MessageHeapBufferOverflow.txt */,
 				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
 				640F79221C9B517C00DBEC4E /* 5CB2C182.asc */,
 				432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */,
@@ -426,6 +429,7 @@
 				43C028C71C6915410097DD74 /* msg_to_B45CCEB6_from_outlook_unknown_signer.ser in Resources */,
 				4369AA3D1C6258B800D66556 /* account_80D111EF.ser in Resources */,
 				43C028C61C6915410097DD74 /* B45CCEB6.asc in Resources */,
+				43DFB03E1E36122200175C9C /* MessageHeapBufferOverflow.txt in Resources */,
 				437741021C5F5A6A00B9426D /* 78EE1DBC_sec.asc in Resources */,
 				437741041C5F5A6A00B9426D /* account_78EE1DBC.ser in Resources */,
 				432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */,
