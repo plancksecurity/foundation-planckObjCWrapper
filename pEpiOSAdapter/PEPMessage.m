@@ -326,7 +326,7 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
             [dict setObject:PEP_arrayFromStringlist(msg->in_reply_to) forKey:@"in_reply_to"];
 
         if (msg->references && msg->references->value)
-            [dict setObject:PEP_arrayFromStringlist(msg->references) forKey:kPepKeywords];
+            [dict setObject:PEP_arrayFromStringlist(msg->references) forKey:kPepReferences];
 
         if (msg->keywords && msg->keywords->value)
             [dict setObject:PEP_arrayFromStringlist(msg->keywords) forKey:@"keywords"];
