@@ -353,24 +353,6 @@ DYNAMIC_API PEP_STATUS identity_rating(
     return logString;
 }
 
-- (PEP_rating)outgoingColorFrom:(nonnull NSDictionary<NSString *, id> *)from
-                            to:(nonnull NSDictionary<NSString *, id> *)to
-{
-    NSMutableDictionary *mTo = to.mutableCopy;
-    [self updateIdentity:mTo];
-    NSMutableDictionary *mFrom = from.mutableCopy;
-    [self mySelf:mFrom];
-
-    NSMutableDictionary *fakeMail = [NSMutableDictionary dictionary];
-    fakeMail[kPepFrom] = mFrom;
-    fakeMail[kPepOutgoing] = @YES;
-    fakeMail[kPepTo] = @[mTo];
-    fakeMail[kPepShortMessage] = @"Some fake subject";
-    fakeMail[kPepLongMessage] = @"Some fake long message";
-    PEP_rating color = [self outgoingMessageColor:fakeMail];
-    return color;
-}
-
 - (nullable NSString *)getTrustwordsIdentity1:(nonnull NSDictionary<NSString *, id> *)identity1
                                     identity2:(nonnull NSDictionary<NSString *, id> *)identity2
                                      language:(nullable NSString *)language

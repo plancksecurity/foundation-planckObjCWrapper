@@ -122,12 +122,6 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  */
 - (nonnull NSString *)getLog;
 
-/**
- Outgoing message color for a fake message from `from` to `contact`.
- */
-- (PEP_rating)outgoingColorFrom:(nonnull NSDictionary<NSString *, id> *)from
-                            to:(nonnull NSDictionary<NSString *, id> *)to;
-
 /** Determine trustwords for two identities */
 - (nullable NSString *)getTrustwordsIdentity1:(nonnull NSDictionary<NSString *, id> *)identity1
                                     identity2:(nonnull NSDictionary<NSString *, id> *)identity2

@@ -1460,7 +1460,7 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertNotNil(pubKeyPartner1);
     [session importKey:pubKeyPartner1];
 
-    PEP_rating color = [session outgoingColorFrom:me to:partner1Orig];
+    PEP_rating color = [session identityRating:partner1Orig];
     XCTAssertEqual(color, PEP_rating_reliable);
 }
 
