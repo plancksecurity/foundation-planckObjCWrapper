@@ -37,11 +37,11 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
                             dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
-                            keys:(NSArray * _Nullable * _Nullable)keys;
+                            keys:(NSArray<NSString *> * _Nullable * _Nullable)keys;
 
 /** Encrypt a message */
 - (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
-                           extra:(nullable NSArray *)keys
+                           extra:(nullable NSArray<NSString *> *)keys
                             dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst;
 
 /** Encrypt a message for the given identity, which is usually a mySelf identity */

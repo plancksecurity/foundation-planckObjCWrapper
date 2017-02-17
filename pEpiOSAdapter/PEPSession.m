@@ -80,7 +80,7 @@
 
 - (PEP_rating)decryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
                             dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
-                            keys:(NSArray * _Nullable * _Nullable)keys
+                            keys:(NSArray<NSString *> * _Nullable * _Nullable)keys
 {
     message * _src = PEP_messageDictToStruct(src);
     message * _dst = NULL;
