@@ -301,7 +301,7 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
             [dict setObject:[NSString stringWithUTF8String:msg->shortmsg] forKey:@"shortmsg"];
 
         if (msg->sent)
-            [dict setObject:[NSDate dateWithTimeIntervalSince1970:mktime(msg->sent)] forKey:@"sent"];
+            [dict setObject:[NSDate dateWithTimeIntervalSince1970:timegm(msg->sent)] forKey:@"sent"];
         
         if (msg->recv)
             [dict setObject:[NSDate dateWithTimeIntervalSince1970:mktime(msg->recv)] forKey:@"recv"];
