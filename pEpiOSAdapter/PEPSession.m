@@ -141,7 +141,7 @@
                             dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
 {
     PEP_STATUS status;
-    PEP_encrypt_flags_t flags;
+    PEP_encrypt_flags_t flags = 0;
 
     message * _src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
     message * _dst = NULL;
@@ -175,13 +175,14 @@
                             dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
 {
     PEP_STATUS status;
+    PEP_encrypt_flags_t flags = 0;
 
     message * _src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     message * _dst = NULL;
 
     @synchronized (self) {
-        status = encrypt_message_for_self(_session, ident, _src, &_dst, PEP_enc_PGP_MIME);
+        status = encrypt_message_for_self(_session, ident, _src, &_dst, PEP_enc_PGP_MIME, flags);
     }
 
     NSDictionary * dst_;
