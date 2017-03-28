@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "pEpiOSAdapter.h"
+#import "PEPiOSAdapter.h"
 #import "PEPMessage.h"
 
 @class PEPSession;

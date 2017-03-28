@@ -7,7 +7,7 @@
 //
 
 #import "PEPSession.h"
-#import "pEpiOSAdapter.h"
+#import "PEPiOSAdapter.h"
 #import "PEPIOSAdapter+Internal.h"
 #import "PEPMessage.h"
 
