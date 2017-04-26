@@ -85,7 +85,8 @@ PEPSession *session;
 
 - (void)pEpSetUp : (NSString*)restore{
     // Must be the first thing you do before using anything pEp-related
-    [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+    // ... but this is now done in session, with a "dispatch_once"
+    // [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 
     for(id path in [self pEpWorkFiles])
         [self delFile:path:NULL];
