@@ -557,11 +557,18 @@ PEPSession *session;
     
     // Check that this key is indeed expired
     [session updateIdentity:identHector];
-    XCTAssert([[NSNumber numberWithInt:PEP_ct_key_expired] isEqualToNumber: identHector[@"comm_type"]]);
-    
+    XCTAssertEqual(PEP_ct_key_expired, [identHector[@"comm_type"] integerValue]);
+
+    NSMutableDictionary *identHectorOwn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                        @"pEp Test Hector", @"username",
+                                        @"pep.test.hector@pep-project.org", @"address",
+                                        @PEP_OWN_USERID, @"user_id",
+                                        @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
+                                        nil];
+
     // Myself automatically renew expired key.
-    [session mySelf:identHector];
-    XCTAssert([[NSNumber numberWithInt:PEP_ct_pEp] isEqualToNumber: identHector[@"comm_type"]]);
+    [session mySelf:identHectorOwn];
+    XCTAssertEqual(PEP_ct_pEp, [identHectorOwn[@"comm_type"] integerValue]);
     
     [self pEpCleanUp:@"Bob"];
     
@@ -571,12 +578,12 @@ PEPSession *session;
     NSMutableDictionary *_identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                          @"pEp Test Hector", @"username",
                                          @"pep.test.hector@pep-project.org", @"address",
-                                         @"fc2d33", @"user_id",
+                                         @"khkhkh", @"user_id",
                                          @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
                                          nil];
     
     [session updateIdentity:_identHector];
-    XCTAssertEqual(PEP_ct_pEp, [_identHector[@"comm_type"] integerValue]);
+    XCTAssertEqual(PEP_ct_OpenPGP_unconfirmed, [_identHector[@"comm_type"] integerValue]);
     
     [self pEpCleanUp];
 
