@@ -10,6 +10,9 @@
 #import "PEPiOSAdapter.h"
 #import "PEPIOSAdapter+Internal.h"
 #import "PEPMessage.h"
+#import "PEPLanguage.h"
+#import "PEPCSVScanner.h"
+#import "NSArray+Extension.h"
 
 @interface PEPSession ()
 
@@ -18,7 +21,6 @@
 @end
 
 @implementation PEPSession
-
 
 // serialize all session access
 + (dispatch_queue_t)sharedSessionQueue
@@ -377,6 +379,41 @@ DYNAMIC_API PEP_STATUS identity_rating(
         free(trustwords);
     }
     return result;
+}
+
+- (NSArray<PEPLanguage *> * _Nonnull)languageList
+{
+    char *chLangs;
+    get_languagelist(self.session, &chLangs);
+    NSString *parserInput = [NSString stringWithUTF8String:chLangs];
+
+    NSMutableArray<NSString *> *tokens = [NSMutableArray array];
+    PEPCSVScanner *scanner = [[PEPCSVScanner alloc] initWithString:parserInput];
+    while (YES) {
+        NSString *token = [scanner nextString];
+        if (!token) {
+            break;
+        }
+        [tokens addObject:token];
+    }
+
+    NSArray *theTokens = [NSArray arrayWithArray:tokens];
+    NSMutableArray<PEPLanguage *> *langs = [NSMutableArray new];
+    while (YES) {
+        ArrayTake *take = [theTokens takeOrNil:3];
+        if (!take) {
+            break;
+        }
+        NSArray *elements = take.elements;
+        PEPLanguage *lang = [[PEPLanguage alloc]
+                             initWithCode:[elements objectAtIndex:0]
+                             name:[elements objectAtIndex:1]
+                             sentence:[elements objectAtIndex:2]];
+        [langs addObject:lang];
+        theTokens = take.rest;
+    }
+
+    return [NSArray arrayWithArray:langs];
 }
 
 @end

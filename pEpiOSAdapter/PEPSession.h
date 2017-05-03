@@ -12,6 +12,7 @@
 #import "PEPMessage.h"
 
 @class PEPSession;
+@class PEPLanguage;
 
 /** Callback type for doing something with a session */
 typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
@@ -127,5 +128,10 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
                                     identity2:(nonnull NSDictionary<NSString *, id> *)identity2
                                      language:(nullable NSString *)language
                                          full:(BOOL)full;
+
+/**
+ @returns The list of supported languages for trustwords.
+ */
+- (NSArray<PEPLanguage *> * _Nonnull)languageList;
 
 @end

@@ -12,6 +12,10 @@
 		352988AE1AEF964100FA7E2E /* PEPiOSAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 352988AD1AEF964100FA7E2E /* PEPiOSAdapter.h */; };
 		352988B01AEF964100FA7E2E /* PEPiOSAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 352988AF1AEF964100FA7E2E /* PEPiOSAdapter.m */; };
 		35EA58151B565643000B4CC5 /* PEPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 35EA58141B565643000B4CC5 /* PEPQueue.m */; };
+		43293F011EBA067600EEE010 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43293F001EBA067600EEE010 /* PEPLanguage.m */; };
+		43293F021EBA0FDC00EEE010 /* PEPLanguage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43293EFF1EBA067600EEE010 /* PEPLanguage.h */; };
+		43293F051EBA246700EEE010 /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43293F041EBA246700EEE010 /* PEPCSVScanner.m */; };
+		43293F081EBA364700EEE010 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43293F071EBA364700EEE010 /* NSArray+Extension.m */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
 		432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
@@ -111,6 +115,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				43293F021EBA0FDC00EEE010 /* PEPLanguage.h in CopyFiles */,
 				640037FA1BE1A7EF00F0014E /* PEPQueue.h in CopyFiles */,
 				640037F91BE1A7DE00F0014E /* PEPSession.h in CopyFiles */,
 				352988AE1AEF964100FA7E2E /* PEPiOSAdapter.h in CopyFiles */,
@@ -132,6 +137,12 @@
 		35EA58141B565643000B4CC5 /* PEPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPQueue.m; sourceTree = "<group>"; };
 		35FB0ABB1B57F97E00377032 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35FB0ABD1B57F99D00377032 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		43293EFF1EBA067600EEE010 /* PEPLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPLanguage.h; sourceTree = "<group>"; };
+		43293F001EBA067600EEE010 /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
+		43293F031EBA246700EEE010 /* PEPCSVScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPCSVScanner.h; sourceTree = "<group>"; };
+		43293F041EBA246700EEE010 /* PEPCSVScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPCSVScanner.m; sourceTree = "<group>"; };
+		43293F061EBA364700EEE010 /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
+		43293F071EBA364700EEE010 /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
 		432EF6091C58B77900B6782A /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		432EF60A1C58B77900B6782A /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
 		432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = msg_to_B623F674.asc; sourceTree = "<group>"; };
@@ -234,6 +245,12 @@
 				35EA58131B565643000B4CC5 /* PEPQueue.h */,
 				35EA58141B565643000B4CC5 /* PEPQueue.m */,
 				64415E5A1BF3840500F6CBB2 /* PEPIOSAdapter+Internal.h */,
+				43293EFF1EBA067600EEE010 /* PEPLanguage.h */,
+				43293F001EBA067600EEE010 /* PEPLanguage.m */,
+				43293F031EBA246700EEE010 /* PEPCSVScanner.h */,
+				43293F041EBA246700EEE010 /* PEPCSVScanner.m */,
+				43293F061EBA364700EEE010 /* NSArray+Extension.h */,
+				43293F071EBA364700EEE010 /* NSArray+Extension.m */,
 			);
 			path = pEpiOSAdapter;
 			sourceTree = "<group>";
@@ -444,9 +461,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				35EA58151B565643000B4CC5 /* PEPQueue.m in Sources */,
+				43293F051EBA246700EEE010 /* PEPCSVScanner.m in Sources */,
 				350F0ED31B4D642200D9964F /* PEPSession.m in Sources */,
 				350F0ED91B4E997300D9964F /* PEPMessage.m in Sources */,
 				352988B01AEF964100FA7E2E /* PEPiOSAdapter.m in Sources */,
+				43293F011EBA067600EEE010 /* PEPLanguage.m in Sources */,
+				43293F081EBA364700EEE010 /* NSArray+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
