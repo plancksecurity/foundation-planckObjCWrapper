@@ -118,17 +118,19 @@ static pEp_identity *retrieve_next_identity(void *management)
     // Check if the database file exists in the documents directory.
     NSString *destinationPath = [documentsDirectory stringByAppendingPathComponent:fileName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
-        
         // The file does not exist in the documents directory, so copy it from bundle now.
-        NSBundle *bundleObj = [NSBundle bundleWithPath: [[rootBundle resourcePath] stringByAppendingPathComponent: bundleName]];
+        NSBundle *bundleObj = [NSBundle bundleWithPath:
+                               [[rootBundle resourcePath]
+                                stringByAppendingPathComponent: bundleName]];
         
-        if(!bundleObj)
+        if (!bundleObj)
             return nil;
         
         NSString *sourcePath =[[bundleObj resourcePath] stringByAppendingPathComponent: fileName];
         
         NSError *error;
-        [[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:destinationPath error:&error];
+        [[NSFileManager defaultManager]
+         copyItemAtPath:sourcePath toPath:destinationPath error:&error];
         
         // Check if any error occurred during copying and display it.
         if (error != nil) {
