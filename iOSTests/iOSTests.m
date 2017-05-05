@@ -1283,10 +1283,10 @@ encmsg[@"outgoing"] = @NO;
 
 - (void)testParallelSessions
 {
-    [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+    //[PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 
     // Currently, the first session use MUST be on the main thread
-    PEPSession *session = [PEPSession session];
+    [self pEpSetUp];
     [self doSomeWorkOnSession:session count:0];
 
     dispatch_group_t group = dispatch_group_create();
@@ -1296,6 +1296,7 @@ encmsg[@"outgoing"] = @NO;
         dispatch_group_async(group, queue, ^{
             PEPSession *innerSession = [PEPSession session];
             [self doSomeWorkOnSession:innerSession count:i];
+            innerSession = nil;
         });
     }
 
@@ -1470,6 +1471,9 @@ encmsg[@"outgoing"] = @NO;
 
     PEP_rating color = [session identityRating:partner1Orig];
     XCTAssertEqual(color, PEP_rating_reliable);
+
+    [self pEpCleanUp];
+
 }
 
 - (void)testEncryptToMySelf
@@ -1540,6 +1544,8 @@ encmsg[@"outgoing"] = @NO;
     NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
                                                            language:@"ZZ" full:YES];
     XCTAssertNil(trustwordsUndefined);
+
+    [self pEpCleanUp];
 }
 
 /*
