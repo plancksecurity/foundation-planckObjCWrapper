@@ -609,49 +609,10 @@ PEPSession *session;
     
     // This will revoke key
     [session keyMistrusted:identAlice];
+    
+    // Check fingerprint is different
+    XCTAssertNotEqual(identAlice[@"fpr"], @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97");
 
-    // Should it regenerate a key ?
-    [session mySelf:identAlice];
-
-    // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
-    // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    [self importBundledKey:@"0xC9C2EE39.asc"];
-    
-    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", @"username",
-                                     @"pep.test.bob@pep-project.org", @"address",
-                                     @"42", @"user_id",
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
-                                     nil];
-    
-    [session updateIdentity:identBob];
-    
-    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                identAlice, @"from",
-                                [NSMutableArray arrayWithObjects:
-                                 [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"pEp Test Bob", @"username",
-                                  @"pep.test.bob@pep-project.org", @"address",
-                                  nil],
-                                 nil], @"to",
-                                @"All Green Test", @"shortmsg",
-                                @"This is a text content", @"longmsg",
-                                @YES, @"outgoing",
-                                nil];
-    
-    
-    // Should it be unencrypted ?
-    PEP_rating clr = [session outgoingMessageColor:msg];
-    XCTAssertEqual(clr, PEP_rating_unencrypted);
-    
-    NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
-    
-    XCTAssertEqual(status, PEP_UNENCRYPTED);
-    
-    XCTAssertNotEqual(encmsg[@"attachments"][0][@"mimeType"],
-                      @"application/pgp-encrypted");
-    
     [self pEpCleanUp];
 }
 
