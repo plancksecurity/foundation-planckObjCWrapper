@@ -9,6 +9,8 @@
 #ifndef PEPIOSAdapter_Internal_h
 #define PEPIOSAdapter_Internal_h
 
+#import "sync.h"
+
 #import "PEPQueue.h"
 
 @interface PEPiOSAdapter ()

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #include "message_api.h"
-#include "sync.h"
+#include "sync_app.h"
 
 @protocol PEPKeyManagementDelegate <NSObject>
 

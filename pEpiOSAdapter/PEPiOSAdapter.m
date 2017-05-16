@@ -10,7 +10,9 @@
 
 #import "PEPiOSAdapter.h"
 #import "PEPIOSAdapter+Internal.h"
+
 #import "PEPMessage.h"
+
 #include "keymanagement.h"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -278,7 +280,6 @@ static NSConditionLock *syncThreadJoinCond = nil;
 static PEP_SESSION sync_session = NULL;
 static id <PEPSyncDelegate> syncDelegate = nil;
 
-
 + (void)syncThreadRoutine:(id)object
 {
     [syncThreadJoinCond lock];
@@ -359,6 +360,5 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 {
     return sync_session;
 }
-
 
 @end
