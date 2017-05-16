@@ -148,6 +148,7 @@
 		43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_A3FC7F0A_from_mutt.ser; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
+		642FB6551ECB4B89008D3DF3 /* PEPSession+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPSession+Internal.h"; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64415E191BE94FCB00F6CBB2 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		64415E1B1BE94FCB00F6CBB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -211,14 +212,15 @@
 			isa = PBXGroup;
 			children = (
 				352988AD1AEF964100FA7E2E /* PEPiOSAdapter.h */,
+				64415E5A1BF3840500F6CBB2 /* PEPIOSAdapter+Internal.h */,
 				352988AF1AEF964100FA7E2E /* PEPiOSAdapter.m */,
 				350F0ED11B4D642200D9964F /* PEPSession.h */,
+				642FB6551ECB4B89008D3DF3 /* PEPSession+Internal.h */,
 				350F0ED21B4D642200D9964F /* PEPSession.m */,
 				350F0ED71B4E997300D9964F /* PEPMessage.h */,
 				350F0ED81B4E997300D9964F /* PEPMessage.m */,
 				35EA58131B565643000B4CC5 /* PEPQueue.h */,
 				35EA58141B565643000B4CC5 /* PEPQueue.m */,
-				64415E5A1BF3840500F6CBB2 /* PEPIOSAdapter+Internal.h */,
 				43293EFF1EBA067600EEE010 /* PEPLanguage.h */,
 				43293F001EBA067600EEE010 /* PEPLanguage.m */,
 				43293F031EBA246700EEE010 /* PEPCSVScanner.h */,

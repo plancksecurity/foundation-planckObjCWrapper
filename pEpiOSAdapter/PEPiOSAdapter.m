@@ -209,6 +209,17 @@ NSURL *s_homeURL;
     [PEPiOSAdapter setupTrustWordsDB:[NSBundle mainBundle]];
 }
 
+static NSMutableArray* boundSessions = nil;
+
++ (NSMutableArray*)boundSessions
+{
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        boundSessions =  [[NSMutableArray alloc] init];
+    });
+    return boundSessions;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 //  Keyserver and Identity lookup - ObjC part
 
@@ -307,6 +318,17 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     [syncThreadJoinCond unlockWithCondition:YES];
 }
 
++ (void)attachSyncSession:(PEP_SESSION)session
+{
+    if(sync_session)
+        attach_sync_session(session, sync_session);
+}
+
++ (void)detachSyncSession:(PEP_SESSION)session
+{
+    detach_sync_session(session);
+}
+
 + (void)startSync:(id <PEPSyncDelegate>)delegate;
 {
     syncDelegate = delegate;
@@ -324,10 +346,26 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 
         [syncThread start];
     }
+
+    NSMutableArray* sessionList = [PEPiOSAdapter boundSessions];
+    PEPSession* session;
+    @synchronized (sessionList) {
+        for (session in sessionList) {
+            [PEPiOSAdapter attachSyncSession:[session session]];
+        }
+    }
 }
 
 + (void)stopSync
 {
+    NSMutableArray* sessionList = [PEPiOSAdapter boundSessions];
+    PEPSession* session;
+    @synchronized (sessionList) {
+        for (session in sessionList) {
+            [PEPiOSAdapter detachSyncSession:[session session]];
+        }
+    }
+    
     syncDelegate = nil;
     
     if (syncQueue)
@@ -355,10 +393,28 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     return syncDelegate;
 }
 
-+ (PEP_SESSION)getSyncSession
++ (void)bindSession:(PEPSession*)session
 {
-    return sync_session;
+    NSMutableArray* sessionList = [PEPiOSAdapter boundSessions];
+    @synchronized (sessionList) {
+        [sessionList addObject:session];
+    }
+
+    [PEPiOSAdapter registerExamineFunction:[session session]];
+    [PEPiOSAdapter attachSyncSession:[session session]];
 }
+
++ (void)unbindSession:(PEPSession*)session
+{
+    [PEPiOSAdapter detachSyncSession:[session session]];
+    
+    NSMutableArray* sessionList = [PEPiOSAdapter boundSessions];
+    @synchronized (sessionList) {
+        [sessionList removeObject:session];
+    }
+
+}
+
 
 
 @end
