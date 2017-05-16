@@ -7,18 +7,13 @@
 //
 
 #import "PEPSession.h"
+#import "PEPSession+Internal.h"
 #import "PEPiOSAdapter.h"
 #import "PEPIOSAdapter+Internal.h"
 #import "PEPMessage.h"
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Extension.h"
-
-@interface PEPSession ()
-
-@property (nonatomic) PEP_SESSION session;
-
-@end
 
 @implementation PEPSession
 
@@ -70,21 +65,15 @@
     if (status != PEP_STATUS_OK) {
         return nil;
     }
-    
-    // TODO : keep track of attached session to detach cleanly
-    PEP_SESSION sync_session = [PEPiOSAdapter getSyncSession];
 
-    status = attach_sync_session(_session, sync_session);
+    [PEPiOSAdapter bindSession:self];
     
-    [PEPiOSAdapter registerExamineFunction:_session];
     return self;
 }
 
 - (void)dealloc
 {
-    // TODO : remove from attached session list
-    
-    detach_sync_session(_session);
+    [PEPiOSAdapter unbindSession:self];
     
     release(_session);
 }

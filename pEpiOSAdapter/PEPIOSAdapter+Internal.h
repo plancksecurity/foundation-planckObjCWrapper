@@ -12,6 +12,8 @@
 #import "sync.h"
 
 #import "PEPQueue.h"
+#import "PEPSession.h"
+#import "PEPSession+Internal.h"
 
 @interface PEPiOSAdapter ()
 
@@ -22,7 +24,9 @@
 
 + (PEPQueue*)getSyncQueue;
 + (id <PEPSyncDelegate>)getSyncDelegate;
-+ (PEP_SESSION)getSyncSession;
++ (void)bindSession:(PEPSession*)session;
++ (void)unbindSession:(PEPSession*)session;
+
 
 @end
 
