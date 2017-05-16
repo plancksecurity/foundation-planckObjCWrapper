@@ -63,6 +63,12 @@ NSString *const kPepCommType = @"comm_type";
 
 NSString *const kPepRawMessage = @"raw_message";
 
+NSString *const kXpEpVersion = @"X-pEp-Version";
+
+NSString *const kXEncStatus = @"X-EncStatus";
+
+NSString *const kXKeylist = @"X-KeyList";
+
 NSArray *PEP_arrayFromStringlist(stringlist_t *sl)
 {
     NSMutableArray *array = [NSMutableArray array];

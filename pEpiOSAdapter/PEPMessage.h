@@ -103,3 +103,12 @@ extern NSString *const _Nonnull kPepRawMessage;
 
 /** NSError parameters will use this domain */
 extern NSString *const _Nonnull PEPSessionErrorDomain;
+
+/** Optional field "X-pEp-Version" */
+extern NSString *const _Nonnull kXpEpVersion;
+
+/** Optional field "X-EncStatus" */
+extern NSString *const _Nonnull kXEncStatus;
+
+/** Optional field "X-KeyList" */
+extern NSString *const _Nonnull kXKeylist;
