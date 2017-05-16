@@ -53,8 +53,8 @@ PEP_STATUS notify_handshake(void *unused_object, pEp_identity *me, pEp_identity 
     if ( syncDelegate )
         return [syncDelegate
                 notifyHandshakeWithSignal:signal
-                    :PEP_identityDictFromStruct(me)
-                    :PEP_identityDictFromStruct(partner)];
+                me:PEP_identityDictFromStruct(me)
+                partner:PEP_identityDictFromStruct(partner)];
     else
         return PEP_SYNC_NO_NOTIFY_CALLBACK;
 }

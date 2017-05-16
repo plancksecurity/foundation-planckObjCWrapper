@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #include "message_api.h"
 #include "sync.h"
 
@@ -18,9 +19,7 @@
 
 @protocol PEPSyncDelegate <NSObject>
 
-- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal
-                                       :(id)me
-                                       :(id)partner;
+- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(id)me partner:(id)partner;
 
 - (PEP_STATUS)sendMessage:(id)msg;
 
