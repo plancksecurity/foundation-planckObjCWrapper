@@ -13,13 +13,14 @@
 #import "PEPMessage.h"
 #include "keymanagement.h"
 
-const char* _Nullable SystemDB = NULL;
-NSURL *s_homeURL;
+///////////////////////////////////////////////////////////////////////////////
+//  Keyserver and Identity lookup - C part
+
 
 int examine_identity(pEp_identity *ident, void *management)
 {
     //PEPQueue *q = (__bridge PEPQueue *)management;
-    PEPQueue *q = [PEPiOSAdapter getQueue];
+    PEPQueue *q = [PEPiOSAdapter getLookupQueue];
     
     NSDictionary *identity = PEP_identityDictFromStruct(ident);
     
@@ -30,7 +31,7 @@ int examine_identity(pEp_identity *ident, void *management)
 static pEp_identity *retrieve_next_identity(void *management)
 {
     //PEPQueue *q = (__bridge PEPQueue *)management;
-    PEPQueue *q = [PEPiOSAdapter getQueue];
+    PEPQueue *q = [PEPiOSAdapter getLookupQueue];
     
     // Dequeue is a blocking operation
     // that returns nil when queue is killed
@@ -41,6 +42,57 @@ static pEp_identity *retrieve_next_identity(void *management)
     else
         return NULL;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Sync - C part
+
+// Called by sync thread only
+PEP_STATUS notify_handshake(void *unused_object, pEp_identity *me, pEp_identity *partner, sync_handshake_signal signal)
+{
+    id <PEPSyncDelegate> syncDelegate = [PEPiOSAdapter getSyncDelegate];
+    if ( syncDelegate )
+        return [syncDelegate
+                notifyHandshakeWithSignal:signal
+                    :PEP_identityDictFromStruct(me)
+                    :PEP_identityDictFromStruct(partner)];
+    else
+        return PEP_SYNC_NO_NOTIFY_CALLBACK;
+}
+
+// Called by sync thread only
+PEP_STATUS message_to_send(void *unused_object, message *msg)
+{
+    id <PEPSyncDelegate> syncDelegate = [PEPiOSAdapter getSyncDelegate];
+    if ( syncDelegate )
+        return [syncDelegate sendMessage:PEP_messageDictFromStruct(msg)];
+    else
+        return PEP_SEND_FUNCTION_NOT_REGISTERED;
+}
+
+// called indirectly by decrypt message - any thread/session
+int inject_sync_msg(void *msg, void *unused_management)
+{
+    PEPQueue *q = [PEPiOSAdapter getSyncQueue];
+    
+    [q enqueue:[NSValue valueWithPointer:msg]];
+    
+    return 0;
+}
+
+// Called by sync thread only
+void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
+{
+    PEPQueue *q = [PEPiOSAdapter getSyncQueue];
+    
+    return (void*)[[q dequeue] pointerValue];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+// DB and paths
+
+const char* _Nullable SystemDB = NULL;
+NSURL *s_homeURL;
 
 @implementation PEPiOSAdapter
 
@@ -157,50 +209,53 @@ static pEp_identity *retrieve_next_identity(void *management)
     [PEPiOSAdapter setupTrustWordsDB:[NSBundle mainBundle]];
 }
 
-static PEPQueue *queue = nil;
-static NSThread *keyserver_thread = nil;
-static NSConditionLock *joinCond = nil;
+///////////////////////////////////////////////////////////////////////////////
+//  Keyserver and Identity lookup - ObjC part
 
-+ (void)keyserverThread:(id)object
+static PEPQueue *lookupQueue = nil;
+static NSThread *lookupThread = nil;
+static NSConditionLock *lookupThreadJoinCond = nil;
+
++ (void)lookupThreadRoutine:(id)object
 {
-    [joinCond lock];
+    [lookupThreadJoinCond lock];
 
     // FIXME: do_KeyManagement asserts if management is null.
     do_keymanagement(retrieve_next_identity, "NOTNULL" /* (__bridge void *)queue */);
     
     // Set and signal join()
-    [joinCond unlockWithCondition:YES];
+    [lookupThreadJoinCond unlockWithCondition:YES];
 }
 
 + (void)startKeyserverLookup
 {
-    if (!queue)
+    if (!lookupQueue)
     {
-        queue = [[PEPQueue alloc]init];
+        lookupQueue = [[PEPQueue alloc]init];
         
         // There is no join() call on NSThreads.
-        joinCond = [[NSConditionLock alloc] initWithCondition:NO];
+        lookupThreadJoinCond = [[NSConditionLock alloc] initWithCondition:NO];
         
-        keyserver_thread = [[NSThread alloc] initWithTarget:self selector:@selector(keyserverThread:) object:nil];
-        [keyserver_thread start];
+        lookupThread = [[NSThread alloc] initWithTarget:self selector:@selector(lookupThreadRoutine:) object:nil];
+        [lookupThread start];
     }
 }
 
 + (void)stopKeyserverLookup
 {
     
-    if (queue)
+    if (lookupQueue)
     {
         // Flush queue and kick the consumer
-        [queue kill];
+        [lookupQueue kill];
         
-        // Thread then bailout. Wait fo that.
-        [joinCond lockWhenCondition:YES];
-        [joinCond unlock];
+        // Thread then bailout. Wait for that.
+        [lookupThreadJoinCond lockWhenCondition:YES];
+        [lookupThreadJoinCond unlock];
         
-        keyserver_thread = nil;
-        queue = nil;
-        joinCond = nil;
+        lookupThread = nil;
+        lookupQueue = nil;
+        lookupThreadJoinCond = nil;
     }
 }
 
@@ -209,9 +264,101 @@ static NSConditionLock *joinCond = nil;
     register_examine_function(session, examine_identity, NULL /* (__bridge void *)queue */);
 }
 
-+ (PEPQueue*)getQueue
++ (PEPQueue*)getLookupQueue
 {
-    return queue;
+    return lookupQueue;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Sync - ObjC part
+
+static PEPQueue *syncQueue = nil;
+static NSThread *syncThread = nil;
+static NSConditionLock *syncThreadJoinCond = nil;
+static PEP_SESSION sync_session = NULL;
+static id <PEPSyncDelegate> syncDelegate = nil;
+
+
++ (void)syncThreadRoutine:(id)object
+{
+    [syncThreadJoinCond lock];
+    
+    PEP_STATUS status = init(&sync_session);
+    if (status != PEP_STATUS_OK) {
+        return;
+    }
+    
+    register_sync_callbacks(sync_session,
+                             /* "management" : queuing (unused) */
+                            "NOTNULL",
+                            message_to_send,
+                            notify_handshake,
+                            inject_sync_msg,
+                            retrieve_next_sync_msg);
+
+    status = do_sync_protocol(sync_session,
+                              /* "object" : notifying, sending (unused) */
+                              "NOTNULL");
+    
+    // TODO : detach all attached sessions
+    
+    release(sync_session);
+    
+    [syncThreadJoinCond unlockWithCondition:YES];
+}
+
++ (void)startSync:(id <PEPSyncDelegate>)delegate;
+{
+    syncDelegate = delegate;
+    
+    if (!syncQueue)
+    {
+        syncQueue = [[PEPQueue alloc]init];
+        
+        syncThreadJoinCond = [[NSConditionLock alloc] initWithCondition:NO];
+        
+        syncThread = [[NSThread alloc]
+                      initWithTarget:self
+                      selector:@selector(syncThreadRoutine:)
+                      object:nil];
+
+        [syncThread start];
+    }
+}
+
++ (void)stopSync
+{
+    syncDelegate = nil;
+    
+    if (syncQueue)
+    {
+        // FIXME : memory leak ! unallocate sync message waiting in the queue
+        
+        [syncQueue kill];
+        
+        [syncThreadJoinCond lockWhenCondition:YES];
+        [syncThreadJoinCond unlock];
+        
+        syncThread = nil;
+        syncQueue = nil;
+        syncThreadJoinCond = nil;
+    }
+}
+
++ (PEPQueue*)getSyncQueue
+{
+    return syncQueue;
+}
+
++ (id <PEPSyncDelegate>)getSyncDelegate
+{
+    return syncDelegate;
+}
+
++ (PEP_SESSION)getSyncSession
+{
+    return sync_session;
+}
+
 
 @end

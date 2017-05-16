@@ -8,10 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #include "message_api.h"
+#include "sync.h"
 
 @protocol PEPKeyManagementDelegate <NSObject>
 
 - (void)identityUpdated:(id)identity;
+
+@end
+
+@protocol PEPSyncDelegate <NSObject>
+
+- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal
+                                       :(id)me
+                                       :(id)partner;
+
+- (PEP_STATUS)sendMessage:(id)msg;
 
 @end
 
@@ -35,5 +46,17 @@
 
 + (void)setupTrustWordsDB;
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle;
+
+/**
+ Start Sync.
+ - Note: There is only one Sync session and thread
+ */
++ (void)startSync:(id <PEPSyncDelegate>)delegate;
+
+/**
+ Stop Sync.
+ */
++ (void)stopSync;
+
 
 @end

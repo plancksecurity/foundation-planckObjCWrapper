@@ -16,7 +16,11 @@
 // this messages are for internal use only; do not call
 
 + (void)registerExamineFunction:(PEP_SESSION)session;
-+ (PEPQueue*)getQueue;
++ (PEPQueue*)getLookupQueue;
+
++ (PEPQueue*)getSyncQueue;
++ (id <PEPSyncDelegate>)getSyncDelegate;
++ (PEP_SESSION)getSyncSession;
 
 @end
 

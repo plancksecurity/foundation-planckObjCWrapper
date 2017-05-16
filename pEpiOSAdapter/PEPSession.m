@@ -71,12 +71,21 @@
         return nil;
     }
     
+    // TODO : keep track of attached session to detach cleanly
+    PEP_SESSION sync_session = [PEPiOSAdapter getSyncSession];
+
+    status = attach_sync_session(_session, sync_session);
+    
     [PEPiOSAdapter registerExamineFunction:_session];
     return self;
 }
 
 - (void)dealloc
 {
+    // TODO : remove from attached session list
+    
+    detach_sync_session(_session);
+    
     release(_session);
 }
 
