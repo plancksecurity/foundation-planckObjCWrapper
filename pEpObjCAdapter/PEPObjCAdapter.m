@@ -1,6 +1,6 @@
 //
-//  pEpiOSAdapter.m
-//  pEpiOSAdapter
+//  pEpObjCAdapter.m
+//  pEpObjCAdapter
 //
 //  Created by Volker Birk on 28.04.15.
 //  Copyright (c) 2015 p≡p. All rights reserved.
@@ -348,9 +348,11 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     }
 
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
+    NSValue* v;
     PEPSession* session;
     @synchronized (sessionList) {
-        for (session in sessionList) {
+        for (v in sessionList) {
+            session = [v nonretainedObjectValue];
             [PEPObjCAdapter attachSyncSession:[session session]];
         }
     }
@@ -359,9 +361,11 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 + (void)stopSync
 {
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
+    NSValue* v;
     PEPSession* session;
     @synchronized (sessionList) {
-        for (session in sessionList) {
+        for (v in sessionList) {
+            session = [v nonretainedObjectValue];
             [PEPObjCAdapter detachSyncSession:[session session]];
         }
     }
@@ -397,7 +401,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 {
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     @synchronized (sessionList) {
-        [sessionList addObject:session];
+        [sessionList addObject:[NSValue valueWithNonretainedObject:session]];
     }
 
     [PEPObjCAdapter registerExamineFunction:[session session]];
@@ -410,7 +414,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     @synchronized (sessionList) {
-        [sessionList removeObject:session];
+        [sessionList removeObject:[NSValue valueWithNonretainedObject:session]];
     }
 
 }
