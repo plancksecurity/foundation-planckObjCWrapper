@@ -15,7 +15,7 @@
 #import "PEPSession.h"
 #import "PEPSession+Internal.h"
 
-@interface PEPiOSAdapter ()
+@interface PEPObjCAdapter ()
 
 // this messages are for internal use only; do not call
 

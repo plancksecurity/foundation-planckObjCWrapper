@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-#import "PEPiOSAdapter.h"
+#import "PEPObjCAdapter.h"
 #import "PEPIOSAdapter+Internal.h"
 #import "PEPMessage.h"
 #include "keymanagement.h"
@@ -20,7 +20,7 @@
 int examine_identity(pEp_identity *ident, void *management)
 {
     //PEPQueue *q = (__bridge PEPQueue *)management;
-    PEPQueue *q = [PEPiOSAdapter getLookupQueue];
+    PEPQueue *q = [PEPObjCAdapter getLookupQueue];
     
     NSDictionary *identity = PEP_identityDictFromStruct(ident);
     
@@ -31,7 +31,7 @@ int examine_identity(pEp_identity *ident, void *management)
 static pEp_identity *retrieve_next_identity(void *management)
 {
     //PEPQueue *q = (__bridge PEPQueue *)management;
-    PEPQueue *q = [PEPiOSAdapter getLookupQueue];
+    PEPQueue *q = [PEPObjCAdapter getLookupQueue];
     
     // Dequeue is a blocking operation
     // that returns nil when queue is killed
@@ -49,7 +49,7 @@ static pEp_identity *retrieve_next_identity(void *management)
 // Called by sync thread only
 PEP_STATUS notify_handshake(void *unused_object, pEp_identity *me, pEp_identity *partner, sync_handshake_signal signal)
 {
-    id <PEPSyncDelegate> syncDelegate = [PEPiOSAdapter getSyncDelegate];
+    id <PEPSyncDelegate> syncDelegate = [PEPObjCAdapter getSyncDelegate];
     if ( syncDelegate )
         return [syncDelegate
                 notifyHandshakeWithSignal:signal
@@ -62,7 +62,7 @@ PEP_STATUS notify_handshake(void *unused_object, pEp_identity *me, pEp_identity 
 // Called by sync thread only
 PEP_STATUS message_to_send(void *unused_object, message *msg)
 {
-    id <PEPSyncDelegate> syncDelegate = [PEPiOSAdapter getSyncDelegate];
+    id <PEPSyncDelegate> syncDelegate = [PEPObjCAdapter getSyncDelegate];
     if ( syncDelegate )
         return [syncDelegate sendMessage:PEP_messageDictFromStruct(msg)];
     else
@@ -72,7 +72,7 @@ PEP_STATUS message_to_send(void *unused_object, message *msg)
 // called indirectly by decrypt message - any thread/session
 int inject_sync_msg(void *msg, void *unused_management)
 {
-    PEPQueue *q = [PEPiOSAdapter getSyncQueue];
+    PEPQueue *q = [PEPObjCAdapter getSyncQueue];
     
     [q enqueue:[NSValue valueWithPointer:msg]];
     
@@ -82,7 +82,7 @@ int inject_sync_msg(void *msg, void *unused_management)
 // Called by sync thread only
 void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
 {
-    PEPQueue *q = [PEPiOSAdapter getSyncQueue];
+    PEPQueue *q = [PEPObjCAdapter getSyncQueue];
     
     return (void*)[[q dequeue] pointerValue];
 }
@@ -94,7 +94,7 @@ void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
 const char* _Nullable SystemDB = NULL;
 NSURL *s_homeURL;
 
-@implementation PEPiOSAdapter
+@implementation PEPObjCAdapter
 
 + (void)initialize
 {
@@ -161,7 +161,7 @@ NSURL *s_homeURL;
                                                           :(NSString *)bundleName
                                                           :(NSString *)fileName{
 
-    NSURL *homeUrl = [PEPiOSAdapter createAndSetHomeDirectory];
+    NSURL *homeUrl = [PEPObjCAdapter createAndSetHomeDirectory];
     NSString *documentsDirectory = [homeUrl path];
     
     if(!(documentsDirectory && bundleName && fileName))
@@ -195,7 +195,7 @@ NSURL *s_homeURL;
 }
 
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle{
-    NSString *systemDBPath = [PEPiOSAdapter copyAssetIntoDocumentsDirectory:rootBundle
+    NSString *systemDBPath = [PEPObjCAdapter copyAssetIntoDocumentsDirectory:rootBundle
                                                                            :@"pEpTrustWords.bundle"
                                                                            :@"system.db"];
     if (SystemDB) {
@@ -206,7 +206,7 @@ NSURL *s_homeURL;
 
 + (void)setupTrustWordsDB
 {
-    [PEPiOSAdapter setupTrustWordsDB:[NSBundle mainBundle]];
+    [PEPObjCAdapter setupTrustWordsDB:[NSBundle mainBundle]];
 }
 
 static NSMutableArray* boundSessions = nil;
@@ -347,22 +347,22 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         [syncThread start];
     }
 
-    NSMutableArray* sessionList = [PEPiOSAdapter boundSessions];
+    NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     PEPSession* session;
     @synchronized (sessionList) {
         for (session in sessionList) {
-            [PEPiOSAdapter attachSyncSession:[session session]];
+            [PEPObjCAdapter attachSyncSession:[session session]];
         }
     }
 }
 
 + (void)stopSync
 {
-    NSMutableArray* sessionList = [PEPiOSAdapter boundSessions];
+    NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     PEPSession* session;
     @synchronized (sessionList) {
         for (session in sessionList) {
-            [PEPiOSAdapter detachSyncSession:[session session]];
+            [PEPObjCAdapter detachSyncSession:[session session]];
         }
     }
     
@@ -395,20 +395,20 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 
 + (void)bindSession:(PEPSession*)session
 {
-    NSMutableArray* sessionList = [PEPiOSAdapter boundSessions];
+    NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     @synchronized (sessionList) {
         [sessionList addObject:session];
     }
 
-    [PEPiOSAdapter registerExamineFunction:[session session]];
-    [PEPiOSAdapter attachSyncSession:[session session]];
+    [PEPObjCAdapter registerExamineFunction:[session session]];
+    [PEPObjCAdapter attachSyncSession:[session session]];
 }
 
 + (void)unbindSession:(PEPSession*)session
 {
-    [PEPiOSAdapter detachSyncSession:[session session]];
+    [PEPObjCAdapter detachSyncSession:[session session]];
     
-    NSMutableArray* sessionList = [PEPiOSAdapter boundSessions];
+    NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     @synchronized (sessionList) {
         [sessionList removeObject:session];
     }

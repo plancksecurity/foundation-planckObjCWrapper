@@ -25,7 +25,7 @@
 
 @end
 
-@interface PEPiOSAdapter : NSObject
+@interface PEPObjCAdapter : NSObject
 
 /**
  The HOME URL, where all pEp related files will be stored.

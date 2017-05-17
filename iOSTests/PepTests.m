@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "pEpiOSAdapter/PEPiOSAdapter.h"
+#import "pEpiOSAdapter/PEPObjCAdapter.h"
 #import "pEpiOSAdapter/PEPSession.h"
 #import "pEpiOSAdapter/PEPLanguage.h"
 
@@ -20,7 +20,7 @@
 
 - (void)setUp {
     [super setUp];
-    [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+    [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 }
 
 - (void)tearDown {

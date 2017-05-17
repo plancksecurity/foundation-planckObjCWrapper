@@ -8,7 +8,7 @@
 
 #import "PEPSession.h"
 #import "PEPSession+Internal.h"
-#import "PEPiOSAdapter.h"
+#import "PEPObjCAdapter.h"
 #import "PEPIOSAdapter+Internal.h"
 #import "PEPMessage.h"
 #import "PEPLanguage.h"
@@ -52,7 +52,7 @@
 {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+        [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
     });
 }
 
@@ -66,14 +66,14 @@
         return nil;
     }
 
-    [PEPiOSAdapter bindSession:self];
+    [PEPObjCAdapter bindSession:self];
     
     return self;
 }
 
 - (void)dealloc
 {
-    [PEPiOSAdapter unbindSession:self];
+    [PEPObjCAdapter unbindSession:self];
     
     release(_session);
 }

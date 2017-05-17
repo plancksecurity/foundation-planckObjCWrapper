@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "pEpiOSAdapter/PEPiOSAdapter.h"
+#import "pEpiOSAdapter/PEPObjCAdapter.h"
 #import "pEpiOSAdapter/PEPSession.h"
 
 @interface iOSTests : XCTestCase
@@ -86,7 +86,7 @@ PEPSession *session;
 - (void)pEpSetUp : (NSString*)restore{
     // Must be the first thing you do before using anything pEp-related
     // ... but this is now done in session, with a "dispatch_once"
-    // [PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+    // [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 
     for(id path in [self pEpWorkFiles])
         [self delFile:path:NULL];
@@ -162,18 +162,18 @@ PEPSession *session;
 - (void)testShortKeyServerLookup {
     
     [self pEpSetUp];
-    [PEPiOSAdapter startKeyserverLookup];
+    [PEPObjCAdapter startKeyserverLookup];
     
     // Do nothing.
     
-    [PEPiOSAdapter stopKeyserverLookup];
+    [PEPObjCAdapter stopKeyserverLookup];
     [self pEpCleanUp];
 }
 
 - (void)testLongKeyServerLookup {
     
     [self pEpSetUp];
-    [PEPiOSAdapter startKeyserverLookup];
+    [PEPObjCAdapter startKeyserverLookup];
     
     NSMutableDictionary *ident = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                     @"pEpDontAssert", @"username",
@@ -190,7 +190,7 @@ PEPSession *session;
     
     XCTAssert(ident[@"fpr"]);
     
-    [PEPiOSAdapter stopKeyserverLookup];
+    [PEPObjCAdapter stopKeyserverLookup];
     [self pEpCleanUp];
     
 }
@@ -1139,7 +1139,7 @@ encmsg[@"outgoing"] = @NO;
 
 - (void)testParallelSessions
 {
-    //[PEPiOSAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+    //[PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 
     // Currently, the first session use MUST be on the main thread
     [self pEpSetUp];
