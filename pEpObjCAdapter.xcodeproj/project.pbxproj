@@ -36,7 +36,7 @@
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E1A1BE94FCB00F6CBB2 /* iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64415E191BE94FCB00F6CBB2 /* iOSTests.m */; };
-		64415E1C1BE94FCB00F6CBB2 /* libpEpiOSAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */; };
+		64415E1C1BE94FCB00F6CBB2 /* libpEpObjCAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */; };
 		64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */; };
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; };
 		64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABB1B57F97E00377032 /* CFNetwork.framework */; };
@@ -117,7 +117,7 @@
 		350F0ED21B4D642200D9964F /* PEPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPSession.m; sourceTree = "<group>"; };
 		350F0ED71B4E997300D9964F /* PEPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPMessage.h; sourceTree = "<group>"; };
 		350F0ED81B4E997300D9964F /* PEPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
-		352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpiOSAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		352988AD1AEF964100FA7E2E /* PEPObjCAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter.h; sourceTree = "<group>"; };
 		352988AF1AEF964100FA7E2E /* PEPObjCAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter.m; sourceTree = "<group>"; };
 		35EA58131B565643000B4CC5 /* PEPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPQueue.h; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 				64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */,
 				64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */,
 				64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */,
-				64415E1C1BE94FCB00F6CBB2 /* libpEpiOSAdapter.a in Frameworks */,
+				64415E1C1BE94FCB00F6CBB2 /* libpEpObjCAdapter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +202,7 @@
 		352988AB1AEF964100FA7E2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */,
+				352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */,
 				64415E171BE94FCB00F6CBB2 /* iOSTests.xctest */,
 			);
 			name = Products;
@@ -276,9 +276,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		352988A91AEF964100FA7E2E /* pEpiOSAdapter */ = {
+		352988A91AEF964100FA7E2E /* pEpObjCAdapter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 352988BE1AEF964100FA7E2E /* Build configuration list for PBXNativeTarget "pEpiOSAdapter" */;
+			buildConfigurationList = 352988BE1AEF964100FA7E2E /* Build configuration list for PBXNativeTarget "pEpObjCAdapter" */;
 			buildPhases = (
 				352988A61AEF964100FA7E2E /* Sources */,
 				352988A71AEF964100FA7E2E /* Frameworks */,
@@ -290,9 +290,9 @@
 				640F89481BE37C4F00B34B30 /* PBXTargetDependency */,
 				64289E581B8B70FF00FC617B /* PBXTargetDependency */,
 			);
-			name = pEpiOSAdapter;
+			name = pEpObjCAdapter;
 			productName = pEpiOSAdapter;
-			productReference = 352988AA1AEF964100FA7E2E /* libpEpiOSAdapter.a */;
+			productReference = 352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		64415E161BE94FCB00F6CBB2 /* iOSTests */ = {
@@ -332,7 +332,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 352988A51AEF964100FA7E2E /* Build configuration list for PBXProject "pEpiOSAdapter" */;
+			buildConfigurationList = 352988A51AEF964100FA7E2E /* Build configuration list for PBXProject "pEpObjCAdapter" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -350,7 +350,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				352988A91AEF964100FA7E2E /* pEpiOSAdapter */,
+				352988A91AEF964100FA7E2E /* pEpObjCAdapter */,
 				64415E161BE94FCB00F6CBB2 /* iOSTests */,
 			);
 		};
@@ -444,7 +444,7 @@
 		};
 		64415E1E1BE94FCB00F6CBB2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 352988A91AEF964100FA7E2E /* pEpiOSAdapter */;
+			target = 352988A91AEF964100FA7E2E /* pEpObjCAdapter */;
 			targetProxy = 64415E1D1BE94FCB00F6CBB2 /* PBXContainerItemProxy */;
 		};
 		64415E401BE95B2000F6CBB2 /* PBXTargetDependency */ = {
@@ -641,7 +641,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		352988A51AEF964100FA7E2E /* Build configuration list for PBXProject "pEpiOSAdapter" */ = {
+		352988A51AEF964100FA7E2E /* Build configuration list for PBXProject "pEpObjCAdapter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				352988BC1AEF964100FA7E2E /* Debug */,
@@ -650,7 +650,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		352988BE1AEF964100FA7E2E /* Build configuration list for PBXNativeTarget "pEpiOSAdapter" */ = {
+		352988BE1AEF964100FA7E2E /* Build configuration list for PBXNativeTarget "pEpObjCAdapter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				352988BF1AEF964100FA7E2E /* Debug */,
