@@ -9,7 +9,7 @@
 @import Foundation;
 
 #import "PEPObjCAdapter.h"
-#import "PEPIOSAdapter+Internal.h"
+#import "PEPObjCAdapter+Internal.h"
 #import "PEPMessage.h"
 #include "keymanagement.h"
 
