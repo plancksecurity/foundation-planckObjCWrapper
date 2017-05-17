@@ -140,7 +140,7 @@
 		43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_A3FC7F0A_from_mutt.ser; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
-		64415E171BE94FCB00F6CBB2 /* pEpObjCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64415E191BE94FCB00F6CBB2 /* iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSTests.m; sourceTree = "<group>"; };
 		64415E1B1BE94FCB00F6CBB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = /usr/lib/libbz2.1.0.dylib; sourceTree = "<absolute>"; };
@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */,
-				64415E171BE94FCB00F6CBB2 /* pEpObjCTests.xctest */,
+				64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,9 +285,9 @@
 			productReference = 352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		64415E161BE94FCB00F6CBB2 /* pEpObjCTests */ = {
+		64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64415E281BE94FCB00F6CBB2 /* Build configuration list for PBXNativeTarget "pEpObjCTests" */;
+			buildConfigurationList = 64415E281BE94FCB00F6CBB2 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTests" */;
 			buildPhases = (
 				64415E131BE94FCB00F6CBB2 /* Sources */,
 				64415E141BE94FCB00F6CBB2 /* Frameworks */,
@@ -299,9 +299,9 @@
 				64415E401BE95B2000F6CBB2 /* PBXTargetDependency */,
 				64415E1E1BE94FCB00F6CBB2 /* PBXTargetDependency */,
 			);
-			name = pEpObjCTests;
+			name = pEpObjCAdapterTests;
 			productName = iOSTests;
-			productReference = 64415E171BE94FCB00F6CBB2 /* pEpObjCTests.xctest */;
+			productReference = 64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -341,7 +341,7 @@
 			projectRoot = "";
 			targets = (
 				352988A91AEF964100FA7E2E /* pEpObjCAdapter */,
-				64415E161BE94FCB00F6CBB2 /* pEpObjCTests */,
+				64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -649,7 +649,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64415E281BE94FCB00F6CBB2 /* Build configuration list for PBXNativeTarget "pEpObjCTests" */ = {
+		64415E281BE94FCB00F6CBB2 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64415E1F1BE94FCB00F6CBB2 /* Debug */,
