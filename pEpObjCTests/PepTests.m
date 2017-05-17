@@ -8,9 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
-#import "pEpiOSAdapter/PEPObjCAdapter.h"
-#import "pEpiOSAdapter/PEPSession.h"
-#import "pEpiOSAdapter/PEPLanguage.h"
+#import "PEPObjCAdapter.h"
+#import "PEPSession.h"
+#import "PEPLanguage.h"
 
 @interface PepTests : XCTestCase
 

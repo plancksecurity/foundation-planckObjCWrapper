@@ -8,8 +8,8 @@
 
 #import <XCTest/XCTest.h>
 
-#import "pEpiOSAdapter/PEPObjCAdapter.h"
-#import "pEpiOSAdapter/PEPSession.h"
+#import "PEPObjCAdapter.h"
+#import "PEPSession.h"
 
 @interface iOSTests : XCTestCase
 
