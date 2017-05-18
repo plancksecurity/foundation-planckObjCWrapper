@@ -90,8 +90,7 @@ void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
     
     PEPQueue *q = [PEPObjCAdapter getSyncQueue];
 
-    // TODO : implement timeout
-    void* result = (void*)[[q dequeue] pointerValue];
+    void* result = (void*)[[q timedDequeue:timeout] pointerValue];
 
     if ( syncDelegate && needs_fastpoll )
         [syncDelegate fastPolling:false];
@@ -99,7 +98,6 @@ void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
     return result;
 
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // DB and paths

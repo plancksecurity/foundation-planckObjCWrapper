@@ -52,7 +52,7 @@
     return res;
 }
 
-- (id)dequeue
+- (id)timedDequeue:(time_t*)timeout
 {
     id tmp = nil;
     
@@ -60,7 +60,23 @@
     
     while ([self condwait])
     {
-        [_cond wait];
+        if (*timeout == 0)
+        {
+            [_cond wait];
+        }
+        else
+        {
+            NSDate *end = [NSDate dateWithTimeIntervalSinceNow: *timeout];
+            
+            [_cond waitUntilDate:end];
+            
+            NSTimeInterval remaining = [end timeIntervalSinceNow];
+            
+            if (remaining > 0)
+                *timeout = remaining;
+            else
+                *timeout = 0;
+        }
     }
     
     @synchronized(self) {
@@ -74,6 +90,12 @@
     [_cond unlock];
     
     return tmp;
+}
+
+- (id)dequeue
+{
+    time_t zeroTimeout = 0;
+    return [self timedDequeue:&zeroTimeout];
 }
 
 - (void)kill

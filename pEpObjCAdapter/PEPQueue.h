@@ -12,6 +12,8 @@
 
 - (void)enqueue:(id)object;
 
+- (id)timedDequeue:(time_t*)timeout;
+
 - (id)dequeue;
 
 - (void)kill;
