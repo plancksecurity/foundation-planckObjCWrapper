@@ -23,6 +23,8 @@
 
 - (PEP_STATUS)sendMessage:(id)msg;
 
+- (PEP_STATUS)fastPolling:(bool)isfast;
+
 @end
 
 @interface PEPObjCAdapter : NSObject

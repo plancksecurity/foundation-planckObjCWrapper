@@ -82,9 +82,22 @@ int inject_sync_msg(void *msg, void *unused_management)
 // Called by sync thread only
 void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
 {
-    PEPQueue *q = [PEPObjCAdapter getSyncQueue];
+    bool needs_fastpoll = (*timeout != 0);
     
-    return (void*)[[q dequeue] pointerValue];
+    id <PEPSyncDelegate> syncDelegate = [PEPObjCAdapter getSyncDelegate];
+    if ( syncDelegate && needs_fastpoll )
+        [syncDelegate fastPolling:true];
+    
+    PEPQueue *q = [PEPObjCAdapter getSyncQueue];
+
+    // TODO : implement timeout
+    void* result = (void*)[[q dequeue] pointerValue];
+
+    if ( syncDelegate && needs_fastpoll )
+        [syncDelegate fastPolling:false];
+    
+    return result;
+
 }
 
 
