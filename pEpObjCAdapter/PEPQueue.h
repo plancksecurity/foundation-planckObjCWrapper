@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^deleteOp)(id);
+
 @interface PEPQueue : NSObject
 
 - (void)enqueue:(id)object;
@@ -17,6 +19,8 @@
 - (id)dequeue;
 
 - (void)kill;
+
+- (void)purge:(deleteOp)del;
 
 - (NSUInteger)count;
 

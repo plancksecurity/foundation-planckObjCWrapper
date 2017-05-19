@@ -100,14 +100,34 @@
 
 - (void)kill
 {
-    _queue = nil;
+    @synchronized(self) {
+        _queue = nil;
+    }
+    
+    [_cond signal];
+}
+
+- (void)purge:(deleteOp)del
+{
+    @synchronized(self) {
+        id item;
+        for (item in _queue)
+        {
+            del(item);
+        }
+        _queue = nil;
+    }
     
     [_cond signal];
 }
 
 - (NSUInteger)count
 {
-    return [_queue count];
+    NSUInteger res;
+    @synchronized(self) {
+        res = [_queue count];
+    }
+    return res;
 }
 
 - (void)dealloc

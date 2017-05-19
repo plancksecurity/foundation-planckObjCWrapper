@@ -385,9 +385,10 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     
     if (syncQueue)
     {
-        // FIXME : memory leak ! unallocate sync message waiting in the queue
-        
-        [syncQueue kill];
+        [syncQueue purge:^(id item){
+            sync_msg_t *msg = [item pointerValue];
+            free_sync_msg(msg);
+        }];
         
         [syncThreadJoinCond lockWhenCondition:YES];
         [syncThreadJoinCond unlock];
