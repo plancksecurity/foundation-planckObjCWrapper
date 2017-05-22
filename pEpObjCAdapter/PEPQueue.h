@@ -22,6 +22,4 @@ typedef void (^deleteOp)(id);
 
 - (void)purge:(deleteOp)del;
 
-- (NSUInteger)count;
-
 @end

@@ -305,26 +305,15 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 {
     [syncThreadJoinCond lock];
     
-    PEP_STATUS status = init(&sync_session);
-    if (status != PEP_STATUS_OK) {
-        return;
-    }
-    
-    register_sync_callbacks(sync_session,
-                             /* "management" : queuing (unused) */
-                            "NOTNULL",
-                            message_to_send,
-                            notify_handshake,
-                            inject_sync_msg,
-                            retrieve_next_sync_msg);
+
+    PEP_STATUS status;
 
     status = do_sync_protocol(sync_session,
                               /* "object" : notifying, sending (unused) */
                               "NOTNULL");
     
-    // TODO : detach all attached sessions
+    // TODO : log something if status not as expected
     
-    release(sync_session);
     
     [syncThreadJoinCond unlockWithCondition:YES];
 }
@@ -349,6 +338,19 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         syncQueue = [[PEPQueue alloc]init];
         
         syncThreadJoinCond = [[NSConditionLock alloc] initWithCondition:NO];
+
+        PEP_STATUS status = init(&sync_session);
+        if (status != PEP_STATUS_OK) {
+            return;
+        }
+        
+        register_sync_callbacks(sync_session,
+                                /* "management" : queuing (unused) */
+                                "NOTNULL",
+                                message_to_send,
+                                notify_handshake,
+                                inject_sync_msg,
+                                retrieve_next_sync_msg);
         
         syncThread = [[NSThread alloc]
                       initWithTarget:self
@@ -392,7 +394,10 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         
         [syncThreadJoinCond lockWhenCondition:YES];
         [syncThreadJoinCond unlock];
+
+        release(sync_session);
         
+        sync_session = NULL;
         syncThread = nil;
         syncQueue = nil;
         syncThreadJoinCond = nil;

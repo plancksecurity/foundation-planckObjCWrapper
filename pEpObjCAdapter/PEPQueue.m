@@ -33,23 +33,15 @@
 
 - (void)enqueue:(id)object
 {
-
-    @synchronized(self) {
-        if (_queue)
-            [_queue insertObject:object atIndex:0];
-    }
+    [_cond lock];
+    
+    if (_queue)
+        [_queue insertObject:object atIndex:0];
     
     [_cond signal];
     
-}
-
-- (BOOL)condwait
-{
-    BOOL res;
-    @synchronized(self) {
-        res = _queue && _queue.count == 0;
-    }
-    return res;
+    [_cond unlock];
+    
 }
 
 - (id)timedDequeue:(time_t*)timeout
@@ -58,7 +50,7 @@
     
     [_cond lock];
     
-    while ([self condwait])
+    while (_queue && _queue.count == 0)
     {
         if (*timeout == 0)
         {
@@ -79,14 +71,13 @@
         }
     }
     
-    @synchronized(self) {
-        if (_queue)
-        {
-            tmp = [_queue lastObject];
-            
-            [_queue removeLastObject];
-        }
+    if (_queue)
+    {
+        tmp = [_queue lastObject];
+        
+        [_queue removeLastObject];
     }
+
     [_cond unlock];
     
     return tmp;
@@ -100,35 +91,30 @@
 
 - (void)kill
 {
-    @synchronized(self) {
-        _queue = nil;
-    }
+    [_cond lock];
+
+    _queue = nil;
     
     [_cond signal];
+    [_cond unlock];
+
 }
 
 - (void)purge:(deleteOp)del
 {
-    @synchronized(self) {
-        id item;
-        for (item in _queue)
-        {
-            del(item);
-        }
-        _queue = nil;
+    [_cond lock];
+
+    id item;
+    for (item in _queue)
+    {
+        del(item);
     }
+    _queue = nil;
     
     [_cond signal];
+    [_cond unlock];
 }
 
-- (NSUInteger)count
-{
-    NSUInteger res;
-    @synchronized(self) {
-        res = [_queue count];
-    }
-    return res;
-}
 
 - (void)dealloc
 {
