@@ -118,6 +118,20 @@
     return color;
 }
 
+- (PEP_rating)reEvaluateMessageRating:(nonnull NSDictionary<NSString *, id> *)src
+{
+    message * _src = PEP_messageDictToStruct(src);
+    PEP_rating color = PEP_rating_undefined;
+    
+    @synchronized (self) {
+        re_evaluate_message_rating(_session, _src, NULL, PEP_rating_undefined, &color);
+    }
+    
+    free_message(_src);
+    
+    return color;
+}
+
 - (void)removeEmptyArrayKey:(NSString *)key inDict:(NSMutableDictionary<NSString *, id> *)dict
 {
     if ([[dict objectForKey:key] count] == 0) {

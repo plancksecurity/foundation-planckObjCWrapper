@@ -991,9 +991,13 @@ encmsg[@"outgoing"] = @NO;
         
         
         PEP_rating clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
-        
+
         XCTAssertEqual(clr, PEP_rating_reliable);
-        
+
+        PEP_rating secondclr = [session reEvaluateMessageRating:decmsg];
+
+        XCTAssertEqual(secondclr, PEP_rating_reliable);
+
         // Check Miro is in DB
         [session updateIdentity:identMiroAtPetra];
         
@@ -1004,6 +1008,9 @@ encmsg[@"outgoing"] = @NO;
         // Trust to that identity
         [session trustPersonalKey:identMiroAtPetra];
 
+        secondclr = [session reEvaluateMessageRating:decmsg];
+        XCTAssertEqual(secondclr, PEP_rating_trusted, @"Not trusted");
+        
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted, @"Not trusted");
 

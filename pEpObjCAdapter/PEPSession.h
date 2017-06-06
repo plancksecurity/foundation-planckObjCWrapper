@@ -40,6 +40,9 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
                             dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
                             keys:(NSArray<NSString *> * _Nullable * _Nullable)keys;
 
+/** Re-evaluate rating of decrypted message */
+- (PEP_rating)reEvaluateMessageRating:(nonnull NSDictionary<NSString *, id> *)src;
+
 /** Encrypt a message */
 - (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
                            extra:(nullable NSArray<NSString *> *)keys
