@@ -155,7 +155,7 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
         return nil;
     }
 
-    bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL);
+    bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL, NULL);
     bloblist_t *bl =_bl;
     for (NSMutableDictionary *blob in array) {
         NSData *data = blob[@"data"];
@@ -167,7 +167,8 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
         
         bl = bloblist_add(bl, buf, size,
                           [blob[@"mimeType"] UTF8String],
-                          [[blob[@"filename"] precomposedStringWithCanonicalMapping] UTF8String]);
+                          [[blob[@"filename"] precomposedStringWithCanonicalMapping] UTF8String],
+                          [[blob[kPepContentID] precomposedStringWithCanonicalMapping] UTF8String]);
     }
     return _bl;
 }
