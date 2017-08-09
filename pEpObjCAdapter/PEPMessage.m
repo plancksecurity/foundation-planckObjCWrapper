@@ -18,8 +18,6 @@ NSString *const kPepUserID = @"user_id";
 
 NSString *const kPepFingerprint = @"fpr";
 
-NSString *const kPepIsMe = @"me";
-
 NSString *const kPepFrom = @"from";
 
 NSString *const kPepTo = @"to";
@@ -194,10 +192,6 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
         
         [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:@"comm_type"];
         
-        if (ident->me)
-            [dict setObject:@YES forKey:@"me"];
-        else
-            [dict setObject:@NO forKey:@"me"];
     }
     return dict;
 }
@@ -231,9 +225,6 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
         
         if ([dict objectForKey:@"lang"])
             strncpy(ident->fpr, [[[dict objectForKey:@"lang"] precomposedStringWithCanonicalMapping] UTF8String], 2);
-        
-        if ([[dict objectForKey:@"me"] isEqual: @YES])
-            ident->me = true;
         
         if ([dict objectForKey:@"comm_type"])
             ident->comm_type = [[dict objectForKey:@"comm_type"] intValue];

@@ -791,10 +791,8 @@ NSMutableDictionary *encmsg;
 encmsg[@"outgoing"] = @NO;
 [encmsg[@"from"] removeObjectForKey:@"fpr"];
 [encmsg[@"from"] removeObjectForKey:@"user_id"];
-[encmsg[@"from"] removeObjectForKey:@"me"];
 [encmsg[@"to"][0] removeObjectForKey:@"fpr"];
 [encmsg[@"to"][0] removeObjectForKey:@"user_id"];
-[encmsg[@"to"][0] removeObjectForKey:@"me"];
 
 {
     NSMutableDictionary *msg = [encmsg copy];
