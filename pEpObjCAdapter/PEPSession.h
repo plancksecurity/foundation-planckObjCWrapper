@@ -76,7 +76,6 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  @"lang": preferred languageID for communication with this ID (default: @"en")
  @"fpr": fingerprint of key to use for communication with this ID
  @"comm_type": communication type code (usually not needed)
- @"me": YES if this is an identity of our user, NO if it is one of a communication partner (default: NO)
  
  As an example:
  

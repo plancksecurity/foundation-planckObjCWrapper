@@ -37,9 +37,6 @@ extern NSString *const _Nonnull kPepUserID;
 /** The fingerprint for the key for this contact. */
 extern NSString *const _Nonnull kPepFingerprint;
 
-/** NSNumber denoting a boolean, true if that identity was setup with mySelf() */
-extern NSString *const _Nonnull kPepIsMe;
-
 /** In an email, the identity this email is from */
 extern NSString *const _Nonnull kPepFrom;
 
