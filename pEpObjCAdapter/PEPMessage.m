@@ -55,8 +55,6 @@ NSString *const kPepMimeFilename = @"filename";
 
 NSString *const kPepMimeType = @"mimeType";
 
-NSString *const kPepContentID = @"contentID";
-
 NSString *const kPepCommType = @"comm_type";
 
 NSString *const kPepRawMessage = @"raw_message";
