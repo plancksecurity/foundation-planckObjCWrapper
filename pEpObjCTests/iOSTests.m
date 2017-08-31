@@ -894,6 +894,7 @@ encmsg[@"outgoing"] = @NO;
 }}
 #endif
 
+#if 0
 - (void)testTwoNewUsers {
 
     NSMutableDictionary* petrasMsg;
@@ -1040,6 +1041,7 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp:@"Petra"];
     
 }
+#endif
 
 #if 0
 - (void)testEncryptedMailFromOutlook
