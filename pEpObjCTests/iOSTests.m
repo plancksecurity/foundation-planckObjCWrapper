@@ -11,13 +11,36 @@
 #import "PEPObjCAdapter.h"
 #import "PEPSession.h"
 
-@interface someSyncDelegate : NSObject  <PEPSyncDelegate>
+// MARK: - Helpers
+
+PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable toDict,
+                             NSString *shortMessage, NSString *longMessage, BOOL outgoing) {
+    PEPMutableDict *dict = [NSMutableDictionary dictionary];
+    if (fromDict) {
+        dict[kPepFrom] = fromDict;
+    }
+    if (toDict) {
+        dict[kPepTo] = @[toDict];
+    }
+    if (outgoing) {
+        dict[kPepOutgoing] = @YES;
+    } else {
+        dict[kPepOutgoing] = @NO;
+    }
+    dict[kPepShortMessage] = shortMessage;
+    dict[kPepLongMessage] = longMessage;
+    return [NSDictionary dictionaryWithDictionary:dict];
+}
+
+// MARK: - PEPSyncDelegate
+
+@interface SomeSyncDelegate : NSObject<PEPSyncDelegate>
 - (bool)waitUntilSent:(time_t)maxSec;
 @property (nonatomic) bool sendWasCalled;
 @property (nonatomic, strong) NSCondition *cond;
 @end
 
-@implementation someSyncDelegate
+@implementation SomeSyncDelegate
 
 - (id)init {
     if (self = [super init])  {
@@ -60,6 +83,8 @@
 }
 
 @end
+
+// MARK: - iOSTests
 
 @interface iOSTests : XCTestCase
 
@@ -247,7 +272,7 @@ PEPSession *session;
 
 - (void)testSyncSession {
     
-    someSyncDelegate *syncDelegate = [[someSyncDelegate alloc] init];
+    SomeSyncDelegate *syncDelegate = [[SomeSyncDelegate alloc] init];
     [self pEpSetUp];
     
     // This should attach session just created
@@ -1422,10 +1447,9 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertNotNil(me[kPepFingerprint]);
 
     // Create draft
-    NSDictionary *mail = @{ kPepFrom: me,
-                            kPepShortMessage: @"Subject",
-                            kPepLongMessage: @"Oh, this is a long body text!",
-                            kPepOutgoing: @YES};
+    NSString *shortMessage = @"Subject";
+    NSString *longMessage = @"Oh, this is a long body text!";
+    PEPDict *mail = mailFromTo(me, nil, shortMessage, longMessage, YES);
 
     NSMutableDictionary *encDict;
     PEP_STATUS status = [session encryptMessageDict:mail identity:me dest:&encDict];
@@ -1435,6 +1459,9 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary *unencDict;
     PEP_rating rating = [session decryptMessageDict:encDict dest:&unencDict keys:nil];
     XCTAssertGreaterThanOrEqual(rating, PEP_rating_reliable);
+
+    XCTAssertEqualObjects(unencDict[kPepShortMessage], shortMessage);
+    XCTAssertEqualObjects(unencDict[kPepLongMessage], longMessage);
 
     [self pEpCleanUp];
 }
