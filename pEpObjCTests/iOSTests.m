@@ -1464,16 +1464,10 @@ encmsg[@"outgoing"] = @NO;
     NSString *secKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
     XCTAssertNotNil(secKeyMe);
 
-    NSArray *trustwordsArray = [session trustwords:meOrig[kPepFingerprint] forLanguage:@"en"
-                                         shortened:false];
-    XCTAssertEqual([trustwordsArray count], 10);
-    NSString *trustwordsOld = [trustwordsArray componentsJoinedByString:@" "];
-
     NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
                                                   language:nil full:YES];
-    XCTAssertTrue([trustwordsFull containsString:trustwordsOld]);
     XCTAssertEqualObjects(trustwordsFull,
-                          @"ABRIDGE MAURISE DATER GALSWORTHY PHEROMONE MICELLES BRAINTEASER TRUNDLER CLINGING WESTERLY COALITIONIST ERYN EXTINCTION INCUNABULUM MOST PATRIZIUS COMPETITOR OBVIOUS MISSOURI ASYNCHRON");
+                          @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
 
     NSString *trustwordsFullEnglish = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
                                                              language:@"en" full:YES];
