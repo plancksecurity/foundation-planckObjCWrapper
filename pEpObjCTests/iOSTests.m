@@ -738,7 +738,7 @@ PEPSession *session;
     [self pEpCleanUp];
 }
 
-
+#if 0
 - (void)testMessMisTrust {
 NSMutableDictionary *encmsg;
 {
@@ -892,8 +892,7 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp];
     
 }}
-
-
+#endif
 
 - (void)testTwoNewUsers {
 
