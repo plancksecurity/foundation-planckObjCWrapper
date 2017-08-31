@@ -1505,7 +1505,7 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp];
 }
 
-/*
+#if 0
 - (void)testDecryptMessageHeapBufferOverflow
 {
     PEPSession *session = [[PEPSession alloc] init];
@@ -1523,6 +1523,6 @@ encmsg[@"outgoing"] = @NO;
                                              &keylist, &rating, &flags);
     XCTAssertEqual(status, PEP_STATUS_OK);
 }
- */
+#endif
 
 @end
