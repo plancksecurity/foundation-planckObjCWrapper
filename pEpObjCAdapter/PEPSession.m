@@ -67,14 +67,14 @@
     }
 
     [PEPObjCAdapter bindSession:self];
-    
+
     return self;
 }
 
 - (void)dealloc
 {
     [PEPObjCAdapter unbindSession:self];
-    
+
     release(_session);
 }
 
@@ -122,13 +122,13 @@
 {
     message * _src = PEP_messageDictToStruct(src);
     PEP_rating color = PEP_rating_undefined;
-    
+
     @synchronized (self) {
         re_evaluate_message_rating(_session, _src, NULL, PEP_rating_undefined, &color);
     }
-    
+
     free_message(_src);
-    
+
     return color;
 }
 
@@ -180,7 +180,7 @@
     free_message(_src);
     free_message(_dst);
     free_stringlist(_keys);
-    
+
     return status;
 }
 
@@ -229,7 +229,7 @@
     }
 
     free_message(_msg);
-    
+
     return color;
 }
 
@@ -237,21 +237,17 @@
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     PEP_rating color = PEP_rating_undefined;
-    
+
     @synchronized (self) {
         identity_rating(_session, ident, &color);
     }
-    
+
     free_identity(ident);
-    
+
     return color;
 }
 
-DYNAMIC_API PEP_STATUS identity_rating(
-                                      PEP_SESSION session,
-                                      pEp_identity *ident,
-                                      PEP_rating *color
-                                      );
+DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident, PEP_rating *color);
 
 
 - (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened
@@ -261,12 +257,12 @@ DYNAMIC_API PEP_STATUS identity_rating(
     for (int i = 0; i < [fpr length]; i += 4) {
         if (shortened && i >= 20)
             break;
-        
+
         NSString *str = [fpr substringWithRange:NSMakeRange(i, 4)];
 
         unsigned int value;
         [[NSScanner scannerWithString:str] scanHexInt:&value];
-        
+
         char *word;
         size_t size;
 
@@ -277,7 +273,7 @@ DYNAMIC_API PEP_STATUS identity_rating(
         [array addObject:[NSString stringWithUTF8String:word]];
         free(word);
     }
-    
+
     return array;
 }
 
@@ -310,11 +306,11 @@ DYNAMIC_API PEP_STATUS identity_rating(
 - (void)trustPersonalKey:(PEPMutableDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
-    
+
     @synchronized(self) {
         trust_personal_key(_session, ident);
     }
-    
+
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 }
@@ -322,11 +318,11 @@ DYNAMIC_API PEP_STATUS identity_rating(
 - (void)keyResetTrust:(PEPMutableDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
-    
+
     @synchronized(self) {
         key_reset_trust(_session, ident);
     }
-    
+
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 }
@@ -334,11 +330,11 @@ DYNAMIC_API PEP_STATUS identity_rating(
 - (void)keyMistrusted:(PEPMutableDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
-    
+
     @synchronized(self) {
         key_mistrusted(_session, ident);
     }
-    
+
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 }
@@ -457,7 +453,7 @@ DYNAMIC_API PEP_STATUS identity_rating(
         [langs addObject:lang];
         theTokens = take.rest;
     }
-
+    
     return [NSArray arrayWithArray:langs];
 }
 

@@ -73,23 +73,23 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  An identity is a `NSDictionary` mapping a field name as `NSString` to different values.
  An identity can have the following fields (all other keys are ignored).
  It is not necessary to supply all fields; missing fields are supplemented by p≡p engine.
- 
+
  @"username": real name or nick name (if pseudonymous) of identity
  @"address": URI or SMTP address
  @"user_id": persistent unique ID for identity
  @"lang": preferred languageID for communication with this ID (default: @"en")
  @"fpr": fingerprint of key to use for communication with this ID
  @"comm_type": communication type code (usually not needed)
- 
+
  As an example:
- 
+
  User has a mailbox. The mail address is "Dipul Khatri <dipul@inboxcube.com>". Then this would be:
- 
+
  NSDictionary *ident = [NSDictionary dictionaryWithObjectsAndKeys:
- @"Dipul Khatri", @"username", @"dipul@inboxcube.com", @"address", 
+ @"Dipul Khatri", @"username", @"dipul@inboxcube.com", @"address",
  @"23", @"user_id", nil];
- 
-*/
+
+ */
 - (void)mySelf:(nonnull PEPMutableDict *)identity;
 
 /**
@@ -113,7 +113,7 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /**
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
-*/
+ */
 - (void)keyResetTrust:(nonnull PEPMutableDict *)identity;
 
 #pragma mark -- Internal API (testing etc.)
