@@ -131,6 +131,13 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
                                      language:(nullable NSString *)language
                                          full:(BOOL)full;
 
+/** Determine trustwords between sender of a message and receiving identity */
+- (nullable NSString *)getTrustwordsMessageDict:(nonnull NSDictionary<NSString *, id> *)messageDict
+                                   receiverDict:(nonnull NSDictionary<NSString *, id> *)receiverDict
+                                      keysArray:(NSArray<NSString *> * _Nullable)keysArray
+                                       language:(nullable NSString *)language
+                                           full:(BOOL)full;
+
 /**
  @returns The list of supported languages for trustwords.
  */
