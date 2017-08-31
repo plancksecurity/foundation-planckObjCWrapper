@@ -11,6 +11,8 @@
 #import "PEPObjCAdapter.h"
 #import "PEPMessage.h"
 
+typedef NSDictionary<NSString *, id> PEPDict;
+
 @class PEPSession;
 @class PEPLanguage;
 
@@ -36,28 +38,28 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 + (void)dispatchSyncOnSession:(nonnull PEPSessionBlock)block;
 
 /** Decrypt a message */
-- (PEP_rating)decryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
-                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
+- (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
+                            dest:(PEPDict * _Nullable * _Nullable)dst
                             keys:(NSArray<NSString *> * _Nullable * _Nullable)keys;
 
 /** Re-evaluate rating of decrypted message */
-- (PEP_rating)reEvaluateMessageRating:(nonnull NSDictionary<NSString *, id> *)src;
+- (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src;
 
 /** Encrypt a message */
-- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
+- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                            extra:(nullable NSArray<NSString *> *)keys
-                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst;
+                            dest:(PEPDict * _Nullable * _Nullable)dst;
 
 /** Encrypt a message for the given identity, which is usually a mySelf identity */
-- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
-                        identity:(nonnull NSDictionary<NSString *, id> *)identity
-                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst;
+- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
+                        identity:(nonnull PEPDict *)identity
+                            dest:(PEPDict * _Nullable * _Nullable)dst;
 
 /** Determine the status color of a message to be sent */
-- (PEP_rating)outgoingMessageColor:(nonnull NSDictionary<NSString *, id> *)msg;
+- (PEP_rating)outgoingMessageColor:(nonnull PEPDict *)msg;
 
 /** Determine the rating of an identity */
-- (PEP_rating)identityRating:(nonnull NSDictionary<NSString *, id> *)identity;
+- (PEP_rating)identityRating:(nonnull PEPDict *)identity;
 
 /** Get trustwords for a fingerprint */
 - (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
@@ -126,14 +128,14 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 - (nonnull NSString *)getLog;
 
 /** Determine trustwords for two identities */
-- (nullable NSString *)getTrustwordsIdentity1:(nonnull NSDictionary<NSString *, id> *)identity1
-                                    identity2:(nonnull NSDictionary<NSString *, id> *)identity2
+- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPDict *)identity1
+                                    identity2:(nonnull PEPDict *)identity2
                                      language:(nullable NSString *)language
                                          full:(BOOL)full;
 
 /** Determine trustwords between sender of a message and receiving identity */
-- (nullable NSString *)getTrustwordsMessageDict:(nonnull NSDictionary<NSString *, id> *)messageDict
-                                   receiverDict:(nonnull NSDictionary<NSString *, id> *)receiverDict
+- (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
+                                   receiverDict:(nonnull PEPDict *)receiverDict
                                       keysArray:(NSArray<NSString *> * _Nullable)keysArray
                                        language:(nullable NSString *)language
                                            full:(BOOL)full;
