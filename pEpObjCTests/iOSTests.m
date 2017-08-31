@@ -1437,10 +1437,8 @@ encmsg[@"outgoing"] = @NO;
 
 }
 
-- (void)testEncryptToMySelf
+- (PEPDict *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
-    [self pEpSetUp];
-
     NSMutableDictionary *me = @{kPepUsername: @"username",
                                 kPepAddress: @"me@peptest.ch"}.mutableCopy;
     [session mySelf:me];
@@ -1449,7 +1447,7 @@ encmsg[@"outgoing"] = @NO;
     // Create draft
     NSString *shortMessage = @"Subject";
     NSString *longMessage = @"Oh, this is a long body text!";
-    PEPDict *mail = mailFromTo(me, nil, shortMessage, longMessage, YES);
+    PEPDict *mail = mailFromTo(me, me, shortMessage, longMessage, YES);
 
     NSMutableDictionary *encDict;
     PEP_STATUS status = [session encryptMessageDict:mail identity:me dest:&encDict];
@@ -1457,12 +1455,19 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertEqualObjects(encDict[kPepShortMessage], @"pEp");
 
     NSMutableDictionary *unencDict;
-    PEP_rating rating = [session decryptMessageDict:encDict dest:&unencDict keys:nil];
+    PEP_rating rating = [session decryptMessageDict:encDict dest:&unencDict keys:keys];
     XCTAssertGreaterThanOrEqual(rating, PEP_rating_reliable);
 
     XCTAssertEqualObjects(unencDict[kPepShortMessage], shortMessage);
     XCTAssertEqualObjects(unencDict[kPepLongMessage], longMessage);
 
+    return unencDict;
+}
+
+- (void)testEncryptToMySelf
+{
+    [self pEpSetUp];
+    [self internalEncryptToMySelfKeys:nil];
     [self pEpCleanUp];
 }
 
