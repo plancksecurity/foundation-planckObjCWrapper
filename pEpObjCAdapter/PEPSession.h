@@ -12,6 +12,8 @@
 #import "PEPMessage.h"
 
 typedef NSDictionary<NSString *, id> PEPDict;
+typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
+typedef NSArray<NSString *> PEPStringList;
 
 @class PEPSession;
 @class PEPLanguage;
@@ -40,14 +42,14 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
                             dest:(PEPDict * _Nullable * _Nullable)dst
-                            keys:(NSArray<NSString *> * _Nullable * _Nullable)keys;
+                            keys:(PEPStringList * _Nullable * _Nullable)keys;
 
 /** Re-evaluate rating of decrypted message */
 - (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src;
 
 /** Encrypt a message */
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                           extra:(nullable NSArray<NSString *> *)keys
+                           extra:(nullable PEPStringList *)keys
                             dest:(PEPDict * _Nullable * _Nullable)dst;
 
 /** Encrypt a message for the given identity, which is usually a mySelf identity */
@@ -88,31 +90,31 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  @"23", @"user_id", nil];
  
 */
-- (void)mySelf:(nonnull NSMutableDictionary<NSString *, id> *)identity;
+- (void)mySelf:(nonnull PEPMutableDict *)identity;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)updateIdentity:(nonnull NSMutableDictionary<NSString *, id> *)identity;
+- (void)updateIdentity:(nonnull PEPMutableDict *)identity;
 
 /**
  Mark a key as trusted with a person.
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)trustPersonalKey:(nonnull NSMutableDictionary<NSString *, id> *)identity;
+- (void)trustPersonalKey:(nonnull PEPMutableDict *)identity;
 
 /**
  if a key is not trusted by the user tell this using this message
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyMistrusted:(nonnull NSMutableDictionary<NSString *, id> *)identity;
+- (void)keyMistrusted:(nonnull PEPMutableDict *)identity;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
 */
-- (void)keyResetTrust:(nonnull NSMutableDictionary<NSString *, id> *)identity;
+- (void)keyResetTrust:(nonnull PEPMutableDict *)identity;
 
 #pragma mark -- Internal API (testing etc.)
 
@@ -136,7 +138,7 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 /** Determine trustwords between sender of a message and receiving identity */
 - (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
                                    receiverDict:(nonnull PEPDict *)receiverDict
-                                      keysArray:(NSArray<NSString *> * _Nullable)keysArray
+                                      keysArray:(PEPStringList * _Nullable)keysArray
                                        language:(nullable NSString *)language
                                            full:(BOOL)full;
 

@@ -78,9 +78,9 @@
     release(_session);
 }
 
-- (PEP_rating)decryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
-                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
-                            keys:(NSArray<NSString *> * _Nullable * _Nullable)keys
+- (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
+                            dest:(PEPDict * _Nullable * _Nullable)dst
+                            keys:(PEPStringList * _Nullable * _Nullable)keys
 {
     message * _src = PEP_messageDictToStruct(src);
     message * _dst = NULL;
@@ -118,7 +118,7 @@
     return color;
 }
 
-- (PEP_rating)reEvaluateMessageRating:(nonnull NSDictionary<NSString *, id> *)src
+- (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src
 {
     message * _src = PEP_messageDictToStruct(src);
     PEP_rating color = PEP_rating_undefined;
@@ -132,14 +132,14 @@
     return color;
 }
 
-- (void)removeEmptyArrayKey:(NSString *)key inDict:(NSMutableDictionary<NSString *, id> *)dict
+- (void)removeEmptyArrayKey:(NSString *)key inDict:(PEPMutableDict *)dict
 {
     if ([[dict objectForKey:key] count] == 0) {
         [dict removeObjectForKey:key];
     }
 }
 
-- (NSDictionary *)removeEmptyRecipients:(NSDictionary<NSString *, id> *)src
+- (NSDictionary *)removeEmptyRecipients:(PEPDict *)src
 {
     NSMutableDictionary *dest = src.mutableCopy;
 
@@ -150,9 +150,9 @@
     return [NSDictionary dictionaryWithDictionary:dest];
 }
 
-- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
+- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                            extra:(nullable NSArray *)keys
-                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
+                            dest:(PEPDict * _Nullable * _Nullable)dst
 {
     PEP_STATUS status;
     PEP_encrypt_flags_t flags = 0;
@@ -184,9 +184,9 @@
     return status;
 }
 
-- (PEP_STATUS)encryptMessageDict:(nonnull NSDictionary<NSString *, id> *)src
-                        identity:(nonnull NSDictionary<NSString *, id> *)identity
-                            dest:(NSDictionary<NSString *, id> * _Nullable * _Nullable)dst
+- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
+                        identity:(nonnull PEPDict *)identity
+                            dest:(PEPDict * _Nullable * _Nullable)dst
 {
     PEP_STATUS status;
     PEP_encrypt_flags_t flags = 0;
@@ -219,7 +219,7 @@
     return status;
 }
 
-- (PEP_rating)outgoingMessageColor:(NSDictionary<NSString *, id> *)msg
+- (PEP_rating)outgoingMessageColor:(PEPDict *)msg
 {
     message * _msg = PEP_messageDictToStruct(msg);
     PEP_rating color = PEP_rating_undefined;
@@ -233,7 +233,7 @@
     return color;
 }
 
-- (PEP_rating)identityRating:(nonnull NSDictionary<NSString *, id> *)identity
+- (PEP_rating)identityRating:(nonnull PEPDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     PEP_rating color = PEP_rating_undefined;
@@ -281,7 +281,7 @@ DYNAMIC_API PEP_STATUS identity_rating(
     return array;
 }
 
-- (void)mySelf:(NSMutableDictionary<NSString *, id> *)identity
+- (void)mySelf:(PEPMutableDict *)identity
 {
     [identity removeObjectForKey:kPepUserID];
 
@@ -295,7 +295,7 @@ DYNAMIC_API PEP_STATUS identity_rating(
     free_identity(ident);
 }
 
-- (void)updateIdentity:(NSMutableDictionary<NSString *, id> *)identity
+- (void)updateIdentity:(PEPMutableDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
 
@@ -307,7 +307,7 @@ DYNAMIC_API PEP_STATUS identity_rating(
     free_identity(ident);
 }
 
-- (void)trustPersonalKey:(NSMutableDictionary<NSString *, id> *)identity
+- (void)trustPersonalKey:(PEPMutableDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
@@ -319,7 +319,7 @@ DYNAMIC_API PEP_STATUS identity_rating(
     free_identity(ident);
 }
 
-- (void)keyResetTrust:(NSMutableDictionary<NSString *, id> *)identity
+- (void)keyResetTrust:(PEPMutableDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
@@ -331,7 +331,7 @@ DYNAMIC_API PEP_STATUS identity_rating(
     free_identity(ident);
 }
 
-- (void)keyMistrusted:(NSMutableDictionary<NSString *, id> *)identity
+- (void)keyMistrusted:(PEPMutableDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
     
@@ -368,8 +368,8 @@ DYNAMIC_API PEP_STATUS identity_rating(
     return logString;
 }
 
-- (nullable NSString *)getTrustwordsIdentity1:(nonnull NSDictionary<NSString *, id> *)identity1
-                                    identity2:(nonnull NSDictionary<NSString *, id> *)identity2
+- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPDict *)identity1
+                                    identity2:(nonnull PEPDict *)identity2
                                      language:(nullable NSString *)language
                                          full:(BOOL)full
 {
@@ -393,9 +393,9 @@ DYNAMIC_API PEP_STATUS identity_rating(
     return result;
 }
 
-- (nullable NSString *)getTrustwordsMessageDict:(nonnull NSDictionary<NSString *, id> *)messageDict
-                                   receiverDict:(nonnull NSDictionary<NSString *, id> *)receiverDict
-                                      keysArray:(NSArray<NSString *> * _Nullable)keysArray
+- (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
+                                   receiverDict:(nonnull PEPDict *)receiverDict
+                                      keysArray:(PEPStringList * _Nullable)keysArray
                                        language:(nullable NSString *)language
                                            full:(BOOL)full
 {
