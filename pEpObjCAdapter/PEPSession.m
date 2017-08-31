@@ -394,6 +394,7 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
                                       keysArray:(PEPStringList * _Nullable)keysArray
                                        language:(nullable NSString *)language
                                            full:(BOOL)full
+                                resultingStatus:(PEP_STATUS * _Nullable)resultingStatus
 {
     NSString *result = nil;
     char *trustwords = nil;
@@ -411,6 +412,10 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
                                                [[language
                                                  precomposedStringWithCanonicalMapping] UTF8String],
                                                &trustwords, full);
+
+    if (resultingStatus) {
+        *resultingStatus = status;
+    }
 
     if (status == PEP_STATUS_OK) {
         result = [NSString stringWithCString:trustwords

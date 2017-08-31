@@ -140,7 +140,8 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
                                    receiverDict:(nonnull PEPDict *)receiverDict
                                       keysArray:(PEPStringList * _Nullable)keysArray
                                        language:(nullable NSString *)language
-                                           full:(BOOL)full;
+                                           full:(BOOL)full
+                                resultingStatus:(PEP_STATUS * _Nullable)resultingStatus;
 
 /**
  @returns The list of supported languages for trustwords.

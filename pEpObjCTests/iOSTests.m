@@ -1471,6 +1471,31 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp];
 }
 
+- (void)testMessageTrustwordsWithMySelf
+{
+    [self pEpSetUp];
+
+    PEPStringList *keys = nil;
+    PEPDict *decryptedDict = [self internalEncryptToMySelfKeys:&keys];
+    XCTAssertNotNil(keys);
+    XCTAssert(keys.count > 0);
+
+    PEPDict *receiver = decryptedDict[kPepTo][0];
+    XCTAssertNotNil(receiver);
+    PEP_STATUS trustwordsStatus;
+    NSString *trustwords = [session getTrustwordsMessageDict:decryptedDict
+                                                receiverDict:receiver
+                                                   keysArray:keys language:@"en"
+                                                        full:YES
+                                             resultingStatus: &trustwordsStatus];
+
+    // No trustwords with yourself
+    XCTAssertEqual(trustwordsStatus, PEP_TRUSTWORDS_DUPLICATE_FPR);
+    XCTAssertNil(trustwords);
+
+    [self pEpCleanUp];
+}
+
 - (void)testGetTrustwords
 {
     [self pEpSetUp];
