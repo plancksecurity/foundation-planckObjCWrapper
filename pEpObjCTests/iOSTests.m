@@ -1396,9 +1396,6 @@ encmsg[@"outgoing"] = @NO;
 {
     [self pEpSetUp];
 
-    NSMutableDictionary *me = @{kPepUsername: @"username",
-                                kPepAddress: @"me@peptest.ch"}.mutableCopy;
-
     NSMutableDictionary *partner1Orig =
     @{kPepAddress: @"partner1@dontcare.me",
       kPepUsername: @"Partner 1"}.mutableCopy;
