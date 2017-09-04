@@ -12,15 +12,20 @@
 
 @implementation NSDictionary (Extension)
 
-- (void)debugSaveToBasePath:(NSString * _Nonnull)basePath fileName:(NSString * _Nonnull)fileName
-theExtension:(NSString * _Nonnull)theExtension
+- (void)debugSaveToFilePath:(NSString * _Nonnull)filePath
 {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *parentPath = [[fileManager
+                       URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask]
+                      firstObject];
+
     NSDate *now = [NSDate date];
     NSString *nowDesc = [now description];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@_%@.%@",
-                          basePath, fileName, nowDesc, theExtension];
-    NSURL *url = [NSURL fileURLWithPath:filePath];
-    [self writeToURL:url atomically:YES];
+    NSString *fileName = [NSString stringWithFormat:@"%@_%@.%@",
+                          filePath, nowDesc, @"plist"];
+
+    NSURL *writeURL = [NSURL fileURLWithPath:fileName relativeToURL:parentPath];
+    [self writeToURL:writeURL atomically:YES];
 }
 
 @end

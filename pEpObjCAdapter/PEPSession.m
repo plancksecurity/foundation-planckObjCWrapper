@@ -14,6 +14,7 @@
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Extension.h"
+#import "NSDictionary+Extension.h"
 
 @implementation PEPSession
 
@@ -78,10 +79,23 @@
     release(_session);
 }
 
+- (void)debugOutPutMessageDict:(nonnull PEPDict *)src
+{
+    NSString *from = src[kPepFrom][kPepAddress];
+    NSArray *tos = src[kPepTo];
+    NSString *to = tos[0][kPepAddress];
+    NSString *msgID = src[kPepID];
+    NSString *fileName = [NSString stringWithFormat:@"from(%@)_to(%@)_(%@)",
+                          from, to, msgID];
+    [src debugSaveToFilePath:fileName];
+}
+
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
                             dest:(PEPDict * _Nullable * _Nullable)dst
                             keys:(PEPStringList * _Nullable * _Nullable)keys
 {
+    [self debugOutPutMessageDict:src];
+
     message * _src = PEP_messageDictToStruct(src);
     message * _dst = NULL;
     stringlist_t * _keys = NULL;

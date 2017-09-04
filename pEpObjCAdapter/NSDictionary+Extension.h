@@ -10,7 +10,6 @@
 
 @interface NSDictionary (Extension)
 
-- (void)debugSaveToBasePath:(NSString * _Nonnull)basePath fileName:(NSString * _Nonnull)fileName
-               theExtension:(NSString * _Nonnull)theExtension;
+- (void)debugSaveToFilePath:(NSString * _Nonnull)filePath;
 
 @end
