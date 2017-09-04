@@ -23,6 +23,7 @@
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
+		43D27DE01F5DA07A00795687 /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D27DDF1F5DA07A00795687 /* NSData+Extension.m */; };
 		43DFB03E1E36122200175C9C /* MessageHeapBufferOverflow.txt in Resources */ = {isa = PBXBuildFile; fileRef = 43DFB03D1E36122200175C9C /* MessageHeapBufferOverflow.txt */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
@@ -133,6 +134,8 @@
 		434226801D4F60000083ED79 /* PepTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PepTests.m; sourceTree = "<group>"; };
 		43676B631C57EA1A00233933 /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
+		43D27DDF1F5DA07A00795687 /* NSData+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Extension.m"; sourceTree = "<group>"; };
+		43D27DE31F5DA0D400795687 /* NSData+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Extension.h"; sourceTree = "<group>"; };
 		43DFB03D1E36122200175C9C /* MessageHeapBufferOverflow.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MessageHeapBufferOverflow.txt; sourceTree = "<group>"; };
 		43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A_sec.asc; sourceTree = "<group>"; };
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				43209B331ECC2ACD007E7E2E /* PEPSession+Internal.h */,
 				43209B341ECC2ACD007E7E2E /* PEPSession.h */,
 				43209B351ECC2ACD007E7E2E /* PEPSession.m */,
+				43D27DE31F5DA0D400795687 /* NSData+Extension.h */,
+				43D27DDF1F5DA07A00795687 /* NSData+Extension.m */,
 			);
 			path = pEpObjCAdapter;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43D27DE01F5DA07A00795687 /* NSData+Extension.m in Sources */,
 				43209B411ECC2DB8007E7E2E /* PEPObjCAdapter.m in Sources */,
 				43209B431ECC2DC0007E7E2E /* PEPSession.m in Sources */,
 				43209B3F1ECC2DB0007E7E2E /* PEPLanguage.m in Sources */,
