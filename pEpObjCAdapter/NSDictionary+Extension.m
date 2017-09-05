@@ -12,6 +12,9 @@
 
 @implementation NSDictionary (Extension)
 
+/**
+ Saves itself to the filesystem, under `NSApplicationSupportDirectory`.
+ */
 - (void)debugSaveToFilePath:(NSString * _Nonnull)filePath
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];

@@ -79,6 +79,12 @@
     release(_session);
 }
 
+/**
+ Saves the given message dict as a plist to the local filesystem
+ (directly under NSApplicationSupportDirectory).
+ Since the complete output file will be logged by `debugSaveToFilePath`,
+ you can get access to the files easily when it's the simulator.
+ */
 - (void)debugOutPutMessageDict:(nonnull PEPDict *)src
 {
     NSString *from = src[kPepFrom][kPepAddress];
@@ -94,8 +100,6 @@
                             dest:(PEPDict * _Nullable * _Nullable)dst
                             keys:(PEPStringList * _Nullable * _Nullable)keys
 {
-    [self debugOutPutMessageDict:src];
-
     message * _src = PEP_messageDictToStruct(src);
     message * _dst = NULL;
     stringlist_t * _keys = NULL;
