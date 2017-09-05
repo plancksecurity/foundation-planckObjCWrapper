@@ -85,8 +85,8 @@
     NSArray *tos = src[kPepTo];
     NSString *to = tos[0][kPepAddress];
     NSString *msgID = src[kPepID];
-    NSString *fileName = [NSString stringWithFormat:@"from(%@)_to(%@)_(%@)",
-                          from, to, msgID];
+    NSString *fileName = [NSString stringWithFormat:@"%@_from(%@)_%@",
+                          to, from, msgID];
     [src debugSaveToFilePath:fileName];
 }
 

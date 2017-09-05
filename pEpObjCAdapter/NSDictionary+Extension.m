@@ -25,6 +25,7 @@
                           filePath, nowDesc, @"plist"];
 
     NSURL *writeURL = [NSURL fileURLWithPath:fileName relativeToURL:parentPath];
+    NSLog(@"debugSaveToFilePath: writing %@", writeURL);
     [self writeToURL:writeURL atomically:YES];
 }
 
