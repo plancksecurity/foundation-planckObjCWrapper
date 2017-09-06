@@ -14,6 +14,7 @@
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Extension.h"
+#import "NSDictionary+Extension.h"
 
 @implementation PEPSession
 
@@ -76,6 +77,23 @@
     [PEPObjCAdapter unbindSession:self];
 
     release(_session);
+}
+
+/**
+ Saves the given message dict as a plist to the local filesystem
+ (directly under NSApplicationSupportDirectory).
+ Since the complete output file will be logged by `debugSaveToFilePath`,
+ you can get access to the files easily when it's the simulator.
+ */
+- (void)debugOutPutMessageDict:(nonnull PEPDict *)src
+{
+    NSString *from = src[kPepFrom][kPepAddress];
+    NSArray *tos = src[kPepTo];
+    NSString *to = tos[0][kPepAddress];
+    NSString *msgID = src[kPepID];
+    NSString *fileName = [NSString stringWithFormat:@"%@_from(%@)_%@",
+                          to, from, msgID];
+    [src debugSaveToFilePath:fileName];
 }
 
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
