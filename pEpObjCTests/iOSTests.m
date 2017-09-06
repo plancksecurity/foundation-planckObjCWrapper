@@ -919,7 +919,6 @@ encmsg[@"outgoing"] = @NO;
 }}
 #endif
 
-#if 0
 - (void)testTwoNewUsers {
 
     NSMutableDictionary* petrasMsg;
@@ -1032,10 +1031,10 @@ encmsg[@"outgoing"] = @NO;
         [session trustPersonalKey:identMiroAtPetra];
 
         secondclr = [session reEvaluateMessageRating:decmsg];
-        XCTAssertEqual(secondclr, PEP_rating_trusted, @"Not trusted");
+        XCTAssertEqual(secondclr, PEP_rating_trusted_and_anonymized, @"Not trusted");
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
-        XCTAssertEqual(clr, PEP_rating_trusted, @"Not trusted");
+        XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
 
         // Undo trust
         [session keyResetTrust:identMiroAtPetra];
@@ -1059,14 +1058,13 @@ encmsg[@"outgoing"] = @NO;
         [session trustPersonalKey:identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
-        XCTAssertEqual(clr, PEP_rating_trusted, @"Not trusted");
+        XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
 
         XCTAssertEqualObjects(decmsg[@"longmsg"], @"That was so easy !");
     }
     [self pEpCleanUp:@"Petra"];
     
 }
-#endif
 
 #if 0
 - (void)testEncryptedMailFromOutlook
