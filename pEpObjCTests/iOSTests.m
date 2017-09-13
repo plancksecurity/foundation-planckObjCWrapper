@@ -321,8 +321,18 @@ PEPSession *session;
                                        nil];
     
     [session mySelf:identMe];
-    
-    XCTAssert(identMe[@"fpr"]);
+
+    // fingerprint
+    XCTAssertNotNil(identMe[kPepFingerprint]);
+
+    // check that the comm type is not a PGP one
+    NSNumber *ctNum = identMe[kPepCommType];
+    XCTAssertNotNil(ctNum);
+    NSInteger ct = ctNum.integerValue;
+    XCTAssertNotEqual(ct, PEP_ct_OpenPGP_weak_unconfirmed);
+    XCTAssertNotEqual(ct, PEP_ct_OpenPGP_unconfirmed);
+    XCTAssertNotEqual(ct, PEP_ct_OpenPGP_weak);
+    XCTAssertNotEqual(ct, PEP_ct_OpenPGP);
 
     [self pEpCleanUp];
     
