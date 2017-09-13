@@ -35,9 +35,11 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
 // MARK: - PEPSyncDelegate
 
 @interface SomeSyncDelegate : NSObject<PEPSyncDelegate>
-- (bool)waitUntilSent:(time_t)maxSec;
+
+- (BOOL)waitUntilSent:(time_t)maxSec;
 @property (nonatomic) bool sendWasCalled;
 @property (nonatomic, strong) NSCondition *cond;
+
 @end
 
 @implementation SomeSyncDelegate
