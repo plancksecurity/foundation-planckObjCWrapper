@@ -1462,7 +1462,7 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary *encDict;
     PEP_STATUS status = [session encryptMessageDict:mail identity:me dest:&encDict];
     XCTAssertEqual(status, 0);
-    XCTAssertEqualObjects(encDict[kPepShortMessage], @"pEp");
+    XCTAssertEqualObjects(encDict[kPepShortMessage], @"p≡p");
 
     NSMutableDictionary *unencDict;
     PEP_rating rating = [session decryptMessageDict:encDict dest:&unencDict keys:keys];
