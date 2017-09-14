@@ -14,12 +14,32 @@
 
 @implementation NSDictionary (Extension)
 
+- (PEP_comm_type)commType
+{
+    NSNumber *ctNum = self[kPepCommType];
+    if (!ctNum) {
+        return PEP_ct_unknown;
+    }
+    return ctNum.intValue;
+}
+
+- (BOOL)containsPGPCommType
+{
+    PEP_comm_type val = self.commType;
+
+    return
+    val == PEP_ct_OpenPGP_weak_unconfirmed ||
+    val == PEP_ct_OpenPGP_unconfirmed ||
+    val == PEP_ct_OpenPGP_weak ||
+    val == PEP_ct_OpenPGP;
+}
+
 - (void)debugSaveToFilePath:(NSString * _Nonnull)filePath
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *parentPath = [[fileManager
-                       URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask]
-                      firstObject];
+                          URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask]
+                         firstObject];
 
     NSDate *now = [NSDate date];
     NSString *nowDesc = [now description];
@@ -29,21 +49,6 @@
     NSURL *writeURL = [NSURL fileURLWithPath:fileName relativeToURL:parentPath];
     NSLog(@"debugSaveToFilePath: writing %@", writeURL);
     [self writeToURL:writeURL atomically:YES];
-}
-
-- (BOOL)containsPGPCommType
-{
-    NSNumber *ctNum = self[kPepCommType];
-    if (!ctNum) {
-        return NO;
-    }
-    NSInteger val = ctNum.integerValue;
-
-    return
-    val == PEP_ct_OpenPGP_weak_unconfirmed ||
-    val == PEP_ct_OpenPGP_unconfirmed ||
-    val == PEP_ct_OpenPGP_weak ||
-    val == PEP_ct_OpenPGP;
 }
 
 @end
