@@ -11,6 +11,8 @@
 #import "PEPObjCAdapter.h"
 #import "PEPSession.h"
 
+#import "NSDictionary+Extension.h"
+
 // MARK: - Helpers
 
 PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable toDict,
@@ -74,7 +76,7 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
     
 }
 
-- (bool)waitUntilSent:(time_t)maxSec {
+- (BOOL)waitUntilSent:(time_t)maxSec {
     bool res;
     [_cond lock];
     [_cond waitUntilDate:[NSDate dateWithTimeIntervalSinceNow: 2]];
@@ -324,17 +326,11 @@ PEPSession *session;
     
     [session mySelf:identMe];
 
-    // fingerprint
     XCTAssertNotNil(identMe[kPepFingerprint]);
+    XCTAssertNotNil(identMe[kPepCommType]);
 
     // check that the comm type is not a PGP one
-    NSNumber *ctNum = identMe[kPepCommType];
-    XCTAssertNotNil(ctNum);
-    NSInteger ct = ctNum.integerValue;
-    XCTAssertNotEqual(ct, PEP_ct_OpenPGP_weak_unconfirmed);
-    XCTAssertNotEqual(ct, PEP_ct_OpenPGP_unconfirmed);
-    XCTAssertNotEqual(ct, PEP_ct_OpenPGP_weak);
-    XCTAssertNotEqual(ct, PEP_ct_OpenPGP);
+    XCTAssertFalse([identMe containsPGPCommType]);
 
     [self pEpCleanUp];
     

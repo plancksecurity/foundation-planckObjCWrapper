@@ -10,11 +10,10 @@
 
 #import "NSDictionary+Extension.h"
 
+#import "PEPMessage.h"
+
 @implementation NSDictionary (Extension)
 
-/**
- Saves itself to the filesystem, under `NSApplicationSupportDirectory`.
- */
 - (void)debugSaveToFilePath:(NSString * _Nonnull)filePath
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -30,6 +29,21 @@
     NSURL *writeURL = [NSURL fileURLWithPath:fileName relativeToURL:parentPath];
     NSLog(@"debugSaveToFilePath: writing %@", writeURL);
     [self writeToURL:writeURL atomically:YES];
+}
+
+- (BOOL)containsPGPCommType
+{
+    NSNumber *ctNum = self[kPepCommType];
+    if (!ctNum) {
+        return NO;
+    }
+    NSInteger val = ctNum.integerValue;
+
+    return
+    val == PEP_ct_OpenPGP_weak_unconfirmed ||
+    val == PEP_ct_OpenPGP_unconfirmed ||
+    val == PEP_ct_OpenPGP_weak ||
+    val == PEP_ct_OpenPGP;
 }
 
 @end
