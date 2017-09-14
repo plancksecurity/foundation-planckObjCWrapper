@@ -67,7 +67,6 @@ static unichar s_quoteChar = '"';
  */
 - (BOOL)endingQuoteAt:(NSInteger)pos
 {
-    NSString *context = [self.string substringFromIndex:pos];
     unichar ch1 = [self.string characterAtIndex:pos];
     if (ch1 == s_quoteChar) {
         if (pos == self.len - 1) {
