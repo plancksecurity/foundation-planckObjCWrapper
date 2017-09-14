@@ -28,7 +28,6 @@
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
 		43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */; };
 		43E02A231C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */; };
-		43F7F06F1F6AA81600BDF151 /* testCommTypeForKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 43F7F06E1F6AA6F000BDF151 /* testCommTypeForKey.txt */; };
 		6400FB911B8CA543005221E3 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
@@ -140,7 +139,6 @@
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
 		43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = account_A3FC7F0A.ser; sourceTree = "<group>"; };
 		43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_A3FC7F0A_from_mutt.ser; sourceTree = "<group>"; };
-		43F7F06E1F6AA6F000BDF151 /* testCommTypeForKey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testCommTypeForKey.txt; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,7 +236,6 @@
 		64415E181BE94FCB00F6CBB2 /* pEpObjCTests */ = {
 			isa = PBXGroup;
 			children = (
-				43F7F06E1F6AA6F000BDF151 /* testCommTypeForKey.txt */,
 				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
 				640F79221C9B517C00DBEC4E /* 5CB2C182.asc */,
 				432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */,
@@ -393,7 +390,6 @@
 				432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */,
 				64415E481BEA523300F6CBB2 /* 0x6FF00E97.asc in Resources */,
 				64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */,
-				43F7F06F1F6AA81600BDF151 /* testCommTypeForKey.txt in Resources */,
 				432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
