@@ -11,14 +11,14 @@
 @interface NSDictionary (Extension)
 
 /**
- Saves itself to the filesystem, under `NSApplicationSupportDirectory`.
- */
-- (void)debugSaveToFilePath:(NSString * _Nonnull)filePath;
-
-/**
  If we interpret the self as a dictionary denoting a p≡p Identity,
  does the comm type denote a PGP user?
  */
-- (BOOL)containsPGPCommType;
+@property (nonatomic, readonly) BOOL containsPGPCommType;
+
+/**
+ Saves itself to the filesystem, under `NSApplicationSupportDirectory`.
+ */
+- (void)debugSaveToFilePath:(NSString * _Nonnull)filePath;
 
 @end
