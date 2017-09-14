@@ -197,6 +197,14 @@ PEPSession *session;
     return txtFileContents;
 }
 
+- (NSData *)loadDataFromFileName:(NSString *)fileName
+{
+    NSString *txtFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath]
+                             stringByAppendingPathComponent:fileName];
+    NSData *data = [NSData dataWithContentsOfFile:txtFilePath];
+    return data;
+}
+
 - (void)importBundledKey:(NSString *)item intoSession:(PEPSession *)theSession
 {
 
@@ -1539,6 +1547,23 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertNil(trustwordsUndefined);
 
     [self pEpCleanUp];
+}
+
+- (void)testCommTypeForKey
+{
+    PEPSession *session = [[PEPSession alloc] init];
+    NSData *mimeData = [self loadDataFromFileName:@"testCommTypeForKey.txt"];
+
+    NSMutableData *decryptedData = [NSMutableData dataWithLength:4096 * 1024];
+
+    stringlist_t *keylist;
+    PEP_rating rating;
+    PEP_decrypt_flags flags;
+    PEP_STATUS status = MIME_decrypt_message((__bridge PEP_SESSION)(session), mimeData.bytes,
+                                             mimeData.length,
+                                             [decryptedData mutableBytes],
+                                             &keylist, &rating, &flags);
+    XCTAssertEqual(status, PEP_STATUS_OK);
 }
 
 @end
