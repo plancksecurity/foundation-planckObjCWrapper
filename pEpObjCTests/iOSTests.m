@@ -1510,13 +1510,13 @@ encmsg[@"outgoing"] = @NO;
     @{ kPepAddress: @"partner1@dontcare.me",
        kPepUserID: @"partner1",
        kPepFingerprint: @"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6",
-       kPepUsername: @"partner1" }.mutableCopy;
+       kPepUsername: @"partner1" };
 
     NSDictionary *meOrig =
     @{ kPepAddress: @"me@dontcare.me",
        kPepUserID: @"me",
        kPepFingerprint: @"CC1F73F6FB774BF08B197691E3BFBCA9248FC681",
-       kPepUsername: @"me" }.mutableCopy;
+       kPepUsername: @"me" };
 
     NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);
