@@ -1541,24 +1541,4 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp];
 }
 
-#if 0
-- (void)testDecryptMessageHeapBufferOverflow
-{
-    PEPSession *session = [[PEPSession alloc] init];
-    NSString *mimeTxt = [self loadStringFromFileName:@"MessageHeapBufferOverflow.txt"];
-    const char *msgTxt = [mimeTxt cStringUsingEncoding:NSUTF8StringEncoding];
-    NSUInteger dataLength = 4096 * 1024;
-    NSMutableData *decryptedData = [NSMutableData dataWithLength:dataLength];
-    XCTAssertEqual(decryptedData.length, dataLength);
-    stringlist_t *keylist;
-    PEP_rating rating;
-    PEP_decrypt_flags flags;
-    PEP_STATUS status = MIME_decrypt_message((__bridge PEP_SESSION)(session), msgTxt,
-                                             decryptedData.length,
-                                             [decryptedData mutableBytes],
-                                             &keylist, &rating, &flags);
-    XCTAssertEqual(status, PEP_STATUS_OK);
-}
-#endif
-
 @end
