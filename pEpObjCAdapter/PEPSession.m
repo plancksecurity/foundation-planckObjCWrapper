@@ -57,6 +57,8 @@
     });
 }
 
+static NSString *threadCountKey = @"PEPSession.threadCount";
+
 - (id)init
 {
     [PEPSession setupTrustWordsDB];
@@ -69,6 +71,8 @@
 
     [PEPObjCAdapter bindSession:self];
 
+    [self incSessionCount];
+
     return self;
 }
 
@@ -77,6 +81,37 @@
     [PEPObjCAdapter unbindSession:self];
 
     release(_session);
+
+    [self decSessionCount];
+}
+
+- (void)incSessionCount
+{
+    NSNumber *sessionCount = [[NSThread currentThread] threadDictionary][threadCountKey];
+    if (!sessionCount) {
+        sessionCount = [NSNumber numberWithInteger:1];
+    } else {
+        sessionCount = [NSNumber numberWithInteger:sessionCount.integerValue + 1];
+    }
+    [[NSThread currentThread] threadDictionary][threadCountKey] = sessionCount;
+}
+
+- (void)decSessionCount
+{
+    NSNumber *sessionCount = [[NSThread currentThread] threadDictionary][threadCountKey];
+    if (sessionCount) {
+        sessionCount = [NSNumber numberWithInteger:sessionCount.integerValue - 1];
+        [[NSThread currentThread] threadDictionary][threadCountKey] = sessionCount;
+    } else {
+        NSAssert(NO, @"Session count on thread below 0, thread mixup between init and dealloc?");
+    }
+}
+
+- (void)dumpThreadCount:(NSString *)contextName
+{
+    NSNumber *sessionCount = [[NSThread currentThread] threadDictionary][threadCountKey];
+    NSLog(@"%@: (%@) %ld", contextName,
+          [[NSThread currentThread] name], (long) sessionCount.integerValue);
 }
 
 /**
