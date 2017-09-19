@@ -318,12 +318,10 @@ PEPSession *session;
     
     [self pEpSetUp];
     
-    NSMutableDictionary *identMe = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test iOS GenKey", @"username",
-                                       @"pep.test.iosgenkey@pep-project.org", @"address",
-                                       @"Me", @"user_id",
-                                       nil];
-    
+    NSMutableDictionary *identMe = @{ kPepUsername: @"pEp Test iOS GenKey",
+                                      kPepAddress: @"pep.test.iosgenkey@pep-project.org",
+                                      kPepUserID: @"Me" }.mutableCopy;
+
     [session mySelf:identMe];
 
     XCTAssertNotNil(identMe[kPepFingerprint]);
@@ -334,6 +332,51 @@ PEPSession *session;
 
     [self pEpCleanUp];
     
+}
+
+- (void)testMySelfCommType {
+
+    [self pEpSetUp];
+
+    NSMutableDictionary *identMe = @{ kPepUsername: @"pEp Test iOS GenKey",
+                                      kPepAddress: @"pep.test.iosgenkey@pep-project.org",
+                                      kPepUserID: @"Me" }.mutableCopy;
+
+    [session mySelf:identMe];
+
+    XCTAssertNotNil(identMe[kPepFingerprint]);
+    XCTAssertNotNil(identMe[kPepCommType]);
+
+    // check that the comm type is not a PGP one
+    XCTAssertFalse([identMe containsPGPCommType]);
+
+    dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
+    dispatch_sync(queue, ^{
+        PEPSession *session2 = [PEPSession session];
+
+        // Now simulate an update from the app, which usually only caches
+        // kPepUsername, kPepAddress and optionally kPepUserID.
+        NSMutableDictionary *identMe2 = @{ kPepAddress: identMe[kPepAddress],
+                                           kPepUsername: identMe[kPepUsername],
+                                           kPepUserID: identMe[kPepUserID] }.mutableCopy;
+        [session2 updateIdentity:identMe2];
+        XCTAssertNotNil(identMe2[kPepFingerprint]);
+        XCTAssertFalse([identMe2 containsPGPCommType]);
+
+        // Now pretend the app only knows kPepUsername and kPepAddress
+        NSMutableDictionary *identMe3 = @{ kPepAddress: identMe[kPepAddress],
+                                           kPepUsername: identMe[kPepUsername] }.mutableCopy;
+        [session2 updateIdentity:identMe3];
+        XCTAssertNotNil(identMe3[kPepFingerprint]);
+        XCTAssertFalse([identMe3 containsPGPCommType]);
+
+        XCTAssertEqualObjects(identMe[kPepAddress], identMe2[kPepAddress]);
+        XCTAssertEqualObjects(identMe[kPepAddress], identMe3[kPepAddress]);
+        XCTAssertEqualObjects(identMe[kPepCommType], identMe2[kPepCommType]);
+        XCTAssertEqualObjects(identMe[kPepCommType], identMe3[kPepCommType]);
+    });
+
+    [self pEpCleanUp];
 }
 
 - (void)testOutgoingColors {
