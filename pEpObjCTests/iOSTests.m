@@ -1584,4 +1584,303 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp];
 }
 
+#pragma mark - Concurrent Calls
+
+// Tests trying to reproduce IOSAD-35 (IOSAD-23)
+// Assumption: multiple sessions in one thread are OK
+/*
+ This tests crashes often (but not always) here.
+ Assertion failed: (status == PEP_STATUS_OK), function _myself, file /Users/buff/workspace/pEp/src/pEpEngine/src/keymanagement.c, line 619.
+ If you can not reproduce it, comment the marked line, run, run agin, uncomment the marked line, run.
+ */
+- (void)testParallelDecryptionOneThreadMultipleSessions
+{
+    // Have one session open at all times, from main thread
+    [self pEpSetUp];
+    // An unecrypted Mail
+    NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
+    [msgDict removeObjectForKey:@"attachments"]; // toggle comment/uncomment this line in between runs helps to reproduce the issue
+    msgDict[@"address"] = @"some.unkown@user.com";
+    msgDict[@"username"] = @"some unkown user";
+    // me
+    NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
+
+    PEPSession *someSession = [PEPSession session];
+    //Some key
+    [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"5CB2C182_sec.asc" intoSession:someSession];
+    someSession = nil;
+
+    dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
+                                                   DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_t group = dispatch_group_create();
+    void (^decryptionBlock)(int) = ^(int index) {
+        PEPSession *innerSession = [PEPSession session];
+        NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
+        [innerSession mySelf:innerAccountDict]; //Random Assertion failed: (status == PEP_STATUS_OK), function _myself, file /Users/buff/workspace/pEp/src/pEpEngine/src/keymanagement.c, line 619.
+        XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
+        NSArray* keys;
+        NSMutableDictionary *pepDecryptedMail;
+        PEP_rating color = [innerSession decryptMessageDict:msgDict dest:&pepDecryptedMail
+                                                       keys:&keys];
+        dispatch_group_leave(group);
+    };
+
+    dispatch_group_enter(group);
+    decryptionBlock(0);
+
+    for (int i = 1; i < 84; ++i) {
+        dispatch_group_enter(group);
+        dispatch_async(queue, ^{
+            decryptionBlock(i);
+        });
+    }
+
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    [self pEpCleanUp];
+}
+
+- (void)testParallelDecryptionOneThreadOneSessionCopiedToBlock
+{
+    // Have one session open at all times, from main thread
+    [self pEpSetUp];
+
+    // An unecrypted Mail
+    NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
+    msgDict[@"address"] = @"some.unkown@user.com";
+    msgDict[@"username"] = @"some unkown user";
+    // me
+    NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
+
+    PEPSession *someSession = [PEPSession session];
+    //Some key
+    [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"5CB2C182_sec.asc" intoSession:someSession];
+    someSession = nil;
+
+    dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
+                                                   DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_t group = dispatch_group_create();
+    PEPSession *oneSessionCopiedToBlock = [PEPSession session];
+    void (^decryptionBlock)(int) = ^(int index) {
+        NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
+        [oneSessionCopiedToBlock mySelf:innerAccountDict];        XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
+        NSArray* keys;
+        NSMutableDictionary *pepDecryptedMail;
+        PEP_rating color = [oneSessionCopiedToBlock decryptMessageDict:msgDict dest:&pepDecryptedMail
+                                                                  keys:&keys];
+        dispatch_group_leave(group);
+    };
+    dispatch_group_enter(group);
+    decryptionBlock(0);
+    for (int i = 1; i < 84; ++i) {
+        dispatch_group_enter(group);
+        dispatch_async(queue, ^{
+            decryptionBlock(i);
+        });
+    }
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    [self pEpCleanUp];
+}
+
+- (void)testParallelDecryptionOneThreadOneSessionBlockReference
+{
+    // Have one session open at all times, from main thread
+    [self pEpSetUp];
+
+    // An unecrypted Mail
+    NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
+    msgDict[@"address"] = @"some.unkown@user.com";
+    msgDict[@"username"] = @"some unkown user";
+    // me
+    NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
+
+    PEPSession *someSession = [PEPSession session];
+    //Some key
+    [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"5CB2C182_sec.asc" intoSession:someSession];
+    someSession = nil;
+
+    dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
+                                                   DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_t group = dispatch_group_create();
+    __block PEPSession *oneSessionCopiedToBlock = [PEPSession session];
+    void (^decryptionBlock)(int) = ^(int index) {
+        NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
+        [oneSessionCopiedToBlock mySelf:innerAccountDict];        XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
+
+        NSArray* keys;
+        NSMutableDictionary *pepDecryptedMail;
+        PEP_rating color = [oneSessionCopiedToBlock decryptMessageDict:msgDict dest:&pepDecryptedMail
+                                                                  keys:&keys];
+        dispatch_group_leave(group);
+    };
+
+    dispatch_group_enter(group);
+    decryptionBlock(0);
+    for (int i = 1; i < 84; ++i) {
+        dispatch_group_enter(group);
+        dispatch_async(queue, ^{
+            decryptionBlock(i);
+        });
+    }
+
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    [self pEpCleanUp];
+}
+
+// IOSAD-34
+- (void)testParallelDecryptionPlusParallelInitOneThreadMultipleSessions
+{
+    // Have one session open at all times, from main thread
+    [self pEpSetUp];
+    // An unecrypted Mail
+    NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
+    msgDict[@"address"] = @"some.unkown@user.com";
+    msgDict[@"username"] = @"some unkown user";
+    // me
+    NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
+    PEPSession *someSession = [PEPSession session];
+    //Some key
+    [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"5CB2C182_sec.asc" intoSession:someSession];
+    someSession = nil;
+
+    dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
+                                                   DISPATCH_QUEUE_CONCURRENT);
+    dispatch_group_t group = dispatch_group_create();
+    PEPSession *decryptSession = [PEPSession session];
+    void (^decryptionBlock)(int) = ^(int index) {
+        NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
+        [decryptSession mySelf:innerAccountDict];         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
+        NSArray* keys;
+        NSMutableDictionary *pepDecryptedMail;
+        PEP_rating color = [decryptSession decryptMessageDict:msgDict dest:&pepDecryptedMail
+                                                         keys:&keys];
+        dispatch_group_leave(group);
+    };
+
+    PEPSession *decryptSession2 = [PEPSession session];
+    void (^decryptionBlock2)() = ^() {
+        NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
+        [decryptSession2 mySelf:innerAccountDict];         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
+        NSArray* keys;
+        NSMutableDictionary *pepDecryptedMail;
+        PEP_rating color = [decryptSession2 decryptMessageDict:msgDict dest:&pepDecryptedMail
+                                                          keys:&keys];
+        dispatch_group_leave(group);
+    };
+
+    void (^initBlock)() = ^() {
+        for (int i = 0; i < 1000; ++i) {
+            PEPSession *createe = [[PEPSession alloc] init]; // Assertion failed: (int_result == SQLITE_OK), function init, file /Users/buff/workspace/pEp/src/pEpEngine/src/pEpEngine.c, line 553.
+        }
+    };
+
+    dispatch_group_enter(group);
+    decryptionBlock(0);
+    for (int i = 1; i < 84; ++i) {
+        dispatch_group_enter(group);
+        dispatch_async(queue, ^{
+            decryptionBlock(i);
+        });
+        dispatch_async(queue, ^{
+            decryptionBlock2(i);
+        });
+        dispatch_async(queue, ^{
+            initBlock();
+        });
+    }
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    [self pEpCleanUp];
+}
+
+#pragma mark - PEP Color
+
+- (void)testDecryptUnencryptedMailWithKeyAttached
+{
+    [self pEpSetUp];
+
+    // An unecrypted Mail with key attached
+    NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
+    msgDict[@"address"] = @"some.unkown@user.com";
+    msgDict[@"username"] = @"some unkown user";
+
+    // me
+    NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
+
+    PEPSession *someSession = [PEPSession session];
+
+    // This is the pub key for test001@peptest.ch
+    [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
+
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"5CB2C182_sec.asc" intoSession:someSession];
+
+    someSession = nil;
+
+    PEPSession *workSession = [PEPSession session];
+
+    NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
+    [workSession mySelf:innerAccountDict];
+    XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
+
+    NSArray* keys;
+    NSMutableDictionary *pepDecryptedMail;
+    PEP_rating color = [workSession decryptMessageDict:msgDict dest:&pepDecryptedMail
+                                                  keys:&keys];
+    XCTAssertEqual(color, PEP_rating_unencrypted);
+    NSLog(@"%d: decryption color -> %d", index, color);
+
+    [self pEpCleanUp];
+}
+
+- (void)testDecryptUnencryptedMailNoKeyAttached
+{
+    [self pEpSetUp];
+
+    // An unecrypted Mail ...
+    NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
+    // ... with no key attached
+    [msgDict removeObjectForKey:@"attachments"];
+    msgDict[@"address"] = @"some.unkown@user.com";
+    msgDict[@"username"] = @"some unkown user";
+
+    // me
+    NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
+
+    PEPSession *someSession = [PEPSession session];
+
+    //This is the pub key for test001@peptest.ch
+    [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
+
+    // This is the secret key for test001@peptest.ch
+    [self importBundledKey:@"5CB2C182_sec.asc" intoSession:someSession];
+
+    someSession = nil;
+
+    PEPSession *workSession = [PEPSession session];
+
+    NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
+    [workSession mySelf:innerAccountDict]; //Random Assertion failed: (status == PEP_STATUS_OK), function _myself, file /Users/buff/workspace/pEp/src/pEpEngine/src/keymanagement.c, line 619.
+    XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
+
+    NSArray* keys;
+    NSMutableDictionary *pepDecryptedMail;
+    PEP_rating color = [workSession decryptMessageDict:msgDict dest:&pepDecryptedMail
+                                                  keys:&keys];
+    XCTAssertEqual(color, PEP_rating_have_no_key);
+    NSLog(@"%d: decryption color -> %d", index, color);
+    
+    [self pEpCleanUp];
+}
+
 @end
