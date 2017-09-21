@@ -968,7 +968,6 @@ encmsg[@"outgoing"] = @NO;
 #endif
 
 - (void)testTwoNewUsers {
-
     NSMutableDictionary* petrasMsg;
     NSMutableDictionary *identMiroAtPetra = @{ kPepUsername: @"Miro",
                                                kPepAddress: @"pep.test.miro@pep-project.org",
@@ -1028,7 +1027,6 @@ encmsg[@"outgoing"] = @NO;
         
         PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&mirosMsg];
         XCTAssert(status == PEP_STATUS_OK);
-        
     }
     
     [self pEpCleanUp:@"Miro"];
@@ -1042,8 +1040,7 @@ encmsg[@"outgoing"] = @NO;
         NSArray* keys;
         NSMutableDictionary *encmsg = mirosMsg.mutableCopy;
         [encmsg setObject:identMiroAtPetra.mutableCopy forKey:kPepFrom];
-        
-        
+
         PEP_rating clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
 
         XCTAssertEqual(clr, PEP_rating_reliable);
@@ -1095,7 +1092,6 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertEqualObjects(decmsg[@"longmsg"], @"That was so easy !");
     }
     [self pEpCleanUp:@"Petra"];
-    
 }
 
 #if 0
