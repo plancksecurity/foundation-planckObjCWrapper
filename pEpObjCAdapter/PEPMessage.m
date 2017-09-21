@@ -174,21 +174,21 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
 
     if (ident) {
         if (ident->address && ident->address[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:@"address"];
+            [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:kPepAddress];
         
         if (ident->fpr && ident->fpr[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->fpr] forKey:@"fpr"];
+            [dict setObject:[NSString stringWithUTF8String:ident->fpr] forKey:kPepFingerprint];
         
         if (ident->user_id && ident->user_id[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->user_id] forKey:@"user_id"];
+            [dict setObject:[NSString stringWithUTF8String:ident->user_id] forKey:kPepUserID];
         
         if (ident->username && ident->username[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->username] forKey:@"username"];
+            [dict setObject:[NSString stringWithUTF8String:ident->username] forKey:kPepUsername];
         
         if (ident->lang[0])
             [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
         
-        [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:@"comm_type"];
+        [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:kPepCommType];
         
     }
     return dict;
@@ -199,33 +199,30 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
     pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
     
     if (dict && ident) {
-        if ([dict objectForKey:@"address"])
-            ident->address = strdup(
-                                    [[[dict objectForKey:@"address"] precomposedStringWithCanonicalMapping] UTF8String]
-                                    );
+        if ([dict objectForKey:kPepAddress])
+            ident->address = strdup([[[dict objectForKey:kPepAddress]
+                                      precomposedStringWithCanonicalMapping] UTF8String]);
         
-        if ([dict objectForKey:@"fpr"]){
-            ident->fpr = strdup(
-                                [[[dict objectForKey:@"fpr"] precomposedStringWithCanonicalMapping] UTF8String]
-                                );
+        if ([dict objectForKey:kPepFingerprint]) {
+            ident->fpr = strdup([[[dict objectForKey:kPepFingerprint]
+                                  precomposedStringWithCanonicalMapping] UTF8String]);
         }
         
-        if ([dict objectForKey:@"user_id"]){
-            ident->user_id = strdup(
-                                    [[[dict objectForKey:@"user_id"] precomposedStringWithCanonicalMapping] UTF8String]
-                                    );
+        if ([dict objectForKey:kPepUserID]) {
+            ident->user_id = strdup([[[dict objectForKey:kPepUserID]
+                                      precomposedStringWithCanonicalMapping] UTF8String]);
         }
         
-        if ([dict objectForKey:@"username"])
-            ident->username = strdup(
-                                     [[[dict objectForKey:@"username"] precomposedStringWithCanonicalMapping] UTF8String]
-                                     );
+        if ([dict objectForKey:kPepUsername])
+            ident->username = strdup([[[dict objectForKey:kPepUsername]
+                                       precomposedStringWithCanonicalMapping] UTF8String]);
         
         if ([dict objectForKey:@"lang"])
-            strncpy(ident->fpr, [[[dict objectForKey:@"lang"] precomposedStringWithCanonicalMapping] UTF8String], 2);
+            strncpy(ident->fpr, [[[dict objectForKey:@"lang"]
+                                  precomposedStringWithCanonicalMapping] UTF8String], 2);
         
-        if ([dict objectForKey:@"comm_type"])
-            ident->comm_type = [[dict objectForKey:@"comm_type"] intValue];
+        if ([dict objectForKey:kPepCommType])
+            ident->comm_type = [[dict objectForKey:kPepCommType] intValue];
     }
     
     return ident;
@@ -302,7 +299,7 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
             [dict setObject:[NSDate dateWithTimeIntervalSince1970:mktime(msg->recv)] forKey:@"recv"];
         
         if (msg->from)
-            [dict setObject:PEP_identityDictFromStruct(msg->from) forKey:@"from"];
+            [dict setObject:PEP_identityDictFromStruct(msg->from) forKey:kPepFrom];
         
         if (msg->to && msg->to->ident)
             [dict setObject:PEP_identityArrayFromList(msg->to) forKey:@"to"];
@@ -378,8 +375,8 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
     if ([dict objectForKey:@"recv"])
         msg->recv = new_timestamp([[dict objectForKey:@"recv"] timeIntervalSince1970]);
     
-    if ([dict objectForKey:@"from"])
-        msg->from = PEP_identityDictToStruct([dict objectForKey:@"from"]);
+    if ([dict objectForKey:kPepFrom])
+        msg->from = PEP_identityDictToStruct([dict objectForKey:kPepFrom]);
 
     if ([dict objectForKey:@"to"])
         msg->to = PEP_identityArrayToList([dict objectForKey:@"to"]);

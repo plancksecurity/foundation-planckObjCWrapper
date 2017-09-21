@@ -252,9 +252,9 @@ PEPSession *session;
     [PEPObjCAdapter startKeyserverLookup];
     
     NSMutableDictionary *ident = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"pEpDontAssert", @"username",
-                                    @"vb@ulm.ccc.de", @"address",
-                                    @"SsI6H9", @"user_id",
+                                    @"pEpDontAssert", kPepUsername,
+                                    @"vb@ulm.ccc.de", kPepAddress,
+                                    @"SsI6H9", kPepUserID,
                                     nil];
     
     [session updateIdentity:ident];
@@ -264,7 +264,7 @@ PEPSession *session;
     // FIXME: updateIdentity should not assert if username is not provided
     [session updateIdentity:ident];
     
-    XCTAssert(ident[@"fpr"]);
+    XCTAssert(ident[kPepFingerprint]);
     
     [PEPObjCAdapter stopKeyserverLookup];
     [self pEpCleanUp];
@@ -281,9 +281,9 @@ PEPSession *session;
     
     
     NSMutableDictionary *identMe = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"pEp Test iOS GenKey", @"username",
-                                    @"pep.test.iosgenkey@pep-project.org", @"address",
-                                    @"Me", @"user_id",
+                                    @"pEp Test iOS GenKey", kPepUsername,
+                                    @"pep.test.iosgenkey@pep-project.org", kPepAddress,
+                                    @"Me", kPepAddress,
                                     nil];
     
     [session mySelf:identMe];
@@ -386,21 +386,21 @@ PEPSession *session;
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"pEp Test Alice", @"username",
-                                  @"pep.test.alice@pep-project.org", @"address",
-                                  @"23", @"user_id",
-                                  @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                  @"pEp Test Alice", kPepUsername,
+                                  @"pep.test.alice@pep-project.org", kPepAddress,
+                                  @"23", kPepUserID,
+                                  @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
                                   nil];
  
     [session mySelf:identAlice];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       identAlice, @"from",
+                                       identAlice, kPepFrom,
                                        [NSMutableArray arrayWithObjects:
                                             [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                 @"pEp Test Bob", @"username",
-                                                 @"pep.test.bob@pep-project.org", @"address",
-                                                 @"42", @"user_id",
+                                                 @"pEp Test Bob", kPepUsername,
+                                                 @"pep.test.bob@pep-project.org", kPepAddress,
+                                                 @"42", kPepUserID,
                                                  nil],
                                             nil], @"to",
                                         @"All Green Test", @"shortmsg",
@@ -418,10 +418,10 @@ PEPSession *session;
     [self importBundledKey:@"0xC9C2EE39.asc"];
     
     NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", @"username",
-                                     @"pep.test.bob@pep-project.org", @"address",
-                                     @"42", @"user_id",
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     @"pEp Test Bob", kPepUsername,
+                                     @"pep.test.bob@pep-project.org", kPepAddress,
+                                     @"42", kPepUserID,
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
                                      nil];
     
     [session updateIdentity:identBob];
@@ -459,10 +459,10 @@ PEPSession *session;
     
     /*
     identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                @"pEp Test Bob", @"username",
-                @"pep.test.bob@pep-project.org", @"address",
-                @"42", @"user_id",
-                @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                @"pEp Test Bob", kPepUsername,
+                @"pep.test.bob@pep-project.org", kPepAddress,
+                @"42", kPepUserID,
+                @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
                 nil];
 */
     // Forget
@@ -485,18 +485,18 @@ PEPSession *session;
     [self importBundledKey:@"0x70DCF575.asc"];
     
     NSMutableDictionary *identJohn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      @"pEp Test John", @"username",
-                                      @"pep.test.john@pep-project.org", @"address",
-                                      @"101", @"user_id",
-                                      @"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575",@"fpr",
+                                      @"pEp Test John", kPepUsername,
+                                      @"pep.test.john@pep-project.org", kPepAddress,
+                                      @"101", kPepUserID,
+                                      @"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575",kPepFingerprint,
                                       nil];
     
     [session updateIdentity:identJohn];
 
     [msg setObject:[NSMutableArray arrayWithObjects:
      [NSMutableDictionary dictionaryWithObjectsAndKeys:
-      @"pEp Test John", @"username",
-      @"pep.test.john@pep-project.org", @"address",
+      @"pEp Test John", kPepUsername,
+      @"pep.test.john@pep-project.org", kPepAddress,
       nil], nil] forKey:@"cc"];
 
     // Yellow ?
@@ -522,21 +522,21 @@ PEPSession *session;
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", @"username",
-                                       @"pep.test.alice@pep-project.org", @"address",
-                                       @"23", @"user_id",
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       @"pEp Test Alice", kPepUsername,
+                                       @"pep.test.alice@pep-project.org", kPepAddress,
+                                       @"23", kPepUserID,
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
                                        nil];
     
     [session mySelf:identAlice];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                identAlice, @"from",
+                                identAlice, kPepFrom,
                                 [NSMutableArray arrayWithObjects:
                                  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"pEp Test Bob", @"username",
-                                  @"pep.test.bob@pep-project.org", @"address",
-                                  @"42", @"user_id",
+                                  @"pEp Test Bob", kPepUsername,
+                                  @"pep.test.bob@pep-project.org", kPepAddress,
+                                  @"42", kPepUserID,
                                   nil],
                                  nil], @"to",
                                 @"All Green Test", @"shortmsg",
@@ -554,10 +554,10 @@ PEPSession *session;
     [self importBundledKey:@"0xC9C2EE39.asc"];
     
     NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", @"username",
-                                     @"pep.test.bob@pep-project.org", @"address",
-                                     @"42", @"user_id",
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     @"pEp Test Bob", kPepUsername,
+                                     @"pep.test.bob@pep-project.org", kPepAddress,
+                                     @"42", kPepUserID,
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
                                      nil];
     
     [session updateIdentity:identBob];
@@ -585,19 +585,19 @@ PEPSession *session;
     [self importBundledKey:@"0x70DCF575.asc"];
     
     NSMutableDictionary *identJohn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      @"pEp Test John", @"username",
-                                      @"pep.test.john@pep-project.org", @"address",
-                                      @"101", @"user_id",
-                                      @"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575",@"fpr",
+                                      @"pEp Test John", kPepUsername,
+                                      @"pep.test.john@pep-project.org", kPepAddress,
+                                      @"101", kPepUserID,
+                                      @"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575",kPepFingerprint,
                                       nil];
     
     [session updateIdentity:identJohn];
     
     [msg setObject:[NSMutableArray arrayWithObjects:
                     [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                     @"pEp Test John", @"username",
-                     @"pep.test.john@pep-project.org", @"address",
-                     @"101", @"user_id",
+                     @"pEp Test John", kPepUsername,
+                     @"pep.test.john@pep-project.org", kPepAddress,
+                     @"101", kPepUserID,
                      nil], nil] forKey:@"bcc"];
     
     // Yellow ?
@@ -637,10 +637,10 @@ PEPSession *session;
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", @"username",
-                                       @"pep.test.alice@pep-project.org", @"address",
-                                       @"23", @"user_id",
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       @"pEp Test Alice", kPepUsername,
+                                       @"pep.test.alice@pep-project.org", kPepAddress,
+                                       @"23", kPepUserID,
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
                                        nil];
     
     [session mySelf:identAlice];
@@ -650,10 +650,10 @@ PEPSession *session;
     [self importBundledKey:@"0xC9C2EE39.asc"];
     
     NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", @"username",
-                                     @"pep.test.bob@pep-project.org", @"address",
-                                     @"42", @"user_id",
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     @"pEp Test Bob", kPepUsername,
+                                     @"pep.test.bob@pep-project.org", kPepAddress,
+                                     @"42", kPepUserID,
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
                                      nil];
     
     [session updateIdentity:identBob];
@@ -662,12 +662,12 @@ PEPSession *session;
     [session keyMistrusted:identBob];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                identAlice, @"from",
+                                identAlice, kPepFrom,
                                 [NSMutableArray arrayWithObjects:
                                  [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"pEp Test Bob", @"username",
-                                  @"pep.test.bob@pep-project.org", @"address",
-                                  @"42", @"user_id",
+                                  @"pEp Test Bob", kPepUsername,
+                                  @"pep.test.bob@pep-project.org", kPepAddress,
+                                  @"42", kPepUserID,
                                   nil],
                                  nil], @"to",
                                 @"All Green Test", @"shortmsg",
@@ -699,26 +699,26 @@ PEPSession *session;
     [self importBundledKey:@"5CB2C182_sec.asc"];
     
     NSMutableDictionary *identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Hector", @"username",
-                                       @"pep.test.hector@pep-project.org", @"address",
-                                       @"fc2d33", @"user_id",
-                                       @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
+                                       @"pEp Test Hector", kPepUsername,
+                                       @"pep.test.hector@pep-project.org", kPepAddress,
+                                       @"fc2d33", kPepUserID,
+                                       @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",kPepFingerprint,
                                        nil];
     
     // Check that this key is indeed expired
     [session updateIdentity:identHector];
-    XCTAssertEqual(PEP_ct_key_expired, [identHector[@"comm_type"] integerValue]);
+    XCTAssertEqual(PEP_ct_key_expired, [identHector[kPepCommType] integerValue]);
 
     NSMutableDictionary *identHectorOwn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                        @"pEp Test Hector", @"username",
-                                        @"pep.test.hector@pep-project.org", @"address",
-                                        @PEP_OWN_USERID, @"user_id",
-                                        @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
+                                        @"pEp Test Hector", kPepUsername,
+                                        @"pep.test.hector@pep-project.org", kPepAddress,
+                                        @PEP_OWN_USERID, kPepUserID,
+                                        @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",kPepFingerprint,
                                         nil];
 
     // Myself automatically renew expired key.
     [session mySelf:identHectorOwn];
-    XCTAssertEqual(PEP_ct_pEp, [identHectorOwn[@"comm_type"] integerValue]);
+    XCTAssertEqual(PEP_ct_pEp, [identHectorOwn[kPepCommType] integerValue]);
     
     [self pEpCleanUp:@"Bob"];
     
@@ -726,14 +726,14 @@ PEPSession *session;
     [self pEpSetUp:@"Bob"];
     
     NSMutableDictionary *_identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                         @"pEp Test Hector", @"username",
-                                         @"pep.test.hector@pep-project.org", @"address",
-                                         @"khkhkh", @"user_id",
-                                         @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",@"fpr",
+                                         @"pEp Test Hector", kPepUsername,
+                                         @"pep.test.hector@pep-project.org", kPepAddress,
+                                         @"khkhkh", kPepUserID,
+                                         @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",kPepFingerprint,
                                          nil];
     
     [session updateIdentity:_identHector];
-    XCTAssertEqual(PEP_ct_OpenPGP_unconfirmed, [_identHector[@"comm_type"] integerValue]);
+    XCTAssertEqual(PEP_ct_OpenPGP_unconfirmed, [_identHector[kPepCommType] integerValue]);
     
     [self pEpCleanUp];
 
@@ -749,10 +749,10 @@ PEPSession *session;
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", @"username",
-                                       @"pep.test.alice@pep-project.org", @"address",
-                                       @"23", @"user_id",
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       @"pEp Test Alice", kPepUsername,
+                                       @"pep.test.alice@pep-project.org", kPepAddress,
+                                       @"23", kPepUserID,
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
                                        nil];
     
     [session mySelf:identAlice];
@@ -761,7 +761,7 @@ PEPSession *session;
     [session keyMistrusted:identAlice];
     
     // Check fingerprint is different
-    XCTAssertNotEqual(identAlice[@"fpr"], @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97");
+    XCTAssertNotEqual(identAlice[kPepFingerprint], @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97");
 
     [self pEpCleanUp];
 }
@@ -776,16 +776,16 @@ PEPSession *session;
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", @"username",
-                                       @"pep.test.alice@pep-project.org", @"address",
-                                       @"23", @"user_id",
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       @"pEp Test Alice", kPepUsername,
+                                       @"pep.test.alice@pep-project.org", kPepAddress,
+                                       @"23", kPepUserID,
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
                                        nil];
     
     [session mySelf:identAlice];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                identAlice, @"from",
+                                identAlice, kPepFrom,
                                 [NSMutableArray arrayWithObjects: identAlice,
                                  nil], @"to",
                                 @"Mail to Myself", @"shortmsg",
@@ -823,10 +823,10 @@ NSMutableDictionary *encmsg;
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", @"username",
-                                       @"pep.test.alice@pep-project.org", @"address",
-                                       @"23", @"user_id",
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",@"fpr",
+                                       @"pEp Test Alice", kPepUsername,
+                                       @"pep.test.alice@pep-project.org", kPepAddress,
+                                       @"23", kPepUserID,
+                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
                                        nil];
     
     [session mySelf:identAlice];
@@ -836,17 +836,17 @@ NSMutableDictionary *encmsg;
     [self importBundledKey:@"0xC9C2EE39.asc"];
     
     NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", @"username",
-                                     @"pep.test.bob@pep-project.org", @"address",
-                                     @"42", @"user_id",
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     @"pEp Test Bob", kPepUsername,
+                                     @"pep.test.bob@pep-project.org", kPepAddress,
+                                     @"42", kPepUserID,
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
                                      nil];
     
     [session updateIdentity:identBob];
     
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                identAlice, @"from",
+                                identAlice, kPepFrom,
                                 [NSMutableArray arrayWithObjects:
                                  identBob,
                                  nil], @"to",
@@ -862,10 +862,10 @@ NSMutableDictionary *encmsg;
 }
 
 encmsg[@"outgoing"] = @NO;
-[encmsg[@"from"] removeObjectForKey:@"fpr"];
-[encmsg[@"from"] removeObjectForKey:@"user_id"];
-[encmsg[@"to"][0] removeObjectForKey:@"fpr"];
-[encmsg[@"to"][0] removeObjectForKey:@"user_id"];
+[encmsg[kPepFrom] removeObjectForKey:kPepFingerprint];
+[encmsg[kPepFrom] removeObjectForKey:kPepUserID];
+[encmsg[@"to"][0] removeObjectForKey:kPepFingerprint];
+[encmsg[@"to"][0] removeObjectForKey:kPepUserID];
 
 {
     NSMutableDictionary *msg = [encmsg copy];
@@ -878,15 +878,15 @@ encmsg[@"outgoing"] = @NO;
     [self importBundledKey:@"C9C2EE39_sec.asc"];
     
     NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", @"username",
-                                     @"pep.test.bob@pep-project.org", @"address",
-                                     @"42", @"user_id",
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",@"fpr",
+                                     @"pEp Test Bob", kPepUsername,
+                                     @"pep.test.bob@pep-project.org", kPepAddress,
+                                     @"42", kPepUserID,
+                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
                                      nil];
     
     [session mySelf:identBob];
 
-    msg[@"from"][@"user_id"] = @"new_id_from_mail";
+    msg[kPepFrom][kPepUserID] = @"new_id_from_mail";
     
     NSMutableDictionary *decmsg;
     NSArray* keys;
@@ -894,9 +894,9 @@ encmsg[@"outgoing"] = @NO;
     XCTAssert(clr == PEP_rating_reliable);
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", @"username",
-                                       @"pep.test.alice@pep-project.org", @"address",
-                                       @"new_id_from_mail", @"user_id",
+                                       @"pEp Test Alice", kPepUsername,
+                                       @"pep.test.alice@pep-project.org", kPepAddress,
+                                       @"new_id_from_mail", kPepUserID,
                                        nil];
     
     [session updateIdentity:identAlice];
@@ -916,7 +916,7 @@ encmsg[@"outgoing"] = @NO;
 }{ // This is simulating a shutdown.
     NSMutableDictionary *msg = [encmsg copy];
 
-    msg[@"from"][@"user_id"] = @"new_id_from_mail";
+    msg[kPepFrom][kPepUserID] = @"new_id_from_mail";
 
     [self pEpSetUp:@"Bob"];
     
@@ -929,9 +929,9 @@ encmsg[@"outgoing"] = @NO;
     XCTAssert(clr == PEP_rating_reliable);
     
     NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", @"username",
-                                       @"pep.test.alice@pep-project.org", @"address",
-                                       @"new_id_from_mail", @"user_id",
+                                       @"pEp Test Alice", kPepUsername,
+                                       @"pep.test.alice@pep-project.org", kPepAddress,
+                                       @"new_id_from_mail", kPepUserID,
                                        nil];
     
     [session updateIdentity:identAlice];
@@ -954,7 +954,7 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary *msg = [encmsg copy];
     PEP_rating clr;
 
-    msg[@"from"][@"user_id"] = @"new_id_from_mail";
+    msg[kPepFrom][kPepUserID] = @"new_id_from_mail";
     {
         NSArray* keys;
         NSMutableDictionary *decmsg;
@@ -1034,14 +1034,14 @@ encmsg[@"outgoing"] = @NO;
     [self pEpCleanUp:@"Miro"];
     
     // Again, outgoing flips into incoming
-    mirosMsg[@"outgoing"] = @NO;
+    mirosMsg[kPepOutgoing] = @NO;
     
     [self pEpSetUp:@"Petra"];
     {
         NSMutableDictionary *decmsg;
         NSArray* keys;
         NSMutableDictionary *encmsg = mirosMsg.mutableCopy;
-        [encmsg setObject:identMiroAtPetra.mutableCopy forKey:@"from"];
+        [encmsg setObject:identMiroAtPetra.mutableCopy forKey:kPepFrom];
         
         
         PEP_rating clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
@@ -1055,9 +1055,9 @@ encmsg[@"outgoing"] = @NO;
         // Check Miro is in DB
         [session updateIdentity:identMiroAtPetra];
         
-        XCTAssertNotNil(identMiroAtPetra[@"fpr"]);
+        XCTAssertNotNil(identMiroAtPetra[kPepFingerprint]);
         
-        NSLog(@"Test fpr %@",identMiroAtPetra[@"fpr"]);
+        NSLog(@"Test fpr %@",identMiroAtPetra[kPepFingerprint]);
 
         // Trust to that identity
         [session trustPersonalKey:identMiroAtPetra];
@@ -1107,19 +1107,19 @@ encmsg[@"outgoing"] = @NO;
     // This is the secret key for test001@peptest.ch
     [self importBundledKey:@"B623F674_sec.asc"];
 
-    NSMutableDictionary *identMe = @{ @"username": @"Test 001",
-                                     @"address": @"test001@peptest.ch",
-                                     @"user_id": @"B623F674" }.mutableCopy;
-    NSMutableDictionary *identMeOutlook = @{ @"username": @"Outlook 1",
-                                             @"address": @"outlook1@peptest.ch",
-                                             @"user_id": @"outlook1" }.mutableCopy;
+    NSMutableDictionary *identMe = @{ kPepUsername: @"Test 001",
+                                     kPepAddress: @"test001@peptest.ch",
+                                     kPepUserID: @"B623F674" }.mutableCopy;
+    NSMutableDictionary *identMeOutlook = @{ kPepUsername: @"Outlook 1",
+                                             kPepAddress: @"outlook1@peptest.ch",
+                                             kPepUserID: @"outlook1" }.mutableCopy;
 
     NSString *msgFilePath = [[[NSBundle bundleForClass:[self class]] resourcePath]
                              stringByAppendingPathComponent:@"msg_to_B623F674.asc"];
     NSString *msgFileContents = [NSString stringWithContentsOfFile:msgFilePath
                                                           encoding:NSASCIIStringEncoding error:NULL];
 
-    NSMutableDictionary *msg = @{ @"from": identMe,
+    NSMutableDictionary *msg = @{ kPepFrom: identMe,
                                   @"to": @[identMeOutlook],
                                   @"shortmsg": @"Some subject",
                                   @"longmsg": msgFileContents,
@@ -1127,7 +1127,7 @@ encmsg[@"outgoing"] = @NO;
 
     // Should happen quite fast, since test001@peptest.ch already has a secret key
     [session mySelf:identMe];
-    XCTAssert(identMe[@"fpr"]);
+    XCTAssert(identMe[kPepFingerprint]);
 
     [session updateIdentity:identMeOutlook];
 
@@ -1157,11 +1157,11 @@ encmsg[@"outgoing"] = @NO;
 
     // Also extracted "live" from the app.
     NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"].mutableCopy;
-    [accountDict removeObjectForKey:@"comm_type"];
-    [accountDict removeObjectForKey:@"fpr"];
+    [accountDict removeObjectForKey:kPepCommType];
+    [accountDict removeObjectForKey:kPepFingerprint];
 
     [session mySelf:accountDict];
-    XCTAssertNotNil(accountDict[@"fpr"]);
+    XCTAssertNotNil(accountDict[kPepFingerprint]);
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
@@ -1469,7 +1469,7 @@ encmsg[@"outgoing"] = @NO;
 
 - (PEPDict *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
-    NSMutableDictionary *me = @{kPepUsername: @"username",
+    NSMutableDictionary *me = @{kPepUsername: kPepUsername,
                                 kPepAddress: @"me@peptest.ch"}.mutableCopy;
     [session mySelf:me];
     XCTAssertNotNil(me[kPepFingerprint]);
@@ -1581,8 +1581,8 @@ encmsg[@"outgoing"] = @NO;
     // An unecrypted Mail
     NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
     [msgDict removeObjectForKey:@"attachments"]; // toggle comment/uncomment this line in between runs helps to reproduce the issue
-    msgDict[@"address"] = @"some.unkown@user.com";
-    msgDict[@"username"] = @"some unkown user";
+    msgDict[kPepAddress] = @"some.unkown@user.com";
+    msgDict[kPepUsername] = @"some unkown user";
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
 
@@ -1630,8 +1630,8 @@ encmsg[@"outgoing"] = @NO;
 
     // An unecrypted Mail
     NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
-    msgDict[@"address"] = @"some.unkown@user.com";
-    msgDict[@"username"] = @"some unkown user";
+    msgDict[kPepAddress] = @"some.unkown@user.com";
+    msgDict[kPepUsername] = @"some unkown user";
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
 
@@ -1675,8 +1675,8 @@ encmsg[@"outgoing"] = @NO;
 
     // An unecrypted Mail
     NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
-    msgDict[@"address"] = @"some.unkown@user.com";
-    msgDict[@"username"] = @"some unkown user";
+    msgDict[kPepAddress] = @"some.unkown@user.com";
+    msgDict[kPepUsername] = @"some unkown user";
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
 
@@ -1723,8 +1723,8 @@ encmsg[@"outgoing"] = @NO;
     [self pEpSetUp];
     // An unecrypted Mail
     NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
-    msgDict[@"address"] = @"some.unkown@user.com";
-    msgDict[@"username"] = @"some unkown user";
+    msgDict[kPepAddress] = @"some.unkown@user.com";
+    msgDict[kPepUsername] = @"some unkown user";
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
     PEPSession *someSession = [PEPSession session];
@@ -1794,8 +1794,8 @@ encmsg[@"outgoing"] = @NO;
 
     // An unecrypted Mail with key attached
     NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
-    msgDict[@"address"] = @"some.unkown@user.com";
-    msgDict[@"username"] = @"some unkown user";
+    msgDict[kPepAddress] = @"some.unkown@user.com";
+    msgDict[kPepUsername] = @"some unkown user";
 
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
@@ -1833,8 +1833,8 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary *msgDict = [[self unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"] mutableCopy];
     // ... with no key attached
     [msgDict removeObjectForKey:@"attachments"];
-    msgDict[@"address"] = @"some.unkown@user.com";
-    msgDict[@"username"] = @"some unkown user";
+    msgDict[kPepAddress] = @"some.unkown@user.com";
+    msgDict[kPepUsername] = @"some unkown user";
 
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
