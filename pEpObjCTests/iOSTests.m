@@ -54,10 +54,9 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
     return self;
 }
 
-- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(id)me partner:(id)partner {
-
+- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(id)me
+                                partner:(id)partner {
     return PEP_STATUS_OK;
-    
 }
 
 - (PEP_STATUS)sendMessage:(id)msg {
@@ -71,9 +70,7 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
 }
 
 - (PEP_STATUS)fastPolling:(bool)isfast {
-    
     return PEP_STATUS_OK;
-    
 }
 
 - (BOOL)waitUntilSent:(time_t)maxSec {
@@ -83,7 +80,6 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
     res = _sendWasCalled;
     [_cond unlock];
     return res;
-    
 }
 
 @end
@@ -100,27 +96,28 @@ PEPSession *session;
 
 #pragma mark -- Helpers
 
--(void)delFile : (NSString *)path : (NSString *)bkpsfx {
+- (void)delFilePath:(NSString *)path backupAs:(NSString *)bkpsfx {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     BOOL fileExists = [fileManager fileExistsAtPath:path];
-    if (fileExists)
-    {
+    if (fileExists) {
         BOOL success;
-        if(!bkpsfx)
-        {
+        if (!bkpsfx) {
             success = [fileManager removeItemAtPath:path error:&error];
-        }else{
+        } else {
             NSString *toPath = [path stringByAppendingString:bkpsfx];
             
-            if([fileManager fileExistsAtPath:toPath])
+            if ([fileManager fileExistsAtPath:toPath]) {
                 [fileManager removeItemAtPath:toPath error:&error];
+            }
             
             success = [fileManager moveItemAtPath:path
-                                   toPath:toPath
-                                   error:&error];
+                                           toPath:toPath
+                                            error:&error];
         }
-        if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+        if (!success) {
+            NSLog(@"Error: %@", [error localizedDescription]);
+        }
     }
 }
 
@@ -154,7 +151,7 @@ PEPSession *session;
     session=nil;
     
     for(id path in [self pEpWorkFiles])
-        [self delFile:path :backup];
+        [self delFilePath:path backupAs:backup];
 
 }
 - (void)pEpCleanUp
@@ -168,7 +165,7 @@ PEPSession *session;
     // [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 
     for(id path in [self pEpWorkFiles])
-        [self delFile:path:NULL];
+        [self delFilePath:path backupAs:nil];
 
     if(restore)
         for(id path in [self pEpWorkFiles])
@@ -973,77 +970,61 @@ encmsg[@"outgoing"] = @NO;
 - (void)testTwoNewUsers {
 
     NSMutableDictionary* petrasMsg;
-    NSMutableDictionary *identMiroAtPetra =
-    [NSMutableDictionary dictionaryWithObjectsAndKeys:
-     @"Miro", @"username",
-     @"pep.test.miro@pep-project.org", @"address",
-     @"Him", @"user_id",
-     nil];
+    NSMutableDictionary *identMiroAtPetra = @{ kPepUsername: @"Miro",
+                                               kPepAddress: @"pep.test.miro@pep-project.org",
+                                               kPepUserID: @"Him" }.mutableCopy;
 
     
     [self pEpSetUp];
 
     {
-        NSMutableDictionary *identPetra = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                        @"Petra", @"username",
-                                        @"pep.test.petra@pep-project.org", @"address",
-                                        @"Me", @"user_id",
-                                        nil];
+        NSMutableDictionary *identPetra = @{ kPepUsername: @"Petra",
+                                             kPepAddress: @"pep.test.petra@pep-project.org",
+                                             kPepUserID: @"Me" }.mutableCopy;
         
         [session mySelf:identPetra];
-        XCTAssert(identPetra[@"fpr"]);
+        XCTAssert(identPetra[kPepFingerprint]);
         
-        NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    identPetra, @"from",
-                                    [NSMutableArray arrayWithObjects: identMiroAtPetra,
-                                     nil], @"to",
-                                    @"Lets use pEp", @"shortmsg",
-                                    @"Dear, I just installed pEp, you should do the same !", @"longmsg",
-                                    @YES, @"outgoing",
-                                    nil];
+        NSMutableDictionary *msg = @{ kPepFrom: identPetra,
+                                      kPepTo: @[identMiroAtPetra],
+                                      kPepShortMessage: @"Lets use pEp",
+                                      kPepLongMessage: @"Dear, I just installed pEp, you should do the same !",
+                                      kPepOutgoing: @YES }.mutableCopy;
         
         PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&petrasMsg];
         XCTAssert(status == PEP_UNENCRYPTED);
-
     }
     
     [self pEpCleanUp:@"Petra"];
 
     // Meanwhile, Petra's outgoing message goes through the Internet,
     // and becomes incomming message to Miro
-    petrasMsg[@"outgoing"] = @NO;
+    petrasMsg[kPepOutgoing] = @NO;
 
     NSMutableDictionary* mirosMsg;
     
     [self pEpSetUp];
     
     {
-        NSMutableDictionary *identMiro = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"Miro", @"username",
-                                       @"pep.test.miro@pep-project.org", @"address",
-                                       @"Me", @"user_id",
-                                       nil];
+        NSMutableDictionary *identMiro = @{ kPepUsername: @"Miro",
+                                            kPepAddress: @"pep.test.miro@pep-project.org",
+                                            kPepUserID: @"Me" }.mutableCopy;
     
         [session mySelf:identMiro];
-        XCTAssert(identMiro[@"fpr"]);
+        XCTAssert(identMiro[kPepFingerprint]);
     
         NSMutableDictionary *decmsg;
         NSArray* keys;
         PEP_rating clr = [session decryptMessageDict:petrasMsg dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_unencrypted);
 
-        NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    identMiro, @"from",
-                                    [NSMutableArray arrayWithObjects:
-                                     [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      @"Petra", @"username",
-                                      @"pep.test.petra@pep-project.org", @"address",
-                                      nil],
-                                     nil], @"to",
-                                    @"re:Lets use pEp", @"shortmsg",
-                                    @"That was so easy !", @"longmsg",
-                                    @YES, @"outgoing",
-                                    nil];
+        NSMutableDictionary *msg = @{ kPepFrom: identMiro,
+                                      kPepTo:
+                                          @[ @{ kPepUsername: @"Petra",
+                                                kPepAddress: @"pep.test.petra@pep-project.org" }],
+                                      kPepShortMessage: @"re:Lets use pEp",
+                                      kPepLongMessage: @"That was so easy !",
+                                      kPepOutgoing: @YES }.mutableCopy;
         
         PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&mirosMsg];
         XCTAssert(status == PEP_STATUS_OK);
