@@ -1622,7 +1622,7 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
         NSArray* keys;
         NSMutableDictionary *pepDecryptedMail;
-        PEP_rating color = [innerSession decryptMessageDict:msgDict dest:&pepDecryptedMail
+        [innerSession decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                        keys:&keys];
         dispatch_group_leave(group);
     };
@@ -1670,7 +1670,7 @@ encmsg[@"outgoing"] = @NO;
         [oneSessionCopiedToBlock mySelf:innerAccountDict];        XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
         NSArray* keys;
         NSMutableDictionary *pepDecryptedMail;
-        PEP_rating color = [oneSessionCopiedToBlock decryptMessageDict:msgDict dest:&pepDecryptedMail
+        [oneSessionCopiedToBlock decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                                   keys:&keys];
         dispatch_group_leave(group);
     };
@@ -1716,7 +1716,7 @@ encmsg[@"outgoing"] = @NO;
 
         NSArray* keys;
         NSMutableDictionary *pepDecryptedMail;
-        PEP_rating color = [oneSessionCopiedToBlock decryptMessageDict:msgDict dest:&pepDecryptedMail
+        [oneSessionCopiedToBlock decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                                   keys:&keys];
         dispatch_group_leave(group);
     };
@@ -1762,7 +1762,7 @@ encmsg[@"outgoing"] = @NO;
         [decryptSession mySelf:innerAccountDict];         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
         NSArray* keys;
         NSMutableDictionary *pepDecryptedMail;
-        PEP_rating color = [decryptSession decryptMessageDict:msgDict dest:&pepDecryptedMail
+        [decryptSession decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                          keys:&keys];
         dispatch_group_leave(group);
     };
@@ -1773,14 +1773,15 @@ encmsg[@"outgoing"] = @NO;
         [decryptSession2 mySelf:innerAccountDict];         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
         NSArray* keys;
         NSMutableDictionary *pepDecryptedMail;
-        PEP_rating color = [decryptSession2 decryptMessageDict:msgDict dest:&pepDecryptedMail
+        [decryptSession2 decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                           keys:&keys];
         dispatch_group_leave(group);
     };
 
     void (^initBlock)() = ^() {
         for (int i = 0; i < 1000; ++i) {
-            PEPSession *createe = [[PEPSession alloc] init]; // Assertion failed: (int_result == SQLITE_OK), function init, file /Users/buff/workspace/pEp/src/pEpEngine/src/pEpEngine.c, line 553.
+            PEPSession *tmp = [[PEPSession alloc] init]; // Assertion failed: (int_result == SQLITE_OK), function init, file /Users/buff/workspace/pEp/src/pEpEngine/src/pEpEngine.c, line 553.
+            XCTAssertNotNil(tmp); // useless assertion to suppress unused return value warning
         }
     };
 
@@ -1805,6 +1806,7 @@ encmsg[@"outgoing"] = @NO;
 
 #pragma mark - PEP Color
 
+//IOSAD-36
 - (void)testDecryptUnencryptedMailWithKeyAttached
 {
     [self pEpSetUp];
@@ -1838,7 +1840,6 @@ encmsg[@"outgoing"] = @NO;
     PEP_rating color = [workSession decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                   keys:&keys];
     XCTAssertEqual(color, PEP_rating_unencrypted);
-    NSLog(@"%d: decryption color -> %d", index, color);
 
     [self pEpCleanUp];
 }
@@ -1877,8 +1878,7 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary *pepDecryptedMail;
     PEP_rating color = [workSession decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                   keys:&keys];
-    XCTAssertEqual(color, PEP_rating_have_no_key);
-    NSLog(@"%d: decryption color -> %d", index, color);
+    XCTAssertEqual(color, PEP_rating_unencrypted);
     
     [self pEpCleanUp];
 }
