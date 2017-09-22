@@ -58,21 +58,28 @@
 }
 
 static NSString *threadCountKey = @"PEPSession.threadCount";
+static NSObject *sessionInitLock = nil;
+static dispatch_once_t sessionInitLockOnce;
 
 - (id)init
 {
     [PEPSession setupTrustWordsDB];
+    
+    dispatch_once(&sessionInitLockOnce, ^{
+        sessionInitLock = [[NSObject alloc] init];
+    });
+    @synchronized (sessionInitLock) {
 
-    PEP_STATUS status = init(&_session);
+        PEP_STATUS status = init(&_session);
 
-    if (status != PEP_STATUS_OK) {
-        return nil;
+        if (status != PEP_STATUS_OK) {
+            return nil;
+        }
+
+        [PEPObjCAdapter bindSession:self];
+
+        [self incSessionCount];
     }
-
-    [PEPObjCAdapter bindSession:self];
-
-    [self incSessionCount];
-
     return self;
 }
 
@@ -80,9 +87,11 @@ static NSString *threadCountKey = @"PEPSession.threadCount";
 {
     [PEPObjCAdapter unbindSession:self];
 
-    release(_session);
+    @synchronized (sessionInitLock) {
+        release(_session);
 
-    [self decSessionCount];
+        [self decSessionCount];
+    }
 }
 
 - (void)incSessionCount
