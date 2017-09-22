@@ -1756,8 +1756,7 @@ encmsg[@"outgoing"] = @NO;
 
     void (^initBlock)() = ^() {
         for (int i = 0; i < 1000; ++i) {
-            PEPSession *tmp = [[PEPSession alloc] init]; // Assertion failed: (int_result == SQLITE_OK), function init, file /Users/buff/workspace/pEp/src/pEpEngine/src/pEpEngine.c, line 553.
-            XCTAssertNotNil(tmp); // useless assertion to suppress unused return value warning
+            PEPSession *tmp = [[PEPSession alloc] init];
         }
     };
 
