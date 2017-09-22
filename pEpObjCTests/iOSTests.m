@@ -1775,6 +1775,7 @@ encmsg[@"outgoing"] = @NO;
     }
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 
+    XCTAssertTrue(YES, @"We are done and did not crash.");
     [self pEpCleanUp];
 }
 
