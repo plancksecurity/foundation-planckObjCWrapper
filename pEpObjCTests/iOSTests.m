@@ -1732,7 +1732,7 @@ encmsg[@"outgoing"] = @NO;
 
     dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
                                                    DISPATCH_QUEUE_CONCURRENT);
-    dispatch_group_t group = dispatch_group_create();
+    __block dispatch_group_t group = dispatch_group_create();
     PEPSession *decryptSession = [PEPSession session];
     void (^decryptionBlock)(int) = ^(int index) {
         NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
@@ -1752,7 +1752,6 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *pepDecryptedMail;
         [decryptSession2 decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                           keys:&keys];
-        dispatch_group_leave(group);
     };
 
     void (^initBlock)() = ^() {
@@ -1762,8 +1761,6 @@ encmsg[@"outgoing"] = @NO;
         }
     };
 
-    dispatch_group_enter(group);
-    decryptionBlock(0);
     for (int i = 1; i < 84; ++i) {
         dispatch_group_enter(group);
         dispatch_async(queue, ^{
