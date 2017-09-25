@@ -1741,7 +1741,6 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *pepDecryptedMail;
         [decryptSession decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                          keys:&keys];
-        dispatch_group_leave(group);
     };
 
     PEPSession *decryptSession2 = [PEPSession session];
@@ -1755,24 +1754,23 @@ encmsg[@"outgoing"] = @NO;
     };
 
     void (^initBlock)() = ^() {
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 200; ++i) {
             PEPSession *tmp = [[PEPSession alloc] init];
         }
     };
 
-    for (int i = 1; i < 84; ++i) {
-        dispatch_group_enter(group);
-        dispatch_async(queue, ^{
+    for (int i = 1; i < 3; ++i) {
+        dispatch_group_async(group, queue, ^{
             decryptionBlock(i);
         });
-        dispatch_async(queue, ^{
+        dispatch_group_async(group, queue, ^{
             decryptionBlock2(i);
         });
-        dispatch_async(queue, ^{
+        dispatch_group_async(group, queue, ^{
             initBlock();
         });
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     }
-    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 
     XCTAssertTrue(YES, @"We are done and did not crash.");
     [self pEpCleanUp];
