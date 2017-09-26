@@ -1759,7 +1759,7 @@ encmsg[@"outgoing"] = @NO;
         }
     };
 
-    for (int i = 1; i < 3; ++i) {
+    for (int i = 1; i < 5; ++i) {
         dispatch_group_async(group, queue, ^{
             decryptionBlock(i);
         });

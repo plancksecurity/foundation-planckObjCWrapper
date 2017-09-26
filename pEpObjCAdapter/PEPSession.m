@@ -412,10 +412,14 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 - (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
      description:(nullable NSString *)description comment:(nullable NSString *)comment
 {
-    log_event(self.session, [[title precomposedStringWithCanonicalMapping] UTF8String],
-              [[entity precomposedStringWithCanonicalMapping] UTF8String],
-              [[description precomposedStringWithCanonicalMapping] UTF8String],
-              [[comment precomposedStringWithCanonicalMapping] UTF8String]);
+    @synchronized(self) {
+
+        log_event(_session, [[title precomposedStringWithCanonicalMapping] UTF8String],
+                  [[entity precomposedStringWithCanonicalMapping] UTF8String],
+                  [[description precomposedStringWithCanonicalMapping] UTF8String],
+                  [[comment precomposedStringWithCanonicalMapping] UTF8String]);
+
+    }
 }
 
 - (nonnull NSString *)getLog
@@ -437,10 +441,14 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
     pEp_identity *ident1 = PEP_identityDictToStruct(identity1);
     pEp_identity *ident2 = PEP_identityDictToStruct(identity2);
-    PEP_STATUS status = get_trustwords(_session, ident1, ident2,
-                                       [[language precomposedStringWithCanonicalMapping]
-                                        UTF8String],
-                                       &trustwords, &sizeWritten, full);
+    PEP_STATUS status;
+    @synchronized(self) {
+
+        status = get_trustwords(_session, ident1, ident2,
+                                           [[language precomposedStringWithCanonicalMapping]
+                                            UTF8String],
+                                           &trustwords, &sizeWritten, full);
+    }
     if (status == PEP_STATUS_OK) {
         result = [NSString stringWithCString:trustwords
                                     encoding:NSUTF8StringEncoding];
@@ -469,12 +477,14 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     }
 
     pEp_identity *receiver = PEP_identityDictToStruct(receiverDict);
-
-    PEP_STATUS status = get_message_trustwords(_session, theMessage, keyList, receiver,
-                                               [[language
-                                                 precomposedStringWithCanonicalMapping] UTF8String],
-                                               &trustwords, full);
-
+    PEP_STATUS status;
+    @synchronized(self) {
+        status = get_message_trustwords(_session, theMessage, keyList, receiver,
+                                        [[language
+                                          precomposedStringWithCanonicalMapping] UTF8String],
+                                        &trustwords, full);
+    }
+    
     if (resultingStatus) {
         *resultingStatus = status;
     }
