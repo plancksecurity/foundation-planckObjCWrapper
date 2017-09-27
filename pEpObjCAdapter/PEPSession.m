@@ -77,8 +77,6 @@ static dispatch_once_t sessionInitLockOnce;
         }
 
         [PEPObjCAdapter bindSession:self];
-
-        [self incSessionCount];
     }
     return self;
 }
@@ -89,30 +87,6 @@ static dispatch_once_t sessionInitLockOnce;
 
     @synchronized (sessionInitLock) {
         release(_session);
-
-        [self decSessionCount];
-    }
-}
-
-- (void)incSessionCount
-{
-    NSNumber *sessionCount = [[NSThread currentThread] threadDictionary][threadCountKey];
-    if (!sessionCount) {
-        sessionCount = [NSNumber numberWithInteger:1];
-    } else {
-        sessionCount = [NSNumber numberWithInteger:sessionCount.integerValue + 1];
-    }
-    [[NSThread currentThread] threadDictionary][threadCountKey] = sessionCount;
-}
-
-- (void)decSessionCount
-{
-    NSNumber *sessionCount = [[NSThread currentThread] threadDictionary][threadCountKey];
-    if (sessionCount) {
-        sessionCount = [NSNumber numberWithInteger:sessionCount.integerValue - 1];
-        [[NSThread currentThread] threadDictionary][threadCountKey] = sessionCount;
-    } else {
-        NSAssert(NO, @"Session count on thread below 0, thread mixup between init and dealloc?");
     }
 }
 
