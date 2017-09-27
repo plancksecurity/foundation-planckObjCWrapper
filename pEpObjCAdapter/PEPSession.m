@@ -90,13 +90,6 @@ static dispatch_once_t sessionInitLockOnce;
     }
 }
 
-- (void)dumpThreadCount:(NSString *)contextName
-{
-    NSNumber *sessionCount = [[NSThread currentThread] threadDictionary][threadCountKey];
-    NSLog(@"%@: (%@) %ld", contextName,
-          [[NSThread currentThread] name], (long) sessionCount.integerValue);
-}
-
 /**
  Saves the given message dict as a plist to the local filesystem
  (directly under NSApplicationSupportDirectory).
