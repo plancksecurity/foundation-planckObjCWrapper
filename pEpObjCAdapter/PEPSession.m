@@ -394,7 +394,10 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 - (nonnull NSString *)getLog
 {
     char *data;
-    get_crashdump_log(self.session, 0, &data);
+    @synchronized(self) {
+        get_crashdump_log(_session, 0, &data);
+    }
+    
     NSString *logString = [NSString stringWithUTF8String:data];
     return logString;
 }
@@ -471,7 +474,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 - (NSArray<PEPLanguage *> * _Nonnull)languageList
 {
     char *chLangs;
-    get_languagelist(self.session, &chLangs);
+    @synchronized(self) {
+        get_languagelist(_session, &chLangs);
+    }
     NSString *parserInput = [NSString stringWithUTF8String:chLangs];
 
     NSMutableArray<NSString *> *tokens = [NSMutableArray array];
