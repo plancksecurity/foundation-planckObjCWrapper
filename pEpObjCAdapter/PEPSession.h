@@ -29,20 +29,6 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
 
 #pragma mark -- Public API
 
-+ (nonnull PEPSession *)session;
-
-/**
- Execute a block concurrently on a session.
- The session is created solely for execution of the block.
- */
-+ (void)dispatchAsyncOnSession:(nonnull PEPSessionBlock)block;
-
-/**
- Execute a block on a session and wait for it.
- The session is created solely for execution of the block.
- */
-+ (void)dispatchSyncOnSession:(nonnull PEPSessionBlock)block;
-
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
                             dest:(PEPDict * _Nullable * _Nullable)dst

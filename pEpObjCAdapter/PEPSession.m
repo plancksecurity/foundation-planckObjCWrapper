@@ -18,37 +18,6 @@
 
 @implementation PEPSession
 
-// serialize all session access
-+ (dispatch_queue_t)sharedSessionQueue
-{
-    static dispatch_once_t once;
-    static dispatch_queue_t sharedSessionQueue;
-    dispatch_once(&once, ^{
-        sharedSessionQueue = dispatch_queue_create("pEp session queue", DISPATCH_QUEUE_CONCURRENT);
-    });
-    return sharedSessionQueue;
-}
-
-+ (PEPSession *)session
-{
-    PEPSession *_session = [[PEPSession alloc] init];
-    return _session;
-}
-
-+ (void)dispatchAsyncOnSession:(PEPSessionBlock)block
-{
-    dispatch_async([self sharedSessionQueue], ^{
-        PEPSession *pepSession = [[PEPSession alloc] init];
-        block(pepSession);
-    });
-}
-
-+ (void)dispatchSyncOnSession:(PEPSessionBlock)block
-{
-    PEPSession *pepSession = [[PEPSession alloc] init];
-    block(pepSession);
-}
-
 + (void)setupTrustWordsDB
 {
     static dispatch_once_t once;
@@ -57,28 +26,18 @@
     });
 }
 
-static NSString *threadCountKey = @"PEPSession.threadCount";
-//static NSObject *sessionInitLock = nil;
-//static dispatch_once_t sessionInitLockOnce;
-
 - (id)init
 {
     [PEPSession setupTrustWordsDB];
     
-    // dispatch_once(&sessionInitLockOnce, ^{
-    //     sessionInitLock = [[NSObject alloc] init];
-    // });
-    // @synchronized (sessionInitLock)
-    {
+    PEP_STATUS status = init(&_session);
 
-        PEP_STATUS status = init(&_session);
-
-        if (status != PEP_STATUS_OK) {
-            return nil;
-        }
-
-        [PEPObjCAdapter bindSession:self];
+    if (status != PEP_STATUS_OK) {
+        return nil;
     }
+
+    [PEPObjCAdapter bindSession:self];
+
     return self;
 }
 
@@ -86,10 +45,8 @@ static NSString *threadCountKey = @"PEPSession.threadCount";
 {
     [PEPObjCAdapter unbindSession:self];
 
-    // @synchronized (sessionInitLock)
-    {
-        release(_session);
-    }
+    release(_session);
+
 }
 
 /**
