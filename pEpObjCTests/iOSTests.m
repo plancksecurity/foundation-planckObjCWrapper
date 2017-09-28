@@ -349,7 +349,7 @@ PEPSession *session;
 
     dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     dispatch_sync(queue, ^{
-        PEPSession *session2 = [PEPSession session];
+        PEPSession *session2 = [[PEPSession alloc] init];
 
         // Now simulate an update from the app, which usually only caches
         // kPepUsername, kPepAddress and optionally kPepUserID.
@@ -1214,16 +1214,14 @@ encmsg[@"outgoing"] = @NO;
                                        kPepLongMessage: theMessage,
                                        kPepBCC: @[partner1] }.mutableCopy;
 
-        [PEPSession dispatchSyncOnSession:^(PEPSession *session) {
-            [session importKey:pubKeyMe];
-            [session importKey:secKeyMe];
-            [session mySelf:me];
-            XCTAssertNotNil(me[kPepFingerprint]);
-            XCTAssertEqualObjects(me[kPepFingerprint], meOrig[kPepFingerprint]);
-            [session importKey:pubKeyPartner1];
-            PEP_STATUS status = [session encryptMessageDict:mail extra:nil dest:&pepEncMail];
-            XCTAssertEqual(status, PEP_STATUS_OK);
-        }];
+        [session importKey:pubKeyMe];
+        [session importKey:secKeyMe];
+        [session mySelf:me];
+        XCTAssertNotNil(me[kPepFingerprint]);
+        XCTAssertEqualObjects(me[kPepFingerprint], meOrig[kPepFingerprint]);
+        [session importKey:pubKeyPartner1];
+        PEP_STATUS status = [session encryptMessageDict:mail extra:nil dest:&pepEncMail];
+        XCTAssertEqual(status, PEP_STATUS_OK);
     }
 
     [self pEpCleanUp];
@@ -1232,29 +1230,27 @@ encmsg[@"outgoing"] = @NO;
     {
         NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
 
-        [PEPSession dispatchSyncOnSession:^(PEPSession *session) {
-            NSString *privateKeyPartner1 = [self
-                                            loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
-            [session importKey:privateKeyPartner1];
-            XCTAssertNotNil(privateKeyPartner1);
+        NSString *privateKeyPartner1 = [self
+                                        loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
+        [session importKey:privateKeyPartner1];
+        XCTAssertNotNil(privateKeyPartner1);
 
-            [session importKey:pubKeyPartner1];
-            [session importKey:pubKeyMe];
+        [session importKey:pubKeyPartner1];
+        [session importKey:pubKeyMe];
 
-            [session mySelf:partner1];
-            XCTAssertNotNil(partner1[kPepFingerprint]);
-            XCTAssertEqualObjects(partner1[kPepFingerprint], partner1Orig[kPepFingerprint]);
+        [session mySelf:partner1];
+        XCTAssertNotNil(partner1[kPepFingerprint]);
+        XCTAssertEqualObjects(partner1[kPepFingerprint], partner1Orig[kPepFingerprint]);
 
-            NSMutableDictionary *me = meOrig.mutableCopy;
-            [session updateIdentity:me];
+        NSMutableDictionary *me = meOrig.mutableCopy;
+        [session updateIdentity:me];
 
-            NSMutableDictionary *pepDecryptedMail;
-            NSArray *keys = [NSArray array];
-            [session decryptMessageDict:pepEncMail dest:&pepDecryptedMail keys:&keys];
+        NSMutableDictionary *pepDecryptedMail;
+        NSArray *keys = [NSArray array];
+        [session decryptMessageDict:pepEncMail dest:&pepDecryptedMail keys:&keys];
 
-            // If this assert holds, then the engine ignores BCCs when encrypting
-            XCTAssertEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
-        }];
+        // If this assert holds, then the engine ignores BCCs when encrypting
+        XCTAssertEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
     }
 
     [self pEpCleanUp];
@@ -1284,7 +1280,7 @@ encmsg[@"outgoing"] = @NO;
 
     for (int i = 1; i < 3; ++i) {
         dispatch_group_async(group, queue, ^{
-            PEPSession *innerSession = [PEPSession session];
+            PEPSession *innerSession = [[PEPSession alloc] init];
             [self doSomeWorkOnSession:innerSession count:i];
             innerSession = nil;
         });
@@ -1308,7 +1304,7 @@ encmsg[@"outgoing"] = @NO;
     // Also extracted "live" from the app.
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_78EE1DBC.ser"];
 
-    PEPSession *someSession = [PEPSession session];
+    PEPSession *someSession = [[PEPSession alloc] init];
 
     // This is the public key for test001@peptest.ch
     [self importBundledKey:@"78EE1DBC.asc" intoSession:someSession];
@@ -1323,7 +1319,7 @@ encmsg[@"outgoing"] = @NO;
     dispatch_group_t group = dispatch_group_create();
 
     void (^decryptionBlock)(int) = ^(int index) {
-        PEPSession *innerSession = [PEPSession session];
+        PEPSession *innerSession = [[PEPSession alloc] init];
 
         NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
         [innerSession mySelf:innerAccountDict];
@@ -1336,16 +1332,13 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertEqual(color, PEP_rating_reliable);
         NSLog(@"%d: decryption color -> %d", index, color);
 
-        dispatch_group_leave(group);
     };
 
     // Test single decryption on main thread
-    dispatch_group_enter(group);
     decryptionBlock(0);
 
     for (int i = 1; i < 21; ++i) {
-        dispatch_group_enter(group);
-        dispatch_async(queue, ^{
+        dispatch_group_async(group, queue, ^{
             decryptionBlock(i);
         });
     }
@@ -1382,7 +1375,7 @@ encmsg[@"outgoing"] = @NO;
     // Set up keys in a background thread
     dispatch_group_enter(group);
     dispatch_async(queue, ^{
-        PEPSession *someSession = [PEPSession session];
+        PEPSession *someSession = [[PEPSession alloc] init];
         NSMutableDictionary *mySelf = meOrig.mutableCopy;
         [someSession mySelf:mySelf];
         XCTAssertNotNil(mySelf[kPepFingerprint]);
@@ -1395,9 +1388,8 @@ encmsg[@"outgoing"] = @NO;
 
     // Write a couple of mails to 78EE1DBC
     NSMutableArray *sentMails = @[].mutableCopy;
-    dispatch_group_enter(group);
-    dispatch_async(queue, ^{
-        PEPSession *someSession = [PEPSession session];
+    dispatch_goup_async(group, queue, ^{
+        PEPSession *someSession = [[PEPSession alloc] init];
         NSMutableDictionary *mySelf = meOrig.mutableCopy;
         [someSession mySelf:mySelf];
         XCTAssertNotNil(mySelf[kPepFingerprint]);
@@ -1420,22 +1412,19 @@ encmsg[@"outgoing"] = @NO;
             [sentMails addObject:encryptedMail];
         }
 
-        dispatch_group_leave(group);
     });
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
 
     // massively decrypt
     for (NSDictionary *sentMail in sentMails) {
-        dispatch_group_enter(group);
-        dispatch_async(queue, ^{
-            PEPSession *someSession = [PEPSession session];
+        dispatch_group_async(group, queue, ^{
+            PEPSession *someSession = [[PEPSession alloc] init];
             NSDictionary *decryptedMail;
             NSArray *keys;
             PEP_rating color = [someSession decryptMessageDict:sentMail dest:&decryptedMail
                                                          keys:&keys];
             NSLog(@"Decrypted %@: %d", decryptedMail[kPepShortMessage], color);
             XCTAssertGreaterThanOrEqual(color, PEP_rating_reliable);
-            dispatch_group_leave(group);
         });
     }
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
@@ -1582,7 +1571,7 @@ encmsg[@"outgoing"] = @NO;
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
 
-    PEPSession *someSession = [PEPSession session];
+    PEPSession *someSession = [[PEPSession alloc] init];
     //Some key
     [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
     // This is the secret key for test001@peptest.ch
@@ -1593,7 +1582,7 @@ encmsg[@"outgoing"] = @NO;
                                                    DISPATCH_QUEUE_CONCURRENT);
     dispatch_group_t group = dispatch_group_create();
     void (^decryptionBlock)(int) = ^(int index) {
-        PEPSession *innerSession = [PEPSession session];
+        PEPSession *innerSession = [[PEPSession alloc] init];
         NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
         [innerSession mySelf:innerAccountDict]; //Random Assertion failed: (status == PEP_STATUS_OK), function _myself, file /Users/buff/workspace/pEp/src/pEpEngine/src/keymanagement.c, line 619.
         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
@@ -1601,15 +1590,13 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *pepDecryptedMail;
         [innerSession decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                        keys:&keys];
-        dispatch_group_leave(group);
+        innerSession = nil;
     };
 
-    dispatch_group_enter(group);
     decryptionBlock(0);
 
-    for (int i = 1; i < 84; ++i) {
-        dispatch_group_enter(group);
-        dispatch_async(queue, ^{
+    for (int i = 1; i < 15; ++i) {
+        dispatch_group_async(group, queue, ^{
             decryptionBlock(i);
         });
     }
@@ -1631,7 +1618,7 @@ encmsg[@"outgoing"] = @NO;
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
 
-    PEPSession *someSession = [PEPSession session];
+    PEPSession *someSession = [[PEPSession alloc] init];
     //Some key
     [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
     // This is the secret key for test001@peptest.ch
@@ -1641,7 +1628,7 @@ encmsg[@"outgoing"] = @NO;
     dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
                                                    DISPATCH_QUEUE_CONCURRENT);
     dispatch_group_t group = dispatch_group_create();
-    PEPSession *oneSessionCopiedToBlock = [PEPSession session];
+    PEPSession *oneSessionCopiedToBlock = [[PEPSession alloc] init];
     void (^decryptionBlock)(int) = ^(int index) {
         NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
         [oneSessionCopiedToBlock mySelf:innerAccountDict];        XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
@@ -1649,13 +1636,10 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *pepDecryptedMail;
         [oneSessionCopiedToBlock decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                                   keys:&keys];
-        dispatch_group_leave(group);
     };
-    dispatch_group_enter(group);
     decryptionBlock(0);
     for (int i = 1; i < 84; ++i) {
-        dispatch_group_enter(group);
-        dispatch_async(queue, ^{
+        dispatch_group_async(group, queue, ^{
             decryptionBlock(i);
         });
     }
@@ -1676,7 +1660,7 @@ encmsg[@"outgoing"] = @NO;
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
 
-    PEPSession *someSession = [PEPSession session];
+    PEPSession *someSession = [[PEPSession alloc] init];
     //Some key
     [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
     // This is the secret key for test001@peptest.ch
@@ -1686,7 +1670,7 @@ encmsg[@"outgoing"] = @NO;
     dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
                                                    DISPATCH_QUEUE_CONCURRENT);
     dispatch_group_t group = dispatch_group_create();
-    __block PEPSession *oneSessionCopiedToBlock = [PEPSession session];
+    __block PEPSession *oneSessionCopiedToBlock = [[PEPSession alloc] init];
     void (^decryptionBlock)(int) = ^(int index) {
         NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
         [oneSessionCopiedToBlock mySelf:innerAccountDict];        XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
@@ -1695,14 +1679,11 @@ encmsg[@"outgoing"] = @NO;
         NSMutableDictionary *pepDecryptedMail;
         [oneSessionCopiedToBlock decryptMessageDict:msgDict dest:&pepDecryptedMail
                                                                   keys:&keys];
-        dispatch_group_leave(group);
     };
 
-    dispatch_group_enter(group);
     decryptionBlock(0);
     for (int i = 1; i < 84; ++i) {
-        dispatch_group_enter(group);
-        dispatch_async(queue, ^{
+        dispatch_group_async(group, queue, ^{
             decryptionBlock(i);
         });
     }
@@ -1723,7 +1704,7 @@ encmsg[@"outgoing"] = @NO;
     msgDict[kPepUsername] = @"some unkown user";
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
-    PEPSession *someSession = [PEPSession session];
+    PEPSession *someSession = [[PEPSession alloc] init];
     //Some key
     [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
     // This is the secret key for test001@peptest.ch
@@ -1733,7 +1714,7 @@ encmsg[@"outgoing"] = @NO;
     dispatch_queue_t queue = dispatch_queue_create("Concurrent test queue",
                                                    DISPATCH_QUEUE_CONCURRENT);
     __block dispatch_group_t group = dispatch_group_create();
-    PEPSession *decryptSession = [PEPSession session];
+    PEPSession *decryptSession = [[PEPSession alloc] init];
     void (^decryptionBlock)(int) = ^(int index) {
         NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
         [decryptSession mySelf:innerAccountDict];         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
@@ -1743,7 +1724,7 @@ encmsg[@"outgoing"] = @NO;
                                                          keys:&keys];
     };
 
-    PEPSession *decryptSession2 = [PEPSession session];
+    PEPSession *decryptSession2 = [[PEPSession alloc] init];
     void (^decryptionBlock2)() = ^() {
         NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
         [decryptSession2 mySelf:innerAccountDict];         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
@@ -1754,17 +1735,20 @@ encmsg[@"outgoing"] = @NO;
     };
 
     void (^initBlock)() = ^() {
-        for (int i = 0; i < 200; ++i) {
+        for (int i = 0; i < 100; ++i) {
             PEPSession *tmp = [[PEPSession alloc] init];
         }
     };
 
-    for (int i = 1; i < 5; ++i) {
+    for (int i = 1; i < 15; ++i) {
         dispatch_group_async(group, queue, ^{
             decryptionBlock(i);
         });
         dispatch_group_async(group, queue, ^{
             decryptionBlock2(i);
+        });
+        dispatch_group_async(group, queue, ^{
+            initBlock();
         });
         dispatch_group_async(group, queue, ^{
             initBlock();
@@ -1791,7 +1775,7 @@ encmsg[@"outgoing"] = @NO;
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
 
-    PEPSession *someSession = [PEPSession session];
+    PEPSession *someSession = [[PEPSession alloc] init];
 
     // This is the pub key for test001@peptest.ch
     [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
@@ -1801,7 +1785,7 @@ encmsg[@"outgoing"] = @NO;
 
     someSession = nil;
 
-    PEPSession *workSession = [PEPSession session];
+    PEPSession *workSession = [[PEPSession alloc] init];
 
     NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
     [workSession mySelf:innerAccountDict];
@@ -1830,7 +1814,7 @@ encmsg[@"outgoing"] = @NO;
     // me
     NSDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"];
 
-    PEPSession *someSession = [PEPSession session];
+    PEPSession *someSession = [[PEPSession alloc] init];
 
     //This is the pub key for test001@peptest.ch
     [self importBundledKey:@"5CB2C182.asc" intoSession:someSession];
@@ -1840,7 +1824,7 @@ encmsg[@"outgoing"] = @NO;
 
     someSession = nil;
 
-    PEPSession *workSession = [PEPSession session];
+    PEPSession *workSession = [[PEPSession alloc] init];
 
     NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
     [workSession mySelf:innerAccountDict]; //Random Assertion failed: (status == PEP_STATUS_OK), function _myself, file /Users/buff/workspace/pEp/src/pEpEngine/src/keymanagement.c, line 619.
