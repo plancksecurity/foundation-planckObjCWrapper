@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-extern NSLock initLock;
-
 #import <Foundation/Foundation.h>
 
 #include "message_api.h"

@@ -30,9 +30,9 @@
 {
     [PEPSession setupTrustWordsDB];
 
-    [initLock lock];    
+    [[PEPObjCAdapter initLock] lock];
     PEP_STATUS status = init(&_session);
-    [initLock unlock];
+    [[PEPObjCAdapter initLock] unlock];
 
     if (status != PEP_STATUS_OK) {
         return nil;
@@ -47,9 +47,9 @@
 {
     [PEPObjCAdapter unbindSession:self];
 
-    [initLock lock];
+    [[PEPObjCAdapter initLock] lock];
     release(_session);
-    [initLock unlock];
+    [[PEPObjCAdapter initLock] unlock];
 
 }
 

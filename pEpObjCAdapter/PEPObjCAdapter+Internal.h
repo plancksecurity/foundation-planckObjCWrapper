@@ -17,6 +17,11 @@
 
 @interface PEPObjCAdapter ()
 
+/**
+ The lock that should be used for locking all session init() and release().
+ */
++ (NSLock *)initLock;
+
 // this messages are for internal use only; do not call
 
 + (void)registerExamineFunction:(PEP_SESSION)session;
