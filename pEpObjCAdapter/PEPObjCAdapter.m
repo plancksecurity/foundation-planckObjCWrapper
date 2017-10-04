@@ -104,6 +104,7 @@ void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
 
 const char* _Nullable SystemDB = NULL;
 NSURL *s_homeURL;
+NSLock initLock = [[NSLock alloc] init];
 
 @implementation PEPObjCAdapter
 
@@ -339,7 +340,9 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         
         syncThreadJoinCond = [[NSConditionLock alloc] initWithCondition:NO];
 
+        [initLock lock];
         PEP_STATUS status = init(&sync_session);
+        [initLock unlock];
         if (status != PEP_STATUS_OK) {
             return;
         }
@@ -395,7 +398,9 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         [syncThreadJoinCond lockWhenCondition:YES];
         [syncThreadJoinCond unlock];
 
+        [initLock lock];
         release(sync_session);
+        [initLock unlock];
         
         sync_session = NULL;
         syncThread = nil;

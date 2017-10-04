@@ -29,8 +29,10 @@
 - (id)init
 {
     [PEPSession setupTrustWordsDB];
-    
+
+    [initLock lock];    
     PEP_STATUS status = init(&_session);
+    [initLock unlock];
 
     if (status != PEP_STATUS_OK) {
         return nil;
@@ -45,7 +47,9 @@
 {
     [PEPObjCAdapter unbindSession:self];
 
+    [initLock lock];
     release(_session);
+    [initLock unlock];
 
 }
 
