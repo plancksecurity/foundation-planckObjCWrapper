@@ -138,4 +138,9 @@ typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
  */
 - (NSArray<PEPLanguage *> * _Nonnull)languageList;
 
+/**
+ Directly invokes the engine's undo_last_mistrust() function
+ */
+- (PEP_STATUS)undoLastMistrust;
+
 @end

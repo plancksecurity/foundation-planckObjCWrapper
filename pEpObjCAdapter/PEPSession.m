@@ -469,4 +469,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     return [NSArray arrayWithArray:langs];
 }
 
+- (PEP_STATUS)undoLastMistrust
+{
+    return undo_last_mistrust(_session);
+}
+
 @end
