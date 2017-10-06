@@ -14,6 +14,16 @@
 
 @implementation PEPCopyableThread
 
+- (BOOL)isFinished
+{
+    return self.thread.isFinished || !self.thread;
+}
+
+- (void)cancel
+{
+    [self.thread cancel];
+}
+
 #pragma mark - Life Cycle
 
 - (instancetype)init
@@ -22,7 +32,7 @@
     return nil;
 }
 
-- (instancetype)initWithThread:(NSThread * _Nonnull)thread
+- (instancetype)initWithThread:(NSThread * _Nonnull)thread;
 {
     self = [super init];
     if (self) {
@@ -30,6 +40,8 @@
     }
     return self;
 }
+
+#pragma mark - NSObject
 
 - (BOOL)isEqual:(PEPCopyableThread *)object
 {
@@ -53,7 +65,5 @@
     PEPCopyableThread *copy = [[PEPCopyableThread alloc] initWithThread:self.thread];
     return copy;
 }
-
-
 
 @end

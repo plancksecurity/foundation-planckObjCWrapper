@@ -11,7 +11,9 @@
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessage.h"
+#import "PEPSessionProvider.h"
 #include "keymanagement.h"
+#import "PEPCopyableThread.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Keyserver and Identity lookup - C part
@@ -110,30 +112,12 @@ static NSLock *s_initLock;
 
 + (PEPSession * _Nonnull)session
 {
-    static NSMutableDictionary<NSThread*,PEPSession*> *sessionForThreadDict;
-    static NSObject *lock = nil;
-
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        sessionForThreadDict = [NSMutableDictionary new];
-        lock = [NSObject new];
-    });
-
-    @synchronized(lock) {
-        NSThread *currentThread = [NSThread currentThread];
-        PEPSession *session = sessionForThreadDict[currentThread];
-        if (!session) {
-            session = [[PEPSession alloc] initInternal];
-            sessionForThreadDict[currentThread] = session;
-        }
-
-        return session;
-    }
+    return [PEPSessionProvider session];
 }
 
 + (void)cleanup
 {
-    //    for
+    [PEPSessionProvider cleanup];
 }
 
 + (void)initialize
@@ -204,8 +188,8 @@ static NSLock *s_initLock;
 }
 
 + (NSString *) copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
-                                                          :(NSString *)bundleName
-                                                          :(NSString *)fileName{
+                                              :(NSString *)bundleName
+                                              :(NSString *)fileName{
 
     NSURL *homeUrl = [PEPObjCAdapter createAndSetHomeDirectory];
     NSString *documentsDirectory = [homeUrl path];
@@ -242,8 +226,8 @@ static NSLock *s_initLock;
 
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle{
     NSString *systemDBPath = [PEPObjCAdapter copyAssetIntoDocumentsDirectory:rootBundle
-                                                                           :@"pEpTrustWords.bundle"
-                                                                           :@"system.db"];
+                                                                            :@"pEpTrustWords.bundle"
+                                                                            :@"system.db"];
     if (SystemDB) {
         free((void *) SystemDB);
     }
