@@ -28,6 +28,13 @@
 
 - (id)init
 {
+    //"Denied access to assure clients do not call [PEPSession new] accidentally. Use initInternal instead.
+    NSAssert(false, @"Dear client. You must not init a session. Use [PEPObjCAdapter session] instead");
+    return nil;
+}
+
+- (id)initInternal
+{
     [PEPSession setupTrustWordsDB];
 
     [[PEPObjCAdapter initLock] lock];

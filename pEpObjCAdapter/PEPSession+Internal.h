@@ -13,6 +13,8 @@
 
 @property (nonatomic) PEP_SESSION session;
 
+- (id)initInternal;
+
 @end
 
 #endif /* PEPSession_internal_h */
