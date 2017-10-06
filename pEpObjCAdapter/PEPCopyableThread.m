@@ -41,6 +41,11 @@
     return [NSString stringWithFormat:@"%@", self.thread].hash;
 }
 
+- (NSString *)description
+{
+    return [self.thread description];
+}
+
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone
