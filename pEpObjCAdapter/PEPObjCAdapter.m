@@ -108,6 +108,34 @@ static NSLock *s_initLock;
 
 @implementation PEPObjCAdapter
 
++ (PEPSession * _Nonnull)session
+{
+    static NSMutableDictionary<NSThread*,PEPSession*> *sessionForThreadDict;
+    static NSObject *lock = nil;
+
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        sessionForThreadDict = [NSMutableDictionary new];
+        lock = [NSObject new];
+    });
+
+    @synchronized(lock) {
+        NSThread *currentThread = [NSThread currentThread];
+        PEPSession *session = sessionForThreadDict[currentThread];
+        if (!session) {
+            session = [[PEPSession alloc] initInternal];
+            sessionForThreadDict[currentThread] = session;
+        }
+
+        return session;
+    }
+}
+
++ (void)cleanup
+{
+    //    for
+}
+
 + (void)initialize
 {
     s_homeURL = [self createApplicationDirectory];
@@ -446,7 +474,5 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     }
 
 }
-
-
 
 @end

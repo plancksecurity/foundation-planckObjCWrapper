@@ -10,6 +10,7 @@
 
 #include "message_api.h"
 #include "sync_app.h"
+@class PEPSession;
 
 @protocol PEPKeyManagementDelegate <NSObject>
 
@@ -28,6 +29,10 @@
 @end
 
 @interface PEPObjCAdapter : NSObject
+
++ (PEPSession * _Nonnull)session;
+
++ (void)cleanup;
 
 /**
  The HOME URL, where all pEp related files will be stored.
