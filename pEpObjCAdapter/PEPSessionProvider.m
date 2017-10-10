@@ -90,7 +90,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPSession*> *s_sessionForThreadDi
     [self performSelector:@selector(nullifySession:)
                  onThread:thread.thread
                withObject:session
-            waitUntilDone:NO];
+            waitUntilDone:YES];
     dict[thread] = nil;
 }
 
