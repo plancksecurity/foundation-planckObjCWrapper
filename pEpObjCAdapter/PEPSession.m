@@ -29,7 +29,7 @@
 - (id)init
 {
     //"Denied access to assure clients do not call [PEPSession new] accidentally. Use initInternal instead.
-    NSAssert(false, @"Dear client. You must not init a session. Use [PEPObjCAdapter session] instead");
+    NSAssert(false, @"Dear client. You must not use PEPSession. Use PEPObjCAdapter instead");
     return nil;
 }
 
@@ -248,7 +248,6 @@
 
 DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident, PEP_rating *color);
 
-
 - (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened
 {
     NSMutableArray *array = [NSMutableArray array];
@@ -385,9 +384,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     @synchronized(self) {
 
         status = get_trustwords(_session, ident1, ident2,
-                                           [[language precomposedStringWithCanonicalMapping]
-                                            UTF8String],
-                                           &trustwords, &sizeWritten, full);
+                                [[language precomposedStringWithCanonicalMapping]
+                                 UTF8String],
+                                &trustwords, &sizeWritten, full);
     }
     if (status == PEP_STATUS_OK) {
         result = [NSString stringWithCString:trustwords
@@ -456,7 +455,7 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
         }
         [tokens addObject:token];
     }
-
+    
     NSArray *theTokens = [NSArray arrayWithArray:tokens];
     NSMutableArray<PEPLanguage *> *langs = [NSMutableArray new];
     while (YES) {
