@@ -18,16 +18,11 @@ typedef NSArray<NSString *> PEPStringList;
 @class PEPSession;
 @class PEPLanguage;
 
-/** Callback type for doing something with a session */
-typedef void (^PEPSessionBlock)(PEPSession * _Nonnull session);
-
 /**
  N threads <-> N sessions, with the constraint that a session is never used
  in a pEpEngine call more than once at the same time.
  */
 @interface PEPSession : NSObject
-
-#pragma mark -- Public API
 
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
