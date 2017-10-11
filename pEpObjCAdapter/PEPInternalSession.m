@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-#import "PEPSession.h"
-#import "PEPSession+Internal.h"
+#import "PEPInternalSession.h"
+#import "PEPInternalSession+Internal.h"
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessage.h"
@@ -16,7 +16,7 @@
 #import "NSArray+Extension.h"
 #import "NSDictionary+Extension.h"
 
-@implementation PEPSession
+@implementation PEPInternalSession
 
 + (void)setupTrustWordsDB
 {
@@ -35,7 +35,7 @@
 
 - (id)initInternal
 {
-    [PEPSession setupTrustWordsDB];
+    [PEPInternalSession setupTrustWordsDB];
 
     [[PEPObjCAdapter initLock] lock];
     PEP_STATUS status = init(&_session);

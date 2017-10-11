@@ -378,7 +378,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     NSValue* v;
-    PEPSession* session;
+    PEPInternalSession* session;
     @synchronized (sessionList) {
         for (v in sessionList) {
             session = [v nonretainedObjectValue];
@@ -391,7 +391,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 {
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     NSValue* v;
-    PEPSession* session;
+    PEPInternalSession* session;
     @synchronized (sessionList) {
         for (v in sessionList) {
             session = [v nonretainedObjectValue];
@@ -432,7 +432,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     return syncDelegate;
 }
 
-+ (void)bindSession:(PEPSession*)session
++ (void)bindSession:(PEPInternalSession*)session
 {
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     @synchronized (sessionList) {
@@ -443,7 +443,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     [PEPObjCAdapter attachSyncSession:[session session]];
 }
 
-+ (void)unbindSession:(PEPSession*)session
++ (void)unbindSession:(PEPInternalSession*)session
 {
     [PEPObjCAdapter detachSyncSession:[session session]];
     
@@ -584,13 +584,13 @@ static id <PEPSyncDelegate> syncDelegate = nil;
                             dest:(PEPDict * _Nullable * _Nullable)dst
                             keys:(PEPStringList * _Nullable * _Nullable)keys
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session decryptMessageDict:src dest:dst keys:keys];
 }
 
 + (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session reEvaluateMessageRating:src];
 }
 
@@ -598,7 +598,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
                            extra:(nullable PEPStringList *)keys
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session encryptMessageDict:src extra:keys dest:dst];
 }
 
@@ -606,56 +606,56 @@ static id <PEPSyncDelegate> syncDelegate = nil;
                         identity:(nonnull PEPDict *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session encryptMessageDict:src identity:identity dest:dst];
 }
 
 + (PEP_rating)outgoingMessageColor:(nonnull PEPDict *)msg
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session outgoingMessageColor:msg];
 }
 
 + (PEP_rating)identityRating:(nonnull PEPDict *)identity
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session identityRating:identity];
 }
 
 + (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
                       shortened:(BOOL)shortened
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session trustwords:fpr forLanguage:languageID shortened:shortened];
 }
 
 + (void)mySelf:(nonnull PEPMutableDict *)identity
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [session mySelf:identity];
 }
 
 + (void)updateIdentity:(nonnull PEPMutableDict *)identity
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [session updateIdentity:identity];
 }
 
 + (void)trustPersonalKey:(nonnull PEPMutableDict *)identity
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [session trustPersonalKey:identity];
 }
 
 + (void)keyMistrusted:(nonnull PEPMutableDict *)identity
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [session keyMistrusted:identity];
 }
 
 + (void)keyResetTrust:(nonnull PEPMutableDict *)identity
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [session keyResetTrust:identity];
 }
 
@@ -663,20 +663,20 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 
 + (void)importKey:(nonnull NSString *)keydata
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [session importKey:keydata];
 }
 
 + (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
      description:(nullable NSString *)description comment:(nullable NSString *)comment
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [session logTitle:title entity:entity description:description comment:comment];
 }
 
 + (nonnull NSString *)getLog
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session getLog];
 }
 
@@ -685,7 +685,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
                                      language:(nullable NSString *)language
                                          full:(BOOL)full
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session getTrustwordsIdentity1:identity1 identity2:identity2 language:language full:full];
 }
 
@@ -696,19 +696,19 @@ static id <PEPSyncDelegate> syncDelegate = nil;
                                            full:(BOOL)full
                                 resultingStatus:(PEP_STATUS * _Nullable)resultingStatus
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session getTrustwordsMessageDict:messageDict receiverDict:receiverDict keysArray:keysArray language:language full:full resultingStatus:resultingStatus];
 }
 
 + (NSArray<PEPLanguage *> * _Nonnull)languageList
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session languageList];
 }
 
 + (PEP_STATUS)undoLastMistrust
 {
-    PEPSession *session = [PEPSessionProvider session];
+    PEPInternalSession *session = [PEPSessionProvider session];
     return [session undoLastMistrust];
 }
 

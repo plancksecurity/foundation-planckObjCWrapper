@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class PEPSession;
+@class PEPInternalSession;
 
 @interface PEPSessionProvider : NSObject
 
-+ (PEPSession * _Nonnull)session;
++ (PEPInternalSession * _Nonnull)session;
 
 + (void)cleanup;
 

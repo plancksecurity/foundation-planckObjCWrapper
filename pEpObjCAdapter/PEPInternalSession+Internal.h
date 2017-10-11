@@ -11,7 +11,7 @@
 
 #import "PEPObjCAdapter.h"
 
-@interface PEPSession ()
+@interface PEPInternalSession ()
 
 @property (nonatomic) PEP_SESSION _Nullable session;
 

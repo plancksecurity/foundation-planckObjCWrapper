@@ -8,26 +8,26 @@
 
 #import "PEPSessionProvider.h"
 
-#import "PEPSession.h"
-#import "PEPSession+Internal.h"
+#import "PEPInternalSession.h"
+#import "PEPInternalSession+Internal.h"
 #import "PEPCopyableThread.h"
 
 @implementation PEPSessionProvider
 
 static NSLock *s_sessionForThreadLock = nil;
-static NSMutableDictionary<PEPCopyableThread*,PEPSession*> *s_sessionForThreadDict;
+static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionForThreadDict;
 
 #pragma mark - Public API
 
-+ (PEPSession * _Nonnull)session
++ (PEPInternalSession * _Nonnull)session
 {
     [[self sessionForThreadLock] lock];
 
     PEPCopyableThread *currentThread = [[PEPCopyableThread alloc] initWithThread:[NSThread currentThread]];
-    NSMutableDictionary<PEPCopyableThread*,PEPSession*> *dict = [self sessionForThreadDict];
-    PEPSession *session = dict[currentThread];
+    NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
+    PEPInternalSession *session = dict[currentThread];
     if (!session) {
-        session = [[PEPSession alloc] initInternal];
+        session = [[PEPInternalSession alloc] initInternal];
         dict[currentThread] = session;
     }
     [self nullifySesssionOfFinishedThreads];
@@ -41,7 +41,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPSession*> *s_sessionForThreadDi
 {
     [[self sessionForThreadLock] lock];
 
-    NSMutableDictionary<PEPCopyableThread*,PEPSession*> *dict = [self sessionForThreadDict];
+    NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     for (PEPCopyableThread *thread in dict.allKeys) {
         [thread cancel];
         [self nullifySessionForThread:thread];
@@ -75,7 +75,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPSession*> *s_sessionForThreadDi
 
 + (void)nullifySesssionOfFinishedThreads
 {
-    NSMutableDictionary<PEPCopyableThread*,PEPSession*> *dict = [self sessionForThreadDict];
+    NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     for (PEPCopyableThread *thread in dict.allKeys) {
         if (thread.isFinished) {
             [self nullifySessionForThread:thread];
@@ -85,8 +85,8 @@ static NSMutableDictionary<PEPCopyableThread*,PEPSession*> *s_sessionForThreadDi
 
 + (void)nullifySessionForThread:(PEPCopyableThread *)thread
 {
-    NSMutableDictionary<PEPCopyableThread*,PEPSession*> *dict = [self sessionForThreadDict];
-    PEPSession *session = dict[thread];
+    NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
+    PEPInternalSession *session = dict[thread];
     [self performSelector:@selector(nullifySession:)
                  onThread:thread.thread
                withObject:session
@@ -94,7 +94,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPSession*> *s_sessionForThreadDi
     dict[thread] = nil;
 }
 
-+ (void)nullifySession:(PEPSession *)session
++ (void)nullifySession:(PEPInternalSession *)session
 {
     session = nil;
 }
