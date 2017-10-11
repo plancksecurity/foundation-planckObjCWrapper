@@ -128,7 +128,6 @@
 		43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter.m; sourceTree = "<group>"; };
 		43209B311ECC2ACD007E7E2E /* PEPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPQueue.h; sourceTree = "<group>"; };
 		43209B321ECC2ACD007E7E2E /* PEPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPQueue.m; sourceTree = "<group>"; };
-		43209B331ECC2ACD007E7E2E /* PEPInternalSession+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPInternalSession+Internal.h"; sourceTree = "<group>"; };
 		43209B341ECC2ACD007E7E2E /* PEPInternalSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPInternalSession.h; sourceTree = "<group>"; };
 		43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSession.m; sourceTree = "<group>"; };
 		432EF6091C58B77900B6782A /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
@@ -224,7 +223,6 @@
 				43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */,
 				43209B311ECC2ACD007E7E2E /* PEPQueue.h */,
 				43209B321ECC2ACD007E7E2E /* PEPQueue.m */,
-				43209B331ECC2ACD007E7E2E /* PEPInternalSession+Internal.h */,
 				43209B341ECC2ACD007E7E2E /* PEPInternalSession.h */,
 				43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */,
 				43D27DE41F5DA78700795687 /* NSDictionary+Extension.h */,

@@ -9,7 +9,6 @@
 #import "PEPSessionProvider.h"
 
 #import "PEPInternalSession.h"
-#import "PEPInternalSession+Internal.h"
 #import "PEPCopyableThread.h"
 
 @implementation PEPSessionProvider
@@ -22,7 +21,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
 + (PEPInternalSession * _Nonnull)session
 {
     [[self sessionForThreadLock] lock];
-
+    
     PEPCopyableThread *currentThread = [[PEPCopyableThread alloc] initWithThread:[NSThread currentThread]];
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     PEPInternalSession *session = dict[currentThread];
@@ -30,24 +29,24 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
         session = [[PEPInternalSession alloc] initInternal];
         dict[currentThread] = session;
     }
-    [self nullifySesssionOfFinishedThreads];
-
+    [self nullifySessionsOfFinishedThreads];
+    
     [[self sessionForThreadLock] unlock];
-
+    
     return session;
 }
 
 + (void)cleanup
 {
     [[self sessionForThreadLock] lock];
-
+    
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     for (PEPCopyableThread *thread in dict.allKeys) {
         [thread cancel];
         [self nullifySessionForThread:thread];
     }
     [dict removeAllObjects];
-
+    
     [[self sessionForThreadLock] unlock];
 }
 
@@ -73,7 +72,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
 
 #pragma mark -
 
-+ (void)nullifySesssionOfFinishedThreads
++ (void)nullifySessionsOfFinishedThreads
 {
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     for (PEPCopyableThread *thread in dict.allKeys) {
@@ -90,7 +89,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
     [self performSelector:@selector(nullifySession:)
                  onThread:thread.thread
                withObject:session
-            waitUntilDone:YES];
+            waitUntilDone:NO];
     dict[thread] = nil;
 }
 

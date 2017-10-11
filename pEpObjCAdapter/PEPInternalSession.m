@@ -7,7 +7,6 @@
 //
 
 #import "PEPInternalSession.h"
-#import "PEPInternalSession+Internal.h"
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessage.h"

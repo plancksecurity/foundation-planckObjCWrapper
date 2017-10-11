@@ -13,7 +13,6 @@
 
 #import "PEPQueue.h"
 #import "PEPInternalSession.h"
-#import "PEPInternalSession+Internal.h"
 
 @interface PEPObjCAdapter ()
 
@@ -31,7 +30,6 @@
 + (id <PEPSyncDelegate>)getSyncDelegate;
 + (void)bindSession:(PEPInternalSession*)session;
 + (void)unbindSession:(PEPInternalSession*)session;
-
 
 @end
 
