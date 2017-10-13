@@ -11,6 +11,14 @@
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
 
+
+/**
+ Restricts access to PEPInternalSession init to the one and only PEPSessionProvider. 
+ */
+@interface PEPInternalSession()
+- (instancetype)initInternal;
+@end
+
 @implementation PEPSessionProvider
 
 static NSLock *s_sessionForThreadLock = nil;
@@ -26,11 +34,12 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     PEPInternalSession *session = dict[currentThread];
     if (!session) {
-        session = [PEPInternalSession new];
+        session = [[PEPInternalSession alloc] initInternal];
         dict[currentThread] = session;
     }
     [self nullifySessionsOfFinishedThreads];
-    NSLog(@"#################\nnum sessions is now %lu\n#################", (unsigned long)[self sessionForThreadDict].count);
+//    NSLog(@"#################\nnum sessions is now %lu\n#################",
+//          (unsigned long)[self sessionForThreadDict].count);
 
     [[self sessionForThreadLock] unlock];
 
@@ -73,20 +82,9 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
 
     for (PEPCopyableThread *thread in dict.allKeys) {
-        if (thread.isFinished) {
-            [self nullifySessionForThread:thread];
-        } else {
-            PEPInternalSession *session = dict[thread];
-            [session logTitle:@"Cleaning session that is potentially still in use"
-                       entity:[[self class] description]
-                  description:@"We are going to nullify a session for an active thread.\
-             This must not happen. \
-             It is the clients responsibility to assure no session is in use anymore when calling cleanup()."
-                      comment:nil];
-            [self nullifySessionForThread:thread];
-        }
+        [self nullifySessionForThread:thread];
     }
-    NSLog(@"All sessions have been cleaned up. Session count is %lu", (unsigned long)dict.count); //BUFF:
+    NSLog(@"All sessions have been cleaned up. Session count is %lu", (unsigned long)dict.count);
 }
 
 /**
