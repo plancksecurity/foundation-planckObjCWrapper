@@ -26,7 +26,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     PEPInternalSession *session = dict[currentThread];
     if (!session) {
-        session = [[PEPInternalSession alloc] initInternal];
+        session = [PEPInternalSession new];
         dict[currentThread] = session;
     }
     [self nullifySessionsOfFinishedThreads];

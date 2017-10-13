@@ -21,11 +21,6 @@
 
 @property (nonatomic) PEP_SESSION _Nullable session;
 
-// We do not want the client to use a PEPSession. The client is supposed to use PEPObjCAdapter() only.
-// Find everything in PEPSession+Internal.h
-
-- (id _Nullable)initInternal;
-
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
                             dest:(PEPDict * _Nullable * _Nullable)dst

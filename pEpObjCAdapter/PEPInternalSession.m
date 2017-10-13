@@ -25,27 +25,22 @@
     });
 }
 
-- (id)init
+- (instancetype)init
 {
-    //"Denied access to assure clients do not call [PEPSession new] accidentally. Use initInternal instead.
-    NSAssert(false, @"Dear client. You must not use PEPSession. Use PEPObjCAdapter instead");
-    return nil;
-}
+    self = [super init];
+    if (self) {
+        [PEPInternalSession setupTrustWordsDB];
 
-- (id)initInternal
-{
-    [PEPInternalSession setupTrustWordsDB];
+        [[PEPObjCAdapter initLock] lock];
+        PEP_STATUS status = init(&_session);
+        [[PEPObjCAdapter initLock] unlock];
 
-    [[PEPObjCAdapter initLock] lock];
-    PEP_STATUS status = init(&_session);
-    [[PEPObjCAdapter initLock] unlock];
+        if (status != PEP_STATUS_OK) {
+            return nil;
+        }
 
-    if (status != PEP_STATUS_OK) {
-        return nil;
+        [PEPObjCAdapter bindSession:self];
     }
-
-    [PEPObjCAdapter bindSession:self];
-
     return self;
 }
 
