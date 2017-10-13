@@ -12,9 +12,10 @@
 
 /**
  Represents a real pEp session (in contrat to PEPSession, which is a fake session to handle to the client).
- Never expose this class to the user.
- N threads <-> N sessions, with the constraint that a session is never used
- in a pEpEngine call more than once at the same time.
+ Never expose this class to the client.
+ - You must use one session on one thread only to assure no concurrent calls to one session take place.
+ - As long as you can assure the session is not accessed from anywhere else, it is OK to init/deinit a session on another thread than the one it is used on.
+ - N threads <-> N sessions, with the constraint that a session is never used in a pEpEngine call more than once at the same time.
  */
 @interface PEPInternalSession : NSObject
 
