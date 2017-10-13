@@ -11,13 +11,11 @@
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessage.h"
-#import "PEPSessionProvider.h"
 #include "keymanagement.h"
 #import "PEPCopyableThread.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Keyserver and Identity lookup - C part
-
 
 int examine_identity(pEp_identity *ident, void *management)
 {
@@ -75,7 +73,6 @@ PEP_STATUS message_to_send(void *unused_object, message *msg)
 int inject_sync_msg(void *msg, void *unused_management)
 {
     PEPQueue *q = [PEPObjCAdapter getSyncQueue];
-    
     [q enqueue:[NSValue valueWithPointer:msg]];
     
     return 0;
@@ -172,14 +169,14 @@ static NSLock *s_initLock;
     return s_homeURL;
 }
 
-+ (NSString *) getBundlePathFor: (NSString *) filename
++ (NSString *)getBundlePathFor: (NSString *) filename
 {
     return nil;
 }
 
-+ (NSString *) copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
-                                              :(NSString *)bundleName
-                                              :(NSString *)fileName{
++ (NSString *)copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
+                                             :(NSString *)bundleName
+                                             :(NSString *)fileName{
     
     NSURL *homeUrl = [PEPObjCAdapter createAndSetHomeDirectory];
     NSString *documentsDirectory = [homeUrl path];
@@ -194,7 +191,6 @@ static NSLock *s_initLock;
         NSBundle *bundleObj = [NSBundle bundleWithPath:
                                [[rootBundle resourcePath]
                                 stringByAppendingPathComponent: bundleName]];
-        
         if (!bundleObj)
             return nil;
         
@@ -322,8 +318,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
                               "NOTNULL");
     
     // TODO : log something if status not as expected
-    
-    
+
     [syncThreadJoinCond unlockWithCondition:YES];
 }
 
@@ -446,7 +441,6 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     @synchronized (sessionList) {
         [sessionList removeObject:[NSValue valueWithNonretainedObject:session]];
     }
-    
 }
 
 @end

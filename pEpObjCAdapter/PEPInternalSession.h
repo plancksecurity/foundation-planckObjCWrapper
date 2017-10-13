@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPObjCAdapter.h" //BUFF: remove 
+#import "PEPObjCAdapter.h"
 
 /**
  Represents a real pEp session (in contrat to PEPSession, which is a fake session to handle to the client).

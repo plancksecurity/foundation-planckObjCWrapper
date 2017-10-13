@@ -23,9 +23,14 @@ typedef NSArray<NSString *> PEPStringList;
  You can instatntiate and use this session how often and wherever you want. Also over multiple threads.
 
  Note: You must call `cleanup()` once before your process gets terminated to be able to gracefully shutdown.
+ It is the clients responsibility not to make any calls to PEPSession after calling cleanup.
  */
 @interface PEPSession : NSObject
 
+/**
+ You must call this method once before your process gets terminated to be able to gracefully shutdown.
+ You must not make any calls to PEPSession after calling cleanup.
+ */
 - (void)cleanup;
 
 /** Decrypt a message */
