@@ -84,7 +84,9 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
     for (PEPCopyableThread *thread in dict.allKeys) {
         [self nullifySessionForThread:thread];
     }
-    NSLog(@"All sessions have been cleaned up. Session count is %lu", (unsigned long)dict.count);
+//    NSLog(@"All sessions have been cleaned up. Session count is %lu", (unsigned long)dict.count);
+    [dict removeAllObjects];
+
 }
 
 /**
