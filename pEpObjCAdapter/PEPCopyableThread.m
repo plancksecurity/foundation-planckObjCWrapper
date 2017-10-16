@@ -41,6 +41,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    self.thread = nil;
+}
+
 #pragma mark - NSObject
 
 - (BOOL)isEqual:(PEPCopyableThread *)object
