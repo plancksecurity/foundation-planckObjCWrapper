@@ -1,37 +1,25 @@
 //
 //  PEPSession.h
-//  pEpObjCAdapter
+//  pEpiOSAdapter
 //
-//  Created by Andreas Buff on 11.10.17.
-//  Copyright © 2017 p≡p. All rights reserved.
+//  Created by Volker Birk on 08.07.15.
+//  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "PEPMessage.h"
-
-typedef NSDictionary<NSString *, id> PEPDict;
-typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
-typedef NSArray<NSString *> PEPStringList;
-
-@class PEPLanguage;
+#import "PEPObjCAdapter.h"
 
 /**
- Fake session to handle to the client.
-
- Assures all calls are handled on the correct internal session for the thread it is called on.
- You can instatntiate and use this session how often and wherever you want. Also over multiple threads.
-
- Note: You must call `cleanup()` once before your process gets terminated to be able to gracefully shutdown.
- It is the clients responsibility not to make any calls to PEPSession after calling cleanup.
+ Represents a real pEp session (in contrat to PEPSession, which is a fake session to handle to the client).
+ Never expose this class to the client.
+ - You must use one session on one thread only to assure no concurrent calls to one session take place.
+ - As long as you can assure the session is not accessed from anywhere else, it is OK to init/deinit a session on another thread than the one it is used on.
+ - N threads <-> N sessions, with the constraint that a session is never used in a pEpEngine call more than once at the same time.
  */
-@interface PEPSession : NSObject
+@interface PEPInternalSession : NSObject
 
-/**
- You must call this method once before your process gets terminated to be able to gracefully shutdown.
- You must not make any calls to PEPSession after calling cleanup.
- */
-- (void)cleanup;
+@property (nonatomic) PEP_SESSION _Nullable session;
 
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src

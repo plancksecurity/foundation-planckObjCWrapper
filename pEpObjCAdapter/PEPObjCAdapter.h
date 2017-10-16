@@ -8,23 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-#include "message_api.h"
+#import "PEPSession.h"
 #include "sync_app.h"
 
+@class PEPLanguage;
+
 @protocol PEPKeyManagementDelegate <NSObject>
-
-- (void)identityUpdated:(id)identity;
-
+- (void)identityUpdated:(_Nonnull id)identity;
 @end
 
 @protocol PEPSyncDelegate <NSObject>
-
-- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(id)me partner:(id)partner;
-
-- (PEP_STATUS)sendMessage:(id)msg;
-
+- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(_Nonnull id)me partner:(_Nonnull id)partner;
+- (PEP_STATUS)sendMessage:(_Nonnull id)msg;
 - (PEP_STATUS)fastPolling:(bool)isfast;
-
 @end
 
 @interface PEPObjCAdapter : NSObject
@@ -32,7 +28,7 @@
 /**
  The HOME URL, where all pEp related files will be stored.
  */
-+ (NSURL *)homeURL;
++ (NSURL * _Nonnull)homeURL;
 
 /**
  Start keyserver lookup.
@@ -46,18 +42,17 @@
 + (void)stopKeyserverLookup;
 
 + (void)setupTrustWordsDB;
-+ (void)setupTrustWordsDB:(NSBundle *)rootBundle;
++ (void)setupTrustWordsDB:(NSBundle * _Nonnull)rootBundle;
 
 /**
  Start Sync.
  - Note: There is only one Sync session and thread
  */
-+ (void)startSync:(id <PEPSyncDelegate>)delegate;
++ (void)startSync:(_Nonnull id <PEPSyncDelegate>)delegate;
 
 /**
  Stop Sync.
  */
 + (void)stopSync;
-
 
 @end

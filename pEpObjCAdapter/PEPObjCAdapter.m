@@ -12,10 +12,10 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessage.h"
 #include "keymanagement.h"
+#import "PEPCopyableThread.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 //  Keyserver and Identity lookup - C part
-
 
 int examine_identity(pEp_identity *ident, void *management)
 {
@@ -73,7 +73,6 @@ PEP_STATUS message_to_send(void *unused_object, message *msg)
 int inject_sync_msg(void *msg, void *unused_management)
 {
     PEPQueue *q = [PEPObjCAdapter getSyncQueue];
-    
     [q enqueue:[NSValue valueWithPointer:msg]];
     
     return 0;
@@ -89,14 +88,14 @@ void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
         [syncDelegate fastPolling:true];
     
     PEPQueue *q = [PEPObjCAdapter getSyncQueue];
-
+    
     void* result = (void*)[[q timedDequeue:timeout] pointerValue];
-
+    
     if ( syncDelegate && needs_fastpoll )
         [syncDelegate fastPolling:false];
     
     return result;
-
+    
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -133,7 +132,7 @@ static NSLock *s_initLock;
     }
     NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *dirPath = nil;
-
+    
     // Find the application support directory in the home directory.
     NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
                                         inDomains:NSUserDomainMask];
@@ -143,7 +142,7 @@ static NSLock *s_initLock;
         // Application Support directory.
         // Mainly needed for OS X, but doesn't do any harm on iOS
         dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:bundleID];
-
+        
         // If the directory does not exist, this method creates it.
         // This method is only available in OS X v10.7 and iOS 5.0 or later.
         NSError *theError = nil;
@@ -154,7 +153,7 @@ static NSLock *s_initLock;
             return nil;
         }
     }
-
+    
     return dirPath;
 }
 
@@ -162,23 +161,23 @@ static NSLock *s_initLock;
 {
     // create and set home directory
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-
+    
     // create and set temp directory
     NSURL *tmpDirUrl = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
     setenv("TEMP", [[tmpDirUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-
+    
     return s_homeURL;
 }
 
-+ (NSString *) getBundlePathFor: (NSString *) filename
++ (NSString *)getBundlePathFor: (NSString *) filename
 {
     return nil;
 }
 
-+ (NSString *) copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
-                                                          :(NSString *)bundleName
-                                                          :(NSString *)fileName{
-
++ (NSString *)copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
+                                             :(NSString *)bundleName
+                                             :(NSString *)fileName{
+    
     NSURL *homeUrl = [PEPObjCAdapter createAndSetHomeDirectory];
     NSString *documentsDirectory = [homeUrl path];
     
@@ -192,7 +191,6 @@ static NSLock *s_initLock;
         NSBundle *bundleObj = [NSBundle bundleWithPath:
                                [[rootBundle resourcePath]
                                 stringByAppendingPathComponent: bundleName]];
-        
         if (!bundleObj)
             return nil;
         
@@ -214,8 +212,8 @@ static NSLock *s_initLock;
 
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle{
     NSString *systemDBPath = [PEPObjCAdapter copyAssetIntoDocumentsDirectory:rootBundle
-                                                                           :@"pEpTrustWords.bundle"
-                                                                           :@"system.db"];
+                                                                            :@"pEpTrustWords.bundle"
+                                                                            :@"system.db"];
     if (SystemDB) {
         free((void *) SystemDB);
     }
@@ -248,7 +246,7 @@ static NSConditionLock *lookupThreadJoinCond = nil;
 + (void)lookupThreadRoutine:(id)object
 {
     [lookupThreadJoinCond lock];
-
+    
     // FIXME: do_KeyManagement asserts if management is null.
     do_keymanagement(retrieve_next_identity, "NOTNULL" /* (__bridge void *)queue */);
     
@@ -312,16 +310,15 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 {
     [syncThreadJoinCond lock];
     
-
+    
     PEP_STATUS status;
-
+    
     status = do_sync_protocol(sync_session,
                               /* "object" : notifying, sending (unused) */
                               "NOTNULL");
     
     // TODO : log something if status not as expected
-    
-    
+
     [syncThreadJoinCond unlockWithCondition:YES];
 }
 
@@ -345,7 +342,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         syncQueue = [[PEPQueue alloc]init];
         
         syncThreadJoinCond = [[NSConditionLock alloc] initWithCondition:NO];
-
+        
         [[PEPObjCAdapter initLock] lock];
         PEP_STATUS status = init(&sync_session);
         [[PEPObjCAdapter initLock] unlock];
@@ -365,13 +362,13 @@ static id <PEPSyncDelegate> syncDelegate = nil;
                       initWithTarget:self
                       selector:@selector(syncThreadRoutine:)
                       object:nil];
-
+        
         [syncThread start];
     }
-
+    
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     NSValue* v;
-    PEPSession* session;
+    PEPInternalSession* session;
     @synchronized (sessionList) {
         for (v in sessionList) {
             session = [v nonretainedObjectValue];
@@ -384,7 +381,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 {
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     NSValue* v;
-    PEPSession* session;
+    PEPInternalSession* session;
     @synchronized (sessionList) {
         for (v in sessionList) {
             session = [v nonretainedObjectValue];
@@ -403,7 +400,7 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         
         [syncThreadJoinCond lockWhenCondition:YES];
         [syncThreadJoinCond unlock];
-
+        
         [[PEPObjCAdapter initLock] lock];
         release(sync_session);
         [[PEPObjCAdapter initLock] unlock];
@@ -425,18 +422,18 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     return syncDelegate;
 }
 
-+ (void)bindSession:(PEPSession*)session
++ (void)bindSession:(PEPInternalSession*)session
 {
     NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
     @synchronized (sessionList) {
         [sessionList addObject:[NSValue valueWithNonretainedObject:session]];
     }
-
+    
     [PEPObjCAdapter registerExamineFunction:[session session]];
     [PEPObjCAdapter attachSyncSession:[session session]];
 }
 
-+ (void)unbindSession:(PEPSession*)session
++ (void)unbindSession:(PEPInternalSession*)session
 {
     [PEPObjCAdapter detachSyncSession:[session session]];
     
@@ -444,9 +441,6 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     @synchronized (sessionList) {
         [sessionList removeObject:[NSValue valueWithNonretainedObject:session]];
     }
-
 }
-
-
 
 @end
