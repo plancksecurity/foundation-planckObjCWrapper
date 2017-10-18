@@ -1735,7 +1735,7 @@ encmsg[@"outgoing"] = @NO;
     };
 
     PEPInternalSession *decryptSession2 = [[PEPInternalSession alloc] initInternal];
-    void (^decryptionBlock2)() = ^() {
+    void (^decryptionBlock2)(int) = ^(int index) {
         NSMutableDictionary *innerAccountDict = [accountDict mutableCopy];
         [decryptSession2 mySelf:innerAccountDict];         XCTAssertNotNil(innerAccountDict[kPepFingerprint]);
         NSArray* keys;
@@ -1744,9 +1744,10 @@ encmsg[@"outgoing"] = @NO;
                                                           keys:&keys];
     };
 
-    void (^initBlock)() = ^() {
+    void (^initBlock)(void) = ^() {
         for (int i = 0; i < 100; ++i) {
             PEPInternalSession *tmp = [[PEPInternalSession alloc] initInternal];
+            tmp = nil;
         }
     };
 
