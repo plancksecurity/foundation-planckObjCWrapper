@@ -99,6 +99,11 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
 
 PEPInternalSession *session;
 
+- (void)setUp
+{
+    [[PEPSession new] cleanup];
+}
+
 #pragma mark -- Helpers
 
 - (void)delFilePath:(NSString *)path backupAs:(NSString *)bkpsfx {
