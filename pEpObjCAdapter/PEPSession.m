@@ -15,6 +15,16 @@
 
 #pragma mark - Public API
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        // Trigger provider to make sure a internal session is kept for the current thread
+        [PEPSessionProvider session];
+    }
+    return self;
+}
+
 - (void)cleanup
 {
     [PEPSessionProvider cleanup];

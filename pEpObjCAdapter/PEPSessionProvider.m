@@ -41,6 +41,12 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
 //    NSLog(@"#################\nnum sessions is now %lu\n#################",
 //          (unsigned long)[self sessionForThreadDict].count);
 
+//    NSLog(@"#################\nnum sessions is now %lu\n#################",
+//          (unsigned long)[self sessionForThreadDict].count);
+//    NSLog(@"Threads:");
+//    for (PEPCopyableThread *thread in dict.allKeys) {
+//        NSLog(@"%@", thread.description);
+//    }
     [[self sessionForThreadLock] unlock];
 
     return session;
