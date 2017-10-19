@@ -24,6 +24,8 @@ typedef NSArray<NSString *> PEPStringList;
 
  Note: You must call `cleanup()` once before your process gets terminated to be able to gracefully shutdown.
  It is the clients responsibility not to make any calls to PEPSession after calling cleanup.
+
+ Also: The Engine requires that the first session is created on the main thread. It is the responibility of the client to call PEPSession init once on the main thread before any other thread is calling it.
  */
 @interface PEPSession : NSObject
 

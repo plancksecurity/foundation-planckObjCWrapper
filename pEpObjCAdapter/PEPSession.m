@@ -19,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        // Trigger provider to make sure a internal session is kept for the current thread
+        // Trigger provider to make sure a internal session is kept for the current thread.
         [PEPSessionProvider session];
     }
     return self;
