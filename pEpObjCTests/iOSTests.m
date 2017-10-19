@@ -152,6 +152,8 @@ PEPInternalSession *session;
     NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
     NSString* gpgHome = [home stringByAppendingPathComponent:@".gnupg"];
     return @[[home stringByAppendingPathComponent:@".pEp_management.db"],
+             [home stringByAppendingPathComponent:@".pEp_management.db-shm"],
+             [home stringByAppendingPathComponent:@".pEp_management.db-wal"],
              [gpgHome stringByAppendingPathComponent:@"pubring.gpg"],
              [gpgHome stringByAppendingPathComponent:@"secring.gpg"]];
     
