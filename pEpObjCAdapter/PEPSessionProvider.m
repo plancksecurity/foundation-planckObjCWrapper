@@ -11,7 +11,6 @@
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
 
-
 /**
  Restricts access to PEPInternalSession init to the one and only PEPSessionProvider. 
  */
@@ -30,16 +29,22 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
 {
     [[self sessionForThreadLock] lock];
 
-    PEPCopyableThread *currentThread = [[PEPCopyableThread alloc] initWithThread:[NSThread currentThread]];
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
+    PEPCopyableThread *currentThread = [[PEPCopyableThread alloc] initWithThread:[NSThread currentThread]];
     PEPInternalSession *session = dict[currentThread];
     if (!session) {
         session = [[PEPInternalSession alloc] initInternal];
         dict[currentThread] = session;
     }
     [self nullifySessionsOfFinishedThreads];
-//    NSLog(@"#################\nnum sessions is now %lu\n#################",
+
+//    NSLog(@"#################\nnum sessions is now %lu",
 //          (unsigned long)[self sessionForThreadDict].count);
+//    NSLog(@"Threads:");
+//    for (PEPCopyableThread *thread in dict.allKeys) {
+//        NSLog(@"%@", thread.description);
+//    }
+//    NSLog(@"##################################");
 
     [[self sessionForThreadLock] unlock];
 
@@ -84,9 +89,8 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
     for (PEPCopyableThread *thread in dict.allKeys) {
         [self nullifySessionForThread:thread];
     }
-//    NSLog(@"All sessions have been cleaned up. Session count is %lu", (unsigned long)dict.count);
     [dict removeAllObjects];
-
+//    NSLog(@"All sessions have been cleaned up. Session count is %lu", (unsigned long)dict.count);
 }
 
 /**
