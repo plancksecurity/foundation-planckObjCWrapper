@@ -15,7 +15,7 @@
 
 #pragma mark - Public API
 
-- (void)cleanup
++ (void)cleanup
 {
     [PEPSessionProvider cleanup];
 }

@@ -34,7 +34,7 @@ typedef NSArray<NSString *> PEPStringList;
 
  Only for performance reasons: call this method only if you have to.
  */
-- (void)cleanup;
++ (void)cleanup;
 
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
