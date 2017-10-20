@@ -39,6 +39,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     [self assureSessionForMainThreadExists];
 
     if ([NSThread isMainThread]) {
+        [[self sessionForThreadLock] unlock];
         return s_sessionForMainThread;
     }
 
