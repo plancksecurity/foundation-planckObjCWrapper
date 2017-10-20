@@ -33,7 +33,7 @@ typedef NSArray<NSString *> PEPStringList;
  You must call this method once before your process gets terminated to be able to gracefully shutdown.
  You must not make any calls to PEPSession after calling cleanup.
  */
-- (void)cleanup;
++ (void)cleanup;
 
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src

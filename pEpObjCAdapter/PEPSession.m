@@ -15,6 +15,11 @@
 
 #pragma mark - Public API
 
++ (void)cleanup
+{
+    [PEPSessionProvider cleanup];
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -23,11 +28,6 @@
         [PEPSessionProvider session];
     }
     return self;
-}
-
-- (void)cleanup
-{
-    [PEPSessionProvider cleanup];
 }
 
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
