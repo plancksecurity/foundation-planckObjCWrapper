@@ -24,7 +24,7 @@ typedef NSArray<NSString *> PEPStringList;
 
  Note: You must call `cleanup()` once before your process gets terminated to be able to gracefully shutdown.
  It is the clients responsibility not to make any calls to PEPSession in between the last call
- // to `cleanup()` and getting terminated.
+ to `cleanup()` and getting terminated.
  */
 @interface PEPSession : NSObject
 
