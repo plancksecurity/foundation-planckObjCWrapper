@@ -23,11 +23,24 @@
 static NSLock *s_sessionForThreadLock = nil;
 static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionForThreadDict;
 
+/** We have to conform to the Engines rule: "The first session has to be created on the main thread and kept
+ alive until all sessiopns created afterwards have been teared down."
+ Here we hold it.
+ */
+static PEPInternalSession *s_sessionForMainThread = nil;
+
 #pragma mark - Public API
 
 + (PEPInternalSession * _Nonnull)session
 {
     [[self sessionForThreadLock] lock];
+
+    // Assure a session for the main thread exists and is kept alive before anyother session is created.
+    [self assureSessionForMainThreadExists];
+
+    if ([NSThread isMainThread]) {
+        return s_sessionForMainThread;
+    }
 
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     PEPCopyableThread *currentThread = [[PEPCopyableThread alloc] initWithThread:[NSThread currentThread]];
@@ -39,11 +52,12 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
     [self nullifySessionsOfFinishedThreads];
 
 //    NSLog(@"#################\nnum sessions is now %lu",
-//          (unsigned long)[self sessionForThreadDict].count);
+//          (unsigned long)[self sessionForThreadDict].count + (s_sessionForMainThread ? 1 : 0));
 //    NSLog(@"Threads:");
 //    for (PEPCopyableThread *thread in dict.allKeys) {
 //        NSLog(@"%@", thread.description);
 //    }
+//    NSLog(@"Session for main thread: %@", s_sessionForMainThread);
 //    NSLog(@"##################################");
 
     [[self sessionForThreadLock] unlock];
@@ -81,6 +95,23 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
 }
 
 #pragma mark -
+/**
+ Assures a session for the main thread is set.
+ */
++ (void)assureSessionForMainThreadExists
+{
+    if (s_sessionForMainThread) {
+        return;
+    }
+
+    if ([NSThread isMainThread]) {
+        s_sessionForMainThread = [[PEPInternalSession alloc] initInternal];
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            s_sessionForMainThread = [[PEPInternalSession alloc] initInternal];
+        });
+    }
+}
 
 + (void)cleanupInternal
 {
@@ -89,8 +120,10 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
     for (PEPCopyableThread *thread in dict.allKeys) {
         [self nullifySessionForThread:thread];
     }
+    s_sessionForMainThread = nil;
     [dict removeAllObjects];
-//    NSLog(@"All sessions have been cleaned up. Session count is %lu", (unsigned long)dict.count);
+//    NSLog(@"All sessions have been cleaned up. Session count is %lu",
+//          (unsigned long)dict.count + (s_sessionForMainThread ? 1 : 0));
 }
 
 /**
