@@ -16,6 +16,8 @@
  - You must use one session on one thread only to assure no concurrent calls to one session take place.
  - As long as you can assure the session is not accessed from anywhere else, it is OK to init/deinit a session on another thread than the one it is used on.
  - N threads <-> N sessions, with the constraint that a session is never used in a pEpEngine call more than once at the same time.
+
+ Also the Engine requires that the first session is created on the main thread and is kept allive until all other created sessions have been terminated.
  */
 @interface PEPInternalSession : NSObject
 
