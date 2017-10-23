@@ -25,7 +25,7 @@
     });
 }
 
-- (instancetype)initInternal
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -42,13 +42,6 @@
         [PEPObjCAdapter bindSession:self];
     }
     return self;
-}
-
-- (instancetype)init
-{
-    NSAssert(false,  @"Sorry. We have a strict door policy here at the VIP entrance. Please wait in queue \
-             like everybody else and use [PEPSessionProvider session] to get an instance");
-    return nil;
 }
 
 - (void)dealloc

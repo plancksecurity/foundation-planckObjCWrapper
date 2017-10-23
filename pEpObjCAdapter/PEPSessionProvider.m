@@ -11,13 +11,6 @@
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
 
-/**
- Restricts access to PEPInternalSession init to the one and only PEPSessionProvider. 
- */
-@interface PEPInternalSession()
-- (instancetype)initInternal;
-@end
-
 @implementation PEPSessionProvider
 
 static NSLock *s_sessionForThreadLock = nil;
@@ -47,7 +40,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     PEPCopyableThread *currentThread = [[PEPCopyableThread alloc] initWithThread:[NSThread currentThread]];
     PEPInternalSession *session = dict[currentThread];
     if (!session) {
-        session = [[PEPInternalSession alloc] initInternal];
+        session = [PEPInternalSession new];
         dict[currentThread] = session;
     }
     [self nullifySessionsOfFinishedThreads];
@@ -106,10 +99,10 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     }
 
     if ([NSThread isMainThread]) {
-        s_sessionForMainThread = [[PEPInternalSession alloc] initInternal];
+        s_sessionForMainThread = [PEPInternalSession new];
     } else {
         dispatch_sync(dispatch_get_main_queue(), ^{
-            s_sessionForMainThread = [[PEPInternalSession alloc] initInternal];
+            s_sessionForMainThread = [PEPInternalSession new];
         });
     }
 }
