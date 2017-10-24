@@ -101,7 +101,7 @@ PEPInternalSession *session;
 
 - (void)setUp
 {
-    [[PEPSession new] cleanup];
+    [PEPSession cleanup];
 }
 
 #pragma mark -- Helpers
