@@ -15,11 +15,6 @@
 
 // MARK: - Helpers
 
-// Access to initInternal
-@interface PEPInternalSession()
-- (instancetype)initInternal;
-@end
-
 PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable toDict,
                              NSString *shortMessage, NSString *longMessage, BOOL outgoing) {
     PEPMutableDict *dict = [NSMutableDictionary dictionary];
@@ -183,7 +178,7 @@ PEPInternalSession *session;
         for(id path in [self pEpWorkFiles])
             [self undelFile:path:restore];
 
-    session = [[PEPInternalSession alloc] initInternal];
+    session = [[PEPInternalSession alloc] init];
     XCTAssert(session);
     
 }
@@ -240,7 +235,7 @@ PEPInternalSession *session;
 - (void)testNestedSessions {
     [self pEpSetUp];
 
-    PEPInternalSession *session2 = [[PEPInternalSession alloc] initInternal];
+    PEPInternalSession *session2 = [[PEPInternalSession alloc] init];
 
     session2 = nil;
 
@@ -361,7 +356,7 @@ PEPInternalSession *session;
 
     dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     dispatch_sync(queue, ^{
-        PEPInternalSession *session2 = [[PEPInternalSession alloc] initInternal];
+        PEPInternalSession *session2 = [[PEPInternalSession alloc] init];
 
         // Now simulate an update from the app, which usually only caches
         // kPepUsername, kPepAddress and optionally kPepUserID.
@@ -1292,7 +1287,7 @@ encmsg[@"outgoing"] = @NO;
 
     for (int i = 1; i < 3; ++i) {
         dispatch_group_async(group, queue, ^{
-            PEPInternalSession *innerSession = [[PEPInternalSession alloc] initInternal];
+            PEPInternalSession *innerSession = [[PEPInternalSession alloc] init];
             [self doSomeWorkOnSession:innerSession count:i];
             innerSession = nil;
         });
