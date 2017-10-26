@@ -1502,9 +1502,11 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertNotNil(keys);
     XCTAssert(keys.count > 0);
 
-    PEPDict *receiver = decryptedDict[kPepTo][0];
+    NSMutableDictionary *receiver = [decryptedDict[kPepTo][0] mutableCopy];
+    [session updateIdentity:receiver];
     XCTAssertNotNil(receiver);
     PEP_STATUS trustwordsStatus;
+
     NSString *trustwords = [session getTrustwordsMessageDict:decryptedDict
                                                 receiverDict:receiver
                                                    keysArray:keys language:@"en"
