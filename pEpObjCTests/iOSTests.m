@@ -15,8 +15,8 @@
 
 // MARK: - Helpers
 
-PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable toDict,
-                             NSString *shortMessage, NSString *longMessage, BOOL outgoing) {
+PEPDict * _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable toDict,
+                              NSString *shortMessage, NSString *longMessage, BOOL outgoing) {
     PEPMutableDict *dict = [NSMutableDictionary dictionary];
     if (fromDict) {
         dict[kPepFrom] = fromDict;
@@ -39,6 +39,7 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
 @interface SomeSyncDelegate : NSObject<PEPSyncDelegate>
 
 - (BOOL)waitUntilSent:(time_t)maxSec;
+
 @property (nonatomic) bool sendWasCalled;
 @property (nonatomic, strong) NSCondition *cond;
 
@@ -46,7 +47,8 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
 
 @implementation SomeSyncDelegate
 
-- (id)init {
+- (id)init
+{
     if (self = [super init])  {
         self.sendWasCalled = false;
         self.cond = [[NSCondition alloc] init];
@@ -55,11 +57,13 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
 }
 
 - (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(id)me
-                                partner:(id)partner {
+                                partner:(id)partner
+{
     return PEP_STATUS_OK;
 }
 
-- (PEP_STATUS)sendMessage:(id)msg {
+- (PEP_STATUS)sendMessage:(id)msg
+{
     [_cond lock];
 
     _sendWasCalled = true;
@@ -69,11 +73,13 @@ PEPDict* _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable t
     return PEP_STATUS_OK;
 }
 
-- (PEP_STATUS)fastPolling:(bool)isfast {
+- (PEP_STATUS)fastPolling:(bool)isfast
+{
     return PEP_STATUS_OK;
 }
 
-- (BOOL)waitUntilSent:(time_t)maxSec {
+- (BOOL)waitUntilSent:(time_t)maxSec
+{
     bool res;
     [_cond lock];
     [_cond waitUntilDate:[NSDate dateWithTimeIntervalSinceNow: 2]];
@@ -104,8 +110,7 @@ PEPInternalSession *session;
 - (void)delFilePath:(NSString *)path backupAs:(NSString *)bkpsfx {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
-    BOOL fileExists = [fileManager fileExistsAtPath:path];
-    if (fileExists) {
+    if ([fileManager fileExistsAtPath:path]) {
         BOOL success;
         if (!bkpsfx) {
             success = [fileManager removeItemAtPath:path error:&error];
@@ -116,9 +121,7 @@ PEPInternalSession *session;
                 [fileManager removeItemAtPath:toPath error:&error];
             }
             
-            success = [fileManager moveItemAtPath:path
-                                           toPath:toPath
-                                            error:&error];
+            success = [fileManager moveItemAtPath:path toPath:toPath error:&error];
         }
         if (!success) {
             NSLog(@"Error: %@", [error localizedDescription]);
@@ -126,22 +129,21 @@ PEPInternalSession *session;
     }
 }
 
--(void)undelFile : (NSString *)path : (NSString *)bkpsfx {
+- (void)undelFileWithPath:(NSString *)path backup:(NSString *)backup {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
-    NSString* bpath = [path stringByAppendingString:bkpsfx];
+    NSString* bpath = [path stringByAppendingString:backup];
     BOOL fileExists = [fileManager fileExistsAtPath:bpath];
-    if (fileExists)
-    {
+    if (fileExists) {
         BOOL success;
-        success = [fileManager moveItemAtPath:bpath
-                                       toPath:path
-                                        error:&error];
-        if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+        success = [fileManager moveItemAtPath:bpath toPath:path error:&error];
+        if (!success) {
+            NSLog(@"Error: %@", [error localizedDescription]);
+        }
     }
 }
 
-- (NSArray*)pEpWorkFiles
+- (NSArray *)pEpWorkFiles
 {
     // Only files whose content is affected by tests.
     NSString* home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
@@ -154,34 +156,40 @@ PEPInternalSession *session;
     
 }
 
-- (void)pEpCleanUp : (NSString*)backup {
-    session=nil;
+- (void)pEpCleanUp:(NSString *)backup {
+    session = nil;
+    [PEPSession cleanup];
     
-    for(id path in [self pEpWorkFiles])
+    for (id path in [self pEpWorkFiles]) {
         [self delFilePath:path backupAs:backup];
-
+    }
 }
+
 - (void)pEpCleanUp
 {
     [self pEpCleanUp:NULL];
 }
 
-- (void)pEpSetUp : (NSString*)restore{
+- (void)pEpSetUp:(NSString *)restore
+{
     // Must be the first thing you do before using anything pEp-related
     // ... but this is now done in session, with a "dispatch_once"
     // [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 
-    for(id path in [self pEpWorkFiles])
+    for (id path in [self pEpWorkFiles]) {
         [self delFilePath:path backupAs:nil];
+    }
 
-    if(restore)
-        for(id path in [self pEpWorkFiles])
-            [self undelFile:path:restore];
+    if (restore) {
+        for (id path in [self pEpWorkFiles]) {
+            [self undelFileWithPath:path backup:restore];
+        }
+    }
 
     session = [[PEPInternalSession alloc] init];
     XCTAssert(session);
-    
 }
+
 - (void)pEpSetUp
 {
     [self pEpSetUp:NULL];
@@ -210,7 +218,8 @@ PEPInternalSession *session;
 
 - (NSDictionary *)unarchiveDictionary:(NSString *)fileName
 {
-    NSString *filePath = [[[NSBundle bundleForClass:[self class]] resourcePath] stringByAppendingPathComponent:fileName];
+    NSString *filePath = [[[NSBundle bundleForClass:[self class]]
+                           resourcePath] stringByAppendingPathComponent:fileName];
     NSMutableData *data = [NSMutableData dataWithContentsOfFile:filePath];
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
     NSDictionary *dict = [unarchiver decodeObject];
@@ -220,19 +229,18 @@ PEPInternalSession *session;
 
 #pragma mark -- Tests
 
-- (void)testEmptySession {
-    
+- (void)testEmptySession
+{
     [self pEpSetUp];
 
     // Do nothing.
 
-    
     [self pEpCleanUp];
-    
 }
 
 
-- (void)testNestedSessions {
+- (void)testNestedSessions
+{
     [self pEpSetUp];
 
     PEPInternalSession *session2 = [[PEPInternalSession alloc] init];
@@ -242,8 +250,8 @@ PEPInternalSession *session;
     [self pEpCleanUp];
 }
 
-- (void)testShortKeyServerLookup {
-    
+- (void)testShortKeyServerLookup
+{
     [self pEpSetUp];
     [PEPObjCAdapter startKeyserverLookup];
     
@@ -253,8 +261,8 @@ PEPInternalSession *session;
     [self pEpCleanUp];
 }
 
-- (void)testLongKeyServerLookup {
-    
+- (void)testLongKeyServerLookup
+{
     [self pEpSetUp];
     [PEPObjCAdapter startKeyserverLookup];
     
@@ -275,18 +283,16 @@ PEPInternalSession *session;
     
     [PEPObjCAdapter stopKeyserverLookup];
     [self pEpCleanUp];
-    
 }
 
-- (void)testSyncSession {
-    
+- (void)testSyncSession
+{
     SomeSyncDelegate *syncDelegate = [[SomeSyncDelegate alloc] init];
     [self pEpSetUp];
     
     // This should attach session just created
     [PEPObjCAdapter startSync:syncDelegate];
-    
-    
+
     NSMutableDictionary *identMe = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                     @"pEp Test iOS GenKey", kPepUsername,
                                     @"pep.test.iosgenkey@pep-project.org", kPepAddress,
@@ -305,7 +311,8 @@ PEPInternalSession *session;
     [self pEpCleanUp];
 }
 
-- (void)testTrustWords {
+- (void)testTrustWords
+{
     [self pEpSetUp];
 
     NSArray *trustwords = [session trustwords:@"DB47DB47DB47DB47DB47DB47DB47DB47DB47DB47" forLanguage:@"en" shortened:false];
@@ -315,11 +322,10 @@ PEPInternalSession *session;
         XCTAssertEqualObjects(word, @"BAPTISMAL");
 
     [self pEpCleanUp];
-    
 }
 
-- (void)testGenKey {
-    
+- (void)testGenKey
+{
     [self pEpSetUp];
     
     NSMutableDictionary *identMe = @{ kPepUsername: @"pEp Test iOS GenKey",
@@ -335,11 +341,10 @@ PEPInternalSession *session;
     XCTAssertFalse([identMe containsPGPCommType]);
 
     [self pEpCleanUp];
-    
 }
 
-- (void)testMySelfCommType {
-
+- (void)testMySelfCommType
+{
     [self pEpSetUp];
 
     NSMutableDictionary *identMe = @{ kPepUsername: @"pEp Test iOS GenKey",
@@ -383,8 +388,8 @@ PEPInternalSession *session;
     [self pEpCleanUp];
 }
 
-- (void)testOutgoingColors {
-
+- (void)testOutgoingColors
+{
     [self pEpSetUp];
 
     // Our test user :
@@ -519,8 +524,8 @@ PEPInternalSession *session;
 }
 
 
-- (void)testOutgoingBccColors {
-    
+- (void)testOutgoingBccColors
+{
     [self pEpSetUp];
     
     // Our test user :
@@ -632,10 +637,8 @@ PEPInternalSession *session;
     [self pEpCleanUp];
 }
 
-
-
-- (void)testDontEncryptForMistrusted {
-    
+- (void)testDontEncryptForMistrusted
+{
     [self pEpSetUp];
     
     // Our test user :
@@ -697,8 +700,8 @@ PEPInternalSession *session;
     [self pEpCleanUp];
 }
 
-- (void)testRenewExpired {
-    
+- (void)testRenewExpired
+{
     [self pEpSetUp];
     
     // Our expired test user :
@@ -743,11 +746,10 @@ PEPInternalSession *session;
     XCTAssertEqual(PEP_ct_OpenPGP_unconfirmed, [_identHector[kPepCommType] integerValue]);
     
     [self pEpCleanUp];
-
 }
 
-- (void)testRevoke {
-    
+- (void)testRevoke
+{
     [self pEpSetUp];
     
     // Our test user :
@@ -773,8 +775,8 @@ PEPInternalSession *session;
     [self pEpCleanUp];
 }
 
-- (void)testMailToMyself {
-    
+- (void)testMailToMyself
+{
     [self pEpSetUp];
     
     // Our test user :
@@ -819,7 +821,8 @@ PEPInternalSession *session;
 }
 
 #if 0
-- (void)testMessMisTrust {
+- (void)testMessMisTrust
+{
 NSMutableDictionary *encmsg;
 {
     
@@ -974,15 +977,14 @@ encmsg[@"outgoing"] = @NO;
 }}
 #endif
 
-- (void)testTwoNewUsers {
+- (void)testTwoNewUsers
+{
     NSMutableDictionary* petrasMsg;
     NSMutableDictionary *identMiroAtPetra = @{ kPepUsername: @"Miro",
                                                kPepAddress: @"pep.test.miro@pep-project.org",
                                                kPepUserID: @"Him" }.mutableCopy;
 
-    
     [self pEpSetUp];
-
     {
         NSMutableDictionary *identPetra = @{ kPepUsername: @"Petra",
                                              kPepAddress: @"pep.test.petra@pep-project.org",
