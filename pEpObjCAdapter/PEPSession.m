@@ -70,7 +70,11 @@
 
 - (void)updateIdentity:(nonnull PEPMutableDict *)identity
 {
-    [PEPSession updateIdentity:identity];
+    if ([identity[kPepIsOwnIdentity] boolValue]) {
+        [PEPSession mySelf:identity];
+    } else {
+        [PEPSession updateIdentity:identity];
+    }
 }
 
 - (void)trustPersonalKey:(nonnull PEPMutableDict *)identity

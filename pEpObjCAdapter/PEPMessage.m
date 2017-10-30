@@ -65,6 +65,8 @@ NSString *const kXEncStatus = @"X-EncStatus";
 
 NSString *const kXKeylist = @"X-KeyList";
 
+NSString *const _Nonnull kPepIsOwnIdentity = @"kPepIsOwnIdentity";
+
 NSArray *PEP_arrayFromStringlist(stringlist_t *sl)
 {
     NSMutableArray *array = [NSMutableArray array];
