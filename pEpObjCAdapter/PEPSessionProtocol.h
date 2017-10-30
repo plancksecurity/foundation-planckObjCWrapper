@@ -70,7 +70,7 @@ typedef NSArray<NSString *> PEPStringList;
  @"23", @"user_id", nil];
 
  */
-- (void)mySelf:(nonnull PEPIdentity *)identity;
+- (void)mySelf:(nonnull PEPMutableDict *)identity;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).
