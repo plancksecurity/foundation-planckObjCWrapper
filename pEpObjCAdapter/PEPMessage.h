@@ -10,8 +10,13 @@
 
 #include "message_api.h"
 
+@class PEPIdentity;
+
 NSArray * _Nonnull PEP_arrayFromStringlist(stringlist_t * _Nonnull sl);
 stringlist_t * _Nullable PEP_arrayToStringlist(NSArray * _Nullable array);
+
+pEp_identity * _Nonnull PEP_identityToStruct(PEPIdentity * _Nonnull identity);
+PEPIdentity * _Nonnull PEP_identityFromStruct(pEp_identity * _Nonnull ident);
 
 pEp_identity * _Nullable PEP_identityDictToStruct(NSDictionary * _Nullable dict);
 NSDictionary * _Nonnull PEP_identityDictFromStruct(pEp_identity * _Nullable ident);

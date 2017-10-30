@@ -171,96 +171,6 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
     return _bl;
 }
 
-NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
-{
-    NSMutableDictionary *dict = [NSMutableDictionary new];
-
-    if (ident) {
-        if (ident->address && ident->address[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:kPepAddress];
-        
-        if (ident->fpr && ident->fpr[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->fpr] forKey:kPepFingerprint];
-        
-        if (ident->user_id && ident->user_id[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->user_id] forKey:kPepUserID];
-        
-        if (ident->username && ident->username[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->username] forKey:kPepUsername];
-        
-        if (ident->lang[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
-        
-        [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:kPepCommType];
-        
-    }
-    return dict;
-}
-
-PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
-{
-    if (ident) {
-        PEPIdentity *identity = nil;
-        if (ident->address && ident->address[0]) {
-            identity = [[PEPIdentity alloc]
-                        initWithAddress:[NSString stringWithUTF8String:ident->address]];
-        }
-
-        if (ident->fpr && ident->fpr[0]) {
-            identity.fingerPrint = [NSString stringWithUTF8String:ident->fpr];
-        }
-
-        if (ident->user_id && ident->user_id[0]) {
-            identity.userID = [NSString stringWithUTF8String:ident->user_id];
-        }
-
-        if (ident->username && ident->username[0]) {
-            identity.userName = [NSString stringWithUTF8String:ident->username];
-        }
-
-        if (ident->lang[0]) {
-            identity.language = [NSString stringWithUTF8String:ident->lang];
-        }
-
-        identity.commType = ident->comm_type;
-
-        return identity;
-    }
-    return nil;
-}
-
-pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
-{
-    pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
-
-    ident->address = strdup([[identity.address
-                              precomposedStringWithCanonicalMapping] UTF8String]);
-
-    if (identity.userID) {
-        ident->user_id = strdup([[identity.userID
-                              precomposedStringWithCanonicalMapping] UTF8String]);
-    }
-
-    if (identity.userName) {
-        ident->username = strdup([[identity.userName
-                              precomposedStringWithCanonicalMapping] UTF8String]);
-    }
-
-    if (identity.fingerPrint) {
-        ident->fpr = strdup([[identity.fingerPrint
-                              precomposedStringWithCanonicalMapping] UTF8String]);
-    }
-
-    if (identity.language) {
-        strncpy(ident->lang, [[identity.language
-                               precomposedStringWithCanonicalMapping] UTF8String], 2);
-    }
-
-    ident->comm_type = identity.commType;
-    
-    return ident;
-}
-
 pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
 {
     pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
@@ -293,6 +203,93 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
     }
 
     return ident;
+}
+
+NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
+{
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+
+    if (ident) {
+        if (ident->address && ident->address[0])
+            [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:kPepAddress];
+        
+        if (ident->fpr && ident->fpr[0])
+            [dict setObject:[NSString stringWithUTF8String:ident->fpr] forKey:kPepFingerprint];
+        
+        if (ident->user_id && ident->user_id[0])
+            [dict setObject:[NSString stringWithUTF8String:ident->user_id] forKey:kPepUserID];
+        
+        if (ident->username && ident->username[0])
+            [dict setObject:[NSString stringWithUTF8String:ident->username] forKey:kPepUsername];
+        
+        if (ident->lang[0])
+            [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
+        
+        [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:kPepCommType];
+        
+    }
+    return dict;
+}
+
+pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
+{
+    pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
+
+    ident->address = strdup([[identity.address
+                              precomposedStringWithCanonicalMapping] UTF8String]);
+
+    if (identity.userID) {
+        ident->user_id = strdup([[identity.userID
+                                  precomposedStringWithCanonicalMapping] UTF8String]);
+    }
+
+    if (identity.userName) {
+        ident->username = strdup([[identity.userName
+                                   precomposedStringWithCanonicalMapping] UTF8String]);
+    }
+
+    if (identity.fingerPrint) {
+        ident->fpr = strdup([[identity.fingerPrint
+                              precomposedStringWithCanonicalMapping] UTF8String]);
+    }
+
+    if (identity.language) {
+        strncpy(ident->lang, [[identity.language
+                               precomposedStringWithCanonicalMapping] UTF8String], 2);
+    }
+
+    ident->comm_type = (PEP_comm_type) identity.commType;
+
+    return ident;
+}
+
+PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
+{
+    PEPIdentity *identity = nil;
+    if (ident->address && ident->address[0]) {
+        identity = [[PEPIdentity alloc]
+                    initWithAddress:[NSString stringWithUTF8String:ident->address]];
+    }
+
+    if (ident->fpr && ident->fpr[0]) {
+        identity.fingerPrint = [NSString stringWithUTF8String:ident->fpr];
+    }
+
+    if (ident->user_id && ident->user_id[0]) {
+        identity.userID = [NSString stringWithUTF8String:ident->user_id];
+    }
+
+    if (ident->username && ident->username[0]) {
+        identity.userName = [NSString stringWithUTF8String:ident->username];
+    }
+
+    if (ident->lang[0]) {
+        identity.language = [NSString stringWithUTF8String:ident->lang];
+    }
+
+    identity.commType = ident->comm_type;
+
+    return identity;
 }
 
 NSArray *PEP_arrayFromIdentityList(identity_list *il)
