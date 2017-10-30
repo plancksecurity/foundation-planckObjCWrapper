@@ -15,6 +15,7 @@ typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
 typedef NSArray<NSString *> PEPStringList;
 
 @class PEPLanguage;
+@class PEPIdentity;
 
 @protocol PEPSessionProtocol <NSObject>
 
@@ -69,7 +70,7 @@ typedef NSArray<NSString *> PEPStringList;
  @"23", @"user_id", nil];
 
  */
-- (void)mySelf:(nonnull PEPMutableDict *)identity;
+- (void)mySelf:(nonnull PEPIdentity *)identity;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).

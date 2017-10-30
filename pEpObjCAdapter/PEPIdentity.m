@@ -8,20 +8,31 @@
 
 #import "PEPIdentity.h"
 
+#import "pEpEngine.h"
+
 @implementation PEPIdentity
 
-- (id)initWithAddress:(NSString * _Nonnull)address userName:(NSString * _Nullable)userName
-{
+- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+                                 userID:(NSString * _Nullable)userID
+                               userName:(NSString * _Nullable)userName
+                            fingerPrint:(NSString * _Nullable)fingerPrint
+                               commType:(NSInteger)commType
+                               language:(NSString * _Nullable)language {
     if (self = [super init]) {
         self.address = address;
+        self.userID = userID;
         self.userName = userName;
+        self.fingerPrint = fingerPrint;
+        self.commType = commType;
+        self.language = language;
     }
     return self;
 }
 
-- (id)initWithAddress:(NSString * _Nonnull)address
+- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
 {
-    return [self initWithAddress:address userName:nil];
+    return [self initWithAddress:address userID:nil userName:nil fingerPrint:nil
+                        commType:PEP_ct_unknown language:nil];
 }
 
 - (BOOL)isEqual:(id)other

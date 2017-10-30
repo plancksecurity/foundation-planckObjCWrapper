@@ -10,6 +10,7 @@
 
 #import "PEPInternalSession.h"
 #import "PEPSessionProvider.h"
+#import "PEPIdentity.h"
 
 @implementation PEPSession
 
@@ -63,7 +64,7 @@
     return [PEPSession trustwords:fpr forLanguage:languageID shortened:shortened];
 }
 
-- (void)mySelf:(nonnull PEPMutableDict *)identity
+- (void)mySelf:(nonnull PEPIdentity*)identity
 {
     [PEPSession mySelf:identity];
 }
@@ -203,7 +204,7 @@
     [session mySelf:identity];
 }
 
-+ (void)updateIdentity:(nonnull PEPMutableDict *)identity
++ (void)updateIdentity:(nonnull PEPIdentity *)identity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     [session updateIdentity:identity];

@@ -7,6 +7,7 @@
 //
 
 #import "PEPMessage.h"
+#import "PEPIdentity.h"
 
 #pragma mark -- Constants
 
@@ -196,37 +197,101 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
     return dict;
 }
 
+PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
+{
+    if (ident) {
+        PEPIdentity *identity = nil;
+        if (ident->address && ident->address[0]) {
+            identity = [[PEPIdentity alloc]
+                        initWithAddress:[NSString stringWithUTF8String:ident->address]];
+        }
+
+        if (ident->fpr && ident->fpr[0]) {
+            identity.fingerPrint = [NSString stringWithUTF8String:ident->fpr];
+        }
+
+        if (ident->user_id && ident->user_id[0]) {
+            identity.userID = [NSString stringWithUTF8String:ident->user_id];
+        }
+
+        if (ident->username && ident->username[0]) {
+            identity.userName = [NSString stringWithUTF8String:ident->username];
+        }
+
+        if (ident->lang[0]) {
+            identity.language = [NSString stringWithUTF8String:ident->lang];
+        }
+
+        identity.commType = ident->comm_type;
+
+        return identity;
+    }
+    return nil;
+}
+
+pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
+{
+    pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
+
+    ident->address = strdup([[identity.address
+                              precomposedStringWithCanonicalMapping] UTF8String]);
+
+    if (identity.userID) {
+        ident->user_id = strdup([[identity.userID
+                              precomposedStringWithCanonicalMapping] UTF8String]);
+    }
+
+    if (identity.userName) {
+        ident->username = strdup([[identity.userName
+                              precomposedStringWithCanonicalMapping] UTF8String]);
+    }
+
+    if (identity.fingerPrint) {
+        ident->fpr = strdup([[identity.fingerPrint
+                              precomposedStringWithCanonicalMapping] UTF8String]);
+    }
+
+    if (identity.language) {
+        strncpy(ident->lang, [[identity.language
+                               precomposedStringWithCanonicalMapping] UTF8String], 2);
+    }
+
+    ident->comm_type = identity.commType;
+    
+    return ident;
+}
+
 pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
 {
     pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
-    
+
     if (dict && ident) {
         if ([dict objectForKey:kPepAddress])
             ident->address = strdup([[[dict objectForKey:kPepAddress]
                                       precomposedStringWithCanonicalMapping] UTF8String]);
-        
+
         if ([dict objectForKey:kPepFingerprint]) {
             ident->fpr = strdup([[[dict objectForKey:kPepFingerprint]
                                   precomposedStringWithCanonicalMapping] UTF8String]);
         }
-        
+
         if ([dict objectForKey:kPepUserID]) {
             ident->user_id = strdup([[[dict objectForKey:kPepUserID]
                                       precomposedStringWithCanonicalMapping] UTF8String]);
         }
-        
+
         if ([dict objectForKey:kPepUsername])
             ident->username = strdup([[[dict objectForKey:kPepUsername]
                                        precomposedStringWithCanonicalMapping] UTF8String]);
-        
+
         if ([dict objectForKey:@"lang"])
             strncpy(ident->fpr, [[[dict objectForKey:@"lang"]
                                   precomposedStringWithCanonicalMapping] UTF8String], 2);
-        
+
         if ([dict objectForKey:kPepCommType])
             ident->comm_type = [[dict objectForKey:kPepCommType] intValue];
     }
-    
+
     return ident;
 }
 
