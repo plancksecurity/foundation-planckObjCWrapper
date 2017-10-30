@@ -283,7 +283,7 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     free_identity(ident);
 }
 
-- (void)updateIdentity:(PEPIdentity *)identity
+- (void)updateIdentity:(PEPMutableDict *)identity
 {
     pEp_identity *ident = PEP_identityDictToStruct(identity);
 
