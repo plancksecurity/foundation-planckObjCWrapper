@@ -35,6 +35,15 @@
                         commType:PEP_ct_unknown language:nil];
 }
 
+- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+                                 userID:(NSString * _Nullable)userID
+                               userName:(NSString * _Nullable)userName
+                            fingerPrint:(NSString * _Nullable)fingerPrint
+{
+    return [self initWithAddress:address userID:userID userName:userName fingerPrint:fingerPrint
+                        commType:PEP_ct_unknown language:nil];
+}
+
 - (BOOL)isEqual:(id)other
 {
     if (other == self) {

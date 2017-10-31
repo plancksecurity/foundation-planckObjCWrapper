@@ -54,4 +54,9 @@
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
 
+- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+                                 userID:(NSString * _Nullable)userID
+                               userName:(NSString * _Nullable)userName
+                            fingerPrint:(NSString * _Nullable)fingerPrint;
+
 @end

@@ -14,6 +14,7 @@
 #import "PEPCSVScanner.h"
 #import "NSArray+Extension.h"
 #import "NSDictionary+Extension.h"
+#import "PEPIdentity.h"
 
 @implementation PEPInternalSession
 
@@ -269,11 +270,12 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     return array;
 }
 
-- (void)mySelf:(PEPMutableDict *)identity
+- (void)mySelf:(PEPIdentity *)identity
 {
-    [identity removeObjectForKey:kPepUserID];
+    NSString *userID = identity.userID;
+    identity.userID = nil;
 
-    pEp_identity *ident = PEP_identityDictToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
         myself(_session, ident);
@@ -281,6 +283,8 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
+
+    identity.userID = userID;
 }
 
 - (void)updateIdentity:(PEPMutableDict *)identity
