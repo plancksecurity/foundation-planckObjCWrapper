@@ -61,7 +61,7 @@
 
 - (BOOL)containsPGPCommType
 {
-    PEP_comm_type val = self.commType;
+    PEP_comm_type val = (PEP_comm_type) self.commType;
 
     return
     val == PEP_ct_OpenPGP_weak_unconfirmed ||
