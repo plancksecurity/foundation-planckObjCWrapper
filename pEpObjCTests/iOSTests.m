@@ -294,11 +294,9 @@ PEPInternalSession *session;
     // This should attach session just created
     [PEPObjCAdapter startSync:syncDelegate];
 
-    NSMutableDictionary *identMe = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"pEp Test iOS GenKey", kPepUsername,
-                                    @"pep.test.iosgenkey@pep-project.org", kPepAddress,
-                                    @"Me", kPepAddress,
-                                    nil];
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
+                            userName:@"pEp Test iOS GenKey"];
     
     [session mySelf:identMe];
     
