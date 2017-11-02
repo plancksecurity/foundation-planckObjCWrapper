@@ -44,6 +44,8 @@
                         commType:PEP_ct_unknown language:nil];
 }
 
+// MARK: - Equality
+
 - (BOOL)isEqual:(id)other
 {
     if (other == self) {
@@ -58,6 +60,65 @@
 - (NSUInteger)hash
 {
     return self.address.hash;
+}
+
+// MARK: - NSKeyValueCoding
+
+- (NSUInteger)comm_type
+{
+    return self.commType;
+}
+
+- (void)setComm_type:(NSUInteger)ct
+{
+    self.commType = ct;
+}
+
+- (NSString *)fpr
+{
+    return self.fingerPrint;
+}
+
+- (void)setFpr:(NSString *)fpr
+{
+    self.fingerPrint = fpr;
+}
+
+- (NSString *)user_id
+{
+    return self.userID;
+}
+
+- (void)setUser_id:(NSString *)uid
+{
+    self.userID = uid;
+}
+
+- (NSString *)username
+{
+    return self.userName;
+}
+
+- (void)setUsername:(NSString *)userName
+{
+    self.userName = userName;
+}
+
+- (NSString *)lang
+{
+    return self.language;
+}
+
+- (void)setLang:(NSString *)l
+{
+    self.language = l;
+}
+
+// MARK: - NSDictionary
+
+- (nullable id)objectForKey:(NSString *)key
+{
+    return [self valueForKey:key];
 }
 
 @end
