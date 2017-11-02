@@ -39,6 +39,14 @@
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+                                 userID:(NSString * _Nullable)userID
+                               userName:(NSString * _Nullable)userName
+{
+    return [self initWithAddress:address userID:userID userName:userName fingerPrint:nil
+                        commType:PEP_ct_unknown language:nil];
+}
+
+- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                userName:(NSString * _Nullable)userName
 {
     return [self initWithAddress:address userID:nil userName:userName fingerPrint:nil
@@ -49,6 +57,17 @@
 {
     return [self initWithAddress:address userID:nil userName:nil fingerPrint:nil
                         commType:PEP_ct_unknown language:nil];
+}
+
+- (BOOL)containsPGPCommType
+{
+    PEP_comm_type val = self.commType;
+
+    return
+    val == PEP_ct_OpenPGP_weak_unconfirmed ||
+    val == PEP_ct_OpenPGP_unconfirmed ||
+    val == PEP_ct_OpenPGP_weak ||
+    val == PEP_ct_OpenPGP;
 }
 
 // MARK: - Equality

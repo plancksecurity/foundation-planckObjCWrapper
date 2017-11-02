@@ -58,8 +58,14 @@
                             fingerPrint:(NSString * _Nullable)fingerPrint;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+                                 userID:(NSString * _Nullable)userID
+                               userName:(NSString * _Nullable)userName;
+
+- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                userName:(NSString * _Nullable)userName;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
+
+- (BOOL)containsPGPCommType;
 
 @end
