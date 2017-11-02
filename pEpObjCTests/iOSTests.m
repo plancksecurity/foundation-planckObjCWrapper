@@ -346,14 +346,15 @@ PEPInternalSession *session;
 {
     [self pEpSetUp];
 
-    NSMutableDictionary *identMe = @{ kPepUsername: @"pEp Test iOS GenKey",
-                                      kPepAddress: @"pep.test.iosgenkey@pep-project.org",
-                                      kPepUserID: @"Me" }.mutableCopy;
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
+                            userID:@"Me"
+                            userName:@"pEp Test iOS GenKey"];
 
     [session mySelf:identMe];
 
-    XCTAssertNotNil(identMe[kPepFingerprint]);
-    XCTAssertNotNil(identMe[kPepCommType]);
+    XCTAssertNotNil(identMe.fingerPrint);
+    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
 
     // check that the comm type is not a PGP one
     XCTAssertFalse([identMe containsPGPCommType]);
@@ -364,24 +365,28 @@ PEPInternalSession *session;
 
         // Now simulate an update from the app, which usually only caches
         // kPepUsername, kPepAddress and optionally kPepUserID.
-        NSMutableDictionary *identMe2 = @{ kPepAddress: identMe[kPepAddress],
-                                           kPepUsername: identMe[kPepUsername],
-                                           kPepUserID: identMe[kPepUserID] }.mutableCopy;
-        [session2 updateIdentity:identMe2];
-        XCTAssertNotNil(identMe2[kPepFingerprint]);
+        PEPIdentity *identMe2 = [[PEPIdentity alloc]
+                                 initWithAddress:identMe.address
+                                 userID:identMe.userID
+                                 userName:identMe.userName];
+        [session2 mySelf:identMe2];
+        XCTAssertNotNil(identMe2.fingerPrint);
         XCTAssertFalse([identMe2 containsPGPCommType]);
+        XCTAssertEqual(identMe2.fingerPrint, identMe.fingerPrint)
 
         // Now pretend the app only knows kPepUsername and kPepAddress
-        NSMutableDictionary *identMe3 = @{ kPepAddress: identMe[kPepAddress],
-                                           kPepUsername: identMe[kPepUsername] }.mutableCopy;
-        [session2 updateIdentity:identMe3];
-        XCTAssertNotNil(identMe3[kPepFingerprint]);
+        PEPIdentity *identMe3 = [[PEPIdentity alloc]
+                                 initWithAddress:identMe.address
+                                 userName:identMe.userName];
+        [session2 mySelf:identMe3];
+        XCTAssertNotNil(identMe3.fingerPrint);
         XCTAssertFalse([identMe3 containsPGPCommType]);
+        XCTAssertEqual(identMe3.fingerPrint, identMe.fingerPrint)
 
-        XCTAssertEqualObjects(identMe[kPepAddress], identMe2[kPepAddress]);
-        XCTAssertEqualObjects(identMe[kPepAddress], identMe3[kPepAddress]);
-        XCTAssertEqualObjects(identMe[kPepCommType], identMe2[kPepCommType]);
-        XCTAssertEqualObjects(identMe[kPepCommType], identMe3[kPepCommType]);
+        XCTAssertEqualObjects(identMe.address, identMe2.address);
+        XCTAssertEqualObjects(identMe.address, identMe3.address);
+        XCTAssertEqual(identMe.commType, identMe2.commType);
+        XCTAssertEqual(identMe.commType, identMe3.commType);
     });
 
     [self pEpCleanUp];
