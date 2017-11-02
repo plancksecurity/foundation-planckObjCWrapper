@@ -372,7 +372,7 @@ PEPInternalSession *session;
         [session2 mySelf:identMe2];
         XCTAssertNotNil(identMe2.fingerPrint);
         XCTAssertFalse([identMe2 containsPGPCommType]);
-        XCTAssertEqual(identMe2.fingerPrint, identMe.fingerPrint);
+        XCTAssertEqualObjects(identMe2.fingerPrint, identMe.fingerPrint);
 
         // Now pretend the app only knows kPepUsername and kPepAddress
         PEPIdentity *identMe3 = [[PEPIdentity alloc]
@@ -381,7 +381,7 @@ PEPInternalSession *session;
         [session2 mySelf:identMe3];
         XCTAssertNotNil(identMe3.fingerPrint);
         XCTAssertFalse([identMe3 containsPGPCommType]);
-        XCTAssertEqual(identMe3.fingerPrint, identMe.fingerPrint);
+        XCTAssertEqualObjects(identMe3.fingerPrint, identMe.fingerPrint);
 
         XCTAssertEqualObjects(identMe.address, identMe2.address);
         XCTAssertEqualObjects(identMe.address, identMe3.address);
