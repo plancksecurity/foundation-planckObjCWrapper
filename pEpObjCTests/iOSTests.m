@@ -326,15 +326,15 @@ PEPInternalSession *session;
 - (void)testGenKey
 {
     [self pEpSetUp];
-    
-    NSMutableDictionary *identMe = @{ kPepUsername: @"pEp Test iOS GenKey",
-                                      kPepAddress: @"pep.test.iosgenkey@pep-project.org",
-                                      kPepUserID: @"Me" }.mutableCopy;
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org" userID:@"Me"
+                            userName:@"pEp Test iOS GenKey"];
 
     [session mySelf:identMe];
 
-    XCTAssertNotNil(identMe[kPepFingerprint]);
-    XCTAssertNotNil(identMe[kPepCommType]);
+    XCTAssertNotNil(identMe.fingerPrint);
+    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
 
     // check that the comm type is not a PGP one
     XCTAssertFalse([identMe containsPGPCommType]);
