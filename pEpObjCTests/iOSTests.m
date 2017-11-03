@@ -34,62 +34,6 @@ PEPDict * _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable 
     return [NSDictionary dictionaryWithDictionary:dict];
 }
 
-// MARK: - PEPSyncDelegate
-
-@interface SomeSyncDelegate : NSObject<PEPSyncDelegate>
-
-- (BOOL)waitUntilSent:(time_t)maxSec;
-
-@property (nonatomic) bool sendWasCalled;
-@property (nonatomic, strong) NSCondition *cond;
-
-@end
-
-@implementation SomeSyncDelegate
-
-- (id)init
-{
-    if (self = [super init])  {
-        self.sendWasCalled = false;
-        self.cond = [[NSCondition alloc] init];
-    }
-    return self;
-}
-
-- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(id)me
-                                partner:(id)partner
-{
-    return PEP_STATUS_OK;
-}
-
-- (PEP_STATUS)sendMessage:(id)msg
-{
-    [_cond lock];
-
-    _sendWasCalled = true;
-    [_cond signal];
-    [_cond unlock];
-
-    return PEP_STATUS_OK;
-}
-
-- (PEP_STATUS)fastPolling:(bool)isfast
-{
-    return PEP_STATUS_OK;
-}
-
-- (BOOL)waitUntilSent:(time_t)maxSec
-{
-    bool res;
-    [_cond lock];
-    [_cond waitUntilDate:[NSDate dateWithTimeIntervalSinceNow: 2]];
-    res = _sendWasCalled;
-    [_cond unlock];
-    return res;
-}
-
-@end
-
 // MARK: - iOSTests
 
 @interface iOSTests : XCTestCase
@@ -282,32 +226,6 @@ PEPInternalSession *session;
     XCTAssert(ident[kPepFingerprint]);
     
     [PEPObjCAdapter stopKeyserverLookup];
-    [self pEpCleanUp];
-}
-
-- (void)testSyncSession
-{
-    SomeSyncDelegate *syncDelegate = [[SomeSyncDelegate alloc] init];
-    [self pEpSetUp];
-    
-    // This should attach session just created
-    [PEPObjCAdapter startSync:syncDelegate];
-
-    NSMutableDictionary *identMe = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"pEp Test iOS GenKey", kPepUsername,
-                                    @"pep.test.iosgenkey@pep-project.org", kPepAddress,
-                                    @"Me", kPepAddress,
-                                    nil];
-    
-    [session mySelf:identMe];
-    
-    bool res = [syncDelegate waitUntilSent:2];
-    
-    XCTAssert(res);
-    
-    // This should detach session just created
-    [PEPObjCAdapter stopSync];
-    
     [self pEpCleanUp];
 }
 
