@@ -9,6 +9,7 @@
 #import "PEPIdentity.h"
 
 #import "pEpEngine.h"
+#import "PEPMessage.h"
 
 @implementation PEPIdentity
 
@@ -68,6 +69,18 @@
     val == PEP_ct_OpenPGP_unconfirmed ||
     val == PEP_ct_OpenPGP_weak ||
     val == PEP_ct_OpenPGP;
+}
+
+- (nonnull NSMutableDictionary *)dictionary
+{
+    return [@{
+              kPepAddress: self.address,
+              kPepUserID: self.userID,
+              kPepUsername: self.userName,
+              kPepCommType: [NSNumber numberWithInteger:self.commType],
+              kPepFingerprint: self.fingerPrint,
+              }
+            mutableCopy];
 }
 
 // MARK: - Equality

@@ -66,6 +66,15 @@
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
 
+/**
+ Does this identity contain a PGP comm type? This can be used for determining
+ if a communication partner is a pEp user or not.
+ */
 - (BOOL)containsPGPCommType;
+
+/**
+ Returns an old-style directory from the times there was no PEPIdentity.
+ */
+- (nonnull NSMutableDictionary *)dictionary;
 
 @end
