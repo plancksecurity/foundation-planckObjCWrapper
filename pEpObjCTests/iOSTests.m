@@ -254,7 +254,8 @@ PEPInternalSession *session;
     [self pEpSetUp];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"pep.test.iosgenkey@pep-project.org" userID:@"Me"
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
+                            userID:@"Me"
                             userName:@"pEp Test iOS GenKey"];
 
     [session mySelf:identMe];
@@ -329,7 +330,8 @@ PEPInternalSession *session;
     
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
-                               userID:s_userID userName:@"pEp Test Alice"
+                               userID:s_userID
+                               userName:@"pEp Test Alice"
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     [session mySelf:identAlice];
@@ -455,7 +457,8 @@ PEPInternalSession *session;
     
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
-                               userID:s_userID userName:@"pEp Test Alice"
+                               userID:s_userID
+                               userName:@"pEp Test Alice"
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     [session mySelf:identAlice];
@@ -566,7 +569,8 @@ PEPInternalSession *session;
     
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
-                               userID:@"23" userName:@"pEp Test Alice"
+                               userID:s_userID
+                               userName:@"pEp Test Alice"
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     [session mySelf:identAlice];
