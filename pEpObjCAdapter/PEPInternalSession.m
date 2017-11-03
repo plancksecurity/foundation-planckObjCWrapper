@@ -39,16 +39,12 @@
         if (status != PEP_STATUS_OK) {
             return nil;
         }
-
-        [PEPObjCAdapter bindSession:self];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [PEPObjCAdapter unbindSession:self];
-
     [[PEPObjCAdapter initLock] lock];
     release(_session);
     [[PEPObjCAdapter initLock] unlock];

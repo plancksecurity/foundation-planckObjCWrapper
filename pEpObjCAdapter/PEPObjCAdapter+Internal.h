@@ -9,8 +9,6 @@
 #ifndef PEPIOSAdapter_Internal_h
 #define PEPIOSAdapter_Internal_h
 
-#import "sync.h"
-
 #import "PEPQueue.h"
 #import "PEPInternalSession.h"
 
@@ -25,11 +23,6 @@
 
 + (void)registerExamineFunction:(PEP_SESSION)session;
 + (PEPQueue*)getLookupQueue;
-
-+ (PEPQueue*)getSyncQueue;
-+ (id <PEPSyncDelegate>)getSyncDelegate;
-+ (void)bindSession:(PEPInternalSession*)session;
-+ (void)unbindSession:(PEPInternalSession*)session;
 
 @end
 
