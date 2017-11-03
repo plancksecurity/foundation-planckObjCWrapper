@@ -635,16 +635,14 @@ PEPInternalSession *session;
     [session updateIdentity:identHector];
     XCTAssertEqual(PEP_ct_key_expired, [identHector[kPepCommType] integerValue]);
 
-    NSMutableDictionary *identHectorOwn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                        @"pEp Test Hector", kPepUsername,
-                                        @"pep.test.hector@pep-project.org", kPepAddress,
-                                        @PEP_OWN_USERID, kPepUserID,
-                                        @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",kPepFingerprint,
-                                        nil];
+    PEPIdentity *identHectorOwn = [[PEPIdentity alloc]
+                                           initWithAddress:@"pep.test.hector@pep-project.org"
+                                           userID:s_userID userName:@"pEp Test Hector"
+                                           fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
 
     // Myself automatically renew expired key.
     [session mySelf:identHectorOwn];
-    XCTAssertEqual(PEP_ct_pEp, [identHectorOwn[kPepCommType] integerValue]);
+    XCTAssertEqual(PEP_ct_pEp, identHectorOwn.commType);
     
     [self pEpCleanUp:@"Bob"];
     
