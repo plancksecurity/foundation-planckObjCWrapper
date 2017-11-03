@@ -453,13 +453,11 @@ PEPInternalSession *session;
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
-    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", kPepUsername,
-                                       @"pep.test.alice@pep-project.org", kPepAddress,
-                                       @"23", kPepUserID,
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
-                                       nil];
-    
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:s_userID userName:@"pEp Test Alice"
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
     [session mySelf:identAlice];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
