@@ -35,6 +35,12 @@ PEPDict * _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable 
     return [NSDictionary dictionaryWithDictionary:dict];
 }
 
+/**
+ For now, safer to use that, until the engine copes with our own.
+ Should mimick the value of PEP_OWN_USERID.
+ */
+static NSString *s_userID = @"pEp_own_userId";
+
 // MARK: - iOSTests
 
 @interface iOSTests : XCTestCase
@@ -321,13 +327,11 @@ PEPInternalSession *session;
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
-    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"pEp Test Alice", kPepUsername,
-                                  @"pep.test.alice@pep-project.org", kPepAddress,
-                                  @"23", kPepUserID,
-                                  @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
-                                  nil];
- 
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:s_userID userName:@"pEp Test Alice"
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
     [session mySelf:identAlice];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -393,14 +397,6 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
     
-    /*
-    identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                @"pEp Test Bob", kPepUsername,
-                @"pep.test.bob@pep-project.org", kPepAddress,
-                @"42", kPepUserID,
-                @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
-                nil];
-*/
     // Forget
     [session keyResetTrust:identBob];
     
