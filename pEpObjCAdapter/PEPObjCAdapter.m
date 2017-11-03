@@ -44,6 +44,61 @@ static pEp_identity *retrieve_next_identity(void *management)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Sync - C part
+
+// Called by sync thread only
+PEP_STATUS notify_handshake(void *unused_object, pEp_identity *me, pEp_identity *partner, sync_handshake_signal signal)
+{
+    id <PEPSyncDelegate> syncDelegate = [PEPObjCAdapter getSyncDelegate];
+    if ( syncDelegate )
+        return [syncDelegate
+                notifyHandshakeWithSignal:signal
+                me:PEP_identityDictFromStruct(me)
+                partner:PEP_identityDictFromStruct(partner)];
+    else
+        return PEP_SYNC_NO_NOTIFY_CALLBACK;
+}
+
+// Called by sync thread only
+PEP_STATUS message_to_send(void *unused_object, message *msg)
+{
+    id <PEPSyncDelegate> syncDelegate = [PEPObjCAdapter getSyncDelegate];
+    if ( syncDelegate )
+        return [syncDelegate sendMessage:PEP_messageDictFromStruct(msg)];
+    else
+        return PEP_SEND_FUNCTION_NOT_REGISTERED;
+}
+
+// called indirectly by decrypt message - any thread/session
+int inject_sync_msg(void *msg, void *unused_management)
+{
+    PEPQueue *q = [PEPObjCAdapter getSyncQueue];
+    [q enqueue:[NSValue valueWithPointer:msg]];
+    
+    return 0;
+}
+
+// Called by sync thread only
+void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
+{
+    bool needs_fastpoll = (*timeout != 0);
+    
+    id <PEPSyncDelegate> syncDelegate = [PEPObjCAdapter getSyncDelegate];
+    if ( syncDelegate && needs_fastpoll )
+        [syncDelegate fastPolling:true];
+    
+    PEPQueue *q = [PEPObjCAdapter getSyncQueue];
+    
+    void* result = (void*)[[q timedDequeue:timeout] pointerValue];
+    
+    if ( syncDelegate && needs_fastpoll )
+        [syncDelegate fastPolling:false];
+    
+    return result;
+    
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // DB and paths
 
 const char* _Nullable SystemDB = NULL;
@@ -239,6 +294,153 @@ static NSConditionLock *lookupThreadJoinCond = nil;
 + (PEPQueue*)getLookupQueue
 {
     return lookupQueue;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Sync - ObjC part
+
+static PEPQueue *syncQueue = nil;
+static NSThread *syncThread = nil;
+static NSConditionLock *syncThreadJoinCond = nil;
+static PEP_SESSION sync_session = NULL;
+static id <PEPSyncDelegate> syncDelegate = nil;
+
+
++ (void)syncThreadRoutine:(id)object
+{
+    [syncThreadJoinCond lock];
+    
+    
+    PEP_STATUS status;
+    
+    status = do_sync_protocol(sync_session,
+                              /* "object" : notifying, sending (unused) */
+                              "NOTNULL");
+    
+    // TODO : log something if status not as expected
+
+    [syncThreadJoinCond unlockWithCondition:YES];
+}
+
++ (void)attachSyncSession:(PEP_SESSION)session
+{
+    if(sync_session)
+        attach_sync_session(session, sync_session);
+}
+
++ (void)detachSyncSession:(PEP_SESSION)session
+{
+    detach_sync_session(session);
+}
+
++ (void)startSync:(id <PEPSyncDelegate>)delegate;
+{
+    syncDelegate = delegate;
+    
+    if (!syncQueue)
+    {
+        syncQueue = [[PEPQueue alloc]init];
+        
+        syncThreadJoinCond = [[NSConditionLock alloc] initWithCondition:NO];
+        
+        [[PEPObjCAdapter initLock] lock];
+        PEP_STATUS status = init(&sync_session);
+        [[PEPObjCAdapter initLock] unlock];
+        if (status != PEP_STATUS_OK) {
+            return;
+        }
+        
+        register_sync_callbacks(sync_session,
+                                /* "management" : queuing (unused) */
+                                "NOTNULL",
+                                message_to_send,
+                                notify_handshake,
+                                inject_sync_msg,
+                                retrieve_next_sync_msg);
+        
+        syncThread = [[NSThread alloc]
+                      initWithTarget:self
+                      selector:@selector(syncThreadRoutine:)
+                      object:nil];
+        
+        [syncThread start];
+    }
+    
+    NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
+    NSValue* v;
+    PEPInternalSession* session;
+    @synchronized (sessionList) {
+        for (v in sessionList) {
+            session = [v nonretainedObjectValue];
+            [PEPObjCAdapter attachSyncSession:[session session]];
+        }
+    }
+}
+
++ (void)stopSync
+{
+    NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
+    NSValue* v;
+    PEPInternalSession* session;
+    @synchronized (sessionList) {
+        for (v in sessionList) {
+            session = [v nonretainedObjectValue];
+            [PEPObjCAdapter detachSyncSession:[session session]];
+        }
+    }
+    
+    syncDelegate = nil;
+    
+    if (syncQueue)
+    {
+        [syncQueue purge:^(id item){
+            sync_msg_t *msg = [item pointerValue];
+            free_sync_msg(msg);
+        }];
+        
+        [syncThreadJoinCond lockWhenCondition:YES];
+        [syncThreadJoinCond unlock];
+        
+        [[PEPObjCAdapter initLock] lock];
+        release(sync_session);
+        [[PEPObjCAdapter initLock] unlock];
+        
+        sync_session = NULL;
+        syncThread = nil;
+        syncQueue = nil;
+        syncThreadJoinCond = nil;
+    }
+}
+
++ (PEPQueue*)getSyncQueue
+{
+    return syncQueue;
+}
+
++ (id <PEPSyncDelegate>)getSyncDelegate
+{
+    return syncDelegate;
+}
+
++ (void)bindSession:(PEPInternalSession*)session
+{
+    NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
+    @synchronized (sessionList) {
+        [sessionList addObject:[NSValue valueWithNonretainedObject:session]];
+    }
+    
+    [PEPObjCAdapter registerExamineFunction:[session session]];
+    [PEPObjCAdapter attachSyncSession:[session session]];
+}
+
++ (void)unbindSession:(PEPInternalSession*)session
+{
+    [PEPObjCAdapter detachSyncSession:[session session]];
+    
+    NSMutableArray* sessionList = [PEPObjCAdapter boundSessions];
+    @synchronized (sessionList) {
+        [sessionList removeObject:[NSValue valueWithNonretainedObject:session]];
+    }
 }
 
 @end

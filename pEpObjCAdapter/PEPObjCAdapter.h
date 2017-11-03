@@ -9,8 +9,19 @@
 #import <Foundation/Foundation.h>
 
 #import "PEPSession.h"
+#include "sync_app.h"
 
 @class PEPLanguage;
+
+@protocol PEPKeyManagementDelegate <NSObject>
+- (void)identityUpdated:(_Nonnull id)identity;
+@end
+
+@protocol PEPSyncDelegate <NSObject>
+- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(_Nonnull id)me partner:(_Nonnull id)partner;
+- (PEP_STATUS)sendMessage:(_Nonnull id)msg;
+- (PEP_STATUS)fastPolling:(bool)isfast;
+@end
 
 @interface PEPObjCAdapter : NSObject
 
@@ -32,5 +43,16 @@
 
 + (void)setupTrustWordsDB;
 + (void)setupTrustWordsDB:(NSBundle * _Nonnull)rootBundle;
+
+/**
+ Start Sync.
+ - Note: There is only one Sync session and thread
+ */
++ (void)startSync:(_Nonnull id <PEPSyncDelegate>)delegate;
+
+/**
+ Stop Sync.
+ */
++ (void)stopSync;
 
 @end
