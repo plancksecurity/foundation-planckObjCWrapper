@@ -980,18 +980,20 @@ encmsg[@"outgoing"] = @NO;
 - (void)testTwoNewUsers
 {
     NSMutableDictionary* petrasMsg;
-    NSMutableDictionary *identMiroAtPetra = @{ kPepUsername: @"Miro",
-                                               kPepAddress: @"pep.test.miro@pep-project.org",
-                                               kPepUserID: @"Him" }.mutableCopy;
+    PEPIdentity *identMiroAtPetra = [[PEPIdentity alloc]
+                                     initWithAddress:@"pep.test.miro@pep-project.org"
+                                     userID:@"not_me"
+                                     userName:@"Miro"];
 
     [self pEpSetUp];
     {
-        NSMutableDictionary *identPetra = @{ kPepUsername: @"Petra",
-                                             kPepAddress: @"pep.test.petra@pep-project.org",
-                                             kPepUserID: @"Me" }.mutableCopy;
-        
+        PEPIdentity *identPetra = [[PEPIdentity alloc]
+                                   initWithAddress:@"pep.test.petra@pep-project.org"
+                                   userID:s_userID
+                                   userName:@"Petra"];
+
         [session mySelf:identPetra];
-        XCTAssert(identPetra[kPepFingerprint]);
+        XCTAssert(identPetra.fingerPrint);
         
         NSMutableDictionary *msg = @{ kPepFrom: identPetra,
                                       kPepTo: @[identMiroAtPetra],
@@ -1014,12 +1016,13 @@ encmsg[@"outgoing"] = @NO;
     [self pEpSetUp];
     
     {
-        NSMutableDictionary *identMiro = @{ kPepUsername: @"Miro",
-                                            kPepAddress: @"pep.test.miro@pep-project.org",
-                                            kPepUserID: @"Me" }.mutableCopy;
-    
+        PEPIdentity *identMiro = [[PEPIdentity alloc]
+                                  initWithAddress:@"pep.test.miro@pep-project.org"
+                                  userID:s_userID
+                                  userName:@"Miro"];
+
         [session mySelf:identMiro];
-        XCTAssert(identMiro[kPepFingerprint]);
+        XCTAssert(identMiro.fingerPrint);
     
         NSMutableDictionary *decmsg;
         NSArray* keys;
@@ -1059,14 +1062,12 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertEqual(secondclr, PEP_rating_reliable);
 
         // Check Miro is in DB
-        [session updateIdentity:identMiroAtPetra];
+        [session updateIdentity:(NSMutableDictionary *) identMiroAtPetra];
         
-        XCTAssertNotNil(identMiroAtPetra[kPepFingerprint]);
+        XCTAssertNotNil(identMiroAtPetra.fingerPrint);
         
-        NSLog(@"Test fpr %@",identMiroAtPetra[kPepFingerprint]);
-
         // Trust to that identity
-        [session trustPersonalKey:identMiroAtPetra];
+        [session trustPersonalKey:(NSMutableDictionary *) identMiroAtPetra];
 
         secondclr = [session reEvaluateMessageRating:decmsg];
         XCTAssertEqual(secondclr, PEP_rating_trusted_and_anonymized, @"Not trusted");
@@ -1075,25 +1076,25 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
 
         // Undo trust
-        [session keyResetTrust:identMiroAtPetra];
+        [session keyResetTrust:(NSMutableDictionary *) identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Try compromized
-        [session keyMistrusted:identMiroAtPetra];
+        [session keyMistrusted:(NSMutableDictionary *) identMiroAtPetra];
 
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_mistrust, @"Not mistrusted");
         
         // Regret
-        [session keyResetTrust:identMiroAtPetra];
+        [session keyResetTrust:(NSMutableDictionary *) identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Trust again.
-        [session trustPersonalKey:identMiroAtPetra];
+        [session trustPersonalKey:(NSMutableDictionary *) identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
