@@ -756,22 +756,23 @@ PEPInternalSession *session;
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [self importBundledKey:@"6FF00E97_sec.asc"];
+    NSString *fpr = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
     
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:s_userID
                                userName:@"pEp Test Alice"
-                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                               fingerPrint:fpr];
 
     [session mySelf:identAlice];
 
-    NSMutableDictionary *identAlice2 = [[identAlice dictionary] mutableCopy];
+    PEPIdentity *identAlice2 = [identAlice mutableCopy];
     
     // This will revoke key
-    [session keyMistrusted:identAlice2];
+    [session keyMistrusted:(NSMutableDictionary *) identAlice2];
     
     // Check fingerprint is different
-    XCTAssertNotEqual(identAlice2[kPepFingerprint], @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97");
+    XCTAssertNotEqualObjects(identAlice2.fingerPrint, fpr);
 
     [self pEpCleanUp];
 }
