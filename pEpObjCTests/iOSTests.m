@@ -1166,9 +1166,15 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"].mutableCopy;
     [accountDict removeObjectForKey:kPepCommType];
     [accountDict removeObjectForKey:kPepFingerprint];
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:accountDict[kPepAddress] userID:accountDict[kPepUserID]
+                            userName:accountDict[kPepUsername]
+                            fingerPrint:accountDict[kPepFingerprint]
+                            commType:[accountDict[kPepCommType] intValue]
+                            language:accountDict[@"lang"]];
 
-    [session mySelf:accountDict];
-    XCTAssertNotNil(accountDict[kPepFingerprint]);
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
