@@ -66,6 +66,8 @@
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
 
+- (nonnull instancetype)initWithDictionary:(NSDictionary *)dictionary;
+
 /**
  Does this identity contain a PGP comm type? This can be used for determining
  if a communication partner is a pEp user or not.

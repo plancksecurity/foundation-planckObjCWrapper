@@ -60,6 +60,15 @@
                         commType:PEP_ct_unknown language:nil];
 }
 
+- (nonnull instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    return [self initWithAddress:dictionary[kPepAddress] userID:dictionary[kPepUserID]
+                        userName:dictionary[kPepUsername]
+                     fingerPrint:dictionary[kPepFingerprint]
+                        commType:[dictionary[kPepCommType] intValue]
+                        language:dictionary[@"lang"]];
+}
+
 - (BOOL)containsPGPCommType
 {
     PEP_comm_type val = (PEP_comm_type) self.commType;

@@ -1166,12 +1166,7 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"].mutableCopy;
     [accountDict removeObjectForKey:kPepCommType];
     [accountDict removeObjectForKey:kPepFingerprint];
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:accountDict[kPepAddress] userID:accountDict[kPepUserID]
-                            userName:accountDict[kPepUsername]
-                            fingerPrint:accountDict[kPepFingerprint]
-                            commType:[accountDict[kPepCommType] intValue]
-                            language:accountDict[@"lang"]];
+    PEPIdentity *identMe = [[PEPIdentity alloc] initWithDictionary:accountDict];
 
     [session mySelf:identMe];
     XCTAssertNotNil(identMe.fingerPrint);
