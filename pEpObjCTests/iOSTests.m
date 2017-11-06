@@ -73,7 +73,7 @@ static NSString *s_userID = @"pEp_own_userId";
 {
     [_cond lock];
 
-    _sendWasCalled = true;
+    self.sendWasCalled = true;
     [_cond signal];
     [_cond unlock];
 
@@ -89,7 +89,7 @@ static NSString *s_userID = @"pEp_own_userId";
 {
     bool res;
     [_cond lock];
-    [_cond waitUntilDate:[NSDate dateWithTimeIntervalSinceNow: 2]];
+    [_cond waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:maxSec]];
     res = _sendWasCalled;
     [_cond unlock];
     return res;
@@ -300,12 +300,11 @@ PEPInternalSession *session;
     // This should attach session just created
     [PEPObjCAdapter startSync:syncDelegate];
 
-    NSMutableDictionary *identMe = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"pEp Test iOS GenKey", kPepUsername,
-                                    @"pep.test.iosgenkey@pep-project.org", kPepAddress,
-                                    @"Me", kPepAddress,
-                                    nil];
-    
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
+                            userID:@"Me"
+                            userName:@"pEp Test iOS GenKey"];
+
     [session mySelf:identMe];
     
     bool res = [syncDelegate waitUntilSent:2];
