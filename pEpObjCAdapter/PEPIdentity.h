@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPSessionProtocol.h"
+
 @interface PEPIdentity : NSObject <NSMutableCopying>
 
 /**
@@ -67,6 +69,12 @@
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
 
 - (nonnull instancetype)initWithDictionary:(NSDictionary * _Nonnull)dictionary;
+
+/**
+ This method should be removed once the adapter fully supports objects for identity
+ and message types insead of dictionaries.
+ */
+- (PEPDict * _Nonnull)dictionary;
 
 /**
  Does this identity contain a PGP comm type? This can be used for determining

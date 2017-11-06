@@ -69,6 +69,12 @@
                         language:dictionary[@"lang"]];
 }
 
+- (PEPDict * _Nonnull)dictionary
+{
+    // most adapter use should be ok.
+    return (PEPDict *) self;
+}
+
 - (BOOL)containsPGPCommType
 {
     PEP_comm_type val = (PEP_comm_type) self.commType;
