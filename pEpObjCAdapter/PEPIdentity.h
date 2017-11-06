@@ -72,9 +72,4 @@
  */
 - (BOOL)containsPGPCommType;
 
-/**
- Returns an old-style directory from the times there was no PEPIdentity.
- */
-- (nonnull NSMutableDictionary *)dictionary;
-
 @end
