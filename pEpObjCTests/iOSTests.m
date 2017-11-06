@@ -1466,18 +1466,18 @@ encmsg[@"outgoing"] = @NO;
 
 - (PEPDict *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
-    NSMutableDictionary *me = @{kPepUsername: kPepUsername,
-                                kPepAddress: @"me@peptest.ch"}.mutableCopy;
+    PEPIdentity *me = [[PEPIdentity alloc] initWithAddress:@"me@peptest.ch" userName:@"userName"];
     [session mySelf:me];
-    XCTAssertNotNil(me[kPepFingerprint]);
+    XCTAssertNotNil(me.fingerPrint);
 
     // Create draft
     NSString *shortMessage = @"Subject";
     NSString *longMessage = @"Oh, this is a long body text!";
-    PEPDict *mail = mailFromTo(me, me, shortMessage, longMessage, YES);
+    PEPDict *mail = mailFromTo((PEPDict *) me, (PEPDict *) me, shortMessage, longMessage,
+                               YES);
 
     NSMutableDictionary *encDict;
-    PEP_STATUS status = [session encryptMessageDict:mail identity:me dest:&encDict];
+    PEP_STATUS status = [session encryptMessageDict:mail identity:(PEPDict *) me dest:&encDict];
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encDict[kPepShortMessage], @"p≡p");
 
