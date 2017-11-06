@@ -77,6 +77,12 @@
 - (PEPDict * _Nonnull)dictionary;
 
 /**
+ This method should be removed once the adapter fully supports objects for identity
+ and message types insead of dictionaries.
+ */
+- (PEPMutableDict * _Nonnull)mutableDictionary;
+
+/**
  Does this identity contain a PGP comm type? This can be used for determining
  if a communication partner is a pEp user or not.
  */

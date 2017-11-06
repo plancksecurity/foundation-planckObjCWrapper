@@ -76,7 +76,7 @@ typedef NSArray<NSString *> PEPStringList;
  Supplement missing information for an arbitrary identity (used for communication partners).
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)updateIdentity:(nonnull PEPMutableDict *)identity;
+- (void)updateIdentity:(nonnull PEPIdentity *)identity;
 
 /**
  Mark a key as trusted with a person.

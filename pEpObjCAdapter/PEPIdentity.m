@@ -75,6 +75,12 @@
     return (PEPDict *) self;
 }
 
+- (PEPMutableDict * _Nonnull)mutableDictionary
+{
+    // most adapter use should be ok.
+    return (PEPMutableDict *) self;
+}
+
 - (BOOL)containsPGPCommType
 {
     PEP_comm_type val = (PEP_comm_type) self.commType;

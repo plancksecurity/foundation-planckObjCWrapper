@@ -69,9 +69,9 @@
     [PEPSession mySelf:identity];
 }
 
-- (void)updateIdentity:(nonnull PEPMutableDict *)identity
+- (void)updateIdentity:(nonnull PEPIdentity *)identity
 {
-    if ([identity[kPepIsOwnIdentity] boolValue]) {
+    if (identity.isOwn) {
         [PEPSession mySelf:identity];
     } else {
         [PEPSession updateIdentity:identity];
@@ -204,7 +204,7 @@
     [session mySelf:identity];
 }
 
-+ (void)updateIdentity:(nonnull PEPMutableDict *)identity
++ (void)updateIdentity:(nonnull PEPIdentity *)identity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     [session updateIdentity:identity];
