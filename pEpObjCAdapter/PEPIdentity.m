@@ -71,18 +71,6 @@
     val == PEP_ct_OpenPGP;
 }
 
-- (nonnull NSMutableDictionary *)dictionary
-{
-    return [@{
-              kPepAddress: self.address,
-              kPepUserID: self.userID,
-              kPepUsername: self.userName,
-              kPepCommType: [NSNumber numberWithInteger:self.commType],
-              kPepFingerprint: self.fingerPrint,
-              }
-            mutableCopy];
-}
-
 // MARK: - Equality
 
 - (BOOL)isEqual:(id)other
