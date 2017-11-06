@@ -1204,7 +1204,7 @@ encmsg[@"outgoing"] = @NO;
 
     NSMutableDictionary *meOrig =
     @{ kPepAddress: @"me@dontcare.me",
-       kPepUserID: @"me",
+       kPepUserID: s_userID,
        kPepFingerprint: @"CC1F73F6FB774BF08B197691E3BFBCA9248FC681",
        kPepUsername: @"me" }.mutableCopy;
 
@@ -1217,7 +1217,7 @@ encmsg[@"outgoing"] = @NO;
 
     __block NSMutableDictionary *pepEncMail;
     {
-        NSMutableDictionary *me = meOrig.mutableCopy;
+        PEPIdentity *me = [[PEPIdentity alloc] initWithDictionary:meOrig];
 
         NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
 
@@ -1229,8 +1229,8 @@ encmsg[@"outgoing"] = @NO;
         [session importKey:pubKeyMe];
         [session importKey:secKeyMe];
         [session mySelf:me];
-        XCTAssertNotNil(me[kPepFingerprint]);
-        XCTAssertEqualObjects(me[kPepFingerprint], meOrig[kPepFingerprint]);
+        XCTAssertNotNil(me.fingerPrint);
+        XCTAssertEqualObjects(me.fingerPrint, meOrig[kPepFingerprint]);
         [session importKey:pubKeyPartner1];
         PEP_STATUS status = [session encryptMessageDict:mail extra:nil dest:&pepEncMail];
         XCTAssertEqual(status, PEP_STATUS_OK);
@@ -1240,7 +1240,7 @@ encmsg[@"outgoing"] = @NO;
 
     [self pEpSetUp];
     {
-        NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
+        PEPIdentity *partner1 = [[PEPIdentity alloc] initWithDictionary:partner1Orig];
 
         NSString *privateKeyPartner1 = [self
                                         loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
@@ -1251,8 +1251,8 @@ encmsg[@"outgoing"] = @NO;
         [session importKey:pubKeyMe];
 
         [session mySelf:partner1];
-        XCTAssertNotNil(partner1[kPepFingerprint]);
-        XCTAssertEqualObjects(partner1[kPepFingerprint], partner1Orig[kPepFingerprint]);
+        XCTAssertNotNil(partner1.fingerPrint);
+        XCTAssertEqualObjects(partner1.fingerPrint, partner1Orig[kPepFingerprint]);
 
         NSMutableDictionary *me = meOrig.mutableCopy;
         [session updateIdentity:me];
