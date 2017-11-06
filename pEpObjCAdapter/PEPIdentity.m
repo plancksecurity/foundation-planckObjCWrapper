@@ -160,4 +160,13 @@
     return [self valueForKey:key];
 }
 
+// MARK: - NSMutableCopying
+
+- (id)mutableCopyWithZone:(nullable NSZone *)zone
+{
+    return [[PEPIdentity alloc] initWithAddress:self.address userID:self.userID
+                                       userName:self.userName fingerPrint:self.fingerPrint
+                                       commType:self.commType language:self.language];
+}
+
 @end
