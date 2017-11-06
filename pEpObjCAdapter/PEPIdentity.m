@@ -101,6 +101,11 @@
     val == PEP_ct_OpenPGP;
 }
 
+- (BOOL)isConfirmed
+{
+    return self.commType & PEP_ct_confirmed;
+}
+
 // MARK: - Equality
 
 - (BOOL)isEqual:(id)other
