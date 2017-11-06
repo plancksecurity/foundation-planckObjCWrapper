@@ -169,4 +169,12 @@
                                        commType:self.commType language:self.language];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:
+            @"<PEPIdentity %@ userID:%@ userName:%@ fpr:%@ ct:%ld lang:%@>",
+            self.address, self.userID, self.userName, self.fingerPrint,
+            (long) self.commType, self.language];
+}
+
 @end
