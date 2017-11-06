@@ -1270,13 +1270,13 @@ encmsg[@"outgoing"] = @NO;
 
 - (void)doSomeWorkOnSession:(PEPInternalSession *)session count:(NSInteger)count
 {
-    NSMutableDictionary *me = @{ kPepAddress: [NSString stringWithFormat:@"me%ld@dontcare.me",
-                                               (long)count],
-                                 kPepUserID: [NSString stringWithFormat:@"me%ld", (long)count],
-                                 kPepUsername: [NSString stringWithFormat:@"me%ld",
-                                                (long)count] }.mutableCopy;
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:[NSString
+                                        stringWithFormat:@"me%ld@dontcare.me", (long)count]
+                       userID:[NSString stringWithFormat:@"me%ld", (long)count]
+                       userName:[NSString stringWithFormat:@"me%ld", (long)count]];
     [session mySelf:me];
-    XCTAssertNotNil(me[kPepFingerprint]);
+    XCTAssertNotNil(me.fingerPrint);
 }
 
 - (void)testParallelSessions
