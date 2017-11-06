@@ -69,6 +69,15 @@
                         language:dictionary[@"lang"]];
 }
 
+- (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity
+{
+    return [self initWithAddress:identity.address userID:identity.userID
+                        userName:identity.userName
+                     fingerPrint:identity.fingerPrint
+                        commType:identity.commType
+                        language:identity.language];
+}
+
 - (PEPDict * _Nonnull)dictionary
 {
     // most adapter use should be ok.

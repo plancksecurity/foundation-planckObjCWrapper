@@ -71,6 +71,11 @@
 - (nonnull instancetype)initWithDictionary:(NSDictionary * _Nonnull)dictionary;
 
 /**
+ Copy constructor.
+ */
+- (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
+
+/**
  This method should be removed once the adapter fully supports objects for identity
  and message types insead of dictionaries.
  */
