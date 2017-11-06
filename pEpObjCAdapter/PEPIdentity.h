@@ -66,7 +66,7 @@
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
 
-- (nonnull instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (nonnull instancetype)initWithDictionary:(NSDictionary * _Nonnull)dictionary;
 
 /**
  Does this identity contain a PGP comm type? This can be used for determining
