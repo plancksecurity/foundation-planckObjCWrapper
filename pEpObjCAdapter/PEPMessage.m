@@ -297,7 +297,7 @@ NSArray *PEP_arrayFromIdentityList(identity_list *il)
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        [array addObject:PEP_identityDictFromStruct(il->ident)];
+        [array addObject:PEP_identityFromStruct(il->ident)];
     }
     
     return array;
@@ -336,8 +336,8 @@ NSArray *PEP_identityArrayFromList(identity_list *il)
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        NSDictionary *address = PEP_identityDictFromStruct(_il->ident);
-        [array addObject:address];
+        PEPIdentity *ident = PEP_identityFromStruct(_il->ident);
+        [array addObject:ident];
     }
     
     return array;
@@ -363,13 +363,13 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
             [dict setObject:[NSDate dateWithTimeIntervalSince1970:mktime(msg->recv)] forKey:@"recv"];
         
         if (msg->from)
-            [dict setObject:PEP_identityDictFromStruct(msg->from) forKey:kPepFrom];
+            [dict setObject:PEP_identityFromStruct(msg->from) forKey:kPepFrom];
         
         if (msg->to && msg->to->ident)
             [dict setObject:PEP_identityArrayFromList(msg->to) forKey:@"to"];
         
         if (msg->recv_by)
-            [dict setObject:PEP_identityDictFromStruct(msg->recv_by) forKey:@"recv_by"];
+            [dict setObject:PEP_identityFromStruct(msg->recv_by) forKey:@"recv_by"];
         
         if (msg->cc && msg->cc->ident)
             [dict setObject:PEP_identityArrayFromList(msg->cc) forKey:@"cc"];

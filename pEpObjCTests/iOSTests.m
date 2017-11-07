@@ -1491,8 +1491,7 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertNotNil(keys);
     XCTAssert(keys.count > 0);
 
-    PEPIdentity *receiver = [[PEPIdentity alloc]
-                             initWithDictionary:decryptedDict[kPepTo][0]];
+    PEPIdentity *receiver = decryptedDict[kPepTo][0];
     [session updateIdentity:receiver];
     XCTAssertNotNil(receiver);
     PEP_STATUS trustwordsStatus;
