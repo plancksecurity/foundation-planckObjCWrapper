@@ -17,7 +17,7 @@
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                             fingerPrint:(NSString * _Nullable)fingerPrint
-                               commType:(NSInteger)commType
+                               commType:(PEP_comm_type)commType
                                language:(NSString * _Nullable)language {
     if (self = [super init]) {
         self.address = address;
@@ -131,7 +131,7 @@
     return self.commType;
 }
 
-- (void)setComm_type:(NSUInteger)ct
+- (void)setComm_type:(PEP_comm_type)ct
 {
     self.commType = ct;
 }

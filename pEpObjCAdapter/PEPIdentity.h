@@ -40,7 +40,7 @@
 /**
  The comm type of this identity.
  */
-@property NSInteger commType;
+@property PEP_comm_type commType;
 
 /**
  Is this one of our own identities?
@@ -56,7 +56,7 @@
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                             fingerPrint:(NSString * _Nullable)fingerPrint
-                               commType:(NSInteger)commType
+                               commType:(PEP_comm_type)commType
                                language:(NSString * _Nullable)language;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
