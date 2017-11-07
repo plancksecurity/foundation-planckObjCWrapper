@@ -249,8 +249,8 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:
-            @"<PEPIdentity %@ userID:%@ userName:%@ fpr:%@ ct:%ld lang:%@>",
-            self.address, self.userID, self.userName, self.fingerPrint,
+            @"<PEPIdentity %@ userID:%@ userName:%@ isOwn:%d fpr:%@ ct:%ld lang:%@>",
+            self.address, self.userID, self.userName, self.isOwn, self.fingerPrint,
             (long) self.commType, self.language];
 }
 
