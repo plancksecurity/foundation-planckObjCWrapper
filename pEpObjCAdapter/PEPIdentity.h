@@ -55,6 +55,7 @@
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
+                                  isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEP_comm_type)commType
                                language:(NSString * _Nullable)language;
@@ -62,14 +63,17 @@
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
+                                  isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
-                               userName:(NSString * _Nullable)userName;
+                               userName:(NSString * _Nullable)userName
+                                  isOwn:(BOOL)isOwn;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                               userName:(NSString * _Nullable)userName;
+                               userName:(NSString * _Nullable)userName
+                                  isOwn:(BOOL)isOwn;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
 

@@ -274,8 +274,9 @@ PEPInternalSession *session;
     [PEPObjCAdapter startKeyserverLookup];
     
     PEPIdentity *ident = [[PEPIdentity alloc] initWithAddress:@"vb@ulm.ccc.de"
-                                                          userID:@"SsI6H9"
-                                                        userName:@"pEpDontAssert"];
+                                                       userID:@"SsI6H9"
+                                                     userName:@"pEpDontAssert"
+                                                        isOwn:NO];
     
     [session updateIdentity:ident];
     
@@ -301,7 +302,8 @@ PEPInternalSession *session;
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"pep.test.iosgenkey@pep-project.org"
                             userID:@"Me"
-                            userName:@"pEp Test iOS GenKey"];
+                            userName:@"pEp Test iOS GenKey"
+                            isOwn:YES];
 
     [session mySelf:identMe];
     
@@ -336,7 +338,8 @@ PEPInternalSession *session;
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"pep.test.iosgenkey@pep-project.org"
                             userID:@"Me"
-                            userName:@"pEp Test iOS GenKey"];
+                            userName:@"pEp Test iOS GenKey"
+                            isOwn:YES];
 
     [session mySelf:identMe];
 
@@ -356,7 +359,8 @@ PEPInternalSession *session;
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"pep.test.iosgenkey@pep-project.org"
                             userID:@"Me"
-                            userName:@"pEp Test iOS GenKey"];
+                            userName:@"pEp Test iOS GenKey"
+                            isOwn:YES];
 
     [session mySelf:identMe];
 
@@ -375,7 +379,8 @@ PEPInternalSession *session;
         PEPIdentity *identMe2 = [[PEPIdentity alloc]
                                  initWithAddress:identMe.address
                                  userID:identMe.userID
-                                 userName:identMe.userName];
+                                 userName:identMe.userName
+                                 isOwn:NO];
         [session2 mySelf:identMe2];
         XCTAssertNotNil(identMe2.fingerPrint);
         XCTAssertFalse([identMe2 containsPGPCommType]);
@@ -384,7 +389,8 @@ PEPInternalSession *session;
         // Now pretend the app only knows kPepUsername and kPepAddress
         PEPIdentity *identMe3 = [[PEPIdentity alloc]
                                  initWithAddress:identMe.address
-                                 userName:identMe.userName];
+                                 userName:identMe.userName
+                                 isOwn:NO];
         [session2 mySelf:identMe3];
         XCTAssertNotNil(identMe3.fingerPrint);
         XCTAssertFalse([identMe3 containsPGPCommType]);
@@ -412,6 +418,7 @@ PEPInternalSession *session;
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:s_userID
                                userName:@"pEp Test Alice"
+                               isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     [session mySelf:identAlice];
@@ -442,6 +449,7 @@ PEPInternalSession *session;
     PEPIdentity *identBob = [[PEPIdentity alloc]
                              initWithAddress:@"pep.test.bob@pep-project.org"
                              userID:@"42" userName:@"pEp Test Bob"
+                             isOwn:NO
                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
     
     [session updateIdentity:identBob];
@@ -497,9 +505,10 @@ PEPInternalSession *session;
     [self importBundledKey:@"0x70DCF575.asc"];
     
     PEPIdentity *identJohn = [[PEPIdentity alloc]
-                             initWithAddress:@"pep.test.john@pep-project.org"
-                             userID:@"101" userName:@"pEp Test John"
-                             fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
+                              initWithAddress:@"pep.test.john@pep-project.org"
+                              userID:@"101" userName:@"pEp Test John"
+                              isOwn:NO
+                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
 
     [session updateIdentity:identJohn];
 
@@ -535,6 +544,7 @@ PEPInternalSession *session;
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:s_userID
                                userName:@"pEp Test Alice"
+                               isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     [session mySelf:identAlice];
@@ -565,6 +575,7 @@ PEPInternalSession *session;
     PEPIdentity *identBob = [[PEPIdentity alloc]
                              initWithAddress:@"pep.test.bob@pep-project.org"
                              userID:@"42" userName:@"pEp Test Bob"
+                             isOwn:NO
                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 
     [session updateIdentity:identBob];
@@ -594,6 +605,7 @@ PEPInternalSession *session;
     PEPIdentity *identJohn = [[PEPIdentity alloc]
                               initWithAddress:@"pep.test.john@pep-project.org"
                               userID:@"101" userName:@"pEp Test John"
+                              isOwn:NO
                               fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
 
     [session updateIdentity:identJohn];
@@ -643,6 +655,7 @@ PEPInternalSession *session;
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:s_userID
                                userName:@"pEp Test Alice"
+                               isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     [session mySelf:identAlice];
@@ -654,6 +667,7 @@ PEPInternalSession *session;
     PEPIdentity *identBob = [[PEPIdentity alloc]
                              initWithAddress:@"pep.test.bob@pep-project.org"
                              userID:@"42" userName:@"pEp Test Bob"
+                             isOwn:NO
                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 
     [session updateIdentity:identBob];
@@ -699,18 +713,20 @@ PEPInternalSession *session;
     [self importBundledKey:@"5CB2C182_sec.asc"];
     
     PEPIdentity *identHector = [[PEPIdentity alloc]
-                             initWithAddress:@"pep.test.hector@pep-project.org"
-                             userID:@"fc2d33" userName:@"pEp Test Hector"
-                             fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
+                                initWithAddress:@"pep.test.hector@pep-project.org"
+                                userID:@"fc2d33" userName:@"pEp Test Hector"
+                                isOwn:NO
+                                fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
 
     // Check that this key is indeed expired
     [session updateIdentity:identHector];
     XCTAssertEqual(PEP_ct_key_expired, identHector.commType);
 
     PEPIdentity *identHectorOwn = [[PEPIdentity alloc]
-                                           initWithAddress:@"pep.test.hector@pep-project.org"
-                                           userID:s_userID userName:@"pEp Test Hector"
-                                           fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
+                                   initWithAddress:@"pep.test.hector@pep-project.org"
+                                   userID:s_userID userName:@"pEp Test Hector"
+                                   isOwn:YES
+                                   fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
 
     // Myself automatically renew expired key.
     [session mySelf:identHectorOwn];
@@ -722,9 +738,10 @@ PEPInternalSession *session;
     [self pEpSetUp:@"Bob"];
     
     PEPIdentity *_identHector = [[PEPIdentity alloc]
-                                initWithAddress:@"pep.test.hector@pep-project.org"
-                                userID:@"khkhkh" userName:@"pEp Test Hector"
-                                fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
+                                 initWithAddress:@"pep.test.hector@pep-project.org"
+                                 userID:@"khkhkh" userName:@"pEp Test Hector"
+                                 isOwn:NO
+                                 fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
 
     [session updateIdentity:_identHector];
     XCTAssertEqual(PEP_ct_OpenPGP_unconfirmed, _identHector.commType);
@@ -746,6 +763,7 @@ PEPInternalSession *session;
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:s_userID
                                userName:@"pEp Test Alice"
+                               isOwn:YES
                                fingerPrint:fpr];
 
     [session mySelf:identAlice];
@@ -774,6 +792,7 @@ PEPInternalSession *session;
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:s_userID
                                userName:@"pEp Test Alice"
+                               isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     [session mySelf:identAlice];
@@ -968,14 +987,16 @@ encmsg[@"outgoing"] = @NO;
     PEPIdentity *identMiroAtPetra = [[PEPIdentity alloc]
                                      initWithAddress:@"pep.test.miro@pep-project.org"
                                      userID:@"not_me"
-                                     userName:@"Miro"];
+                                     userName:@"Miro"
+                                     isOwn:NO];
 
     [self pEpSetUp];
     {
         PEPIdentity *identPetra = [[PEPIdentity alloc]
                                    initWithAddress:@"pep.test.petra@pep-project.org"
                                    userID:s_userID
-                                   userName:@"Petra"];
+                                   userName:@"Petra"
+                                   isOwn:YES];
 
         [session mySelf:identPetra];
         XCTAssert(identPetra.fingerPrint);
@@ -1004,7 +1025,8 @@ encmsg[@"outgoing"] = @NO;
         PEPIdentity *identMiro = [[PEPIdentity alloc]
                                   initWithAddress:@"pep.test.miro@pep-project.org"
                                   userID:s_userID
-                                  userName:@"Miro"];
+                                  userName:@"Miro"
+                                  isOwn:YES];
 
         [session mySelf:identMiro];
         XCTAssert(identMiro.fingerPrint);
@@ -1258,7 +1280,8 @@ encmsg[@"outgoing"] = @NO;
                        initWithAddress:[NSString
                                         stringWithFormat:@"me%ld@dontcare.me", (long)count]
                        userID:[NSString stringWithFormat:@"me%ld", (long)count]
-                       userName:[NSString stringWithFormat:@"me%ld", (long)count]];
+                       userName:[NSString stringWithFormat:@"me%ld", (long)count]
+                       isOwn:YES];
     [session mySelf:me];
     XCTAssertNotNil(me.fingerPrint);
 }
@@ -1450,7 +1473,9 @@ encmsg[@"outgoing"] = @NO;
 
 - (PEPDict *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
-    PEPIdentity *me = [[PEPIdentity alloc] initWithAddress:@"me@peptest.ch" userName:@"userName"];
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:@"me@peptest.ch" userName:@"userName"
+                       isOwn:YES];
     [session mySelf:me];
     XCTAssertNotNil(me.fingerPrint);
 

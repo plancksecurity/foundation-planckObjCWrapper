@@ -16,6 +16,7 @@
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
+                                  isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEP_comm_type)commType
                                language:(NSString * _Nullable)language {
@@ -23,6 +24,7 @@
         self.address = address;
         self.userID = userID;
         self.userName = userName;
+        self.isOwn = isOwn;
         self.fingerPrint = fingerPrint;
         self.commType = commType;
         self.language = language;
@@ -33,30 +35,33 @@
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
+                                  isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
 {
-    return [self initWithAddress:address userID:userID userName:userName fingerPrint:fingerPrint
-                        commType:PEP_ct_unknown language:nil];
+    return [self initWithAddress:address userID:userID userName:userName isOwn:isOwn
+                     fingerPrint:fingerPrint commType:PEP_ct_unknown language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
+                                  isOwn:(BOOL)isOwn
 {
-    return [self initWithAddress:address userID:userID userName:userName fingerPrint:nil
-                        commType:PEP_ct_unknown language:nil];
+    return [self initWithAddress:address userID:userID userName:userName
+                           isOwn:isOwn fingerPrint:nil commType:PEP_ct_unknown language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                userName:(NSString * _Nullable)userName
+                                  isOwn:(BOOL)isOwn
 {
-    return [self initWithAddress:address userID:nil userName:userName fingerPrint:nil
-                        commType:PEP_ct_unknown language:nil];
+    return [self initWithAddress:address userID:nil userName:userName
+                           isOwn:isOwn fingerPrint:nil commType:PEP_ct_unknown language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
 {
-    return [self initWithAddress:address userID:nil userName:nil fingerPrint:nil
+    return [self initWithAddress:address userID:nil userName:nil isOwn:NO fingerPrint:nil
                         commType:PEP_ct_unknown language:nil];
 }
 
@@ -64,6 +69,7 @@
 {
     return [self initWithAddress:dictionary[kPepAddress] userID:dictionary[kPepUserID]
                         userName:dictionary[kPepUsername]
+                           isOwn:[dictionary[kPepIsOwnIdentity] boolValue]
                      fingerPrint:dictionary[kPepFingerprint]
                         commType:[dictionary[kPepCommType] intValue]
                         language:dictionary[@"lang"]];
@@ -73,6 +79,7 @@
 {
     return [self initWithAddress:identity.address userID:identity.userID
                         userName:identity.userName
+                           isOwn:identity.isOwn
                      fingerPrint:identity.fingerPrint
                         commType:identity.commType
                         language:identity.language];
@@ -234,7 +241,8 @@
 - (id)mutableCopyWithZone:(nullable NSZone *)zone
 {
     return [[PEPIdentity alloc] initWithAddress:self.address userID:self.userID
-                                       userName:self.userName fingerPrint:self.fingerPrint
+                                       userName:self.userName isOwn:self.isOwn
+                                    fingerPrint:self.fingerPrint
                                        commType:self.commType language:self.language];
 }
 
