@@ -176,11 +176,57 @@
     self.language = l;
 }
 
+// MARK: - NSDictionary - Helpers
+
+- (NSArray<NSArray<NSString *> *> *)keyValuePairs
+{
+    NSMutableArray *result = [@[ @[kPepAddress, self.address],
+                                 @[kPepCommType,
+                                   [NSNumber numberWithInteger:(NSInteger) self.commType]],
+                                 @[kPepIsOwnIdentity, [NSNumber numberWithBool:self.isOwn]]]
+                              mutableCopy];
+
+    if (self.fingerPrint) {
+        [result addObject:@[kPepFingerprint, self.fingerPrint]];
+    }
+
+    if (self.userID) {
+        [result addObject:@[kPepUserID, self.userID]];
+    }
+
+    if (self.userName) {
+        [result addObject:@[kPepUsername, self.userName]];
+    }
+
+    if (self.language) {
+        [result addObject:@[@"lang", self.language]];
+    }
+
+    return result;
+}
+
 // MARK: - NSDictionary
 
 - (nullable id)objectForKey:(NSString *)key
 {
     return [self valueForKey:key];
+}
+
+- (NSInteger)count
+{
+    return [[self keyValuePairs] count];
+}
+
+- (void)enumerateKeysAndObjectsUsingBlock:(void (^)(id key, id obj, BOOL *stop))block
+{
+    BOOL stop = NO;
+    NSArray *pairs = [self keyValuePairs];
+    for (NSArray *pair in pairs) {
+        block(pair[0], pair[1], &stop);
+        if (stop) {
+            break;
+        }
+    }
 }
 
 // MARK: - NSMutableCopying
