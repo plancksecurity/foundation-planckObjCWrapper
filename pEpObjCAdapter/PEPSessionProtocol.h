@@ -15,6 +15,7 @@ typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
 typedef NSArray<NSString *> PEPStringList;
 
 @class PEPLanguage;
+@class PEPIdentity;
 
 @protocol PEPSessionProtocol <NSObject>
 
@@ -69,13 +70,13 @@ typedef NSArray<NSString *> PEPStringList;
  @"23", @"user_id", nil];
 
  */
-- (void)mySelf:(nonnull PEPMutableDict *)identity;
+- (void)mySelf:(nonnull PEPIdentity *)identity;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)updateIdentity:(nonnull PEPMutableDict *)identity;
+- (void)updateIdentity:(nonnull PEPIdentity *)identity;
 
 /**
  Mark a key as trusted with a person.

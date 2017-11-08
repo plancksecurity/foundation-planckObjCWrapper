@@ -337,9 +337,8 @@ static id <PEPSyncDelegate> syncDelegate = nil;
 {
     syncDelegate = delegate;
     
-    if (!syncQueue)
-    {
-        syncQueue = [[PEPQueue alloc]init];
+    if (!syncQueue) {
+        syncQueue = [[PEPQueue alloc] init];
         
         syncThreadJoinCond = [[NSConditionLock alloc] initWithCondition:NO];
         

@@ -12,6 +12,7 @@
 #import "PEPInternalSession.h"
 
 #import "NSDictionary+Extension.h"
+#import "PEPIdentity.h"
 
 // MARK: - Helpers
 
@@ -33,6 +34,12 @@ PEPDict * _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable 
     dict[kPepLongMessage] = longMessage;
     return [NSDictionary dictionaryWithDictionary:dict];
 }
+
+/**
+ For now, safer to use that, until the engine copes with our own.
+ Should mimick the value of PEP_OWN_USERID.
+ */
+static NSString *s_userID = @"pEp_own_userId";
 
 // MARK: - PEPSyncDelegate
 
@@ -66,7 +73,7 @@ PEPDict * _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable 
 {
     [_cond lock];
 
-    _sendWasCalled = true;
+    self.sendWasCalled = true;
     [_cond signal];
     [_cond unlock];
 
@@ -82,7 +89,7 @@ PEPDict * _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable 
 {
     bool res;
     [_cond lock];
-    [_cond waitUntilDate:[NSDate dateWithTimeIntervalSinceNow: 2]];
+    [_cond waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:maxSec]];
     res = _sendWasCalled;
     [_cond unlock];
     return res;
@@ -266,11 +273,10 @@ PEPInternalSession *session;
     [self pEpSetUp];
     [PEPObjCAdapter startKeyserverLookup];
     
-    NSMutableDictionary *ident = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"pEpDontAssert", kPepUsername,
-                                    @"vb@ulm.ccc.de", kPepAddress,
-                                    @"SsI6H9", kPepUserID,
-                                    nil];
+    PEPIdentity *ident = [[PEPIdentity alloc] initWithAddress:@"vb@ulm.ccc.de"
+                                                       userID:@"SsI6H9"
+                                                     userName:@"pEpDontAssert"
+                                                        isOwn:NO];
     
     [session updateIdentity:ident];
     
@@ -279,7 +285,7 @@ PEPInternalSession *session;
     // FIXME: updateIdentity should not assert if username is not provided
     [session updateIdentity:ident];
     
-    XCTAssert(ident[kPepFingerprint]);
+    XCTAssert(ident.fingerPrint);
     
     [PEPObjCAdapter stopKeyserverLookup];
     [self pEpCleanUp];
@@ -293,17 +299,18 @@ PEPInternalSession *session;
     // This should attach session just created
     [PEPObjCAdapter startSync:syncDelegate];
 
-    NSMutableDictionary *identMe = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"pEp Test iOS GenKey", kPepUsername,
-                                    @"pep.test.iosgenkey@pep-project.org", kPepAddress,
-                                    @"Me", kPepAddress,
-                                    nil];
-    
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
+                            userID:@"Me"
+                            userName:@"pEp Test iOS GenKey"
+                            isOwn:YES];
+
     [session mySelf:identMe];
     
-    bool res = [syncDelegate waitUntilSent:2];
-    
-    XCTAssert(res);
+    bool res = [syncDelegate waitUntilSent:1];
+
+    // Can't currently work, engine doesn't contain sync.
+    XCTAssertFalse(res);
     
     // This should detach session just created
     [PEPObjCAdapter stopSync];
@@ -327,15 +334,17 @@ PEPInternalSession *session;
 - (void)testGenKey
 {
     [self pEpSetUp];
-    
-    NSMutableDictionary *identMe = @{ kPepUsername: @"pEp Test iOS GenKey",
-                                      kPepAddress: @"pep.test.iosgenkey@pep-project.org",
-                                      kPepUserID: @"Me" }.mutableCopy;
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
+                            userID:@"Me"
+                            userName:@"pEp Test iOS GenKey"
+                            isOwn:YES];
 
     [session mySelf:identMe];
 
-    XCTAssertNotNil(identMe[kPepFingerprint]);
-    XCTAssertNotNil(identMe[kPepCommType]);
+    XCTAssertNotNil(identMe.fingerPrint);
+    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
 
     // check that the comm type is not a PGP one
     XCTAssertFalse([identMe containsPGPCommType]);
@@ -347,14 +356,16 @@ PEPInternalSession *session;
 {
     [self pEpSetUp];
 
-    NSMutableDictionary *identMe = @{ kPepUsername: @"pEp Test iOS GenKey",
-                                      kPepAddress: @"pep.test.iosgenkey@pep-project.org",
-                                      kPepUserID: @"Me" }.mutableCopy;
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
+                            userID:@"Me"
+                            userName:@"pEp Test iOS GenKey"
+                            isOwn:YES];
 
     [session mySelf:identMe];
 
-    XCTAssertNotNil(identMe[kPepFingerprint]);
-    XCTAssertNotNil(identMe[kPepCommType]);
+    XCTAssertNotNil(identMe.fingerPrint);
+    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
 
     // check that the comm type is not a PGP one
     XCTAssertFalse([identMe containsPGPCommType]);
@@ -365,24 +376,30 @@ PEPInternalSession *session;
 
         // Now simulate an update from the app, which usually only caches
         // kPepUsername, kPepAddress and optionally kPepUserID.
-        NSMutableDictionary *identMe2 = @{ kPepAddress: identMe[kPepAddress],
-                                           kPepUsername: identMe[kPepUsername],
-                                           kPepUserID: identMe[kPepUserID] }.mutableCopy;
-        [session2 updateIdentity:identMe2];
-        XCTAssertNotNil(identMe2[kPepFingerprint]);
+        PEPIdentity *identMe2 = [[PEPIdentity alloc]
+                                 initWithAddress:identMe.address
+                                 userID:identMe.userID
+                                 userName:identMe.userName
+                                 isOwn:NO];
+        [session2 mySelf:identMe2];
+        XCTAssertNotNil(identMe2.fingerPrint);
         XCTAssertFalse([identMe2 containsPGPCommType]);
+        XCTAssertEqualObjects(identMe2.fingerPrint, identMe.fingerPrint);
 
         // Now pretend the app only knows kPepUsername and kPepAddress
-        NSMutableDictionary *identMe3 = @{ kPepAddress: identMe[kPepAddress],
-                                           kPepUsername: identMe[kPepUsername] }.mutableCopy;
-        [session2 updateIdentity:identMe3];
-        XCTAssertNotNil(identMe3[kPepFingerprint]);
+        PEPIdentity *identMe3 = [[PEPIdentity alloc]
+                                 initWithAddress:identMe.address
+                                 userName:identMe.userName
+                                 isOwn:NO];
+        [session2 mySelf:identMe3];
+        XCTAssertNotNil(identMe3.fingerPrint);
         XCTAssertFalse([identMe3 containsPGPCommType]);
+        XCTAssertEqualObjects(identMe3.fingerPrint, identMe.fingerPrint);
 
-        XCTAssertEqualObjects(identMe[kPepAddress], identMe2[kPepAddress]);
-        XCTAssertEqualObjects(identMe[kPepAddress], identMe3[kPepAddress]);
-        XCTAssertEqualObjects(identMe[kPepCommType], identMe2[kPepCommType]);
-        XCTAssertEqualObjects(identMe[kPepCommType], identMe3[kPepCommType]);
+        XCTAssertEqualObjects(identMe.address, identMe2.address);
+        XCTAssertEqualObjects(identMe.address, identMe3.address);
+        XCTAssertEqual(identMe.commType, identMe2.commType);
+        XCTAssertEqual(identMe.commType, identMe3.commType);
     });
 
     [self pEpCleanUp];
@@ -397,13 +414,13 @@ PEPInternalSession *session;
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
-    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"pEp Test Alice", kPepUsername,
-                                  @"pep.test.alice@pep-project.org", kPepAddress,
-                                  @"23", kPepUserID,
-                                  @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
-                                  nil];
- 
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:s_userID
+                               userName:@"pEp Test Alice"
+                               isOwn:YES
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
     [session mySelf:identAlice];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -429,12 +446,11 @@ PEPInternalSession *session;
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
     [self importBundledKey:@"0xC9C2EE39.asc"];
     
-    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", kPepUsername,
-                                     @"pep.test.bob@pep-project.org", kPepAddress,
-                                     @"42", kPepUserID,
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
-                                     nil];
+    PEPIdentity *identBob = [[PEPIdentity alloc]
+                             initWithAddress:@"pep.test.bob@pep-project.org"
+                             userID:@"42" userName:@"pEp Test Bob"
+                             isOwn:NO
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
     
     [session updateIdentity:identBob];
 
@@ -442,50 +458,42 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
-    clr = [session identityRating:identBob];
+    clr = [session identityRating:identBob.dictionary];
     XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
-    [session trustPersonalKey:identBob];
+    [session trustPersonalKey:identBob.mutableDictionary];
 
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
 
-    clr = [session identityRating:identBob];
+    clr = [session identityRating:identBob.dictionary];
     XCTAssert( clr == PEP_rating_trusted);
 
     // Let' say we undo handshake
-    [session keyResetTrust:identBob];
+    [session keyResetTrust:identBob.mutableDictionary];
     
     // Yellow ?
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
     // mistrust Bob
-    [session keyMistrusted:identBob];
+    [session keyMistrusted:identBob.mutableDictionary];
     
     // Gray == PEP_rating_unencrypted
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
     
-    /*
-    identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                @"pEp Test Bob", kPepUsername,
-                @"pep.test.bob@pep-project.org", kPepAddress,
-                @"42", kPepUserID,
-                @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
-                nil];
-*/
     // Forget
-    [session keyResetTrust:identBob];
+    [session keyResetTrust:identBob.mutableDictionary];
     
     // Back to yellow
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
     // Trust again
-    [session trustPersonalKey:identBob];
+    [session trustPersonalKey:identBob.mutableDictionary];
     
     // Back to green
     clr = [session outgoingMessageColor:msg];
@@ -496,13 +504,12 @@ PEPInternalSession *session;
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
     [self importBundledKey:@"0x70DCF575.asc"];
     
-    NSMutableDictionary *identJohn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      @"pEp Test John", kPepUsername,
-                                      @"pep.test.john@pep-project.org", kPepAddress,
-                                      @"101", kPepUserID,
-                                      @"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575",kPepFingerprint,
-                                      nil];
-    
+    PEPIdentity *identJohn = [[PEPIdentity alloc]
+                              initWithAddress:@"pep.test.john@pep-project.org"
+                              userID:@"101" userName:@"pEp Test John"
+                              isOwn:NO
+                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
+
     [session updateIdentity:identJohn];
 
     [msg setObject:[NSMutableArray arrayWithObjects:
@@ -533,13 +540,13 @@ PEPInternalSession *session;
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
-    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", kPepUsername,
-                                       @"pep.test.alice@pep-project.org", kPepAddress,
-                                       @"23", kPepUserID,
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
-                                       nil];
-    
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:s_userID
+                               userName:@"pEp Test Alice"
+                               isOwn:YES
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
     [session mySelf:identAlice];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -565,30 +572,29 @@ PEPInternalSession *session;
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
     [self importBundledKey:@"0xC9C2EE39.asc"];
     
-    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", kPepUsername,
-                                     @"pep.test.bob@pep-project.org", kPepAddress,
-                                     @"42", kPepUserID,
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
-                                     nil];
-    
+    PEPIdentity *identBob = [[PEPIdentity alloc]
+                             initWithAddress:@"pep.test.bob@pep-project.org"
+                             userID:@"42" userName:@"pEp Test Bob"
+                             isOwn:NO
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
+
     [session updateIdentity:identBob];
     
     // Should be yellow, since no handshake happened.
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
     
-    clr = [session identityRating:identBob];
+    clr = [session identityRating:identBob.mutableDictionary];
     XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
-    [session trustPersonalKey:identBob];
+    [session trustPersonalKey:identBob.mutableDictionary];
     
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
-    clr = [session identityRating:identBob];
+    clr = [session identityRating:identBob.mutableDictionary];
     XCTAssert( clr == PEP_rating_trusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
@@ -596,13 +602,12 @@ PEPInternalSession *session;
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
     [self importBundledKey:@"0x70DCF575.asc"];
     
-    NSMutableDictionary *identJohn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                      @"pEp Test John", kPepUsername,
-                                      @"pep.test.john@pep-project.org", kPepAddress,
-                                      @"101", kPepUserID,
-                                      @"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575",kPepFingerprint,
-                                      nil];
-    
+    PEPIdentity *identJohn = [[PEPIdentity alloc]
+                              initWithAddress:@"pep.test.john@pep-project.org"
+                              userID:@"101" userName:@"pEp Test John"
+                              isOwn:NO
+                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
+
     [session updateIdentity:identJohn];
     
     [msg setObject:[NSMutableArray arrayWithObjects:
@@ -616,13 +621,13 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
     
-    [session trustPersonalKey:identJohn];
+    [session trustPersonalKey:identJohn.mutableDictionary];
     
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
-    clr = [session identityRating:identJohn];
+    clr = [session identityRating:identJohn.mutableDictionary];
     XCTAssert( clr == PEP_rating_trusted);
 
     /* 
@@ -646,30 +651,29 @@ PEPInternalSession *session;
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
-    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", kPepUsername,
-                                       @"pep.test.alice@pep-project.org", kPepAddress,
-                                       @"23", kPepUserID,
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
-                                       nil];
-    
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:s_userID
+                               userName:@"pEp Test Alice"
+                               isOwn:YES
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
     [session mySelf:identAlice];
     
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
     [self importBundledKey:@"0xC9C2EE39.asc"];
     
-    NSMutableDictionary *identBob = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     @"pEp Test Bob", kPepUsername,
-                                     @"pep.test.bob@pep-project.org", kPepAddress,
-                                     @"42", kPepUserID,
-                                     @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39",kPepFingerprint,
-                                     nil];
-    
+    PEPIdentity *identBob = [[PEPIdentity alloc]
+                             initWithAddress:@"pep.test.bob@pep-project.org"
+                             userID:@"42" userName:@"pEp Test Bob"
+                             isOwn:NO
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
+
     [session updateIdentity:identBob];
 
     // mistrust Bob
-    [session keyMistrusted:identBob];
+    [session keyMistrusted:identBob.mutableDictionary];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                 identAlice, kPepFrom,
@@ -708,42 +712,39 @@ PEPInternalSession *session;
     // pEp Test Hector (old test key don't use) <pep.test.hector@pep-project.org>
     [self importBundledKey:@"5CB2C182_sec.asc"];
     
-    NSMutableDictionary *identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Hector", kPepUsername,
-                                       @"pep.test.hector@pep-project.org", kPepAddress,
-                                       @"fc2d33", kPepUserID,
-                                       @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",kPepFingerprint,
-                                       nil];
-    
+    PEPIdentity *identHector = [[PEPIdentity alloc]
+                                initWithAddress:@"pep.test.hector@pep-project.org"
+                                userID:@"fc2d33" userName:@"pEp Test Hector"
+                                isOwn:NO
+                                fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
+
     // Check that this key is indeed expired
     [session updateIdentity:identHector];
-    XCTAssertEqual(PEP_ct_key_expired, [identHector[kPepCommType] integerValue]);
+    XCTAssertEqual(PEP_ct_key_expired, identHector.commType);
 
-    NSMutableDictionary *identHectorOwn = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                        @"pEp Test Hector", kPepUsername,
-                                        @"pep.test.hector@pep-project.org", kPepAddress,
-                                        @PEP_OWN_USERID, kPepUserID,
-                                        @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",kPepFingerprint,
-                                        nil];
+    PEPIdentity *identHectorOwn = [[PEPIdentity alloc]
+                                   initWithAddress:@"pep.test.hector@pep-project.org"
+                                   userID:s_userID userName:@"pEp Test Hector"
+                                   isOwn:YES
+                                   fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
 
     // Myself automatically renew expired key.
     [session mySelf:identHectorOwn];
-    XCTAssertEqual(PEP_ct_pEp, [identHectorOwn[kPepCommType] integerValue]);
+    XCTAssertEqual(PEP_ct_pEp, identHectorOwn.commType);
     
     [self pEpCleanUp:@"Bob"];
     
     
     [self pEpSetUp:@"Bob"];
     
-    NSMutableDictionary *_identHector = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                         @"pEp Test Hector", kPepUsername,
-                                         @"pep.test.hector@pep-project.org", kPepAddress,
-                                         @"khkhkh", kPepUserID,
-                                         @"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182",kPepFingerprint,
-                                         nil];
-    
+    PEPIdentity *_identHector = [[PEPIdentity alloc]
+                                 initWithAddress:@"pep.test.hector@pep-project.org"
+                                 userID:@"khkhkh" userName:@"pEp Test Hector"
+                                 isOwn:NO
+                                 fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
+
     [session updateIdentity:_identHector];
-    XCTAssertEqual(PEP_ct_OpenPGP_unconfirmed, [_identHector[kPepCommType] integerValue]);
+    XCTAssertEqual(PEP_ct_OpenPGP_unconfirmed, _identHector.commType);
     
     [self pEpCleanUp];
 }
@@ -756,21 +757,24 @@ PEPInternalSession *session;
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [self importBundledKey:@"6FF00E97_sec.asc"];
+    NSString *fpr = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
     
-    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", kPepUsername,
-                                       @"pep.test.alice@pep-project.org", kPepAddress,
-                                       @"23", kPepUserID,
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
-                                       nil];
-    
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:s_userID
+                               userName:@"pEp Test Alice"
+                               isOwn:YES
+                               fingerPrint:fpr];
+
     [session mySelf:identAlice];
+
+    PEPIdentity *identAlice2 = [identAlice mutableCopy];
     
     // This will revoke key
-    [session keyMistrusted:identAlice];
+    [session keyMistrusted:(NSMutableDictionary *) identAlice2];
     
     // Check fingerprint is different
-    XCTAssertNotEqual(identAlice[kPepFingerprint], @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97");
+    XCTAssertNotEqualObjects(identAlice2.fingerPrint, fpr);
 
     [self pEpCleanUp];
 }
@@ -784,13 +788,13 @@ PEPInternalSession *session;
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [self importBundledKey:@"6FF00E97_sec.asc"];
     
-    NSMutableDictionary *identAlice = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"pEp Test Alice", kPepUsername,
-                                       @"pep.test.alice@pep-project.org", kPepAddress,
-                                       @"23", kPepUserID,
-                                       @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97",kPepFingerprint,
-                                       nil];
-    
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:s_userID
+                               userName:@"pEp Test Alice"
+                               isOwn:YES
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
     [session mySelf:identAlice];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -980,18 +984,22 @@ encmsg[@"outgoing"] = @NO;
 - (void)testTwoNewUsers
 {
     NSMutableDictionary* petrasMsg;
-    NSMutableDictionary *identMiroAtPetra = @{ kPepUsername: @"Miro",
-                                               kPepAddress: @"pep.test.miro@pep-project.org",
-                                               kPepUserID: @"Him" }.mutableCopy;
+    PEPIdentity *identMiroAtPetra = [[PEPIdentity alloc]
+                                     initWithAddress:@"pep.test.miro@pep-project.org"
+                                     userID:@"not_me"
+                                     userName:@"Miro"
+                                     isOwn:NO];
 
     [self pEpSetUp];
     {
-        NSMutableDictionary *identPetra = @{ kPepUsername: @"Petra",
-                                             kPepAddress: @"pep.test.petra@pep-project.org",
-                                             kPepUserID: @"Me" }.mutableCopy;
-        
+        PEPIdentity *identPetra = [[PEPIdentity alloc]
+                                   initWithAddress:@"pep.test.petra@pep-project.org"
+                                   userID:s_userID
+                                   userName:@"Petra"
+                                   isOwn:YES];
+
         [session mySelf:identPetra];
-        XCTAssert(identPetra[kPepFingerprint]);
+        XCTAssert(identPetra.fingerPrint);
         
         NSMutableDictionary *msg = @{ kPepFrom: identPetra,
                                       kPepTo: @[identMiroAtPetra],
@@ -1014,12 +1022,14 @@ encmsg[@"outgoing"] = @NO;
     [self pEpSetUp];
     
     {
-        NSMutableDictionary *identMiro = @{ kPepUsername: @"Miro",
-                                            kPepAddress: @"pep.test.miro@pep-project.org",
-                                            kPepUserID: @"Me" }.mutableCopy;
-    
+        PEPIdentity *identMiro = [[PEPIdentity alloc]
+                                  initWithAddress:@"pep.test.miro@pep-project.org"
+                                  userID:s_userID
+                                  userName:@"Miro"
+                                  isOwn:YES];
+
         [session mySelf:identMiro];
-        XCTAssert(identMiro[kPepFingerprint]);
+        XCTAssert(identMiro.fingerPrint);
     
         NSMutableDictionary *decmsg;
         NSArray* keys;
@@ -1061,12 +1071,10 @@ encmsg[@"outgoing"] = @NO;
         // Check Miro is in DB
         [session updateIdentity:identMiroAtPetra];
         
-        XCTAssertNotNil(identMiroAtPetra[kPepFingerprint]);
+        XCTAssertNotNil(identMiroAtPetra.fingerPrint);
         
-        NSLog(@"Test fpr %@",identMiroAtPetra[kPepFingerprint]);
-
         // Trust to that identity
-        [session trustPersonalKey:identMiroAtPetra];
+        [session trustPersonalKey:(NSMutableDictionary *) identMiroAtPetra];
 
         secondclr = [session reEvaluateMessageRating:decmsg];
         XCTAssertEqual(secondclr, PEP_rating_trusted_and_anonymized, @"Not trusted");
@@ -1075,25 +1083,25 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
 
         // Undo trust
-        [session keyResetTrust:identMiroAtPetra];
+        [session keyResetTrust:(NSMutableDictionary *) identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Try compromized
-        [session keyMistrusted:identMiroAtPetra];
+        [session keyMistrusted:(NSMutableDictionary *) identMiroAtPetra];
 
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_mistrust, @"Not mistrusted");
         
         // Regret
-        [session keyResetTrust:identMiroAtPetra];
+        [session keyResetTrust:(NSMutableDictionary *) identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Trust again.
-        [session trustPersonalKey:identMiroAtPetra];
+        [session trustPersonalKey:(NSMutableDictionary *) identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
@@ -1164,9 +1172,10 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary *accountDict = [self unarchiveDictionary:@"account_A3FC7F0A.ser"].mutableCopy;
     [accountDict removeObjectForKey:kPepCommType];
     [accountDict removeObjectForKey:kPepFingerprint];
+    PEPIdentity *identMe = [[PEPIdentity alloc] initWithDictionary:accountDict];
 
-    [session mySelf:accountDict];
-    XCTAssertNotNil(accountDict[kPepFingerprint]);
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
 
     NSArray* keys;
     NSMutableDictionary *pepDecryptedMail;
@@ -1201,7 +1210,7 @@ encmsg[@"outgoing"] = @NO;
 
     NSMutableDictionary *meOrig =
     @{ kPepAddress: @"me@dontcare.me",
-       kPepUserID: @"me",
+       kPepUserID: s_userID,
        kPepFingerprint: @"CC1F73F6FB774BF08B197691E3BFBCA9248FC681",
        kPepUsername: @"me" }.mutableCopy;
 
@@ -1214,7 +1223,7 @@ encmsg[@"outgoing"] = @NO;
 
     __block NSMutableDictionary *pepEncMail;
     {
-        NSMutableDictionary *me = meOrig.mutableCopy;
+        PEPIdentity *me = [[PEPIdentity alloc] initWithDictionary:meOrig];
 
         NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
 
@@ -1226,8 +1235,8 @@ encmsg[@"outgoing"] = @NO;
         [session importKey:pubKeyMe];
         [session importKey:secKeyMe];
         [session mySelf:me];
-        XCTAssertNotNil(me[kPepFingerprint]);
-        XCTAssertEqualObjects(me[kPepFingerprint], meOrig[kPepFingerprint]);
+        XCTAssertNotNil(me.fingerPrint);
+        XCTAssertEqualObjects(me.fingerPrint, meOrig[kPepFingerprint]);
         [session importKey:pubKeyPartner1];
         PEP_STATUS status = [session encryptMessageDict:mail extra:nil dest:&pepEncMail];
         XCTAssertEqual(status, PEP_STATUS_OK);
@@ -1237,7 +1246,7 @@ encmsg[@"outgoing"] = @NO;
 
     [self pEpSetUp];
     {
-        NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
+        PEPIdentity *partner1 = [[PEPIdentity alloc] initWithDictionary:partner1Orig];
 
         NSString *privateKeyPartner1 = [self
                                         loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
@@ -1248,10 +1257,10 @@ encmsg[@"outgoing"] = @NO;
         [session importKey:pubKeyMe];
 
         [session mySelf:partner1];
-        XCTAssertNotNil(partner1[kPepFingerprint]);
-        XCTAssertEqualObjects(partner1[kPepFingerprint], partner1Orig[kPepFingerprint]);
+        XCTAssertNotNil(partner1.fingerPrint);
+        XCTAssertEqualObjects(partner1.fingerPrint, partner1Orig[kPepFingerprint]);
 
-        NSMutableDictionary *me = meOrig.mutableCopy;
+        PEPIdentity *me = [[PEPIdentity alloc] initWithDictionary:meOrig];
         [session updateIdentity:me];
 
         NSMutableDictionary *pepDecryptedMail;
@@ -1267,13 +1276,14 @@ encmsg[@"outgoing"] = @NO;
 
 - (void)doSomeWorkOnSession:(PEPInternalSession *)session count:(NSInteger)count
 {
-    NSMutableDictionary *me = @{ kPepAddress: [NSString stringWithFormat:@"me%ld@dontcare.me",
-                                               (long)count],
-                                 kPepUserID: [NSString stringWithFormat:@"me%ld", (long)count],
-                                 kPepUsername: [NSString stringWithFormat:@"me%ld",
-                                                (long)count] }.mutableCopy;
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:[NSString
+                                        stringWithFormat:@"me%ld@dontcare.me", (long)count]
+                       userID:[NSString stringWithFormat:@"me%ld", (long)count]
+                       userName:[NSString stringWithFormat:@"me%ld", (long)count]
+                       isOwn:YES];
     [session mySelf:me];
-    XCTAssertNotNil(me[kPepFingerprint]);
+    XCTAssertNotNil(me.fingerPrint);
 }
 
 - (void)testParallelSessions
@@ -1463,18 +1473,20 @@ encmsg[@"outgoing"] = @NO;
 
 - (PEPDict *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
-    NSMutableDictionary *me = @{kPepUsername: kPepUsername,
-                                kPepAddress: @"me@peptest.ch"}.mutableCopy;
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:@"me@peptest.ch" userName:@"userName"
+                       isOwn:YES];
     [session mySelf:me];
-    XCTAssertNotNil(me[kPepFingerprint]);
+    XCTAssertNotNil(me.fingerPrint);
 
     // Create draft
     NSString *shortMessage = @"Subject";
     NSString *longMessage = @"Oh, this is a long body text!";
-    PEPDict *mail = mailFromTo(me, me, shortMessage, longMessage, YES);
+    PEPDict *mail = mailFromTo((PEPDict *) me, (PEPDict *) me, shortMessage, longMessage,
+                               YES);
 
     NSMutableDictionary *encDict;
-    PEP_STATUS status = [session encryptMessageDict:mail identity:me dest:&encDict];
+    PEP_STATUS status = [session encryptMessageDict:mail identity:(PEPDict *) me dest:&encDict];
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encDict[kPepShortMessage], @"p≡p");
 
@@ -1504,13 +1516,13 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertNotNil(keys);
     XCTAssert(keys.count > 0);
 
-    NSMutableDictionary *receiver = [decryptedDict[kPepTo][0] mutableCopy];
+    PEPIdentity *receiver = decryptedDict[kPepTo][0];
     [session updateIdentity:receiver];
     XCTAssertNotNil(receiver);
     PEP_STATUS trustwordsStatus;
 
     NSString *trustwords = [session getTrustwordsMessageDict:decryptedDict
-                                                receiverDict:receiver
+                                                receiverDict:receiver.mutableDictionary
                                                    keysArray:keys language:@"en"
                                                         full:YES
                                              resultingStatus: &trustwordsStatus];

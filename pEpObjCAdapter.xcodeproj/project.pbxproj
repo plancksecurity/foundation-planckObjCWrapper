@@ -24,6 +24,7 @@
 		432FA2D41C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D11C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc */; };
 		432FA2D71C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */; };
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
+		433E28911FA741DE00E359B3 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E28901FA741DE00E359B3 /* PEPIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		43D27DE61F5DA7B700795687 /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D27DE51F5DA7B700795687 /* NSDictionary+Extension.m */; };
@@ -139,6 +140,8 @@
 		432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_pub.asc; sourceTree = "<group>"; };
 		432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_sec.asc; sourceTree = "<group>"; };
 		433E288E1FA7342000E359B3 /* PEPSessionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocol.h; sourceTree = "<group>"; };
+		433E288F1FA741DE00E359B3 /* PEPIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
+		433E28901FA741DE00E359B3 /* PEPIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 		434226801D4F60000083ED79 /* PepTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PepTests.m; sourceTree = "<group>"; };
 		43676B631C57EA1A00233933 /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
@@ -235,6 +238,8 @@
 				15206CC51F8E078B003FF880 /* PEPSession.h */,
 				15206CC61F8E078B003FF880 /* PEPSession.m */,
 				433E288E1FA7342000E359B3 /* PEPSessionProtocol.h */,
+				433E288F1FA741DE00E359B3 /* PEPIdentity.h */,
+				433E28901FA741DE00E359B3 /* PEPIdentity.m */,
 			);
 			path = pEpObjCAdapter;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				1508AEAF1F8792AC001D5230 /* PEPCopyableThread.m in Sources */,
 				15206CAA1F8BA183003FF880 /* PEPSessionProvider.m in Sources */,
 				43209B411ECC2DB8007E7E2E /* PEPObjCAdapter.m in Sources */,
+				433E28911FA741DE00E359B3 /* PEPIdentity.m in Sources */,
 				43D27DE61F5DA7B700795687 /* NSDictionary+Extension.m in Sources */,
 				43209B431ECC2DC0007E7E2E /* PEPInternalSession.m in Sources */,
 				43209B3F1ECC2DB0007E7E2E /* PEPLanguage.m in Sources */,
