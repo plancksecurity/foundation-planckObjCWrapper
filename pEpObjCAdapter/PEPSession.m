@@ -78,7 +78,7 @@
     }
 }
 
-- (void)trustPersonalKey:(nonnull PEPMutableDict *)identity
+- (void)trustPersonalKey:(nonnull PEPIdentity *)identity
 {
     [PEPSession trustPersonalKey:identity];
 }
@@ -210,7 +210,7 @@
     [session updateIdentity:identity];
 }
 
-+ (void)trustPersonalKey:(nonnull PEPMutableDict *)identity
++ (void)trustPersonalKey:(nonnull PEPIdentity *)identity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     [session trustPersonalKey:identity];

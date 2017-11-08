@@ -299,9 +299,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     free_identity(ident);
 }
 
-- (void)trustPersonalKey:(PEPMutableDict *)identity
+- (void)trustPersonalKey:(PEPIdentity *)identity
 {
-    pEp_identity *ident = PEP_identityDictToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
         trust_personal_key(_session, ident);

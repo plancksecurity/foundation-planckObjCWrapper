@@ -82,7 +82,7 @@ typedef NSArray<NSString *> PEPStringList;
  Mark a key as trusted with a person.
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)trustPersonalKey:(nonnull PEPMutableDict *)identity;
+- (void)trustPersonalKey:(nonnull PEPIdentity *)identity;
 
 /**
  if a key is not trusted by the user tell this using this message
