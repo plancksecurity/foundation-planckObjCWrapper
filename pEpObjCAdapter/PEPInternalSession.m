@@ -287,9 +287,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     identity.userID = userID;
 }
 
-- (void)updateIdentity:(PEPMutableDict *)identity
+- (void)updateIdentity:(PEPIdentity *)identity
 {
-    pEp_identity *ident = PEP_identityDictToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
         update_identity(_session, ident);
