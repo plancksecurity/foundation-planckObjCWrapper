@@ -462,7 +462,7 @@ PEPInternalSession *session;
     XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
-    [session trustPersonalKey:identBob.mutableDictionary];
+    [session trustPersonalKey:identBob];
 
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
@@ -472,28 +472,28 @@ PEPInternalSession *session;
     XCTAssert( clr == PEP_rating_trusted);
 
     // Let' say we undo handshake
-    [session keyResetTrust:identBob.mutableDictionary];
+    [session keyResetTrust:identBob];
     
     // Yellow ?
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
     // mistrust Bob
-    [session keyMistrusted:identBob.mutableDictionary];
+    [session keyMistrusted:identBob];
     
     // Gray == PEP_rating_unencrypted
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
     
     // Forget
-    [session keyResetTrust:identBob.mutableDictionary];
+    [session keyResetTrust:identBob];
     
     // Back to yellow
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
     // Trust again
-    [session trustPersonalKey:identBob.mutableDictionary];
+    [session trustPersonalKey:identBob];
     
     // Back to green
     clr = [session outgoingMessageColor:msg];
@@ -588,7 +588,7 @@ PEPInternalSession *session;
     XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
-    [session trustPersonalKey:identBob.mutableDictionary];
+    [session trustPersonalKey:identBob];
     
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
@@ -621,7 +621,7 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
     
-    [session trustPersonalKey:identJohn.mutableDictionary];
+    [session trustPersonalKey:identJohn];
     
     // This time it should be green
     clr = [session outgoingMessageColor:msg];
@@ -673,7 +673,7 @@ PEPInternalSession *session;
     [session updateIdentity:identBob];
 
     // mistrust Bob
-    [session keyMistrusted:identBob.mutableDictionary];
+    [session keyMistrusted:identBob];
     
     NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                 identAlice, kPepFrom,
@@ -771,7 +771,7 @@ PEPInternalSession *session;
     PEPIdentity *identAlice2 = [identAlice mutableCopy];
     
     // This will revoke key
-    [session keyMistrusted:(NSMutableDictionary *) identAlice2];
+    [session keyMistrusted:identAlice2];
     
     // Check fingerprint is different
     XCTAssertNotEqualObjects(identAlice2.fingerPrint, fpr);

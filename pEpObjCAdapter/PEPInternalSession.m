@@ -311,9 +311,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     free_identity(ident);
 }
 
-- (void)keyResetTrust:(PEPMutableDict *)identity
+- (void)keyResetTrust:(PEPIdentity *)identity
 {
-    pEp_identity *ident = PEP_identityDictToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
         key_reset_trust(_session, ident);
@@ -323,9 +323,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     free_identity(ident);
 }
 
-- (void)keyMistrusted:(PEPMutableDict *)identity
+- (void)keyMistrusted:(PEPIdentity *)identity
 {
-    pEp_identity *ident = PEP_identityDictToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
         key_mistrusted(_session, ident);

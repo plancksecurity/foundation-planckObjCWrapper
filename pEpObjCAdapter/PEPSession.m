@@ -83,12 +83,12 @@
     [PEPSession trustPersonalKey:identity];
 }
 
-- (void)keyMistrusted:(nonnull PEPMutableDict *)identity
+- (void)keyMistrusted:(nonnull PEPIdentity *)identity
 {
     [PEPSession keyMistrusted:identity];
 }
 
-- (void)keyResetTrust:(nonnull PEPMutableDict *)identity
+- (void)keyResetTrust:(nonnull PEPIdentity *)identity
 {
     [PEPSession keyResetTrust:identity];
 }
@@ -216,13 +216,13 @@
     [session trustPersonalKey:identity];
 }
 
-+ (void)keyMistrusted:(nonnull PEPMutableDict *)identity
++ (void)keyMistrusted:(nonnull PEPIdentity *)identity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     [session keyMistrusted:identity];
 }
 
-+ (void)keyResetTrust:(nonnull PEPMutableDict *)identity
++ (void)keyResetTrust:(nonnull PEPIdentity *)identity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     [session keyResetTrust:identity];

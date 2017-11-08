@@ -88,13 +88,13 @@ typedef NSArray<NSString *> PEPStringList;
  if a key is not trusted by the user tell this using this message
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyMistrusted:(nonnull PEPMutableDict *)identity;
+- (void)keyMistrusted:(nonnull PEPIdentity *)identity;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyResetTrust:(nonnull PEPMutableDict *)identity;
+- (void)keyResetTrust:(nonnull PEPIdentity *)identity;
 
 #pragma mark -- Internal API (testing etc.)
 
