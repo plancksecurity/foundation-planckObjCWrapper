@@ -110,8 +110,8 @@ typedef NSArray<NSString *> PEPStringList;
 - (nonnull NSString *)getLog;
 
 /** Determine trustwords for two identities */
-- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPDict *)identity1
-                                    identity2:(nonnull PEPDict *)identity2
+- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPIdentity *)identity1
+                                    identity2:(nonnull PEPIdentity *)identity2
                                      language:(nullable NSString *)language
                                          full:(BOOL)full;
 

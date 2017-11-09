@@ -367,8 +367,8 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     return logString;
 }
 
-- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPDict *)identity1
-                                    identity2:(nonnull PEPDict *)identity2
+- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPIdentity *)identity1
+                                    identity2:(nonnull PEPIdentity *)identity2
                                      language:(nullable NSString *)language
                                          full:(BOOL)full
 {
@@ -376,8 +376,8 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     char *trustwords = nil;
     size_t sizeWritten = 0;
 
-    pEp_identity *ident1 = PEP_identityDictToStruct(identity1);
-    pEp_identity *ident2 = PEP_identityDictToStruct(identity2);
+    pEp_identity *ident1 = PEP_identityToStruct(identity1);
+    pEp_identity *ident2 = PEP_identityToStruct(identity2);
     PEP_STATUS status;
     @synchronized(self) {
 

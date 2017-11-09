@@ -1537,17 +1537,15 @@ encmsg[@"outgoing"] = @NO;
 {
     [self pEpSetUp];
 
-    NSDictionary *partner1Orig =
-    @{ kPepAddress: @"partner1@dontcare.me",
-       kPepUserID: @"partner1",
-       kPepFingerprint: @"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6",
-       kPepUsername: @"partner1" };
+    PEPIdentity *partner1Orig = [[PEPIdentity alloc]
+                                 initWithAddress:@"partner1@dontcare.me" userID:@"partner1"
+                                 userName:@"partner1"
+                                 isOwn:NO fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"];
 
-    NSDictionary *meOrig =
-    @{ kPepAddress: @"me@dontcare.me",
-       kPepUserID: @"me",
-       kPepFingerprint: @"CC1F73F6FB774BF08B197691E3BFBCA9248FC681",
-       kPepUsername: @"me" };
+    PEPIdentity *meOrig = [[PEPIdentity alloc]
+                                 initWithAddress:@"me@dontcare.me" userID:@"me"
+                                 userName:@"me"
+                                 isOwn:NO fingerPrint:@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"];
 
     NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);

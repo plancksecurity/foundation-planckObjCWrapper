@@ -111,8 +111,8 @@
     return [PEPSession getLog];
 }
 
-- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPDict *)identity1
-                                    identity2:(nonnull PEPDict *)identity2
+- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPIdentity *)identity1
+                                    identity2:(nonnull PEPIdentity *)identity2
                                      language:(nullable NSString *)language
                                          full:(BOOL)full
 {
@@ -249,8 +249,8 @@
     return [session getLog];
 }
 
-+ (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPDict *)identity1
-                                    identity2:(nonnull PEPDict *)identity2
++ (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPIdentity *)identity1
+                                    identity2:(nonnull PEPIdentity *)identity2
                                      language:(nullable NSString *)language
                                          full:(BOOL)full
 {
