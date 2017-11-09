@@ -458,7 +458,7 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
-    clr = [session identityRating:identBob.dictionary];
+    clr = [session identityRating:identBob];
     XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
@@ -468,7 +468,7 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
 
-    clr = [session identityRating:identBob.dictionary];
+    clr = [session identityRating:identBob];
     XCTAssert( clr == PEP_rating_trusted);
 
     // Let' say we undo handshake
@@ -584,7 +584,7 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_reliable);
     
-    clr = [session identityRating:identBob.mutableDictionary];
+    clr = [session identityRating:identBob];
     XCTAssert( clr == PEP_rating_reliable);
     
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
@@ -594,7 +594,7 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
-    clr = [session identityRating:identBob.mutableDictionary];
+    clr = [session identityRating:identBob];
     XCTAssert( clr == PEP_rating_trusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
@@ -627,7 +627,7 @@ PEPInternalSession *session;
     clr = [session outgoingMessageColor:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
-    clr = [session identityRating:identJohn.mutableDictionary];
+    clr = [session identityRating:identJohn];
     XCTAssert( clr == PEP_rating_trusted);
 
     /* 
@@ -1456,9 +1456,8 @@ encmsg[@"outgoing"] = @NO;
 {
     [self pEpSetUp];
 
-    NSMutableDictionary *partner1Orig =
-    @{kPepAddress: @"partner1@dontcare.me",
-      kPepUsername: @"Partner 1"}.mutableCopy;
+    PEPIdentity *partner1Orig = [[PEPIdentity alloc] initWithAddress:@"partner1@dontcare.me"
+                                                            userName:@"Partner 1" isOwn:NO];
 
     NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);

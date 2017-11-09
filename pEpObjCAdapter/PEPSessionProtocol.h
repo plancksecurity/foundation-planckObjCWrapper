@@ -41,7 +41,7 @@ typedef NSArray<NSString *> PEPStringList;
 - (PEP_rating)outgoingMessageColor:(nonnull PEPDict *)msg;
 
 /** Determine the rating of an identity */
-- (PEP_rating)identityRating:(nonnull PEPDict *)identity;
+- (PEP_rating)identityRating:(nonnull PEPIdentity *)identity;
 
 /** Get trustwords for a fingerprint */
 - (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID

@@ -227,9 +227,9 @@
     return color;
 }
 
-- (PEP_rating)identityRating:(nonnull PEPDict *)identity
+- (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
 {
-    pEp_identity *ident = PEP_identityDictToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(identity);
     PEP_rating color = PEP_rating_undefined;
 
     @synchronized (self) {

@@ -53,7 +53,7 @@
     return [PEPSession outgoingMessageColor:msg];
 }
 
-- (PEP_rating)identityRating:(nonnull PEPDict *)identity
+- (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
 {
     return [PEPSession identityRating:identity];
 }
@@ -185,7 +185,7 @@
     return [session outgoingMessageColor:msg];
 }
 
-+ (PEP_rating)identityRating:(nonnull PEPDict *)identity
++ (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session identityRating:identity];
