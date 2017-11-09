@@ -397,7 +397,7 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 }
 
 - (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
-                                   receiverDict:(nonnull PEPDict *)receiverDict
+                                   receiver:(nonnull PEPIdentity *)receiver
                                       keysArray:(PEPStringList * _Nullable)keysArray
                                        language:(nullable NSString *)language
                                            full:(BOOL)full
@@ -413,10 +413,10 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
         keyList = PEP_arrayToStringlist(keysArray);
     }
 
-    pEp_identity *receiver = PEP_identityDictToStruct(receiverDict);
+    pEp_identity *receiverID = PEP_identityToStruct(receiver);
     PEP_STATUS status;
     @synchronized(self) {
-        status = get_message_trustwords(_session, theMessage, keyList, receiver,
+        status = get_message_trustwords(_session, theMessage, keyList, receiverID,
                                         [[language
                                           precomposedStringWithCanonicalMapping] UTF8String],
                                         &trustwords, full);

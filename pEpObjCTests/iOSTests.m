@@ -1521,7 +1521,7 @@ encmsg[@"outgoing"] = @NO;
     PEP_STATUS trustwordsStatus;
 
     NSString *trustwords = [session getTrustwordsMessageDict:decryptedDict
-                                                receiverDict:receiver.mutableDictionary
+                                                receiver:receiver
                                                    keysArray:keys language:@"en"
                                                         full:YES
                                              resultingStatus: &trustwordsStatus];
