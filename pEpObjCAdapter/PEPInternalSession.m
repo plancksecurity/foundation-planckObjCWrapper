@@ -179,14 +179,14 @@
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                        identity:(nonnull PEPDict *)identity
+                        identity:(nonnull PEPIdentity *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
     PEP_STATUS status;
     PEP_encrypt_flags_t flags = 0;
 
     message * _src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
-    pEp_identity *ident = PEP_identityDictToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(identity);
     message * _dst = NULL;
 
     @synchronized (self) {

@@ -42,7 +42,7 @@
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                        identity:(nonnull PEPDict *)identity
+                        identity:(nonnull PEPIdentity *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
     return [PEPSession encryptMessageDict:src identity:identity dest:dst];
@@ -172,7 +172,7 @@
 }
 
 + (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                        identity:(nonnull PEPDict *)identity
+                        identity:(nonnull PEPIdentity *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
     PEPInternalSession *session = [PEPSessionProvider session];

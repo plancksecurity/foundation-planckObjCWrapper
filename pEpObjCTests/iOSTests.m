@@ -1486,7 +1486,7 @@ encmsg[@"outgoing"] = @NO;
                                YES);
 
     NSMutableDictionary *encDict;
-    PEP_STATUS status = [session encryptMessageDict:mail identity:(PEPDict *) me dest:&encDict];
+    PEP_STATUS status = [session encryptMessageDict:mail identity:me dest:&encDict];
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encDict[kPepShortMessage], @"p≡p");
 

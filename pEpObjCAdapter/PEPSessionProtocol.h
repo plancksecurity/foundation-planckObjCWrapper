@@ -34,7 +34,7 @@ typedef NSArray<NSString *> PEPStringList;
 
 /** Encrypt a message for the given identity, which is usually a mySelf identity */
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                        identity:(nonnull PEPDict *)identity
+                        identity:(nonnull PEPIdentity *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst;
 
 /** Determine the status color of a message to be sent */
