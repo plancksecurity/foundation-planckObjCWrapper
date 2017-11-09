@@ -1074,7 +1074,7 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertNotNil(identMiroAtPetra.fingerPrint);
         
         // Trust to that identity
-        [session trustPersonalKey:(NSMutableDictionary *) identMiroAtPetra];
+        [session trustPersonalKey:identMiroAtPetra];
 
         secondclr = [session reEvaluateMessageRating:decmsg];
         XCTAssertEqual(secondclr, PEP_rating_trusted_and_anonymized, @"Not trusted");
@@ -1083,25 +1083,25 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
 
         // Undo trust
-        [session keyResetTrust:(NSMutableDictionary *) identMiroAtPetra];
+        [session keyResetTrust:identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Try compromized
-        [session keyMistrusted:(NSMutableDictionary *) identMiroAtPetra];
+        [session keyMistrusted:identMiroAtPetra];
 
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_mistrust, @"Not mistrusted");
         
         // Regret
-        [session keyResetTrust:(NSMutableDictionary *) identMiroAtPetra];
+        [session keyResetTrust:identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Trust again.
-        [session trustPersonalKey:(NSMutableDictionary *) identMiroAtPetra];
+        [session trustPersonalKey:identMiroAtPetra];
         
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
