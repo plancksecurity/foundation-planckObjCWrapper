@@ -1,5 +1,5 @@
 //
-//  MCOAbstractMessage+PEPMessage.h
+//  PEPMessageUtil.h
 //  pEpiOSAdapter
 //
 //  Created by Volker Birk on 09.07.15.

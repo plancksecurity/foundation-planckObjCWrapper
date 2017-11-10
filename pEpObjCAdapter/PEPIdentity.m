@@ -9,7 +9,7 @@
 #import "PEPIdentity.h"
 
 #import "pEpEngine.h"
-#import "PEPMessage.h"
+#import "PEPMessageUtil.h"
 
 @implementation PEPIdentity
 

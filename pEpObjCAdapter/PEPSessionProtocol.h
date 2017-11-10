@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPMessage.h"
+#import "PEPMessageUtil.h"
 
 typedef NSDictionary<NSString *, id> PEPDict;
 typedef NSMutableDictionary<NSString *, id> PEPMutableDict;

@@ -10,7 +10,7 @@
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "PEPMessage.h"
+#import "PEPMessageUtil.h"
 #include "keymanagement.h"
 #import "PEPCopyableThread.h"
 

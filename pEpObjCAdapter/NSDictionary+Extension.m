@@ -10,7 +10,7 @@
 
 #import "NSDictionary+Extension.h"
 
-#import "PEPMessage.h"
+#import "PEPMessageUtil.h"
 
 @implementation NSDictionary (Extension)
 

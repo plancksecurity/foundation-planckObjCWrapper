@@ -9,7 +9,7 @@
 #import "PEPInternalSession.h"
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "PEPMessage.h"
+#import "PEPMessageUtil.h"
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Extension.h"

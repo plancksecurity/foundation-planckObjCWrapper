@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "PEPSessionProtocol.h"
-#import "PEPMessage.h"
+#import "PEPMessageUtil.h"
 
 /**
  Fake session to handle to the client.

@@ -1,12 +1,12 @@
 //
-//  PEPMessage.m
+//  PEPMessageUtil.m
 //  pEpiOSAdapter
 //
 //  Created by Volker Birk on 09.07.15.
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-#import "PEPMessage.h"
+#import "PEPMessageUtil.h"
 #import "PEPIdentity.h"
 
 #pragma mark -- Constants
