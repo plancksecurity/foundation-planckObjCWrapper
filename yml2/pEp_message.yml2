@@ -1,0 +1,13 @@
+decl class +name;
+decl property(name, type, nullability, key);
+
+class PEPMessage {
+    property "messageID" type = "NSString *" key="id";
+    property "direction" type = "PEP_msg_direction" key="outgoing";
+    property "shortMessage" type = "NSString *" key="shortmsg";
+    property "longMessage" type = "NSString *" key="longmsg";
+    property "longMessageFormatted" type = "NSString *" key="longmsg_formatted";
+    property "attachments" type = "NSArray *" key="attachments";
+    property "sent" type = "NSDate *" key="sent";
+    property "received" type = "NSDate *" key="recv";
+}
