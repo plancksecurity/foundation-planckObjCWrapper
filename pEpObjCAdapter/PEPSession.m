@@ -123,7 +123,7 @@
 }
 
 - (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
-                                   receiver:(nonnull PEPDict *)receiver
+                                   receiver:(nonnull PEPIdentity *)receiver
                                       keysArray:(PEPStringList * _Nullable)keysArray
                                        language:(nullable NSString *)language
                                            full:(BOOL)full
