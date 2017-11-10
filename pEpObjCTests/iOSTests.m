@@ -13,6 +13,7 @@
 
 #import "NSDictionary+Extension.h"
 #import "PEPIdentity.h"
+#import "PEPMessage.h"
 
 // MARK: - Helpers
 
@@ -423,22 +424,18 @@ PEPInternalSession *session;
 
     [session mySelf:identAlice];
     
-    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       identAlice, kPepFrom,
-                                       [NSMutableArray arrayWithObjects:
-                                            [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                                 @"pEp Test Bob", kPepUsername,
-                                                 @"pep.test.bob@pep-project.org", kPepAddress,
-                                                 @"42", kPepUserID,
-                                                 nil],
-                                            nil], @"to",
-                                        @"All Green Test", @"shortmsg",
-                                        @"This is a text content", @"longmsg",
-                                        @YES, @"outgoing",
-                                       nil];
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = identAlice;
+    msg.to = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.bob@pep-project.org"
+                                             userID: @"42"
+                                           userName:@"pEp Test Bob"
+                                              isOwn:NO]];
+    msg.shortMessage = @"All Green Test";
+    msg.longMessage = @"This is a text content";
+    msg.direction = PEP_dir_outgoing;
 
     // Test with unknown Bob
-    PEP_rating clr = [session outgoingMessageColor:msg];
+    PEP_rating clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_unencrypted);
 
     // Now let see with bob's pubkey already known
@@ -455,7 +452,7 @@ PEPInternalSession *session;
     [session updateIdentity:identBob];
 
     // Should be yellow, since no handshake happened.
-    clr = [session outgoingMessageColor:msg];
+    clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_reliable);
 
     clr = [session identityRating:identBob];
@@ -465,7 +462,7 @@ PEPInternalSession *session;
     [session trustPersonalKey:identBob];
 
     // This time it should be green
-    clr = [session outgoingMessageColor:msg];
+    clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_trusted);
 
     clr = [session identityRating:identBob];
@@ -475,28 +472,28 @@ PEPInternalSession *session;
     [session keyResetTrust:identBob];
     
     // Yellow ?
-    clr = [session outgoingMessageColor:msg];
+    clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_reliable);
 
     // mistrust Bob
     [session keyMistrusted:identBob];
     
     // Gray == PEP_rating_unencrypted
-    clr = [session outgoingMessageColor:msg];
+    clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_unencrypted);
     
     // Forget
     [session keyResetTrust:identBob];
     
     // Back to yellow
-    clr = [session outgoingMessageColor:msg];
+    clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_reliable);
 
     // Trust again
     [session trustPersonalKey:identBob];
     
     // Back to green
-    clr = [session outgoingMessageColor:msg];
+    clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_trusted);
     
     // Now let see if it turns back yellow if we add an unconfirmed folk.
@@ -512,18 +509,15 @@ PEPInternalSession *session;
 
     [session updateIdentity:identJohn];
 
-    [msg setObject:[NSMutableArray arrayWithObjects:
-     [NSMutableDictionary dictionaryWithObjectsAndKeys:
-      @"pEp Test John", kPepUsername,
-      @"pep.test.john@pep-project.org", kPepAddress,
-      nil], nil] forKey:@"cc"];
+    msg.cc = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.john@pep-project.org"
+                                           userName:@"pEp Test John" isOwn:NO]];
 
     // Yellow ?
-    clr = [session outgoingMessageColor:msg];
+    clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_reliable);
 
     NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
+    PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&encmsg];
     
     XCTAssert(status == PEP_STATUS_OK);
     

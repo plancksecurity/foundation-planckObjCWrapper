@@ -85,6 +85,8 @@
                         language:identity.language];
 }
 
+// MARK: Faking directory
+
 - (PEPDict * _Nonnull)dictionary
 {
     // most adapter use should be ok.
@@ -245,6 +247,8 @@
                                     fingerPrint:self.fingerPrint
                                        commType:self.commType language:self.language];
 }
+
+// MARK: - Debug
 
 - (NSString *)description
 {

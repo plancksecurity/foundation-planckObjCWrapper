@@ -141,7 +141,7 @@
     [self removeEmptyArrayKey:kPepCC inDict:dest];
     [self removeEmptyArrayKey:kPepBCC inDict:dest];
 
-    return [NSDictionary dictionaryWithDictionary:dest];
+    return dest;
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
