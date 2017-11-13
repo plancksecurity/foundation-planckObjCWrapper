@@ -967,13 +967,14 @@ encmsg[@"outgoing"] = @NO;
         [session mySelf:identPetra];
         XCTAssert(identPetra.fingerPrint);
         
-        NSMutableDictionary *msg = @{ kPepFrom: identPetra,
-                                      kPepTo: @[identMiroAtPetra],
-                                      kPepShortMessage: @"Lets use pEp",
-                                      kPepLongMessage: @"Dear, I just installed pEp, you should do the same !",
-                                      kPepOutgoing: @YES }.mutableCopy;
-        
-        PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&petrasMsg];
+        PEPMessage *msg = [PEPMessage new];
+        msg.from = identPetra;
+        msg.to = @[identMiroAtPetra];
+        msg.shortMessage = @"Lets use pEp";
+        msg.longMessage = @"Dear, I just installed pEp, you should do the same !";
+        msg.direction = PEP_dir_outgoing;
+
+        PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&petrasMsg];
         XCTAssert(status == PEP_UNENCRYPTED);
     }
     
@@ -1002,15 +1003,15 @@ encmsg[@"outgoing"] = @NO;
         PEP_rating clr = [session decryptMessageDict:petrasMsg dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_unencrypted);
 
-        NSMutableDictionary *msg = @{ kPepFrom: identMiro,
-                                      kPepTo:
-                                          @[ @{ kPepUsername: @"Petra",
-                                                kPepAddress: @"pep.test.petra@pep-project.org" }],
-                                      kPepShortMessage: @"re:Lets use pEp",
-                                      kPepLongMessage: @"That was so easy !",
-                                      kPepOutgoing: @YES }.mutableCopy;
-        
-        PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&mirosMsg];
+        PEPMessage *msg = [PEPMessage new];
+        msg.from = identMiro;
+        msg.to = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.petra@pep-project.org"
+                                               userName:@"Petra" isOwn:NO]];
+        msg.shortMessage = @"Re: Lets use pEp";
+        msg.longMessage = @"That was so easy";
+        msg.direction = PEP_dir_outgoing;
+
+        PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&mirosMsg];
         XCTAssert(status == PEP_STATUS_OK);
     }
     
