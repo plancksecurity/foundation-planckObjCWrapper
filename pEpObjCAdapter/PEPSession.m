@@ -53,6 +53,11 @@
     return [PEPSession outgoingMessageColor:msg];
 }
 
+- (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message
+{
+    return [PEPSession outgoingColorForMessage:message];
+}
+
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
 {
     return [PEPSession identityRating:identity];
@@ -183,6 +188,12 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session outgoingMessageColor:msg];
+}
+
++ (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session outgoingColorForMessage:message];
 }
 
 + (PEP_rating)identityRating:(nonnull PEPIdentity *)identity

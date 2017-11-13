@@ -227,6 +227,11 @@
     return color;
 }
 
+- (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message
+{
+    return [self outgoingMessageColor:(NSDictionary *) message];
+}
+
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
 {
     pEp_identity *ident = PEP_identityToStruct(identity);

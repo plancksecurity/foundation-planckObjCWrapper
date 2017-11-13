@@ -435,7 +435,7 @@ PEPInternalSession *session;
     msg.direction = PEP_dir_outgoing;
 
     // Test with unknown Bob
-    PEP_rating clr = [session outgoingMessageColor:msg.dictionary];
+    PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
 
     // Now let see with bob's pubkey already known
@@ -452,7 +452,7 @@ PEPInternalSession *session;
     [session updateIdentity:identBob];
 
     // Should be yellow, since no handshake happened.
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
     clr = [session identityRating:identBob];
@@ -462,7 +462,7 @@ PEPInternalSession *session;
     [session trustPersonalKey:identBob];
 
     // This time it should be green
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_trusted);
 
     clr = [session identityRating:identBob];
@@ -472,28 +472,28 @@ PEPInternalSession *session;
     [session keyResetTrust:identBob];
     
     // Yellow ?
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
     // mistrust Bob
     [session keyMistrusted:identBob];
     
     // Gray == PEP_rating_unencrypted
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
     
     // Forget
     [session keyResetTrust:identBob];
     
     // Back to yellow
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
     // Trust again
     [session trustPersonalKey:identBob];
     
     // Back to green
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
     // Now let see if it turns back yellow if we add an unconfirmed folk.
@@ -513,7 +513,7 @@ PEPInternalSession *session;
                                            userName:@"pEp Test John" isOwn:NO]];
 
     // Yellow ?
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
     NSMutableDictionary *encmsg;
@@ -552,7 +552,7 @@ PEPInternalSession *session;
     msg.direction = PEP_dir_outgoing;
 
     // Test with unknown Bob
-    PEP_rating clr = [session outgoingMessageColor:msg.dictionary];
+    PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
     
     // Now let see with bob's pubkey already known
@@ -569,7 +569,7 @@ PEPInternalSession *session;
     [session updateIdentity:identBob];
     
     // Should be yellow, since no handshake happened.
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
     
     clr = [session identityRating:identBob];
@@ -579,7 +579,7 @@ PEPInternalSession *session;
     [session trustPersonalKey:identBob];
     
     // This time it should be green
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
     clr = [session identityRating:identBob];
@@ -602,13 +602,13 @@ PEPInternalSession *session;
                                               userID:@"101" userName:@"pEp Test John" isOwn:NO]];
 
     // Yellow ?
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
     
     [session trustPersonalKey:identJohn];
     
     // This time it should be green
-    clr = [session outgoingMessageColor:msg.dictionary];
+    clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_trusted);
     
     clr = [session identityRating:identJohn];
@@ -659,7 +659,7 @@ PEPInternalSession *session;
     msg.direction = PEP_dir_outgoing;
 
     // Gray == PEP_rating_unencrypted
-    PEP_rating clr = [session outgoingMessageColor:msg.dictionary];
+    PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
 
     NSMutableDictionary *encmsg;
@@ -773,7 +773,7 @@ PEPInternalSession *session;
     msg.direction = PEP_dir_outgoing;
 
     // Test with unknown Bob
-    PEP_rating clr = [session outgoingMessageColor:msg.dictionary];
+    PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_trusted_and_anonymized);
     
     NSMutableDictionary *encmsg;

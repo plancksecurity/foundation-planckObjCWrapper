@@ -16,6 +16,7 @@ typedef NSArray<NSString *> PEPStringList;
 
 @class PEPLanguage;
 @class PEPIdentity;
+@class PEPMessage;
 
 @protocol PEPSessionProtocol <NSObject>
 
@@ -39,6 +40,9 @@ typedef NSArray<NSString *> PEPStringList;
 
 /** Determine the status color of a message to be sent */
 - (PEP_rating)outgoingMessageColor:(nonnull PEPDict *)msg;
+
+/** Determine the status color of a message to be sent */
+- (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message;
 
 /** Determine the rating of an identity */
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity;
