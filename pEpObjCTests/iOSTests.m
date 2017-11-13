@@ -764,22 +764,20 @@ PEPInternalSession *session;
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     [session mySelf:identAlice];
-    
-    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                identAlice, kPepFrom,
-                                [NSMutableArray arrayWithObjects: identAlice,
-                                 nil], @"to",
-                                @"Mail to Myself", @"shortmsg",
-                                @"This is a text content", @"longmsg",
-                                @YES, @"outgoing",
-                                nil];
-    
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = identAlice;
+    msg.to = @[identAlice];
+    msg.shortMessage = @"Mail to Myself";
+    msg.longMessage = @"This is a text content";
+    msg.direction = PEP_dir_outgoing;
+
     // Test with unknown Bob
-    PEP_rating clr = [session outgoingMessageColor:msg];
+    PEP_rating clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_trusted_and_anonymized);
     
     NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
+    PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&encmsg];
     
     XCTAssert(status == PEP_STATUS_OK);
     
