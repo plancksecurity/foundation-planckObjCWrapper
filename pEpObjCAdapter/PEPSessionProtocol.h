@@ -39,9 +39,6 @@ typedef NSArray<NSString *> PEPStringList;
                             dest:(PEPDict * _Nullable * _Nullable)dst;
 
 /** Determine the status color of a message to be sent */
-- (PEP_rating)outgoingMessageColor:(nonnull PEPDict *)msg;
-
-/** Determine the status color of a message to be sent */
 - (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message;
 
 /** Determine the rating of an identity */
