@@ -1169,17 +1169,19 @@ encmsg[@"outgoing"] = @NO;
 
     [self pEpSetUp];
 
-    NSMutableDictionary *partner1Orig =
-    @{ kPepAddress: @"partner1@dontcare.me",
-       kPepUserID: @"partner1",
-       kPepFingerprint: @"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6",
-       kPepUsername: @"partner1" }.mutableCopy;
+    PEPIdentity *partner1Orig = [[PEPIdentity alloc]
+                                 initWithAddress:@"partner1@dontcare.me"
+                                 userID:@"partner1"
+                                 userName:@"partner1"
+                                 isOwn:NO
+                                 fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"];
 
-    NSMutableDictionary *meOrig =
-    @{ kPepAddress: @"me@dontcare.me",
-       kPepUserID: s_userID,
-       kPepFingerprint: @"CC1F73F6FB774BF08B197691E3BFBCA9248FC681",
-       kPepUsername: @"me" }.mutableCopy;
+    PEPIdentity *meOrig = [[PEPIdentity alloc]
+                           initWithAddress:@"me@dontcare.me"
+                           userID:s_userID
+                           userName:@"me"
+                           isOwn:YES
+                           fingerPrint:@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"];
 
     NSString *pubKeyPartner1 = [self loadStringByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);
@@ -1190,22 +1192,23 @@ encmsg[@"outgoing"] = @NO;
 
     __block NSMutableDictionary *pepEncMail;
     {
-        PEPIdentity *me = [[PEPIdentity alloc] initWithDictionary:meOrig];
+        PEPIdentity *me = [[PEPIdentity alloc] initWithIdentity:meOrig];
 
-        NSMutableDictionary *partner1 = partner1Orig.mutableCopy;
+        PEPIdentity *partner1 = [[PEPIdentity alloc] initWithIdentity:partner1Orig];
 
-        NSMutableDictionary *mail = @{ kPepFrom: me,
-                                       kPepOutgoing: @YES,
-                                       kPepLongMessage: theMessage,
-                                       kPepBCC: @[partner1] }.mutableCopy;
+        PEPMessage *mail = [PEPMessage new];
+        mail.from = me;
+        mail.longMessage = theMessage;
+        mail.bcc = @[partner1];
+        mail.direction = PEP_dir_outgoing;
 
         [session importKey:pubKeyMe];
         [session importKey:secKeyMe];
         [session mySelf:me];
         XCTAssertNotNil(me.fingerPrint);
-        XCTAssertEqualObjects(me.fingerPrint, meOrig[kPepFingerprint]);
+        XCTAssertEqualObjects(me.fingerPrint, meOrig.fingerPrint);
         [session importKey:pubKeyPartner1];
-        PEP_STATUS status = [session encryptMessageDict:mail extra:nil dest:&pepEncMail];
+        PEP_STATUS status = [session encryptMessageDict:mail.dictionary extra:nil dest:&pepEncMail];
         XCTAssertEqual(status, PEP_STATUS_OK);
     }
 
@@ -1213,7 +1216,7 @@ encmsg[@"outgoing"] = @NO;
 
     [self pEpSetUp];
     {
-        PEPIdentity *partner1 = [[PEPIdentity alloc] initWithDictionary:partner1Orig];
+        PEPIdentity *partner1 = [[PEPIdentity alloc] initWithIdentity:partner1Orig];
 
         NSString *privateKeyPartner1 = [self
                                         loadStringByName:@"partner1_F2D281C2789DD7F6_sec.asc"];
@@ -1225,9 +1228,9 @@ encmsg[@"outgoing"] = @NO;
 
         [session mySelf:partner1];
         XCTAssertNotNil(partner1.fingerPrint);
-        XCTAssertEqualObjects(partner1.fingerPrint, partner1Orig[kPepFingerprint]);
+        XCTAssertEqualObjects(partner1.fingerPrint, partner1Orig.fingerPrint);
 
-        PEPIdentity *me = [[PEPIdentity alloc] initWithDictionary:meOrig];
+        PEPIdentity *me = [[PEPIdentity alloc] initWithIdentity:meOrig];
         [session updateIdentity:me];
 
         NSMutableDictionary *pepDecryptedMail;
