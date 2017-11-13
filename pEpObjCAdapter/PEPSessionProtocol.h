@@ -33,6 +33,11 @@ typedef NSArray<NSString *> PEPStringList;
                            extra:(nullable PEPStringList *)keys
                             dest:(PEPDict * _Nullable * _Nullable)dst;
 
+/** Encrypt a message */
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                           extra:(nullable PEPStringList *)keys
+                            dest:(PEPMessage * _Nullable * _Nullable)dst;
+
 /** Encrypt a message for the given identity, which is usually a mySelf identity */
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                         identity:(nonnull PEPIdentity *)identity

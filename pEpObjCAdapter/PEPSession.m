@@ -41,6 +41,13 @@
     return [PEPSession encryptMessageDict:src extra:keys dest:dst];
 }
 
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                       extra:(nullable PEPStringList *)keys
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    return [PEPSession encryptMessage:src extra:keys dest:dst];
+}
+
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                         identity:(nonnull PEPIdentity *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst
@@ -169,6 +176,14 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session encryptMessageDict:src extra:keys dest:dst];
+}
+
++ (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                           extra:(nullable PEPStringList *)keys
+                            dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session encryptMessage:src extra:keys dest:dst];
 }
 
 + (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src

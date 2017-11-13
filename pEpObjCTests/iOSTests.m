@@ -516,8 +516,12 @@ PEPInternalSession *session;
     clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
 
-    NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&encmsg];
+    PEPMessage *encmsg;
+    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+
+    XCTAssertNotNil(encmsg);
+    XCTAssertEqualObjects(encmsg.shortMessage, @"p≡p");
+    XCTAssertTrue([encmsg.longMessage containsString:@"p≡p"]);
     
     XCTAssert(status == PEP_STATUS_OK);
     

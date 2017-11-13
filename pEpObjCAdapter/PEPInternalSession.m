@@ -15,6 +15,7 @@
 #import "NSArray+Extension.h"
 #import "NSDictionary+Extension.h"
 #import "PEPIdentity.h"
+#import "PEPMessage.h"
 
 @implementation PEPInternalSession
 
@@ -175,6 +176,22 @@
     free_message(_dst);
     free_stringlist(_keys);
 
+    return status;
+}
+
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                       extra:(nullable PEPStringList *)keys
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    PEPDict *target;
+    PEP_STATUS status = [self encryptMessageDict:(NSDictionary *) src
+                                           extra:keys
+                                            dest:&target];
+    if (dst) {
+        PEPMessage * encrypted = [PEPMessage new];
+        [encrypted setValuesForKeysWithDictionary:target];
+        *dst = encrypted;
+    }
     return status;
 }
 
