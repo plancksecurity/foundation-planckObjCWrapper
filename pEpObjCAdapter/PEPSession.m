@@ -55,6 +55,13 @@
     return [PEPSession encryptMessageDict:src identity:identity dest:dst];
 }
 
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                    identity:(nonnull PEPIdentity *)identity
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    return [PEPSession encryptMessage:src identity:identity dest:dst];
+}
+
 - (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message
 {
     return [PEPSession outgoingColorForMessage:message];
@@ -192,6 +199,14 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session encryptMessageDict:src identity:identity dest:dst];
+}
+
++ (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                    identity:(nonnull PEPIdentity *)identity
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session encryptMessage:src identity:identity dest:dst];
 }
 
 + (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message

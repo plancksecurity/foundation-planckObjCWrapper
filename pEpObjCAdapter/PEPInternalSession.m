@@ -230,6 +230,20 @@
     return status;
 }
 
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                    identity:(nonnull PEPIdentity *)identity
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    PEPDict *target;
+    PEP_STATUS status = [self encryptMessageDict:src.dictionary identity:identity dest:&target];
+    if (dst) {
+        PEPMessage * encrypted = [PEPMessage new];
+        [encrypted setValuesForKeysWithDictionary:target];
+        *dst = encrypted;
+    }
+    return status;
+}
+
 - (PEP_rating)outgoingMessageColor:(PEPDict *)msg
 {
     message * _msg = PEP_messageDictToStruct(msg);

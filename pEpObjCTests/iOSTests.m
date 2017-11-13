@@ -17,23 +17,16 @@
 
 // MARK: - Helpers
 
-PEPDict * _Nonnull mailFromTo(PEPDict * _Nullable fromDict, PEPDict * _Nullable toDict,
-                              NSString *shortMessage, NSString *longMessage, BOOL outgoing) {
-    PEPMutableDict *dict = [NSMutableDictionary dictionary];
-    if (fromDict) {
-        dict[kPepFrom] = fromDict;
-    }
-    if (toDict) {
-        dict[kPepTo] = @[toDict];
-    }
-    if (outgoing) {
-        dict[kPepOutgoing] = @YES;
-    } else {
-        dict[kPepOutgoing] = @NO;
-    }
-    dict[kPepShortMessage] = shortMessage;
-    dict[kPepLongMessage] = longMessage;
-    return [NSDictionary dictionaryWithDictionary:dict];
+PEPMessage * _Nonnull mailFromTo(PEPIdentity * _Nullable fromIdent,
+                                 PEPIdentity * _Nullable toIdent,
+                                 NSString *shortMessage, NSString *longMessage, BOOL outgoing) {
+    PEPMessage *message = [PEPMessage new];
+    message.from = fromIdent;
+    message.to = @[toIdent];
+    message.direction = outgoing ? PEP_dir_outgoing:PEP_dir_incoming;
+    message.shortMessage = shortMessage;
+    message.longMessage = longMessage;
+    return message;
 }
 
 /**
@@ -1457,16 +1450,16 @@ encmsg[@"outgoing"] = @NO;
     // Create draft
     NSString *shortMessage = @"Subject";
     NSString *longMessage = @"Oh, this is a long body text!";
-    PEPDict *mail = mailFromTo((PEPDict *) me, (PEPDict *) me, shortMessage, longMessage,
-                               YES);
+    PEPMessage *mail = mailFromTo(me, me, shortMessage, longMessage, YES);
 
-    NSMutableDictionary *encDict;
-    PEP_STATUS status = [session encryptMessageDict:mail identity:me dest:&encDict];
+    PEPMessage *encMessage;
+    PEP_STATUS status = [session encryptMessage:mail identity:me dest:&encMessage];
     XCTAssertEqual(status, 0);
-    XCTAssertEqualObjects(encDict[kPepShortMessage], @"p≡p");
+    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
     NSMutableDictionary *unencDict;
-    PEP_rating rating = [session decryptMessageDict:encDict dest:&unencDict keys:keys];
+    PEP_rating rating = [session decryptMessageDict:encMessage.dictionary
+                                               dest:&unencDict keys:keys];
     XCTAssertGreaterThanOrEqual(rating, PEP_rating_reliable);
 
     XCTAssertEqualObjects(unencDict[kPepShortMessage], shortMessage);
