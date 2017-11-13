@@ -987,7 +987,8 @@ encmsg[@"outgoing"] = @NO;
     NSMutableDictionary* mirosMsg;
     
     [self pEpSetUp];
-    
+
+    NSString *longMessage = @"That was so easy";
     {
         PEPIdentity *identMiro = [[PEPIdentity alloc]
                                   initWithAddress:@"pep.test.miro@pep-project.org"
@@ -1008,7 +1009,7 @@ encmsg[@"outgoing"] = @NO;
         msg.to = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.petra@pep-project.org"
                                                userName:@"Petra" isOwn:NO]];
         msg.shortMessage = @"Re: Lets use pEp";
-        msg.longMessage = @"That was so easy";
+        msg.longMessage = longMessage;
         msg.direction = PEP_dir_outgoing;
 
         PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&mirosMsg];
@@ -1073,7 +1074,7 @@ encmsg[@"outgoing"] = @NO;
         clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
 
-        XCTAssertEqualObjects(decmsg[@"longmsg"], @"That was so easy !");
+        XCTAssertEqualObjects(decmsg[@"longmsg"], longMessage);
     }
     [self pEpCleanUp:@"Petra"];
 }
