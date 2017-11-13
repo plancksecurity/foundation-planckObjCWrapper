@@ -649,28 +649,21 @@ PEPInternalSession *session;
 
     // mistrust Bob
     [session keyMistrusted:identBob];
-    
-    NSMutableDictionary *msg = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                identAlice, kPepFrom,
-                                [NSMutableArray arrayWithObjects:
-                                 [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"pEp Test Bob", kPepUsername,
-                                  @"pep.test.bob@pep-project.org", kPepAddress,
-                                  @"42", kPepUserID,
-                                  nil],
-                                 nil], @"to",
-                                @"All Green Test", @"shortmsg",
-                                @"This is a text content", @"longmsg",
-                                @YES, @"outgoing",
-                                nil];
-    
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = identAlice;
+    msg.to = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.bob@pep-project.org" userID:@"42"
+                                           userName:@"pEp Test Bob" isOwn:NO]];
+    msg.shortMessage = @"All Green Test";
+    msg.longMessage = @"This is a text content";
+    msg.direction = PEP_dir_outgoing;
 
     // Gray == PEP_rating_unencrypted
-    PEP_rating clr = [session outgoingMessageColor:msg];
+    PEP_rating clr = [session outgoingMessageColor:msg.dictionary];
     XCTAssert( clr == PEP_rating_unencrypted);
 
     NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessageDict:msg extra:@[] dest:&encmsg];
+    PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&encmsg];
     
     XCTAssert(status == PEP_UNENCRYPTED);
 

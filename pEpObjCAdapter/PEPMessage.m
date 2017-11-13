@@ -183,6 +183,8 @@
 {
     if ([@"bcc" isEqualToString:key]) {
         self.bcc = nil;
+    } else if ([@"cc" isEqualToString:key]) {
+        self.cc = nil;
     } else {
         NSAssert1(false, @"Unsupported key for removeObjectForKey: |%@|",  key);
     }
