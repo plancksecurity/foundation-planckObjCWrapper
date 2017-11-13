@@ -25,8 +25,14 @@
                             dest:(PEPDict * _Nullable * _Nullable)dst
                             keys:(PEPStringList * _Nullable * _Nullable)keys
 {
-    return [PEPSession decryptMessageDict:src dest:(PEPDict * _Nullable * _Nullable)dst
-                                         keys:(PEPStringList * _Nullable * _Nullable)keys];
+    return [PEPSession decryptMessageDict:src dest:dst keys:keys];
+}
+
+- (PEP_rating)decryptMessage:(nonnull PEPMessage *)src
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+                        keys:(PEPStringList * _Nullable * _Nullable)keys
+{
+    return [PEPSession decryptMessage:src dest:dst keys:keys];
 }
 
 - (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src
@@ -169,6 +175,14 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session decryptMessageDict:src dest:dst keys:keys];
+}
+
++ (PEP_rating)decryptMessage:(nonnull PEPMessage *)src
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+                        keys:(PEPStringList * _Nullable * _Nullable)keys
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session decryptMessage:src dest:dst keys:keys];
 }
 
 + (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src

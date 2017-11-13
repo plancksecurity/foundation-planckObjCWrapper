@@ -23,7 +23,12 @@ typedef NSArray<NSString *> PEPStringList;
 /** Decrypt a message */
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
                             dest:(PEPDict * _Nullable * _Nullable)dst
-                            keys:(PEPStringList * _Nullable * _Nullable)keys;
+                            keys:(PEPStringList * _Nullable * _Nullable)keys __deprecated;
+
+/** Decrypt a message */
+- (PEP_rating)decryptMessage:(nonnull PEPMessage *)src
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+                        keys:(PEPStringList * _Nullable * _Nullable)keys;
 
 /** Re-evaluate rating of decrypted message */
 - (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src;

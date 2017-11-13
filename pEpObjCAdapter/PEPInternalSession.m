@@ -113,6 +113,22 @@
     return color;
 }
 
+- (PEP_rating)decryptMessage:(nonnull PEPMessage *)src
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+                        keys:(PEPStringList * _Nullable * _Nullable)keys
+{
+    PEPDict *destDict;
+    PEP_rating rating = [self decryptMessageDict:(PEPDict *)src dest:&destDict keys:keys];
+
+    if (dst) {
+        PEPMessage *msg = [PEPMessage new];
+        [msg setValuesForKeysWithDictionary:destDict];
+        *dst = msg;
+    }
+
+    return rating;
+}
+
 - (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src
 {
     message * _src = PEP_messageDictToStruct(src);
