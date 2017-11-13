@@ -666,12 +666,12 @@ PEPInternalSession *session;
     PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_unencrypted);
 
-    NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&encmsg];
+    PEPMessage *encmsg;
+    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
     
     XCTAssert(status == PEP_UNENCRYPTED);
 
-    XCTAssert(![(NSString *)(encmsg[@"attachments"][0][@"mimeType"]) isEqualToString: @"application/pgp-encrypted"]);
+    XCTAssertNotEqualObjects(encmsg.attachments[0][@"mimeType"], @"application/pgp-encrypted");
 
     [self pEpCleanUp];
 }
@@ -780,15 +780,15 @@ PEPInternalSession *session;
     PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_trusted_and_anonymized);
     
-    NSMutableDictionary *encmsg;
-    PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&encmsg];
+    PEPMessage *encmsg;
+    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
     
     XCTAssert(status == PEP_STATUS_OK);
     
     NSArray* keys;
     NSMutableDictionary *decmsg;
 
-    clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+    clr = [session decryptMessageDict:encmsg.dictionary dest:&decmsg keys:&keys];
     XCTAssert( clr == PEP_rating_trusted_and_anonymized);
     
     [self pEpCleanUp];
@@ -953,7 +953,8 @@ encmsg[@"outgoing"] = @NO;
 
 - (void)testTwoNewUsers
 {
-    NSMutableDictionary* petrasMsg;
+    PEPMessage* petrasMsg;
+
     PEPIdentity *identMiroAtPetra = [[PEPIdentity alloc]
                                      initWithAddress:@"pep.test.miro@pep-project.org"
                                      userID:@"not_me"
@@ -978,7 +979,7 @@ encmsg[@"outgoing"] = @NO;
         msg.longMessage = @"Dear, I just installed pEp, you should do the same !";
         msg.direction = PEP_dir_outgoing;
 
-        PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&petrasMsg];
+        PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&petrasMsg];
         XCTAssert(status == PEP_UNENCRYPTED);
     }
     
@@ -986,9 +987,9 @@ encmsg[@"outgoing"] = @NO;
 
     // Meanwhile, Petra's outgoing message goes through the Internet,
     // and becomes incomming message to Miro
-    petrasMsg[kPepOutgoing] = @NO;
+    petrasMsg.direction = PEP_dir_incoming;
 
-    NSMutableDictionary* mirosMsg;
+    PEPMessage* mirosMsg;
     
     [self pEpSetUp];
 
@@ -1005,7 +1006,7 @@ encmsg[@"outgoing"] = @NO;
     
         NSMutableDictionary *decmsg;
         NSArray* keys;
-        PEP_rating clr = [session decryptMessageDict:petrasMsg dest:&decmsg keys:&keys];
+        PEP_rating clr = [session decryptMessageDict:petrasMsg.dictionary dest:&decmsg keys:&keys];
         XCTAssert(clr == PEP_rating_unencrypted);
 
         PEPMessage *msg = [PEPMessage new];
@@ -1016,23 +1017,23 @@ encmsg[@"outgoing"] = @NO;
         msg.longMessage = longMessage;
         msg.direction = PEP_dir_outgoing;
 
-        PEP_STATUS status = [session encryptMessageDict:msg.dictionary extra:@[] dest:&mirosMsg];
+        PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&mirosMsg];
         XCTAssert(status == PEP_STATUS_OK);
     }
     
     [self pEpCleanUp:@"Miro"];
     
     // Again, outgoing flips into incoming
-    mirosMsg[kPepOutgoing] = @NO;
-    
+    mirosMsg.direction = PEP_dir_incoming;
+
     [self pEpSetUp:@"Petra"];
     {
         NSMutableDictionary *decmsg;
         NSArray* keys;
-        NSMutableDictionary *encmsg = mirosMsg.mutableCopy;
-        [encmsg setObject:identMiroAtPetra.mutableCopy forKey:kPepFrom];
+        PEPMessage *encmsg = mirosMsg.mutableCopy;
+        encmsg.from = identMiroAtPetra.mutableCopy;
 
-        PEP_rating clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        PEP_rating clr = [session decryptMessageDict:encmsg.dictionary dest:&decmsg keys:&keys];
 
         XCTAssertEqual(clr, PEP_rating_reliable);
 
@@ -1051,31 +1052,31 @@ encmsg[@"outgoing"] = @NO;
         secondclr = [session reEvaluateMessageRating:decmsg];
         XCTAssertEqual(secondclr, PEP_rating_trusted_and_anonymized, @"Not trusted");
         
-        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg.dictionary dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
 
         // Undo trust
         [session keyResetTrust:identMiroAtPetra];
         
-        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg.dictionary dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Try compromized
         [session keyMistrusted:identMiroAtPetra];
 
-        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg.dictionary dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_mistrust, @"Not mistrusted");
         
         // Regret
         [session keyResetTrust:identMiroAtPetra];
         
-        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg.dictionary dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_reliable, @"keyResetTrust didn't work?");
         
         // Trust again.
         [session trustPersonalKey:identMiroAtPetra];
         
-        clr = [session decryptMessageDict:encmsg dest:&decmsg keys:&keys];
+        clr = [session decryptMessageDict:encmsg.dictionary dest:&decmsg keys:&keys];
         XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized, @"Not trusted");
 
         XCTAssertEqualObjects(decmsg[@"longmsg"], longMessage);
@@ -1195,7 +1196,7 @@ encmsg[@"outgoing"] = @NO;
     NSString *secKeyMe = [self loadStringByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
     XCTAssertNotNil(secKeyMe);
 
-    __block NSMutableDictionary *pepEncMail;
+    __block PEPMessage *pepEncMail;
     {
         PEPIdentity *me = [[PEPIdentity alloc] initWithIdentity:meOrig];
 
@@ -1213,7 +1214,7 @@ encmsg[@"outgoing"] = @NO;
         XCTAssertNotNil(me.fingerPrint);
         XCTAssertEqualObjects(me.fingerPrint, meOrig.fingerPrint);
         [session importKey:pubKeyPartner1];
-        PEP_STATUS status = [session encryptMessageDict:mail.dictionary extra:nil dest:&pepEncMail];
+        PEP_STATUS status = [session encryptMessage:mail extra:nil dest:&pepEncMail];
         XCTAssertEqual(status, PEP_STATUS_OK);
     }
 
@@ -1240,7 +1241,7 @@ encmsg[@"outgoing"] = @NO;
 
         NSMutableDictionary *pepDecryptedMail;
         NSArray *keys = [NSArray array];
-        [session decryptMessageDict:pepEncMail dest:&pepDecryptedMail keys:&keys];
+        [session decryptMessageDict:pepEncMail.dictionary dest:&pepDecryptedMail keys:&keys];
 
         // If this assert holds, then the engine ignores BCCs when encrypting
         XCTAssertEqualObjects(pepDecryptedMail[kPepLongMessage], theMessage);
@@ -1399,8 +1400,8 @@ encmsg[@"outgoing"] = @NO;
                                                        i + 1],
                                     kPepOutgoing: @YES};
 
-            NSDictionary *encryptedMail;
-            PEP_STATUS status = [someSession encryptMessageDict:mail extra:@[] dest:&encryptedMail];
+            PEPMessage *encryptedMail;
+            PEP_STATUS status = [someSession encryptMessage:mail extra:@[] dest:&encryptedMail];
             XCTAssertEqual(status, PEP_STATUS_OK);
 
             [sentMails addObject:encryptedMail];
