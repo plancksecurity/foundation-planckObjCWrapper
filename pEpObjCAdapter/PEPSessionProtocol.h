@@ -31,7 +31,10 @@ typedef NSArray<NSString *> PEPStringList;
                         keys:(PEPStringList * _Nullable * _Nullable)keys;
 
 /** Re-evaluate rating of decrypted message */
-- (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src;
+- (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src __deprecated;
+
+/** Re-evaluate rating of decrypted message */
+- (PEP_rating)reEvaluateRatingForMessage:(nonnull PEPMessage *)src;
 
 /** Encrypt a message */
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src

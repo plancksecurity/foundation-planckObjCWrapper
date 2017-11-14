@@ -1030,7 +1030,7 @@ encmsg[@"outgoing"] = @NO;
 
         XCTAssertEqual(clr, PEP_rating_reliable);
 
-        PEP_rating secondclr = [session reEvaluateMessageRating:decmsg.dictionary];
+        PEP_rating secondclr = [session reEvaluateRatingForMessage:decmsg];
 
         XCTAssertEqual(secondclr, PEP_rating_reliable);
 
@@ -1042,7 +1042,7 @@ encmsg[@"outgoing"] = @NO;
         // Trust to that identity
         [session trustPersonalKey:identMiroAtPetra];
 
-        secondclr = [session reEvaluateMessageRating:decmsg.dictionary];
+        secondclr = [session reEvaluateRatingForMessage:decmsg];
         XCTAssertEqual(secondclr, PEP_rating_trusted_and_anonymized, @"Not trusted");
         
         clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];

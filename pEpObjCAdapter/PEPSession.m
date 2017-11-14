@@ -40,6 +40,11 @@
     return [PEPSession reEvaluateMessageRating:src];
 }
 
+- (PEP_rating)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
+{
+    return [PEPSession reEvaluateRatingForMessage:src];
+}
+
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                            extra:(nullable PEPStringList *)keys
                             dest:(PEPDict * _Nullable * _Nullable)dst
@@ -189,6 +194,12 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session reEvaluateMessageRating:src];
+}
+
++ (PEP_rating)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session reEvaluateRatingForMessage:src];
 }
 
 + (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src

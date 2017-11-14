@@ -143,6 +143,11 @@
     return color;
 }
 
+- (PEP_rating)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
+{
+    return [self reEvaluateMessageRating:(PEPDict *) src];
+}
+
 - (void)removeEmptyArrayKey:(NSString *)key inDict:(PEPMutableDict *)dict
 {
     if ([[dict objectForKey:key] count] == 0) {
