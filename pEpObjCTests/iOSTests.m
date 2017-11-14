@@ -1490,11 +1490,11 @@ encmsg[@"outgoing"] = @NO;
     XCTAssertNotNil(receiver);
     PEP_STATUS trustwordsStatus;
 
-    NSString *trustwords = [session getTrustwordsMessageDict:decryptedDict.dictionary
-                                                receiver:receiver
-                                                   keysArray:keys language:@"en"
-                                                        full:YES
-                                             resultingStatus: &trustwordsStatus];
+    NSString *trustwords = [session getTrustwordsForMessage:decryptedDict
+                                                   receiver:receiver
+                                                  keysArray:keys language:@"en"
+                                                       full:YES
+                                            resultingStatus: &trustwordsStatus];
 
     // No trustwords with yourself
     XCTAssertEqual(trustwordsStatus, PEP_TRUSTWORDS_DUPLICATE_FPR);

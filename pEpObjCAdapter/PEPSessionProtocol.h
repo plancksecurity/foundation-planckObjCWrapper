@@ -140,7 +140,15 @@ typedef NSArray<NSString *> PEPStringList;
                                       keysArray:(PEPStringList * _Nullable)keysArray
                                        language:(nullable NSString *)language
                                            full:(BOOL)full
-                                resultingStatus:(PEP_STATUS * _Nullable)resultingStatus;
+                                resultingStatus:(PEP_STATUS * _Nullable)resultingStatus __deprecated;
+
+/** Determine trustwords between sender of a message and receiving identity */
+- (nullable NSString *)getTrustwordsForMessage:(nonnull PEPMessage *)message
+                                      receiver:(nonnull PEPIdentity *)receiver
+                                     keysArray:(PEPStringList * _Nullable)keysArray
+                                      language:(nullable NSString *)language
+                                          full:(BOOL)full
+                               resultingStatus:(PEP_STATUS * _Nullable)resultingStatus;
 
 /**
  @returns The list of supported languages for trustwords.

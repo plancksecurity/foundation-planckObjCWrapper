@@ -493,6 +493,17 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     return result;
 }
 
+- (nullable NSString *)getTrustwordsForMessage:(nonnull PEPMessage *)message
+                                      receiver:(nonnull PEPIdentity *)receiver
+                                     keysArray:(PEPStringList * _Nullable)keysArray
+                                      language:(nullable NSString *)language
+                                          full:(BOOL)full
+                               resultingStatus:(PEP_STATUS * _Nullable)resultingStatus;
+{
+    return [self getTrustwordsMessageDict:(PEPDict *) message receiver:receiver keysArray:keysArray
+                                 language:language full:full resultingStatus:resultingStatus];
+}
+
 - (NSArray<PEPLanguage *> * _Nonnull)languageList
 {
     char *chLangs;
