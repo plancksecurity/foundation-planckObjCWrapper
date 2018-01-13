@@ -168,6 +168,7 @@
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                            extra:(nullable NSArray *)keys
+                       encFormat:(PEP_enc_format)encFormat
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
     PEP_STATUS status;
@@ -178,7 +179,7 @@
     stringlist_t * _keys = PEP_arrayToStringlist(keys);
 
     @synchronized (self) {
-        status = encrypt_message(_session, _src, _keys, &_dst, PEP_enc_PGP_MIME, flags);
+        status = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
     }
 
     NSDictionary * dst_;
@@ -204,9 +205,18 @@
                        extra:(nullable PEPStringList *)keys
                         dest:(PEPMessage * _Nullable * _Nullable)dst
 {
+    return [self encryptMessage:src extra:keys encFormat:PEP_enc_PEP dest:dst];
+}
+
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                       extra:(nullable PEPStringList *)keys
+                   encFormat:(PEP_enc_format)encFormat
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
     PEPDict *target;
     PEP_STATUS status = [self encryptMessageDict:(NSDictionary *) src
                                            extra:keys
+                                       encFormat: encFormat
                                             dest:&target];
     if (dst) {
         PEPMessage * encrypted = [PEPMessage new];

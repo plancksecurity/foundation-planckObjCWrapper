@@ -47,9 +47,10 @@
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                            extra:(nullable PEPStringList *)keys
+                       encFormat:(PEP_enc_format)encFormat
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
-    return [PEPSession encryptMessageDict:src extra:keys dest:dst];
+    return [PEPSession encryptMessageDict:src extra:keys encFormat:encFormat dest:dst];
 }
 
 - (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
@@ -57,6 +58,14 @@
                         dest:(PEPMessage * _Nullable * _Nullable)dst
 {
     return [PEPSession encryptMessage:src extra:keys dest:dst];
+}
+
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                       extra:(nullable PEPStringList *)keys
+                   encFormat:(PEP_enc_format)encFormat
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    return [PEPSession encryptMessage:src extra:keys encFormat:encFormat dest:dst];
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
@@ -219,10 +228,11 @@
 
 + (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                            extra:(nullable PEPStringList *)keys
+                       encFormat:(PEP_enc_format)encFormat
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessageDict:src extra:keys dest:dst];
+    return [session encryptMessageDict:src extra:keys encFormat:encFormat dest:dst];
 }
 
 + (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
@@ -231,6 +241,15 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session encryptMessage:src extra:keys dest:dst];
+}
+
++ (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                       extra:(nullable PEPStringList *)keys
+                   encFormat:(PEP_enc_format)encFormat
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session encryptMessage:src extra:keys encFormat:encFormat dest:dst];
 }
 
 + (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
