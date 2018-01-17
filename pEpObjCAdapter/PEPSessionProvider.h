@@ -21,7 +21,7 @@
 /**
  Provides a PEPInternalSession intance.
 
- @return interna session instance suitable for the callers thread.
+ @return internal session instance suitable for the callers thread.
  */
 + (PEPInternalSession * _Nonnull)session;
 
