@@ -23,10 +23,6 @@
     [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
 }
 
-- (void)tearDown {
-    [super tearDown];
-}
-
 - (void)testSessionFinalization {
     PEPSession *session = [[PEPSession alloc] init];
     session = nil;
