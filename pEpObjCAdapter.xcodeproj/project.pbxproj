@@ -10,7 +10,7 @@
 		1508AEAF1F8792AC001D5230 /* PEPCopyableThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */; };
 		15206CAA1F8BA183003FF880 /* PEPSessionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CA91F8BA183003FF880 /* PEPSessionProvider.m */; };
 		15206CC71F8E078B003FF880 /* PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CC61F8E078B003FF880 /* PEPSession.m */; };
-		15DE372A200F5F7C007FBD94 /* PEPPEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DE3729200F5F7C007FBD94 /* PEPPEPSessionProviderTest.m */; };
+		15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
 		43209B3D1ECC2DA7007E7E2E /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */; };
 		43209B3E1ECC2DAB007E7E2E /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
 		43209B3F1ECC2DB0007E7E2E /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */; };
@@ -115,7 +115,7 @@
 		15206CA91F8BA183003FF880 /* PEPSessionProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProvider.m; sourceTree = "<group>"; };
 		15206CC51F8E078B003FF880 /* PEPSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSession.h; sourceTree = "<group>"; };
 		15206CC61F8E078B003FF880 /* PEPSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSession.m; sourceTree = "<group>"; };
-		15DE3729200F5F7C007FBD94 /* PEPPEPSessionProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPEPSessionProviderTest.m; sourceTree = "<group>"; };
+		15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProviderTest.m; sourceTree = "<group>"; };
 		352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FB0ABB1B57F97E00377032 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35FB0ABD1B57F99D00377032 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -194,6 +194,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15D3D762200F6C6A00A0DA20 /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TestUtils;
+			sourceTree = "<group>";
+		};
 		15DE372B200F5F93007FBD94 /* Recources */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,11 +299,12 @@
 		64415E181BE94FCB00F6CBB2 /* pEpObjCTests */ = {
 			isa = PBXGroup;
 			children = (
+				15D3D762200F6C6A00A0DA20 /* TestUtils */,
 				15DE372B200F5F93007FBD94 /* Recources */,
 				64415E191BE94FCB00F6CBB2 /* iOSTests.m */,
 				434226801D4F60000083ED79 /* PepTests.m */,
 				64415E1B1BE94FCB00F6CBB2 /* Info.plist */,
-				15DE3729200F5F7C007FBD94 /* PEPPEPSessionProviderTest.m */,
+				15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */,
 			);
 			path = pEpObjCTests;
 			sourceTree = "<group>";
@@ -459,7 +467,7 @@
 			files = (
 				64415E1A1BE94FCB00F6CBB2 /* iOSTests.m in Sources */,
 				434226811D4F60000083ED79 /* PepTests.m in Sources */,
-				15DE372A200F5F7C007FBD94 /* PEPPEPSessionProviderTest.m in Sources */,
+				15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
