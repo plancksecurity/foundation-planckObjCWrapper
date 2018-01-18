@@ -45,15 +45,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     }
     [self nullifySessionsOfFinishedThreads];
 
-    //    NSLog(@"#################\nnum sessions is now %lu", //BUFF: clean up
-//          (unsigned long)[self sessionForThreadDict].count + (s_sessionForMainThread ? 1 : 0));
-//    NSLog(@"Threads:");
-//    for (PEPCopyableThread *thread in dict.allKeys) {
-//        NSLog(@"%@", thread.description);
-//    }
-//    NSLog(@"Session for main thread: %@", s_sessionForMainThread);
-//    NSLog(@"##################################");
-
     [[self sessionForThreadLock] unlock];
 
     return session;
@@ -116,8 +107,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     }
     s_sessionForMainThread = nil;
     [dict removeAllObjects];
-//    NSLog(@"All sessions have been cleaned up. Session count is %lu",
-//          (unsigned long)dict.count + (s_sessionForMainThread ? 1 : 0));
 }
 
 /**

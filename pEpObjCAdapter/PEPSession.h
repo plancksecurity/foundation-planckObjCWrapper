@@ -15,7 +15,7 @@
  Fake session to handle to the client.
 
  Assures all calls are handled on the correct internal session for the thread it is called on.
- You can instatntiate and use this session how often and wherever you want. Also over multiple threads.
+ You can instantiate and use this session how often and wherever you want. Also over multiple threads.
 
  Note: You must call `cleanup()` once before your process gets terminated to be able to gracefully shutdown.
  It is the clients responsibility not to make any calls to PEPSession in between the last call

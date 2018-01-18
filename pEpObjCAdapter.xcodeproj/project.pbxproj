@@ -11,6 +11,8 @@
 		15206CAA1F8BA183003FF880 /* PEPSessionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CA91F8BA183003FF880 /* PEPSessionProvider.m */; };
 		15206CC71F8E078B003FF880 /* PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CC61F8E078B003FF880 /* PEPSession.m */; };
 		15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
+		15D3D77D2010DDC500A0DA20 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
+		15D3D7802010E20400A0DA20 /* PEPTestSyncDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77F2010E20400A0DA20 /* PEPTestSyncDelegate.m */; };
 		43209B3D1ECC2DA7007E7E2E /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */; };
 		43209B3E1ECC2DAB007E7E2E /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
 		43209B3F1ECC2DB0007E7E2E /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */; };
@@ -116,6 +118,10 @@
 		15206CC51F8E078B003FF880 /* PEPSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSession.h; sourceTree = "<group>"; };
 		15206CC61F8E078B003FF880 /* PEPSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSession.m; sourceTree = "<group>"; };
 		15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProviderTest.m; sourceTree = "<group>"; };
+		15D3D77B2010DDC500A0DA20 /* PEPTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTestUtils.h; sourceTree = "<group>"; };
+		15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPTestUtils.m; sourceTree = "<group>"; };
+		15D3D77E2010E20400A0DA20 /* PEPTestSyncDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPTestSyncDelegate.h; sourceTree = "<group>"; };
+		15D3D77F2010E20400A0DA20 /* PEPTestSyncDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPTestSyncDelegate.m; sourceTree = "<group>"; };
 		352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FB0ABB1B57F97E00377032 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35FB0ABD1B57F99D00377032 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -197,6 +203,10 @@
 		15D3D762200F6C6A00A0DA20 /* TestUtils */ = {
 			isa = PBXGroup;
 			children = (
+				15D3D77B2010DDC500A0DA20 /* PEPTestUtils.h */,
+				15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */,
+				15D3D77E2010E20400A0DA20 /* PEPTestSyncDelegate.h */,
+				15D3D77F2010E20400A0DA20 /* PEPTestSyncDelegate.m */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -454,9 +464,11 @@
 				43209B431ECC2DC0007E7E2E /* PEPInternalSession.m in Sources */,
 				43209B3F1ECC2DB0007E7E2E /* PEPLanguage.m in Sources */,
 				43209B401ECC2DB4007E7E2E /* PEPMessageUtil.m in Sources */,
+				15D3D77D2010DDC500A0DA20 /* PEPTestUtils.m in Sources */,
 				43209B3D1ECC2DA7007E7E2E /* NSArray+Extension.m in Sources */,
 				43209B3E1ECC2DAB007E7E2E /* PEPCSVScanner.m in Sources */,
 				43209B421ECC2DBC007E7E2E /* PEPQueue.m in Sources */,
+				15D3D7802010E20400A0DA20 /* PEPTestSyncDelegate.m in Sources */,
 				15206CC71F8E078B003FF880 /* PEPSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
