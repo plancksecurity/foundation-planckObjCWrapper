@@ -20,6 +20,8 @@ extern NSString * const ownUserId;
 
 + (void)importBundledKey:(NSString *)item;
 
++ (NSString *)loadResourceByName:(NSString *)name;
+
 + (NSString *)loadStringFromFileName:(NSString *)fileName;
 
 + (NSDictionary *)unarchiveDictionary:(NSString *)fileName;

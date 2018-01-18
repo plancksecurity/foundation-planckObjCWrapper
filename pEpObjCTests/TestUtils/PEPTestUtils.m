@@ -22,11 +22,10 @@ NSString * const ownUserId = @"pEp_own_userId";
 
 @implementation PEPTestUtils
 
-+ (void)importBundledKey:(NSString *)item;
++ (NSString *)loadResourceByName:(NSString *)name;
 {
-    PEPSession *session = [PEPSession new];
-    NSString *txtFileContents = [self loadStringFromFileName:item];
-    [session importKey:txtFileContents];
+    NSURL *url = [[NSBundle bundleForClass:[self class]] URLForResource:name withExtension:nil];
+    return [NSString stringWithContentsOfURL:url usedEncoding:nil error:nil];
 }
 
 + (NSString *)loadStringFromFileName:(NSString *)fileName;
@@ -47,6 +46,13 @@ NSString * const ownUserId = @"pEp_own_userId";
     NSDictionary *dict = [unarchiver decodeObject];
     [unarchiver finishDecoding];
     return dict;
+}
+
++ (void)importBundledKey:(NSString *)item;
+{
+    PEPSession *session = [PEPSession new];
+    NSString *txtFileContents = [self loadStringFromFileName:item];
+    [session importKey:txtFileContents];
 }
 
 + (PEPMessage * _Nonnull) mailFrom:(PEPIdentity * _Nullable) fromIdent
