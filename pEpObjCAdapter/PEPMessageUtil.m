@@ -242,22 +242,22 @@ pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
 {
     pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
 
-    ident->address = strdup([[identity.address
-                              precomposedStringWithCanonicalMapping] UTF8String]);
+    ident->address = new_string([[identity.address
+                                  precomposedStringWithCanonicalMapping] UTF8String], 0);
 
     if (identity.userID) {
-        ident->user_id = strdup([[identity.userID
-                                  precomposedStringWithCanonicalMapping] UTF8String]);
+        ident->user_id = new_string([[identity.userID
+                                      precomposedStringWithCanonicalMapping] UTF8String], 0);
     }
 
     if (identity.userName) {
-        ident->username = strdup([[identity.userName
-                                   precomposedStringWithCanonicalMapping] UTF8String]);
+        ident->username = new_string([[identity.userName
+                                       precomposedStringWithCanonicalMapping] UTF8String], 0);
     }
 
     if (identity.fingerPrint) {
-        ident->fpr = strdup([[identity.fingerPrint
-                              precomposedStringWithCanonicalMapping] UTF8String]);
+        ident->fpr = new_string([[identity.fingerPrint
+                                  precomposedStringWithCanonicalMapping] UTF8String], 0);
     }
 
     if (identity.language) {
