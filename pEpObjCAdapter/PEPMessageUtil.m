@@ -433,12 +433,12 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         return NULL;
     
     if ([dict objectForKey:@"id"])
-        msg->id = strdup([[[dict objectForKey:@"id"] precomposedStringWithCanonicalMapping]
-                          UTF8String]);
+        msg->id = new_string([[[dict objectForKey:@"id"] precomposedStringWithCanonicalMapping]
+                              UTF8String], 0);
     
     if ([dict objectForKey:@"shortmsg"])
-        msg->shortmsg = strdup([[[dict objectForKey:@"shortmsg"]
-                                 precomposedStringWithCanonicalMapping] UTF8String]);
+        msg->shortmsg = new_string([[[dict objectForKey:@"shortmsg"]
+                                     precomposedStringWithCanonicalMapping] UTF8String], 0);
 
     if ([dict objectForKey:@"sent"])
         msg->sent = new_timestamp([[dict objectForKey:@"sent"] timeIntervalSince1970]);
@@ -477,12 +477,13 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         msg->opt_fields = PEP_arrayToStringPairlist([dict objectForKey:@"opt_fields"]);
     
     if ([dict objectForKey:@"longmsg"])
-        msg->longmsg = strdup([[[dict objectForKey:@"longmsg"]
-             precomposedStringWithCanonicalMapping] UTF8String]);
+        msg->longmsg = new_string([[[dict objectForKey:@"longmsg"]
+                                    precomposedStringWithCanonicalMapping] UTF8String], 0);
     
     if ([dict objectForKey:@"longmsg_formatted"])
-        msg->longmsg_formatted = strdup([[[dict objectForKey:@"longmsg_formatted"]
-             precomposedStringWithCanonicalMapping] UTF8String]);
+        msg->longmsg_formatted = new_string([[[dict objectForKey:@"longmsg_formatted"]
+                                              precomposedStringWithCanonicalMapping]
+                                             UTF8String], 0);
 
     if ([dict objectForKey:@"attachments"])
         msg->attachments = PEP_arrayToBloblist([dict objectForKey:@"attachments"]);
