@@ -156,10 +156,14 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
 
     bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL);
     bloblist_t *bl =_bl;
+
+    // free() might be the default, but let's be explicit
+    bl->release_value = (void (*) (char *)) free;
+
     for (NSMutableDictionary *blob in array) {
         NSData *data = blob[@"data"];
         size_t size = [data length];
-        
+
         char *buf = malloc(size);
         assert(buf);
         memcpy(buf, [data bytes], size);
