@@ -240,25 +240,14 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
 
 pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
 {
-    pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
-
-    ident->address = new_string([[identity.address
-                                  precomposedStringWithCanonicalMapping] UTF8String], 0);
-
-    if (identity.userID) {
-        ident->user_id = new_string([[identity.userID
-                                      precomposedStringWithCanonicalMapping] UTF8String], 0);
-    }
-
-    if (identity.userName) {
-        ident->username = new_string([[identity.userName
-                                       precomposedStringWithCanonicalMapping] UTF8String], 0);
-    }
-
-    if (identity.fingerPrint) {
-        ident->fpr = new_string([[identity.fingerPrint
-                                  precomposedStringWithCanonicalMapping] UTF8String], 0);
-    }
+    pEp_identity *ident = new_identity([[identity.address
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[identity.fingerPrint
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[identity.userID
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[identity.userName
+                                         precomposedStringWithCanonicalMapping] UTF8String]);
 
     if (identity.language) {
         strncpy(ident->lang, [[identity.language
