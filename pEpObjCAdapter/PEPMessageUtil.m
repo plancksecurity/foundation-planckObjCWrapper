@@ -180,30 +180,19 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
 
 pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
 {
-    pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
+    pEp_identity *ident = new_identity([[[dict objectForKey:kPepAddress]
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[[dict objectForKey:kPepFingerprint]
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[[dict objectForKey:kPepUserID]
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[[dict objectForKey:kPepUsername]
+                                         precomposedStringWithCanonicalMapping] UTF8String]);
 
     if (dict && ident) {
-        if ([dict objectForKey:kPepAddress])
-            ident->address = new_string([[[dict objectForKey:kPepAddress]
-                                          precomposedStringWithCanonicalMapping] UTF8String], 0);
-
-        if ([dict objectForKey:kPepFingerprint]) {
-            ident->fpr = new_string([[[dict objectForKey:kPepFingerprint]
-                                      precomposedStringWithCanonicalMapping] UTF8String], 0);
-        }
-
-        if ([dict objectForKey:kPepUserID]) {
-            ident->user_id = new_string([[[dict objectForKey:kPepUserID]
-                                          precomposedStringWithCanonicalMapping] UTF8String], 0);
-        }
-
-        if ([dict objectForKey:kPepUsername])
-            ident->username = new_string([[[dict objectForKey:kPepUsername]
-                                           precomposedStringWithCanonicalMapping] UTF8String], 0);
-
         if ([dict objectForKey:@"lang"])
-            ident->fpr = new_string([[[dict objectForKey:@"lang"]
-                                      precomposedStringWithCanonicalMapping] UTF8String], 0);
+            strncpy(ident->lang, [[[dict objectForKey:@"lang"]
+                                   precomposedStringWithCanonicalMapping] UTF8String], 2);
 
         if ([dict objectForKey:kPepCommType])
             ident->comm_type = [[dict objectForKey:kPepCommType] intValue];
