@@ -17,6 +17,8 @@ NSString *const kPepAddress = @"address";
 
 NSString *const kPepUserID = @"user_id";
 
+NSString *const kPepIsOwn = @"isOwn";
+
 NSString *const kPepFingerprint = @"fpr";
 
 NSString *const kPepFrom = @"from";
@@ -179,6 +181,12 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
         if ([dict objectForKey:kPepAddress])
             ident->address = strdup([[[dict objectForKey:kPepAddress]
                                       precomposedStringWithCanonicalMapping] UTF8String]);
+
+        if ([[dict objectForKey:kPepIsOwn] boolValue]) {
+            ident->me = true;
+        } else {
+            ident->me = false;
+        }
 
         if ([dict objectForKey:kPepFingerprint]) {
             ident->fpr = strdup([[[dict objectForKey:kPepFingerprint]
