@@ -182,10 +182,8 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
             ident->address = strdup([[[dict objectForKey:kPepAddress]
                                       precomposedStringWithCanonicalMapping] UTF8String]);
 
-        if ([[dict objectForKey:kPepIsOwn] boolValue]) {
-            ident->me = true;
-        } else {
-            ident->me = false;
+        if ([dict objectForKey:kPepIsOwn]) {
+            ident->me = ((NSNumber*)[dict objectForKey:kPepIsOwn]).boolValue;
         }
 
         if ([dict objectForKey:kPepFingerprint]) {
@@ -221,7 +219,7 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
         if (ident->address && ident->address[0])
             [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:kPepAddress];
 
-        [dict setObject:[NSNumber numberWithInt: ident->me] forKey:kPepIsOwn];
+        [dict setObject:[NSNumber numberWithBool: ident->me] forKey:kPepIsOwn];
         
         if (ident->fpr && ident->fpr[0])
             [dict setObject:[NSString stringWithUTF8String:ident->fpr] forKey:kPepFingerprint];
@@ -236,7 +234,6 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
             [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
         
         [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:kPepCommType];
-        
     }
     return dict;
 }
