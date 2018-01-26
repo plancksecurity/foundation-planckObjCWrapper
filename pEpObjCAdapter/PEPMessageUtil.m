@@ -250,11 +250,7 @@ pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
                                   precomposedStringWithCanonicalMapping] UTF8String]);
     }
 
-    if (identity.isOwn) {
-        ident->me = true;
-    } else {
-        ident->me = false;
-    }
+    ident->me = identity.isOwn;
 
     if (identity.userName) {
         ident->username = strdup([[identity.userName
