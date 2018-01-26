@@ -38,10 +38,16 @@ extern NSString *const _Nonnull kPepAddress;
 
 /**
  A user ID, used by pEp to map multiple identities to a single user.
- This should be a stable ID (e.g. derived from the address book if possible).
+ This should be a stable ID.
  pEp identities set up with mySelf() get a special user ID.
  */
 extern NSString *const _Nonnull kPepUserID;
+
+/**
+ Dict key for value isOwn/me.
+ isOwn indicates the identity is representing me. 
+ */
+extern NSString *const _Nonnull kPepIsOwn;
 
 /** The fingerprint for the key for this contact. */
 extern NSString *const _Nonnull kPepFingerprint;

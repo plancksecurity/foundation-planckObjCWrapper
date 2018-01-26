@@ -17,6 +17,8 @@ NSString *const kPepAddress = @"address";
 
 NSString *const kPepUserID = @"user_id";
 
+NSString *const kPepIsOwn = @"isOwn";
+
 NSString *const kPepFingerprint = @"fpr";
 
 NSString *const kPepFrom = @"from";
@@ -180,6 +182,10 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
             ident->address = strdup([[[dict objectForKey:kPepAddress]
                                       precomposedStringWithCanonicalMapping] UTF8String]);
 
+        if ([dict objectForKey:kPepIsOwn]) {
+            ident->me = ((NSNumber*)[dict objectForKey:kPepIsOwn]).boolValue;
+        }
+
         if ([dict objectForKey:kPepFingerprint]) {
             ident->fpr = strdup([[[dict objectForKey:kPepFingerprint]
                                   precomposedStringWithCanonicalMapping] UTF8String]);
@@ -212,6 +218,8 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
     if (ident) {
         if (ident->address && ident->address[0])
             [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:kPepAddress];
+
+        [dict setObject:[NSNumber numberWithBool: ident->me] forKey:kPepIsOwn];
         
         if (ident->fpr && ident->fpr[0])
             [dict setObject:[NSString stringWithUTF8String:ident->fpr] forKey:kPepFingerprint];
@@ -226,7 +234,6 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
             [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
         
         [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:kPepCommType];
-        
     }
     return dict;
 }
@@ -241,6 +248,12 @@ pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
     if (identity.userID) {
         ident->user_id = strdup([[identity.userID
                                   precomposedStringWithCanonicalMapping] UTF8String]);
+    }
+
+    if (identity.isOwn) {
+        ident->me = true;
+    } else {
+        ident->me = false;
     }
 
     if (identity.userName) {

@@ -13,7 +13,6 @@
 #import "PEPLanguage.h"
 
 @interface PepTests : XCTestCase
-
 @end
 
 @implementation PepTests
