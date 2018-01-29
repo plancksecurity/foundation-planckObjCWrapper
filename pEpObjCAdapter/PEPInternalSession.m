@@ -340,8 +340,6 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 - (void)mySelf:(PEPIdentity *)identity
 {
     NSString *userID = identity.userID;
-    identity.userID = nil;
-
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {

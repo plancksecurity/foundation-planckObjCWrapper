@@ -66,7 +66,11 @@ typedef NSArray<NSString *> PEPStringList;
 /** Determine the status color of a message to be sent */
 - (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message;
 
-/** Determine the rating of an identity */
+/**
+ Determine the rating of an identity.
+ The rating is the rating a _message_ would have, if it is sent to this (and only this) identity.
+ It is *not* a rating of the identity. In fact, there is no rating for identities.
+ */
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity;
 
 /** Get trustwords for a fingerprint */
@@ -82,7 +86,8 @@ typedef NSArray<NSString *> PEPStringList;
 
  @"username": real name or nick name (if pseudonymous) of identity
  @"address": URI or SMTP address
- @"user_id": persistent unique ID for identity
+ @"user_id": persistent unique ID for the *user* that belongs to the identity.
+                A user can have multiple identities which all of them MUST use the same user_id.
  @"lang": preferred languageID for communication with this ID (default: @"en")
  @"fpr": fingerprint of key to use for communication with this ID
  @"comm_type": communication type code (usually not needed)
