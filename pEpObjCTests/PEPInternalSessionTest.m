@@ -204,13 +204,15 @@
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
 
+    NSString *myFpr = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:ownUserId
                                userName:@"pEp Test Alice"
                                isOwn:YES
-                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                               fingerPrint:myFpr];
     [self.session mySelf:identAlice];
+    XCTAssertEqualObjects(identAlice.fingerPrint, myFpr);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
