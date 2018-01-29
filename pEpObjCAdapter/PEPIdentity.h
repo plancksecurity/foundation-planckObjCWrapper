@@ -71,10 +71,6 @@
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                               userName:(NSString * _Nullable)userName
-                                  isOwn:(BOOL)isOwn;
-
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
 
 - (nonnull instancetype)initWithDictionary:(NSDictionary * _Nonnull)dictionary;

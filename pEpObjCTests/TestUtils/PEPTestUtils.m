@@ -22,6 +22,22 @@ NSString * const ownUserId = @"pEp_own_userId";
 
 @implementation PEPTestUtils
 
++ (PEPIdentity *)foreignPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;
+{
+    return [[PEPIdentity alloc] initWithAddress:address
+                                         userID:@"UNIT-TEST-USER-ID-FOREIGN-IDENTITY"
+                                       userName:username
+                                          isOwn:NO fingerPrint:nil];
+}
+
++ (PEPIdentity *)ownPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;
+{
+    return [[PEPIdentity alloc] initWithAddress:address
+                                         userID:ownUserId
+                                       userName:username
+                                          isOwn:YES fingerPrint:nil];
+}
+
 + (NSString *)loadResourceByName:(NSString *)name;
 {
     NSURL *url = [[NSBundle bundleForClass:[self class]] URLForResource:name withExtension:nil];

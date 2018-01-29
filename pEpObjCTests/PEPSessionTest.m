@@ -123,10 +123,8 @@
         XCTAssertEqualObjects(identMe2.fingerPrint, identMe.fingerPrint);
 
         // Now pretend the app only knows kPepUsername and kPepAddress
-        PEPIdentity *identMe3 = [[PEPIdentity alloc]
-                                 initWithAddress:identMe.address
-                                 userName:identMe.userName
-                                 isOwn:NO];
+        PEPIdentity *identMe3 = [PEPTestUtils foreignPepIdentityWithAddress:identMe.address
+                                                                   userName:identMe.userName];
         [session2 mySelf:identMe3];
         XCTAssertNotNil(identMe3.fingerPrint);
         XCTAssertFalse([identMe3 containsPGPCommType]);
@@ -245,9 +243,8 @@
 
     [session updateIdentity:identJohn];
 
-    msg.cc = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.john@pep-project.org"
-                                           userName:@"pEp Test John" isOwn:NO]];
-
+    msg.cc = @[[PEPTestUtils foreignPepIdentityWithAddress:@"pep.test.john@pep-project.org"
+                                                  userName:@"pEp Test John"]];
     // Yellow ?
     clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
@@ -556,8 +553,8 @@
 {
     PEPSession *session = [PEPSession new];
 
-    PEPIdentity *partner1Orig = [[PEPIdentity alloc] initWithAddress:@"partner1@dontcare.me"
-                                                            userName:@"Partner 1" isOwn:NO];
+    PEPIdentity *partner1Orig = [PEPTestUtils foreignPepIdentityWithAddress:@"partner1@dontcare.me"
+                                                                   userName:@"Partner 1"];
     NSString *pubKeyPartner1 = [PEPTestUtils loadResourceByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);
     [session importKey:pubKeyPartner1];
@@ -630,9 +627,9 @@
 - (PEPMessage *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
     PEPSession *session = [PEPSession new];
-    PEPIdentity *me = [[PEPIdentity alloc]
-                       initWithAddress:@"me@peptest.ch" userName:@"userName"
-                       isOwn:YES];
+    
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
     [session mySelf:me];
     XCTAssertNotNil(me.fingerPrint);
 
