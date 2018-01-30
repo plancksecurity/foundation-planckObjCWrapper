@@ -179,10 +179,8 @@
         XCTAssertEqualObjects(identMe2.fingerPrint, identMe.fingerPrint);
 
         // Now pretend the app only knows kPepUsername and kPepAddress
-        PEPIdentity *identMe3 = [[PEPIdentity alloc]
-                                 initWithAddress:identMe.address
-                                 userName:identMe.userName
-                                 isOwn:NO];
+        PEPIdentity *identMe3 = [PEPTestUtils foreignPepIdentityWithAddress:identMe.address
+                                                                   userName:identMe.userName];
         [session2 mySelf:identMe3];
         XCTAssertNotNil(identMe3.fingerPrint);
         XCTAssertFalse([identMe3 containsPGPCommType]);
@@ -206,13 +204,15 @@
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
 
+    NSString *myFpr = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:ownUserId
                                userName:@"pEp Test Alice"
                                isOwn:YES
-                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                               fingerPrint:myFpr];
     [self.session mySelf:identAlice];
+    XCTAssertEqualObjects(identAlice.fingerPrint, myFpr);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
@@ -299,9 +299,8 @@
 
     [self.session updateIdentity:identJohn];
 
-    msg.cc = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.john@pep-project.org"
-                                           userName:@"pEp Test John" isOwn:NO]];
-
+    msg.cc = @[[PEPTestUtils foreignPepIdentityWithAddress:@"pep.test.john@pep-project.org"
+                                                  userName:@"pEp Test John"]];
     // Yellow ?
     clr = [self.session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_reliable);
@@ -735,9 +734,8 @@
 {
     [self pEpSetUp];
 
-    PEPIdentity *partner1Orig = [[PEPIdentity alloc] initWithAddress:@"partner1@dontcare.me"
-                                                            userName:@"Partner 1" isOwn:NO];
-
+    PEPIdentity *partner1Orig = [PEPTestUtils foreignPepIdentityWithAddress:@"partner1@dontcare.me"
+                                                                   userName:@"Partner 1"];
     NSString *pubKeyPartner1 = [PEPTestUtils loadResourceByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);
     [self.session importKey:pubKeyPartner1];
@@ -825,9 +823,8 @@
 - (PEPMessage *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
     PEPSession *session = [PEPSession new];
-    PEPIdentity *me = [[PEPIdentity alloc]
-                       initWithAddress:@"me@peptest.ch" userName:@"userName"
-                       isOwn:YES];
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
     [session mySelf:me];
     XCTAssertNotNil(me.fingerPrint);
 

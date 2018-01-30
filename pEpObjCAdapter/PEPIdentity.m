@@ -52,14 +52,6 @@
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                               userName:(NSString * _Nullable)userName
-                                  isOwn:(BOOL)isOwn
-{
-    return [self initWithAddress:address userID:nil userName:userName
-                           isOwn:isOwn fingerPrint:nil commType:PEP_ct_unknown language:nil];
-}
-
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
 {
     return [self initWithAddress:address userID:nil userName:nil isOwn:NO fingerPrint:nil
                         commType:PEP_ct_unknown language:nil];

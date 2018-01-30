@@ -18,6 +18,10 @@ extern NSString * const ownUserId;
 
 @interface PEPTestUtils : NSObject
 
++ (PEPIdentity *)foreignPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;
+
++ (PEPIdentity *)ownPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;
+
 + (void)importBundledKey:(NSString *)item;
 
 + (NSString *)loadResourceByName:(NSString *)name;
