@@ -7,7 +7,10 @@
 //
 
 #import "PEPMessageUtil.h"
+
 #import "PEPIdentity.h"
+
+#import "pEp_string.h"
 
 #pragma mark -- Constants
 
@@ -158,10 +161,14 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
 
     bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL);
     bloblist_t *bl =_bl;
+
+    // free() might be the default, but let's be explicit
+    bl->release_value = (void (*) (char *)) free;
+
     for (NSMutableDictionary *blob in array) {
         NSData *data = blob[@"data"];
         size_t size = [data length];
-        
+
         char *buf = malloc(size);
         assert(buf);
         memcpy(buf, [data bytes], size);
@@ -175,34 +182,22 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
 
 pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
 {
-    pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
+    pEp_identity *ident = new_identity([[[dict objectForKey:kPepAddress]
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[[dict objectForKey:kPepFingerprint]
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[[dict objectForKey:kPepUserID]
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[[dict objectForKey:kPepUsername]
+                                         precomposedStringWithCanonicalMapping] UTF8String]);
+    if ([dict objectForKey:kPepIsOwn]) {
+        ident->me = ((NSNumber*)[dict objectForKey:kPepIsOwn]).boolValue;
+    }
 
     if (dict && ident) {
-        if ([dict objectForKey:kPepAddress])
-            ident->address = strdup([[[dict objectForKey:kPepAddress]
-                                      precomposedStringWithCanonicalMapping] UTF8String]);
-
-        if ([dict objectForKey:kPepIsOwn]) {
-            ident->me = ((NSNumber*)[dict objectForKey:kPepIsOwn]).boolValue;
-        }
-
-        if ([dict objectForKey:kPepFingerprint]) {
-            ident->fpr = strdup([[[dict objectForKey:kPepFingerprint]
-                                  precomposedStringWithCanonicalMapping] UTF8String]);
-        }
-
-        if ([dict objectForKey:kPepUserID]) {
-            ident->user_id = strdup([[[dict objectForKey:kPepUserID]
-                                      precomposedStringWithCanonicalMapping] UTF8String]);
-        }
-
-        if ([dict objectForKey:kPepUsername])
-            ident->username = strdup([[[dict objectForKey:kPepUsername]
-                                       precomposedStringWithCanonicalMapping] UTF8String]);
-
         if ([dict objectForKey:@"lang"])
-            strncpy(ident->fpr, [[[dict objectForKey:@"lang"]
-                                  precomposedStringWithCanonicalMapping] UTF8String], 2);
+            strncpy(ident->lang, [[[dict objectForKey:@"lang"]
+                                   precomposedStringWithCanonicalMapping] UTF8String], 2);
 
         if ([dict objectForKey:kPepCommType])
             ident->comm_type = [[dict objectForKey:kPepCommType] intValue];
@@ -240,27 +235,16 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
 
 pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
 {
-    pEp_identity *ident = new_identity(NULL, NULL, NULL, NULL);
-
-    ident->address = strdup([[identity.address
-                              precomposedStringWithCanonicalMapping] UTF8String]);
-
-    if (identity.userID) {
-        ident->user_id = strdup([[identity.userID
-                                  precomposedStringWithCanonicalMapping] UTF8String]);
-    }
+    pEp_identity *ident = new_identity([[identity.address
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[identity.fingerPrint
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[identity.userID
+                                         precomposedStringWithCanonicalMapping] UTF8String],
+                                       [[identity.userName
+                                         precomposedStringWithCanonicalMapping] UTF8String]);
 
     ident->me = identity.isOwn;
-
-    if (identity.userName) {
-        ident->username = strdup([[identity.userName
-                                   precomposedStringWithCanonicalMapping] UTF8String]);
-    }
-
-    if (identity.fingerPrint) {
-        ident->fpr = strdup([[identity.fingerPrint
-                              precomposedStringWithCanonicalMapping] UTF8String]);
-    }
 
     if (identity.language) {
         strncpy(ident->lang, [[identity.language
@@ -435,12 +419,12 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         return NULL;
     
     if ([dict objectForKey:@"id"])
-        msg->id = strdup([[[dict objectForKey:@"id"] precomposedStringWithCanonicalMapping]
-                          UTF8String]);
+        msg->id = new_string([[[dict objectForKey:@"id"] precomposedStringWithCanonicalMapping]
+                              UTF8String], 0);
     
     if ([dict objectForKey:@"shortmsg"])
-        msg->shortmsg = strdup([[[dict objectForKey:@"shortmsg"]
-                                 precomposedStringWithCanonicalMapping] UTF8String]);
+        msg->shortmsg = new_string([[[dict objectForKey:@"shortmsg"]
+                                     precomposedStringWithCanonicalMapping] UTF8String], 0);
 
     if ([dict objectForKey:@"sent"])
         msg->sent = new_timestamp([[dict objectForKey:@"sent"] timeIntervalSince1970]);
@@ -479,12 +463,13 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         msg->opt_fields = PEP_arrayToStringPairlist([dict objectForKey:@"opt_fields"]);
     
     if ([dict objectForKey:@"longmsg"])
-        msg->longmsg = strdup([[[dict objectForKey:@"longmsg"]
-             precomposedStringWithCanonicalMapping] UTF8String]);
+        msg->longmsg = new_string([[[dict objectForKey:@"longmsg"]
+                                    precomposedStringWithCanonicalMapping] UTF8String], 0);
     
     if ([dict objectForKey:@"longmsg_formatted"])
-        msg->longmsg_formatted = strdup([[[dict objectForKey:@"longmsg_formatted"]
-             precomposedStringWithCanonicalMapping] UTF8String]);
+        msg->longmsg_formatted = new_string([[[dict objectForKey:@"longmsg_formatted"]
+                                              precomposedStringWithCanonicalMapping]
+                                             UTF8String], 0);
 
     if ([dict objectForKey:@"attachments"])
         msg->attachments = PEP_arrayToBloblist([dict objectForKey:@"attachments"]);
