@@ -189,11 +189,10 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
                                        [[[dict objectForKey:kPepUserID]
                                          precomposedStringWithCanonicalMapping] UTF8String],
                                        [[[dict objectForKey:kPepUsername]
-        if ([dict objectForKey:kPepIsOwn]) {
-            ident->me = ((NSNumber*)[dict objectForKey:kPepIsOwn]).boolValue;
-        }
-
                                          precomposedStringWithCanonicalMapping] UTF8String]);
+    if ([dict objectForKey:kPepIsOwn]) {
+        ident->me = ((NSNumber*)[dict objectForKey:kPepIsOwn]).boolValue;
+    }
 
     if (dict && ident) {
         if ([dict objectForKey:@"lang"])
