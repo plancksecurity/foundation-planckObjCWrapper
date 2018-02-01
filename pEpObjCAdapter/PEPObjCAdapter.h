@@ -26,6 +26,14 @@
 @interface PEPObjCAdapter : NSObject
 
 /**
+ Sets Engine config for unecryptedSubjectEnabled to the given value on all Sessions created by
+ this adapter.
+
+ @param enabled Whether or not mail subjects should be encrypted
+ */
++ (void)setUnecryptedSubjectEnabled:(BOOL)enabled;
+
+/**
  The HOME URL, where all pEp related files will be stored.
  */
 + (NSURL * _Nonnull)homeURL;

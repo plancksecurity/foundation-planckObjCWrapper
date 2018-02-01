@@ -17,6 +17,13 @@
 @interface PEPObjCAdapter ()
 
 /**
+ unecryptedSubjectEnabled value to use for all sessions created.
+
+ @return Whether or not mail subjects should be encrypted
+ */
++ (BOOL)unecryptedSubjectEnabled;
+
+/**
  The lock that should be used for locking all session init() and release().
  */
 + (NSLock *)initLock;

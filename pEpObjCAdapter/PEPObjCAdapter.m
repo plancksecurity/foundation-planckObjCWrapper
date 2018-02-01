@@ -98,14 +98,26 @@ void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
     
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// DB and paths
-
 const char* _Nullable SystemDB = NULL;
 NSURL *s_homeURL;
 static NSLock *s_initLock;
+static BOOL s_unecryptedSubjectEnabled = NO;
 
 @implementation PEPObjCAdapter
+
+#pragma mark - SUBJECT PROTECTION
+
++ (BOOL)unecryptedSubjectEnabled;
+{
+    return s_unecryptedSubjectEnabled;
+}
+
++ (void)setUnecryptedSubjectEnabled:(BOOL)enabled;
+{
+    s_unecryptedSubjectEnabled = enabled;
+}
+
+#pragma mark - DB PATHS
 
 + (void)initialize
 {

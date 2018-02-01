@@ -24,6 +24,8 @@
 - (void)setUp
 {
     [super setUp];
+    [PEPObjCAdapter setUnecryptedSubjectEnabled:NO];
+
     [self pEpCleanUp];
 }
 
@@ -471,6 +473,9 @@
 
     // This will revoke key
     [session keyMistrusted:identAlice2];
+    identAlice2.fingerPrint = nil;
+    [session mySelf:identAlice];
+
 
     // Check fingerprint is different
     XCTAssertNotEqualObjects(identAlice2.fingerPrint, fpr);
@@ -622,7 +627,55 @@
     XCTAssertNil(trustwordsUndefined);
 }
 
+#pragma mark - configUnencryptedSubject
+
+- (void)testConfigUnencryptedSubject
+{
+    // Setup Config to encrypt subject
+    [PEPObjCAdapter setUnecryptedSubjectEnabled:NO];
+
+    // Write mail to yourself ...
+    PEPMessage *encMessage = [self mailWrittenToMySelf];
+
+    // ... and assert subject is encrypted
+    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should be encrypted");
+}
+
+- (void)testConfigUnencryptedSubject_encryptedSubjectDisabled
+{
+    // Setup Config to not encrypt subject
+    [PEPObjCAdapter setUnecryptedSubjectEnabled:YES];
+
+    // Write mail to yourself ...
+    PEPMessage *encMessage = [self mailWrittenToMySelf];
+
+    // ... and assert the subject is not encrypted
+    XCTAssertNotEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should not be encrypted");
+}
+
 #pragma mark - Helpers
+
+- (PEPMessage *)mailWrittenToMySelf
+{
+    PEPSession *session = [PEPSession new];
+
+    // Write a e-mail to yourself ...
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+    [session mySelf:me];
+
+    NSString *shortMessage = @"Subject";
+    NSString *longMessage = @"Oh, this is a long body text!";
+    PEPMessage *mail = [PEPTestUtils mailFrom:me
+                                      toIdent:me
+                                 shortMessage:shortMessage
+                                  longMessage:longMessage
+                                     outgoing:YES];
+    PEPMessage *encMessage;
+    [session encryptMessage:mail identity:me dest:&encMessage];
+
+    return encMessage;
+}
 
 - (PEPMessage *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {

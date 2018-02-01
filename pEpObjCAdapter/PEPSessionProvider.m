@@ -8,6 +8,7 @@
 
 #import "PEPSessionProvider.h"
 
+#import "PEPObjCAdapter+Internal.h"
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
 
@@ -43,6 +44,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         session = [PEPInternalSession new];
         dict[currentThread] = session;
     }
+    [self setConfigUnencryptedSubjectOnSession:session];
     [self nullifySessionsOfFinishedThreads];
 
     [[self sessionForThreadLock] unlock];
@@ -80,6 +82,13 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 }
 
 #pragma mark -
+
++ (void)setConfigUnencryptedSubjectOnSession:(PEPInternalSession *)session
+{
+    BOOL unencryptedSubjectEnabled = [PEPObjCAdapter unecryptedSubjectEnabled];
+    [session configUnencryptedSubjectEnabled:unencryptedSubjectEnabled];
+}
+
 /**
  Assures a session for the main thread is set.
  */
@@ -96,6 +105,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
             s_sessionForMainThread = [PEPInternalSession new];
         });
     }
+    [self setConfigUnencryptedSubjectOnSession:s_sessionForMainThread];
 }
 
 + (void)cleanupInternal

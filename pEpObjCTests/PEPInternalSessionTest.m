@@ -527,6 +527,8 @@
 
     // This will revoke key
     [self.session keyMistrusted:identAlice2];
+    identAlice2.fingerPrint = nil;
+    [self.session mySelf:identAlice];
 
     // Check fingerprint is different
     XCTAssertNotEqualObjects(identAlice2.fingerPrint, fpr);

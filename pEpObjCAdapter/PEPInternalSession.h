@@ -23,4 +23,11 @@
 
 @property (nonatomic) PEP_SESSION _Nullable session;
 
+/**
+ Configures the session's unecryptedSubjectEnabled value.
+
+ @param enabled Whether or not mail subjects should be encrypted when using this session
+ */
+- (void)configUnencryptedSubjectEnabled:(BOOL)enabled;
+
 @end

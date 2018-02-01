@@ -19,14 +19,6 @@
 
 @implementation PEPInternalSession
 
-+ (void)setupTrustWordsDB
-{
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
-    });
-}
-
 - (instancetype)init
 {
     self = [super init];
@@ -56,6 +48,25 @@
 
 }
 
+#pragma mark - CONFIG
+
+- (void)configUnencryptedSubjectEnabled:(BOOL)enabled;
+{
+    config_unencrypted_subject(self.session, enabled);
+}
+
+#pragma mark - INTERNAL
+
++ (void)setupTrustWordsDB
+{
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+    });
+}
+
+#pragma mark - DEBUG UTILS
+
 /**
  Saves the given message dict as a plist to the local filesystem
  (directly under NSApplicationSupportDirectory).
@@ -72,6 +83,8 @@
                           to, from, msgID];
     [src debugSaveToFilePath:fileName];
 }
+
+#pragma mark - PEPSessionProtocol
 
 - (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
                             dest:(PEPDict * _Nullable * _Nullable)dst
