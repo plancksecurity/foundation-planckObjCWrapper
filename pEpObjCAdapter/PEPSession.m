@@ -196,7 +196,17 @@
     return [PEPSession undoLastMistrust];
 }
 
-#pragma mark - Static 
+- (PEP_rating)ratingFromString:(NSString * _Nonnull)string
+{
+    return [PEPSession ratingFromString:string];
+}
+
+- (NSString * _Nonnull)stringFromRating:(PEP_rating)rating
+{
+    return [PEPSession stringFromRating:rating];
+}
+
+#pragma mark - Static
 
 + (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
                             dest:(PEPDict * _Nullable * _Nullable)dst
@@ -380,6 +390,18 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session undoLastMistrust];
+}
+
++ (PEP_rating)ratingFromString:(NSString * _Nonnull)string
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session ratingFromString:string];
+}
+
++ (NSString * _Nonnull)stringFromRating:(PEP_rating)rating
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session stringFromRating:rating];
 }
 
 @end

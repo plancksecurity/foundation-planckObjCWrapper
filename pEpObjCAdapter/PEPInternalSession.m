@@ -567,4 +567,56 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     return undo_last_mistrust(_session);
 }
 
+static NSDictionary *ratingToString;
+static NSDictionary *stringToRating;
+
++ (void)initialize
+{
+    NSDictionary *ratingToStringIntern =
+    @{
+      [NSNumber numberWithInteger:PEP_rating_cannot_decrypt]: @"cannot_decrypt",
+      [NSNumber numberWithInteger:PEP_rating_have_no_key]: @"have_no_key",
+      [NSNumber numberWithInteger:PEP_rating_unencrypted]: @"unencrypted",
+      [NSNumber numberWithInteger:PEP_rating_unencrypted_for_some]: @"unencrypted_for_some",
+      [NSNumber numberWithInteger:PEP_rating_unreliable]: @"unreliable",
+      [NSNumber numberWithInteger:PEP_rating_reliable]: @"reliable",
+      [NSNumber numberWithInteger:PEP_rating_trusted]: @"trusted",
+      [NSNumber numberWithInteger:PEP_rating_trusted_and_anonymized]: @"trusted_and_anonymized",
+      [NSNumber numberWithInteger:PEP_rating_fully_anonymous]: @"fully_anonymous",
+      [NSNumber numberWithInteger:PEP_rating_mistrust]: @"mistrust",
+      [NSNumber numberWithInteger:PEP_rating_b0rken]: @"b0rken",
+      [NSNumber numberWithInteger:PEP_rating_under_attack]: @"under_attack",
+      [NSNumber numberWithInteger:PEP_rating_undefined]: @"undefined",
+      };
+    NSMutableDictionary *stringToRatingMutable = [NSMutableDictionary
+                                                  dictionaryWithCapacity:
+                                                  ratingToStringIntern.count];
+    for (NSNumber *ratingNumber in ratingToStringIntern.allKeys) {
+        NSString *ratingName = [ratingToStringIntern objectForKey:ratingNumber];
+        [stringToRatingMutable setObject:ratingNumber forKey:ratingName];
+    }
+    ratingToString = ratingToStringIntern;
+    stringToRating = [NSDictionary dictionaryWithDictionary:stringToRatingMutable];
+}
+
+- (PEP_rating)ratingFromString:(NSString * _Nonnull)string
+{
+    NSNumber *num = [stringToRating objectForKey:string];
+    if (num) {
+        return (PEP_rating) [num integerValue];
+    } else {
+        return PEP_rating_undefined;
+    }
+}
+
+- (NSString * _Nonnull)stringFromRating:(PEP_rating)rating
+{
+    NSString *stringRating = [ratingToString objectForKey:[NSNumber numberWithInteger:rating]];
+    if (stringRating) {
+        return stringRating;
+    } else {
+        return @"undefined";
+    }
+}
+
 @end

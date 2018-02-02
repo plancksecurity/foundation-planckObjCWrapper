@@ -172,4 +172,15 @@ typedef NSArray<NSString *> PEPStringList;
  */
 - (PEP_STATUS)undoLastMistrust;
 
+/**
+ Can convert a string like "cannot_decrypt" into its equivalent PEP_rating_cannot_decrypt.
+ */
+- (PEP_rating)ratingFromString:(NSString * _Nonnull)string;
+
+/**
+ Can convert a pEp rating like PEP_rating_cannot_decrypt
+ into its equivalent string "cannot_decrypt" .
+ */
+- (NSString * _Nonnull)stringFromRating:(PEP_rating)rating;
+
 @end
