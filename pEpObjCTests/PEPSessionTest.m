@@ -653,6 +653,49 @@
     XCTAssertNotEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should not be encrypted");
 }
 
+- (void)testStringToRating
+{
+    PEPSession *session = [PEPSession new];
+    XCTAssertEqual([session ratingFromString:@"cannot_decrypt"], PEP_rating_cannot_decrypt);
+    XCTAssertEqual([session ratingFromString:@"have_no_key"], PEP_rating_have_no_key);
+    XCTAssertEqual([session ratingFromString:@"unencrypted"], PEP_rating_unencrypted);
+    XCTAssertEqual([session ratingFromString:@"unencrypted_for_some"],
+                   PEP_rating_unencrypted_for_some);
+    XCTAssertEqual([session ratingFromString:@"unreliable"], PEP_rating_unreliable);
+    XCTAssertEqual([session ratingFromString:@"reliable"], PEP_rating_reliable);
+    XCTAssertEqual([session ratingFromString:@"trusted"], PEP_rating_trusted);
+    XCTAssertEqual([session ratingFromString:@"trusted_and_anonymized"],
+                   PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([session ratingFromString:@"fully_anonymous"], PEP_rating_fully_anonymous);
+    XCTAssertEqual([session ratingFromString:@"mistrust"], PEP_rating_mistrust);
+    XCTAssertEqual([session ratingFromString:@"b0rken"], PEP_rating_b0rken);
+    XCTAssertEqual([session ratingFromString:@"under_attack"], PEP_rating_under_attack);
+    XCTAssertEqual([session ratingFromString:@"undefined"], PEP_rating_undefined);
+    XCTAssertEqual([session ratingFromString:@"does not exist111"], PEP_rating_undefined);
+}
+
+- (void)testRatingToString
+{
+    PEPSession *session = [PEPSession new];
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_cannot_decrypt], @"cannot_decrypt");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_have_no_key], @"have_no_key");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_unencrypted], @"unencrypted");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_unencrypted_for_some],
+                          @"unencrypted_for_some");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_unreliable], @"unreliable");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_reliable], @"reliable");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_trusted], @"trusted");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_trusted_and_anonymized],
+                          @"trusted_and_anonymized");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_fully_anonymous],
+                          @"fully_anonymous");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_mistrust], @"mistrust");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_b0rken], @"b0rken");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_under_attack], @"under_attack");
+    XCTAssertEqualObjects([session stringFromRating:PEP_rating_undefined], @"undefined");
+    XCTAssertEqualObjects([session stringFromRating:500], @"undefined");
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
