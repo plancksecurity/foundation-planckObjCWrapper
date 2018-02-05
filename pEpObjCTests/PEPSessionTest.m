@@ -506,7 +506,6 @@
     msg.longMessage = @"This is a text content";
     msg.direction = PEP_dir_outgoing;
 
-    // Test with unknown Bob
     PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssert( clr == PEP_rating_trusted_and_anonymized);
 
