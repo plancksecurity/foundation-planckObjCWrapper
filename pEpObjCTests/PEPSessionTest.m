@@ -808,13 +808,38 @@
     msg.longMessage = @"Alice?";
     msg.direction = PEP_dir_outgoing;
 
+    // Yellow is expected both for the outgoing messages color,
+    // as well as for the content of EncStatus.
+    PEP_rating expectedOutgoingRating = PEP_rating_reliable;
+
     PEP_rating clr = [session outgoingColorForMessage:msg];
-    XCTAssertEqual(clr, PEP_rating_reliable);
+    XCTAssertEqual(clr, expectedOutgoingRating);
 
-    PEPMessage *encmsg;
-    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+    PEPMessage *encMsg;
+    PEP_STATUS statusEnc = [session encryptMessage:msg extra:@[] dest:&encMsg];
 
-    XCTAssertEqual(status, PEP_STATUS_OK);
+    XCTAssertEqual(statusEnc, PEP_STATUS_OK);
+
+    XCTAssertNotNil(encMsg);
+
+    PEPMessage *decMsg;
+    PEPStringList *keys;
+    PEP_rating pEpRating = [session decryptMessage:encMsg dest:&decMsg keys:&keys];
+    XCTAssertEqual(pEpRating, expectedOutgoingRating);
+    XCTAssertNotNil(decMsg);
+
+    NSArray * encStatusField = nil;
+    for (NSArray *field in decMsg.optionalFields) {
+        NSString *header = [field[0] lowercaseString];
+        if ([header isEqualToString:@"x-encstatus"]) {
+            encStatusField = field;
+        }
+    }
+    XCTAssertNotNil(encStatusField);
+    if (encStatusField) {
+        PEP_rating outgoingRating = [session ratingFromString:encStatusField[1]];
+        XCTAssertEqual(outgoingRating, expectedOutgoingRating);
+    }
 }
 
 @end
