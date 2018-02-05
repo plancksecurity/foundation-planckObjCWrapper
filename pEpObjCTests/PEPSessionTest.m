@@ -773,4 +773,48 @@
     [self pEpSetUp:NULL];
 }
 
+- (void)testXEncStatusForOutgoingEncryptdMail
+{
+    PEPSession *session = [PEPSession new];
+
+    // Partner pubkey for the test:
+    // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
+    // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
+    [PEPTestUtils importBundledKey:@"0x6FF00E97.asc"];
+
+    NSString *fpr = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:ownUserId
+                               userName:@"pEp Test Alice"
+                               isOwn:NO
+                               fingerPrint:fpr];
+
+    [session updateIdentity:identAlice];
+    XCTAssertEqualObjects(identAlice.fingerPrint, fpr);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                               initWithAddress:@"me-myself-and-i@pep-project.org"
+                               userID:@"me-myself-and-i"
+                               userName:@"pEp Test Alice"
+                               isOwn:YES];
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = identMe;
+    msg.to = @[identAlice];
+    msg.shortMessage = @"Mail to Alice";
+    msg.longMessage = @"Alice?";
+    msg.direction = PEP_dir_outgoing;
+
+    PEP_rating clr = [session outgoingColorForMessage:msg];
+    XCTAssertEqual(clr, PEP_rating_reliable);
+
+    PEPMessage *encmsg;
+    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+
+    XCTAssertEqual(status, PEP_STATUS_OK);
+}
+
 @end
