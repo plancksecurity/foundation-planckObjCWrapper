@@ -773,7 +773,8 @@
     [self pEpSetUp:NULL];
 }
 
-- (void)testXEncStatusForOutgoingEncryptdMail
+- (void)helperXEncStatusForOutgoingEncryptdMailToSelf:(BOOL)toSelf
+                                       expectedRating:(PEP_rating)expectedRating
 {
     PEPSession *session = [PEPSession new];
 
@@ -808,15 +809,17 @@
     msg.longMessage = @"Alice?";
     msg.direction = PEP_dir_outgoing;
 
-    // Yellow is expected both for the outgoing messages color,
-    // as well as for the content of EncStatus.
-    PEP_rating expectedOutgoingRating = PEP_rating_reliable;
-
     PEP_rating clr = [session outgoingColorForMessage:msg];
-    XCTAssertEqual(clr, expectedOutgoingRating);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     PEPMessage *encMsg;
-    PEP_STATUS statusEnc = [session encryptMessage:msg extra:@[] dest:&encMsg];
+
+    PEP_STATUS statusEnc = PEP_VERSION_MISMATCH;
+    if (toSelf) {
+        statusEnc = [session encryptMessage:msg identity:identMe dest:&encMsg];
+    } else {
+         statusEnc = [session encryptMessage:msg extra:@[] dest:&encMsg];
+    }
 
     XCTAssertEqual(statusEnc, PEP_STATUS_OK);
 
@@ -825,7 +828,7 @@
     PEPMessage *decMsg;
     PEPStringList *keys;
     PEP_rating pEpRating = [session decryptMessage:encMsg dest:&decMsg keys:&keys];
-    XCTAssertEqual(pEpRating, expectedOutgoingRating);
+    XCTAssertEqual(pEpRating, expectedRating);
     XCTAssertNotNil(decMsg);
 
     NSArray * encStatusField = nil;
@@ -838,8 +841,19 @@
     XCTAssertNotNil(encStatusField);
     if (encStatusField) {
         PEP_rating outgoingRating = [session ratingFromString:encStatusField[1]];
-        XCTAssertEqual(outgoingRating, expectedOutgoingRating);
+        XCTAssertEqual(outgoingRating, expectedRating);
     }
+}
+
+- (void)testXEncStatusForOutgoingEncryptedMail
+{
+    [self helperXEncStatusForOutgoingEncryptdMailToSelf:NO expectedRating:PEP_rating_reliable];
+}
+
+- (void)testXEncStatusForOutgoingSelfEncryptedMail
+{
+    [self helperXEncStatusForOutgoingEncryptdMailToSelf:YES
+                                         expectedRating:PEP_rating_trusted_and_anonymized];
 }
 
 @end
