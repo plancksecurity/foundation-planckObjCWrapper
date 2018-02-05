@@ -172,7 +172,7 @@
 
     // Test with unknown Bob
     PEP_rating clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_unencrypted);
+    XCTAssertEqual(clr, PEP_rating_unencrypted);
 
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
@@ -189,48 +189,48 @@
 
     // Should be yellow, since no handshake happened.
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_reliable);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     clr = [session identityRating:identBob];
-    XCTAssert( clr == PEP_rating_reliable);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     [session trustPersonalKey:identBob];
 
     // This time it should be green
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_trusted);
+    XCTAssertEqual(clr, PEP_rating_trusted);
 
     clr = [session identityRating:identBob];
-    XCTAssert( clr == PEP_rating_trusted);
+    XCTAssertEqual(clr, PEP_rating_trusted);
 
     // Let' say we undo handshake
     [session keyResetTrust:identBob];
 
     // Yellow ?
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_reliable);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     // mistrust Bob
     [session keyMistrusted:identBob];
 
     // Gray == PEP_rating_unencrypted
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_unencrypted);
+    XCTAssertEqual(clr, PEP_rating_unencrypted);
 
     // Forget
     [session keyResetTrust:identBob];
 
     // Back to yellow
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_reliable);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     // Trust again
     [session trustPersonalKey:identBob];
 
     // Back to green
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_trusted);
+    XCTAssertEqual(clr, PEP_rating_trusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
@@ -249,7 +249,7 @@
                                                   userName:@"pEp Test John"]];
     // Yellow ?
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_reliable);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     PEPMessage *encmsg;
     PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
@@ -258,7 +258,7 @@
     XCTAssertEqualObjects(encmsg.shortMessage, @"p≡p");
     XCTAssertTrue([encmsg.longMessage containsString:@"p≡p"]);
 
-    XCTAssert(status == PEP_STATUS_OK);
+    XCTAssertEqual(status, PEP_STATUS_OK);
 }
 
 
@@ -290,7 +290,7 @@
 
     // Test with unknown Bob
     PEP_rating clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_unencrypted);
+    XCTAssertEqual(clr, PEP_rating_unencrypted);
 
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
@@ -307,20 +307,20 @@
 
     // Should be yellow, since no handshake happened.
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_reliable);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     clr = [session identityRating:identBob];
-    XCTAssert( clr == PEP_rating_reliable);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     [session trustPersonalKey:identBob];
 
     // This time it should be green
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_trusted);
+    XCTAssertEqual(clr, PEP_rating_trusted);
 
     clr = [session identityRating:identBob];
-    XCTAssert( clr == PEP_rating_trusted);
+    XCTAssertEqual(clr, PEP_rating_trusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
@@ -340,16 +340,16 @@
 
     // Yellow ?
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_reliable);
+    XCTAssertEqual(clr, PEP_rating_reliable);
 
     [session trustPersonalKey:identJohn];
 
     // This time it should be green
     clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_trusted);
+    XCTAssertEqual(clr, PEP_rating_trusted);
 
     clr = [session identityRating:identJohn];
-    XCTAssert( clr == PEP_rating_trusted);
+    XCTAssertEqual(clr, PEP_rating_trusted);
 }
 
 - (void)testDontEncryptForMistrusted
@@ -395,12 +395,12 @@
 
     // Gray == PEP_rating_unencrypted
     PEP_rating clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_unencrypted);
+    XCTAssertEqual(clr, PEP_rating_unencrypted);
 
     PEPMessage *encmsg;
     PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
 
-    XCTAssert(status == PEP_UNENCRYPTED);
+    XCTAssertEqual(status, PEP_UNENCRYPTED);
 
     XCTAssertNotEqualObjects(encmsg.attachments[0][@"mimeType"], @"application/pgp-encrypted");
 
@@ -507,18 +507,18 @@
     msg.direction = PEP_dir_outgoing;
 
     PEP_rating clr = [session outgoingColorForMessage:msg];
-    XCTAssert( clr == PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized);
 
     PEPMessage *encmsg;
     PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
 
-    XCTAssert(status == PEP_STATUS_OK);
+    XCTAssertEqual(status, PEP_STATUS_OK);
 
     NSArray* keys;
     PEPMessage *decmsg;
 
     clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
-    XCTAssert( clr == PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized);
 }
 
 - (void)testEncryptedMailFromMutt
