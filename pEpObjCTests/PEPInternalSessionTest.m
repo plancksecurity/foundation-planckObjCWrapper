@@ -233,13 +233,22 @@
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
     [PEPTestUtils importBundledKey:@"0xC9C2EE39.asc"];
 
+    NSString *bobsFingerprint = @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39";
     PEPIdentity *identBob = [[PEPIdentity alloc]
                              initWithAddress:@"pep.test.bob@pep-project.org"
                              userID:@"42" userName:@"pEp Test Bob"
                              isOwn:NO
-                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
+                             fingerPrint:bobsFingerprint];
 
     [self.session updateIdentity:identBob];
+    XCTAssertNotNil(identBob.fingerPrint);
+    XCTAssertEqualObjects(identBob.fingerPrint, bobsFingerprint);
+
+    // Test if the engine indeed accepted the key
+    identBob.fingerPrint = nil;
+    [self.session updateIdentity:identBob];
+    XCTAssertNotNil(identBob.fingerPrint);
+    XCTAssertEqualObjects(identBob.fingerPrint, bobsFingerprint);
 
     // Should be yellow, since no handshake happened.
     clr = [self.session outgoingColorForMessage:msg];
