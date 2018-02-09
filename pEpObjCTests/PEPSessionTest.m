@@ -695,6 +695,22 @@
     XCTAssertEqualObjects([session stringFromRating:500], @"undefined");
 }
 
+- (void)testIsPEPUser
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Test Alice"
+                            isOwn:YES];
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
+    NSError *error;
+    XCTAssertTrue([session isPEPUser:identMe error:&error]);
+    XCTAssertNil(error);
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
@@ -854,22 +870,6 @@
 {
     [self helperXEncStatusForOutgoingEncryptdMailToSelf:YES
                                          expectedRating:PEP_rating_trusted_and_anonymized];
-}
-
-- (void)testIsPEPUser
-{
-    PEPSession *session = [PEPSession new];
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Test Alice"
-                            isOwn:YES];
-    [session mySelf:identMe];
-    XCTAssertNotNil(identMe.fingerPrint);
-    NSError *error;
-    XCTAssertTrue([session isPEPUser:identMe error:&error]);
-    XCTAssertNil(error);
 }
 
 @end
