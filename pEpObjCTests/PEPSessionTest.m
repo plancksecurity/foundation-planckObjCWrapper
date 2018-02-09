@@ -184,8 +184,7 @@
                              userID:@"42" userName:@"pEp Test Bob"
                              isOwn:NO
                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
-
-    [session updateIdentity:identBob];
+    [self updateAndVerifyPartnerIdentity:identBob session:session];
 
     // Should be yellow, since no handshake happened.
     clr = [session outgoingColorForMessage:msg];
@@ -715,6 +714,22 @@
 
 #pragma mark - Helpers
 
+/**
+ Verifies that a partner ID is really a correct Identity.
+ Usually used on identities imported as keys, since the engine has problems with them.
+ */
+- (void)updateAndVerifyPartnerIdentity:(PEPIdentity *)partnerIdentity session:(PEPSession *)session
+{
+    XCTAssertNotNil(partnerIdentity.fingerPrint);
+    [session updateIdentity:partnerIdentity];
+    XCTAssertNotNil(partnerIdentity.fingerPrint);
+    NSString *fingerprint = partnerIdentity.fingerPrint;
+    partnerIdentity.fingerPrint = nil;
+    [session updateIdentity:partnerIdentity];
+    XCTAssertNotNil(partnerIdentity.fingerPrint);
+    XCTAssertEqualObjects(partnerIdentity.fingerPrint, fingerprint);
+}
+
 - (PEPMessage *)mailWrittenToMySelf
 {
     PEPSession *session = [PEPSession new];
@@ -801,16 +816,13 @@
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     [PEPTestUtils importBundledKey:@"0x6FF00E97.asc"];
 
-    NSString *fpr = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
                                userID:ownUserId
                                userName:@"pEp Test Alice"
                                isOwn:NO
-                               fingerPrint:fpr];
-
-    [session updateIdentity:identAlice];
-    XCTAssertEqualObjects(identAlice.fingerPrint, fpr);
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    [self updateAndVerifyPartnerIdentity:identAlice session:session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                                initWithAddress:@"me-myself-and-i@pep-project.org"
