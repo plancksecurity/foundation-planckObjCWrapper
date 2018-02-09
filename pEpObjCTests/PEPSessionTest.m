@@ -856,4 +856,18 @@
                                          expectedRating:PEP_rating_trusted_and_anonymized];
 }
 
+- (void)testIsPEPUser
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Test Alice"
+                            isOwn:YES];
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
+    XCTAssertTrue([session isPEPUser:identMe]);
+}
+
 @end
