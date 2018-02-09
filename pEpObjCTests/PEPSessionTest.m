@@ -153,31 +153,15 @@
     XCTAssertNil(identRandom.fingerPrint);
 }
 
-- (void)testImportKey
+- (void)testImportPartnerKeys
 {
-    PEPSession *session = [PEPSession new];
+    [self checkImportingKeyFilePath:@"6FF00E97_sec.asc" address:@"pep.test.alice@pep-project.org"
+                             userID:@"This Is Alice"
+                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
-    // Our test user:
-    // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
-    // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
-    NSString *identAliceFingerPrint = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
-
-    // Our test user:
-    PEPIdentity *identAlice = [[PEPIdentity alloc]
-                               initWithAddress:@"pep.test.alice@pep-project.org"
-                               userID:@"some_user_id"
-                               userName:@"pEp Test Alice"
-                               isOwn:NO];
-
-    [session updateIdentity:identAlice];
-    XCTAssertNotNil(identAlice.fingerPrint);
-    XCTAssertEqualObjects(identAlice.fingerPrint, identAliceFingerPrint);
-
-    identAlice.fingerPrint = identAliceFingerPrint;
-    [session updateIdentity:identAlice];
-    XCTAssertNotNil(identAlice.fingerPrint);
-    XCTAssertEqualObjects(identAlice.fingerPrint, identAliceFingerPrint);
+    [self checkImportingKeyFilePath:@"0xC9C2EE39.asc" address:@"pep.test.bob@pep-project.org"
+                             userID:@"This Is Bob"
+                        fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 }
 
 - (void)testOutgoingColors
@@ -756,6 +740,26 @@
 }
 
 #pragma mark - Helpers
+
+- (void)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+                           userID:(NSString *)userID
+                      fingerPrint:(NSString *)fingerPrint
+{
+    PEPSession *session = [PEPSession new];
+
+    [PEPTestUtils importBundledKey:filePath];
+
+    // Our test user:
+    PEPIdentity *identTest = [[PEPIdentity alloc]
+                              initWithAddress:address
+                              userID:userID
+                              userName:@"Some User Name"
+                              isOwn:NO];
+
+    [session updateIdentity:identTest];
+    XCTAssertNotNil(identTest.fingerPrint);
+    XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
+}
 
 /**
  Verifies that a partner ID is really a correct Identity.
