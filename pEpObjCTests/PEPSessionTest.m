@@ -706,6 +706,8 @@
                             isOwn:YES];
     [session mySelf:identMe];
     XCTAssertNotNil(identMe.fingerPrint);
+
+    // PEP_CANNOT_FIND_PERSON == 902
     NSError *error;
     XCTAssertTrue([session isPEPUser:identMe error:&error]);
     XCTAssertNil(error);
