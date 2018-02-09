@@ -186,6 +186,6 @@ typedef NSArray<NSString *> PEPStringList;
 /**
  Is the given identity really a pEp user?
  */
-- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity;
+- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity error:(NSError * _Nonnull * _Nullable)error;
 
 @end

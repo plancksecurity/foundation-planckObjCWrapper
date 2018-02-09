@@ -16,6 +16,7 @@
 #import "NSDictionary+Extension.h"
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
+#import "PEPError.h"
 
 @implementation PEPInternalSession
 
@@ -619,7 +620,7 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
+- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity error:(NSError * _Nonnull * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     bool isPEP;
@@ -627,6 +628,9 @@ static NSDictionary *stringToRating;
     if (status == PEP_STATUS_OK) {
         return isPEP;
     } else {
+        if (error) {
+            *error = [PEPError errorWithStatusCode:status functionName:@"is_pep_user"];
+        }
         return NO;
     }
 }

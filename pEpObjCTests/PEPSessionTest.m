@@ -867,7 +867,9 @@
                             isOwn:YES];
     [session mySelf:identMe];
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertTrue([session isPEPUser:identMe]);
+    NSError *error;
+    XCTAssertTrue([session isPEPUser:identMe error:&error]);
+    XCTAssertNil(error);
 }
 
 @end
