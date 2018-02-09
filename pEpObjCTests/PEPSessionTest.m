@@ -266,8 +266,8 @@
     clr = [session outgoingColorForMessage:msg];
     XCTAssertEqual(clr, PEP_rating_unencrypted);
 
-    // Forget
-    [session keyResetTrust:identBob];
+    // Undon
+    [session undoLastMistrust];
 
     // Back to yellow
     clr = [session outgoingColorForMessage:msg];
