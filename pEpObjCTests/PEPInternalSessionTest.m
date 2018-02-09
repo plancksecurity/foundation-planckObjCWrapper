@@ -489,7 +489,7 @@
     [self pEpCleanUp];
 }
 
-- (void)doSomeWorkOnSession:(PEPInternalSession *)session count:(NSInteger)count
+- (void)doSomeWorkOnSession:(id<PEPSessionProtocol>)session count:(NSInteger)count
 {
     PEPIdentity *me = [[PEPIdentity alloc]
                        initWithAddress:[NSString
@@ -497,7 +497,7 @@
                        userID:[NSString stringWithFormat:@"me%ld", (long)count]
                        userName:[NSString stringWithFormat:@"me%ld", (long)count]
                        isOwn:YES];
-    [self.session mySelf:me];
+    [session mySelf:me];
     XCTAssertNotNil(me.fingerPrint);
 }
 
