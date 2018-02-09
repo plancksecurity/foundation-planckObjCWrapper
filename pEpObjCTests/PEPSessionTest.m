@@ -185,12 +185,14 @@
 
     //Message
 
+    PEPIdentity *identBob = [[PEPIdentity alloc]
+                             initWithAddress:@"pep.test.bob@pep-project.org"
+                             userID:@"42" userName:@"pEp Test Bob"
+                             isOwn:NO];
+
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
-    msg.to = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.bob@pep-project.org"
-                                             userID: @"42"
-                                           userName:@"pEp Test Bob"
-                                              isOwn:NO]];
+    msg.to = @[identBob];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
     msg.direction = PEP_dir_outgoing;
@@ -203,12 +205,8 @@
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
     [PEPTestUtils importBundledKey:@"0xC9C2EE39.asc"];
+    identBob.fingerPrint = @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39";
 
-    PEPIdentity *identBob = [[PEPIdentity alloc]
-                             initWithAddress:@"pep.test.bob@pep-project.org"
-                             userID:@"42" userName:@"pEp Test Bob"
-                             isOwn:NO
-                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
     [self updateAndVerifyPartnerIdentity:identBob session:session];
 
     // Should be yellow, since no handshake happened.
