@@ -259,6 +259,7 @@
     // mistrust Bob
     [session keyMistrusted:identBob];
 
+    identBob.fingerPrint = nil;
     [session updateIdentity:identBob];
     XCTAssertNil(identBob.fingerPrint);
 
@@ -266,12 +267,15 @@
     clr = [session outgoingColorForMessage:msg];
     XCTAssertEqual(clr, PEP_rating_unencrypted);
 
-    // Undon
+    // Undo
     [session undoLastMistrust];
+    [session updateIdentity:identBob];
+    XCTAssertNotNil(identBob.fingerPrint);
 
     // Back to yellow
     clr = [session outgoingColorForMessage:msg];
     XCTAssertEqual(clr, PEP_rating_reliable);
+    XCTAssertEqual([session identityRating:identBob], PEP_rating_reliable);
 
     // Trust again
     [session trustPersonalKey:identBob];
