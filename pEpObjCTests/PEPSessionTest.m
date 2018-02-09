@@ -183,7 +183,7 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 }
 
-- (void)testIdentityRatingMistrustUndo
+- (void)testIdentityRatingTrustResetMistrustUndo
 {
     PEPSession *session = [PEPSession new];
 
@@ -201,10 +201,22 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 
+    [session trustPersonalKey:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+
+    [session keyResetTrust:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
     [session keyMistrusted:alice];
     XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    [session trustPersonalKey:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+
+    [session keyResetTrust:alice];
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 }
 
