@@ -201,32 +201,39 @@
 
     //Message
 
-    PEPIdentity *identBob = [[PEPIdentity alloc]
-                             initWithAddress:@"pep.test.bob@pep-project.org"
-                             userID:@"42" userName:@"pEp Test Bob"
-                             isOwn:NO];
+    {
+        PEPIdentity *identUnknownBob = [[PEPIdentity alloc]
+                                        initWithAddress:@"pep.test.unknown.bob@pep-project.org"
+                                        userID:@"4242" userName:@"pEp Test Bob Unknown"
+                                        isOwn:NO];
+
+        PEPMessage *msgGray = [PEPMessage new];
+        msgGray.from = identAlice;
+        msgGray.to = @[identUnknownBob];
+        msgGray.shortMessage = @"All Gray Test";
+        msgGray.longMessage = @"This is a text content";
+        msgGray.direction = PEP_dir_outgoing;
+
+        // Test with unknown Bob
+        PEP_rating clr = [session outgoingColorForMessage:msgGray];
+        XCTAssertEqual(clr, PEP_rating_unencrypted);
+    }
+
+    PEPIdentity *identBob = [self
+                             checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                             address:@"pep.test.bob@pep-project.org"
+                             userID:@"42"
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
     msg.to = @[identBob];
-    msg.shortMessage = @"All Green Test";
+    msg.shortMessage = @"All Gray Test";
     msg.longMessage = @"This is a text content";
     msg.direction = PEP_dir_outgoing;
 
-    // Test with unknown Bob
-    PEP_rating clr = [session outgoingColorForMessage:msg];
-    XCTAssertEqual(clr, PEP_rating_unencrypted);
-
-    // Now let see with bob's pubkey already known
-    // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
-    // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    [PEPTestUtils importBundledKey:@"0xC9C2EE39.asc"];
-    identBob.fingerPrint = @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39";
-
-    [self updateAndVerifyPartnerIdentity:identBob session:session];
-
     // Should be yellow, since no handshake happened.
-    clr = [session outgoingColorForMessage:msg];
+    PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssertEqual(clr, PEP_rating_reliable);
 
     clr = [session identityRating:identBob];
@@ -251,6 +258,9 @@
 
     // mistrust Bob
     [session keyMistrusted:identBob];
+
+    [session updateIdentity:identBob];
+    XCTAssertNil(identBob.fingerPrint);
 
     // Gray == PEP_rating_unencrypted
     clr = [session outgoingColorForMessage:msg];
