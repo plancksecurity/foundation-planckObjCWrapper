@@ -183,6 +183,31 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 }
 
+- (void)testIdentityRatingMistrustUndo
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [self
+                       checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
+                       address:@"pep.test.alice@pep-project.org"
+                       userID:@"Alice_User_ID"
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    [session keyMistrusted:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+
+    [session undoLastMistrust];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+}
+
 - (void)testOutgoingColors
 {
     PEPSession *session = [PEPSession new];
