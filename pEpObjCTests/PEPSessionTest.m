@@ -217,7 +217,7 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 }
 
 - (void)testOutgoingColors
