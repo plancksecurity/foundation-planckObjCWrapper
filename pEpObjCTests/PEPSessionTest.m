@@ -139,6 +139,20 @@
     });
 }
 
+- (void)testPartnerWithoutFingerPrint
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identRandom = [[PEPIdentity alloc]
+                                initWithAddress:@"does_not_exist@example.com"
+                                userID:@"got_out"
+                                userName:@"No Way Not Even Alice"
+                                isOwn:NO];
+
+    [session updateIdentity:identRandom];
+    XCTAssertNil(identRandom.fingerPrint);
+}
+
 - (void)testOutgoingColors
 {
     PEPSession *session = [PEPSession new];
