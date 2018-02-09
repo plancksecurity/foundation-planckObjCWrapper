@@ -183,4 +183,9 @@ typedef NSArray<NSString *> PEPStringList;
  */
 - (NSString * _Nonnull)stringFromRating:(PEP_rating)rating;
 
+/**
+ Is the given identity really a pEp user?
+ */
+- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity;
+
 @end

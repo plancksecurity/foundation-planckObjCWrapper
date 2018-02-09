@@ -206,6 +206,11 @@
     return [PEPSession stringFromRating:rating];
 }
 
+- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
+{
+    return [PEPSession isPEPUser:identity];
+}
+
 #pragma mark - Static
 
 + (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
@@ -402,6 +407,12 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session stringFromRating:rating];
+}
+
++ (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session isPEPUser:identity];
 }
 
 @end

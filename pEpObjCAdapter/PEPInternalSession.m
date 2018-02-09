@@ -619,4 +619,10 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
+{
+    // TODO dummy value
+    return NO;
+}
+
 @end
