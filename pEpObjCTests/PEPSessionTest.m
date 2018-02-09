@@ -717,32 +717,6 @@
     XCTAssertNil(trustwordsUndefined);
 }
 
-#pragma mark - configUnencryptedSubject
-
-- (void)testConfigUnencryptedSubject
-{
-    // Setup Config to encrypt subject
-    [PEPObjCAdapter setUnecryptedSubjectEnabled:NO];
-
-    // Write mail to yourself ...
-    PEPMessage *encMessage = [self mailWrittenToMySelf];
-
-    // ... and assert subject is encrypted
-    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should be encrypted");
-}
-
-- (void)testConfigUnencryptedSubject_encryptedSubjectDisabled
-{
-    // Setup Config to not encrypt subject
-    [PEPObjCAdapter setUnecryptedSubjectEnabled:YES];
-
-    // Write mail to yourself ...
-    PEPMessage *encMessage = [self mailWrittenToMySelf];
-
-    // ... and assert the subject is not encrypted
-    XCTAssertNotEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should not be encrypted");
-}
-
 - (void)testStringToRating
 {
     PEPSession *session = [PEPSession new];
@@ -802,6 +776,43 @@
     NSError *error;
     XCTAssertTrue([session isPEPUser:identMe error:&error]);
     XCTAssertNil(error);
+}
+
+- (void)testXEncStatusForOutgoingEncryptedMail
+{
+    [self helperXEncStatusForOutgoingEncryptdMailToSelf:NO expectedRating:PEP_rating_reliable];
+}
+
+- (void)testXEncStatusForOutgoingSelfEncryptedMail
+{
+    [self helperXEncStatusForOutgoingEncryptdMailToSelf:YES
+                                         expectedRating:PEP_rating_trusted_and_anonymized];
+}
+
+#pragma mark - configUnencryptedSubject
+
+- (void)testConfigUnencryptedSubject
+{
+    // Setup Config to encrypt subject
+    [PEPObjCAdapter setUnecryptedSubjectEnabled:NO];
+
+    // Write mail to yourself ...
+    PEPMessage *encMessage = [self mailWrittenToMySelf];
+
+    // ... and assert subject is encrypted
+    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should be encrypted");
+}
+
+- (void)testConfigUnencryptedSubject_encryptedSubjectDisabled
+{
+    // Setup Config to not encrypt subject
+    [PEPObjCAdapter setUnecryptedSubjectEnabled:YES];
+
+    // Write mail to yourself ...
+    PEPMessage *encMessage = [self mailWrittenToMySelf];
+
+    // ... and assert the subject is not encrypted
+    XCTAssertNotEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should not be encrypted");
 }
 
 #pragma mark - Helpers
@@ -1010,17 +1021,6 @@
         PEP_rating outgoingRating = [session ratingFromString:encStatusField[1]];
         XCTAssertEqual(outgoingRating, expectedRating);
     }
-}
-
-- (void)testXEncStatusForOutgoingEncryptedMail
-{
-    [self helperXEncStatusForOutgoingEncryptdMailToSelf:NO expectedRating:PEP_rating_reliable];
-}
-
-- (void)testXEncStatusForOutgoingSelfEncryptedMail
-{
-    [self helperXEncStatusForOutgoingEncryptdMailToSelf:YES
-                                         expectedRating:PEP_rating_trusted_and_anonymized];
 }
 
 @end
