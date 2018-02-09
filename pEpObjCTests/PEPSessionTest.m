@@ -164,6 +164,25 @@
                         fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 }
 
+- (void)testIdentityRating
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [self
+                       checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
+                       address:@"pep.test.alice@pep-project.org"
+                       userID:@"Alice_User_ID"
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+}
+
 - (void)testOutgoingColors
 {
     PEPSession *session = [PEPSession new];
@@ -739,9 +758,9 @@
 
 #pragma mark - Helpers
 
-- (void)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
-                           userID:(NSString *)userID
-                      fingerPrint:(NSString *)fingerPrint
+- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+                                    userID:(NSString *)userID
+                               fingerPrint:(NSString *)fingerPrint
 {
     PEPSession *session = [PEPSession new];
 
@@ -751,12 +770,37 @@
     PEPIdentity *identTest = [[PEPIdentity alloc]
                               initWithAddress:address
                               userID:userID
-                              userName:@"Some User Name"
+                              userName:[NSString stringWithFormat:@"Some User Name %@", userID]
                               isOwn:NO];
 
     [session updateIdentity:identTest];
     XCTAssertNotNil(identTest.fingerPrint);
     XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
+
+    return identTest;
+}
+
+- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+                                          userID:(NSString *)userID
+                                     fingerPrint:(NSString *)fingerPrint
+{
+    PEPSession *session = [PEPSession new];
+
+    [PEPTestUtils importBundledKey:filePath];
+
+    // Our test user:
+    PEPIdentity *identTest = [[PEPIdentity alloc]
+                              initWithAddress:address
+                              userID:userID
+                              userName:[NSString stringWithFormat:@"Some User Name %@", userID]
+                              isOwn:YES
+                              fingerPrint: fingerPrint];
+
+    [session mySelf:identTest];
+    XCTAssertNotNil(identTest.fingerPrint);
+    XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
+
+    return identTest;
 }
 
 /**
