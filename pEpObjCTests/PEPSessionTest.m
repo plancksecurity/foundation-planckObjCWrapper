@@ -193,14 +193,11 @@
     [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
 
     // Our test user :
-    PEPIdentity *identAlice = [[PEPIdentity alloc]
-                               initWithAddress:@"pep.test.alice@pep-project.org"
-                               userID:ownUserId
-                               userName:@"pEp Test Alice"
-                               isOwn:YES
+    PEPIdentity *identAlice = [self
+                               checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
+                               address:@"pep.test.alice@pep-project.org"
+                               userID:@"Alice_User_ID"
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
-
-    [session mySelf:identAlice];
 
     //Message
 
