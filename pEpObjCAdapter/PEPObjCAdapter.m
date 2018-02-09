@@ -122,6 +122,7 @@ static BOOL s_unecryptedSubjectEnabled = NO;
 + (void)initialize
 {
     s_homeURL = [self createApplicationDirectory];
+    [self setHomeDirectory:s_homeURL]; // Important, defines $HOME and $TEMP for the engine
     s_initLock = [[NSLock alloc] init];
 }
 
@@ -169,16 +170,14 @@ static BOOL s_unecryptedSubjectEnabled = NO;
     return dirPath;
 }
 
-+ (NSURL *)createAndSetHomeDirectory
++ (void)setHomeDirectory:(NSURL *)homeDir
 {
     // create and set home directory
-    setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+    setenv("HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
     
     // create and set temp directory
     NSURL *tmpDirUrl = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
     setenv("TEMP", [[tmpDirUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-    
-    return s_homeURL;
 }
 
 + (NSString *)getBundlePathFor: (NSString *) filename
@@ -186,11 +185,11 @@ static BOOL s_unecryptedSubjectEnabled = NO;
     return nil;
 }
 
-+ (NSString *)copyAssetIntoDocumentsDirectory:(NSBundle *)rootBundle
-                                             :(NSString *)bundleName
-                                             :(NSString *)fileName{
++ (NSString *)copyAssetsIntoDocumentsDirectory:(NSBundle *)rootBundle
+                                    bundleName:(NSString *)bundleName
+                                      fileName:(NSString *)fileName {
     
-    NSURL *homeUrl = [PEPObjCAdapter createAndSetHomeDirectory];
+    NSURL *homeUrl = s_homeURL;
     NSString *documentsDirectory = [homeUrl path];
     
     if(!(documentsDirectory && bundleName && fileName))
@@ -223,9 +222,10 @@ static BOOL s_unecryptedSubjectEnabled = NO;
 }
 
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle{
-    NSString *systemDBPath = [PEPObjCAdapter copyAssetIntoDocumentsDirectory:rootBundle
-                                                                            :@"pEpTrustWords.bundle"
-                                                                            :@"system.db"];
+    NSString *systemDBPath = [PEPObjCAdapter
+                              copyAssetsIntoDocumentsDirectory:rootBundle
+                              bundleName:@"pEpTrustWords.bundle"
+                              fileName:@"system.db"];
     if (SystemDB) {
         free((void *) SystemDB);
     }
