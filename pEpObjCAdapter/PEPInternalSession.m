@@ -620,6 +620,14 @@ static NSDictionary *stringToRating;
     }
 }
 
+#ifndef is_pep_user
+// TODO: Fake is_pep_user if not there yet
+PEP_STATUS is_pep_user(PEP_SESSION session, pEp_identity *identity, bool* is_pep) {
+    *is_pep = true;
+    return PEP_STATUS_OK;
+}
+#endif
+
 - (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity error:(NSError * _Nonnull * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
