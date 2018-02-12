@@ -767,7 +767,7 @@
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
                             userID:@"me-myself-and-i"
-                            userName:@"pEp Test Alice"
+                            userName:@"pEp Me"
                             isOwn:YES];
     [session mySelf:identMe];
     XCTAssertNotNil(identMe.fingerPrint);
@@ -975,7 +975,7 @@
     PEPIdentity *identMe = [[PEPIdentity alloc]
                                initWithAddress:@"me-myself-and-i@pep-project.org"
                                userID:@"me-myself-and-i"
-                               userName:@"pEp Test Alice"
+                               userName:@"pEp Me"
                                isOwn:YES];
     [session mySelf:identMe];
     XCTAssertNotNil(identMe.fingerPrint);
@@ -1021,6 +1021,49 @@
         PEP_rating outgoingRating = [session ratingFromString:encStatusField[1]];
         XCTAssertEqual(outgoingRating, expectedRating);
     }
+}
+
+- (void)testEncryptMessagesWithoutKeys
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"alice@pep-project.org"
+                               userID:@"alice"
+                               userName:@"pEp Test Alice"
+                               isOwn:NO];
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = identMe;
+    msg.to = @[identAlice];
+    msg.shortMessage = @"Mail to Alice";
+    msg.longMessage = @"Alice?";
+    msg.direction = PEP_dir_outgoing;
+
+    PEP_rating clr = [session outgoingColorForMessage:msg];
+    XCTAssertEqual(clr, PEP_rating_unencrypted);
+
+    PEPMessage *encMsg;
+
+    PEP_STATUS statusEnc = statusEnc = [session encryptMessage:msg extra:@[] dest:&encMsg];
+
+    XCTAssertEqual(statusEnc, PEP_UNENCRYPTED);
+
+    XCTAssertNotNil(encMsg);
+
+    PEPMessage *decMsg;
+    PEPStringList *keys;
+    PEP_rating pEpRating = [session decryptMessage:encMsg dest:&decMsg keys:&keys];
+    XCTAssertEqual(pEpRating, PEP_rating_unencrypted);
+    XCTAssertNotNil(decMsg);
 }
 
 @end
