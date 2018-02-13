@@ -206,9 +206,9 @@
     return [PEPSession stringFromRating:rating];
 }
 
-- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity error:(NSError * _Nonnull * _Nullable)error
+- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
 {
-    return [PEPSession isPEPUser:identity error:error];
+    return [PEPSession isPEPUser:identity];
 }
 
 #pragma mark - Static
@@ -409,10 +409,10 @@
     return [session stringFromRating:rating];
 }
 
-+ (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity error:(NSError * _Nonnull * _Nullable)error;
++ (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity;
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session isPEPUser:identity error:error];
+    return [session isPEPUser:identity];
 }
 
 @end

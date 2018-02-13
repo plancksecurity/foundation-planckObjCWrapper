@@ -185,7 +185,8 @@ typedef NSArray<NSString *> PEPStringList;
 
 /**
  Is the given identity really a pEp user?
+ If the engine indicates an error, or the identity is not a pEp user, returns false.
  */
-- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity error:(NSError * _Nonnull * _Nullable)error;
+- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity;
 
 @end

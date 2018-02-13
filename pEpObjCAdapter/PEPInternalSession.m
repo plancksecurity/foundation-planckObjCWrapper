@@ -628,7 +628,7 @@ PEP_STATUS is_pep_user(PEP_SESSION session, pEp_identity *identity, bool* is_pep
 }
 #endif
 
-- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity error:(NSError * _Nonnull * _Nullable)error
+- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     bool isPEP;
@@ -636,9 +636,6 @@ PEP_STATUS is_pep_user(PEP_SESSION session, pEp_identity *identity, bool* is_pep
     if (status == PEP_STATUS_OK) {
         return isPEP;
     } else {
-        if (error) {
-            *error = [PEPError errorWithStatusCode:status functionName:@"is_pep_user"];
-        }
         return NO;
     }
 }
