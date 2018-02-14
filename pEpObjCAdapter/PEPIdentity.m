@@ -113,10 +113,9 @@
 {
     if (other == self) {
         return YES;
-    } else if (![super isEqual:other]) {
-        return NO;
     } else {
-        return self.address == ((PEPIdentity *) other).address;
+        PEPIdentity *theOther = (PEPIdentity *) other;
+        return [self.address isEqualToString:theOther.address] && self.isOwn == theOther.isOwn;
     }
 }
 
