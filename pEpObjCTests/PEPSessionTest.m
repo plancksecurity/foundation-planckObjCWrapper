@@ -157,11 +157,13 @@
 {
     [self checkImportingKeyFilePath:@"6FF00E97_sec.asc" address:@"pep.test.alice@pep-project.org"
                              userID:@"This Is Alice"
-                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                            session: nil];
 
     [self checkImportingKeyFilePath:@"0xC9C2EE39.asc" address:@"pep.test.bob@pep-project.org"
                              userID:@"This Is Bob"
-                        fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
+                        fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                            session: nil];
 }
 
 - (void)testIdentityRating
@@ -179,7 +181,8 @@
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
                           address:@"pep.test.alice@pep-project.org"
                           userID:@"This Is Alice"
-                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session: session];
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 }
 
@@ -198,7 +201,8 @@
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
                           address:@"pep.test.alice@pep-project.org"
                           userID:@"This Is Alice"
-                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session: session];
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 
     [session trustPersonalKey:alice];
@@ -260,7 +264,8 @@
                              checkImportingKeyFilePath:@"0xC9C2EE39.asc"
                              address:@"pep.test.bob@pep-project.org"
                              userID:@"42"
-                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                             session: session];
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
@@ -787,6 +792,76 @@
                                          expectedRating:PEP_rating_trusted_and_anonymized];
 }
 
+- (void)testEncryptMessagesWithoutKeys
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"alice@pep-project.org"
+                               userID:@"alice"
+                               userName:@"pEp Test Alice"
+                               isOwn:NO];
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = identMe;
+    msg.to = @[identAlice];
+    msg.shortMessage = @"Mail to Alice";
+    msg.longMessage = @"Alice?";
+    msg.direction = PEP_dir_outgoing;
+
+    PEP_rating clr = [session outgoingColorForMessage:msg];
+    XCTAssertEqual(clr, PEP_rating_unencrypted);
+
+    PEPMessage *encMsg;
+
+    PEP_STATUS statusEnc = statusEnc = [session encryptMessage:msg extra:@[] dest:&encMsg];
+
+    XCTAssertEqual(statusEnc, PEP_UNENCRYPTED);
+
+    XCTAssertNotNil(encMsg);
+
+    PEPMessage *decMsg;
+    PEPStringList *keys;
+    PEP_rating pEpRating = [session decryptMessage:encMsg dest:&decMsg keys:&keys];
+    XCTAssertEqual(pEpRating, PEP_rating_unencrypted);
+    XCTAssertNotNil(decMsg);
+}
+
+/**
+ ENGINE-364. Tries to invoke trustPersonalKey on an identity without key,
+ giving it a fake fingerprint.
+ */
+- (void)testTrustPersonalKey
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    // The fingerprint is definitely wrong, we don't have a key
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"alice@pep-project.org"
+                               userID:@"alice"
+                               userName:@"pEp Test Alice"
+                               isOwn:NO
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
+    [session trustPersonalKey:identAlice];
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
@@ -818,8 +893,11 @@
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
                                     userID:(NSString *)userID
                                fingerPrint:(NSString *)fingerPrint
+                                   session:(PEPSession *)session
 {
-    PEPSession *session = [PEPSession new];
+    if (!session) {
+        session = [PEPSession new];
+    }
 
     [PEPTestUtils importBundledKey:filePath];
 
@@ -1019,76 +1097,6 @@
         PEP_rating outgoingRating = [session ratingFromString:encStatusField[1]];
         XCTAssertEqual(outgoingRating, expectedRating);
     }
-}
-
-- (void)testEncryptMessagesWithoutKeys
-{
-    PEPSession *session = [PEPSession new];
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-    [session mySelf:identMe];
-    XCTAssertNotNil(identMe.fingerPrint);
-
-    PEPIdentity *identAlice = [[PEPIdentity alloc]
-                               initWithAddress:@"alice@pep-project.org"
-                               userID:@"alice"
-                               userName:@"pEp Test Alice"
-                               isOwn:NO];
-
-    PEPMessage *msg = [PEPMessage new];
-    msg.from = identMe;
-    msg.to = @[identAlice];
-    msg.shortMessage = @"Mail to Alice";
-    msg.longMessage = @"Alice?";
-    msg.direction = PEP_dir_outgoing;
-
-    PEP_rating clr = [session outgoingColorForMessage:msg];
-    XCTAssertEqual(clr, PEP_rating_unencrypted);
-
-    PEPMessage *encMsg;
-
-    PEP_STATUS statusEnc = statusEnc = [session encryptMessage:msg extra:@[] dest:&encMsg];
-
-    XCTAssertEqual(statusEnc, PEP_UNENCRYPTED);
-
-    XCTAssertNotNil(encMsg);
-
-    PEPMessage *decMsg;
-    PEPStringList *keys;
-    PEP_rating pEpRating = [session decryptMessage:encMsg dest:&decMsg keys:&keys];
-    XCTAssertEqual(pEpRating, PEP_rating_unencrypted);
-    XCTAssertNotNil(decMsg);
-}
-
-/**
- ENGINE-364. Tries to invoke trustPersonalKey on an identity without key,
- giving it a fake fingerprint.
- */
-- (void)testTrustPersonalKey
-{
-    PEPSession *session = [PEPSession new];
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-    [session mySelf:identMe];
-    XCTAssertNotNil(identMe.fingerPrint);
-
-    // The fingerprint is definitely wrong, we don't have a key
-    PEPIdentity *identAlice = [[PEPIdentity alloc]
-                               initWithAddress:@"alice@pep-project.org"
-                               userID:@"alice"
-                               userName:@"pEp Test Alice"
-                               isOwn:NO
-                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
-
-    [session trustPersonalKey:identAlice];
 }
 
 @end
