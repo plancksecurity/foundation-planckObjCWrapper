@@ -862,6 +862,49 @@
     [session trustPersonalKey:identAlice];
 }
 
+/**
+ ENGINE-381
+ */
+- (void)testVolatileIdentityRating
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    PEPIdentity *identAlice = [self
+                               checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                               address:@"pep.test.alice@pep-project.org"
+                               userID:@"alice_user_id"
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                               session: session];
+
+    dispatch_group_t identityRatingGroup = dispatch_group_create();
+
+    void (^ratingBlock)(void) = ^{
+        PEPSession *innerSession = [PEPSession new];
+        PEP_rating rating = [innerSession identityRating:identAlice];
+        XCTAssertEqual(rating, PEP_rating_reliable);
+    };
+
+    for (int i = 0; i < 5; ++i) {
+        dispatch_group_async(identityRatingGroup,
+                             dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0),
+                             ratingBlock);
+    }
+
+    for (int i = 0; i < 5; ++i) {
+        ratingBlock();
+    }
+
+    dispatch_group_wait(identityRatingGroup, DISPATCH_TIME_FOREVER);
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
