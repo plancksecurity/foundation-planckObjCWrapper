@@ -1064,4 +1064,31 @@
     XCTAssertNotNil(decMsg);
 }
 
+/**
+ ENGINE-364. Tries to invoke trustPersonalKey on an identity without key,
+ giving it a fake fingerprint.
+ */
+- (void)testTrustPersonalKey
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    [session mySelf:identMe];
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    // The fingerprint is definitely wrong, we don't have a key
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"alice@pep-project.org"
+                               userID:@"alice"
+                               userName:@"pEp Test Alice"
+                               isOwn:NO
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
+    [session trustPersonalKey:identAlice];
+}
+
 @end
