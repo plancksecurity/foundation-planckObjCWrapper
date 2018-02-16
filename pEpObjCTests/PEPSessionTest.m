@@ -224,6 +224,65 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 }
 
+/**
+ Try to provoke a SQLITE_BUSY (ENGINE-374)
+ */
+- (void)testIdentityRatingTrustResetMistrustUndoBusy
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [self
+                       checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
+                       address:@"pep.test.alice@pep-project.org"
+                       userID:@"Alice_User_ID"
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session: session];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    void (^encryptingBlock)(void) = ^{
+        PEPSession *innerSession = [PEPSession new];
+        PEPMessage *msg = [PEPMessage new];
+        msg.from = me;
+        msg.to = @[alice];
+        msg.shortMessage = @"The subject";
+        msg.longMessage = @"Lots and lots of text";
+        PEPMessage *encMsg;
+        PEP_STATUS status = [innerSession encryptMessage:msg identity:me dest:&encMsg];
+        XCTAssertEqual(status, PEP_STATUS_OK);
+    };
+
+    dispatch_group_t backgroundGroup = dispatch_group_create();
+    dispatch_group_async(backgroundGroup,
+                         dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), encryptingBlock);
+
+    [session trustPersonalKey:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+
+    [session keyResetTrust:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    [session keyMistrusted:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+
+    [session undoLastMistrust];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    [session trustPersonalKey:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+
+    [session keyResetTrust:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+
+    dispatch_group_wait(backgroundGroup, DISPATCH_TIME_FOREVER);
+}
+
 - (void)testOutgoingColors
 {
     PEPSession *session = [PEPSession new];
