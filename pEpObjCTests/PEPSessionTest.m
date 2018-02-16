@@ -231,11 +231,13 @@
 {
     PEPSession *session = [PEPSession new];
 
-    PEPIdentity *me = [self
-                       checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
-                       address:@"pep.test.alice@pep-project.org"
-                       userID:@"Alice_User_ID"
-                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:@"me@example.org"
+                       userID:@"me_myself"
+                       userName:@"Me Me"
+                       isOwn:YES];
+    [session mySelf:me];
+    XCTAssertNotNil(me.fingerPrint);
     XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
 
     PEPIdentity *alice = [self
