@@ -279,7 +279,7 @@
                     identity:(nonnull PEPIdentity *)identity
                         dest:(PEPMessage * _Nullable * _Nullable)dst
 {
-    NSLog(@"encryptMessage %@ for %@\n", src, identity);
+    NSLog(@"\n\nencryptMessage %@ for %@\n", src, identity);
     PEPDict *target;
     PEP_STATUS status = [self encryptMessageDict:src.dictionary identity:identity dest:&target];
     if (dst) {
@@ -311,6 +311,8 @@
 
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
 {
+    NSLog(@"\n\nidentityRating %@\n", identity);
+
     pEp_identity *ident = PEP_identityToStruct(identity);
     PEP_rating color = PEP_rating_undefined;
 
