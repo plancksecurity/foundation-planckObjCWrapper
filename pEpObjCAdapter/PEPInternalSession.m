@@ -279,7 +279,6 @@
                     identity:(nonnull PEPIdentity *)identity
                         dest:(PEPMessage * _Nullable * _Nullable)dst
 {
-    NSLog(@"\n\nencryptMessage %@ for %@\n", src, identity);
     PEPDict *target;
     PEP_STATUS status = [self encryptMessageDict:src.dictionary identity:identity dest:&target];
     if (dst) {
@@ -311,8 +310,6 @@
 
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
 {
-    NSLog(@"\n\nidentityRating %@\n", identity);
-
     pEp_identity *ident = PEP_identityToStruct(identity);
     PEP_rating color = PEP_rating_undefined;
 
@@ -356,7 +353,6 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
 - (void)mySelf:(PEPIdentity *)identity
 {
-    NSLog(@"\n\nmySelf %@\n", identity);
     NSString *userID = identity.userID;
     pEp_identity *ident = PEP_identityToStruct(identity);
 
@@ -372,7 +368,6 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
 - (void)updateIdentity:(PEPIdentity *)identity
 {
-    NSLog(@"\n\nupdateIdentity %@\n", identity);
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
@@ -385,7 +380,6 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
 - (void)trustPersonalKey:(PEPIdentity *)identity
 {
-    NSLog(@"\n\ntrustPersonalKey %@\n", identity);
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
@@ -398,7 +392,6 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
 - (void)keyResetTrust:(PEPIdentity *)identity
 {
-    NSLog(@"\n\nkeyResetTrust %@\n", identity);
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
@@ -411,7 +404,6 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
 - (void)keyMistrusted:(PEPIdentity *)identity
 {
-    NSLog(@"\n\nkeyMistrusted %@\n", identity);
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     @synchronized(self) {
