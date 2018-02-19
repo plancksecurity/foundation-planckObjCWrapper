@@ -226,6 +226,49 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 }
 
+- (void)testIdentityRatingCrash
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:@"me@example.org"
+                       userID:@"me_myself"
+                       userName:@"Me Me"
+                       isOwn:YES];
+    [session mySelf:me];
+    XCTAssertNotNil(me.fingerPrint);
+    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session: session];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    [session trustPersonalKey:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+
+    [session keyResetTrust:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    [session keyMistrusted:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+
+    [session undoLastMistrust];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    [session trustPersonalKey:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+
+    [session keyResetTrust:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+
+    [session trustPersonalKey:alice];
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+}
+
 /**
  Try to provoke a SQLITE_BUSY (ENGINE-374)
  */
