@@ -36,7 +36,7 @@ extern NSString * const ownUserId;
                        longMessage: (NSString *)longMessage
                           outgoing:(BOOL) outgoing;
 
-+ (void)deleteWorkFilesAfterBackingUpWithBackupName:(NSString * _Nullable)backup;
++ (void)cleanUp;
 
 + (void)restoreWorkFilesFromBackupNamed:(NSString *)backup;
 

@@ -564,49 +564,6 @@
     [self pEpCleanUp];
 }
 
-- (void)testRenewExpired
-{
-    PEPSession *session = [PEPSession new];
-
-    // Our expired test user :
-    // pEp Test Hector (old test key don't use) <pep.test.hector@pep-project.org>
-    [PEPTestUtils importBundledKey:@"5CB2C182_sec.asc"];
-
-    PEPIdentity *identHector = [[PEPIdentity alloc]
-                                initWithAddress:@"pep.test.hector@pep-project.org"
-                                userID:@"fc2d33" userName:@"pEp Test Hector"
-                                isOwn:NO
-                                fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
-
-    // Check that this key is indeed expired
-    [session updateIdentity:identHector];
-    XCTAssertEqual(PEP_ct_key_expired, identHector.commType);
-
-    PEPIdentity *identHectorOwn = [[PEPIdentity alloc]
-                                   initWithAddress:@"pep.test.hector@pep-project.org"
-                                   userID:ownUserId userName:@"pEp Test Hector"
-                                   isOwn:YES
-                                   fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
-
-    // Myself automatically renew expired key.
-    [session mySelf:identHectorOwn];
-    XCTAssertEqual(PEP_ct_pEp, identHectorOwn.commType);
-
-    [self pEpCleanUpRestoringBackupNamed:@"Bob"];
-
-
-    [self pEpSetUp:@"Bob"];
-
-    PEPIdentity *_identHector = [[PEPIdentity alloc]
-                                 initWithAddress:@"pep.test.hector@pep-project.org"
-                                 userID:@"khkhkh" userName:@"pEp Test Hector"
-                                 isOwn:NO
-                                 fingerPrint:@"EEA655839E347EC9E10A5DE2E80CB3FD5CB2C182"];
-
-    [session updateIdentity:_identHector];
-    XCTAssertEqual(PEP_ct_OpenPGP_unconfirmed, _identHector.commType);
-}
-
 - (void)testRevoke
 {
     PEPSession *session = [PEPSession new];
@@ -632,7 +589,6 @@
     [session keyMistrusted:identAlice2];
     identAlice2.fingerPrint = nil;
     [session mySelf:identAlice];
-
 
     // Check fingerprint is different
     XCTAssertNotEqualObjects(identAlice2.fingerPrint, fpr);
@@ -1113,29 +1069,13 @@
     return unencDict;
 }
 
-- (void)pEpCleanUpRestoringBackupNamed:(NSString *)backup {
-    [PEPTestUtils deleteWorkFilesAfterBackingUpWithBackupName:backup];
-}
-
 - (void)pEpCleanUp
 {
-    [PEPSession cleanup];
-    [self pEpCleanUpRestoringBackupNamed:NULL];
-}
-
-- (void)pEpSetUp:(NSString *)restore
-{
-    // Must be the first thing you do before using anything pEp-related
-    // ... but this is now done in session, with a "dispatch_once"
-    // [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
-
-    [PEPTestUtils deleteWorkFilesAfterBackingUpWithBackupName:nil];
-    [PEPTestUtils restoreWorkFilesFromBackupNamed:restore];
+    [PEPTestUtils cleanUp];
 }
 
 - (void)pEpSetUp
 {
-    [self pEpSetUp:NULL];
 }
 
 - (void)helperXEncStatusForOutgoingEncryptdMailToSelf:(BOOL)toSelf

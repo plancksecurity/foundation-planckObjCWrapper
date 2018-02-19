@@ -99,46 +99,23 @@ NSString * const ownUserId = @"pEp_own_userId";
 
 }
 
-+ (void)deleteWorkFilesAfterBackingUpWithBackupName:(NSString *_Nullable)backup;
++ (void)cleanUp
 {
     [PEPSession cleanup];
 
     for (id path in [self pEpWorkFiles]) {
-        [self delFilePath:path backup:backup];
-    }
-}
-
-+ (void)restoreWorkFilesFromBackupNamed:(NSString *)backup;
-{
-    if (!backup) {
-        return;
-    }
-    [PEPSession cleanup];
-
-    for (id path in [self pEpWorkFiles]) {
-        [self undelFileWithPath:path backup:backup];
+        [self delFilePath:path];
     }
 }
 
 #pragma mark - PRIVATE
 
-+ (void)delFilePath:(NSString *)path backup:(NSString * _Nullable)bkpsfx;
++ (void)delFilePath:(NSString *)filePath
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    if ([fileManager fileExistsAtPath:path]) {
-        BOOL success;
-        if (!bkpsfx) {
-            success = [fileManager removeItemAtPath:path error:&error];
-        } else {
-            NSString *toPath = [path stringByAppendingString:bkpsfx];
-
-            if ([fileManager fileExistsAtPath:toPath]) {
-                [fileManager removeItemAtPath:toPath error:&error];
-            }
-
-            success = [fileManager moveItemAtPath:path toPath:toPath error:&error];
-        }
+    if ([fileManager fileExistsAtPath:filePath]) {
+        BOOL success = [fileManager removeItemAtPath:filePath error:&error];
         if (!success) {
             NSLog(@"Error: %@", [error localizedDescription]);
         }
