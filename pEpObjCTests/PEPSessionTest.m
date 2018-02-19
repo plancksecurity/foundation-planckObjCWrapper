@@ -231,7 +231,7 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 }
 
-/* TODO ENGINE-384 due to crash
+/** ENGINE-384 */
 - (void)testIdentityRatingCrash
 {
     PEPSession *session = [PEPSession new];
@@ -263,7 +263,6 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 
     [session trustPersonalKey:alice];
     XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
@@ -271,10 +270,9 @@
     [session keyResetTrust:alice];
     XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 
+    // This line provoked the crash
     [session trustPersonalKey:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
 }
- */
 
 /**
  Try to provoke a SQLITE_BUSY (ENGINE-374)
