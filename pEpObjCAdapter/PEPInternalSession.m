@@ -91,9 +91,9 @@
                             dest:(PEPDict * _Nullable * _Nullable)dst
                             keys:(PEPStringList * _Nullable * _Nullable)keys
 {
-    message * _src = PEP_messageDictToStruct(src);
-    message * _dst = NULL;
-    stringlist_t * _keys = NULL;
+    message *_src = PEP_messageDictToStruct(src);
+    message *_dst = NULL;
+    stringlist_t *_keys = NULL;
     PEP_rating color = PEP_rating_undefined;
     PEP_decrypt_flags_t flags = 0;
 
@@ -101,7 +101,7 @@
         decrypt_message(_session, _src, &_dst, &_keys, &color, &flags);
     }
 
-    NSDictionary * dst_;
+    NSDictionary *dst_;
 
     if (_dst) {
         dst_ = PEP_messageDictFromStruct(_dst);
@@ -110,7 +110,7 @@
         dst_ = PEP_messageDictFromStruct(_src);
     }
 
-    NSArray * keys_ = nil;
+    NSArray *keys_ = nil;
     if (_keys)
         keys_ = PEP_arrayFromStringlist(_keys);
 
@@ -145,7 +145,7 @@
 
 - (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src
 {
-    message * _src = PEP_messageDictToStruct(src);
+    message *_src = PEP_messageDictToStruct(src);
     PEP_rating color = PEP_rating_undefined;
 
     @synchronized (self) {
@@ -188,15 +188,15 @@
     PEP_STATUS status;
     PEP_encrypt_flags_t flags = 0;
 
-    message * _src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
-    message * _dst = NULL;
-    stringlist_t * _keys = PEP_arrayToStringlist(keys);
+    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
+    message *_dst = NULL;
+    stringlist_t *_keys = PEP_arrayToStringlist(keys);
 
     @synchronized (self) {
         status = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
     }
 
-    NSDictionary * dst_;
+    NSDictionary *dst_;
 
     if (_dst) {
         dst_ = PEP_messageDictFromStruct(_dst);
@@ -233,7 +233,7 @@
                                        encFormat: encFormat
                                             dest:&target];
     if (dst) {
-        PEPMessage * encrypted = [PEPMessage new];
+        PEPMessage *encrypted = [PEPMessage new];
         [encrypted setValuesForKeysWithDictionary:target];
         *dst = encrypted;
     }
@@ -247,15 +247,15 @@
     PEP_STATUS status;
     PEP_encrypt_flags_t flags = 0;
 
-    message * _src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
+    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
     pEp_identity *ident = PEP_identityToStruct(identity);
-    message * _dst = NULL;
+    message *_dst = NULL;
 
     @synchronized (self) {
         status = encrypt_message_for_self(_session, ident, _src, &_dst, PEP_enc_PGP_MIME, flags);
     }
 
-    NSDictionary * dst_;
+    NSDictionary *dst_;
 
     if (_dst) {
         dst_ = PEP_messageDictFromStruct(_dst);
@@ -282,7 +282,7 @@
     PEPDict *target;
     PEP_STATUS status = [self encryptMessageDict:src.dictionary identity:identity dest:&target];
     if (dst) {
-        PEPMessage * encrypted = [PEPMessage new];
+        PEPMessage *encrypted = [PEPMessage new];
         [encrypted setValuesForKeysWithDictionary:target];
         *dst = encrypted;
     }
@@ -291,7 +291,7 @@
 
 - (PEP_rating)outgoingMessageColor:(PEPDict *)msg
 {
-    message * _msg = PEP_messageDictToStruct(msg);
+    message *_msg = PEP_messageDictToStruct(msg);
     PEP_rating color = PEP_rating_undefined;
 
     @synchronized (self) {
@@ -622,7 +622,7 @@ static NSDictionary *stringToRating;
 
 #ifndef is_pep_user
 // TODO: Fake is_pep_user if not there yet
-PEP_STATUS is_pep_user(PEP_SESSION session, pEp_identity *identity, bool* is_pep) {
+PEP_STATUS is_pep_user(PEP_SESSION session, pEp_identity *identity, bool *is_pep) {
     *is_pep = true;
     return PEP_STATUS_OK;
 }
