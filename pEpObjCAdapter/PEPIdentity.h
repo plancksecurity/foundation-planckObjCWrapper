@@ -98,4 +98,9 @@
  */
 - (BOOL)containsPGPCommType;
 
+/**
+ Puts all properties into a default/nil state.
+ */
+- (void)reset;
+
 @end

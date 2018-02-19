@@ -176,6 +176,16 @@
     self.language = l;
 }
 
+- (void)reset
+{
+    self.commType = PEP_ct_unknown;
+    self.language = nil;
+    self.fingerPrint = nil;
+    self.userID = nil;
+    self.userName = nil;
+    self.isOwn = NO;
+}
+
 // MARK: - NSDictionary - Helpers
 
 - (NSArray<NSArray<NSString *> *> *)keyValuePairs
