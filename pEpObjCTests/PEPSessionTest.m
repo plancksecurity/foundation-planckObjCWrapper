@@ -307,6 +307,7 @@
         msg.to = @[alice];
         msg.shortMessage = @"The subject";
         msg.longMessage = @"Lots and lots of text";
+        msg.direction = PEP_dir_outgoing;
         PEPMessage *encMsg;
         PEP_STATUS status = [innerSession encryptMessage:msg identity:me dest:&encMsg];
         XCTAssertEqual(status, PEP_STATUS_OK);
