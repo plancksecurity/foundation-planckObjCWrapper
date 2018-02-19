@@ -689,14 +689,16 @@
     [PEPTestUtils importBundledKey:@"A3FC7F0A_sec.asc"];
 
     // Mail from mutt, already processed into message dict by the app.
-    NSMutableDictionary *msgDict = [PEPTestUtils
-                                    unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"].mutableCopy;
+    NSMutableDictionary *msgDict = [[PEPTestUtils
+                                     unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"]
+                                    mutableCopy];
     [msgDict removeObjectForKey:kPepLongMessage];
     [msgDict removeObjectForKey:kPepLongMessageFormatted];
 
     // Also extracted "live" from the app.
-    NSMutableDictionary *accountDict = [PEPTestUtils
-                                        unarchiveDictionary:@"account_A3FC7F0A.ser"].mutableCopy;
+    NSMutableDictionary *accountDict = [[PEPTestUtils
+                                         unarchiveDictionary:@"account_A3FC7F0A.ser"]
+                                        mutableCopy];
     [accountDict removeObjectForKey:kPepCommType];
     [accountDict removeObjectForKey:kPepFingerprint];
     PEPIdentity *identMe = [[PEPIdentity alloc] initWithDictionary:accountDict];
@@ -708,7 +710,7 @@
     PEPMessage *msg = [PEPMessage new];
     [msg setValuesForKeysWithDictionary:msgDict];
     PEPMessage *pepDecryptedMail;
-    [session decryptMessage:msg dest:&pepDecryptedMail keys:&keys];
+    PEP_rating rating = [session decryptMessage:msg dest:&pepDecryptedMail keys:&keys];
     XCTAssertNotNil(pepDecryptedMail.longMessage);
 }
 
