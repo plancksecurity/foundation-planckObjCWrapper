@@ -37,6 +37,11 @@
 - (void)testSyncSession
 {
     PEPSession *session = [PEPSession new];
+
+    // Dummy to set up the DB, since this is currenty only triggered by session use,
+    // which PEPObjCAdapter.startSync does not trigger.
+    [session getLog];
+
     PEPTestSyncDelegate *syncDelegate = [[PEPTestSyncDelegate alloc] init];
 
     // This should attach session just created
