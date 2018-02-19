@@ -666,7 +666,7 @@
     PEPMessage *msg = [PEPMessage new];
     [msg setValuesForKeysWithDictionary:msgDict];
     PEPMessage *pepDecryptedMail;
-    PEP_rating rating = [session decryptMessage:msg dest:&pepDecryptedMail keys:&keys];
+    [session decryptMessage:msg dest:&pepDecryptedMail keys:&keys];
     XCTAssertNotNil(pepDecryptedMail.longMessage);
 }
 
