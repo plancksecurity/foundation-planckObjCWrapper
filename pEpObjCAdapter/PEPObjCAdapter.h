@@ -14,13 +14,18 @@
 @class PEPLanguage;
 
 @protocol PEPKeyManagementDelegate <NSObject>
+
 - (void)identityUpdated:(_Nonnull id)identity;
+
 @end
 
 @protocol PEPSyncDelegate <NSObject>
-- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(_Nonnull id)me partner:(_Nonnull id)partner;
+
+- (PEP_STATUS)notifyHandshakeWithSignal:(sync_handshake_signal)signal me:(_Nonnull id)me
+                                partner:(_Nonnull id)partner;
 - (PEP_STATUS)sendMessage:(_Nonnull id)msg;
 - (PEP_STATUS)fastPolling:(bool)isfast;
+
 @end
 
 @interface PEPObjCAdapter : NSObject
