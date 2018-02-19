@@ -136,9 +136,9 @@ typedef NSArray<NSString *> PEPStringList;
      description:(nullable NSString *)description comment:(nullable NSString *)comment;
 
 /**
- Retrieves the log from the engine.
+ Retrieves the log from the engine, or nil, if there is nothing yet.
  */
-- (nonnull NSString *)getLog;
+- (nullable NSString *)getLog;
 
 /** Determine trustwords for two identities */
 - (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPIdentity *)identity1

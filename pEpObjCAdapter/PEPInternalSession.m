@@ -445,15 +445,18 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     [self unlockWrite];
 }
 
-- (nonnull NSString *)getLog
+- (nullable NSString *)getLog
 {
-    char *data;
+    char *theChars = NULL;
     @synchronized(self) {
-        get_crashdump_log(_session, 0, &data);
+        get_crashdump_log(_session, 0, &theChars);
     }
-    
-    NSString *logString = [NSString stringWithUTF8String:data];
-    return logString;
+
+    if (theChars) {
+        return [NSString stringWithUTF8String:theChars];
+    } else {
+        return nil;
+    }
 }
 
 - (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPIdentity *)identity1

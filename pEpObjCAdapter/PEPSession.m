@@ -140,7 +140,7 @@
     [PEPSession logTitle:title entity:entity description:description comment:comment];
 }
 
-- (nonnull NSString *)getLog
+- (nullable NSString *)getLog
 {
     return [PEPSession getLog];
 }
@@ -347,7 +347,7 @@
     [session logTitle:title entity:entity description:description comment:comment];
 }
 
-+ (nonnull NSString *)getLog
++ (nullable NSString *)getLog
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session getLog];
