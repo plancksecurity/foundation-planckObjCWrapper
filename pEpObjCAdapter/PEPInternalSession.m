@@ -18,6 +18,8 @@
 #import "PEPMessage.h"
 #import "PEPError.h"
 
+static NSLock *s_writeLock;
+
 @implementation PEPInternalSession
 
 - (instancetype)init
@@ -26,9 +28,9 @@
     if (self) {
         [PEPInternalSession setupTrustWordsDB];
 
-        [[PEPObjCAdapter initLock] lock];
+        [self lockWrite];
         PEP_STATUS status = init(&_session);
-        [[PEPObjCAdapter initLock] unlock];
+        [self unlockWrite];
 
         if (status != PEP_STATUS_OK) {
             return nil;
@@ -66,6 +68,16 @@
     });
 }
 
+- (void)lockWrite
+{
+    [s_writeLock lock];
+}
+
+- (void)unlockWrite
+{
+    [s_writeLock unlock];
+}
+
 #pragma mark - DEBUG UTILS
 
 /**
@@ -97,9 +109,9 @@
     PEP_rating color = PEP_rating_undefined;
     PEP_decrypt_flags_t flags = 0;
 
-    @synchronized (self) {
-        decrypt_message(_session, _src, &_dst, &_keys, &color, &flags);
-    }
+    [self lockWrite];
+    decrypt_message(_session, _src, &_dst, &_keys, &color, &flags);
+    [self unlockWrite];
 
     NSDictionary *dst_;
 
@@ -148,9 +160,9 @@
     message *_src = PEP_messageDictToStruct(src);
     PEP_rating color = PEP_rating_undefined;
 
-    @synchronized (self) {
-        re_evaluate_message_rating(_session, _src, NULL, PEP_rating_undefined, &color);
-    }
+    [self lockWrite];
+    re_evaluate_message_rating(_session, _src, NULL, PEP_rating_undefined, &color);
+    [self unlockWrite];
 
     free_message(_src);
 
@@ -192,9 +204,9 @@
     message *_dst = NULL;
     stringlist_t *_keys = PEP_arrayToStringlist(keys);
 
-    @synchronized (self) {
-        status = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
-    }
+    [self lockWrite];
+    status = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
+    [self unlockWrite];
 
     NSDictionary *dst_;
 
@@ -251,9 +263,9 @@
     pEp_identity *ident = PEP_identityToStruct(identity);
     message *_dst = NULL;
 
-    @synchronized (self) {
-        status = encrypt_message_for_self(_session, ident, _src, &_dst, PEP_enc_PGP_MIME, flags);
-    }
+    [self lockWrite];
+    status = encrypt_message_for_self(_session, ident, _src, &_dst, PEP_enc_PGP_MIME, flags);
+    [self unlockWrite];
 
     NSDictionary *dst_;
 
@@ -294,9 +306,9 @@
     message *_msg = PEP_messageDictToStruct(msg);
     PEP_rating color = PEP_rating_undefined;
 
-    @synchronized (self) {
-        outgoing_message_rating(_session, _msg, &color);
-    }
+    [self lockWrite];
+    outgoing_message_rating(_session, _msg, &color);
+    [self unlockWrite];
 
     free_message(_msg);
 
@@ -313,9 +325,9 @@
     pEp_identity *ident = PEP_identityToStruct(identity);
     PEP_rating color = PEP_rating_undefined;
 
-    @synchronized (self) {
-        identity_rating(_session, ident, &color);
-    }
+    [self lockWrite];
+    identity_rating(_session, ident, &color);
+    [self unlockWrite];
 
     free_identity(ident);
 
@@ -356,9 +368,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     NSString *userID = identity.userID;
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    @synchronized(self) {
-        myself(_session, ident);
-    }
+    [self lockWrite];
+    myself(_session, ident);
+    [self unlockWrite];
 
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
@@ -370,9 +382,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    @synchronized(self) {
-        update_identity(_session, ident);
-    }
+    [self lockWrite];
+    update_identity(_session, ident);
+    [self unlockWrite];
 
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
@@ -382,9 +394,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    @synchronized(self) {
-        trust_personal_key(_session, ident);
-    }
+    [self lockWrite];
+    trust_personal_key(_session, ident);
+    [self unlockWrite];
 
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
@@ -394,9 +406,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    @synchronized(self) {
-        key_reset_trust(_session, ident);
-    }
+    [self lockWrite];
+    key_reset_trust(_session, ident);
+    [self unlockWrite];
 
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
@@ -406,9 +418,9 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    @synchronized(self) {
-        key_mistrusted(_session, ident);
-    }
+    [self lockWrite];
+    key_mistrusted(_session, ident);
+    [self unlockWrite];
 
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
@@ -416,23 +428,21 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
 - (void)importKey:(NSString *)keydata
 {
-    @synchronized(self) {
-        import_key(_session, [keydata UTF8String], [keydata length], NULL);
-    }
+    [self lockWrite];
+    import_key(_session, [keydata UTF8String], [keydata length], NULL);
+    [self unlockWrite];
 
 }
 
 - (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
      description:(nullable NSString *)description comment:(nullable NSString *)comment
 {
-    @synchronized(self) {
-
-        log_event(_session, [[title precomposedStringWithCanonicalMapping] UTF8String],
-                  [[entity precomposedStringWithCanonicalMapping] UTF8String],
-                  [[description precomposedStringWithCanonicalMapping] UTF8String],
-                  [[comment precomposedStringWithCanonicalMapping] UTF8String]);
-
-    }
+    [self lockWrite];
+    log_event(_session, [[title precomposedStringWithCanonicalMapping] UTF8String],
+              [[entity precomposedStringWithCanonicalMapping] UTF8String],
+              [[description precomposedStringWithCanonicalMapping] UTF8String],
+              [[comment precomposedStringWithCanonicalMapping] UTF8String]);
+    [self unlockWrite];
 }
 
 - (nonnull NSString *)getLog
@@ -458,13 +468,14 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     pEp_identity *ident1 = PEP_identityToStruct(identity1);
     pEp_identity *ident2 = PEP_identityToStruct(identity2);
     PEP_STATUS status;
-    @synchronized(self) {
 
-        status = get_trustwords(_session, ident1, ident2,
-                                [[language precomposedStringWithCanonicalMapping]
-                                 UTF8String],
-                                &trustwords, &sizeWritten, full);
-    }
+    [self lockWrite];
+    status = get_trustwords(_session, ident1, ident2,
+                            [[language precomposedStringWithCanonicalMapping]
+                             UTF8String],
+                            &trustwords, &sizeWritten, full);
+    [self unlockWrite];
+
     if (status == PEP_STATUS_OK) {
         result = [NSString stringWithCString:trustwords
                                     encoding:NSUTF8StringEncoding];
@@ -494,13 +505,13 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
     pEp_identity *receiverID = PEP_identityToStruct(receiver);
     PEP_STATUS status;
-    @synchronized(self) {
-        status = get_message_trustwords(_session, theMessage, keyList, receiverID,
-                                        [[language
-                                          precomposedStringWithCanonicalMapping] UTF8String],
-                                        &trustwords, full);
-    }
-    
+    [self lockWrite];
+    status = get_message_trustwords(_session, theMessage, keyList, receiverID,
+                                    [[language
+                                      precomposedStringWithCanonicalMapping] UTF8String],
+                                    &trustwords, full);
+    [self unlockWrite];
+
     if (resultingStatus) {
         *resultingStatus = status;
     }
@@ -565,7 +576,11 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
 - (PEP_STATUS)undoLastMistrust
 {
-    return undo_last_mistrust(_session);
+    [self lockWrite];
+    PEP_STATUS status = undo_last_mistrust(_session);
+    [self unlockWrite];
+
+    return status;
 }
 
 static NSDictionary *ratingToString;
@@ -573,6 +588,8 @@ static NSDictionary *stringToRating;
 
 + (void)initialize
 {
+    s_writeLock = [[NSLock alloc] init];
+
     NSDictionary *ratingToStringIntern =
     @{
       [NSNumber numberWithInteger:PEP_rating_cannot_decrypt]: @"cannot_decrypt",
