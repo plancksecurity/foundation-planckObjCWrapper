@@ -9,6 +9,7 @@
 #import "PEPMessageUtil.h"
 
 #import "PEPIdentity.h"
+#import "PEPMessage.h"
 
 #import "pEp_string.h"
 
@@ -403,6 +404,17 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
         return dict;
     }
     return nil;
+}
+
+PEPMessage * _Nullable pEpMessageFromStruct(message * _Nullable msg)
+{
+    if (!msg) {
+        return nil;
+    }
+    NSDictionary *dict = PEP_messageDictFromStruct(msg);
+    PEPMessage *theMessage = [PEPMessage new];
+    [theMessage setValuesForKeysWithDictionary:dict];
+    return theMessage;
 }
 
 message *PEP_messageDictToStruct(NSDictionary *dict)

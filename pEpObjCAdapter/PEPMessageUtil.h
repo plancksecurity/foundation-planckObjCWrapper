@@ -11,6 +11,7 @@
 #include "message_api.h"
 
 @class PEPIdentity;
+@class PEPMessage;
 
 NSArray * _Nonnull PEP_arrayFromStringlist(stringlist_t * _Nonnull sl);
 stringlist_t * _Nullable PEP_arrayToStringlist(NSArray * _Nullable array);
@@ -24,6 +25,8 @@ PEPIdentity * _Nullable PEP_identityFromStruct(pEp_identity * _Nonnull ident);
 
 pEp_identity * _Nullable PEP_identityDictToStruct(NSDictionary * _Nullable dict);
 NSDictionary * _Nonnull PEP_identityDictFromStruct(pEp_identity * _Nullable ident);
+
+PEPMessage * _Nullable pEpMessageFromStruct(message * _Nullable msg);
 
 message * _Nullable PEP_messageDictToStruct(NSDictionary * _Nullable dict);
 NSDictionary * _Nonnull PEP_messageDictFromStruct(message * _Nullable msg);
