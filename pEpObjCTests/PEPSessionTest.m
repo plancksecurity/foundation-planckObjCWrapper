@@ -962,13 +962,13 @@
         XCTAssertEqual(rating, PEP_rating_reliable);
     };
 
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 4; ++i) {
         dispatch_group_async(identityRatingGroup,
                              dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0),
                              ratingBlock);
     }
 
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 4; ++i) {
         ratingBlock();
     }
 
