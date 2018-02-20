@@ -16,7 +16,6 @@
 #import "NSDictionary+Extension.h"
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
-#import "PEPError.h"
 
 static NSLock *s_writeLock;
 
