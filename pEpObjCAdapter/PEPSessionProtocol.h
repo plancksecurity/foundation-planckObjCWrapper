@@ -147,14 +147,6 @@ typedef NSArray<NSString *> PEPStringList;
                                          full:(BOOL)full;
 
 /** Determine trustwords between sender of a message and receiving identity */
-- (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
-                                   receiver:(nonnull PEPIdentity *)receiver
-                                      keysArray:(PEPStringList * _Nullable)keysArray
-                                       language:(nullable NSString *)language
-                                           full:(BOOL)full
-                                resultingStatus:(PEP_STATUS * _Nullable)resultingStatus __deprecated;
-
-/** Determine trustwords between sender of a message and receiving identity */
 - (nullable NSString *)getTrustwordsForMessage:(nonnull PEPMessage *)message
                                       receiver:(nonnull PEPIdentity *)receiver
                                      keysArray:(PEPStringList * _Nullable)keysArray

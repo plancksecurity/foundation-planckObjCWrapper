@@ -494,57 +494,6 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
     return result;
 }
 
-- (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
-                                   receiver:(nonnull PEPIdentity *)receiver
-                                      keysArray:(PEPStringList * _Nullable)keysArray
-                                       language:(nullable NSString *)language
-                                           full:(BOOL)full
-                                resultingStatus:(PEP_STATUS * _Nullable)resultingStatus
-{
-    NSString *result = nil;
-    char *trustwords = nil;
-
-    message *theMessage = PEP_messageDictToStruct(messageDict);
-
-    stringlist_t *keyList = nil;
-    if (keysArray) {
-        keyList = PEP_arrayToStringlist(keysArray);
-    }
-
-    pEp_identity *receiverID = PEP_identityToStruct(receiver);
-    PEP_STATUS status;
-    [self lockWrite];
-    status = get_message_trustwords(_session, theMessage, keyList, receiverID,
-                                    [[language
-                                      precomposedStringWithCanonicalMapping] UTF8String],
-                                    &trustwords, full);
-    [self unlockWrite];
-
-    if (resultingStatus) {
-        *resultingStatus = status;
-    }
-
-    if (status == PEP_STATUS_OK) {
-        result = [NSString stringWithCString:trustwords
-                                    encoding:NSUTF8StringEncoding];
-    }
-    if (trustwords) {
-        free(trustwords);
-    }
-    return result;
-}
-
-- (nullable NSString *)getTrustwordsForMessage:(nonnull PEPMessage *)message
-                                      receiver:(nonnull PEPIdentity *)receiver
-                                     keysArray:(PEPStringList * _Nullable)keysArray
-                                      language:(nullable NSString *)language
-                                          full:(BOOL)full
-                               resultingStatus:(PEP_STATUS * _Nullable)resultingStatus;
-{
-    return [self getTrustwordsMessageDict:(PEPDict *) message receiver:receiver keysArray:keysArray
-                                 language:language full:full resultingStatus:resultingStatus];
-}
-
 - (NSArray<PEPLanguage *> * _Nonnull)languageList
 {
     char *chLangs;

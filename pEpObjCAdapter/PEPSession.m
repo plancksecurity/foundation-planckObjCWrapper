@@ -156,36 +156,6 @@
                                              full:full];
 }
 
-- (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
-                                   receiver:(nonnull PEPIdentity *)receiver
-                                      keysArray:(PEPStringList * _Nullable)keysArray
-                                       language:(nullable NSString *)language
-                                           full:(BOOL)full
-                                resultingStatus:(PEP_STATUS * _Nullable)resultingStatus
-{
-    return [PEPSession getTrustwordsMessageDict:messageDict
-                                       receiver:receiver
-                                          keysArray:keysArray
-                                           language:language
-                                               full:full
-                                    resultingStatus:resultingStatus];
-}
-
-- (nullable NSString *)getTrustwordsForMessage:(nonnull PEPMessage *)message
-                                      receiver:(nonnull PEPIdentity *)receiver
-                                     keysArray:(PEPStringList * _Nullable)keysArray
-                                      language:(nullable NSString *)language
-                                          full:(BOOL)full
-                               resultingStatus:(PEP_STATUS * _Nullable)resultingStatus
-{
-    return [PEPSession getTrustwordsForMessage:message
-                                      receiver:receiver
-                                     keysArray:keysArray
-                                      language:language
-                                          full:full
-                               resultingStatus:resultingStatus];
-}
-
 - (NSArray<PEPLanguage *> * _Nonnull)languageList
 {
     return [PEPSession languageList];
@@ -360,29 +330,6 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session getTrustwordsIdentity1:identity1 identity2:identity2 language:language full:full];
-}
-
-+ (nullable NSString *)getTrustwordsMessageDict:(nonnull PEPDict *)messageDict
-                                   receiver:(nonnull PEPIdentity *)receiver
-                                      keysArray:(PEPStringList * _Nullable)keysArray
-                                       language:(nullable NSString *)language
-                                           full:(BOOL)full
-                                resultingStatus:(PEP_STATUS * _Nullable)resultingStatus
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session getTrustwordsMessageDict:messageDict receiver:receiver keysArray:keysArray language:language full:full resultingStatus:resultingStatus];
-}
-
-+ (nullable NSString *)getTrustwordsForMessage:(nonnull PEPMessage *)message
-                                      receiver:(nonnull PEPIdentity *)receiver
-                                     keysArray:(PEPStringList * _Nullable)keysArray
-                                      language:(nullable NSString *)language
-                                          full:(BOOL)full
-                               resultingStatus:(PEP_STATUS * _Nullable)resultingStatus
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session getTrustwordsForMessage:message receiver:receiver keysArray:keysArray
-                                   language:language full:full resultingStatus:resultingStatus];
 }
 
 + (NSArray<PEPLanguage *> * _Nonnull)languageList

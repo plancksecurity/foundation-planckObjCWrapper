@@ -733,30 +733,6 @@
     XCTAssertEqual(color, PEP_rating_reliable);
 }
 
-- (void)testMessageTrustwordsWithMySelf
-{
-    PEPSession *session = [PEPSession new];
-
-    PEPStringList *keys = nil;
-    PEPMessage *decryptedDict = [self internalEncryptToMySelfKeys:&keys];
-    XCTAssertNotNil(keys);
-    XCTAssert(keys.count > 0);
-
-    PEPIdentity *receiver = decryptedDict.to[0];
-    [session updateIdentity:receiver];
-    XCTAssertNotNil(receiver);
-    PEP_STATUS trustwordsStatus;
-
-    NSString *trustwords = [session getTrustwordsForMessage:decryptedDict
-                                                   receiver:receiver
-                                                  keysArray:keys language:@"en"
-                                                       full:YES
-                                            resultingStatus: &trustwordsStatus];
-    // No trustwords with yourself
-    XCTAssertEqual(trustwordsStatus, PEP_TRUSTWORDS_DUPLICATE_FPR);
-    XCTAssertNil(trustwords);
-}
-
 - (void)testGetTrustwords
 {
     PEPSession *session = [PEPSession new];
