@@ -951,6 +951,21 @@
     dispatch_group_wait(identityRatingGroup, DISPATCH_TIME_FOREVER);
 }
 
+/** ENGINE-319 */
+- (void)testEncryptedMailFromTrustedIdentity
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identTest001 =
+    [self
+     checkImportingKeyFilePath:@"iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub"
+     address:@"iostest001@peptest.ch"
+     userID:@"iOS_Test_001"
+     fingerPrint:@"118DD76CC408888101300A0D10807027467E45F8"
+     session: session];
+    XCTAssertFalse(identTest001.isOwn);
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject

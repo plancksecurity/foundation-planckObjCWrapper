@@ -29,6 +29,7 @@
 		432FA2D41C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D11C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc */; };
 		432FA2D71C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */; };
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
+		4336853A203D5B530069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43368539203D5B530069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc */; };
 		433E28911FA741DE00E359B3 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E28901FA741DE00E359B3 /* PEPIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		435796E31FB5E51A00395A9E /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 435796E21FB5E51A00395A9E /* PEPMessage.m */; };
@@ -152,6 +153,7 @@
 		432FA2D11C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = partner2_F9D9CCD0A401311F_pub.asc; sourceTree = "<group>"; };
 		432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_pub.asc; sourceTree = "<group>"; };
 		432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_sec.asc; sourceTree = "<group>"; };
+		43368539203D5B530069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc"; path = "../../../../../Desktop/iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc"; sourceTree = "<group>"; };
 		433E288E1FA7342000E359B3 /* PEPSessionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocol.h; sourceTree = "<group>"; };
 		433E288F1FA741DE00E359B3 /* PEPIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
 		433E28901FA741DE00E359B3 /* PEPIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		15DE372B200F5F93007FBD94 /* Recources */ = {
 			isa = PBXGroup;
 			children = (
+				43368539203D5B530069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc */,
 				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
 				640F79221C9B517C00DBEC4E /* 5CB2C182.asc */,
 				432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */,
@@ -433,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				432FA2D41C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc in Resources */,
+				4336853A203D5B530069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc in Resources */,
 				640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */,
 				432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */,
 				64415E4C1BEA523300F6CBB2 /* 0xC9C2EE39.asc in Resources */,
