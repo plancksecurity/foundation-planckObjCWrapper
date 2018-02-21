@@ -160,15 +160,17 @@
 
 - (void)testImportPartnerKeys
 {
-    [self checkImportingKeyFilePath:@"6FF00E97_sec.asc" address:@"pep.test.alice@pep-project.org"
-                             userID:@"This Is Alice"
-                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
-                            session: nil];
+    XCTAssertNotNil([self checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                                            address:@"pep.test.alice@pep-project.org"
+                                             userID:@"This Is Alice"
+                                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                                            session: nil]);
 
-    [self checkImportingKeyFilePath:@"0xC9C2EE39.asc" address:@"pep.test.bob@pep-project.org"
-                             userID:@"This Is Bob"
-                        fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
-                            session: nil];
+    XCTAssertNotNil([self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                                            address:@"pep.test.bob@pep-project.org"
+                                             userID:@"This Is Bob"
+                                        fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                                            session: nil]);
 }
 
 - (void)testIdentityRating
@@ -188,6 +190,7 @@
                           userID:@"This Is Alice"
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
+    XCTAssertNotNil(alice);
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 }
 
@@ -210,6 +213,7 @@
                           userID:@"This Is Alice"
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
+    XCTAssertNotNil(alice);
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 
     [session trustPersonalKey:alice];
@@ -251,6 +255,7 @@
                           userID:@"This Is Alice"
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
+    XCTAssertNotNil(alice);
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 
     [session trustPersonalKey:alice];
@@ -296,6 +301,7 @@
                           userID:@"This Is Alice"
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
+    XCTAssertNotNil(alice);
     XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
 
     void (^encryptingBlock)(void) = ^{
@@ -343,7 +349,7 @@
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
 
     // Our test user :
     PEPIdentity *identAlice = [self
@@ -378,6 +384,7 @@
                              userID:@"42"
                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
                              session: session];
+    XCTAssertNotNil(identBob);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
@@ -441,7 +448,7 @@
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
-    [PEPTestUtils importBundledKey:@"0x70DCF575.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"0x70DCF575.asc" session:session]);
 
     PEPIdentity *identJohn = [[PEPIdentity alloc]
                               initWithAddress:@"pep.test.john@pep-project.org"
@@ -475,7 +482,7 @@
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
@@ -501,7 +508,7 @@
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    [PEPTestUtils importBundledKey:@"0xC9C2EE39.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"0xC9C2EE39.asc" session:session]);
 
     PEPIdentity *identBob = [[PEPIdentity alloc]
                              initWithAddress:@"pep.test.bob@pep-project.org"
@@ -531,7 +538,7 @@
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
-    [PEPTestUtils importBundledKey:@"0x70DCF575.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"0x70DCF575.asc" session:session]);
 
     PEPIdentity *identJohn = [[PEPIdentity alloc]
                               initWithAddress:@"pep.test.john@pep-project.org"
@@ -565,7 +572,7 @@
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
@@ -578,7 +585,7 @@
 
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    [PEPTestUtils importBundledKey:@"0xC9C2EE39.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"0xC9C2EE39.asc" session:session]);
 
     PEPIdentity *identBob = [[PEPIdentity alloc]
                              initWithAddress:@"pep.test.bob@pep-project.org"
@@ -620,7 +627,7 @@
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
     NSString *fpr = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
@@ -650,7 +657,7 @@
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils importBundledKey:@"6FF00E97_sec.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
@@ -688,10 +695,10 @@
     PEPSession *session = [PEPSession new];
 
     // This is the public key for test001@peptest.ch
-    [PEPTestUtils importBundledKey:@"A3FC7F0A.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"A3FC7F0A.asc" session:session]);
 
     // This is the secret key for test001@peptest.ch
-    [PEPTestUtils importBundledKey:@"A3FC7F0A_sec.asc"];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"A3FC7F0A_sec.asc" session:session]);
 
     // Mail from mutt, already processed into message dict by the app.
     NSMutableDictionary *msgDict = [[PEPTestUtils
@@ -929,6 +936,7 @@
                                userID:@"alice_user_id"
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                                session: session];
+    XCTAssertNotNil(identAlice);
 
     dispatch_group_t identityRatingGroup = dispatch_group_create();
 
@@ -963,7 +971,7 @@
      userID:@"iOS_Test_001"
      fingerPrint:@"118DD76CC408888101300A0D10807027467E45F8"
      session: session];
-    XCTAssertFalse(identTest001.isOwn);
+    XCTAssertNotNil(identTest001);
 }
 
 #pragma mark - configUnencryptedSubject
@@ -1003,20 +1011,25 @@
         session = [PEPSession new];
     }
 
-    [PEPTestUtils importBundledKey:filePath];
+    BOOL success = [PEPTestUtils importBundledKey:filePath session:session];
+    XCTAssertTrue(success);
 
-    // Our test user:
-    PEPIdentity *identTest = [[PEPIdentity alloc]
-                              initWithAddress:address
-                              userID:userID
-                              userName:[NSString stringWithFormat:@"Some User Name %@", userID]
-                              isOwn:NO];
+    if (success) {
+        // Our test user:
+        PEPIdentity *identTest = [[PEPIdentity alloc]
+                                  initWithAddress:address
+                                  userID:userID
+                                  userName:[NSString stringWithFormat:@"Some User Name %@", userID]
+                                  isOwn:NO];
 
-    [session updateIdentity:identTest];
-    XCTAssertNotNil(identTest.fingerPrint);
-    XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
+        [session updateIdentity:identTest];
+        XCTAssertNotNil(identTest.fingerPrint);
+        XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
 
-    return identTest;
+        return identTest;
+    } else {
+        return nil;
+    }
 }
 
 - (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
@@ -1025,7 +1038,7 @@
 {
     PEPSession *session = [PEPSession new];
 
-    [PEPTestUtils importBundledKey:filePath];
+    [PEPTestUtils importBundledKey:filePath session:session];
 
     // Our test user:
     PEPIdentity *identTest = [[PEPIdentity alloc]
@@ -1126,7 +1139,7 @@
     // Partner pubkey for the test:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils importBundledKey:@"0x6FF00E97.asc"];
+    [PEPTestUtils importBundledKey:@"0x6FF00E97.asc" session:session];
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"

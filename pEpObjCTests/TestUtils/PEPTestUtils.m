@@ -66,12 +66,19 @@ NSString * const ownUserId = @"pEp_own_userId";
     return dict;
 }
 
-+ (void)importBundledKey:(NSString *)item;
++ (BOOL)importBundledKey:(NSString *)item session:(PEPSession *)session
 {
-    PEPSession *session = [PEPSession new];
+    if (!session) {
+        session = [PEPSession new];
+    }
+
     NSString *txtFileContents = [self loadStringFromFileName:item];
-    XCTAssertNotNil(txtFileContents);
-    [session importKey:txtFileContents];
+    if (!txtFileContents) {
+        return NO;
+    } else {
+        [session importKey:txtFileContents];
+        return YES;
+    }
 }
 
 + (PEPMessage * _Nonnull) mailFrom:(PEPIdentity * _Nullable) fromIdent

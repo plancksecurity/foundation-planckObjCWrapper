@@ -11,6 +11,7 @@
 @class PEPIdentity;
 @class PEPInternalSession;
 @class PEPMessage;
+@class PEPSession;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,7 +23,7 @@ extern NSString * const ownUserId;
 
 + (PEPIdentity *)ownPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;
 
-+ (void)importBundledKey:(NSString *)item;
++ (BOOL)importBundledKey:(NSString *)item session:(PEPSession *)session;
 
 + (NSString *)loadResourceByName:(NSString *)name;
 
