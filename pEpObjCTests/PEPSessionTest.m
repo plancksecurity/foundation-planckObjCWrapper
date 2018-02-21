@@ -181,7 +181,8 @@
                        checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
                        address:@"pep.test.alice@pep-project.org"
                        userID:@"Alice_User_ID"
-                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                       session:session];
     XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
 
     PEPIdentity *alice = [self
@@ -356,7 +357,8 @@
                                checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
                                address:@"pep.test.alice@pep-project.org"
                                userID:@"Alice_User_ID"
-                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                               session:session];
 
     //Message
 
@@ -1035,9 +1037,8 @@
 - (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
                                           userID:(NSString *)userID
                                      fingerPrint:(NSString *)fingerPrint
+                                         session:(PEPSession *)session
 {
-    PEPSession *session = [PEPSession new];
-
     [PEPTestUtils importBundledKey:filePath session:session];
 
     // Our test user:
