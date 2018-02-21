@@ -6,6 +6,8 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#import <XCTest/XCTest.h>
+
 #import "PEPTestUtils.h"
 
 #import "NSDictionary+Extension.h"
@@ -68,6 +70,7 @@ NSString * const ownUserId = @"pEp_own_userId";
 {
     PEPSession *session = [PEPSession new];
     NSString *txtFileContents = [self loadStringFromFileName:item];
+    XCTAssertNotNil(txtFileContents);
     [session importKey:txtFileContents];
 }
 
