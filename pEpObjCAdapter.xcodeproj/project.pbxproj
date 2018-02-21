@@ -29,7 +29,7 @@
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		43368540203D5CEC0069A451 /* PEPTestSyncDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77F2010E20400A0DA20 /* PEPTestSyncDelegate.m */; };
-		43368554203D6C4A0069A451 /* iOS Test 001 (TB controlled) iostest001@peptest.ch (0x467E45F8) pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43368553203D6C4A0069A451 /* iOS Test 001 (TB controlled) iostest001@peptest.ch (0x467E45F8) pub.asc */; };
+		43368554203D6C4A0069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43368553203D6C4A0069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc */; };
 		433E28911FA741DE00E359B3 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E28901FA741DE00E359B3 /* PEPIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		435796E31FB5E51A00395A9E /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 435796E21FB5E51A00395A9E /* PEPMessage.m */; };
@@ -153,7 +153,7 @@
 		432FA2D11C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = partner2_F9D9CCD0A401311F_pub.asc; sourceTree = "<group>"; };
 		432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_pub.asc; sourceTree = "<group>"; };
 		432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_sec.asc; sourceTree = "<group>"; };
-		43368553203D6C4A0069A451 /* iOS Test 001 (TB controlled) iostest001@peptest.ch (0x467E45F8) pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Test 001 (TB controlled) iostest001@peptest.ch (0x467E45F8) pub.asc"; sourceTree = "<group>"; };
+		43368553203D6C4A0069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc"; sourceTree = "<group>"; };
 		433E288E1FA7342000E359B3 /* PEPSessionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocol.h; sourceTree = "<group>"; };
 		433E288F1FA741DE00E359B3 /* PEPIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
 		433E28901FA741DE00E359B3 /* PEPIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 		15DE372B200F5F93007FBD94 /* Recources */ = {
 			isa = PBXGroup;
 			children = (
-				43368553203D6C4A0069A451 /* iOS Test 001 (TB controlled) iostest001@peptest.ch (0x467E45F8) pub.asc */,
+				43368553203D6C4A0069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc */,
 				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
 				640F79221C9B517C00DBEC4E /* 5CB2C182.asc */,
 				432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */,
@@ -447,7 +447,7 @@
 				64415E4A1BEA523300F6CBB2 /* 0x70DCF575.asc in Resources */,
 				64415E4B1BEA523300F6CBB2 /* 70DCF575_sec.asc in Resources */,
 				640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */,
-				43368554203D6C4A0069A451 /* iOS Test 001 (TB controlled) iostest001@peptest.ch (0x467E45F8) pub.asc in Resources */,
+				43368554203D6C4A0069A451 /* iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc in Resources */,
 				43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */,
 				432FA2D71C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc in Resources */,
 				432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */,
