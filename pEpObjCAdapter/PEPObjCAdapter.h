@@ -68,4 +68,8 @@
  */
 + (void)stopSync;
 
++ (PEPMessage * _Nullable)mimeDecode:(NSString * _Nonnull)mimeText
+                          pEpMessage:(PEPMessage *_Nullable * _Nonnull)pEpMessage
+                               error:(NSError * _Nonnull * _Nullable)error;
+
 @end
