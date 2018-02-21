@@ -32,6 +32,10 @@
 		433E28911FA741DE00E359B3 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E28901FA741DE00E359B3 /* PEPIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		435796E31FB5E51A00395A9E /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 435796E21FB5E51A00395A9E /* PEPMessage.m */; };
+		43643393203D7A8100069902 /* IOSAD-76_iostest002@peptest.ch.pub.key in Resources */ = {isa = PBXBuildFile; fileRef = 4364338F203D7A8000069902 /* IOSAD-76_iostest002@peptest.ch.pub.key */; };
+		43643394203D7A8100069902 /* IOSAD-76_iostest002@peptest.ch.sec.key in Resources */ = {isa = PBXBuildFile; fileRef = 43643390203D7A8000069902 /* IOSAD-76_iostest002@peptest.ch.sec.key */; };
+		43643395203D7A8100069902 /* IOSAD-76_test010@peptest.ch.pub.key in Resources */ = {isa = PBXBuildFile; fileRef = 43643391203D7A8100069902 /* IOSAD-76_test010@peptest.ch.pub.key */; };
+		43643396203D7A8100069902 /* IOSAD-76_Mail_from_P4A.txt in Resources */ = {isa = PBXBuildFile; fileRef = 43643392203D7A8100069902 /* IOSAD-76_Mail_from_P4A.txt */; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		43D27DE61F5DA7B700795687 /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D27DE51F5DA7B700795687 /* NSDictionary+Extension.m */; };
 		43DED786203C25E200D45CD6 /* NSError+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DED785203C25E200D45CD6 /* NSError+PEP.m */; };
@@ -158,6 +162,10 @@
 		434226801D4F60000083ED79 /* PepTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PepTests.m; sourceTree = "<group>"; };
 		435796E11FB5E51A00395A9E /* PEPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMessage.h; sourceTree = "<group>"; };
 		435796E21FB5E51A00395A9E /* PEPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
+		4364338F203D7A8000069902 /* IOSAD-76_iostest002@peptest.ch.pub.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "IOSAD-76_iostest002@peptest.ch.pub.key"; sourceTree = "<group>"; };
+		43643390203D7A8000069902 /* IOSAD-76_iostest002@peptest.ch.sec.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "IOSAD-76_iostest002@peptest.ch.sec.key"; sourceTree = "<group>"; };
+		43643391203D7A8100069902 /* IOSAD-76_test010@peptest.ch.pub.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "IOSAD-76_test010@peptest.ch.pub.key"; sourceTree = "<group>"; };
+		43643392203D7A8100069902 /* IOSAD-76_Mail_from_P4A.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "IOSAD-76_Mail_from_P4A.txt"; sourceTree = "<group>"; };
 		43676B631C57EA1A00233933 /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
 		43D27DE41F5DA78700795687 /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
@@ -219,6 +227,10 @@
 		15DE372B200F5F93007FBD94 /* Recources */ = {
 			isa = PBXGroup;
 			children = (
+				4364338F203D7A8000069902 /* IOSAD-76_iostest002@peptest.ch.pub.key */,
+				43643390203D7A8000069902 /* IOSAD-76_iostest002@peptest.ch.sec.key */,
+				43643392203D7A8100069902 /* IOSAD-76_Mail_from_P4A.txt */,
+				43643391203D7A8100069902 /* IOSAD-76_test010@peptest.ch.pub.key */,
 				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
 				640F79221C9B517C00DBEC4E /* 5CB2C182.asc */,
 				432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */,
@@ -443,12 +455,16 @@
 				43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */,
 				64415E4A1BEA523300F6CBB2 /* 0x70DCF575.asc in Resources */,
 				64415E4B1BEA523300F6CBB2 /* 70DCF575_sec.asc in Resources */,
+				43643395203D7A8100069902 /* IOSAD-76_test010@peptest.ch.pub.key in Resources */,
 				640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */,
 				43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */,
 				432FA2D71C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc in Resources */,
+				43643393203D7A8100069902 /* IOSAD-76_iostest002@peptest.ch.pub.key in Resources */,
 				432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */,
 				43E02A231C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser in Resources */,
 				64415E491BEA523300F6CBB2 /* 6FF00E97_sec.asc in Resources */,
+				43643396203D7A8100069902 /* IOSAD-76_Mail_from_P4A.txt in Resources */,
+				43643394203D7A8100069902 /* IOSAD-76_iostest002@peptest.ch.sec.key in Resources */,
 				432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */,
 				64415E481BEA523300F6CBB2 /* 0x6FF00E97.asc in Resources */,
 				64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */,
