@@ -966,14 +966,25 @@
 {
     PEPSession *session = [PEPSession new];
 
-    PEPIdentity *identTest001 =
+    XCTAssertTrue([PEPTestUtils
+                   importBundledKey:@"IOSAD-76_iostest002@peptest.ch.pub.key" session:session]);
+
+    PEPIdentity *me = [self
+                       checkMySelfImportingKeyFilePath:@"IOSAD-76_iostest002@peptest.ch.sec.key"
+                       address:@"iostest002@peptest.ch"
+                       userID:@"iOS Test 002"
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                       session:session];
+    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+
+    PEPIdentity *identTest010 =
     [self
-     checkImportingKeyFilePath:@"iOS Test 001 iostest001@peptest.ch (0x467E45F8) pub.asc"
-     address:@"iostest001@peptest.ch"
-     userID:@"iOS_Test_001"
-     fingerPrint:@"118DD76CC408888101300A0D10807027467E45F8"
+     checkImportingKeyFilePath:@"IOSAD-76_test010@peptest.ch.pub.key"
+     address:@"test010@peptest.ch"
+     userID:@"Test_010"
+     fingerPrint:@"97C5F27F9F81296EA3694FBCF407FCD36ED1D1AD"
      session: session];
-    XCTAssertNotNil(identTest001);
+    XCTAssertNotNil(identTest010);
 }
 
 #pragma mark - configUnencryptedSubject
@@ -1039,7 +1050,7 @@
                                      fingerPrint:(NSString *)fingerPrint
                                          session:(PEPSession *)session
 {
-    [PEPTestUtils importBundledKey:filePath session:session];
+    XCTAssertTrue([PEPTestUtils importBundledKey:filePath session:session]);
 
     // Our test user:
     PEPIdentity *identTest = [[PEPIdentity alloc]
@@ -1128,10 +1139,6 @@
     [PEPTestUtils cleanUp];
 }
 
-- (void)pEpSetUp
-{
-}
-
 - (void)helperXEncStatusForOutgoingEncryptdMailToSelf:(BOOL)toSelf
                                        expectedRating:(PEP_rating)expectedRating
 {
@@ -1140,7 +1147,7 @@
     // Partner pubkey for the test:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils importBundledKey:@"0x6FF00E97.asc" session:session];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"0x6FF00E97.asc" session:session]);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
