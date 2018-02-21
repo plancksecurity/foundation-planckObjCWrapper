@@ -961,32 +961,6 @@
     dispatch_group_wait(identityRatingGroup, DISPATCH_TIME_FOREVER);
 }
 
-/** ENGINE-319 */
-- (void)testEncryptedMailFromTrustedIdentity
-{
-    PEPSession *session = [PEPSession new];
-
-    XCTAssertTrue([PEPTestUtils
-                   importBundledKey:@"IOSAD-76_iostest002@peptest.ch.pub.key" session:session]);
-
-    PEPIdentity *me = [self
-                       checkMySelfImportingKeyFilePath:@"IOSAD-76_iostest002@peptest.ch.sec.key"
-                       address:@"iostest002@peptest.ch"
-                       userID:@"iOS Test 002"
-                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
-                       session:session];
-    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
-
-    PEPIdentity *identTest010 =
-    [self
-     checkImportingKeyFilePath:@"IOSAD-76_test010@peptest.ch.pub.key"
-     address:@"test010@peptest.ch"
-     userID:@"Test_010"
-     fingerPrint:@"97C5F27F9F81296EA3694FBCF407FCD36ED1D1AD"
-     session: session];
-    XCTAssertNotNil(identTest010);
-}
-
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
