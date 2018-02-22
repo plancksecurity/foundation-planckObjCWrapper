@@ -91,8 +91,7 @@
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
 
-    // check that the comm type is not a PGP one
-    XCTAssertFalse([identMe containsPGPCommType]);
+    XCTAssertTrue([identMe isPEPUser:session]);
 }
 
 - (void)testMySelfCommType
@@ -110,8 +109,7 @@
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
 
-    // check that the comm type is not a PGP one
-    XCTAssertFalse([identMe containsPGPCommType]);
+    XCTAssertTrue([identMe isPEPUser:session]);
 
     dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     dispatch_sync(queue, ^{
@@ -126,7 +124,7 @@
                                  isOwn:NO];
         [session2 mySelf:identMe2];
         XCTAssertNotNil(identMe2.fingerPrint);
-        XCTAssertFalse([identMe2 containsPGPCommType]);
+        XCTAssertTrue([identMe2 isPEPUser:session]);
         XCTAssertEqualObjects(identMe2.fingerPrint, identMe.fingerPrint);
 
         // Now pretend the app only knows kPepUsername and kPepAddress
@@ -134,7 +132,7 @@
                                                                    userName:identMe.userName];
         [session2 mySelf:identMe3];
         XCTAssertNotNil(identMe3.fingerPrint);
-        XCTAssertFalse([identMe3 containsPGPCommType]);
+        XCTAssertFalse([identMe3 isPEPUser:session]);
         XCTAssertEqualObjects(identMe3.fingerPrint, identMe.fingerPrint);
 
         XCTAssertEqualObjects(identMe.address, identMe2.address);

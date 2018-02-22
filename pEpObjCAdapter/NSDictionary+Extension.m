@@ -23,17 +23,6 @@
     return ctNum.intValue;
 }
 
-- (BOOL)containsPGPCommType
-{
-    PEP_comm_type val = self.commType;
-
-    return
-    val == PEP_ct_OpenPGP_weak_unconfirmed ||
-    val == PEP_ct_OpenPGP_unconfirmed ||
-    val == PEP_ct_OpenPGP_weak ||
-    val == PEP_ct_OpenPGP;
-}
-
 - (void)debugSaveToFilePath:(NSString * _Nonnull)filePath
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
