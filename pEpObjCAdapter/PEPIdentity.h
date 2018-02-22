@@ -10,6 +10,8 @@
 
 #import "PEPSessionProtocol.h"
 
+@class PEPSession;
+
 @interface PEPIdentity : NSObject <NSMutableCopying>
 
 /**
@@ -97,6 +99,11 @@
  if a communication partner is a pEp user or not.
  */
 - (BOOL)containsPGPCommType;
+
+/**
+ Is the given identity a pEp user, from the engine's point of view?
+ */
+- (BOOL)isPEPUser:(PEPSession * _Nullable)session;
 
 /**
  Puts all properties into a default/nil state.

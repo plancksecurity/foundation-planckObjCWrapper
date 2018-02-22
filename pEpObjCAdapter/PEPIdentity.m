@@ -10,6 +10,7 @@
 
 #import "pEpEngine.h"
 #import "PEPMessageUtil.h"
+#import "PEPSession.h"
 
 @implementation PEPIdentity
 
@@ -100,6 +101,14 @@
     val == PEP_ct_OpenPGP_unconfirmed ||
     val == PEP_ct_OpenPGP_weak ||
     val == PEP_ct_OpenPGP;
+}
+
+- (BOOL)isPEPUser:(PEPSession * _Nullable)session
+{
+    if (!session) {
+        session = [PEPSession new];
+    }
+    return [session isPEPUser:self];
 }
 
 - (BOOL)isConfirmed
