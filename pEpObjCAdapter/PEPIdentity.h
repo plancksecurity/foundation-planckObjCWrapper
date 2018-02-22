@@ -95,12 +95,6 @@
 - (PEPMutableDict * _Nonnull)mutableDictionary;
 
 /**
- Does this identity contain a PGP comm type? This can be used for determining
- if a communication partner is a pEp user or not.
- */
-- (BOOL)containsPGPCommType;
-
-/**
  Is the given identity a pEp user, from the engine's point of view?
  */
 - (BOOL)isPEPUser:(PEPSession * _Nullable)session;

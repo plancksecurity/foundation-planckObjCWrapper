@@ -92,17 +92,6 @@
     return (PEPMutableDict *) self;
 }
 
-- (BOOL)containsPGPCommType
-{
-    PEP_comm_type val = (PEP_comm_type) self.commType;
-
-    return
-    val == PEP_ct_OpenPGP_weak_unconfirmed ||
-    val == PEP_ct_OpenPGP_unconfirmed ||
-    val == PEP_ct_OpenPGP_weak ||
-    val == PEP_ct_OpenPGP;
-}
-
 - (BOOL)isPEPUser:(PEPSession * _Nullable)session
 {
     if (!session) {
