@@ -1032,6 +1032,9 @@
                               isOwn:YES
                               fingerPrint: fingerPrint];
 
+    NSError *error;
+    XCTAssertTrue([session setOwnKey:identTest fingerprint:fingerPrint error:&error]);
+    XCTAssertNil(error);
     [session mySelf:identTest];
     XCTAssertNotNil(identTest.fingerPrint);
     XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
