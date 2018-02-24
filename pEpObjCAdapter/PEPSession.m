@@ -181,6 +181,12 @@
     return [PEPSession isPEPUser:identity];
 }
 
+- (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
+            error:(NSError * _Nullable * _Nullable)error
+{
+    return [PEPSession setOwnKey:identity fingerprint:fingerprint error:error];
+}
+
 #pragma mark - Static
 
 + (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
@@ -360,6 +366,13 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session isPEPUser:identity];
+}
+
++ (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
+            error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session setOwnKey:identity fingerprint:fingerprint error:error];
 }
 
 @end

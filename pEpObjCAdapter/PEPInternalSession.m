@@ -16,6 +16,7 @@
 #import "NSDictionary+Extension.h"
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
+#import "NSError+PEP.h"
 
 static NSLock *s_writeLock;
 
@@ -601,6 +602,23 @@ static NSDictionary *stringToRating;
     if (status == PEP_STATUS_OK) {
         return isPEP;
     } else {
+        return NO;
+    }
+}
+
+- (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
+            error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    PEP_STATUS status = set_own_key(self.session, ident,
+                                    [[fingerprint precomposedStringWithCanonicalMapping]
+                                     UTF8String]);
+    if (status == PEP_STATUS_OK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
         return NO;
     }
 }

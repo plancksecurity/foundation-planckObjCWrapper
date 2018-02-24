@@ -173,4 +173,10 @@ typedef NSArray<NSString *> PEPStringList;
  */
 - (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity;
 
+/**
+ When (manually) importing (secret) keys, associate them with the given own identity.
+ */
+- (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
+            error:(NSError * _Nullable * _Nullable)error;
+
 @end
