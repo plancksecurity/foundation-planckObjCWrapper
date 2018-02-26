@@ -18,8 +18,6 @@
 #import "PEPMessage.h"
 #import "NSError+PEP.h"
 
-static NSLock *s_writeLock;
-
 @implementation PEPInternalSession
 
 - (instancetype)init
@@ -45,10 +43,9 @@ static NSLock *s_writeLock;
 {
     [PEPObjCAdapter unbindSession:self];
 
-    [[PEPObjCAdapter initLock] lock];
+    [self lockWrite];
     release(_session);
-    [[PEPObjCAdapter initLock] unlock];
-
+    [self unlockWrite];
 }
 
 #pragma mark - CONFIG
@@ -60,22 +57,22 @@ static NSLock *s_writeLock;
 
 #pragma mark - INTERNAL
 
+- (void)lockWrite
+{
+    [PEPObjCAdapter lockWrite];
+}
+
+- (void)unlockWrite
+{
+    [PEPObjCAdapter unlockWrite];
+}
+
 + (void)setupTrustWordsDB
 {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
     });
-}
-
-- (void)lockWrite
-{
-    [s_writeLock lock];
-}
-
-- (void)unlockWrite
-{
-    [s_writeLock unlock];
 }
 
 #pragma mark - DEBUG UTILS
@@ -545,8 +542,6 @@ static NSDictionary *stringToRating;
 
 + (void)initialize
 {
-    s_writeLock = [[NSLock alloc] init];
-
     NSDictionary *ratingToStringIntern =
     @{
       [NSNumber numberWithInteger:PEP_rating_cannot_decrypt]: @"cannot_decrypt",

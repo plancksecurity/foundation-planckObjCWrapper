@@ -23,11 +23,6 @@
  */
 + (BOOL)unecryptedSubjectEnabled;
 
-/**
- The lock that should be used for locking all session init() and release().
- */
-+ (NSLock *)initLock;
-
 // this messages are for internal use only; do not call
 
 + (void)registerExamineFunction:(PEP_SESSION)session;
@@ -37,6 +32,16 @@
 + (id <PEPSyncDelegate>)getSyncDelegate;
 + (void)bindSession:(PEPInternalSession*)session;
 + (void)unbindSession:(PEPInternalSession*)session;
+
+/**
+ Locks for (potential) sqlite writes.
+ */
++ (void)lockWrite;
+
+/**
+ Unlocks (potential) sqlite writes.
+ */
++ (void)unlockWrite;
 
 @end
 
