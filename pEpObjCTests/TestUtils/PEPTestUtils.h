@@ -39,8 +39,6 @@ extern NSString * const ownUserId;
 
 + (void)cleanUp;
 
-+ (void)restoreWorkFilesFromBackupNamed:(NSString *)backup;
-
 + (NSArray *)pEpWorkFiles;
 
 @end
