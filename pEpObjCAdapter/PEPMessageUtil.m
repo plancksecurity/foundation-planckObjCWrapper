@@ -341,7 +341,6 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
     if (msg && dict) {
-
         [dict setObject:(msg->dir==PEP_dir_outgoing)?@YES:@NO forKey:@"outgoing"];
 
         if (msg->id)
@@ -400,10 +399,8 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
             NSData *data = [NSData dataWithBytes:msg->rawmsg_ref length:msg->rawmsg_size];
             dict[kPepRawMessage] = data;
         }
-
-        return dict;
     }
-    return nil;
+    return dict;
 }
 
 PEPMessage * _Nullable pEpMessageFromStruct(message * _Nullable msg)

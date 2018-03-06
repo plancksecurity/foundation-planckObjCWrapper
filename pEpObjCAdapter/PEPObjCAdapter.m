@@ -335,11 +335,9 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     [syncThreadJoinCond lock];
     
     
-    PEP_STATUS status;
-    
-    status = do_sync_protocol(sync_session,
-                              /* "object" : notifying, sending (unused) */
-                              "NOTNULL");
+    do_sync_protocol(sync_session,
+                     /* "object" : notifying, sending (unused) */
+                     "NOTNULL");
     
     // TODO : log something if status not as expected
 

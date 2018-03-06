@@ -139,9 +139,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 + (void)nullifySessionForThread:(PEPCopyableThread *)thread
 {
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
-    PEPInternalSession *session = dict[thread];
     dict[thread] = nil;
-    session = nil;
 }
 
 @end
