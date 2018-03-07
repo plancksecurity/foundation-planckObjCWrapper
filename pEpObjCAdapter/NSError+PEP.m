@@ -13,7 +13,7 @@
 + (NSError *)errorWithPEPStatus:(PEP_STATUS)status
                        userInfo:(NSDictionary<NSErrorUserInfoKey, id> *)dict
 {
-    if (status != PEP_STATUS_OK) {
+    if (status != PEP_STATUS_OK && status != PEP_DECRYPTED) {
         return [NSError errorWithDomain:@"pEp" code:status userInfo:dict];
     }
     return nil;
