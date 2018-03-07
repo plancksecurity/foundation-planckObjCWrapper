@@ -24,7 +24,7 @@
     return [self errorWithPEPStatus:status userInfo:nil];
 }
 
-+ (BOOL)setError:(NSError * _Nullable * _Nullable)error fromStatus:(PEP_STATUS)status
++ (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEP_STATUS)status
 {
     NSError *theError = [self errorWithPEPStatus:status];
     if (theError) {

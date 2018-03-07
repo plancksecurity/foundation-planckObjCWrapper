@@ -24,6 +24,6 @@
  If the given status indicates an error, tries to set the given error accordingly.
  @return YES if the given status indicates an error condition, NO otherwise.
  */
-+ (BOOL)setError:(NSError * _Nullable * _Nullable)error fromStatus:(PEP_STATUS)status;
++ (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEP_STATUS)status;
 
 @end
