@@ -15,15 +15,21 @@
  */
 @interface NSError (Extension)
 
-+ (NSError *)errorWithPEPStatus:(PEP_STATUS)status
++ (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status
                        userInfo:(NSDictionary<NSErrorUserInfoKey, id> *)dict;
 
-+ (NSError *)errorWithPEPStatus:(PEP_STATUS)status;
++ (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status;
 
 /**
  If the given status indicates an error, tries to set the given error accordingly.
  @return YES if the given status indicates an error condition, NO otherwise.
  */
 + (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEP_STATUS)status;
+
+/**
+ A possible string representation of the error code if this is a pEp error.
+ @return A string representation of the pEp error code, if it's in the pEp domain.
+ */
+- (NSString * _Nullable)pEpErrorString;
 
 @end
