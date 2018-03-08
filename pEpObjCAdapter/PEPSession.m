@@ -21,22 +21,20 @@
     [PEPSessionProvider cleanup];
 }
 
-- (BOOL)decryptMessageDict:(nonnull PEPDict *)src
-                      dest:(PEPDict * _Nullable * _Nullable)dst
-                    rating:(PEP_rating * _Nullable)rating
-                      keys:(PEPStringList * _Nullable * _Nullable)keys
-                     error:(NSError * _Nullable * _Nullable)error
+- (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)src
+                                   rating:(PEP_rating * _Nullable)rating
+                                     keys:(PEPStringList * _Nullable * _Nullable)keys
+                                    error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession decryptMessageDict:src dest:dst rating:rating keys:keys error:error];
+    return [PEPSession decryptMessageDict:src rating:rating keys:keys error:error];
 }
 
-- (BOOL)decryptMessage:(nonnull PEPMessage *)src
-                  dest:(PEPMessage * _Nullable * _Nullable)dst
-                rating:(PEP_rating * _Nullable)rating
-                  keys:(PEPStringList * _Nullable * _Nullable)keys
-                 error:(NSError * _Nullable * _Nullable)error
+- (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)src
+                                  rating:(PEP_rating * _Nullable)rating
+                                    keys:(PEPStringList * _Nullable * _Nullable)keys
+                                   error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession decryptMessage:src dest:dst rating:rating keys:keys error:error];
+    return [PEPSession decryptMessage:src rating:rating keys:keys error:error];
 }
 
 - (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
@@ -197,24 +195,22 @@
 
 #pragma mark - Static
 
-+ (BOOL)decryptMessageDict:(nonnull PEPDict *)src
-                      dest:(PEPDict * _Nullable * _Nullable)dst
-                    rating:(PEP_rating * _Nullable)rating
-                      keys:(PEPStringList * _Nullable * _Nullable)keys
-                     error:(NSError * _Nullable * _Nullable)error __deprecated
++ (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)src
+                                   rating:(PEP_rating * _Nullable)rating
+                                     keys:(PEPStringList * _Nullable * _Nullable)keys
+                                    error:(NSError * _Nullable * _Nullable)error __deprecated
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session decryptMessageDict:src dest:dst rating:rating keys:keys error:error];
+    return [session decryptMessageDict:src rating:rating keys:keys error:error];
 }
 
-+ (BOOL)decryptMessage:(nonnull PEPMessage *)src
-                  dest:(PEPMessage * _Nullable * _Nullable)dst
-                rating:(PEP_rating * _Nullable)rating
-                  keys:(PEPStringList * _Nullable * _Nullable)keys
-                 error:(NSError * _Nullable * _Nullable)error
++ (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)src
+                                  rating:(PEP_rating * _Nullable)rating
+                                    keys:(PEPStringList * _Nullable * _Nullable)keys
+                                   error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session decryptMessage:src dest:dst rating:rating keys:keys error:error];
+    return [session decryptMessage:src rating:rating keys:keys error:error];
 }
 
 + (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict

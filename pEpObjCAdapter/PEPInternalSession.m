@@ -96,11 +96,10 @@
 
 #pragma mark - PEPSessionProtocol
 
-- (BOOL)decryptMessageDict:(nonnull PEPDict *)src
-                      dest:(PEPDict * _Nullable * _Nullable)dst
-                    rating:(PEP_rating * _Nullable)rating
-                      keys:(PEPStringList * _Nullable * _Nullable)keys
-                     error:(NSError * _Nullable * _Nullable)error
+- (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)src
+                                   rating:(PEP_rating * _Nullable)rating
+                                     keys:(PEPStringList * _Nullable * _Nullable)keys
+                                    error:(NSError * _Nullable * _Nullable)error
 {
     if (rating) {
         *rating = PEP_rating_undefined;
@@ -118,7 +117,7 @@
     [self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
-        return NO;
+        return nil;
     }
 
     NSDictionary *dst_;
@@ -137,10 +136,6 @@
     free_message(_dst);
     free_stringlist(_keys);
 
-    if (dst) {
-        *dst = dst_;
-    }
-
     if (keys) {
         *keys = keys_;
     }
@@ -149,32 +144,26 @@
         *rating = internalRating;
     }
 
-    return YES;
+    return dst_;
 }
 
-- (BOOL)decryptMessage:(nonnull PEPMessage *)src
-                  dest:(PEPMessage * _Nullable * _Nullable)dst
-                rating:(PEP_rating * _Nullable)rating
-                  keys:(PEPStringList * _Nullable * _Nullable)keys
-                 error:(NSError * _Nullable * _Nullable)error
+- (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)src
+                                  rating:(PEP_rating * _Nullable)rating
+                                    keys:(PEPStringList * _Nullable * _Nullable)keys
+                                   error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *destDict;
+    PEPDict *destDict = [self decryptMessageDict:(PEPDict *)src
+                                          rating:rating
+                                            keys:keys
+                                           error:error];
 
-    if (![self decryptMessageDict:(PEPDict *)src
-                             dest:&destDict
-                           rating:rating
-                             keys:keys
-                            error:error]) {
-        return NO;
-    }
-
-    if (dst) {
+    if (!destDict) {
+        return nil;
+    } else {
         PEPMessage *msg = [PEPMessage new];
         [msg setValuesForKeysWithDictionary:destDict];
-        *dst = msg;
+        return msg;
     }
-
-    return YES;
 }
 
 - (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
