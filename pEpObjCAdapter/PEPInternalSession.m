@@ -177,11 +177,11 @@
     return YES;
 }
 
-- (BOOL)reEvaluateMessageRating:(nonnull PEPDict *)src
-                         rating:(PEP_rating * _Nullable)rating
-                          error:(NSError * _Nullable * _Nullable)error
+- (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
+                       rating:(PEP_rating * _Nullable)rating
+                        error:(NSError * _Nullable * _Nullable)error
 {
-    message *_src = PEP_messageDictToStruct(src);
+    message *_src = PEP_messageDictToStruct(messageDict);
     PEP_rating ratingByEngine = PEP_rating_undefined;
 
     [self lockWrite];
@@ -204,11 +204,11 @@
     }
 }
 
-- (BOOL)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
-                            rating:(PEP_rating * _Nullable)rating
-                             error:(NSError * _Nullable * _Nullable)error
+- (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
+                   rating:(PEP_rating * _Nullable)rating
+                    error:(NSError * _Nullable * _Nullable)error
 {
-    return [self reEvaluateMessageRating:(PEPDict *) src rating:rating error:error];
+    return [self reEvaluateMessageDict:(PEPDict *) message rating:rating error:error];
 }
 
 - (void)removeEmptyArrayKey:(NSString *)key inDict:(PEPMutableDict *)dict

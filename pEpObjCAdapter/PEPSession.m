@@ -39,18 +39,18 @@
     return [PEPSession decryptMessage:src dest:dst rating:rating keys:keys error:error];
 }
 
-- (BOOL)reEvaluateMessageRating:(nonnull PEPDict *)src
-                         rating:(PEP_rating * _Nullable)rating
-                          error:(NSError * _Nullable * _Nullable)error
+- (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
+                       rating:(PEP_rating * _Nullable)rating
+                        error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession reEvaluateMessageRating:src rating:rating error:error];
+    return [PEPSession reEvaluateMessageDict:messageDict rating:rating error:error];
 }
 
-- (BOOL)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
-                            rating:(PEP_rating * _Nullable)rating
-                             error:(NSError * _Nullable * _Nullable)error
+- (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
+                   rating:(PEP_rating * _Nullable)rating
+                    error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession reEvaluateRatingForMessage:src rating:rating error:error];
+    return [PEPSession reEvaluateMessage:message rating:rating error:error];
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
@@ -217,20 +217,20 @@
     return [session decryptMessage:src dest:dst rating:rating keys:keys error:error];
 }
 
-+ (BOOL)reEvaluateMessageRating:(nonnull PEPDict *)src
-                         rating:(PEP_rating * _Nullable)rating
-                          error:(NSError * _Nullable * _Nullable)error
++ (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
+                       rating:(PEP_rating * _Nullable)rating
+                        error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session reEvaluateMessageRating:src rating:rating error:error];
+    return [session reEvaluateMessageDict:messageDict rating:rating error:error];
 }
 
-+ (BOOL)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
-                            rating:(PEP_rating * _Nullable)rating
-                             error:(NSError * _Nullable * _Nullable)error
++ (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
+                   rating:(PEP_rating * _Nullable)rating
+                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session reEvaluateRatingForMessage:src rating:rating error:error];
+    return [session reEvaluateMessage:message rating:rating error:error];
 }
 
 + (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src

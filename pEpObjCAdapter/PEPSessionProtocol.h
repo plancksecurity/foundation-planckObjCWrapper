@@ -35,14 +35,14 @@ typedef NSArray<NSString *> PEPStringList;
                  error:(NSError * _Nullable * _Nullable)error;
 
 /** Re-evaluate rating of decrypted message */
-- (BOOL)reEvaluateMessageRating:(nonnull PEPDict *)src
-                         rating:(PEP_rating * _Nullable)rating
-                          error:(NSError * _Nullable * _Nullable)error __deprecated;
+- (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
+                       rating:(PEP_rating * _Nullable)rating
+                        error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Re-evaluate rating of decrypted message */
-- (BOOL)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
-                            rating:(PEP_rating * _Nullable)rating
-                             error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
+                   rating:(PEP_rating * _Nullable)rating
+                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message dictionary */
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
