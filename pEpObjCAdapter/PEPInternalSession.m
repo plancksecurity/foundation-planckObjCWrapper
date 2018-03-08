@@ -177,23 +177,38 @@
     return YES;
 }
 
-- (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src
+- (BOOL)reEvaluateMessageRating:(nonnull PEPDict *)src
+                         rating:(PEP_rating * _Nullable)rating
+                          error:(NSError * _Nullable * _Nullable)error
 {
     message *_src = PEP_messageDictToStruct(src);
-    PEP_rating color = PEP_rating_undefined;
+    PEP_rating ratingByEngine = PEP_rating_undefined;
 
     [self lockWrite];
-    re_evaluate_message_rating(_session, _src, NULL, PEP_rating_undefined, &color);
+    PEP_STATUS status = re_evaluate_message_rating(_session,
+                                                   _src,
+                                                   NULL,
+                                                   PEP_rating_undefined,
+                                                   &ratingByEngine);
     [self unlockWrite];
 
     free_message(_src);
 
-    return color;
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return NO;
+    } else {
+        if (rating) {
+            *rating = ratingByEngine;
+        }
+        return YES;
+    }
 }
 
-- (PEP_rating)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
+- (BOOL)reEvaluateRatingForMessage:(nonnull PEPMessage *)src
+                            rating:(PEP_rating * _Nullable)rating
+                             error:(NSError * _Nullable * _Nullable)error
 {
-    return [self reEvaluateMessageRating:(PEPDict *) src];
+    return [self reEvaluateMessageRating:(PEPDict *) src rating:rating error:error];
 }
 
 - (void)removeEmptyArrayKey:(NSString *)key inDict:(PEPMutableDict *)dict
