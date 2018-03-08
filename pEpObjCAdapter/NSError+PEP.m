@@ -15,16 +15,24 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
 + (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status
                                 userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
 {
-    if (status != PEP_STATUS_OK && status != PEP_DECRYPTED && status != PEP_UNENCRYPTED) {
-        if (![dict objectForKey:NSLocalizedDescriptionKey]) {
-            NSMutableDictionary *dict2 = [NSMutableDictionary dictionaryWithDictionary:dict];
-            [dict2 setValue:localizedErrorStringFromPEPStatus(status)
-                     forKey:NSLocalizedDescriptionKey];
-            dict = dict2;
-        }
-        return [NSError errorWithDomain:s_pEpAdapterDomain code:status userInfo:dict];
+    switch (status) {
+        case PEP_STATUS_OK:
+        case PEP_DECRYPTED:
+        case PEP_UNENCRYPTED:
+        case PEP_DECRYPT_NO_KEY:
+            return nil;
+            break;
+
+        default:
+            if (![dict objectForKey:NSLocalizedDescriptionKey]) {
+                NSMutableDictionary *dict2 = [NSMutableDictionary dictionaryWithDictionary:dict];
+                [dict2 setValue:localizedErrorStringFromPEPStatus(status)
+                         forKey:NSLocalizedDescriptionKey];
+                dict = dict2;
+            }
+            return [NSError errorWithDomain:s_pEpAdapterDomain code:status userInfo:dict];
+            break;
     }
-    return nil;
 }
 
 + (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status
