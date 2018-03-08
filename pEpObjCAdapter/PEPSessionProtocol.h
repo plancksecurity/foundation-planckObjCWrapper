@@ -21,14 +21,18 @@ typedef NSArray<NSString *> PEPStringList;
 @protocol PEPSessionProtocol <NSObject>
 
 /** Decrypt a message */
-- (PEP_rating)decryptMessageDict:(nonnull PEPDict *)src
-                            dest:(PEPDict * _Nullable * _Nullable)dst
-                            keys:(PEPStringList * _Nullable * _Nullable)keys __deprecated;
+- (BOOL)decryptMessageDict:(nonnull PEPDict *)src
+                      dest:(PEPDict * _Nullable * _Nullable)dst
+                    rating:(PEP_rating * _Nullable)rating
+                      keys:(PEPStringList * _Nullable * _Nullable)keys
+                     error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Decrypt a message */
-- (PEP_rating)decryptMessage:(nonnull PEPMessage *)src
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
-                        keys:(PEPStringList * _Nullable * _Nullable)keys;
+- (BOOL)decryptMessage:(nonnull PEPMessage *)src
+                  dest:(PEPMessage * _Nullable * _Nullable)dst
+                rating:(PEP_rating * _Nullable)rating
+                  keys:(PEPStringList * _Nullable * _Nullable)keys
+                 error:(NSError * _Nullable * _Nullable)error;
 
 /** Re-evaluate rating of decrypted message */
 - (PEP_rating)reEvaluateMessageRating:(nonnull PEPDict *)src __deprecated;

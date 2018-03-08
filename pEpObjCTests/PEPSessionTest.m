@@ -686,7 +686,9 @@
     NSArray* keys;
     PEPMessage *decmsg;
 
-    clr = [session decryptMessage:encmsg dest:&decmsg keys:&keys];
+    NSError *error;
+    XCTAssertTrue([session decryptMessage:encmsg dest:&decmsg rating:&clr keys:&keys error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized);
 }
 
@@ -722,7 +724,13 @@
     PEPMessage *msg = [PEPMessage new];
     [msg setValuesForKeysWithDictionary:msgDict];
     PEPMessage *pepDecryptedMail;
-    [session decryptMessage:msg dest:&pepDecryptedMail keys:&keys];
+
+    // Technically, the mail is encrypted, but the signatures don't match
+    NSError *error;
+    XCTAssertTrue([session decryptMessage:msg dest:&pepDecryptedMail rating:nil keys:&keys
+                                    error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(pepDecryptedMail.longMessage);
 }
 
@@ -883,7 +891,13 @@
 
     PEPMessage *decMsg;
     PEPStringList *keys;
-    PEP_rating pEpRating = [session decryptMessage:encMsg dest:&decMsg keys:&keys];
+
+    PEP_rating pEpRating;
+    NSError *error;
+    XCTAssertTrue([session decryptMessage:encMsg dest:&decMsg rating:&pEpRating keys:&keys
+                                    error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertEqual(pEpRating, PEP_rating_unencrypted);
     XCTAssertNotNil(decMsg);
 }
@@ -1099,7 +1113,13 @@
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
     PEPMessage *unencDict;
-    PEP_rating rating = [session decryptMessage:encMessage dest:&unencDict keys:keys];
+
+    PEP_rating rating;
+    NSError *error;
+    XCTAssertTrue([session decryptMessage:encMessage dest:&unencDict rating:&rating keys:keys
+                                    error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertGreaterThanOrEqual(rating, PEP_rating_reliable);
 
     XCTAssertEqualObjects(unencDict.shortMessage, shortMessage);
@@ -1164,7 +1184,12 @@
 
     PEPMessage *decMsg;
     PEPStringList *keys;
-    PEP_rating pEpRating = [session decryptMessage:encMsg dest:&decMsg keys:&keys];
+    PEP_rating pEpRating;
+    NSError *error;
+    XCTAssertTrue([session decryptMessage:encMsg dest:&decMsg rating:&pEpRating keys:&keys
+                                    error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertEqual(pEpRating, expectedRating);
     XCTAssertNotNil(decMsg);
 
