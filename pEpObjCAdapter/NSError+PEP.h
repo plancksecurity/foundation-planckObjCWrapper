@@ -16,7 +16,7 @@
 @interface NSError (Extension)
 
 + (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status
-                       userInfo:(NSDictionary<NSErrorUserInfoKey, id> *)dict;
+                       userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict;
 
 + (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status;
 

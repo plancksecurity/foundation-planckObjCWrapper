@@ -8,14 +8,20 @@
 
 #import "NSError+PEP.h"
 
-static NSString *s_pEpAdapterDomain = @"pEpAdapter";
+static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
 
 @implementation NSError (Extension)
 
 + (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status
-                                userInfo:(NSDictionary<NSErrorUserInfoKey, id> *)dict
+                                userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
 {
     if (status != PEP_STATUS_OK && status != PEP_DECRYPTED && status != PEP_UNENCRYPTED) {
+        if (![dict objectForKey:NSLocalizedDescriptionKey]) {
+            NSMutableDictionary *dict2 = [NSMutableDictionary dictionaryWithDictionary:dict];
+            [dict2 setValue:localizedErrorStringFromPEPStatus(status)
+                     forKey:NSLocalizedDescriptionKey];
+            dict = dict2;
+        }
         return [NSError errorWithDomain:s_pEpAdapterDomain code:status userInfo:dict];
     }
     return nil;
@@ -23,7 +29,8 @@ static NSString *s_pEpAdapterDomain = @"pEpAdapter";
 
 + (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status
 {
-    return [self errorWithPEPStatus:status userInfo:nil];
+    NSDictionary *userInfo = [NSDictionary new];
+    return [self errorWithPEPStatus:status userInfo:userInfo];
 }
 
 + (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEP_STATUS)status
@@ -40,6 +47,13 @@ static NSString *s_pEpAdapterDomain = @"pEpAdapter";
         }
         return NO;
     }
+}
+
+/**
+ Could in theory return a fully localized version of the underlying error.
+ */
+NSString * _Nonnull localizedErrorStringFromPEPStatus(PEP_STATUS status) {
+    return stringFromPEPStatus(status);
 }
 
 NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
