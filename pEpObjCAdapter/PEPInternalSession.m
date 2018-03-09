@@ -255,13 +255,6 @@
 
 - (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
                        extra:(nullable PEPStringList *)keys
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
-{
-    return [self encryptMessage:src extra:keys encFormat:PEP_enc_PEP dest:dst];
-}
-
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                       extra:(nullable PEPStringList *)keys
                    encFormat:(PEP_enc_format)encFormat
                         dest:(PEPMessage * _Nullable * _Nullable)dst
 {
@@ -276,6 +269,13 @@
         *dst = encrypted;
     }
     return status;
+}
+
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                       extra:(nullable PEPStringList *)keys
+                        dest:(PEPMessage * _Nullable * _Nullable)dst
+{
+    return [self encryptMessage:src extra:keys encFormat:PEP_enc_PEP dest:dst];
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src

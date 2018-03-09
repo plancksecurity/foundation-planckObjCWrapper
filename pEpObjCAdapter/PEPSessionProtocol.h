@@ -42,29 +42,29 @@ typedef NSArray<NSString *> PEPStringList;
                    rating:(PEP_rating * _Nullable)rating
                     error:(NSError * _Nullable * _Nullable)error;
 
-/** Encrypt a message dictionary */
+/** Encrypt a message dictionary, indicating the encoding format */
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                            extra:(nullable PEPStringList *)keys
                        encFormat:(PEP_enc_format)encFormat
                             dest:(PEPDict * _Nullable * _Nullable)dst __deprecated;
 
-/** Encrypt a message with default encryption format (PEP_enc_PEP) */
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                           extra:(nullable PEPStringList *)keys
-                            dest:(PEPMessage * _Nullable * _Nullable)dst;
-
-/** Encrypt a message */
+/** Encrypt a message, indicating the encoding format */
 - (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
                        extra:(nullable PEPStringList *)keys
                    encFormat:(PEP_enc_format)encFormat
                         dest:(PEPMessage * _Nullable * _Nullable)dst;
 
-/** Encrypt a message for the given identity, which is usually a mySelf identity */
+/** Encrypt a message with default encryption format (PEP_enc_PEP) */
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+                       extra:(nullable PEPStringList *)keys
+                        dest:(PEPMessage * _Nullable * _Nullable)dst;
+
+/** Encrypt a message for the given own identity */
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                         identity:(nonnull PEPIdentity *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst __deprecated;
 
-/** Encrypt a message for the given identity, which is usually a mySelf identity */
+/** Encrypt a message for the given own identity */
 - (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
                         identity:(nonnull PEPIdentity *)identity
                             dest:(PEPMessage * _Nullable * _Nullable)dst;
