@@ -111,7 +111,8 @@ typedef NSArray<NSString *> PEPStringList;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).
- See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
+ Will call the engine's myself() or update_identity() internally, depending on the given
+ identity.
  */
 - (void)updateIdentity:(nonnull PEPIdentity *)identity;
 
