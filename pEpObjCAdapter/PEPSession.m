@@ -26,7 +26,8 @@
                                      keys:(PEPStringList * _Nullable * _Nullable)keys
                                     error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession decryptMessageDict:src rating:rating keys:keys error:error];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session decryptMessageDict:src rating:rating keys:keys error:error];
 }
 
 - (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)src
@@ -34,21 +35,24 @@
                                     keys:(PEPStringList * _Nullable * _Nullable)keys
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession decryptMessage:src rating:rating keys:keys error:error];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session decryptMessage:src rating:rating keys:keys error:error];
 }
 
 - (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
                        rating:(PEP_rating * _Nullable)rating
                         error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession reEvaluateMessageDict:messageDict rating:rating error:error];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session reEvaluateMessageDict:messageDict rating:rating error:error];
 }
 
 - (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
                    rating:(PEP_rating * _Nullable)rating
                     error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession reEvaluateMessage:message rating:rating error:error];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session reEvaluateMessage:message rating:rating error:error];
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
@@ -56,14 +60,16 @@
                        encFormat:(PEP_enc_format)encFormat
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
-    return [PEPSession encryptMessageDict:src extra:keys encFormat:encFormat dest:dst];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session encryptMessageDict:src extra:keys encFormat:encFormat dest:dst];
 }
 
 - (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
                        extra:(nullable PEPStringList *)keys
                         dest:(PEPMessage * _Nullable * _Nullable)dst
 {
-    return [PEPSession encryptMessage:src extra:keys dest:dst];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session encryptMessage:src extra:keys dest:dst];
 }
 
 - (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
@@ -71,66 +77,73 @@
                    encFormat:(PEP_enc_format)encFormat
                         dest:(PEPMessage * _Nullable * _Nullable)dst
 {
-    return [PEPSession encryptMessage:src extra:keys encFormat:encFormat dest:dst];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session encryptMessage:src extra:keys encFormat:encFormat dest:dst];
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
                         identity:(nonnull PEPIdentity *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst
 {
-    return [PEPSession encryptMessageDict:src identity:identity dest:dst];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session encryptMessageDict:src identity:identity dest:dst];
 }
 
 - (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
                     identity:(nonnull PEPIdentity *)identity
                         dest:(PEPMessage * _Nullable * _Nullable)dst
 {
-    return [PEPSession encryptMessage:src identity:identity dest:dst];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session encryptMessage:src identity:identity dest:dst];
 }
 
 - (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message
 {
-    return [PEPSession outgoingColorForMessage:message];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session outgoingColorForMessage:message];
 }
 
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
 {
-    return [PEPSession identityRating:identity];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session identityRating:identity];
 }
 
 - (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
                       shortened:(BOOL)shortened
 {
-    return [PEPSession trustwords:fpr forLanguage:languageID shortened:shortened];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session trustwords:fpr forLanguage:languageID shortened:shortened];
 }
 
 - (void)mySelf:(nonnull PEPIdentity *)identity
 {
-    [PEPSession mySelf:identity];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    [session mySelf:identity];
 }
 
 - (void)updateIdentity:(nonnull PEPIdentity *)identity
 {
-    if (identity.isOwn) {
-        [PEPSession mySelf:identity];
-    } else {
-        [PEPSession updateIdentity:identity];
-    }
+    PEPInternalSession *session = [PEPSessionProvider session];
+    [session updateIdentity:identity];
 }
 
 - (void)trustPersonalKey:(nonnull PEPIdentity *)identity
 {
-    [PEPSession trustPersonalKey:identity];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    [session trustPersonalKey:identity];
 }
 
 - (void)keyMistrusted:(nonnull PEPIdentity *)identity
 {
-    [PEPSession keyMistrusted:identity];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    [session keyMistrusted:identity];
 }
 
 - (void)keyResetTrust:(nonnull PEPIdentity *)identity
 {
-    [PEPSession keyResetTrust:identity];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    [session keyResetTrust:identity];
 }
 
 #pragma mark Internal API (testing etc.)
@@ -191,133 +204,6 @@
             error:(NSError * _Nullable * _Nullable)error
 {
     return [PEPSession setOwnKey:identity fingerprint:fingerprint error:error];
-}
-
-#pragma mark - Static
-
-+ (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)src
-                                   rating:(PEP_rating * _Nullable)rating
-                                     keys:(PEPStringList * _Nullable * _Nullable)keys
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session decryptMessageDict:src rating:rating keys:keys error:error];
-}
-
-+ (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)src
-                                  rating:(PEP_rating * _Nullable)rating
-                                    keys:(PEPStringList * _Nullable * _Nullable)keys
-                                   error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session decryptMessage:src rating:rating keys:keys error:error];
-}
-
-+ (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
-                       rating:(PEP_rating * _Nullable)rating
-                        error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session reEvaluateMessageDict:messageDict rating:rating error:error];
-}
-
-+ (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
-                   rating:(PEP_rating * _Nullable)rating
-                    error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session reEvaluateMessage:message rating:rating error:error];
-}
-
-+ (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                           extra:(nullable PEPStringList *)keys
-                       encFormat:(PEP_enc_format)encFormat
-                            dest:(PEPDict * _Nullable * _Nullable)dst
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessageDict:src extra:keys encFormat:encFormat dest:dst];
-}
-
-+ (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                           extra:(nullable PEPStringList *)keys
-                            dest:(PEPMessage * _Nullable * _Nullable)dst
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessage:src extra:keys dest:dst];
-}
-
-+ (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                       extra:(nullable PEPStringList *)keys
-                   encFormat:(PEP_enc_format)encFormat
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessage:src extra:keys encFormat:encFormat dest:dst];
-}
-
-+ (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                        identity:(nonnull PEPIdentity *)identity
-                            dest:(PEPDict * _Nullable * _Nullable)dst
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessageDict:src identity:identity dest:dst];
-}
-
-+ (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                    identity:(nonnull PEPIdentity *)identity
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessage:src identity:identity dest:dst];
-}
-
-+ (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session outgoingColorForMessage:message];
-}
-
-+ (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session identityRating:identity];
-}
-
-+ (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
-                      shortened:(BOOL)shortened
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session trustwords:fpr forLanguage:languageID shortened:shortened];
-}
-
-+ (void)mySelf:(nonnull PEPIdentity *)identity
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    [session mySelf:identity];
-}
-
-+ (void)updateIdentity:(nonnull PEPIdentity *)identity
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    [session updateIdentity:identity];
-}
-
-+ (void)trustPersonalKey:(nonnull PEPIdentity *)identity
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    [session trustPersonalKey:identity];
-}
-
-+ (void)keyMistrusted:(nonnull PEPIdentity *)identity
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    [session keyMistrusted:identity];
-}
-
-+ (void)keyResetTrust:(nonnull PEPIdentity *)identity
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    [session keyResetTrust:identity];
 }
 
 #pragma mark Internal API (testing etc.)
