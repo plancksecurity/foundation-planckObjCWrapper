@@ -407,15 +407,19 @@ DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident,
 
 - (void)updateIdentity:(PEPIdentity *)identity
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    if (identity.isOwn) {
+        [self mySelf:identity];
+    } else {
+        pEp_identity *ident = PEP_identityToStruct(identity);
 
-    [self lockWrite];
-    update_identity(_session, ident);
-    [self unlockWrite];
+        [self lockWrite];
+        update_identity(_session, ident);
+        [self unlockWrite];
 
-    [identity reset];
-    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
-    free_identity(ident);
+        [identity reset];
+        [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
+        free_identity(ident);
+    }
 }
 
 - (void)trustPersonalKey:(PEPIdentity *)identity
