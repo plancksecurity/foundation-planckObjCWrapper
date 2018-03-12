@@ -688,7 +688,7 @@
     PEPMessage *decmsg = [session
                           decryptMessage:encMsg
                           rating:&clr
-                          keys:&keys
+                          extraKeys:&keys
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
@@ -732,7 +732,7 @@
     PEPMessage *pepDecryptedMail = [session
                                     decryptMessage:msg
                                     rating:nil
-                                    keys:&keys
+                                    extraKeys:&keys
                                     error:&error];
     XCTAssertNotNil(pepDecryptedMail);
     XCTAssertNil(error);
@@ -900,7 +900,7 @@
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
                           rating:&pEpRating
-                          keys:&keys
+                          extraKeys:&keys
                           error:&error];
     XCTAssertNotNil(decMsg);
     XCTAssertNil(error);
@@ -1124,7 +1124,7 @@
     PEPMessage *unencDict = [session
                              decryptMessage:encMessage
                              rating:&rating
-                             keys:keys
+                             extraKeys:keys
                              error:&error];
     XCTAssertNotNil(unencDict);
     XCTAssertNil(error);
@@ -1198,7 +1198,7 @@
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
                           rating:&pEpRating
-                          keys:&keys
+                          extraKeys:&keys
                           error:&error];
     XCTAssertNil(error);
     XCTAssertNotNil(decMsg);

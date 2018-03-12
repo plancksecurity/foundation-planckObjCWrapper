@@ -21,15 +21,15 @@ typedef NSArray<NSString *> PEPStringList;
 @protocol PEPSessionProtocol <NSObject>
 
 /** Decrypt a message */
-- (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)src
+- (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)messageDict
                                    rating:(PEP_rating * _Nullable)rating
-                                     keys:(PEPStringList * _Nullable * _Nullable)keys
+                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Decrypt a message */
-- (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)src
+- (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)message
                                   rating:(PEP_rating * _Nullable)rating
-                                    keys:(PEPStringList * _Nullable * _Nullable)keys
+                               extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Re-evaluate rating of decrypted message */
@@ -46,7 +46,7 @@ typedef NSArray<NSString *> PEPStringList;
  Encrypt a message dictionary, indicating the encoding format.
  @note The resulting message dict could be the input one.
  */
-- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)src
+- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
                                 extraKeys:(nullable PEPStringList *)extraKeys
                                 encFormat:(PEP_enc_format)encFormat
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
@@ -55,23 +55,23 @@ typedef NSArray<NSString *> PEPStringList;
  Encrypt a message, indicating the encoding format
  @note The resulting message dict could be the input one.
  */
-- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)src
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
                                extraKeys:(nullable PEPStringList *)extraKeys
                                encFormat:(PEP_enc_format)encFormat
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message with default encryption format (PEP_enc_PEP) */
-- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)src
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
                                extraKeys:(nullable PEPStringList *)extraKeys
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message for the given own identity */
-- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
+- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)mesageDict
                         identity:(nonnull PEPIdentity *)identity
                             dest:(PEPDict * _Nullable * _Nullable)dst __deprecated;
 
 /** Encrypt a message for the given own identity */
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
+- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)message
                     identity:(nonnull PEPIdentity *)identity
                         dest:(PEPMessage * _Nullable * _Nullable)dst;
 

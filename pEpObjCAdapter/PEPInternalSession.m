@@ -98,7 +98,7 @@
 
 - (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)messageDict
                                    rating:(PEP_rating * _Nullable)rating
-                                     keys:(PEPStringList * _Nullable * _Nullable)keys
+                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                     error:(NSError * _Nullable * _Nullable)error
 {
     if (rating) {
@@ -136,8 +136,8 @@
     free_message(_dst);
     free_stringlist(_keys);
 
-    if (keys) {
-        *keys = keys_;
+    if (extraKeys) {
+        *extraKeys = keys_;
     }
 
     if (rating) {
@@ -147,14 +147,14 @@
     return dst_;
 }
 
-- (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)src
+- (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)message
                                   rating:(PEP_rating * _Nullable)rating
-                                    keys:(PEPStringList * _Nullable * _Nullable)keys
+                               extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *destDict = [self decryptMessageDict:(PEPDict *)src
+    PEPDict *destDict = [self decryptMessageDict:(PEPDict *)message
                                           rating:rating
-                                            keys:keys
+                                       extraKeys:extraKeys
                                            error:error];
 
     if (!destDict) {
