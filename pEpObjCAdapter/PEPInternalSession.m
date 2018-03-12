@@ -96,7 +96,7 @@
 
 #pragma mark - PEPSessionProtocol
 
-- (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)src
+- (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)messageDict
                                    rating:(PEP_rating * _Nullable)rating
                                      keys:(PEPStringList * _Nullable * _Nullable)keys
                                     error:(NSError * _Nullable * _Nullable)error
@@ -105,7 +105,7 @@
         *rating = PEP_rating_undefined;
     }
 
-    message *_src = PEP_messageDictToStruct(src);
+    message *_src = PEP_messageDictToStruct(messageDict);
     message *_dst = NULL;
     stringlist_t *_keys = NULL;
     PEP_decrypt_flags_t flags = 0;
@@ -218,21 +218,24 @@
     return dest;
 }
 
-- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                           extra:(nullable NSArray *)keys
-                       encFormat:(PEP_enc_format)encFormat
-                            dest:(PEPDict * _Nullable * _Nullable)dst
+- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
+                                extraKeys:(nullable PEPStringList *)extraKeys
+                                encFormat:(PEP_enc_format)encFormat
+                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEP_STATUS status;
     PEP_encrypt_flags_t flags = 0;
 
-    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
+    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
     message *_dst = NULL;
-    stringlist_t *_keys = PEP_arrayToStringlist(keys);
+    stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
     [self lockWrite];
-    status = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
+    PEP_STATUS status = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
     [self unlockWrite];
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return nil;
+    }
 
     NSDictionary *dst_;
 
@@ -242,40 +245,33 @@
     else {
         dst_ = PEP_messageDictFromStruct(_src);
     }
-    if (dst) {
-        *dst = dst_;
-    }
 
     free_message(_src);
     free_message(_dst);
     free_stringlist(_keys);
 
-    return status;
+    return dst_;
 }
 
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                       extra:(nullable PEPStringList *)keys
-                   encFormat:(PEP_enc_format)encFormat
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
+                                   extraKeys:(nullable PEPStringList *)extraKeys
+                               encFormat:(PEP_enc_format)encFormat
+                                   error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *target;
-    PEP_STATUS status = [self encryptMessageDict:(NSDictionary *) src
-                                           extra:keys
-                                       encFormat: encFormat
-                                            dest:&target];
-    if (dst) {
-        PEPMessage *encrypted = [PEPMessage new];
-        [encrypted setValuesForKeysWithDictionary:target];
-        *dst = encrypted;
-    }
-    return status;
+    PEPDict *encryptedDict = [self encryptMessageDict:(NSDictionary *) message
+                                                extraKeys:extraKeys
+                                            encFormat:encFormat
+                                                error:error];
+    PEPMessage *encrypted = [PEPMessage new];
+    [encrypted setValuesForKeysWithDictionary:encryptedDict];
+    return encrypted;
 }
 
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                       extra:(nullable PEPStringList *)keys
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
+                                   extraKeys:(nullable PEPStringList *)extraKeys
+                                   error:(NSError * _Nullable * _Nullable)error
 {
-    return [self encryptMessage:src extra:keys encFormat:PEP_enc_PEP dest:dst];
+    return [self encryptMessage:message extraKeys:extraKeys encFormat:PEP_enc_PEP error:error];
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src

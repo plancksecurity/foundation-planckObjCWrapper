@@ -55,30 +55,30 @@
     return [session reEvaluateMessage:message rating:rating error:error];
 }
 
-- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                           extra:(nullable PEPStringList *)keys
-                       encFormat:(PEP_enc_format)encFormat
-                            dest:(PEPDict * _Nullable * _Nullable)dst
+- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)src
+                                    extraKeys:(nullable PEPStringList *)extraKeys
+                                encFormat:(PEP_enc_format)encFormat
+                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessageDict:src extra:keys encFormat:encFormat dest:dst];
+    return [session encryptMessageDict:src extraKeys:extraKeys encFormat:encFormat error:error];
 }
 
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                       extra:(nullable PEPStringList *)keys
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)src
+                                   extraKeys:(nullable PEPStringList *)extraKeys
+                               encFormat:(PEP_enc_format)encFormat
+                                   error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessage:src extra:keys dest:dst];
+    return [session encryptMessage:src extraKeys:extraKeys encFormat:encFormat error:error];
 }
 
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                       extra:(nullable PEPStringList *)keys
-                   encFormat:(PEP_enc_format)encFormat
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)src
+                                   extraKeys:(nullable PEPStringList *)extraKeys
+                                   error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessage:src extra:keys encFormat:encFormat dest:dst];
+    return [session encryptMessage:src extraKeys:extraKeys error:error];
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src

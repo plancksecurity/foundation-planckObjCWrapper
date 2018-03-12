@@ -42,22 +42,28 @@ typedef NSArray<NSString *> PEPStringList;
                    rating:(PEP_rating * _Nullable)rating
                     error:(NSError * _Nullable * _Nullable)error;
 
-/** Encrypt a message dictionary, indicating the encoding format */
-- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                           extra:(nullable PEPStringList *)keys
-                       encFormat:(PEP_enc_format)encFormat
-                            dest:(PEPDict * _Nullable * _Nullable)dst __deprecated;
+/**
+ Encrypt a message dictionary, indicating the encoding format.
+ @note The resulting message dict could be the input one.
+ */
+- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)src
+                                extraKeys:(nullable PEPStringList *)extraKeys
+                                encFormat:(PEP_enc_format)encFormat
+                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
 
-/** Encrypt a message, indicating the encoding format */
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                       extra:(nullable PEPStringList *)keys
-                   encFormat:(PEP_enc_format)encFormat
-                        dest:(PEPMessage * _Nullable * _Nullable)dst;
+/**
+ Encrypt a message, indicating the encoding format
+ @note The resulting message dict could be the input one.
+ */
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)src
+                               extraKeys:(nullable PEPStringList *)extraKeys
+                               encFormat:(PEP_enc_format)encFormat
+                                   error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message with default encryption format (PEP_enc_PEP) */
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                       extra:(nullable PEPStringList *)keys
-                        dest:(PEPMessage * _Nullable * _Nullable)dst;
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)src
+                               extraKeys:(nullable PEPStringList *)extraKeys
+                                   error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message for the given own identity */
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
@@ -66,8 +72,8 @@ typedef NSArray<NSString *> PEPStringList;
 
 /** Encrypt a message for the given own identity */
 - (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                        identity:(nonnull PEPIdentity *)identity
-                            dest:(PEPMessage * _Nullable * _Nullable)dst;
+                    identity:(nonnull PEPIdentity *)identity
+                        dest:(PEPMessage * _Nullable * _Nullable)dst;
 
 /** Determine the status color of a message to be sent */
 - (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message;

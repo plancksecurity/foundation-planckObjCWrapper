@@ -464,14 +464,13 @@
     clr = [session outgoingColorForMessage:msg];
     XCTAssertEqual(clr, PEP_rating_reliable);
 
-    PEPMessage *encmsg;
-    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+    NSError *error = nil;
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+    XCTAssertNotNil(encMsg);
+    XCTAssertNil(error);
 
-    XCTAssertNotNil(encmsg);
-    XCTAssertEqualObjects(encmsg.shortMessage, @"p≡p");
-    XCTAssertTrue([encmsg.longMessage containsString:@"p≡p"]);
-
-    XCTAssertEqual(status, PEP_STATUS_OK);
+    XCTAssertEqualObjects(encMsg.shortMessage, @"p≡p");
+    XCTAssertTrue([encMsg.longMessage containsString:@"p≡p"]);
 }
 
 
@@ -610,12 +609,12 @@
     PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssertEqual(clr, PEP_rating_unencrypted);
 
-    PEPMessage *encmsg;
-    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+    NSError *error = nil;
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+    XCTAssertNotNil(encMsg);
+    XCTAssertNil(error);
 
-    XCTAssertEqual(status, PEP_UNENCRYPTED);
-
-    XCTAssertNotEqualObjects(encmsg.attachments[0][@"mimeType"], @"application/pgp-encrypted");
+    XCTAssertNotEqualObjects(encMsg.attachments[0][@"mimeType"], @"application/pgp-encrypted");
 
     [self pEpCleanUp];
 }
@@ -678,16 +677,16 @@
     PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized);
 
-    PEPMessage *encmsg;
-    PEP_STATUS status = [session encryptMessage:msg extra:@[] dest:&encmsg];
+    NSError *error = nil;
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+    XCTAssertNotNil(encMsg);
+    XCTAssertNil(error);
 
-    XCTAssertEqual(status, PEP_STATUS_OK);
+    NSArray *keys;
 
-    NSArray* keys;
-
-    NSError *error;
+    error = nil;
     PEPMessage *decmsg = [session
-                          decryptMessage:encmsg
+                          decryptMessage:encMsg
                           rating:&clr
                           keys:&keys
                           error:&error];
@@ -888,17 +887,16 @@
     PEP_rating clr = [session outgoingColorForMessage:msg];
     XCTAssertEqual(clr, PEP_rating_unencrypted);
 
-    PEPMessage *encMsg;
-
-    PEP_STATUS statusEnc = statusEnc = [session encryptMessage:msg extra:@[] dest:&encMsg];
-
-    XCTAssertEqual(statusEnc, PEP_UNENCRYPTED);
+    NSError *error = nil;
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+    XCTAssertNotNil(encMsg);
+    XCTAssertNil(error);
 
     XCTAssertNotNil(encMsg);
 
     PEPStringList *keys;
     PEP_rating pEpRating;
-    NSError *error;
+    error = nil;
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
                           rating:&pEpRating
@@ -1185,12 +1183,13 @@
     PEP_STATUS statusEnc = PEP_VERSION_MISMATCH;
     if (toSelf) {
         statusEnc = [session encryptMessage:msg identity:identMe dest:&encMsg];
+        XCTAssertEqual(statusEnc, PEP_STATUS_OK);
     } else {
-         statusEnc = [session encryptMessage:msg extra:@[] dest:&encMsg];
+        NSError *error = nil;
+        encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+        XCTAssertNotNil(encMsg);
+        XCTAssertNil(error);
     }
-
-    XCTAssertEqual(statusEnc, PEP_STATUS_OK);
-
     XCTAssertNotNil(encMsg);
 
     PEPStringList *keys;
