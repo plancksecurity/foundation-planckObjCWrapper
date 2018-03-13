@@ -465,7 +465,7 @@
     XCTAssertEqual(clr, PEP_rating_reliable);
 
     NSError *error = nil;
-    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
     XCTAssertNil(error);
 
@@ -610,7 +610,7 @@
     XCTAssertEqual(clr, PEP_rating_unencrypted);
 
     NSError *error = nil;
-    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
     XCTAssertNil(error);
 
@@ -678,7 +678,7 @@
     XCTAssertEqual(clr, PEP_rating_trusted_and_anonymized);
 
     NSError *error = nil;
-    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
     XCTAssertNil(error);
 
@@ -689,6 +689,7 @@
                           decryptMessage:encMsg
                           rating:&clr
                           extraKeys:&keys
+                          status:nil
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
@@ -733,6 +734,7 @@
                                     decryptMessage:msg
                                     rating:nil
                                     extraKeys:&keys
+                                    status:nil
                                     error:&error];
     XCTAssertNotNil(pepDecryptedMail);
     XCTAssertNil(error);
@@ -888,7 +890,7 @@
     XCTAssertEqual(clr, PEP_rating_unencrypted);
 
     NSError *error = nil;
-    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
     XCTAssertNil(error);
 
@@ -901,6 +903,7 @@
                           decryptMessage:encMsg
                           rating:&pEpRating
                           extraKeys:&keys
+                          status:nil
                           error:&error];
     XCTAssertNotNil(decMsg);
     XCTAssertNil(error);
@@ -1125,6 +1128,7 @@
                              decryptMessage:encMessage
                              rating:&rating
                              extraKeys:keys
+                             status:nil
                              error:&error];
     XCTAssertNotNil(unencDict);
     XCTAssertNil(error);
@@ -1186,7 +1190,7 @@
         XCTAssertEqual(statusEnc, PEP_STATUS_OK);
     } else {
         NSError *error = nil;
-        encMsg = [session encryptMessage:msg extraKeys:nil error:&error];
+        encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
         XCTAssertNotNil(encMsg);
         XCTAssertNil(error);
     }
@@ -1199,6 +1203,7 @@
                           decryptMessage:encMsg
                           rating:&pEpRating
                           extraKeys:&keys
+                          status:nil
                           error:&error];
     XCTAssertNil(error);
     XCTAssertNotNil(decMsg);

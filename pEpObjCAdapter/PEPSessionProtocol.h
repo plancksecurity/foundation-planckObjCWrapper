@@ -24,22 +24,26 @@ typedef NSArray<NSString *> PEPStringList;
 - (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)messageDict
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
+                                   status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Decrypt a message */
 - (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)message
                                   rating:(PEP_rating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
+                                  status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Re-evaluate rating of decrypted message */
 - (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
                        rating:(PEP_rating * _Nullable)rating
+                       status:(PEP_STATUS * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Re-evaluate rating of decrypted message */
 - (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
                    rating:(PEP_rating * _Nullable)rating
+                   status:(PEP_STATUS * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -49,6 +53,7 @@ typedef NSArray<NSString *> PEPStringList;
 - (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
                                 extraKeys:(nullable PEPStringList *)extraKeys
                                 encFormat:(PEP_enc_format)encFormat
+                                   status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /**
@@ -58,11 +63,13 @@ typedef NSArray<NSString *> PEPStringList;
 - (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
                                extraKeys:(nullable PEPStringList *)extraKeys
                                encFormat:(PEP_enc_format)encFormat
+                                  status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message with default encryption format (PEP_enc_PEP) */
 - (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
                                extraKeys:(nullable PEPStringList *)extraKeys
+                                  status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message for the given own identity */

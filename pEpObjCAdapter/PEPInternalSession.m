@@ -99,6 +99,7 @@
 - (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)messageDict
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
+                                   status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     if (rating) {
@@ -113,10 +114,14 @@
     PEP_rating internalRating = PEP_rating_undefined;
 
     [self lockWrite];
-    PEP_STATUS status = decrypt_message(_session, _src, &_dst, &_keys, &internalRating, &flags);
+    PEP_STATUS theStatus = decrypt_message(_session, _src, &_dst, &_keys, &internalRating, &flags);
     [self unlockWrite];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if (status) {
+        *status = theStatus;
+    }
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return nil;
     }
 
@@ -150,11 +155,13 @@
 - (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)message
                                   rating:(PEP_rating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
+                                  status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *destDict = [self decryptMessageDict:(PEPDict *)message
                                           rating:rating
                                        extraKeys:extraKeys
+                                          status:status
                                            error:error];
 
     if (!destDict) {
@@ -168,22 +175,27 @@
 
 - (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
                        rating:(PEP_rating * _Nullable)rating
+                       status:(PEP_STATUS * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
 {
     message *_src = PEP_messageDictToStruct(messageDict);
     PEP_rating ratingByEngine = PEP_rating_undefined;
 
     [self lockWrite];
-    PEP_STATUS status = re_evaluate_message_rating(_session,
-                                                   _src,
-                                                   NULL,
-                                                   PEP_rating_undefined,
-                                                   &ratingByEngine);
+    PEP_STATUS theStatus = re_evaluate_message_rating(_session,
+                                                      _src,
+                                                      NULL,
+                                                      PEP_rating_undefined,
+                                                      &ratingByEngine);
     [self unlockWrite];
 
     free_message(_src);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if (status) {
+        *status = theStatus;
+    }
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         if (rating) {
@@ -195,9 +207,13 @@
 
 - (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
                    rating:(PEP_rating * _Nullable)rating
+                   status:(PEP_STATUS * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
 {
-    return [self reEvaluateMessageDict:(PEPDict *) message rating:rating error:error];
+    return [self reEvaluateMessageDict:(PEPDict *) message
+                                rating:rating
+                                status:status
+                                 error:error];
 }
 
 - (void)removeEmptyArrayKey:(NSString *)key inDict:(PEPMutableDict *)dict
@@ -221,6 +237,7 @@
 - (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
                                 extraKeys:(nullable PEPStringList *)extraKeys
                                 encFormat:(PEP_enc_format)encFormat
+                                   status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEP_encrypt_flags_t flags = 0;
@@ -230,10 +247,14 @@
     stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
     [self lockWrite];
-    PEP_STATUS status = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
+    PEP_STATUS theStatus = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
     [self unlockWrite];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if (status) {
+        *status = theStatus;
+    }
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return nil;
     }
 
@@ -256,11 +277,13 @@
 - (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
                                    extraKeys:(nullable PEPStringList *)extraKeys
                                encFormat:(PEP_enc_format)encFormat
+                                  status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *encryptedDict = [self encryptMessageDict:(NSDictionary *) message
-                                                extraKeys:extraKeys
+                                            extraKeys:extraKeys
                                             encFormat:encFormat
+                                               status:status
                                                 error:error];
     PEPMessage *encrypted = [PEPMessage new];
     [encrypted setValuesForKeysWithDictionary:encryptedDict];
@@ -269,9 +292,15 @@
 
 - (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
                                    extraKeys:(nullable PEPStringList *)extraKeys
+                                  status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    return [self encryptMessage:message extraKeys:extraKeys encFormat:PEP_enc_PEP error:error];
+    return [self
+            encryptMessage:message
+            extraKeys:extraKeys
+            encFormat:PEP_enc_PEP
+            status:status
+            error:error];
 }
 
 - (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
