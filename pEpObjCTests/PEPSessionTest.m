@@ -29,7 +29,8 @@
     [self pEpCleanUp];
 }
 
-- (void)tearDown {
+- (void)tearDown
+{
     [self pEpCleanUp];
     [super tearDown];
 }
