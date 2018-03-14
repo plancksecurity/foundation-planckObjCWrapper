@@ -226,7 +226,9 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
 
     [session trustPersonalKey:alice];
     XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
@@ -337,7 +339,9 @@
     XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+
+    // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
+    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
 
     [session trustPersonalKey:alice];
     XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
@@ -442,8 +446,10 @@
 
     // Back to yellow
     clr = [session outgoingColorForMessage:msg];
-    XCTAssertEqual(clr, PEP_rating_reliable);
-    XCTAssertEqual([session identityRating:identBob], PEP_rating_reliable);
+
+    // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
+    XCTAssertEqual(clr, PEP_rating_trusted);
+    XCTAssertEqual([session identityRating:identBob], PEP_rating_trusted);
 
     // Trust again
     [session trustPersonalKey:identBob];
