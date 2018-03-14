@@ -72,15 +72,17 @@ typedef NSArray<NSString *> PEPStringList;
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
-/** Encrypt a message for the given own identity */
-- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)mesageDict
-                        identity:(nonnull PEPIdentity *)identity
-                            dest:(PEPDict * _Nullable * _Nullable)dst __deprecated;
+/** Encrypt a message dict for the given own identity */
+- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
+                                 identity:(nonnull PEPIdentity *)identity
+                                   status:(PEP_STATUS * _Nullable)status
+                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Encrypt a message for the given own identity */
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)message
-                    identity:(nonnull PEPIdentity *)identity
-                        dest:(PEPMessage * _Nullable * _Nullable)dst;
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
+                                identity:(nonnull PEPIdentity *)identity
+                                  status:(PEP_STATUS * _Nullable)status
+                                   error:(NSError * _Nullable * _Nullable)error;
 
 /** Determine the status color of a message to be sent */
 - (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message;

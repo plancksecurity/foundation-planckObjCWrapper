@@ -108,20 +108,22 @@
     return [session encryptMessage:message extraKeys:extraKeys status:status error:error];
 }
 
-- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)messageDict
-                        identity:(nonnull PEPIdentity *)identity
-                            dest:(PEPDict * _Nullable * _Nullable)dst
+- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
+                                 identity:(nonnull PEPIdentity *)identity
+                                   status:(PEP_STATUS * _Nullable)status
+                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessageDict:messageDict identity:identity dest:dst];
+    return [session encryptMessageDict:messageDict identity:identity status:status error:error];
 }
 
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)message
-                    identity:(nonnull PEPIdentity *)identity
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
+                                identity:(nonnull PEPIdentity *)identity
+                                  status:(PEP_STATUS * _Nullable)status
+                                   error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessage:message identity:identity dest:dst];
+    return [session encryptMessage:message identity:identity status:status error:error];
 }
 
 - (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message

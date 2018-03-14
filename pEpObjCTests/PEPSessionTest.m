@@ -312,9 +312,15 @@
         msg.shortMessage = @"The subject";
         msg.longMessage = @"Lots and lots of text";
         msg.direction = PEP_dir_outgoing;
-        PEPMessage *encMsg;
-        PEP_STATUS status = [innerSession encryptMessage:msg identity:me dest:&encMsg];
+
+        PEP_STATUS status;
+        NSError *error = nil;
+        PEPMessage *encMsg = [innerSession
+                              encryptMessage:msg
+                              identity:me
+                              status:&status error:&error];
         XCTAssertEqual(status, PEP_STATUS_OK);
+        XCTAssertNotNil(encMsg);
     };
 
     dispatch_group_t backgroundGroup = dispatch_group_create();
@@ -1098,8 +1104,10 @@
                                  shortMessage:shortMessage
                                   longMessage:longMessage
                                      outgoing:YES];
-    PEPMessage *encMessage;
-    [session encryptMessage:mail identity:me dest:&encMessage];
+    NSError *error = nil;
+    PEP_STATUS status = PEP_UNKNOWN_ERROR;
+    PEPMessage *encMessage = [session encryptMessage:mail identity:me status:&status error:&error];
+    XCTAssertNil(error);
 
     return encMessage;
 }
@@ -1118,13 +1126,14 @@
     NSString *longMessage = @"Oh, this is a long body text!";
     PEPMessage *mail = [PEPTestUtils mailFrom:me toIdent:me shortMessage:shortMessage longMessage:longMessage outgoing:YES];
 
-    PEPMessage *encMessage;
-    PEP_STATUS status = [session encryptMessage:mail identity:me dest:&encMessage];
+    PEP_STATUS status;
+    NSError *error = nil;
+    PEPMessage *encMessage = [session encryptMessage:mail identity:me status:&status error:&error];
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
     PEP_rating rating;
-    NSError *error;
+    error = nil;
     PEPMessage *unencDict = [session
                              decryptMessage:encMessage
                              rating:&rating
@@ -1186,11 +1195,11 @@
     PEPMessage *encMsg;
 
     PEP_STATUS statusEnc = PEP_VERSION_MISMATCH;
+    NSError *error = nil;
     if (toSelf) {
-        statusEnc = [session encryptMessage:msg identity:identMe dest:&encMsg];
+        encMsg = [session encryptMessage:msg identity:identMe status:&statusEnc error:&error];
         XCTAssertEqual(statusEnc, PEP_STATUS_OK);
     } else {
-        NSError *error = nil;
         encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
         XCTAssertNotNil(encMsg);
         XCTAssertNil(error);
@@ -1199,7 +1208,7 @@
 
     PEPStringList *keys;
     PEP_rating pEpRating;
-    NSError *error;
+    error = nil;
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
                           rating:&pEpRating

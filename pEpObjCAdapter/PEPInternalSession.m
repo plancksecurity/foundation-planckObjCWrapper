@@ -303,20 +303,33 @@
             error:error];
 }
 
-- (PEP_STATUS)encryptMessageDict:(nonnull PEPDict *)src
-                        identity:(nonnull PEPIdentity *)identity
-                            dest:(PEPDict * _Nullable * _Nullable)dst
+- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
+                                 identity:(nonnull PEPIdentity *)identity
+                                   status:(PEP_STATUS * _Nullable)status
+                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEP_STATUS status;
     PEP_encrypt_flags_t flags = 0;
 
-    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:src]);
+    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
     pEp_identity *ident = PEP_identityToStruct(identity);
     message *_dst = NULL;
 
     [self lockWrite];
-    status = encrypt_message_for_self(_session, ident, _src, &_dst, PEP_enc_PGP_MIME, flags);
+    PEP_STATUS theStatus = encrypt_message_for_self(_session,
+                                                    ident,
+                                                    _src,
+                                                    &_dst,
+                                                    PEP_enc_PGP_MIME,
+                                                    flags);
     [self unlockWrite];
+
+    if (status) {
+        *status = theStatus;
+    }
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        return nil;
+    }
 
     NSDictionary *dst_;
 
@@ -327,29 +340,27 @@
         dst_ = PEP_messageDictFromStruct(_src);
     }
 
-    if (dst) {
-        *dst = dst_;
-    }
-
     free_message(_src);
     free_message(_dst);
     free_identity(ident);
 
-    return status;
+    return dst_;
 }
 
-- (PEP_STATUS)encryptMessage:(nonnull PEPMessage *)src
-                    identity:(nonnull PEPIdentity *)identity
-                        dest:(PEPMessage * _Nullable * _Nullable)dst
+- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
+                                identity:(nonnull PEPIdentity *)identity
+                                  status:(PEP_STATUS * _Nullable)status
+                                   error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *target;
-    PEP_STATUS status = [self encryptMessageDict:src.dictionary identity:identity dest:&target];
-    if (dst) {
-        PEPMessage *encrypted = [PEPMessage new];
-        [encrypted setValuesForKeysWithDictionary:target];
-        *dst = encrypted;
-    }
-    return status;
+    PEPDict *target = [self
+                       encryptMessageDict:message.dictionary
+                       identity:identity
+                       status:status
+                       error:error];
+
+    PEPMessage *encrypted = [PEPMessage new];
+    [encrypted setValuesForKeysWithDictionary:target];
+    return encrypted;
 }
 
 - (PEP_rating)outgoingMessageColor:(PEPDict *)msg
