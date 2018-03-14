@@ -126,10 +126,12 @@
     return [session encryptMessage:message identity:identity status:status error:error];
 }
 
-- (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message
+- (BOOL)outgoingRating:(PEP_rating * _Nonnull)rating
+            forMessage:(PEPMessage * _Nonnull)message
+                 error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session outgoingColorForMessage:message];
+    return [session outgoingRating:rating forMessage:message error:error];
 }
 
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity

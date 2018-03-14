@@ -363,23 +363,31 @@
     return encrypted;
 }
 
-- (PEP_rating)outgoingMessageColor:(PEPDict *)msg
+- (BOOL)outgoingRating:(PEP_rating * _Nonnull)rating
+        forMessageDict:(PEPDict * _Nonnull)messageDict
+                 error:(NSError * _Nullable * _Nullable)error
 {
-    message *_msg = PEP_messageDictToStruct(msg);
-    PEP_rating color = PEP_rating_undefined;
+    message *_msg = PEP_messageDictToStruct(messageDict);
+    *rating = PEP_rating_undefined;
 
     [self lockWrite];
-    outgoing_message_rating(_session, _msg, &color);
+    PEP_STATUS status = outgoing_message_rating(_session, _msg, rating);
     [self unlockWrite];
 
     free_message(_msg);
 
-    return color;
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return NO;
+    }
+
+    return YES;
 }
 
-- (PEP_rating)outgoingColorForMessage:(nonnull PEPMessage *)message
+- (BOOL)outgoingRating:(PEP_rating * _Nonnull)rating
+            forMessage:(PEPMessage * _Nonnull)message
+                 error:(NSError * _Nullable * _Nullable)error
 {
-    return [self outgoingMessageColor:(NSDictionary *) message];
+    return [self outgoingRating:rating forMessageDict:(NSDictionary *) message error:error];
 }
 
 - (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
