@@ -182,7 +182,7 @@
                        userID:@"Alice_User_ID"
                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                        session:session];
-    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -191,7 +191,7 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 }
 
 - (void)testIdentityRatingTrustResetMistrustUndo
@@ -205,7 +205,7 @@
                        isOwn:YES];
     [session mySelf:me];
     XCTAssertNotNil(me.fingerPrint);
-    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -214,27 +214,27 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     [session trustPersonalKey:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     [session keyMistrusted:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
 
     // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session trustPersonalKey:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 }
 
 /** ENGINE-384 */
@@ -249,7 +249,7 @@
                        isOwn:YES];
     [session mySelf:me];
     XCTAssertNotNil(me.fingerPrint);
-    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -258,24 +258,24 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     [session trustPersonalKey:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     [session keyMistrusted:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
 
     [session trustPersonalKey:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     // This line provoked the crash
     [session trustPersonalKey:alice];
@@ -295,7 +295,7 @@
                        isOwn:YES];
     [session mySelf:me];
     XCTAssertNotNil(me.fingerPrint);
-    XCTAssertEqual([session identityRating:me], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -304,7 +304,7 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     void (^encryptingBlock)(void) = ^{
         PEPSession *innerSession = [PEPSession new];
@@ -330,24 +330,24 @@
                          dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), encryptingBlock);
 
     [session trustPersonalKey:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     [session keyMistrusted:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
 
     // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session trustPersonalKey:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
-    XCTAssertEqual([session identityRating:alice], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     dispatch_group_wait(backgroundGroup, DISPATCH_TIME_FOREVER);
 }
@@ -415,7 +415,7 @@
     XCTAssertNil(error);
     XCTAssertEqual(rating, PEP_rating_reliable);
 
-    rating = [session identityRating:identBob];
+    rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEP_rating_reliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
@@ -425,7 +425,7 @@
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
     XCTAssertEqual(rating, PEP_rating_trusted);
 
-    rating = [session identityRating:identBob];
+    rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEP_rating_trusted);
 
     // Let' say we undo handshake
@@ -456,7 +456,7 @@
 
     // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
     XCTAssertEqual(rating, PEP_rating_trusted);
-    XCTAssertEqual([session identityRating:identBob], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:identBob session:session], PEP_rating_trusted);
 
     // Trust again
     [session trustPersonalKey:identBob];
@@ -543,7 +543,7 @@
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
     XCTAssertEqual(rating, PEP_rating_reliable);
 
-    rating = [session identityRating:identBob];
+    rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEP_rating_reliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
@@ -553,7 +553,7 @@
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
     XCTAssertEqual(rating, PEP_rating_trusted);
 
-    rating = [session identityRating:identBob];
+    rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEP_rating_trusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
@@ -582,7 +582,7 @@
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
     XCTAssertEqual(rating, PEP_rating_trusted);
 
-    rating = [session identityRating:identJohn];
+    rating = [self ratingForIdentity:identJohn session:session];
     XCTAssertEqual(rating, PEP_rating_trusted);
 }
 
@@ -778,7 +778,7 @@
     XCTAssertNotNil(pubKeyPartner1);
     [session importKey:pubKeyPartner1];
 
-    PEP_rating color = [session identityRating:partner1Orig];
+    PEP_rating color = [self ratingForIdentity:partner1Orig session:session];
     XCTAssertEqual(color, PEP_rating_reliable);
 }
 
@@ -994,7 +994,7 @@
 
     void (^ratingBlock)(void) = ^{
         PEPSession *innerSession = [PEPSession new];
-        PEP_rating rating = [innerSession identityRating:identAlice];
+        PEP_rating rating = [self ratingForIdentity:identAlice session:innerSession];
         XCTAssertEqual(rating, PEP_rating_reliable);
     };
 
@@ -1038,6 +1038,19 @@
 }
 
 #pragma mark - Helpers
+
+/**
+ Determines the rating for the given identity.
+ @return PEP_rating_undefined on error
+ */
+- (PEP_rating)ratingForIdentity:(PEPIdentity *)identity session:(PEPSession *)session
+{
+    NSError *error;
+    PEP_rating rating;
+    XCTAssertTrue([session rating:&rating forIdentity:identity error:&error]);
+    XCTAssertNil(error);
+    return rating;
+}
 
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
                                     userID:(NSString *)userID

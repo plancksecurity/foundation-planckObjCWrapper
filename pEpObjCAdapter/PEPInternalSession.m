@@ -390,23 +390,29 @@
     return [self outgoingRating:rating forMessageDict:(NSDictionary *) message error:error];
 }
 
-- (PEP_rating)identityRating:(nonnull PEPIdentity *)identity
+- (BOOL)rating:(PEP_rating * _Nonnull)rating
+   forIdentity:(nonnull PEPIdentity *)identity
+         error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEP_rating color = PEP_rating_undefined;
+    *rating = PEP_rating_undefined;
 
     [self lockWrite];
-    identity_rating(_session, ident, &color);
+    PEP_STATUS status = identity_rating(_session, ident, rating);
     [self unlockWrite];
 
     free_identity(ident);
 
-    return color;
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return NO;
+    }
+
+    return YES;
 }
 
-DYNAMIC_API PEP_STATUS identity_rating(PEP_SESSION session, pEp_identity *ident, PEP_rating *color);
-
-- (NSArray *)trustwords:(NSString *)fpr forLanguage:(NSString *)languageID shortened:(BOOL)shortened
+- (NSArray *)trustwords:(NSString *)fpr
+            forLanguage:(NSString *)languageID
+              shortened:(BOOL)shortened
 {
     NSMutableArray *array = [NSMutableArray array];
 

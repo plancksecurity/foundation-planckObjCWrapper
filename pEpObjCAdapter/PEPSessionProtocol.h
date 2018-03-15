@@ -94,7 +94,9 @@ typedef NSArray<NSString *> PEPStringList;
  The rating is the rating a _message_ would have, if it is sent to this (and only this) identity.
  It is *not* a rating of the identity. In fact, there is no rating for identities.
  */
-- (PEP_rating)identityRating:(nonnull PEPIdentity *)identity;
+- (BOOL)rating:(PEP_rating * _Nonnull)rating
+   forIdentity:(nonnull PEPIdentity *)identity
+         error:(NSError * _Nullable * _Nullable)error;
 
 /** Get trustwords for a fingerprint */
 - (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
