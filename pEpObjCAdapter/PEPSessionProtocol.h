@@ -21,27 +21,27 @@ typedef NSArray<NSString *> PEPStringList;
 @protocol PEPSessionProtocol <NSObject>
 
 /** Decrypt a message */
-- (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)messageDict
+- (PEPDict * _Nullable)decryptMessageDict:(PEPDict * _Nonnull)messageDict
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Decrypt a message */
-- (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)message
+- (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
                                   rating:(PEP_rating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Re-evaluate rating of decrypted message */
-- (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
+- (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
                        rating:(PEP_rating * _Nullable)rating
                        status:(PEP_STATUS * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Re-evaluate rating of decrypted message */
-- (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
+- (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
                    rating:(PEP_rating * _Nullable)rating
                    status:(PEP_STATUS * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error;
@@ -50,8 +50,8 @@ typedef NSArray<NSString *> PEPStringList;
  Encrypt a message dictionary, indicating the encoding format.
  @note The resulting message dict could be the input one.
  */
-- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
-                                extraKeys:(nullable PEPStringList *)extraKeys
+- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
+                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                 encFormat:(PEP_enc_format)encFormat
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
@@ -60,27 +60,27 @@ typedef NSArray<NSString *> PEPStringList;
  Encrypt a message, indicating the encoding format
  @note The resulting message dict could be the input one.
  */
-- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
-                               extraKeys:(nullable PEPStringList *)extraKeys
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                               extraKeys:(PEPStringList * _Nullable)extraKeys
                                encFormat:(PEP_enc_format)encFormat
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message with default encryption format (PEP_enc_PEP) */
-- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
-                               extraKeys:(nullable PEPStringList *)extraKeys
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                               extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message dict for the given own identity */
-- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
-                                 identity:(nonnull PEPIdentity *)identity
+- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
+                                 identity:(PEPIdentity * _Nonnull)identity
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Encrypt a message for the given own identity */
-- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
-                                identity:(nonnull PEPIdentity *)identity
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                                identity:(PEPIdentity * _Nonnull)identity
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
@@ -128,52 +128,53 @@ typedef NSArray<NSString *> PEPStringList;
  @"23", @"user_id", nil];
 
  */
-- (BOOL)mySelf:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).
  Will call the engine's myself() or update_identity() internally, depending on the given
  identity.
  */
-- (BOOL)updateIdentity:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity
+                 error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Mark a key as trusted with a person.
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (BOOL)trustPersonalKey:(nonnull PEPIdentity *)identity
+- (BOOL)trustPersonalKey:(PEPIdentity * _Nonnull)identity
                    error:(NSError * _Nullable * _Nullable)error;
 
 /**
  if a key is not trusted by the user tell this using this message
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyMistrusted:(nonnull PEPIdentity *)identity;
+- (void)keyMistrusted:(PEPIdentity * _Nonnull)identity;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyResetTrust:(nonnull PEPIdentity *)identity;
+- (void)keyResetTrust:(PEPIdentity * _Nonnull)identity;
 
 #pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
-- (void)importKey:(nonnull NSString *)keydata;
+- (void)importKey:(NSString * _Nonnull)keydata;
 
-- (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
-     description:(nullable NSString *)description comment:(nullable NSString *)comment;
+- (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity
+     description:(NSString * _Nullable)description comment:(NSString * _Nullable)comment;
 
 /**
  Retrieves the log from the engine, or nil, if there is nothing yet.
  */
-- (nullable NSString *)getLog;
+- (NSString * _Nullable)getLog;
 
 /** Determine trustwords for two identities */
-- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPIdentity *)identity1
-                                    identity2:(nonnull PEPIdentity *)identity2
-                                     language:(nullable NSString *)language
-                                         full:(BOOL)full;
+- (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
+                                     identity2:(PEPIdentity * _Nonnull)identity2
+                                      language:(NSString * _Nullable)language
+                                          full:(BOOL)full;
 
 /**
  @returns The list of supported languages for trustwords.

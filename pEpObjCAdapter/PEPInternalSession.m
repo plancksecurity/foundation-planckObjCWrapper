@@ -83,7 +83,7 @@
  Since the complete output file will be logged by `debugSaveToFilePath`,
  you can get access to the files easily when it's the simulator.
  */
-- (void)debugOutPutMessageDict:(nonnull PEPDict *)src
+- (void)debugOutPutMessageDict:(PEPDict * _Nonnull)src
 {
     NSString *from = src[kPepFrom][kPepAddress];
     NSArray *tos = src[kPepTo];
@@ -96,7 +96,7 @@
 
 #pragma mark - PEPSessionProtocol
 
-- (PEPDict * _Nullable)decryptMessageDict:(nonnull PEPDict *)messageDict
+- (PEPDict * _Nullable)decryptMessageDict:(PEPDict * _Nonnull)messageDict
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
@@ -152,7 +152,7 @@
     return dst_;
 }
 
-- (PEPMessage * _Nullable)decryptMessage:(nonnull PEPMessage *)message
+- (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
                                   rating:(PEP_rating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
@@ -173,7 +173,7 @@
     }
 }
 
-- (BOOL)reEvaluateMessageDict:(nonnull PEPDict *)messageDict
+- (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
                        rating:(PEP_rating * _Nullable)rating
                        status:(PEP_STATUS * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
@@ -205,7 +205,7 @@
     }
 }
 
-- (BOOL)reEvaluateMessage:(nonnull PEPMessage *)message
+- (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
                    rating:(PEP_rating * _Nullable)rating
                    status:(PEP_STATUS * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
@@ -234,8 +234,8 @@
     return dest;
 }
 
-- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
-                                extraKeys:(nullable PEPStringList *)extraKeys
+- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
+                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                 encFormat:(PEP_enc_format)encFormat
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
@@ -274,8 +274,8 @@
     return dst_;
 }
 
-- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
-                                   extraKeys:(nullable PEPStringList *)extraKeys
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                                   extraKeys:(PEPStringList * _Nullable)extraKeys
                                encFormat:(PEP_enc_format)encFormat
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
@@ -290,8 +290,8 @@
     return encrypted;
 }
 
-- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
-                                   extraKeys:(nullable PEPStringList *)extraKeys
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                                   extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
@@ -303,8 +303,8 @@
             error:error];
 }
 
-- (PEPDict * _Nullable)encryptMessageDict:(nonnull PEPDict *)messageDict
-                                 identity:(nonnull PEPIdentity *)identity
+- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
+                                 identity:(PEPIdentity * _Nonnull)identity
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
@@ -347,8 +347,8 @@
     return dst_;
 }
 
-- (PEPMessage * _Nullable)encryptMessage:(nonnull PEPMessage *)message
-                                identity:(nonnull PEPIdentity *)identity
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                                identity:(PEPIdentity * _Nonnull)identity
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
@@ -443,7 +443,7 @@
     return array;
 }
 
-- (BOOL)mySelf:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
@@ -463,7 +463,7 @@
     return YES;
 }
 
-- (BOOL)updateIdentity:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
+- (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
 {
     if (identity.isOwn) {
         return [self mySelf:identity error:error];
@@ -487,7 +487,7 @@
     }
 }
 
-- (BOOL)trustPersonalKey:(nonnull PEPIdentity *)identity
+- (BOOL)trustPersonalKey:(PEPIdentity * _Nonnull)identity
                    error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
@@ -541,8 +541,8 @@
 
 }
 
-- (void)logTitle:(nonnull NSString *)title entity:(nonnull NSString *)entity
-     description:(nullable NSString *)description comment:(nullable NSString *)comment
+- (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity
+     description:(NSString * _Nullable)description comment:(NSString * _Nullable)comment
 {
     [self lockWrite];
     log_event(_session, [[title precomposedStringWithCanonicalMapping] UTF8String],
@@ -552,7 +552,7 @@
     [self unlockWrite];
 }
 
-- (nullable NSString *)getLog
+- (NSString * _Nullable)getLog
 {
     char *theChars = NULL;
     @synchronized(self) {
@@ -566,10 +566,10 @@
     }
 }
 
-- (nullable NSString *)getTrustwordsIdentity1:(nonnull PEPIdentity *)identity1
-                                    identity2:(nonnull PEPIdentity *)identity2
-                                     language:(nullable NSString *)language
-                                         full:(BOOL)full
+- (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
+                                     identity2:(PEPIdentity * _Nonnull)identity2
+                                      language:(NSString * _Nullable)language
+                                          full:(BOOL)full
 {
     NSString *result = nil;
     char *trustwords = nil;
