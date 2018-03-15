@@ -443,36 +443,50 @@
     return array;
 }
 
-- (void)mySelf:(PEPIdentity *)identity
+- (BOOL)mySelf:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
     NSString *userID = identity.userID;
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
-    myself(_session, ident);
+    PEP_STATUS status = myself(_session, ident);
     [self unlockWrite];
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
+        return NO;
+    }
 
     [identity reset];
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 
     identity.userID = userID;
+
+    return YES;
 }
 
-- (void)updateIdentity:(PEPIdentity *)identity
+- (BOOL)updateIdentity:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
     if (identity.isOwn) {
-        [self mySelf:identity];
+        return [self mySelf:identity error:error];
     } else {
         pEp_identity *ident = PEP_identityToStruct(identity);
 
         [self lockWrite];
-        update_identity(_session, ident);
+        PEP_STATUS status = update_identity(_session, ident);
         [self unlockWrite];
+
+        if ([NSError setError:error fromPEPStatus:status]) {
+            free_identity(ident);
+            return NO;
+        }
 
         [identity reset];
         [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
         free_identity(ident);
+
+        return YES;
     }
 }
 

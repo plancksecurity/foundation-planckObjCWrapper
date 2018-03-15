@@ -128,14 +128,14 @@ typedef NSArray<NSString *> PEPStringList;
  @"23", @"user_id", nil];
 
  */
-- (void)mySelf:(nonnull PEPIdentity *)identity;
+- (BOOL)mySelf:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).
  Will call the engine's myself() or update_identity() internally, depending on the given
  identity.
  */
-- (void)updateIdentity:(nonnull PEPIdentity *)identity;
+- (BOOL)updateIdentity:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Mark a key as trusted with a person.

@@ -54,7 +54,9 @@
                             userName:@"pEp Test iOS GenKey"
                             isOwn:YES];
 
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
 
     bool res = [syncDelegate waitUntilSent:1];
 
@@ -92,7 +94,9 @@
                             userName:@"pEp Test iOS GenKey"
                             isOwn:YES];
 
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
@@ -110,7 +114,9 @@
                             userName:@"pEp Test iOS GenKey"
                             isOwn:YES];
 
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
@@ -119,6 +125,7 @@
 
     dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     dispatch_sync(queue, ^{
+        NSError *innerError = nil;
         PEPSession *session2 = [PEPSession new];
 
         // Now simulate an update from the app, which usually only caches
@@ -128,7 +135,10 @@
                                  userID:identMe.userID
                                  userName:identMe.userName
                                  isOwn:NO];
-        [session2 mySelf:identMe2];
+
+        XCTAssertTrue([session2 mySelf:identMe2 error:&innerError]);
+        XCTAssertNil(innerError);
+
         XCTAssertNotNil(identMe2.fingerPrint);
         XCTAssertTrue([identMe2 isPEPUser:session]);
         XCTAssertEqualObjects(identMe2.fingerPrint, identMe.fingerPrint);
@@ -136,7 +146,9 @@
         // Now pretend the app only knows kPepUsername and kPepAddress
         PEPIdentity *identMe3 = [PEPTestUtils foreignPepIdentityWithAddress:identMe.address
                                                                    userName:identMe.userName];
-        [session2 mySelf:identMe3];
+        XCTAssertTrue([session2 mySelf:identMe3 error:&innerError]);
+        XCTAssertNil(innerError);
+
         XCTAssertNotNil(identMe3.fingerPrint);
         XCTAssertFalse([identMe3 isPEPUser:session]);
         XCTAssertEqualObjects(identMe3.fingerPrint, identMe.fingerPrint);
@@ -158,7 +170,9 @@
                                 userName:@"No Way Not Even Alice"
                                 isOwn:NO];
 
-    [session updateIdentity:identRandom];
+    NSError *error = nil;
+    XCTAssertTrue([session updateIdentity:identRandom error:&error]);
+    XCTAssertNil(error);
     XCTAssertNil(identRandom.fingerPrint);
 }
 
@@ -208,7 +222,11 @@
                        userID:@"me_myself"
                        userName:@"Me Me"
                        isOwn:YES];
-    [session mySelf:me];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(me.fingerPrint);
     XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
 
@@ -252,7 +270,10 @@
                        userID:@"me_myself"
                        userName:@"Me Me"
                        isOwn:YES];
-    [session mySelf:me];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(me.fingerPrint);
     XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
 
@@ -298,7 +319,10 @@
                        userID:@"me_myself"
                        userName:@"Me Me"
                        isOwn:YES];
-    [session mySelf:me];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(me.fingerPrint);
     XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
 
@@ -444,7 +468,8 @@
     [session keyMistrusted:identBob];
 
     identBob.fingerPrint = nil;
-    [session updateIdentity:identBob];
+    XCTAssertTrue([session updateIdentity:identBob error:&error]);
+    XCTAssertNil(error);
     XCTAssertNil(identBob.fingerPrint);
 
     // Gray == PEP_rating_unencrypted
@@ -453,7 +478,8 @@
 
     // Undo
     [session undoLastMistrust];
-    [session updateIdentity:identBob];
+    XCTAssertTrue([session updateIdentity:identBob error:&error]);
+    XCTAssertNil(error);
     XCTAssertNotNil(identBob.fingerPrint);
 
     // Back to yellow
@@ -481,7 +507,8 @@
                               isOwn:NO
                               fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
 
-    [session updateIdentity:identJohn];
+    XCTAssertTrue([session updateIdentity:identJohn error:&error]);
+    XCTAssertNil(error);
 
     msg.cc = @[[PEPTestUtils foreignPepIdentityWithAddress:@"pep.test.john@pep-project.org"
                                                   userName:@"pEp Test John"]];
@@ -514,7 +541,9 @@
                                isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
-    [session mySelf:identAlice];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identAlice error:&error]);
+    XCTAssertNil(error);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
@@ -523,8 +552,6 @@
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
     msg.direction = PEP_dir_outgoing;
-
-    NSError *error = nil;
 
     // Test with unknown Bob
     PEP_rating rating;
@@ -542,7 +569,8 @@
                              isOwn:NO
                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 
-    [session updateIdentity:identBob];
+    XCTAssertTrue([session updateIdentity:identBob error:&error]);
+    XCTAssertNil(error);
 
     // Should be yellow, since no handshake happened.
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
@@ -572,7 +600,8 @@
                               isOwn:NO
                               fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
 
-    [session updateIdentity:identJohn];
+    XCTAssertTrue([session updateIdentity:identJohn error:&error]);
+    XCTAssertNil(error);
 
     msg.bcc = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.john@pep-project.org"
                                               userID:@"101" userName:@"pEp Test John" isOwn:NO]];
@@ -607,7 +636,9 @@
                                isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
-    [session mySelf:identAlice];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identAlice error:&error]);
+    XCTAssertNil(error);
 
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
@@ -619,7 +650,8 @@
                              isOwn:NO
                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 
-    [session updateIdentity:identBob];
+    XCTAssertTrue([session updateIdentity:identBob error:&error]);
+    XCTAssertNil(error);
 
     // mistrust Bob
     [session keyMistrusted:identBob];
@@ -631,8 +663,6 @@
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
     msg.direction = PEP_dir_outgoing;
-
-    NSError *error = nil;
 
     // Gray == PEP_rating_unencrypted
     PEP_rating rating;
@@ -665,14 +695,18 @@
                                isOwn:YES
                                fingerPrint:fpr];
 
-    [session mySelf:identAlice];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identAlice error:&error]);
+    XCTAssertNil(error);
 
     PEPIdentity *identAlice2 = [identAlice mutableCopy];
 
     // This will revoke key
     [session keyMistrusted:identAlice2];
     identAlice2.fingerPrint = nil;
-    [session mySelf:identAlice];
+
+    XCTAssertTrue([session mySelf:identAlice error:&error]);
+    XCTAssertNil(error);
 
     // Check fingerprint is different
     XCTAssertNotEqualObjects(identAlice2.fingerPrint, fpr);
@@ -694,7 +728,9 @@
                                isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
-    [session mySelf:identAlice];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identAlice error:&error]);
+    XCTAssertNil(error);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
@@ -702,8 +738,6 @@
     msg.shortMessage = @"Mail to Myself";
     msg.longMessage = @"This is a text content";
     msg.direction = PEP_dir_outgoing;
-
-    NSError *error = nil;
 
     PEP_rating rating;
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
@@ -752,7 +786,10 @@
     [accountDict removeObjectForKey:kPepFingerprint];
     PEPIdentity *identMe = [[PEPIdentity alloc] initWithDictionary:accountDict];
 
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(identMe.fingerPrint);
 
     NSArray* keys;
@@ -760,7 +797,6 @@
     [msg setValuesForKeysWithDictionary:msgDict];
 
     // Technically, the mail is encrypted, but the signatures don't match
-    NSError *error;
     PEPMessage *pepDecryptedMail = [session
                                     decryptMessage:msg
                                     rating:nil
@@ -874,7 +910,10 @@
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(identMe.fingerPrint);
 
     // PEP_CANNOT_FIND_PERSON == 902
@@ -901,7 +940,10 @@
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
@@ -916,8 +958,6 @@
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
     msg.direction = PEP_dir_outgoing;
-
-    NSError *error = nil;
 
     PEP_rating rating;
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
@@ -958,7 +998,10 @@
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(identMe.fingerPrint);
 
     // The fingerprint is definitely wrong, we don't have a key
@@ -984,7 +1027,10 @@
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPIdentity *identAlice = [self
@@ -1077,7 +1123,9 @@
                                   userName:[NSString stringWithFormat:@"Some User Name %@", userID]
                                   isOwn:NO];
 
-        [session updateIdentity:identTest];
+        NSError *error = nil;
+        XCTAssertTrue([session updateIdentity:identTest error:&error]);
+        XCTAssertNil(error);
         XCTAssertNotNil(identTest.fingerPrint);
         XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
 
@@ -1117,12 +1165,16 @@
  */
 - (void)updateAndVerifyPartnerIdentity:(PEPIdentity *)partnerIdentity session:(PEPSession *)session
 {
+    NSError *error = nil;
+
     XCTAssertNotNil(partnerIdentity.fingerPrint);
-    [session updateIdentity:partnerIdentity];
+    XCTAssertTrue([session updateIdentity:partnerIdentity error:&error]);
+    XCTAssertNil(error);
     XCTAssertNotNil(partnerIdentity.fingerPrint);
     NSString *fingerprint = partnerIdentity.fingerPrint;
     partnerIdentity.fingerPrint = nil;
-    [session updateIdentity:partnerIdentity];
+    XCTAssertTrue([session updateIdentity:partnerIdentity error:&error]);
+    XCTAssertNil(error);
     XCTAssertNotNil(partnerIdentity.fingerPrint);
     XCTAssertEqualObjects(partnerIdentity.fingerPrint, fingerprint);
 }
@@ -1134,7 +1186,9 @@
     // Write a e-mail to yourself ...
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
-    [session mySelf:me];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
 
     NSString *shortMessage = @"Subject";
     NSString *longMessage = @"Oh, this is a long body text!";
@@ -1143,7 +1197,6 @@
                                  shortMessage:shortMessage
                                   longMessage:longMessage
                                      outgoing:YES];
-    NSError *error = nil;
     PEP_STATUS status = PEP_UNKNOWN_ERROR;
     PEPMessage *encMessage = [session encryptMessage:mail identity:me status:&status error:&error];
     XCTAssertNil(error);
@@ -1157,7 +1210,10 @@
     
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
-    [session mySelf:me];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(me.fingerPrint);
 
     // Create draft
@@ -1166,7 +1222,6 @@
     PEPMessage *mail = [PEPTestUtils mailFrom:me toIdent:me shortMessage:shortMessage longMessage:longMessage outgoing:YES];
 
     PEP_STATUS status;
-    NSError *error = nil;
     PEPMessage *encMessage = [session encryptMessage:mail identity:me status:&status error:&error];
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
@@ -1218,7 +1273,10 @@
                                userID:@"me-myself-and-i"
                                userName:@"pEp Me"
                                isOwn:YES];
-    [session mySelf:identMe];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPMessage *msg = [PEPMessage new];
@@ -1227,8 +1285,6 @@
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
     msg.direction = PEP_dir_outgoing;
-
-    NSError *error = nil;
 
     PEP_rating rating;
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);

@@ -155,16 +155,16 @@
             error:error];
 }
 
-- (void)mySelf:(nonnull PEPIdentity *)identity
+- (BOOL)mySelf:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    [session mySelf:identity];
+    return [session mySelf:identity error:error];
 }
 
-- (void)updateIdentity:(nonnull PEPIdentity *)identity
+- (BOOL)updateIdentity:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    [session updateIdentity:identity];
+    return [session updateIdentity:identity error:error];
 }
 
 - (void)trustPersonalKey:(nonnull PEPIdentity *)identity
