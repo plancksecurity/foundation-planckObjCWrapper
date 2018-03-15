@@ -167,10 +167,11 @@
     return [session updateIdentity:identity error:error];
 }
 
-- (void)trustPersonalKey:(nonnull PEPIdentity *)identity
+- (BOOL)trustPersonalKey:(nonnull PEPIdentity *)identity
+                   error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    [session trustPersonalKey:identity];
+    return [session trustPersonalKey:identity error:error];
 }
 
 - (void)keyMistrusted:(nonnull PEPIdentity *)identity

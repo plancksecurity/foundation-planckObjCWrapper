@@ -487,17 +487,24 @@
     }
 }
 
-- (void)trustPersonalKey:(PEPIdentity *)identity
+- (BOOL)trustPersonalKey:(nonnull PEPIdentity *)identity
+                   error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
-    trust_personal_key(_session, ident);
+    PEP_STATUS status = trust_personal_key(_session, ident);
     [self unlockWrite];
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
+        return NO;
+    }
 
     [identity reset];
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
+    return YES;
 }
 
 - (void)keyResetTrust:(PEPIdentity *)identity

@@ -239,7 +239,8 @@
     XCTAssertNotNil(alice);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
-    [session trustPersonalKey:alice];
+    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
@@ -253,7 +254,8 @@
     // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
-    [session trustPersonalKey:alice];
+    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
@@ -286,7 +288,8 @@
     XCTAssertNotNil(alice);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
-    [session trustPersonalKey:alice];
+    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
@@ -297,14 +300,16 @@
 
     [session undoLastMistrust];
 
-    [session trustPersonalKey:alice];
+    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     // This line provoked the crash
-    [session trustPersonalKey:alice];
+    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
+    XCTAssertNil(error);
 }
 
 /**
@@ -358,7 +363,8 @@
     dispatch_group_async(backgroundGroup,
                          dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), encryptingBlock);
 
-    [session trustPersonalKey:alice];
+    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
@@ -372,7 +378,8 @@
     // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
-    [session trustPersonalKey:alice];
+    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
     [session keyResetTrust:alice];
@@ -448,7 +455,8 @@
     XCTAssertEqual(rating, PEP_rating_reliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
-    [session trustPersonalKey:identBob];
+    XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
+    XCTAssertNil(error);
 
     // This time it should be green
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
@@ -490,7 +498,8 @@
     XCTAssertEqual([self ratingForIdentity:identBob session:session], PEP_rating_trusted);
 
     // Trust again
-    [session trustPersonalKey:identBob];
+    XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
+    XCTAssertNil(error);
 
     // Back to green
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
@@ -580,7 +589,8 @@
     XCTAssertEqual(rating, PEP_rating_reliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
-    [session trustPersonalKey:identBob];
+    XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
+    XCTAssertNil(error);
 
     // This time it should be green
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
@@ -610,7 +620,8 @@
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
     XCTAssertEqual(rating, PEP_rating_reliable);
 
-    [session trustPersonalKey:identJohn];
+    XCTAssertTrue([session trustPersonalKey:identJohn error:&error]);
+    XCTAssertNil(error);
 
     // This time it should be green
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
@@ -1012,7 +1023,8 @@
                                isOwn:NO
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
-    [session trustPersonalKey:identAlice];
+    XCTAssertFalse([session trustPersonalKey:identAlice error:&error]);
+    XCTAssertNotNil(error);
 }
 
 /**
