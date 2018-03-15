@@ -95,7 +95,7 @@ typedef NSArray<NSString *> PEPStringList;
  It is *not* a rating of the identity. In fact, there is no rating for identities.
  */
 - (BOOL)rating:(PEP_rating * _Nonnull)rating
-   forIdentity:(nonnull PEPIdentity *)identity
+   forIdentity:(PEPIdentity * _Nonnull)identity
          error:(NSError * _Nullable * _Nullable)error;
 
 /** Get trustwords for a fingerprint */

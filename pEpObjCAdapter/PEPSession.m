@@ -135,8 +135,9 @@
 }
 
 - (BOOL)rating:(PEP_rating * _Nonnull)rating
-   forIdentity:(nonnull PEPIdentity *)identity
-         error:(NSError * _Nullable * _Nullable)error{
+   forIdentity:(PEPIdentity * _Nonnull)identity
+         error:(NSError * _Nullable * _Nullable)error
+{
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session rating:rating forIdentity:identity error:error];
 }

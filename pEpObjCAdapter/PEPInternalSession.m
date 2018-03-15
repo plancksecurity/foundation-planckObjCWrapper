@@ -391,7 +391,7 @@
 }
 
 - (BOOL)rating:(PEP_rating * _Nonnull)rating
-   forIdentity:(nonnull PEPIdentity *)identity
+   forIdentity:(PEPIdentity * _Nonnull)identity
          error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
