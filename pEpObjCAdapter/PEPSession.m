@@ -142,11 +142,17 @@
     return [session rating:rating forIdentity:identity error:error];
 }
 
-- (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
-                      shortened:(BOOL)shortened
+- (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
+                                     languageID:(NSString * _Nonnull)languageID
+                                      shortened:(BOOL)shortened
+                                          error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session trustwords:fpr forLanguage:languageID shortened:shortened];
+    return [session
+            trustwordsForFingerprint:fingerprint
+            languageID:languageID
+            shortened:shortened
+            error:error];
 }
 
 - (void)mySelf:(nonnull PEPIdentity *)identity

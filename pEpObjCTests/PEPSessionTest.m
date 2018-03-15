@@ -69,8 +69,13 @@
 {
     PEPSession *session = [PEPSession new];
 
-    NSArray *trustwords = [session trustwords:@"DB47DB47DB47DB47DB47DB47DB47DB47DB47DB47"
-                                  forLanguage:@"en" shortened:false];
+    NSError *error = nil;
+    NSArray *trustwords = [session
+                           trustwordsForFingerprint:@"DB47DB47DB47DB47DB47DB47DB47DB47DB47DB47"
+                           languageID:@"en"
+                           shortened:false
+                           error:&error];
+    XCTAssertNil(error);
     XCTAssertEqual([trustwords count], 10);
 
     for(id word in trustwords)

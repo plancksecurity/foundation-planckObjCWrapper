@@ -99,8 +99,10 @@ typedef NSArray<NSString *> PEPStringList;
          error:(NSError * _Nullable * _Nullable)error;
 
 /** Get trustwords for a fingerprint */
-- (nonnull NSArray *)trustwords:(nonnull NSString *)fpr forLanguage:(nonnull NSString *)languageID
-                      shortened:(BOOL)shortened;
+- (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
+                                     languageID:(NSString * _Nonnull)languageID
+                                      shortened:(BOOL)shortened
+                                          error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Supply an account used by our user himself. The identity is supplemented with the missing parts

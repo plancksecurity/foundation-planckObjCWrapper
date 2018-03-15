@@ -410,17 +410,18 @@
     return YES;
 }
 
-- (NSArray *)trustwords:(NSString *)fpr
-            forLanguage:(NSString *)languageID
-              shortened:(BOOL)shortened
+- (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
+                                     languageID:(NSString * _Nonnull)languageID
+                                      shortened:(BOOL)shortened
+                                          error:(NSError * _Nullable * _Nullable)error
 {
     NSMutableArray *array = [NSMutableArray array];
 
-    for (int i = 0; i < [fpr length]; i += 4) {
+    for (int i = 0; i < [fingerprint length]; i += 4) {
         if (shortened && i >= 20)
             break;
 
-        NSString *str = [fpr substringWithRange:NSMakeRange(i, 4)];
+        NSString *str = [fingerprint substringWithRange:NSMakeRange(i, 4)];
 
         unsigned int value;
         [[NSScanner scannerWithString:str] scanHexInt:&value];
@@ -428,8 +429,11 @@
         char *word;
         size_t size;
 
-        @synchronized (self) {
-            trustword(_session, value, [languageID UTF8String], &word, &size);
+        PEP_STATUS status = trustword(_session, value, [languageID UTF8String], &word, &size);
+
+        if ([NSError setError:error fromPEPStatus:status]) {
+            free(word);
+            return nil;
         }
 
         [array addObject:[NSString stringWithUTF8String:word]];
