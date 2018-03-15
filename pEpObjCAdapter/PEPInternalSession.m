@@ -507,25 +507,32 @@
     return YES;
 }
 
+- (BOOL)keyMistrusted:(PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+
+    [self lockWrite];
+    PEP_STATUS status = key_mistrusted(_session, ident);
+    [self unlockWrite];
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
+        return NO;
+    }
+
+    [identity reset];
+    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
+    free_identity(ident);
+
+    return YES;
+}
+
 - (void)keyResetTrust:(PEPIdentity *)identity
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
     key_reset_trust(_session, ident);
-    [self unlockWrite];
-
-    [identity reset];
-    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
-    free_identity(ident);
-}
-
-- (void)keyMistrusted:(PEPIdentity *)identity
-{
-    pEp_identity *ident = PEP_identityToStruct(identity);
-
-    [self lockWrite];
-    key_mistrusted(_session, ident);
     [self unlockWrite];
 
     [identity reset];

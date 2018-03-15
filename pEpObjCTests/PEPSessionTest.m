@@ -246,7 +246,8 @@
     [session keyResetTrust:alice];
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
-    [session keyMistrusted:alice];
+    XCTAssertTrue([session keyMistrusted:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
@@ -295,7 +296,8 @@
     [session keyResetTrust:alice];
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
-    [session keyMistrusted:alice];
+    XCTAssertTrue([session keyMistrusted:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
@@ -370,7 +372,8 @@
     [session keyResetTrust:alice];
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
-    [session keyMistrusted:alice];
+    XCTAssertTrue([session keyMistrusted:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     [session undoLastMistrust];
@@ -473,7 +476,8 @@
     XCTAssertEqual(rating, PEP_rating_reliable);
 
     // mistrust Bob
-    [session keyMistrusted:identBob];
+    XCTAssertTrue([session keyMistrusted:identBob error:&error]);
+    XCTAssertNil(error);
 
     identBob.fingerPrint = nil;
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
@@ -665,7 +669,8 @@
     XCTAssertNil(error);
 
     // mistrust Bob
-    [session keyMistrusted:identBob];
+    XCTAssertTrue([session keyMistrusted:identBob error:&error]);
+    XCTAssertNil(error);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
@@ -713,7 +718,8 @@
     PEPIdentity *identAlice2 = [identAlice mutableCopy];
 
     // This will revoke key
-    [session keyMistrusted:identAlice2];
+    XCTAssertTrue([session keyMistrusted:identAlice2 error:&error]);
+    XCTAssertNil(error);
     identAlice2.fingerPrint = nil;
 
     XCTAssertTrue([session mySelf:identAlice error:&error]);

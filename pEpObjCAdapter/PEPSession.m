@@ -161,7 +161,8 @@
     return [session mySelf:identity error:error];
 }
 
-- (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
+- (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity
+                 error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session updateIdentity:identity error:error];
@@ -174,10 +175,11 @@
     return [session trustPersonalKey:identity error:error];
 }
 
-- (void)keyMistrusted:(PEPIdentity * _Nonnull)identity
+- (BOOL)keyMistrusted:(PEPIdentity * _Nonnull)identity
+                error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    [session keyMistrusted:identity];
+    return [session keyMistrusted:identity error:error];
 }
 
 - (void)keyResetTrust:(PEPIdentity * _Nonnull)identity
