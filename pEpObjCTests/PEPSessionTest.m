@@ -110,7 +110,7 @@
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"pep.test.iosgenkey@pep-project.org"
-                            userID:@"Me"
+                            userID:@"pep.test.iosgenkey@pep-project.org_userID"
                             userName:@"pEp Test iOS GenKey"
                             isOwn:YES];
 
@@ -150,7 +150,7 @@
         XCTAssertNil(innerError);
 
         XCTAssertNotNil(identMe3.fingerPrint);
-        XCTAssertFalse([identMe3 isPEPUser:session]);
+        XCTAssertTrue([identMe3 isPEPUser:session]);
         XCTAssertEqualObjects(identMe3.fingerPrint, identMe.fingerPrint);
 
         XCTAssertEqualObjects(identMe.address, identMe2.address);

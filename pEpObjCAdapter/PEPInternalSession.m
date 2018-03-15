@@ -445,7 +445,6 @@
 
 - (BOOL)mySelf:(nonnull PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *userID = identity.userID;
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
@@ -460,8 +459,6 @@
     [identity reset];
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
-
-    identity.userID = userID;
 
     return YES;
 }
