@@ -246,6 +246,7 @@
 
     XCTAssertFalse([session keyResetTrust:alice error:&error]);
     XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, PEP_OUT_OF_MEMORY);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 }
 
