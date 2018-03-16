@@ -182,10 +182,11 @@
     return [session keyMistrusted:identity error:error];
 }
 
-- (void)keyResetTrust:(PEPIdentity * _Nonnull)identity
+- (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
+                error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    [session keyResetTrust:identity];
+    return [session keyResetTrust:identity error:error];
 }
 
 #pragma mark Internal API (testing etc.)

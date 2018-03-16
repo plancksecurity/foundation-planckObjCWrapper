@@ -527,17 +527,25 @@
     return YES;
 }
 
-- (void)keyResetTrust:(PEPIdentity *)identity
+- (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
+                error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
-    key_reset_trust(_session, ident);
+    PEP_STATUS status = key_reset_trust(_session, ident);
     [self unlockWrite];
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
+        return NO;
+    }
 
     [identity reset];
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
+
+    return YES;
 }
 
 - (void)importKey:(NSString *)keydata

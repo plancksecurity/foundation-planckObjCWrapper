@@ -243,7 +243,8 @@
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
-    [session keyResetTrust:alice];
+    XCTAssertTrue([session keyResetTrust:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
@@ -259,7 +260,8 @@
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
-    [session keyResetTrust:alice];
+    XCTAssertTrue([session keyResetTrust:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 }
 
@@ -293,7 +295,8 @@
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
-    [session keyResetTrust:alice];
+    XCTAssertTrue([session keyResetTrust:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
@@ -306,7 +309,8 @@
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
-    [session keyResetTrust:alice];
+    XCTAssertTrue([session keyResetTrust:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     // This line provoked the crash
@@ -369,7 +373,8 @@
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
-    [session keyResetTrust:alice];
+    XCTAssertTrue([session keyResetTrust:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
@@ -385,7 +390,8 @@
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
-    [session keyResetTrust:alice];
+    XCTAssertTrue([session keyResetTrust:alice error:&error]);
+    XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
     dispatch_group_wait(backgroundGroup, DISPATCH_TIME_FOREVER);
@@ -469,7 +475,8 @@
     XCTAssertEqual(rating, PEP_rating_trusted);
 
     // Let' say we undo handshake
-    [session keyResetTrust:identBob];
+    XCTAssertTrue([session keyResetTrust:identBob error:&error]);
+    XCTAssertNil(error);
 
     // Yellow ?
     XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);

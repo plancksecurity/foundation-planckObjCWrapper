@@ -156,7 +156,8 @@ typedef NSArray<NSString *> PEPStringList;
  Use this to undo keyCompromized or trustPersonalKey
  See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
-- (void)keyResetTrust:(PEPIdentity * _Nonnull)identity;
+- (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
+                error:(NSError * _Nullable * _Nullable)error;
 
 #pragma mark -- Internal API (testing etc.)
 
