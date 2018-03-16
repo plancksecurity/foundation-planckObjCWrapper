@@ -213,6 +213,42 @@
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 }
 
+/** ENGINE-409 */
+- (void)testIdentityRatingMistrustReset
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:@"me@example.org"
+                       userID:@"me_myself"
+                       userName:@"Me Me"
+                       isOwn:YES];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(me.fingerPrint);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
+
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session: session];
+    XCTAssertNotNil(alice);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+
+    XCTAssertTrue([session keyMistrusted:alice error:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+
+    XCTAssertFalse([session keyResetTrust:alice error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+}
+
 - (void)testIdentityRatingTrustResetMistrustUndo
 {
     PEPSession *session = [PEPSession new];
