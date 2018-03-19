@@ -94,18 +94,20 @@ static PEPInternalSession *s_sessionForMainThread = nil;
  */
 + (void)assureSessionForMainThreadExists
 {
-    if (s_sessionForMainThread) {
-        return;
-    }
+    void (^creationBlock)(void) = ^{
+        if (s_sessionForMainThread) {
+            return;
+        }
+        s_sessionForMainThread = [PEPInternalSession new];
+        [self setConfigUnencryptedSubjectOnSession:s_sessionForMainThread];
+    };
+
 
     if ([NSThread isMainThread]) {
-        s_sessionForMainThread = [PEPInternalSession new];
+        creationBlock();
     } else {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            s_sessionForMainThread = [PEPInternalSession new];
-        });
+        dispatch_sync(dispatch_get_main_queue(), creationBlock);
     }
-    [self setConfigUnencryptedSubjectOnSession:s_sessionForMainThread];
 }
 
 + (void)cleanupInternal
