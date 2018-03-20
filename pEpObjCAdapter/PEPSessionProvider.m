@@ -94,6 +94,10 @@ static PEPInternalSession *s_sessionForMainThread = nil;
  */
 + (void)assureSessionForMainThreadExists
 {
+    if (s_sessionForMainThread) {
+        return;
+    }
+
     void (^creationBlock)(void) = ^{
         if (s_sessionForMainThread) {
             return;
