@@ -39,17 +39,17 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     PEPCopyableThread *currentThread = [[PEPCopyableThread alloc] initWithThread:[NSThread currentThread]];
-    PEPInternalSession *session = dict[currentThread];
-    if (!session) {
-        session = [PEPInternalSession new];
-        dict[currentThread] = session;
+    PEPInternalSession * __strong newOrExistingSession = dict[currentThread];
+    if (!newOrExistingSession) {
+        newOrExistingSession = [PEPInternalSession new];
+        dict[currentThread] = newOrExistingSession;
     }
-    [self setConfigUnencryptedSubjectOnSession:session];
+    [self setConfigUnencryptedSubjectOnSession:newOrExistingSession];
     [self nullifySessionsOfFinishedThreads];
 
     [[self sessionForThreadLock] unlock];
 
-    return session;
+    return newOrExistingSession;
 }
 
 + (void)cleanup
