@@ -548,12 +548,17 @@
     return YES;
 }
 
-- (void)importKey:(NSString *)keydata
+- (BOOL)importKey:(NSString * _Nonnull)keydata error:(NSError * _Nullable * _Nullable)error
 {
     [self lockWrite];
-    import_key(_session, [keydata UTF8String], [keydata length], NULL);
+    PEP_STATUS status = import_key(_session, [keydata UTF8String], [keydata length], NULL);
     [self unlockWrite];
 
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return NO;
+    }
+
+    return YES;
 }
 
 - (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity

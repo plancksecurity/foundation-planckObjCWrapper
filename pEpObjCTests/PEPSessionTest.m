@@ -878,7 +878,10 @@
                                                                    userName:@"Partner 1"];
     NSString *pubKeyPartner1 = [PEPTestUtils loadResourceByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
     XCTAssertNotNil(pubKeyPartner1);
-    [session importKey:pubKeyPartner1];
+
+    NSError *error = nil;
+    XCTAssertTrue([session importKey:pubKeyPartner1 error:&error]);
+    XCTAssertNil(error);
 
     PEP_rating color = [self ratingForIdentity:partner1Orig session:session];
     XCTAssertEqual(color, PEP_rating_reliable);

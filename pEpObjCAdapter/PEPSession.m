@@ -191,9 +191,10 @@
 
 #pragma mark Internal API (testing etc.)
 
-- (void)importKey:(NSString * _Nonnull)keydata
+- (BOOL)importKey:(NSString * _Nonnull)keydata error:(NSError * _Nullable * _Nullable)error
 {
-    [PEPSession importKey:keydata];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session importKey:keydata error:error];
 }
 
 - (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity
@@ -250,12 +251,6 @@
 }
 
 #pragma mark Internal API (testing etc.)
-
-+ (void)importKey:(NSString * _Nonnull)keydata
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    [session importKey:keydata];
-}
 
 + (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity
      description:(NSString * _Nullable)description comment:(NSString * _Nullable)comment

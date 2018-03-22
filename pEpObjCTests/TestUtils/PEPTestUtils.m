@@ -76,8 +76,7 @@ NSString * const ownUserId = @"pEp_own_userId";
     if (!txtFileContents) {
         return NO;
     } else {
-        [session importKey:txtFileContents];
-        return YES;
+        return [session importKey:txtFileContents error:nil];
     }
 }
 

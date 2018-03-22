@@ -162,7 +162,7 @@ typedef NSArray<NSString *> PEPStringList;
 #pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
-- (void)importKey:(NSString * _Nonnull)keydata;
+- (BOOL)importKey:(NSString * _Nonnull)keydata error:(NSError * _Nullable * _Nullable)error;
 
 - (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity
      description:(NSString * _Nullable)description comment:(NSString * _Nullable)comment;
