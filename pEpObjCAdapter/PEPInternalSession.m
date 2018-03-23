@@ -561,15 +561,25 @@
     return YES;
 }
 
-- (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity
-     description:(NSString * _Nullable)description comment:(NSString * _Nullable)comment
+- (BOOL)logTitle:(NSString * _Nonnull)title
+          entity:(NSString * _Nonnull)entity
+     description:(NSString * _Nullable)description
+         comment:(NSString * _Nullable)comment
+           error:(NSError * _Nullable * _Nullable)error
 {
     [self lockWrite];
-    log_event(_session, [[title precomposedStringWithCanonicalMapping] UTF8String],
-              [[entity precomposedStringWithCanonicalMapping] UTF8String],
-              [[description precomposedStringWithCanonicalMapping] UTF8String],
-              [[comment precomposedStringWithCanonicalMapping] UTF8String]);
+    PEP_STATUS status = log_event(_session,
+                                  [[title precomposedStringWithCanonicalMapping] UTF8String],
+                                  [[entity precomposedStringWithCanonicalMapping] UTF8String],
+                                  [[description precomposedStringWithCanonicalMapping] UTF8String],
+                                  [[comment precomposedStringWithCanonicalMapping] UTF8String]);
     [self unlockWrite];
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error

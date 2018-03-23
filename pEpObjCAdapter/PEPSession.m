@@ -197,10 +197,19 @@
     return [session importKey:keydata error:error];
 }
 
-- (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity
-     description:(NSString * _Nullable)description comment:(NSString * _Nullable)comment
+- (BOOL)logTitle:(NSString * _Nonnull)title
+          entity:(NSString * _Nonnull)entity
+     description:(NSString * _Nullable)description
+         comment:(NSString * _Nullable)comment
+           error:(NSError * _Nullable * _Nullable)error
 {
-    [PEPSession logTitle:title entity:entity description:description comment:comment];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session
+            logTitle:title
+            entity:entity
+            description:description
+            comment:comment
+            error:error];
 }
 
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
@@ -252,13 +261,6 @@
 }
 
 #pragma mark Internal API (testing etc.)
-
-+ (void)logTitle:(NSString * _Nonnull)title entity:(NSString * _Nonnull)entity
-     description:(NSString * _Nullable)description comment:(NSString * _Nullable)comment
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    [session logTitle:title entity:entity description:description comment:comment];
-}
 
 + (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
                                      identity2:(PEPIdentity * _Nonnull)identity2
