@@ -170,7 +170,7 @@ typedef NSArray<NSString *> PEPStringList;
 /**
  Retrieves the log from the engine, or nil, if there is nothing yet.
  */
-- (NSString * _Nullable)getLog;
+- (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error;
 
 /** Determine trustwords for two identities */
 - (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1

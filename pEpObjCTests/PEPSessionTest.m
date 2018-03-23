@@ -41,7 +41,9 @@
 
     // Dummy to set up the DB, since this is currenty only triggered by session use,
     // which PEPObjCAdapter.startSync does not trigger.
-    [session getLog];
+    NSError *error = nil;
+    XCTAssertNotNil([session getLogWithError:&error]);
+    XCTAssertNil(error);
 
     PEPTestSyncDelegate *syncDelegate = [[PEPTestSyncDelegate alloc] init];
 
@@ -54,7 +56,6 @@
                             userName:@"pEp Test iOS GenKey"
                             isOwn:YES];
 
-    NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 

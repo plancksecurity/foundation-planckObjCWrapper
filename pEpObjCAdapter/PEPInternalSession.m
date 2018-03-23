@@ -572,16 +572,19 @@
     [self unlockWrite];
 }
 
-- (NSString * _Nullable)getLog
+- (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
     char *theChars = NULL;
-    @synchronized(self) {
-        get_crashdump_log(_session, 0, &theChars);
+    PEP_STATUS status = get_crashdump_log(_session, 0, &theChars);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return nil;
     }
 
     if (theChars) {
         return [NSString stringWithUTF8String:theChars];
     } else {
+        [NSError setError:error fromPEPStatus:PEP_UNKNOWN_ERROR];
         return nil;
     }
 }

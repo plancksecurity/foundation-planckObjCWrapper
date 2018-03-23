@@ -203,9 +203,10 @@
     [PEPSession logTitle:title entity:entity description:description comment:comment];
 }
 
-- (NSString * _Nullable)getLog
+- (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession getLog];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session getLogWithError:error];
 }
 
 - (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
@@ -257,12 +258,6 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     [session logTitle:title entity:entity description:description comment:comment];
-}
-
-+ (NSString * _Nullable)getLog
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session getLog];
 }
 
 + (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
