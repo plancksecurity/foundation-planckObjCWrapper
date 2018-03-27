@@ -245,10 +245,9 @@
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
-    XCTAssertFalse([session keyResetTrust:alice error:&error]);
-    XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, PEP_OUT_OF_MEMORY);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+    XCTAssertTrue([session keyResetTrust:alice error:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 }
 
 - (void)testIdentityRatingTrustResetMistrustUndo
@@ -300,7 +299,7 @@
 
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 }
 
 /** ENGINE-384 */
@@ -349,7 +348,7 @@
 
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     // This line provoked the crash
     XCTAssertTrue([session trustPersonalKey:alice error:&error]);
@@ -430,7 +429,7 @@
 
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 
     dispatch_group_wait(backgroundGroup, DISPATCH_TIME_FOREVER);
 }
