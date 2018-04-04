@@ -215,7 +215,6 @@ static BOOL s_unecryptedSubjectEnabled = NO;
             return nil;
         }
     }
-    NSLog(@"Asset %@ copied into %@", fileName, destinationPath);
     return destinationPath;
 }
 
