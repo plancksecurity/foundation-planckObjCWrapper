@@ -397,6 +397,7 @@
         PEPMessage *encMsg = [innerSession
                               encryptMessage:msg
                               identity:me
+                              extraKeys:nil
                               status:&status error:&error];
         XCTAssertEqual(status, PEP_STATUS_OK);
         XCTAssertNotNil(encMsg);
@@ -1263,7 +1264,12 @@
                                   longMessage:longMessage
                                      outgoing:YES];
     PEP_STATUS status = PEP_UNKNOWN_ERROR;
-    PEPMessage *encMessage = [session encryptMessage:mail identity:me status:&status error:&error];
+    PEPMessage *encMessage = [session
+                              encryptMessage:mail
+                              identity:me
+                              extraKeys:nil
+                              status:&status
+                              error:&error];
     XCTAssertNil(error);
 
     return encMessage;
@@ -1287,7 +1293,12 @@
     PEPMessage *mail = [PEPTestUtils mailFrom:me toIdent:me shortMessage:shortMessage longMessage:longMessage outgoing:YES];
 
     PEP_STATUS status;
-    PEPMessage *encMessage = [session encryptMessage:mail identity:me status:&status error:&error];
+    PEPMessage *encMessage = [session
+                              encryptMessage:mail
+                              identity:me
+                              extraKeys:nil
+                              status:&status
+                              error:&error];
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
@@ -1359,7 +1370,12 @@
 
     PEP_STATUS statusEnc = PEP_VERSION_MISMATCH;
     if (toSelf) {
-        encMsg = [session encryptMessage:msg identity:identMe status:&statusEnc error:&error];
+        encMsg = [session
+                  encryptMessage:msg
+                  identity:identMe
+                  extraKeys:nil
+                  status:&statusEnc
+                  error:&error];
         XCTAssertEqual(statusEnc, PEP_STATUS_OK);
     } else {
         encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];

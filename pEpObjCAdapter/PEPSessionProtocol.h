@@ -75,12 +75,14 @@ typedef NSArray<NSString *> PEPStringList;
 /** Encrypt a message dict for the given own identity */
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                  identity:(PEPIdentity * _Nonnull)identity
+                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Encrypt a message for the given own identity */
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                 identity:(PEPIdentity * _Nonnull)identity
+                               extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 

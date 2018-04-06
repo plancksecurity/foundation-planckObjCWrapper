@@ -305,6 +305,7 @@
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                  identity:(PEPIdentity * _Nonnull)identity
+                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
@@ -314,14 +315,19 @@
     pEp_identity *ident = PEP_identityToStruct(identity);
     message *_dst = NULL;
 
+    stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
+
     [self lockWrite];
     PEP_STATUS theStatus = encrypt_message_for_self(_session,
                                                     ident,
                                                     _src,
+                                                    keysStringList,
                                                     &_dst,
                                                     PEP_enc_PGP_MIME,
                                                     flags);
     [self unlockWrite];
+
+    free_stringlist(keysStringList);
 
     if (status) {
         *status = theStatus;
@@ -349,12 +355,14 @@
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                 identity:(PEPIdentity * _Nonnull)identity
+                               extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *target = [self
                        encryptMessageDict:message.dictionary
                        identity:identity
+                       extraKeys:extraKeys
                        status:status
                        error:error];
 

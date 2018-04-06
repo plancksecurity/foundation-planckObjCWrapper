@@ -110,20 +110,32 @@
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                  identity:(PEPIdentity * _Nonnull)identity
+                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessageDict:messageDict identity:identity status:status error:error];
+    return [session
+            encryptMessageDict:messageDict
+            identity:identity
+            extraKeys:extraKeys
+            status:status
+            error:error];
 }
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                 identity:(PEPIdentity * _Nonnull)identity
+                               extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessage:message identity:identity status:status error:error];
+    return [session
+            encryptMessage:message
+            identity:identity
+            extraKeys:extraKeys
+            status:status
+            error:error];
 }
 
 - (BOOL)outgoingRating:(PEP_rating * _Nonnull)rating
