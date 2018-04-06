@@ -396,7 +396,7 @@
         NSError *error = nil;
         PEPMessage *encMsg = [innerSession
                               encryptMessage:msg
-                              identity:me
+                              forSelf:me
                               extraKeys:nil
                               status:&status error:&error];
         XCTAssertEqual(status, PEP_STATUS_OK);
@@ -1266,7 +1266,7 @@
     PEP_STATUS status = PEP_UNKNOWN_ERROR;
     PEPMessage *encMessage = [session
                               encryptMessage:mail
-                              identity:me
+                              forSelf:me
                               extraKeys:nil
                               status:&status
                               error:&error];
@@ -1295,7 +1295,7 @@
     PEP_STATUS status;
     PEPMessage *encMessage = [session
                               encryptMessage:mail
-                              identity:me
+                              forSelf:me
                               extraKeys:nil
                               status:&status
                               error:&error];
@@ -1372,7 +1372,7 @@
     if (toSelf) {
         encMsg = [session
                   encryptMessage:msg
-                  identity:identMe
+                  forSelf:identMe
                   extraKeys:nil
                   status:&statusEnc
                   error:&error];

@@ -304,7 +304,7 @@
 }
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                 identity:(PEPIdentity * _Nonnull)identity
+                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
@@ -312,7 +312,7 @@
     PEP_encrypt_flags_t flags = 0;
 
     message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(ownIdentity);
     message *_dst = NULL;
 
     stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
@@ -354,14 +354,14 @@
 }
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                                identity:(PEPIdentity * _Nonnull)identity
+                                 forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *target = [self
                        encryptMessageDict:message.dictionary
-                       identity:identity
+                       forSelf:ownIdentity
                        extraKeys:extraKeys
                        status:status
                        error:error];
