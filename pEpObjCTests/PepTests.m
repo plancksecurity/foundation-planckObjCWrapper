@@ -29,7 +29,9 @@
 
 - (void)testLanguageList {
     PEPSession *session = [[PEPSession alloc] init];
-    NSArray<PEPLanguage *> *langs = [session languageList];
+    NSError *error = nil;
+    NSArray<PEPLanguage *> *langs = [session languageListWithError:&error];
+    XCTAssertNil(error);
     XCTAssertGreaterThan(langs.count, 0);
     BOOL foundEn = NO;
     for (PEPLanguage *lang in langs) {

@@ -244,9 +244,10 @@
                                      error:error];
 }
 
-- (NSArray<PEPLanguage *> * _Nonnull)languageList
+- (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession languageList];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session languageListWithError:error];
 }
 
 - (PEP_STATUS)undoLastMistrust
@@ -276,12 +277,6 @@
 }
 
 #pragma mark Internal API (testing etc.)
-
-+ (NSArray<PEPLanguage *> * _Nonnull)languageList
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session languageList];
-}
 
 + (PEP_STATUS)undoLastMistrust
 {

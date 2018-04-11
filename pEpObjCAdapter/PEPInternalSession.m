@@ -641,11 +641,18 @@
     return result;
 }
 
-- (NSArray<PEPLanguage *> * _Nonnull)languageList
+- (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
-    char *chLangs;
-    get_languagelist(_session, &chLangs);
+    char *chLangs = NULL;
+    PEP_STATUS status = get_languagelist(_session, &chLangs);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free(chLangs);
+        return nil;
+    }
+
     NSString *parserInput = [NSString stringWithUTF8String:chLangs];
+    free(chLangs);
 
     NSMutableArray<NSString *> *tokens = [NSMutableArray array];
     PEPCSVScanner *scanner = [[PEPCSVScanner alloc] initWithString:parserInput];

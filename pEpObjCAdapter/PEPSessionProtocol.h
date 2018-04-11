@@ -187,7 +187,7 @@ typedef NSArray<NSString *> PEPStringList;
 /**
  @returns The list of supported languages for trustwords.
  */
-- (NSArray<PEPLanguage *> * _Nonnull)languageList;
+- (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error;
 
 /**
  Directly invokes the engine's undo_last_mistrust() function
