@@ -909,17 +909,21 @@
     NSString *secKeyMe = [PEPTestUtils loadResourceByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
     XCTAssertNotNil(secKeyMe);
 
+    NSError *error = nil;
     NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                      language:nil full:YES];
+                                                      language:nil full:YES error:&error];
+    XCTAssertNil(error);
     XCTAssertEqualObjects(trustwordsFull,
                           @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
 
     NSString *trustwordsFullEnglish = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                             language:@"en" full:YES];
+                                                             language:@"en" full:YES error:&error];
+    XCTAssertNil(error);
     XCTAssertEqualObjects(trustwordsFullEnglish, trustwordsFull);
 
     NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                           language:@"ZZ" full:YES];
+                                                           language:@"ZZ" full:YES error:&error];
+    XCTAssertNotNil(error);
     XCTAssertNil(trustwordsUndefined);
 }
 

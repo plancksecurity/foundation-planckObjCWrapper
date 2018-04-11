@@ -181,7 +181,8 @@ typedef NSArray<NSString *> PEPStringList;
 - (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
                                      identity2:(PEPIdentity * _Nonnull)identity2
                                       language:(NSString * _Nullable)language
-                                          full:(BOOL)full;
+                                          full:(BOOL)full
+                                         error:(NSError * _Nullable * _Nullable)error;
 
 /**
  @returns The list of supported languages for trustwords.

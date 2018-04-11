@@ -234,11 +234,14 @@
                                      identity2:(PEPIdentity * _Nonnull)identity2
                                       language:(NSString * _Nullable)language
                                           full:(BOOL)full
+                                         error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession getTrustwordsIdentity1:identity1
-                                        identity2:identity2
-                                         language:language
-                                             full:full];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session getTrustwordsIdentity1:identity1
+                                 identity2:identity2
+                                  language:language
+                                      full:full
+                                     error:error];
 }
 
 - (NSArray<PEPLanguage *> * _Nonnull)languageList
@@ -273,15 +276,6 @@
 }
 
 #pragma mark Internal API (testing etc.)
-
-+ (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
-                                     identity2:(PEPIdentity * _Nonnull)identity2
-                                      language:(NSString * _Nullable)language
-                                          full:(BOOL)full
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session getTrustwordsIdentity1:identity1 identity2:identity2 language:language full:full];
-}
 
 + (NSArray<PEPLanguage *> * _Nonnull)languageList
 {

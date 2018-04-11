@@ -611,14 +611,14 @@
                                      identity2:(PEPIdentity * _Nonnull)identity2
                                       language:(NSString * _Nullable)language
                                           full:(BOOL)full
+                                         error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *result = nil;
-    char *trustwords = nil;
-    size_t sizeWritten = 0;
-
     pEp_identity *ident1 = PEP_identityToStruct(identity1);
     pEp_identity *ident2 = PEP_identityToStruct(identity2);
     PEP_STATUS status;
+
+    char *trustwords = nil;
+    size_t sizeWritten = 0;
 
     [self lockWrite];
     status = get_trustwords(_session, ident1, ident2,
@@ -627,13 +627,17 @@
                             &trustwords, &sizeWritten, full);
     [self unlockWrite];
 
-    if (status == PEP_STATUS_OK) {
+    NSString *result = nil;
+
+    if (![NSError setError:error fromPEPStatus:status]) {
         result = [NSString stringWithCString:trustwords
                                     encoding:NSUTF8StringEncoding];
     }
+
     if (trustwords) {
         free(trustwords);
     }
+
     return result;
 }
 
