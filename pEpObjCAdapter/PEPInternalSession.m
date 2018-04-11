@@ -644,9 +644,7 @@
 - (NSArray<PEPLanguage *> * _Nonnull)languageList
 {
     char *chLangs;
-    @synchronized(self) {
-        get_languagelist(_session, &chLangs);
-    }
+    get_languagelist(_session, &chLangs);
     NSString *parserInput = [NSString stringWithUTF8String:chLangs];
 
     NSMutableArray<NSString *> *tokens = [NSMutableArray array];
