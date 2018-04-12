@@ -192,7 +192,7 @@ typedef NSArray<NSString *> PEPStringList;
 /**
  Directly invokes the engine's undo_last_mistrust() function
  */
-- (PEP_STATUS)undoLastMistrust;
+- (BOOL)undoLastMistrustWithError:(NSError * _Nullable * _Nullable)error;
 
 /**
  Can convert a string like "cannot_decrypt" into its equivalent PEP_rating_cannot_decrypt.

@@ -680,13 +680,17 @@
     return [NSArray arrayWithArray:langs];
 }
 
-- (PEP_STATUS)undoLastMistrust
+- (BOOL)undoLastMistrustWithError:(NSError * _Nullable * _Nullable)error;
 {
     [self lockWrite];
     PEP_STATUS status = undo_last_mistrust(_session);
     [self unlockWrite];
 
-    return status;
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return NO;
+    }
+
+    return YES;
 }
 
 static NSDictionary *ratingToString;

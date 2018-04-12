@@ -250,9 +250,10 @@
     return [session languageListWithError:error];
 }
 
-- (PEP_STATUS)undoLastMistrust
+- (BOOL)undoLastMistrustWithError:(NSError * _Nullable * _Nullable)error;
 {
-    return [PEPSession undoLastMistrust];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session undoLastMistrustWithError:error];
 }
 
 - (PEP_rating)ratingFromString:(NSString * _Nonnull)string
@@ -277,12 +278,6 @@
 }
 
 #pragma mark Internal API (testing etc.)
-
-+ (PEP_STATUS)undoLastMistrust
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session undoLastMistrust];
-}
 
 + (PEP_rating)ratingFromString:(NSString * _Nonnull)string
 {
