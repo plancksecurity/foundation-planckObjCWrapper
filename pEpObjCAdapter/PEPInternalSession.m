@@ -434,7 +434,7 @@
         unsigned int value;
         [[NSScanner scannerWithString:str] scanHexInt:&value];
 
-        char *word;
+        char *word = NULL;
         size_t size;
 
         PEP_STATUS status = trustword(_session, value, [languageID UTF8String], &word, &size);
