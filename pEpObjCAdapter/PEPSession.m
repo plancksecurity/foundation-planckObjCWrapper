@@ -258,12 +258,14 @@
 
 - (PEP_rating)ratingFromString:(NSString * _Nonnull)string
 {
-    return [PEPSession ratingFromString:string];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session ratingFromString:string];
 }
 
 - (NSString * _Nonnull)stringFromRating:(PEP_rating)rating
 {
-    return [PEPSession stringFromRating:rating];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session stringFromRating:rating];
 }
 
 - (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
@@ -278,18 +280,6 @@
 }
 
 #pragma mark Internal API (testing etc.)
-
-+ (PEP_rating)ratingFromString:(NSString * _Nonnull)string
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session ratingFromString:string];
-}
-
-+ (NSString * _Nonnull)stringFromRating:(PEP_rating)rating
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session stringFromRating:rating];
-}
 
 + (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity;
 {
