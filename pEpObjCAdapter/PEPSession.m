@@ -278,14 +278,6 @@
 - (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
             error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession setOwnKey:identity fingerprint:fingerprint error:error];
-}
-
-#pragma mark Internal API (testing etc.)
-
-+ (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
-            error:(NSError * _Nullable * _Nullable)error
-{
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session setOwnKey:identity fingerprint:fingerprint error:error];
 }
