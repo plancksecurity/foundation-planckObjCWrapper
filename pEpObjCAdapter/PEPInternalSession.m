@@ -17,7 +17,7 @@
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
 #import "NSError+PEP.h"
-#import "PEPAutoFree.h"
+#import "PEPAutoPointer.h"
 
 @implementation PEPInternalSession
 
@@ -435,7 +435,7 @@
         unsigned int value;
         [[NSScanner scannerWithString:str] scanHexInt:&value];
 
-        PEPAutoFree *word = [PEPAutoFree new];
+        PEPAutoPointer *word = [PEPAutoPointer new];
         size_t size;
 
         PEP_STATUS status = trustword(_session,
@@ -620,7 +620,7 @@
     pEp_identity *ident2 = PEP_identityToStruct(identity2);
     PEP_STATUS status;
 
-    PEPAutoFree *trustwords = [PEPAutoFree new];
+    PEPAutoPointer *trustwords = [PEPAutoPointer new];
     size_t sizeWritten = 0;
 
     [self lockWrite];
@@ -642,7 +642,7 @@
 
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
-    PEPAutoFree *chLangs = [PEPAutoFree new];
+    PEPAutoPointer *chLangs = [PEPAutoPointer new];
     PEP_STATUS status = get_languagelist(_session, chLangs.charPointerPointer);
 
     if ([NSError setError:error fromPEPStatus:status]) {

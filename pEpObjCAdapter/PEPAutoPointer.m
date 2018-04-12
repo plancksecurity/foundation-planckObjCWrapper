@@ -1,20 +1,20 @@
 //
-//  PEPAutoFree.m
+//  PEPAutoPointer.m
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 11.04.18.
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import "PEPAutoFree.h"
+#import "PEPAutoPointer.h"
 
-@interface PEPAutoFree ()
+@interface PEPAutoPointer ()
 
 @property (nonatomic) void *thePointer;
 
 @end
 
-@implementation PEPAutoFree
+@implementation PEPAutoPointer
 
 - (void **)voidPointerPointer
 {
