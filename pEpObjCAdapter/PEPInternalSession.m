@@ -17,6 +17,7 @@
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
 #import "NSError+PEP.h"
+#import "PEPAutoFree.h"
 
 @implementation PEPInternalSession
 
@@ -434,18 +435,20 @@
         unsigned int value;
         [[NSScanner scannerWithString:str] scanHexInt:&value];
 
-        char *word = NULL;
+        PEPAutoFree *word = [PEPAutoFree new];
         size_t size;
 
-        PEP_STATUS status = trustword(_session, value, [languageID UTF8String], &word, &size);
+        PEP_STATUS status = trustword(_session,
+                                      value,
+                                      [languageID UTF8String],
+                                      word.charPointerPointer,
+                                      &size);
 
         if ([NSError setError:error fromPEPStatus:status]) {
-            free(word);
             return nil;
         }
 
-        [array addObject:[NSString stringWithUTF8String:word]];
-        free(word);
+        [array addObject:[NSString stringWithUTF8String:word.charPointer]];
     }
 
     return array;
@@ -617,25 +620,21 @@
     pEp_identity *ident2 = PEP_identityToStruct(identity2);
     PEP_STATUS status;
 
-    char *trustwords = nil;
+    PEPAutoFree *trustwords = [PEPAutoFree new];
     size_t sizeWritten = 0;
 
     [self lockWrite];
     status = get_trustwords(_session, ident1, ident2,
                             [[language precomposedStringWithCanonicalMapping]
                              UTF8String],
-                            &trustwords, &sizeWritten, full);
+                            trustwords.charPointerPointer, &sizeWritten, full);
     [self unlockWrite];
 
     NSString *result = nil;
 
     if (![NSError setError:error fromPEPStatus:status]) {
-        result = [NSString stringWithCString:trustwords
+        result = [NSString stringWithCString:trustwords.charPointer
                                     encoding:NSUTF8StringEncoding];
-    }
-
-    if (trustwords) {
-        free(trustwords);
     }
 
     return result;
@@ -643,16 +642,14 @@
 
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
-    char *chLangs = NULL;
-    PEP_STATUS status = get_languagelist(_session, &chLangs);
+    PEPAutoFree *chLangs = [PEPAutoFree new];
+    PEP_STATUS status = get_languagelist(_session, chLangs.charPointerPointer);
 
     if ([NSError setError:error fromPEPStatus:status]) {
-        free(chLangs);
         return nil;
     }
 
-    NSString *parserInput = [NSString stringWithUTF8String:chLangs];
-    free(chLangs);
+    NSString *parserInput = [NSString stringWithUTF8String:chLangs.charPointer];
 
     NSMutableArray<NSString *> *tokens = [NSMutableArray array];
     PEPCSVScanner *scanner = [[PEPCSVScanner alloc] initWithString:parserInput];

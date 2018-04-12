@@ -13,6 +13,9 @@
  */
 @interface PEPAutoFree : NSObject
 
-- (void **)pointerPointer;
+- (void **)voidPointerPointer;
+- (char **)charPointerPointer;
+- (void *)voidPointer;
+- (char *)charPointer;
 
 @end

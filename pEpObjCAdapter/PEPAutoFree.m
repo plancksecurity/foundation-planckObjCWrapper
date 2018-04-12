@@ -16,9 +16,24 @@
 
 @implementation PEPAutoFree
 
-- (void **)pointerPointer
+- (void **)voidPointerPointer
 {
     return &_thePointer;
+}
+
+- (char **)charPointerPointer
+{
+    return (char **) self.voidPointerPointer;
+}
+
+- (void *)voidPointer
+{
+    return self.thePointer;
+}
+
+- (char *)charPointer
+{
+    return (char *) self.voidPointer;
 }
 
 - (void)dealloc
