@@ -102,7 +102,7 @@
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
 
-    XCTAssertTrue([identMe isPEPUser:session]);
+    XCTAssertTrue([identMe isPEPUser:session error:&error]);
 }
 
 - (void)testMySelfCommType
@@ -122,7 +122,7 @@
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
 
-    XCTAssertTrue([identMe isPEPUser:session]);
+    XCTAssertTrue([identMe isPEPUser:session error:&error]);
 
     dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     dispatch_sync(queue, ^{
@@ -141,7 +141,7 @@
         XCTAssertNil(innerError);
 
         XCTAssertNotNil(identMe2.fingerPrint);
-        XCTAssertTrue([identMe2 isPEPUser:session]);
+        XCTAssertTrue([identMe2 isPEPUser:session error:&innerError]);
         XCTAssertEqualObjects(identMe2.fingerPrint, identMe.fingerPrint);
 
         // Now pretend the app only knows kPepUsername and kPepAddress
@@ -151,7 +151,7 @@
         XCTAssertNil(innerError);
 
         XCTAssertNotNil(identMe3.fingerPrint);
-        XCTAssertTrue([identMe3 isPEPUser:session]);
+        XCTAssertTrue([identMe3 isPEPUser:session error:&innerError]);
         XCTAssertEqualObjects(identMe3.fingerPrint, identMe.fingerPrint);
 
         XCTAssertEqualObjects(identMe.address, identMe2.address);
@@ -990,7 +990,7 @@
     XCTAssertNotNil(identMe.fingerPrint);
 
     // PEP_CANNOT_FIND_PERSON == 902
-    XCTAssertTrue([session isPEPUser:identMe]);
+    XCTAssertTrue([session isPEPUser:identMe error:&error]);
 }
 
 - (void)testXEncStatusForOutgoingEncryptedMail

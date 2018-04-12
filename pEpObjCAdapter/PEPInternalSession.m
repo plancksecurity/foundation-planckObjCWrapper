@@ -745,15 +745,17 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
+- (NSNumber * _Nullable)isPEPUser:(PEPIdentity * _Nonnull)identity
+                            error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     bool isPEP;
     PEP_STATUS status = is_pep_user(self.session, ident, &isPEP);
-    if (status == PEP_STATUS_OK) {
-        return isPEP;
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return nil;
     } else {
-        return NO;
+        return [NSNumber numberWithBool:isPEP];
     }
 }
 

@@ -268,9 +268,11 @@
     return [session stringFromRating:rating];
 }
 
-- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity
+- (NSNumber * _Nullable)isPEPUser:(PEPIdentity * _Nonnull)identity
+                            error:(NSError * _Nullable * _Nullable)error
 {
-    return [PEPSession isPEPUser:identity];
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session isPEPUser:identity error:error];
 }
 
 - (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
@@ -280,12 +282,6 @@
 }
 
 #pragma mark Internal API (testing etc.)
-
-+ (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity;
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session isPEPUser:identity];
-}
 
 + (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
             error:(NSError * _Nullable * _Nullable)error

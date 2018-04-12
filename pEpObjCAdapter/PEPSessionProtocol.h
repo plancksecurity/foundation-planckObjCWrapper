@@ -209,7 +209,8 @@ typedef NSArray<NSString *> PEPStringList;
  Is the given identity really a pEp user?
  If the engine indicates an error, or the identity is not a pEp user, returns false.
  */
-- (BOOL)isPEPUser:(PEPIdentity * _Nonnull)identity;
+- (NSNumber * _Nullable)isPEPUser:(PEPIdentity * _Nonnull)identity
+                            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  When (manually) importing (secret) keys, associate them with the given own identity.

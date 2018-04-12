@@ -97,7 +97,8 @@
 /**
  Is the given identity a pEp user, from the engine's point of view?
  */
-- (BOOL)isPEPUser:(PEPSession * _Nullable)session;
+- (NSNumber * _Nullable)isPEPUser:(PEPSession * _Nullable)session
+                            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Puts all properties into a default/nil state.
