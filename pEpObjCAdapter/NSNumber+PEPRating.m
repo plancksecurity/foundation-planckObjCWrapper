@@ -20,7 +20,7 @@
     return self.intValue;
 }
 
-+ (NSNumber *)numberWitPEPRating:(PEP_rating)pEpRating
++ (NSNumber *)numberWithPEPRating:(PEP_rating)pEpRating
 {
     return [[NSNumber alloc] initWithPEPRating:pEpRating];
 }

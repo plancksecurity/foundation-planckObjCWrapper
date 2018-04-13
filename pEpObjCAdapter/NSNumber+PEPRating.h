@@ -18,6 +18,6 @@
 - initWithPEPRating:(PEP_rating)pEpRating;
 - (PEP_rating)pEpRating;
 
-+ (NSNumber *)numberWitPEPRating:(PEP_rating)pEpRating;
++ (NSNumber *)numberWithPEPRating:(PEP_rating)pEpRating;
 
 @end
