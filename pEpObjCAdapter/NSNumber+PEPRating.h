@@ -18,4 +18,6 @@
 - initWithPEPRating:(PEP_rating)pEpRating;
 - (PEP_rating)pEpRating;
 
++ (NSNumber *)numberWithBool:(PEP_rating)pEpRating;
+
 @end

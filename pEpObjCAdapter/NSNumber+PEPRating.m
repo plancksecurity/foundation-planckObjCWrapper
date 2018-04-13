@@ -20,4 +20,9 @@
     return self.intValue;
 }
 
++ (NSNumber *)numberWithBool:(PEP_rating)pEpRating
+{
+    return [[NSNumber alloc] initWithPEPRating:pEpRating];
+}
+
 @end
