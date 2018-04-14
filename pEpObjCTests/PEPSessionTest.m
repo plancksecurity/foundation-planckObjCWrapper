@@ -1197,10 +1197,9 @@
 - (PEP_rating)ratingForIdentity:(PEPIdentity *)identity session:(PEPSession *)session
 {
     NSError *error;
-    PEP_rating rating;
-    XCTAssertTrue([session rating:&rating forIdentity:identity error:&error]);
+    NSNumber *numRating = [session ratingForIdentity:identity error:&error];
     XCTAssertNil(error);
-    return rating;
+    return numRating.pEpRating;
 }
 
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address

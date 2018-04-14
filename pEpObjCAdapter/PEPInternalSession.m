@@ -398,24 +398,23 @@
     return [self outgoingRatingForMessageDict:(NSDictionary *) message error:error];
 }
 
-- (BOOL)rating:(PEP_rating * _Nonnull)rating
-   forIdentity:(PEPIdentity * _Nonnull)identity
-         error:(NSError * _Nullable * _Nullable)error
+- (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
+                                    error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    *rating = PEP_rating_undefined;
+    PEP_rating rating = PEP_rating_undefined;
 
     [self lockWrite];
-    PEP_STATUS status = identity_rating(_session, ident, rating);
+    PEP_STATUS status = identity_rating(_session, ident, &rating);
     [self unlockWrite];
 
     free_identity(ident);
 
     if ([NSError setError:error fromPEPStatus:status]) {
-        return NO;
+        return nil;
     }
 
-    return YES;
+    return [NSNumber numberWithPEPRating:rating];
 }
 
 - (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint

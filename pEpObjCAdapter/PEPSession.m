@@ -145,12 +145,11 @@
     return [session outgoingRatingForMessage:message error:error];
 }
 
-- (BOOL)rating:(PEP_rating * _Nonnull)rating
-   forIdentity:(PEPIdentity * _Nonnull)identity
-         error:(NSError * _Nullable * _Nullable)error
+- (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
+                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session rating:rating forIdentity:identity error:error];
+    return [session ratingForIdentity:identity error:error];
 }
 
 - (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
