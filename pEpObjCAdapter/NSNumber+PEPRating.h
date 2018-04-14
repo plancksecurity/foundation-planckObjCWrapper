@@ -11,12 +11,13 @@
 #import "message_api.h"
 
 /**
- Extension for handling the engine's PEP_rating inside a NSNumber.
+ Extension for wrapping the engine's PEP_rating inside a NSNumber.
  */
 @interface NSNumber (Extension)
 
+@property (nonatomic) PEP_rating pEpRating;
+
 - initWithPEPRating:(PEP_rating)pEpRating;
-- (PEP_rating)pEpRating;
 
 + (NSNumber *)numberWithPEPRating:(PEP_rating)pEpRating;
 

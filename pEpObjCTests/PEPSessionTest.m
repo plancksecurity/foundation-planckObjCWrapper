@@ -12,7 +12,6 @@
 #import "NSDictionary+Extension.h"
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
-
 #import "PEPTestUtils.h"
 #import "PEPTestSyncDelegate.h"
 
@@ -473,9 +472,10 @@
         NSError *error = nil;
 
         // Test with unknown Bob
-        PEP_rating rating;
-        XCTAssertTrue([session outgoingRating:&rating forMessage:msgGray error:&error]);
-        XCTAssertEqual(rating, PEP_rating_unencrypted);
+        NSNumber *numRating = [session outgoingRatingForMessage:msgGray error:&error];
+        XCTAssertNotNil(numRating);
+        XCTAssertNil(error);
+        XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
     }
 
     PEPIdentity *identBob = [self
@@ -496,12 +496,12 @@
     NSError *error = nil;
 
     // Should be yellow, since no handshake happened.
-    PEP_rating rating;
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
+    NSNumber *numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(rating, PEP_rating_reliable);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
 
-    rating = [self ratingForIdentity:identBob session:session];
+    PEP_rating rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEP_rating_reliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
@@ -509,8 +509,10 @@
     XCTAssertNil(error);
 
     // This time it should be green
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_trusted);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
 
     rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEP_rating_trusted);
@@ -520,8 +522,10 @@
     XCTAssertNil(error);
 
     // Yellow ?
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_reliable);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
 
     // mistrust Bob
     XCTAssertTrue([session keyMistrusted:identBob error:&error]);
@@ -533,8 +537,10 @@
     XCTAssertNil(identBob.fingerPrint);
 
     // Gray == PEP_rating_unencrypted
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_unencrypted);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
 
     // Undo
     XCTAssertTrue([session undoLastMistrustWithError:&error]);
@@ -544,10 +550,12 @@
     XCTAssertNotNil(identBob.fingerPrint);
 
     // Back to yellow
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
 
     // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
-    XCTAssertEqual(rating, PEP_rating_trusted);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
     XCTAssertEqual([self ratingForIdentity:identBob session:session], PEP_rating_trusted);
 
     // Trust again
@@ -555,8 +563,10 @@
     XCTAssertNil(error);
 
     // Back to green
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_trusted);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
@@ -575,8 +585,10 @@
     msg.cc = @[[PEPTestUtils foreignPepIdentityWithAddress:@"pep.test.john@pep-project.org"
                                                   userName:@"pEp Test John"]];
     // Yellow ?
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_reliable);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
@@ -617,8 +629,10 @@
 
     // Test with unknown Bob
     PEP_rating rating;
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_unencrypted);
+    NSNumber *numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
 
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
@@ -635,8 +649,10 @@
     XCTAssertNil(error);
 
     // Should be yellow, since no handshake happened.
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_reliable);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
 
     rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEP_rating_reliable);
@@ -646,8 +662,10 @@
     XCTAssertNil(error);
 
     // This time it should be green
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_trusted);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
 
     rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEP_rating_trusted);
@@ -670,15 +688,19 @@
                                               userID:@"101" userName:@"pEp Test John" isOwn:NO]];
 
     // Yellow ?
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_reliable);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
 
     XCTAssertTrue([session trustPersonalKey:identJohn error:&error]);
     XCTAssertNil(error);
 
     // This time it should be green
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_trusted);
+    numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
 
     rating = [self ratingForIdentity:identJohn session:session];
     XCTAssertEqual(rating, PEP_rating_trusted);
@@ -730,9 +752,10 @@
     msg.direction = PEP_dir_outgoing;
 
     // Gray == PEP_rating_unencrypted
-    PEP_rating rating;
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_unencrypted);
+    NSNumber *numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
@@ -805,9 +828,10 @@
     msg.longMessage = @"This is a text content";
     msg.direction = PEP_dir_outgoing;
 
-    PEP_rating rating;
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_trusted_and_anonymized);
+    NSNumber *numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted_and_anonymized);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
@@ -816,6 +840,7 @@
     NSArray *keys;
 
     error = nil;
+    PEP_rating rating = PEP_rating_b0rken;
     PEPMessage *decmsg = [session
                           decryptMessage:encMsg
                           rating:&rating
@@ -1032,9 +1057,10 @@
     msg.longMessage = @"Alice?";
     msg.direction = PEP_dir_outgoing;
 
-    PEP_rating rating;
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_unencrypted);
+    NSNumber *numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
@@ -1370,9 +1396,10 @@
     msg.longMessage = @"Alice?";
     msg.direction = PEP_dir_outgoing;
 
-    PEP_rating rating;
-    XCTAssertTrue([session outgoingRating:&rating forMessage:msg error:&error]);
-    XCTAssertEqual(rating, PEP_rating_reliable);
+    NSNumber *numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
 
     PEPMessage *encMsg;
 

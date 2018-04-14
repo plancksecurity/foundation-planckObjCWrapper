@@ -138,12 +138,11 @@
             error:error];
 }
 
-- (BOOL)outgoingRating:(PEP_rating * _Nonnull)rating
-            forMessage:(PEPMessage * _Nonnull)message
-                 error:(NSError * _Nullable * _Nullable)error
+- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)message
+                                           error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session outgoingRating:rating forMessage:message error:error];
+    return [session outgoingRatingForMessage:message error:error];
 }
 
 - (BOOL)rating:(PEP_rating * _Nonnull)rating

@@ -18,6 +18,7 @@
 #import "PEPMessage.h"
 #import "NSError+PEP.h"
 #import "PEPAutoPointer.h"
+#import "NSNumber+PEPRating.h"
 
 @implementation PEPInternalSession
 
@@ -372,31 +373,29 @@
     return encrypted;
 }
 
-- (BOOL)outgoingRating:(PEP_rating * _Nonnull)rating
-        forMessageDict:(PEPDict * _Nonnull)messageDict
-                 error:(NSError * _Nullable * _Nullable)error
+- (NSNumber * _Nullable)outgoingRatingForMessageDict:(PEPDict * _Nonnull)messageDict
+                                               error:(NSError * _Nullable * _Nullable)error
 {
     message *_msg = PEP_messageDictToStruct(messageDict);
-    *rating = PEP_rating_undefined;
+    PEP_rating rating = PEP_rating_b0rken;
 
     [self lockWrite];
-    PEP_STATUS status = outgoing_message_rating(_session, _msg, rating);
+    PEP_STATUS status = outgoing_message_rating(_session, _msg, &rating);
     [self unlockWrite];
 
     free_message(_msg);
 
     if ([NSError setError:error fromPEPStatus:status]) {
-        return NO;
+        return nil;
     }
 
-    return YES;
+    return [NSNumber numberWithPEPRating:rating];
 }
 
-- (BOOL)outgoingRating:(PEP_rating * _Nonnull)rating
-            forMessage:(PEPMessage * _Nonnull)message
-                 error:(NSError * _Nullable * _Nullable)error
+- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)message
+                                           error:(NSError * _Nullable * _Nullable)error
 {
-    return [self outgoingRating:rating forMessageDict:(NSDictionary *) message error:error];
+    return [self outgoingRatingForMessageDict:(NSDictionary *) message error:error];
 }
 
 - (BOOL)rating:(PEP_rating * _Nonnull)rating
