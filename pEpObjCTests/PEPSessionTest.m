@@ -12,6 +12,7 @@
 #import "NSDictionary+Extension.h"
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
+#import "PEPAttachment.h"
 #import "PEPTestUtils.h"
 #import "PEPTestSyncDelegate.h"
 
@@ -761,7 +762,7 @@
     XCTAssertNotNil(encMsg);
     XCTAssertNil(error);
 
-    XCTAssertNotEqualObjects(encMsg.attachments[0][@"mimeType"], @"application/pgp-encrypted");
+    XCTAssertNotEqualObjects(encMsg.attachments[0].mimeType, @"application/pgp-encrypted");
 
     [self pEpCleanUp];
 }

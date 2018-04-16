@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import "bloblist.h"
+
 @interface PEPAttachment : NSObject
+
+@property (nonatomic) NSData *data;
+@property (nonatomic) NSInteger size;
+@property (nonatomic, nullable) NSString *mimeType;
+@property (nonatomic, nullable) NSString *filename;
+@property (nonatomic) content_disposition_type contentDisposition;
 
 @end

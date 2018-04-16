@@ -12,6 +12,7 @@
 #import "PEPSessionProtocol.h"
 
 @class PEPIdentity;
+@class PEPAttachment;
 
 @interface PEPMessage : NSObject
 
@@ -33,7 +34,7 @@
 @property (nonatomic, nullable) NSDate *sentDate;
 @property (nonatomic, nullable) NSDate *receivedDate;
 
-@property (nonatomic, nullable) NSArray<PEPDict *> *attachments;
+@property (nonatomic, nullable) NSArray<PEPAttachment *> *attachments;
 
 @property (nonatomic, nullable) NSArray<NSArray<NSString *> *> *optionalFields;
 @property (nonatomic, nullable) NSArray<NSString *> *keywords;

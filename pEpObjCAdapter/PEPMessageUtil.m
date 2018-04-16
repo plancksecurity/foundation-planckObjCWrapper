@@ -10,6 +10,7 @@
 
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
+#import "PEPAttachment.h"
 
 #import "pEp_string.h"
 
@@ -61,8 +62,6 @@ NSString *const kPepMimeData = @"data";
 NSString *const kPepMimeFilename = @"filename";
 
 NSString *const kPepMimeType = @"mimeType";
-
-NSString *const kPepContentDisposition = @"contentDisposition";
 
 NSString *const kPepCommType = @"comm_type";
 
@@ -138,22 +137,20 @@ NSArray *PEP_arrayFromBloblist(bloblist_t *bl)
     NSMutableArray *array = [NSMutableArray array];
     
     for (bloblist_t *_bl = bl; _bl && _bl->value; _bl = _bl->next) {
-        NSMutableDictionary* blob = [NSMutableDictionary new];
-        [blob setObject: [NSData dataWithBytes:_bl->value
-                                 length:_bl->size]
-              forKey:@"data"];
-        
-        if(_bl->filename && _bl->filename[0])
-            [blob setObject:[NSString stringWithUTF8String:_bl->filename]
-                 forKey:@"filename"];
-        
-        if(_bl->mime_type && _bl->mime_type[0])
-            [blob setObject: [NSString stringWithUTF8String:_bl->mime_type]
-                 forKey:@"mimeType"];
+        PEPAttachment* theAttachment = [PEPAttachment new];
+        theAttachment.data = [NSData dataWithBytes:_bl->value length:_bl->size];
 
-        [blob setObject:[NSNumber numberWithInt:_bl->disposition] forKey:kPepContentDisposition];
+        if(_bl->filename && _bl->filename[0]) {
+            theAttachment.filename = [NSString stringWithUTF8String:_bl->filename];
+        }
+
+        if(_bl->mime_type && _bl->mime_type[0]) {
+            theAttachment.mimeType = [NSString stringWithUTF8String:_bl->mime_type];
+        }
+
+        theAttachment.contentDisposition = _bl->disposition;
         
-        [array addObject:blob];
+        [array addObject:theAttachment];
     }
     return array;
 }
@@ -170,8 +167,8 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
     // free() might be the default, but let's be explicit
     bl->release_value = (void (*) (char *)) free;
 
-    for (NSMutableDictionary *blob in array) {
-        NSData *data = blob[@"data"];
+    for (PEPAttachment *theAttachment in array) {
+        NSData *data = theAttachment.data;
         size_t size = [data length];
 
         char *buf = malloc(size);
@@ -179,13 +176,14 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
         memcpy(buf, [data bytes], size);
         
         bl = bloblist_add(bl, buf, size,
-                          [blob[@"mimeType"] UTF8String],
-                          [[blob[@"filename"] precomposedStringWithCanonicalMapping] UTF8String]);
+                          [[theAttachment.mimeType
+                            precomposedStringWithCanonicalMapping]
+                           UTF8String],
+                          [[theAttachment.filename
+                            precomposedStringWithCanonicalMapping]
+                           UTF8String]);
 
-        NSNumber *contentDispositionNum = [blob objectForKey:kPepContentDisposition];
-        if (contentDispositionNum) {
-            bl->disposition = contentDispositionNum.intValue;
-        }
+        bl->disposition = theAttachment.contentDisposition;
     }
     return _bl;
 }

@@ -107,9 +107,6 @@ extern NSString *const _Nonnull kPepMimeFilename;
 /** The mime type of an attachment */
 extern NSString *const _Nonnull kPepMimeType;
 
-/** The content disposition of an attachment */
-extern NSString *const _Nonnull kPepContentDisposition;
-
 /** The pEp internal communication type */
 extern NSString *const _Nonnull kPepCommType;
 
