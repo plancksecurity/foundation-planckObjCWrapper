@@ -62,6 +62,8 @@ NSString *const kPepMimeFilename = @"filename";
 
 NSString *const kPepMimeType = @"mimeType";
 
+NSString *const kPepContentDisposition = @"contentDisposition";
+
 NSString *const kPepCommType = @"comm_type";
 
 NSString *const kPepRawMessage = @"raw_message";
@@ -148,6 +150,8 @@ NSArray *PEP_arrayFromBloblist(bloblist_t *bl)
         if(_bl->mime_type && _bl->mime_type[0])
             [blob setObject: [NSString stringWithUTF8String:_bl->mime_type]
                  forKey:@"mimeType"];
+
+        [blob setObject:[NSNumber numberWithInt:_bl->disposition] forKey:kPepContentDisposition];
         
         [array addObject:blob];
     }
@@ -177,6 +181,11 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
         bl = bloblist_add(bl, buf, size,
                           [blob[@"mimeType"] UTF8String],
                           [[blob[@"filename"] precomposedStringWithCanonicalMapping] UTF8String]);
+
+        NSNumber *contentDispositionNum = [blob objectForKey:kPepContentDisposition];
+        if (contentDispositionNum) {
+            bl->disposition = contentDispositionNum.intValue;
+        }
     }
     return _bl;
 }
