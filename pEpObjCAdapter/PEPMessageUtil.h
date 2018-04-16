@@ -98,15 +98,6 @@ extern NSString *const _Nonnull kPepOptFields;
 /** NSArray of attachment dicts */
 extern NSString *const _Nonnull kPepAttachments;
 
-/** The binary NSData representing the content of an attachment */
-extern NSString *const _Nonnull kPepMimeData;
-
-/** The NSString filename of an attachment, if any */
-extern NSString *const _Nonnull kPepMimeFilename;
-
-/** The mime type of an attachment */
-extern NSString *const _Nonnull kPepMimeType;
-
 /** The pEp internal communication type */
 extern NSString *const _Nonnull kPepCommType;
 
