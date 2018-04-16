@@ -10,4 +10,12 @@
 
 @implementation PEPAttachment
 
+- (instancetype)initWithData:(NSData *)data
+{
+    if (self = [super init]) {
+        self.data = data;
+    }
+    return self;
+}
+
 @end

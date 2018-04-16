@@ -131,8 +131,9 @@ NSArray *PEP_arrayFromBloblist(bloblist_t *bl)
     NSMutableArray *array = [NSMutableArray array];
     
     for (bloblist_t *_bl = bl; _bl && _bl->value; _bl = _bl->next) {
-        PEPAttachment* theAttachment = [PEPAttachment new];
-        theAttachment.data = [NSData dataWithBytes:_bl->value length:_bl->size];
+        PEPAttachment* theAttachment = [[PEPAttachment alloc]
+                                        initWithData:[NSData
+                                                      dataWithBytes:_bl->value length:_bl->size]];
 
         if(_bl->filename && _bl->filename[0]) {
             theAttachment.filename = [NSString stringWithUTF8String:_bl->filename];

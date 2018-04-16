@@ -76,8 +76,8 @@ NSString * const ownUserId = @"pEp_own_userId";
 {
     NSMutableArray *attachments = [NSMutableArray new];
     for (NSDictionary *attachmentDict in [message objectForKey:kPepAttachments]) {
-        PEPAttachment *attachment = [PEPAttachment new];
-        attachment.data = [attachmentDict objectForKey:@"data"];
+        PEPAttachment *attachment = [[PEPAttachment alloc]
+                                     initWithData:[attachmentDict objectForKey:@"data"]];
         attachment.filename = [attachmentDict objectForKey:@"filename"];
         attachment.mimeType = [attachmentDict objectForKey:@"mimeType"];
         [attachments addObject:attachment];

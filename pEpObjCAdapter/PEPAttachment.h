@@ -18,4 +18,6 @@
 @property (nonatomic, nullable) NSString *filename;
 @property (nonatomic) content_disposition_type contentDisposition;
 
+- (_Nonnull instancetype)initWithData:(NSData *)data;
+
 @end
