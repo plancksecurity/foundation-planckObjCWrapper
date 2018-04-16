@@ -57,12 +57,6 @@ NSString *const kPepOptFields = @"opt_fields";
 
 NSString *const kPepAttachments = @"attachments";
 
-NSString *const kPepMimeData = @"data";
-
-NSString *const kPepMimeFilename = @"filename";
-
-NSString *const kPepMimeType = @"mimeType";
-
 NSString *const kPepCommType = @"comm_type";
 
 NSString *const kPepRawMessage = @"raw_message";
