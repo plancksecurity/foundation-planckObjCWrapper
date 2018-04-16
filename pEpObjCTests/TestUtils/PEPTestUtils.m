@@ -15,6 +15,7 @@
 #import "PEPInternalSession.h"
 #import "PEPMessage.h"
 #import "PEPSession.h"
+#import "PEPAttachment.h"
 
 /**
  For now, safer to use that, until the engine copes with our own.
@@ -64,6 +65,24 @@ NSString * const ownUserId = @"pEp_own_userId";
     NSDictionary *dict = [unarchiver decodeObject];
     [unarchiver finishDecoding];
     return dict;
+}
+
+/**
+ Converts a given message dict to a version with correct attachments, using PEPAttachment.
+ Using unarchiveDirectory for a message object will yield the old attachment format,
+ which was just an array of dictionaries. Now the correct way is to use PEPAttachments.
+ */
++ (void)migrateUnarchivedMessageDictionary:(NSMutableDictionary *)message
+{
+    NSMutableArray *attachments = [NSMutableArray new];
+    for (NSDictionary *attachmentDict in [message objectForKey:kPepAttachments]) {
+        PEPAttachment *attachment = [PEPAttachment new];
+        attachment.data = [attachmentDict objectForKey:@"data"];
+        attachment.filename = [attachmentDict objectForKey:@"filename"];
+        attachment.mimeType = [attachmentDict objectForKey:@"mimeType"];
+        [attachments addObject:attachment];
+    }
+    [message setValue:[NSArray arrayWithArray:attachments] forKey:kPepAttachments];
 }
 
 + (BOOL)importBundledKey:(NSString *)item session:(PEPSession *)session

@@ -867,6 +867,7 @@
     NSMutableDictionary *msgDict = [[PEPTestUtils
                                      unarchiveDictionary:@"msg_to_A3FC7F0A_from_mutt.ser"]
                                     mutableCopy];
+    [PEPTestUtils migrateUnarchivedMessageDictionary:msgDict];
     [msgDict removeObjectForKey:kPepLongMessage];
     [msgDict removeObjectForKey:kPepLongMessageFormatted];
 

@@ -31,6 +31,8 @@ extern NSString * const ownUserId;
 
 + (NSDictionary *)unarchiveDictionary:(NSString *)fileName;
 
++ (void)migrateUnarchivedMessageDictionary:(NSMutableDictionary *)message;
+
 + (PEPMessage * _Nonnull) mailFrom:(PEPIdentity * _Nullable) fromIdent
                            toIdent: (PEPIdentity * _Nullable) toIdent
                       shortMessage:(NSString *)shortMessage
