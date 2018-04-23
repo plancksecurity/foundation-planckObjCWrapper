@@ -135,6 +135,7 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
         case PEP_OUT_OF_MEMORY: return @"PEP_OUT_OF_MEMORY";
         case PEP_UNKNOWN_ERROR: return @"PEP_UNKNOWN_ERROR";
         case PEP_VERSION_MISMATCH: return @"PEP_VERSION_MISMATCH";
+        case PEP_CANNOT_REENCRYPT: return @"PEP_CANNOT_REENCRYPT";
     }
 }
 
