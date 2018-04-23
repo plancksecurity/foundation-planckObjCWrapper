@@ -22,6 +22,7 @@ typedef NSArray<NSString *> PEPStringList;
 
 /** Decrypt a message */
 - (PEPDict * _Nullable)decryptMessageDict:(PEPDict * _Nonnull)messageDict
+                                    flags:(PEP_decrypt_flags * _Nullable)flags
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
@@ -29,6 +30,7 @@ typedef NSArray<NSString *> PEPStringList;
 
 /** Decrypt a message */
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
+                                   flags:(PEP_decrypt_flags * _Nullable)flags
                                   rating:(PEP_rating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
