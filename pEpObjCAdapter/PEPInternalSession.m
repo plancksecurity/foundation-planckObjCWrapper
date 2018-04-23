@@ -99,7 +99,6 @@
 #pragma mark - PEPSessionProtocol
 
 - (PEPDict * _Nullable)decryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                    flags:(PEP_decrypt_flags * _Nullable)flags
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
@@ -112,21 +111,12 @@
     message *_src = PEP_messageDictToStruct(messageDict);
     message *_dst = NULL;
     stringlist_t *_keys = NULL;
-    PEP_decrypt_flags theFlags = 0;
-
-    if (flags) {
-        theFlags = *flags;
-    }
+    PEP_decrypt_flags_t flags = 0;
 
     PEP_rating internalRating = PEP_rating_undefined;
 
     [self lockWrite];
-    PEP_STATUS theStatus = decrypt_message(_session,
-                                           _src,
-                                           &_dst,
-                                           &_keys,
-                                           &internalRating,
-                                           &theFlags);
+    PEP_STATUS theStatus = decrypt_message(_session, _src, &_dst, &_keys, &internalRating, &flags);
     [self unlockWrite];
 
     if (status) {
@@ -135,10 +125,6 @@
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
         return nil;
-    }
-
-    if (flags) {
-        *flags = theFlags;
     }
 
     NSDictionary *dst_;
@@ -169,19 +155,16 @@
 }
 
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
-                                   flags:(PEP_decrypt_flags * _Nullable)flags
                                   rating:(PEP_rating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *destDict = [self
-                         decryptMessageDict:(PEPDict *)message
-                         flags:flags
-                         rating:rating
-                         extraKeys:extraKeys
-                         status:status
-                         error:error];
+    PEPDict *destDict = [self decryptMessageDict:(PEPDict *)message
+                                          rating:rating
+                                       extraKeys:extraKeys
+                                          status:status
+                                           error:error];
 
     if (!destDict) {
         return nil;
