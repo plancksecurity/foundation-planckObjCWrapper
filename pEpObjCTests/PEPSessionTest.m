@@ -844,6 +844,7 @@
     PEP_rating rating = PEP_rating_b0rken;
     PEPMessage *decmsg = [session
                           decryptMessage:encMsg
+                          flags:nil
                           rating:&rating
                           extraKeys:&keys
                           status:nil
@@ -892,6 +893,7 @@
     // Technically, the mail is encrypted, but the signatures don't match
     PEPMessage *pepDecryptedMail = [session
                                     decryptMessage:msg
+                                    flags:nil
                                     rating:nil
                                     extraKeys:&keys
                                     status:nil
@@ -1075,6 +1077,7 @@
     error = nil;
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
+                          flags:nil
                           rating:&pEpRating
                           extraKeys:&keys
                           status:nil
@@ -1341,6 +1344,7 @@
     error = nil;
     PEPMessage *unencDict = [session
                              decryptMessage:encMessage
+                             flags:nil
                              rating:&rating
                              extraKeys:keys
                              status:nil
@@ -1425,6 +1429,7 @@
     error = nil;
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
+                          flags:nil
                           rating:&pEpRating
                           extraKeys:&keys
                           status:nil
