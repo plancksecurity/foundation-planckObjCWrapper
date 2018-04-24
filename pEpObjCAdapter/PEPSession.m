@@ -21,7 +21,7 @@
     [PEPSessionProvider cleanup];
 }
 
-- (PEPDict * _Nullable)decryptMessageDict:(PEPDict * _Nonnull)messageDict
+- (PEPDict * _Nullable)decryptMessageDict:(PEPMutableDict * _Nonnull)messageDict
                                     flags:(PEP_decrypt_flags * _Nullable)flags
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
