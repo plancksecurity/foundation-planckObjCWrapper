@@ -35,6 +35,7 @@
 		435665CC2080A6CB00EC5B10 /* NSNumber+PEPRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 435665CB2080A6CB00EC5B10 /* NSNumber+PEPRating.m */; };
 		435796E31FB5E51A00395A9E /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 435796E21FB5E51A00395A9E /* PEPMessage.m */; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
+		439393E6208F375800EB1DBD /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 439393E5208F375800EB1DBD /* NSObject+Extension.m */; };
 		439D91A5208479EE003F6AC2 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D91A4208479EE003F6AC2 /* PEPAttachment.m */; };
 		43D27DE61F5DA7B700795687 /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D27DE51F5DA7B700795687 /* NSDictionary+Extension.m */; };
 		43DED786203C25E200D45CD6 /* NSError+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DED785203C25E200D45CD6 /* NSError+PEP.m */; };
@@ -167,6 +168,8 @@
 		435796E21FB5E51A00395A9E /* PEPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
 		43676B631C57EA1A00233933 /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
+		439393E4208F375800EB1DBD /* NSObject+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
+		439393E5208F375800EB1DBD /* NSObject+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		439D91A3208479EE003F6AC2 /* PEPAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPAttachment.h; sourceTree = "<group>"; };
 		439D91A4208479EE003F6AC2 /* PEPAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment.m; sourceTree = "<group>"; };
 		43D27DE41F5DA78700795687 /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
@@ -315,6 +318,8 @@
 				434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */,
 				435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */,
 				435665CB2080A6CB00EC5B10 /* NSNumber+PEPRating.m */,
+				439393E4208F375800EB1DBD /* NSObject+Extension.h */,
+				439393E5208F375800EB1DBD /* NSObject+Extension.m */,
 			);
 			path = pEpObjCAdapter;
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				43209B3F1ECC2DB0007E7E2E /* PEPLanguage.m in Sources */,
 				434ED6D6207E27B8000A7590 /* PEPAutoPointer.m in Sources */,
 				439D91A5208479EE003F6AC2 /* PEPAttachment.m in Sources */,
+				439393E6208F375800EB1DBD /* NSObject+Extension.m in Sources */,
 				43209B401ECC2DB4007E7E2E /* PEPMessageUtil.m in Sources */,
 				43209B3D1ECC2DA7007E7E2E /* NSArray+Extension.m in Sources */,
 				43209B3E1ECC2DAB007E7E2E /* PEPCSVScanner.m in Sources */,

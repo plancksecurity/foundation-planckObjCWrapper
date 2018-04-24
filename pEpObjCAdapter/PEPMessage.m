@@ -9,6 +9,8 @@
 #import "PEPMessage.h"
 #import "PEPIdentity.h"
 
+#import "NSObject+Extension.h"
+
 @implementation PEPMessage
 
 // MARK: - NSKeyValueCoding
@@ -238,42 +240,14 @@
 
 // MARK: - Equality
 
+/**
+ The keys that should be used to decide `isEqual` and compute the `hash`.
+ */
+static NSArray *s_keys;
+
 - (BOOL)isEqualToPEPMessage:(PEPMessage * _Nonnull)message
 {
-    NSArray *keys = @[
-                      @"attachments",
-                      @"bcc",
-                      @"cc",
-                      @"direction",
-                      @"from",
-                      @"inReplyTo",
-                      @"keywords",
-                      @"longMessage",
-                      @"longMessageFormatted",
-                      @"messageID",
-                      @"optionalFields",
-                      @"receivedBy",
-                      @"receivedDate",
-                      @"references",
-                      @"replyTo",
-                      @"sentDate",
-                      @"shortMessage",
-                      @"to",
-                      ];
-
-    for (NSString *theKey in keys) {
-        NSObject *objSelf = [self objectForKey:theKey];
-        NSObject *objOther = [message objectForKey:theKey];
-
-        if (objSelf == nil && objOther == nil) {
-            // considered equal, continue
-        } else if (![objSelf isEqual:objOther]) {
-            // NSValue, NSArray, NSString all have correctly implemented isEqual, so this works
-            return NO;
-        }
-    }
-
-    return YES;
+    return [self isEqualToObject:message basedOnKeys:s_keys];
 }
 
 - (NSUInteger)hash
@@ -313,6 +287,32 @@
     }
 
     return [self isEqualToPEPMessage:object];
+}
+
+// MARK: - Static Initialization
+
++ (void)initialize
+{
+    s_keys = @[
+               @"attachments",
+               @"bcc",
+               @"cc",
+               @"direction",
+               @"from",
+               @"inReplyTo",
+               @"keywords",
+               @"longMessage",
+               @"longMessageFormatted",
+               @"messageID",
+               @"optionalFields",
+               @"receivedBy",
+               @"receivedDate",
+               @"references",
+               @"replyTo",
+               @"sentDate",
+               @"shortMessage",
+               @"to",
+               ];
 }
 
 @end
