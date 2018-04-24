@@ -19,6 +19,7 @@
 #import "NSError+PEP.h"
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
+#import "NSMutableDictionary+PEP.h"
 
 @implementation PEPInternalSession
 
@@ -158,8 +159,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     NSArray *keys_ = nil;
-    if (_keys)
+    if (_keys) {
         keys_ = PEP_arrayFromStringlist(_keys);
+    }
+
+    if (theFlags & PEP_decrypt_flag_untrusted_server) {
+        [messageDict replaceWithMessage:_src];
+    }
 
     decryptMessageDictFree(_src, _dst, _keys);
 

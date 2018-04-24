@@ -10,6 +10,7 @@
 #import "PEPIdentity.h"
 
 #import "NSObject+Extension.h"
+#import "NSMutableDictionary+PEP.h"
 
 @implementation PEPMessage
 
@@ -137,6 +138,33 @@
 {
     // most adapter use should be ok.
     return (PEPMutableDict *) self;
+}
+
+- (void)removeAllObjects
+{
+    self.messageID = nil;
+    self.from = nil;
+    self.to = nil;
+    self.cc = nil;
+    self.bcc = nil;
+    self.shortMessage = nil;
+    self.longMessage = nil;
+    self.longMessageFormatted = nil;
+    self.replyTo = nil;
+    self.inReplyTo = nil;
+    self.references = nil;
+    self.sentDate = nil;
+    self.receivedDate = nil;
+    self.attachments = nil;
+    self.optionalFields = nil;
+    self.keywords = nil;
+    self.receivedBy = nil;
+    self.direction = PEP_dir_incoming; // basically, 0
+}
+
+- (void)replaceWithMessage:(message *)message
+{
+    replaceDictionaryContentsWithMessage(self.mutableDictionary, message);
 }
 
 // MARK: - NSDictionary - Helpers

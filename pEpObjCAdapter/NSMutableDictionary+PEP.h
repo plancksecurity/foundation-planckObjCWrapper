@@ -10,6 +10,8 @@
 
 #import "message.h"
 
+void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *message);
+
 @interface NSMutableDictionary (PEP)
 
 /**
