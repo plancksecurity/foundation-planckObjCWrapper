@@ -240,24 +240,40 @@
 
 - (BOOL)isEqualToPEPMessage:(PEPMessage * _Nonnull)message
 {
-    return [self.attachments isEqualToArray:message.attachments] &&
-    [self.bcc isEqualToArray:message.bcc] &&
-    [self.cc isEqualToArray:message.cc] &&
-    self.direction == message.direction &&
-    [self.from isEqual:message.from] &&
-    [self.inReplyTo isEqualToArray:message.inReplyTo] &&
-    [self.keywords isEqualToArray:message.keywords] &&
-    [self.longMessage isEqualToString:message.longMessage] &&
-    [self.longMessageFormatted isEqualToString:message.longMessageFormatted] &&
-    [self.messageID isEqualToString:message.messageID] &&
-    [self.optionalFields isEqualToArray:message.optionalFields] &&
-    [self.receivedBy isEqual:message.receivedBy] &&
-    [self.receivedDate isEqual:message.receivedDate] &&
-    [self.references isEqualToArray:message.references] &&
-    [self.replyTo isEqualToArray:message.replyTo] &&
-    [self.sentDate isEqual:message.sentDate] &&
-    [self.shortMessage isEqualToString:message.shortMessage] &&
-    [self.to isEqual:message.to];
+    NSArray *keys = @[
+                      @"attachments",
+                      @"bcc",
+                      @"cc",
+                      @"direction",
+                      @"from",
+                      @"inReplyTo",
+                      @"keywords",
+                      @"longMessage",
+                      @"longMessageFormatted",
+                      @"messageID",
+                      @"optionalFields",
+                      @"receivedBy",
+                      @"receivedDate",
+                      @"references",
+                      @"replyTo",
+                      @"sentDate",
+                      @"shortMessage",
+                      @"to",
+                      ];
+
+    for (NSString *theKey in keys) {
+        NSObject *objSelf = [self objectForKey:theKey];
+        NSObject *objOther = [message objectForKey:theKey];
+
+        if (objSelf == nil && objOther == nil) {
+            // considered equal, continue
+        } else if (![objSelf isEqual:objOther]) {
+            // NSValue, NSArray, NSString all have correctly implemented isEqual, so this works
+            return NO;
+        }
+    }
+
+    return YES;
 }
 
 - (NSUInteger)hash
