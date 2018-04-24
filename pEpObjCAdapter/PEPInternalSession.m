@@ -98,6 +98,13 @@
 
 #pragma mark - PEPSessionProtocol
 
+void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
+{
+    free_message(src);
+    free_message(dst);
+    free_stringlist(extraKeys);
+}
+
 - (PEPDict * _Nullable)decryptMessageDict:(PEPDict * _Nonnull)messageDict
                                     flags:(PEP_decrypt_flags * _Nullable)flags
                                    rating:(PEP_rating * _Nullable)rating
@@ -134,6 +141,7 @@
     }
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
+        decryptMessageDictFree(_src, _dst, _keys);
         return nil;
     }
 
@@ -153,9 +161,7 @@
     if (_keys)
         keys_ = PEP_arrayFromStringlist(_keys);
 
-    free_message(_src);
-    free_message(_dst);
-    free_stringlist(_keys);
+    decryptMessageDictFree(_src, _dst, _keys);
 
     if (extraKeys) {
         *extraKeys = keys_;
