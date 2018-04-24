@@ -854,7 +854,7 @@
     XCTAssertEqual(rating, PEP_rating_trusted_and_anonymized);
 }
 
-- (void)testEncryptedMailFromMutt
+- (void)testEncryptedMailFromMuttWithReencryption
 {
     PEPSession *session = [PEPSession new];
 
@@ -889,17 +889,29 @@
     NSArray* keys;
     PEPMessage *msg = [PEPMessage new];
     [msg setValuesForKeysWithDictionary:msgDict];
+    PEPMessage *msgOriginal = [PEPMessage new];
+    [msgOriginal setValuesForKeysWithDictionary:msgDict];
 
-    // Technically, the mail is encrypted, but the signatures don't match
+    XCTAssertEqualObjects(msg, msgOriginal);
+
+    PEP_rating rating = PEP_rating_b0rken;
+    PEP_decrypt_flags flags = PEP_decrypt_flag_untrusted_server;
+
     PEPMessage *pepDecryptedMail = [session
                                     decryptMessage:msg
-                                    flags:nil
-                                    rating:nil
+                                    flags:&flags
+                                    rating:&rating
                                     extraKeys:&keys
                                     status:nil
                                     error:&error];
     XCTAssertNotNil(pepDecryptedMail);
     XCTAssertNil(error);
+
+    // Technically, the mail is encrypted, but the signatures don't match
+    XCTAssertEqual(rating, PEP_rating_unreliable);
+
+    // Since we're requesting re-encryption, src should have been changed
+    XCTAssertNotEqualObjects(msg, msgOriginal);
 
     XCTAssertNotNil(pepDecryptedMail.longMessage);
 }
