@@ -7,6 +7,7 @@
 //
 
 #import "PEPMessage.h"
+#import "PEPIdentity.h"
 
 @implementation PEPMessage
 
@@ -233,6 +234,69 @@
     newMessage.receivedBy = self.receivedBy;
     newMessage.direction = self.direction;
     return newMessage;
+}
+
+// MARK: - Equality
+
+- (BOOL)isEqualToPEPMessage:(PEPMessage * _Nonnull)message
+{
+    return [self.attachments isEqualToArray:message.attachments] &&
+    [self.bcc isEqualToArray:message.bcc] &&
+    [self.cc isEqualToArray:message.cc] &&
+    self.direction == message.direction &&
+    [self.from isEqual:message.from] &&
+    [self.inReplyTo isEqualToArray:message.inReplyTo] &&
+    [self.keywords isEqualToArray:message.keywords] &&
+    [self.longMessage isEqualToString:message.longMessage] &&
+    [self.longMessageFormatted isEqualToString:message.longMessageFormatted] &&
+    [self.messageID isEqualToString:message.messageID] &&
+    [self.optionalFields isEqualToArray:message.optionalFields] &&
+    [self.receivedBy isEqual:message.receivedBy] &&
+    [self.receivedDate isEqual:message.receivedDate] &&
+    [self.references isEqualToArray:message.references] &&
+    [self.replyTo isEqualToArray:message.replyTo] &&
+    [self.sentDate isEqual:message.sentDate] &&
+    [self.shortMessage isEqualToString:message.shortMessage] &&
+    [self.to isEqual:message.to];
+}
+
+- (NSUInteger)hash
+{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+
+    result = prime * result + self.direction;
+
+    result = prime * result + self.attachments.hash;
+    result = prime * result + self.bcc.hash;
+    result = prime * result + self.cc.hash;
+    result = prime * result + self.from.hash;
+    result = prime * result + self.inReplyTo.hash;
+    result = prime * result + self.keywords.hash;
+    result = prime * result + self.longMessage.hash;
+    result = prime * result + self.longMessageFormatted.hash;
+    result = prime * result + self.messageID.hash;
+    result = prime * result + self.optionalFields.hash;
+    result = prime * result + self.receivedBy.hash;
+    result = prime * result + self.receivedDate.hash;
+    result = prime * result + self.references.hash;
+    result = prime * result + self.replyTo.hash;
+    result = prime * result + self.shortMessage.hash;
+    result = prime * result + self.to.hash;
+
+    return result;
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if (object == self) {
+        return YES;
+    }
+    if (!object || ![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+
+    return [self isEqualToPEPMessage:object];
 }
 
 @end
