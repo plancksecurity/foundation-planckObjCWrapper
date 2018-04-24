@@ -28,4 +28,17 @@
     return YES;
 }
 
+- (NSUInteger)hashBasedOnKeys:(NSArray<NSString *> * _Nonnull)keys
+{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+
+    for (NSString *theKey in keys) {
+        NSObject *objSelf = [self valueForKey:theKey];
+        result = prime * result + objSelf.hash;
+    }
+
+    return result;
+}
+
 @end

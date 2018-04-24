@@ -252,29 +252,7 @@ static NSArray *s_keys;
 
 - (NSUInteger)hash
 {
-    NSUInteger prime = 31;
-    NSUInteger result = 1;
-
-    result = prime * result + self.direction;
-
-    result = prime * result + self.attachments.hash;
-    result = prime * result + self.bcc.hash;
-    result = prime * result + self.cc.hash;
-    result = prime * result + self.from.hash;
-    result = prime * result + self.inReplyTo.hash;
-    result = prime * result + self.keywords.hash;
-    result = prime * result + self.longMessage.hash;
-    result = prime * result + self.longMessageFormatted.hash;
-    result = prime * result + self.messageID.hash;
-    result = prime * result + self.optionalFields.hash;
-    result = prime * result + self.receivedBy.hash;
-    result = prime * result + self.receivedDate.hash;
-    result = prime * result + self.references.hash;
-    result = prime * result + self.replyTo.hash;
-    result = prime * result + self.shortMessage.hash;
-    result = prime * result + self.to.hash;
-
-    return result;
+    return [self hashBasedOnKeys:s_keys];
 }
 
 - (BOOL)isEqual:(id)object

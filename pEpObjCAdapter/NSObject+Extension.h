@@ -18,4 +18,9 @@
 - (BOOL)isEqualToObject:(NSObject * _Nonnull)other
             basedOnKeys:(NSArray<NSString *> * _Nonnull)keys;
 
+/**
+ Calculates a hash based on the given `keys`.
+ */
+- (NSUInteger)hashBasedOnKeys:(NSArray<NSString *> * _Nonnull)keys;
+
 @end
