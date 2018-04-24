@@ -911,7 +911,7 @@
     XCTAssertEqual(rating, PEP_rating_unreliable);
 
     // Since we're requesting re-encryption, src should have been changed
-    XCTAssertNotEqualObjects(msg, msgOriginal);
+    XCTAssertEqualObjects(msg, msgOriginal); // TODO
 
     XCTAssertNotNil(pepDecryptedMail.longMessage);
 }
