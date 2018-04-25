@@ -406,7 +406,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                                error:(NSError * _Nullable * _Nullable)error
 {
     message *_msg = PEP_messageDictToStruct(messageDict);
-    PEP_rating rating = PEP_rating_b0rken;
+    PEP_rating rating = PEP_rating_undefined;
 
     [self lockWrite];
     PEP_STATUS status = outgoing_message_rating(_session, _msg, &rating);

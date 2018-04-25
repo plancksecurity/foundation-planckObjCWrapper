@@ -841,7 +841,7 @@
     NSArray *keys;
 
     error = nil;
-    PEP_rating rating = PEP_rating_b0rken;
+    PEP_rating rating = PEP_rating_undefined;
     PEPMessage *decmsg = [session
                           decryptMessage:encMsg
                           flags:nil
@@ -894,7 +894,7 @@
 
     XCTAssertEqualObjects(msg, msgOriginal);
 
-    PEP_rating rating = PEP_rating_b0rken;
+    PEP_rating rating = PEP_rating_undefined;
     PEP_decrypt_flags flags = PEP_decrypt_flag_untrusted_server;
 
     PEPMessage *pepDecryptedMail = [session
