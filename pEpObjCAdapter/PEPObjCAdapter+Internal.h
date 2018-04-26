@@ -21,7 +21,7 @@
 
  @return Whether or not mail subjects should be encrypted
  */
-+ (BOOL)unecryptedSubjectEnabled;
++ (BOOL)unEncryptedSubjectEnabled;
 
 // this messages are for internal use only; do not call
 

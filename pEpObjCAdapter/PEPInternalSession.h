@@ -28,6 +28,6 @@
 
  @param enabled Whether or not mail subjects should be encrypted when using this session
  */
-- (void)configUnencryptedSubjectEnabled:(BOOL)enabled;
+- (void)configUnEncryptedSubjectEnabled:(BOOL)enabled;
 
 @end

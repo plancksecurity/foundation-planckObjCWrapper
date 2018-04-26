@@ -53,7 +53,7 @@
 
 #pragma mark - CONFIG
 
-- (void)configUnencryptedSubjectEnabled:(BOOL)enabled;
+- (void)configUnEncryptedSubjectEnabled:(BOOL)enabled;
 {
     config_unencrypted_subject(self.session, enabled);
 }

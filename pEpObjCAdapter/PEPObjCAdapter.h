@@ -36,7 +36,7 @@
 
  @param enabled Whether or not mail subjects should be encrypted
  */
-+ (void)setUnecryptedSubjectEnabled:(BOOL)enabled;
++ (void)setUnEncryptedSubjectEnabled:(BOOL)enabled;
 
 /**
  The HOME URL, where all pEp related files will be stored.

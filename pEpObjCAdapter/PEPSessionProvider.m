@@ -44,7 +44,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         newOrExistingSession = [PEPInternalSession new];
         dict[currentThread] = newOrExistingSession;
     }
-    [self setConfigUnencryptedSubjectOnSession:newOrExistingSession];
+    [self setConfigUnEncryptedSubjectOnSession:newOrExistingSession];
     [self nullifySessionsOfFinishedThreads];
 
     [[self sessionForThreadLock] unlock];
@@ -83,10 +83,10 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
 #pragma mark -
 
-+ (void)setConfigUnencryptedSubjectOnSession:(PEPInternalSession *)session
++ (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
 {
-    BOOL unencryptedSubjectEnabled = [PEPObjCAdapter unecryptedSubjectEnabled];
-    [session configUnencryptedSubjectEnabled:unencryptedSubjectEnabled];
+    BOOL unEncryptedSubjectEnabled = [PEPObjCAdapter unEncryptedSubjectEnabled];
+    [session configUnEncryptedSubjectEnabled:unEncryptedSubjectEnabled];
 }
 
 /**
@@ -103,7 +103,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
             return;
         }
         s_sessionForMainThread = [PEPInternalSession new];
-        [self setConfigUnencryptedSubjectOnSession:s_sessionForMainThread];
+        [self setConfigUnEncryptedSubjectOnSession:s_sessionForMainThread];
     };
 
 
