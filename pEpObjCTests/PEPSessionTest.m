@@ -24,7 +24,7 @@
 - (void)setUp
 {
     [super setUp];
-    [PEPObjCAdapter setUnecryptedSubjectEnabled:NO];
+    [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 
     [self pEpCleanUp];
 }
@@ -1169,7 +1169,7 @@
 - (void)testConfigUnencryptedSubject
 {
     // Setup Config to encrypt subject
-    [PEPObjCAdapter setUnecryptedSubjectEnabled:NO];
+    [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 
     // Write mail to yourself ...
     PEPMessage *encMessage = [self mailWrittenToMySelf];
@@ -1181,7 +1181,7 @@
 - (void)testConfigUnencryptedSubject_encryptedSubjectDisabled
 {
     // Setup Config to not encrypt subject
-    [PEPObjCAdapter setUnecryptedSubjectEnabled:YES];
+    [PEPObjCAdapter setUnEncryptedSubjectEnabled:YES];
 
     // Write mail to yourself ...
     PEPMessage *encMessage = [self mailWrittenToMySelf];
