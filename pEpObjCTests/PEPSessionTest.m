@@ -1178,7 +1178,7 @@
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should be encrypted");
 }
 
-- (void)testConfigUnencryptedSubject_encryptedSubjectDisabled
+- (void)testConfigUnencryptedSubjectEncryptedSubjectDisabled
 {
     // Setup Config to not encrypt subject
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:YES];
@@ -1186,8 +1186,8 @@
     // Write mail to yourself ...
     PEPMessage *encMessage = [self mailWrittenToMySelf];
 
-    // ... and assert the subject is not encrypted
-    XCTAssertNotEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should not be encrypted");
+    // pEp to pEp uses message 2.0, which always encrypts subjects (ENGINE-429)
+    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should be encrypted");
 }
 
 #pragma mark - Helpers
