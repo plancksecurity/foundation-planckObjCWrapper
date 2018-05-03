@@ -31,6 +31,10 @@ PEPMessage * _Nullable pEpMessageFromStruct(message * _Nullable msg);
 message * _Nullable PEP_messageDictToStruct(NSDictionary * _Nullable dict);
 NSDictionary * _Nonnull PEP_messageDictFromStruct(message * _Nullable msg);
 
+NSArray *PEP_identityArrayFromList(identity_list *il);
+NSArray *PEP_arrayFromStringPairlist(stringpair_list_t *sl);
+NSArray *PEP_arrayFromBloblist(bloblist_t *bl);
+
 #pragma mark -- Constants
 
 /** The name of the user */

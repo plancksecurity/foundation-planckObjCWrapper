@@ -11,6 +11,7 @@
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
+#import "NSMutableDictionary+PEP.h"
 
 #import "pEp_string.h"
 
@@ -343,64 +344,7 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
     if (msg && dict) {
-        [dict setObject:(msg->dir==PEP_dir_outgoing)?@YES:@NO forKey:@"outgoing"];
-
-        if (msg->id)
-            [dict setObject:[NSString stringWithUTF8String:msg->id] forKey:@"id"];
-        
-        if (msg->shortmsg)
-            [dict setObject:[NSString stringWithUTF8String:msg->shortmsg] forKey:@"shortmsg"];
-
-        if (msg->sent)
-            [dict setObject:[NSDate dateWithTimeIntervalSince1970:timegm(msg->sent)] forKey:@"sent"];
-        
-        if (msg->recv)
-            [dict setObject:[NSDate dateWithTimeIntervalSince1970:mktime(msg->recv)] forKey:@"recv"];
-        
-        if (msg->from)
-            [dict setObject:PEP_identityFromStruct(msg->from) forKey:kPepFrom];
-        
-        if (msg->to && msg->to->ident)
-            [dict setObject:PEP_identityArrayFromList(msg->to) forKey:@"to"];
-        
-        if (msg->recv_by)
-            [dict setObject:PEP_identityFromStruct(msg->recv_by) forKey:@"recv_by"];
-        
-        if (msg->cc && msg->cc->ident)
-            [dict setObject:PEP_identityArrayFromList(msg->cc) forKey:@"cc"];
-        
-        if (msg->bcc && msg->bcc->ident)
-            [dict setObject:PEP_identityArrayFromList(msg->bcc) forKey:@"bcc"];
-        
-        if (msg->reply_to && msg->reply_to->ident)
-            [dict setObject:PEP_identityArrayFromList(msg->reply_to) forKey:@"reply_to"];
-        
-        if (msg->in_reply_to)
-            [dict setObject:PEP_arrayFromStringlist(msg->in_reply_to) forKey:@"in_reply_to"];
-
-        if (msg->references && msg->references->value)
-            [dict setObject:PEP_arrayFromStringlist(msg->references) forKey:kPepReferences];
-
-        if (msg->keywords && msg->keywords->value)
-            [dict setObject:PEP_arrayFromStringlist(msg->keywords) forKey:@"keywords"];
-
-        if (msg->opt_fields)
-            [dict setObject:PEP_arrayFromStringPairlist(msg->opt_fields) forKey:@"opt_fields"];
-        
-        if (msg->longmsg_formatted)
-            [dict setObject:[NSString stringWithUTF8String:msg->longmsg_formatted]
-                     forKey:@"longmsg_formatted"];
-
-        if (msg->longmsg)
-            [dict setObject:[NSString stringWithUTF8String:msg->longmsg] forKey:@"longmsg"];
-        
-        if (msg->attachments && msg->attachments->value)
-            [dict setObject: PEP_arrayFromBloblist(msg->attachments) forKey:@"attachments"];
-
-        if (msg->rawmsg_size > 0 && *msg->rawmsg_ref) {
-            NSData *data = [NSData dataWithBytes:msg->rawmsg_ref length:msg->rawmsg_size];
-            dict[kPepRawMessage] = data;
-        }
+        [dict replaceWithMessage:msg];
     }
     return dict;
 }

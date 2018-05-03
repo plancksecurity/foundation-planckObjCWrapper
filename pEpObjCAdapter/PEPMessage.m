@@ -7,6 +7,10 @@
 //
 
 #import "PEPMessage.h"
+#import "PEPIdentity.h"
+
+#import "NSObject+Extension.h"
+#import "NSMutableDictionary+PEP.h"
 
 @implementation PEPMessage
 
@@ -136,6 +140,35 @@
     return (PEPMutableDict *) self;
 }
 
+- (void)removeAllObjects
+{
+    self.messageID = nil;
+    self.from = nil;
+    self.to = nil;
+    self.cc = nil;
+    self.bcc = nil;
+    self.shortMessage = nil;
+    self.longMessage = nil;
+    self.longMessageFormatted = nil;
+    self.replyTo = nil;
+    self.inReplyTo = nil;
+    self.references = nil;
+    self.sentDate = nil;
+    self.receivedDate = nil;
+    self.attachments = nil;
+    self.optionalFields = nil;
+    self.keywords = nil;
+    self.receivedBy = nil;
+    self.direction = PEP_dir_incoming; // basically, 0
+}
+
+// MARK: Faking the pEp directory extension
+
+- (void)replaceWithMessage:(message *)message
+{
+    replaceDictionaryContentsWithMessage(self.mutableDictionary, message);
+}
+
 // MARK: - NSDictionary - Helpers
 
 - (NSArray<NSArray<NSString *> *> *)keyValuePairs
@@ -233,6 +266,61 @@
     newMessage.receivedBy = self.receivedBy;
     newMessage.direction = self.direction;
     return newMessage;
+}
+
+// MARK: - Equality
+
+/**
+ The keys that should be used to decide `isEqual` and compute the `hash`.
+ */
+static NSArray *s_keys;
+
+- (BOOL)isEqualToPEPMessage:(PEPMessage * _Nonnull)message
+{
+    return [self isEqualToObject:message basedOnKeys:s_keys];
+}
+
+- (NSUInteger)hash
+{
+    return [self hashBasedOnKeys:s_keys];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if (object == self) {
+        return YES;
+    }
+    if (!object || ![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+
+    return [self isEqualToPEPMessage:object];
+}
+
+// MARK: - Static Initialization
+
++ (void)initialize
+{
+    s_keys = @[
+               @"attachments",
+               @"bcc",
+               @"cc",
+               @"direction",
+               @"from",
+               @"inReplyTo",
+               @"keywords",
+               @"longMessage",
+               @"longMessageFormatted",
+               @"messageID",
+               @"optionalFields",
+               @"receivedBy",
+               @"receivedDate",
+               @"references",
+               @"replyTo",
+               @"sentDate",
+               @"shortMessage",
+               @"to",
+               ];
 }
 
 @end

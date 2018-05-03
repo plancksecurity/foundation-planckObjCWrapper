@@ -12,6 +12,8 @@
 #import "PEPMessageUtil.h"
 #import "PEPSession.h"
 
+#import "NSObject+Extension.h"
+
 @implementation PEPIdentity
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -108,19 +110,31 @@
 
 // MARK: - Equality
 
-- (BOOL)isEqual:(id)other
+/**
+ The keys that should be used to decide `isEqual` and compute the `hash`.
+ */
+static NSArray *s_keys;
+
+- (BOOL)isEqualToPEPIdentity:(PEPIdentity * _Nonnull)identity
 {
-    if (other == self) {
-        return YES;
-    } else {
-        PEPIdentity *theOther = (PEPIdentity *) other;
-        return [self.address isEqualToString:theOther.address] && self.isOwn == theOther.isOwn;
-    }
+    return [self isEqualToObject:identity basedOnKeys:s_keys];
 }
 
 - (NSUInteger)hash
 {
-    return self.address.hash;
+    return [self hashBasedOnKeys:s_keys];
+}
+
+- (BOOL)isEqual:(id)object
+{
+    if (object == self) {
+        return YES;
+    }
+    if (!object || ![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+
+    return [self isEqualToPEPIdentity:object];
 }
 
 // MARK: - NSKeyValueCoding
@@ -256,6 +270,13 @@
             @"<PEPIdentity %@ userID:%@ userName:%@ isOwn:%d fpr:%@ ct:%ld lang:%@>",
             self.address, self.userID, self.userName, self.isOwn, self.fingerPrint,
             (long) self.commType, self.language];
+}
+
+// MARK: - Static Initialization
+
++ (void)initialize
+{
+    s_keys = @[@"address"];
 }
 
 @end

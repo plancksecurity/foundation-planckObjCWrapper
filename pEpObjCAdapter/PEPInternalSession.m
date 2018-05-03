@@ -19,6 +19,7 @@
 #import "NSError+PEP.h"
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
+#import "NSMutableDictionary+PEP.h"
 
 @implementation PEPInternalSession
 
@@ -98,7 +99,15 @@
 
 #pragma mark - PEPSessionProtocol
 
-- (PEPDict * _Nullable)decryptMessageDict:(PEPDict * _Nonnull)messageDict
+void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
+{
+    free_message(src);
+    free_message(dst);
+    free_stringlist(extraKeys);
+}
+
+- (PEPDict * _Nullable)decryptMessageDict:(PEPMutableDict * _Nonnull)messageDict
+                                    flags:(PEP_decrypt_flags * _Nullable)flags
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                    status:(PEP_STATUS * _Nullable)status
@@ -111,12 +120,21 @@
     message *_src = PEP_messageDictToStruct(messageDict);
     message *_dst = NULL;
     stringlist_t *_keys = NULL;
-    PEP_decrypt_flags_t flags = 0;
+    PEP_decrypt_flags theFlags = 0;
+
+    if (flags) {
+        theFlags = *flags;
+    }
 
     PEP_rating internalRating = PEP_rating_undefined;
 
     [self lockWrite];
-    PEP_STATUS theStatus = decrypt_message(_session, _src, &_dst, &_keys, &internalRating, &flags);
+    PEP_STATUS theStatus = decrypt_message(_session,
+                                           _src,
+                                           &_dst,
+                                           &_keys,
+                                           &internalRating,
+                                           &theFlags);
     [self unlockWrite];
 
     if (status) {
@@ -124,7 +142,12 @@
     }
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
+        decryptMessageDictFree(_src, _dst, _keys);
         return nil;
+    }
+
+    if (flags) {
+        *flags = theFlags;
     }
 
     NSDictionary *dst_;
@@ -136,12 +159,15 @@
     }
 
     NSArray *keys_ = nil;
-    if (_keys)
+    if (_keys) {
         keys_ = PEP_arrayFromStringlist(_keys);
+    }
 
-    free_message(_src);
-    free_message(_dst);
-    free_stringlist(_keys);
+    if (theFlags & PEP_decrypt_flag_untrusted_server) {
+        [messageDict replaceWithMessage:_src];
+    }
+
+    decryptMessageDictFree(_src, _dst, _keys);
 
     if (extraKeys) {
         *extraKeys = keys_;
@@ -155,16 +181,19 @@
 }
 
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
+                                   flags:(PEP_decrypt_flags * _Nullable)flags
                                   rating:(PEP_rating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *destDict = [self decryptMessageDict:(PEPDict *)message
-                                          rating:rating
-                                       extraKeys:extraKeys
-                                          status:status
-                                           error:error];
+    PEPDict *destDict = [self
+                         decryptMessageDict:(PEPDict *)message
+                         flags:flags
+                         rating:rating
+                         extraKeys:extraKeys
+                         status:status
+                         error:error];
 
     if (!destDict) {
         return nil;
@@ -377,7 +406,7 @@
                                                error:(NSError * _Nullable * _Nullable)error
 {
     message *_msg = PEP_messageDictToStruct(messageDict);
-    PEP_rating rating = PEP_rating_b0rken;
+    PEP_rating rating = PEP_rating_undefined;
 
     [self lockWrite];
     PEP_STATUS status = outgoing_message_rating(_session, _msg, &rating);
