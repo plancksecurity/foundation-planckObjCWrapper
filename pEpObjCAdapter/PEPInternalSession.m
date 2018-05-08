@@ -119,11 +119,15 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     message *_src = PEP_messageDictToStruct(messageDict);
     message *_dst = NULL;
-    stringlist_t *_keys = NULL;
+    stringlist_t *theKeys = NULL;
     PEP_decrypt_flags theFlags = 0;
 
     if (flags) {
         theFlags = *flags;
+    }
+
+    if (extraKeys && [*extraKeys count]) {
+        theKeys = PEP_arrayToStringlist(*extraKeys);
     }
 
     PEP_rating internalRating = PEP_rating_undefined;
@@ -132,7 +136,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     PEP_STATUS theStatus = decrypt_message(_session,
                                            _src,
                                            &_dst,
-                                           &_keys,
+                                           &theKeys,
                                            &internalRating,
                                            &theFlags);
     [self unlockWrite];
@@ -142,7 +146,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
-        decryptMessageDictFree(_src, _dst, _keys);
+        decryptMessageDictFree(_src, _dst, theKeys);
         return nil;
     }
 
@@ -158,20 +162,15 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         dst_ = PEP_messageDictFromStruct(_src);
     }
 
-    NSArray *keys_ = nil;
-    if (_keys) {
-        keys_ = PEP_arrayFromStringlist(_keys);
-    }
-
     if (theFlags & PEP_decrypt_flag_untrusted_server) {
         [messageDict replaceWithMessage:_src];
     }
 
-    decryptMessageDictFree(_src, _dst, _keys);
-
     if (extraKeys) {
-        *extraKeys = keys_;
+        *extraKeys = PEP_arrayFromStringlist(theKeys);
     }
+
+    decryptMessageDictFree(_src, _dst, theKeys);
 
     if (rating) {
         *rating = internalRating;
