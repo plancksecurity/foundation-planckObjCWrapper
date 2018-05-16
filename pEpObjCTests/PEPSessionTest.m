@@ -1180,9 +1180,9 @@
 }
 
 /**
- IOSAD-93
+ IOSAD-93, testing for easy error case.
  */
-- (void)testEncryptAndAttachPrivateKey
+- (void)testIllegalValueEncryptAndAttachPrivateKey
 {
     PEPSession *session = [PEPSession new];
 
