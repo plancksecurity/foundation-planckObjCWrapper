@@ -413,8 +413,10 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *dst = NULL;
 
     [self lockWrite];
-    PEP_STATUS theStatus = encrypt_message_and_add_priv_key(_session, src, &dst,
-                                     [[toFpr precomposedStringWithCanonicalMapping] UTF8String], encFormat, flags);
+    PEP_STATUS theStatus =
+    encrypt_message_and_add_priv_key(_session, src, &dst,
+                                     [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
+                                     encFormat, flags);
     [self unlockWrite];
 
     if (status) {
