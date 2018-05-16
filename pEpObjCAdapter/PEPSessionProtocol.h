@@ -88,6 +88,22 @@ typedef NSArray<NSString *> PEPStringList;
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
+/** Encrypt a message dict to the given recipient FPR, attaching the private key */
+- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
+                                    toFpr:(NSString * _Nonnull)toFpr
+                                encFormat:(PEP_enc_format)encFormat
+                                    flags:(PEP_decrypt_flags)flags
+                                   status:(PEP_STATUS * _Nullable)status
+                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
+
+/** Encrypt a message dict to the given recipient FPR, attaching the private key */
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                                   toFpr:(NSString * _Nonnull)toFpr
+                               encFormat:(PEP_enc_format)encFormat
+                                   flags:(PEP_decrypt_flags)flags
+                                  status:(PEP_STATUS * _Nullable)status
+                                   error:(NSError * _Nullable * _Nullable)error;
+
 /** Determine the status color of a message to be sent */
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)message
                                            error:(NSError * _Nullable * _Nullable)error;
