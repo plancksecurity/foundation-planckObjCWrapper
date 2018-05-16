@@ -142,6 +142,40 @@
             error:error];
 }
 
+- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
+                                    toFpr:(NSString * _Nonnull)toFpr
+                                encFormat:(PEP_enc_format)encFormat
+                                    flags:(PEP_decrypt_flags)flags
+                                   status:(PEP_STATUS * _Nullable)status
+                                    error:(NSError * _Nullable * _Nullable)error __deprecated
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session
+            encryptMessageDict:messageDict
+            toFpr:toFpr
+            encFormat:encFormat
+            flags:flags
+            status:status
+            error:error];
+}
+
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                                   toFpr:(NSString * _Nonnull)toFpr
+                               encFormat:(PEP_enc_format)encFormat
+                                   flags:(PEP_decrypt_flags)flags
+                                  status:(PEP_STATUS * _Nullable)status
+                                   error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session
+            encryptMessage:message
+            toFpr:toFpr
+            encFormat:encFormat
+            flags:flags
+            status:status
+            error:error];
+}
+
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)message
                                            error:(NSError * _Nullable * _Nullable)error
 {
