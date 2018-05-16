@@ -1222,8 +1222,8 @@
                              encFormat:PEP_enc_PEP
                              flags:0
                              status:&status error:&error];
-    XCTAssertEqual(status, PEP_STATUS_OK);
-    XCTAssertNil(error);
+    XCTAssertEqual(status, PEP_ILLEGAL_VALUE);
+    XCTAssertNotNil(error);
     XCTAssertNil(encrypted);
 }
 
