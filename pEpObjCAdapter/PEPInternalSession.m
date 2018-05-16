@@ -194,12 +194,12 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                          status:status
                          error:error];
 
-    if (!destDict) {
-        return nil;
-    } else {
+    if (destDict) {
         PEPMessage *msg = [PEPMessage new];
         [msg setValuesForKeysWithDictionary:destDict];
         return msg;
+    } else {
+        return nil;
     }
 }
 
@@ -315,9 +315,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                             encFormat:encFormat
                                                status:status
                                                 error:error];
-    PEPMessage *encrypted = [PEPMessage new];
-    [encrypted setValuesForKeysWithDictionary:encryptedDict];
-    return encrypted;
+    if (encryptedDict) {
+        PEPMessage *encrypted = [PEPMessage new];
+        [encrypted setValuesForKeysWithDictionary:encryptedDict];
+        return encrypted;
+    } else {
+        return nil;
+    }
 }
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
@@ -396,9 +400,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                        status:status
                        error:error];
 
-    PEPMessage *encrypted = [PEPMessage new];
-    [encrypted setValuesForKeysWithDictionary:target];
-    return encrypted;
+    if (target) {
+        PEPMessage *encrypted = [PEPMessage new];
+        [encrypted setValuesForKeysWithDictionary:target];
+        return encrypted;
+    } else {
+        return nil;
+    }
 }
 
 
@@ -449,9 +457,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                        status:status
                        error:error];
 
-    PEPMessage *encrypted = [PEPMessage new];
-    [encrypted setValuesForKeysWithDictionary:target];
-    return encrypted;
+    if (target) {
+        PEPMessage *encrypted = [PEPMessage new];
+        [encrypted setValuesForKeysWithDictionary:target];
+        return encrypted;
+    } else {
+        return nil;
+    }
 }
 
 - (NSNumber * _Nullable)outgoingRatingForMessageDict:(PEPDict * _Nonnull)messageDict
