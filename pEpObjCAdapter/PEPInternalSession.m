@@ -187,7 +187,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *destDict = [self
-                         decryptMessageDict:(PEPDict *)message
+                         decryptMessageDict:message.mutableDictionary
                          flags:flags
                          rating:rating
                          extraKeys:extraKeys
