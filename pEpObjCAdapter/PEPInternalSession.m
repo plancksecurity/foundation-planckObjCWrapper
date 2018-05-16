@@ -401,6 +401,57 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     return encrypted;
 }
 
+
+- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
+                                    toFpr:(NSString * _Nonnull)toFpr
+                                encFormat:(PEP_enc_format)encFormat
+                                    flags:(PEP_decrypt_flags)flags
+                                   status:(PEP_STATUS * _Nullable)status
+                                    error:(NSError * _Nullable * _Nullable)error __deprecated
+{
+    message *src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
+    message *dst = NULL;
+
+    [self lockWrite];
+    PEP_STATUS theStatus = encrypt_message_and_add_priv_key(_session, src, &dst,
+                                     [[toFpr precomposedStringWithCanonicalMapping] UTF8String], encFormat, flags);
+    [self unlockWrite];
+
+    if (status) {
+        *status = theStatus;
+    }
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        return nil;
+    }
+
+    if (dst) {
+        return PEP_messageDictFromStruct(dst);
+    }
+
+    return nil;
+}
+
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                                   toFpr:(NSString * _Nonnull)toFpr
+                               encFormat:(PEP_enc_format)encFormat
+                                   flags:(PEP_decrypt_flags)flags
+                                  status:(PEP_STATUS * _Nullable)status
+                                   error:(NSError * _Nullable * _Nullable)error
+{
+    PEPDict *target = [self
+                       encryptMessageDict:message.dictionary
+                       toFpr:toFpr
+                       encFormat:encFormat
+                       flags:flags
+                       status:status
+                       error:error];
+
+    PEPMessage *encrypted = [PEPMessage new];
+    [encrypted setValuesForKeysWithDictionary:target];
+    return encrypted;
+}
+
 - (NSNumber * _Nullable)outgoingRatingForMessageDict:(PEPDict * _Nonnull)messageDict
                                                error:(NSError * _Nullable * _Nullable)error
 {
