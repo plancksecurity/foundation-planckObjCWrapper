@@ -1179,6 +1179,54 @@
     dispatch_group_wait(identityRatingGroup, DISPATCH_TIME_FOREVER);
 }
 
+/**
+ IOSAD-93
+ */
+- (void)testEncryptAndAttachPrivateKey
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    NSString *fprAlice = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
+    PEPIdentity *identAlice = [self
+                               checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                               address:@"pep.test.alice@pep-project.org"
+                               userID:@"alice_user_id"
+                               fingerPrint:fprAlice
+                               session: session];
+    XCTAssertNotNil(identAlice);
+
+    NSString *shortMessage = @"whatever it may be";
+    NSString *longMessage = [NSString stringWithFormat:@"%@ %@", shortMessage, shortMessage];
+    PEPMessage *message = [PEPMessage new];
+    message.from = identMe;
+    message.to = @[identAlice];
+    message.shortMessage = shortMessage;
+    message.longMessage = longMessage;
+
+    PEP_STATUS status = PEP_KEY_NOT_FOUND;
+    error = nil;
+    PEPMessage *encrypted = [session
+                             encryptMessage:message
+                             toFpr:fprAlice
+                             encFormat:PEP_enc_PEP
+                             flags:0
+                             status:&status error:&error];
+    XCTAssertEqual(status, PEP_STATUS_OK);
+    XCTAssertNil(error);
+    XCTAssertNil(encrypted);
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
