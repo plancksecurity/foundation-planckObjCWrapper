@@ -531,7 +531,8 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
         PEP_STATUS status = trustword(_session,
                                       value,
-                                      [languageID UTF8String],
+                                      [[languageID precomposedStringWithCanonicalMapping]
+                                       UTF8String],
                                       word.charPointerPointer,
                                       &size);
 
@@ -653,7 +654,9 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (BOOL)importKey:(NSString * _Nonnull)keydata error:(NSError * _Nullable * _Nullable)error
 {
     [self lockWrite];
-    PEP_STATUS status = import_key(_session, [keydata UTF8String], [keydata length], NULL);
+    PEP_STATUS status = import_key(_session,
+                                   [[keydata precomposedStringWithCanonicalMapping] UTF8String],
+                                   [keydata length], NULL);
     [self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
@@ -724,8 +727,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     NSString *result = nil;
 
     if (![NSError setError:error fromPEPStatus:status]) {
-        result = [NSString stringWithCString:trustwords.charPointer
-                                    encoding:NSUTF8StringEncoding];
+        result = [NSString stringWithUTF8String:trustwords.charPointer];
     }
 
     return result;
