@@ -18,9 +18,4 @@
  */
 @property (nonatomic, readonly) PEP_comm_type commType;
 
-/**
- Saves itself to the filesystem, under `NSApplicationSupportDirectory`.
- */
-- (void)debugSaveToFilePath:(NSString * _Nonnull)filePath;
-
 @end

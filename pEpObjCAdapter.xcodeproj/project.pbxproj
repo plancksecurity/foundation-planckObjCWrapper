@@ -37,6 +37,7 @@
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		439393E6208F375800EB1DBD /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 439393E5208F375800EB1DBD /* NSObject+Extension.m */; };
 		439393F8208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */; };
+		43953B3520C91E2B001C7DDB /* NSDictionary+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */; };
 		439D91A5208479EE003F6AC2 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D91A4208479EE003F6AC2 /* PEPAttachment.m */; };
 		43D27DE61F5DA7B700795687 /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D27DE51F5DA7B700795687 /* NSDictionary+Extension.m */; };
 		43DED786203C25E200D45CD6 /* NSError+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DED785203C25E200D45CD6 /* NSError+PEP.m */; };
@@ -173,6 +174,8 @@
 		439393E5208F375800EB1DBD /* NSObject+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		439393F6208F5B5E00EB1DBD /* NSMutableDictionary+PEP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+PEP.h"; sourceTree = "<group>"; };
 		439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+PEP.m"; sourceTree = "<group>"; };
+		43953B3320C91E2B001C7DDB /* NSDictionary+Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Debug.h"; sourceTree = "<group>"; };
+		43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Debug.m"; sourceTree = "<group>"; };
 		439D91A3208479EE003F6AC2 /* PEPAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPAttachment.h; sourceTree = "<group>"; };
 		439D91A4208479EE003F6AC2 /* PEPAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment.m; sourceTree = "<group>"; };
 		43D27DE41F5DA78700795687 /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 				43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */,
 				43D27DE41F5DA78700795687 /* NSDictionary+Extension.h */,
 				43D27DE51F5DA7B700795687 /* NSDictionary+Extension.m */,
+				43953B3320C91E2B001C7DDB /* NSDictionary+Debug.h */,
+				43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */,
 				1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */,
 				1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */,
 				15206CA81F8BA183003FF880 /* PEPSessionProvider.h */,
@@ -496,6 +501,7 @@
 				43D27DE61F5DA7B700795687 /* NSDictionary+Extension.m in Sources */,
 				435796E31FB5E51A00395A9E /* PEPMessage.m in Sources */,
 				43209B431ECC2DC0007E7E2E /* PEPInternalSession.m in Sources */,
+				43953B3520C91E2B001C7DDB /* NSDictionary+Debug.m in Sources */,
 				43209B3F1ECC2DB0007E7E2E /* PEPLanguage.m in Sources */,
 				434ED6D6207E27B8000A7590 /* PEPAutoPointer.m in Sources */,
 				439D91A5208479EE003F6AC2 /* PEPAttachment.m in Sources */,
