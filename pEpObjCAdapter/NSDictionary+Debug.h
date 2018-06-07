@@ -15,4 +15,9 @@
  */
 - (void)debugSaveToFilePath:(NSString * _Nonnull)filePath;
 
+/**
+ Treating this object as a pEp messages, find out the references and print them (for debugging).
+ */
+- (void)dumpReferences;
+
 @end

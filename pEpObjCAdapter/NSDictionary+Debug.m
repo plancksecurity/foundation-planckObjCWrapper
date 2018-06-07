@@ -29,4 +29,20 @@
     [self writeToURL:writeURL atomically:YES];
 }
 
+- (void)dumpReferences
+{
+    NSString *messageID = [self valueForKey:kPepID];
+    if (messageID == nil) {
+        messageID = @"unknown";
+    }
+    NSArray *references = [self valueForKey:kPepReferences];
+    if (references.count > 0) {
+        for (NSString *ref in references) {
+            NSLog(@"messageID %@ -> ref %@\n", messageID, ref);
+        }
+    } else {
+        NSLog(@"messageID %@ -> no refs\n", messageID);
+    }
+}
+
 @end
