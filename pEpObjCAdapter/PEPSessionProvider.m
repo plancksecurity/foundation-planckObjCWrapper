@@ -106,17 +106,24 @@ static PEPInternalSession *s_sessionForMainThread = nil;
  */
 + (void)assureSessionForMainThreadExists
 {
+    // shared code to set global configuration every time
+    void (^configurationBlock)(void) = ^{
+        [self setConfigUnEncryptedSubjectOnSession:s_sessionForMainThread];
+        [self setPassiveModeOnSession:s_sessionForMainThread];
+    };
+
     if (s_sessionForMainThread) {
+        configurationBlock();
         return;
     }
 
+    // shared code that is executed in any case, either on the main thread or in the background
     void (^creationBlock)(void) = ^{
         if (s_sessionForMainThread) {
             return;
         }
         s_sessionForMainThread = [PEPInternalSession new];
-        [self setConfigUnEncryptedSubjectOnSession:s_sessionForMainThread];
-        [self setPassiveModeOnSession:s_sessionForMainThread];
+        configurationBlock();
     };
 
 
