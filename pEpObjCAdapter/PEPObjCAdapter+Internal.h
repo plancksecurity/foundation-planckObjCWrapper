@@ -29,11 +29,6 @@
  */
 + (BOOL)passiveModeEnabled;
 
-/**
- Enable or disable passive mode for all sessions.
- */
-+ (void)setPassiveModeEnabled:(BOOL)enabled;
-
 // this messages are for internal use only; do not call
 
 + (void)registerExamineFunction:(PEP_SESSION)session;
