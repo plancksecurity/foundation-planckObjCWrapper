@@ -1253,7 +1253,61 @@
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should be encrypted");
 }
 
+#pragma mark - Passive mode
+
+- (void)testPassiveMode
+{
+    [self testPassiveModeEnabled:NO];
+    [self testPassiveModeEnabled:YES];
+}
+
 #pragma mark - Helpers
+
+- (void)testPassiveModeEnabled:(BOOL)passiveModeEnabled
+{
+    [PEPObjCAdapter setPassiveModeEnabled:passiveModeEnabled];
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:@"alice_user_id"
+                               userName:@"Alice"
+                               isOwn:NO];
+
+    NSString *shortMessage = @"whatever it may be";
+    NSString *longMessage = [NSString stringWithFormat:@"%@ %@", shortMessage, shortMessage];
+    PEPMessage *message = [PEPMessage new];
+    message.direction = PEP_dir_outgoing;
+    message.from = identMe;
+    message.to = @[identAlice];
+    message.shortMessage = shortMessage;
+    message.longMessage = longMessage;
+
+    PEP_STATUS status = PEP_KEY_NOT_FOUND;
+    PEPMessage *encryptedMessage =  [session encryptMessage:message
+                                                  extraKeys:@[]
+                                                     status:&status
+                                                      error:&error];
+    XCTAssertNil(error);
+    XCTAssertEqual(status, PEP_UNENCRYPTED);
+
+    if (passiveModeEnabled) {
+        XCTAssertNil(encryptedMessage.attachments);
+    } else {
+        XCTAssertEqual(encryptedMessage.attachments.count, 1);
+    }
+}
 
 /**
  Determines the rating for the given identity.
