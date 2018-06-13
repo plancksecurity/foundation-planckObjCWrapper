@@ -104,7 +104,9 @@ void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
 const char* _Nullable SystemDB = NULL;
 NSURL *s_homeURL;
 static NSLock *s_writeLock;
+
 static BOOL s_unEncryptedSubjectEnabled = NO;
+static BOOL s_passiveModeEnabled = NO;
 
 @implementation PEPObjCAdapter
 
@@ -118,6 +120,18 @@ static BOOL s_unEncryptedSubjectEnabled = NO;
 + (void)setUnEncryptedSubjectEnabled:(BOOL)enabled;
 {
     s_unEncryptedSubjectEnabled = enabled;
+}
+
+#pragma mark - Passive Mode
+
++ (BOOL)passiveModeEnabled
+{
+    return s_passiveModeEnabled;
+}
+
++ (void)setPassiveModeEnabled:(BOOL)enabled
+{
+    s_passiveModeEnabled = enabled;
 }
 
 #pragma mark - DB PATHS

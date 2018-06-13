@@ -23,6 +23,17 @@
  */
 + (BOOL)unEncryptedSubjectEnabled;
 
+/**
+ @note That global value is used for all new sessions
+ @return The current status of passive mode (enabled or not)
+ */
++ (BOOL)passiveModeEnabled;
+
+/**
+ Enable or disable passive mode for all sessions.
+ */
++ (void)setPassiveModeEnabled:(BOOL)enabled;
+
 // this messages are for internal use only; do not call
 
 + (void)registerExamineFunction:(PEP_SESSION)session;

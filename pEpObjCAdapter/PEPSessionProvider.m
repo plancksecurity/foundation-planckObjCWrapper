@@ -44,7 +44,11 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         newOrExistingSession = [PEPInternalSession new];
         dict[currentThread] = newOrExistingSession;
     }
+
+    // configuration
     [self setConfigUnEncryptedSubjectOnSession:newOrExistingSession];
+    [self setPassiveModeOnSession:newOrExistingSession];
+
     [self nullifySessionsOfFinishedThreads];
 
     [[self sessionForThreadLock] unlock];
@@ -81,13 +85,21 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     return s_sessionForThreadDict;
 }
 
-#pragma mark -
+#pragma mark - configuration
 
 + (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
 {
     BOOL unEncryptedSubjectEnabled = [PEPObjCAdapter unEncryptedSubjectEnabled];
     [session configUnEncryptedSubjectEnabled:unEncryptedSubjectEnabled];
 }
+
++ (void)setPassiveModeOnSession:(PEPInternalSession *)session
+{
+    BOOL passiveModeEnabled = [PEPObjCAdapter passiveModeEnabled];
+    [session configurePassiveModeEnabled:passiveModeEnabled];
+}
+
+#pragma mark -
 
 /**
  Assures a session for the main thread is set.
@@ -104,6 +116,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         }
         s_sessionForMainThread = [PEPInternalSession new];
         [self setConfigUnEncryptedSubjectOnSession:s_sessionForMainThread];
+        [self setPassiveModeOnSession:s_sessionForMainThread];
     };
 
 
