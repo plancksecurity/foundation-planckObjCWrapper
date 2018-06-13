@@ -318,4 +318,10 @@
     return [session setOwnKey:identity fingerprint:fingerprint error:error];
 }
 
+- (void)configurePassiveModeEnabled:(BOOL)enabled
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session configurePassiveModeEnabled:enabled];
+}
+
 @end

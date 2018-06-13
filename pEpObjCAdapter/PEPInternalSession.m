@@ -870,4 +870,9 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (void)configurePassiveModeEnabled:(BOOL)enabled
+{
+    config_passive_mode(_session, enabled);
+}
+
 @end

@@ -234,4 +234,9 @@ typedef NSArray<NSString *> PEPStringList;
 - (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
             error:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Wraps the engine's `config_passive_mode`.
+ */
+- (void)configurePassiveModeEnabled:(BOOL)enabled;
+
 @end
