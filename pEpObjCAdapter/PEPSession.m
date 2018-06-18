@@ -76,6 +76,7 @@
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                     extraKeys:(PEPStringList * _Nullable)extraKeys
                                 encFormat:(PEP_enc_format)encFormat
+                                    flags:(PEP_encrypt_flags_t)flags
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
@@ -84,6 +85,7 @@
             encryptMessageDict:messageDict
             extraKeys:extraKeys
             encFormat:encFormat
+            flags:flags
             status:status
             error:error];
 }
@@ -91,6 +93,7 @@
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                encFormat:(PEP_enc_format)encFormat
+                                   flags:(PEP_encrypt_flags_t)flags
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
@@ -99,22 +102,30 @@
             encryptMessage:message
             extraKeys:extraKeys
             encFormat:encFormat
+            flags:flags
             status:status
             error:error];
 }
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                extraKeys:(PEPStringList * _Nullable)extraKeys
+                                   flags:(PEP_encrypt_flags_t)flags
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session encryptMessage:message extraKeys:extraKeys status:status error:error];
+    return [session
+            encryptMessage:message
+            extraKeys:extraKeys
+            flags:flags
+            status:status
+            error:error];
 }
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                   forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
+                                    flags:(PEP_encrypt_flags_t)flags
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
@@ -123,6 +134,7 @@
             encryptMessageDict:messageDict
             forSelf:ownIdentity
             extraKeys:extraKeys
+            flags:flags
             status:status
             error:error];
 }
@@ -130,6 +142,7 @@
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
+                                   flags:(PEP_encrypt_flags_t)flags
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
@@ -138,6 +151,7 @@
             encryptMessage:message
             forSelf:ownIdentity
             extraKeys:extraKeys
+            flags:flags
             status:status
             error:error];
 }
