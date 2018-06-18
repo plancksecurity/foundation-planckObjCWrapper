@@ -54,7 +54,6 @@ typedef NSArray<NSString *> PEPStringList;
  */
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
-                                    flags:(PEP_encrypt_flags_t)flags
                                 encFormat:(PEP_enc_format)encFormat
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
@@ -65,7 +64,6 @@ typedef NSArray<NSString *> PEPStringList;
  */
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   flags:(PEP_encrypt_flags_t)flags
                                encFormat:(PEP_enc_format)encFormat
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
@@ -73,7 +71,6 @@ typedef NSArray<NSString *> PEPStringList;
 /** Encrypt a message with default encryption format (PEP_enc_PEP) */
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   flags:(PEP_encrypt_flags_t)flags
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
@@ -81,7 +78,6 @@ typedef NSArray<NSString *> PEPStringList;
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                   forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
-                                    flags:(PEP_encrypt_flags_t)flags
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated;
 
@@ -89,7 +85,6 @@ typedef NSArray<NSString *> PEPStringList;
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   flags:(PEP_encrypt_flags_t)flags
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 

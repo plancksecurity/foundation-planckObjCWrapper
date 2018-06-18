@@ -267,11 +267,12 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
-                                    flags:(PEP_encrypt_flags_t)flags
                                 encFormat:(PEP_enc_format)encFormat
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
+    PEP_encrypt_flags_t flags = 0;
+
     message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
     message *_dst = NULL;
     stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
@@ -305,15 +306,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 }
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                               extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   flags:(PEP_encrypt_flags_t)flags
+                                   extraKeys:(PEPStringList * _Nullable)extraKeys
                                encFormat:(PEP_enc_format)encFormat
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *encryptedDict = [self encryptMessageDict:(NSDictionary *) message
                                             extraKeys:extraKeys
-                                                flags:flags
                                             encFormat:encFormat
                                                status:status
                                                 error:error];
@@ -327,15 +326,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 }
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                               extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   flags:(PEP_encrypt_flags_t)flags
+                                   extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     return [self
             encryptMessage:message
             extraKeys:extraKeys
-            flags:flags
             encFormat:PEP_enc_PEP
             status:status
             error:error];
@@ -344,10 +341,11 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                   forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
-                                    flags:(PEP_encrypt_flags_t)flags
                                    status:(PEP_STATUS * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
+    PEP_encrypt_flags_t flags = 0;
+
     message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
     pEp_identity *ident = PEP_identityToStruct(ownIdentity);
     message *_dst = NULL;
@@ -393,7 +391,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   flags:(PEP_encrypt_flags_t)flags
                                   status:(PEP_STATUS * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
@@ -401,7 +398,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                        encryptMessageDict:message.dictionary
                        forSelf:ownIdentity
                        extraKeys:extraKeys
-                       flags:flags
                        status:status
                        error:error];
 
