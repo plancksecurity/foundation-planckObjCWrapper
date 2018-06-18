@@ -854,7 +854,13 @@
     XCTAssertEqual(rating, PEP_rating_trusted_and_anonymized);
 }
 
-- (void)testEncryptedMailFromMuttWithReencryption
+- (void)testEncryptedMailFromMuttWithTrustedServerOrNot
+{
+    [self testEncryptedMailFromMuttWithTrustedServer:NO];
+    [self testEncryptedMailFromMuttWithTrustedServer:YES];
+}
+
+- (void)testEncryptedMailFromMuttWithTrustedServer:(BOOL)trustedServer
 {
     PEPSession *session = [PEPSession new];
 
@@ -895,7 +901,11 @@
     XCTAssertEqualObjects(msg, msgOriginal);
 
     PEP_rating rating = PEP_rating_undefined;
+
     PEP_decrypt_flags flags = PEP_decrypt_flag_untrusted_server;
+    if (trustedServer) {
+        flags = 0;
+    }
 
     PEPMessage *pepDecryptedMail = [session
                                     decryptMessage:msg
@@ -910,8 +920,9 @@
     // Technically, the mail is encrypted, but the signatures don't match
     XCTAssertEqual(rating, PEP_rating_unreliable);
 
-    // Since we're requesting re-encryption, src should have been changed
-    XCTAssertNotEqualObjects(msg, msgOriginal);
+    if (trustedServer) {
+        XCTAssertNotEqualObjects(msg, msgOriginal);
+    }
 
     XCTAssertNotNil(pepDecryptedMail.longMessage);
 }
