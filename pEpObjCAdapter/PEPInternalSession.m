@@ -205,19 +205,18 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 }
 
 - (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
-                       rating:(PEP_rating * _Nullable)rating
+                       rating:(PEP_rating * _Nonnull)rating
                        status:(PEP_STATUS * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
 {
     message *_src = PEP_messageDictToStruct(messageDict);
-    PEP_rating ratingByEngine = PEP_rating_undefined;
 
     [self lockWrite];
     PEP_STATUS theStatus = re_evaluate_message_rating(_session,
                                                       _src,
                                                       NULL,
-                                                      PEP_rating_undefined,
-                                                      &ratingByEngine);
+                                                      *rating,
+                                                      rating);
     [self unlockWrite];
 
     free_message(_src);
@@ -229,15 +228,12 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     if ([NSError setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
-        if (rating) {
-            *rating = ratingByEngine;
-        }
         return YES;
     }
 }
 
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
-                   rating:(PEP_rating * _Nullable)rating
+                   rating:(PEP_rating * _Nonnull)rating
                    status:(PEP_STATUS * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
 {

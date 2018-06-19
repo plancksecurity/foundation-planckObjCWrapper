@@ -38,13 +38,13 @@ typedef NSArray<NSString *> PEPStringList;
 
 /** Re-evaluate rating of decrypted message */
 - (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
-                       rating:(PEP_rating * _Nullable)rating
+                       rating:(PEP_rating * _Nonnull)rating
                        status:(PEP_STATUS * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /** Re-evaluate rating of decrypted message */
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
-                   rating:(PEP_rating * _Nullable)rating
+                   rating:(PEP_rating * _Nonnull)rating
                    status:(PEP_STATUS * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error;
 
