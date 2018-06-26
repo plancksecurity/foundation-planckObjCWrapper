@@ -56,21 +56,31 @@
 }
 
 - (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
+                     xKeyList:(PEPStringList * _Nullable)xKeyList
                        rating:(PEP_rating * _Nonnull)rating
                        status:(PEP_STATUS * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session reEvaluateMessageDict:messageDict rating:rating status:status error:error];
+    return [session reEvaluateMessageDict:messageDict
+                                 xKeyList:xKeyList
+                                   rating:rating
+                                   status:status
+                                    error:error];
 }
 
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
+                 xKeyList:(PEPStringList * _Nullable)xKeyList
                    rating:(PEP_rating * _Nonnull)rating
                    status:(PEP_STATUS * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session reEvaluateMessage:message rating:rating status:status error:error];
+    return [session reEvaluateMessage:message
+                             xKeyList:xKeyList
+                               rating:rating
+                               status:status
+                                error:error];
 }
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict

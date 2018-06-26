@@ -205,21 +205,28 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 }
 
 - (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
+                     xKeyList:(PEPStringList * _Nullable)xKeyList
                        rating:(PEP_rating * _Nonnull)rating
                        status:(PEP_STATUS * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
 {
     message *_src = PEP_messageDictToStruct(messageDict);
 
+    stringlist_t *theKeys = NULL;
+    if ([xKeyList count]) {
+        theKeys = PEP_arrayToStringlist(xKeyList);
+    }
+
     [self lockWrite];
     PEP_STATUS theStatus = re_evaluate_message_rating(_session,
                                                       _src,
-                                                      NULL,
+                                                      theKeys,
                                                       *rating,
                                                       rating);
     [self unlockWrite];
 
     free_message(_src);
+    free_stringlist(theKeys);
 
     if (status) {
         *status = theStatus;
@@ -233,11 +240,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 }
 
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
+                 xKeyList:(PEPStringList * _Nullable)xKeyList
                    rating:(PEP_rating * _Nonnull)rating
                    status:(PEP_STATUS * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
 {
     return [self reEvaluateMessageDict:(PEPDict *) message
+                              xKeyList:xKeyList
                                 rating:rating
                                 status:status
                                  error:error];
