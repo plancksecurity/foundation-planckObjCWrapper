@@ -141,7 +141,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     for (PEPCopyableThread *thread in dict.allKeys) {
         [self nullifySessionForThread:thread];
     }
-    NSLog(@"*** 0x%lu (niling s_sessionForMainThread)", (u_long) s_sessionForMainThread);
     s_sessionForMainThread = nil;
     [dict removeAllObjects];
 }
