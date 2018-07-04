@@ -17,6 +17,8 @@
 #import "mime.h"
 #import "message.h"
 
+const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
+
 ///////////////////////////////////////////////////////////////////////////////
 //  Keyserver and Identity lookup - C part
 
