@@ -11,6 +11,7 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
+#import "PEPObjHolder.h"
 
 @implementation PEPSessionProvider
 
@@ -21,7 +22,7 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
  alive until all sessiopns created afterwards have been teared down."
  Here we hold it.
  */
-static PEPInternalSession *s_sessionForMainThread = nil;
+static PEPObjHolder *s_sessionForMainThread = nil;
 
 #pragma mark - Public API
 
@@ -34,7 +35,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
     if ([NSThread isMainThread]) {
         [[self sessionForThreadLock] unlock];
-        return s_sessionForMainThread;
+        return s_sessionForMainThread.object;
     }
 
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
@@ -71,6 +72,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 {
     s_sessionForThreadLock = [NSLock new];
     s_sessionForThreadDict = [NSMutableDictionary new];
+    s_sessionForMainThread = [PEPObjHolder new];
 }
 
 #pragma mark - Lock
@@ -108,21 +110,21 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 {
     // shared code to set global configuration every time
     void (^configurationBlock)(void) = ^{
-        [self setConfigUnEncryptedSubjectOnSession:s_sessionForMainThread];
-        [self setPassiveModeOnSession:s_sessionForMainThread];
+        [self setConfigUnEncryptedSubjectOnSession:s_sessionForMainThread.object];
+        [self setPassiveModeOnSession:s_sessionForMainThread.object];
     };
 
-    if (s_sessionForMainThread) {
+    if (s_sessionForMainThread.object) {
         configurationBlock();
         return;
     }
 
     // shared code that is executed in any case, either on the main thread or in the background
     void (^creationBlock)(void) = ^{
-        if (s_sessionForMainThread) {
+        if (s_sessionForMainThread.object) {
             return;
         }
-        s_sessionForMainThread = [PEPInternalSession new];
+        s_sessionForMainThread.object = [PEPInternalSession new];
         configurationBlock();
     };
 
@@ -141,7 +143,11 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     for (PEPCopyableThread *thread in dict.allKeys) {
         [self nullifySessionForThread:thread];
     }
-    s_sessionForMainThread = nil;
+
+    if (s_sessionForMainThread.object != nil) {
+        s_sessionForMainThread.object = nil;
+    }
+
     [dict removeAllObjects];
 }
 
