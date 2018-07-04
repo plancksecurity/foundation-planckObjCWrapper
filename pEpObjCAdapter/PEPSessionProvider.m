@@ -145,6 +145,8 @@ static PEPObjHolder *s_sessionForMainThread = nil;
     }
 
     if (s_sessionForMainThread.object != nil) {
+        NSLog(@"*** 0x%lu (niling s_sessionForMainThread)",
+              (u_long) s_sessionForMainThread.object);
         s_sessionForMainThread.object = nil;
     }
 

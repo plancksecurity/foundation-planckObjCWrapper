@@ -45,6 +45,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"*** 0x%lu (dealloc)", (u_long) self);
     [PEPObjCAdapter unbindSession:self];
 
     [self lockWrite];
