@@ -27,16 +27,14 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
 + (PEPInternalSession * _Nonnull)session
 {
-    [[self sessionForThreadLock] lock];
-
     // Assure a session for the main thread exists and is kept alive before anyother session is created.
     [self assureSessionForMainThreadExists];
 
     if ([NSThread isMainThread]) {
-        [[self sessionForThreadLock] unlock];
         return s_sessionForMainThread;
     }
 
+    [[self sessionForThreadLock] lock];
     NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *dict = [self sessionForThreadDict];
     PEPCopyableThread *currentThread = [[PEPCopyableThread alloc] initWithThread:[NSThread currentThread]];
     PEPInternalSession * __strong newOrExistingSession = dict[currentThread];
@@ -108,8 +106,10 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 {
     // shared code to set global configuration every time
     void (^configurationBlock)(void) = ^{
+        [[self sessionForThreadLock] lock];
         [self setConfigUnEncryptedSubjectOnSession:s_sessionForMainThread];
         [self setPassiveModeOnSession:s_sessionForMainThread];
+        [[self sessionForThreadLock] unlock];
     };
 
     if (s_sessionForMainThread) {
@@ -122,7 +122,9 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         if (s_sessionForMainThread) {
             return;
         }
+        [[self sessionForThreadLock] lock];
         s_sessionForMainThread = [PEPInternalSession new];
+        [[self sessionForThreadLock] unlock];
         configurationBlock();
     };
 
