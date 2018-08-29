@@ -1101,6 +1101,62 @@
     XCTAssertNotNil(decMsg);
 }
 
+- (void)testEncryptMessageWithoutFromWithoutKeys
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"alice@pep-project.org"
+                               userID:@"alice"
+                               userName:@"pEp Test Alice"
+                               isOwn:NO];
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = nil;
+    msg.to = @[identAlice];
+    msg.shortMessage = @"Mail to Alice";
+    msg.longMessage = @"Alice?";
+    msg.direction = PEP_dir_outgoing;
+
+    NSNumber *numRating = [session outgoingRatingForMessage:msg error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
+
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
+    XCTAssertNotNil(encMsg);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(encMsg);
+
+    PEPStringList *keys;
+    PEP_rating pEpRating;
+    error = nil;
+    PEPMessage *decMsg = [session
+                          decryptMessage:encMsg
+                          flags:nil
+                          rating:&pEpRating
+                          extraKeys:&keys
+                          status:nil
+                          error:&error];
+    XCTAssertNotNil(decMsg);
+    XCTAssertNil(error);
+
+    XCTAssertEqual(pEpRating, PEP_rating_unencrypted);
+    XCTAssertNotNil(decMsg);
+}
+
 /**
  ENGINE-364. Tries to invoke trustPersonalKey on an identity without key,
  giving it a fake fingerprint.
