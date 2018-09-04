@@ -1261,6 +1261,57 @@
     [self testPassiveModeEnabled:YES];
 }
 
+#pragma mark - Decryption
+
+- (void)testDecryptionOfUnencryptedMessageWithOdtAttachmentContainingSpace
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    const char *dataString = "blahblah";
+    const size_t dataSize = strlen(dataString);
+    char *rawData = strndup(dataString, dataSize);
+
+    PEPAttachment *attachment = [[PEPAttachment alloc]
+                                 initWithData:[NSData
+                                               dataWithBytesNoCopy:rawData length:dataSize]];
+    attachment.filename = @"Someone andTextIncludingTheSpace.odt";
+    attachment.mimeType = @"application/vnd.oasis.opendocument.text";
+
+    NSString *shortMessage = @"Subject";
+    NSString *longMessage = @"Oh, this is a long body text!";
+    PEPMessage *mail = [PEPTestUtils mailFrom:me
+                                      toIdent:me
+                                 shortMessage:shortMessage
+                                  longMessage:longMessage
+                                     outgoing:YES];
+
+    mail.attachments = @[attachment];
+
+    error = nil;
+    PEPStringList *keys;
+    PEP_rating rating = PEP_rating_undefined;
+    PEPMessage *decmsg = [session
+                          decryptMessage:mail
+                          flags:nil
+                          rating:&rating
+                          extraKeys:&keys
+                          status:nil
+                          error:&error];
+    XCTAssertNotNil(decmsg);
+    XCTAssertNil(error);
+    XCTAssertEqual(rating, PEP_rating_unencrypted);
+
+    PEPAttachment *decryptedAttachment = [decmsg.attachments objectAtIndex:0];
+    XCTAssertEqualObjects(decryptedAttachment.mimeType, attachment.mimeType);
+    XCTAssertEqualObjects(decryptedAttachment.filename, attachment.filename);
+}
+
 #pragma mark - Helpers
 
 - (void)testPassiveModeEnabled:(BOOL)passiveModeEnabled
