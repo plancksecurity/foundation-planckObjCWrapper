@@ -31,6 +31,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     [self assureSessionForMainThreadExists];
 
     if ([NSThread isMainThread]) {
+        [self configureSession:s_sessionForMainThread];
         return s_sessionForMainThread;
     }
 
@@ -44,8 +45,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     }
 
     // configuration
-    [self setConfigUnEncryptedSubjectOnSession:newOrExistingSession];
-    [self setPassiveModeOnSession:newOrExistingSession];
+    [self configureSession:newOrExistingSession];
 
     [self nullifySessionsOfFinishedThreads];
 
@@ -85,6 +85,12 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
 #pragma mark - configuration
 
++ (void)configureSession:(PEPInternalSession *)session
+{
+    [self setConfigUnEncryptedSubjectOnSession:session];
+    [self setPassiveModeOnSession:session];
+}
+
 + (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
 {
     BOOL unEncryptedSubjectEnabled = [PEPObjCAdapter unEncryptedSubjectEnabled];
@@ -107,8 +113,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     // shared code to set global configuration every time
     void (^configurationBlock)(void) = ^{
         [[self sessionForThreadLock] lock];
-        [self setConfigUnEncryptedSubjectOnSession:s_sessionForMainThread];
-        [self setPassiveModeOnSession:s_sessionForMainThread];
+        [self configureSession:s_sessionForMainThread];
         [[self sessionForThreadLock] unlock];
     };
 
