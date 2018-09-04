@@ -113,7 +113,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     };
 
     if (s_sessionForMainThread) {
-        configurationBlock();
         return;
     }
 
