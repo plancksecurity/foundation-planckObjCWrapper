@@ -107,7 +107,7 @@ typedef NSArray<NSString *> PEPStringList;
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Determine the status color of a message to be sent */
-- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)message
+- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error;
 
 /**

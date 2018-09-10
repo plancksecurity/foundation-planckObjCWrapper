@@ -472,10 +472,10 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 }
 
-- (NSNumber * _Nullable)outgoingRatingForMessageDict:(PEPDict * _Nonnull)messageDict
-                                               error:(NSError * _Nullable * _Nullable)error
+- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
+                                           error:(NSError * _Nullable * _Nullable)error
 {
-    message *_msg = PEP_messageDictToStruct(messageDict);
+    message *_msg = PEP_messageToStruct(theMessage);
     PEP_rating rating = PEP_rating_undefined;
 
     [self lockWrite];
@@ -489,12 +489,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     return [NSNumber numberWithPEPRating:rating];
-}
-
-- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)message
-                                           error:(NSError * _Nullable * _Nullable)error
-{
-    return [self outgoingRatingForMessageDict:(NSDictionary *) message error:error];
 }
 
 - (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
