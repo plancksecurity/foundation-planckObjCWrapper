@@ -472,8 +472,11 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 }
 
-- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
-                                           error:(NSError * _Nullable * _Nullable)error
+typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, PEP_rating *rating);
+
+- (NSNumber * _Nullable)helperOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
+                                        ratingFunction:(rating_function_type)ratingFunction
+                                                 error:(NSError * _Nullable * _Nullable)error
 {
     message *_msg = PEP_messageToStruct(theMessage);
     PEP_rating rating = PEP_rating_undefined;
@@ -489,6 +492,15 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     return [NSNumber numberWithPEPRating:rating];
+}
+
+- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
+                                           error:(NSError * _Nullable * _Nullable)error
+{
+    return [self
+            helperOutgoingRatingForMessage:theMessage
+            ratingFunction:&outgoing_message_rating
+            error:error];
 }
 
 - (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
