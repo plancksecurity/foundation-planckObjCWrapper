@@ -28,6 +28,7 @@ NSDictionary * _Nonnull PEP_identityDictFromStruct(pEp_identity * _Nullable iden
 
 PEPMessage * _Nullable pEpMessageFromStruct(message * _Nullable msg);
 
+message *PEP_messageToStruct(PEPMessage *message);
 message * _Nullable PEP_messageDictToStruct(NSDictionary * _Nullable dict);
 NSDictionary * _Nonnull PEP_messageDictFromStruct(message * _Nullable msg);
 

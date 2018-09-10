@@ -360,6 +360,10 @@ PEPMessage * _Nullable pEpMessageFromStruct(message * _Nullable msg)
     return theMessage;
 }
 
+message *PEP_messageToStruct(PEPMessage *message) {
+    return PEP_messageDictToStruct((NSDictionary *) message);
+}
+
 message *PEP_messageDictToStruct(NSDictionary *dict)
 {
     // Direction default to incoming
