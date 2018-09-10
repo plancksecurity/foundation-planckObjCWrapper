@@ -193,6 +193,13 @@
     return [session outgoingRatingForMessage:theMessage error:error];
 }
 
+- (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
+                                                  error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session outgoingRatingPreviewForMessage:theMessage error:error];
+}
+
 - (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
                                     error:(NSError * _Nullable * _Nullable)error
 {

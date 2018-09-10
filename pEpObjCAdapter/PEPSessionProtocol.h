@@ -110,6 +110,10 @@ typedef NSArray<NSString *> PEPStringList;
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error;
 
+/** Determine the preview status color of a message to be sent */
+- (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
+                                                  error:(NSError * _Nullable * _Nullable)error;
+
 /**
  Determine the rating of an identity.
  The rating is the rating a _message_ would have, if it is sent to this (and only this) identity.

@@ -503,6 +503,15 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
             error:error];
 }
 
+- (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
+                                                  error:(NSError * _Nullable * _Nullable)error
+{
+    return [self
+            helperOutgoingRatingForMessage:theMessage
+            ratingFunction:&outgoing_message_rating_preview
+            error:error];
+}
+
 - (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
                                     error:(NSError * _Nullable * _Nullable)error
 {
