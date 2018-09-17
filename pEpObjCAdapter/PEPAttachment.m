@@ -18,4 +18,23 @@
     return self;
 }
 
+- (NSString *)description
+{
+    NSMutableString *str =
+    [NSMutableString
+     stringWithFormat:@"<PEPAttachment 0x%u Part %ld bytes contentDisposition %d",
+     (uint) self, (long) self.size, self.contentDisposition];
+
+    if (self.mimeType) {
+        [str appendFormat:@", %@", self.mimeType];
+    }
+
+    if (self.filename) {
+        [str appendFormat:@", %@", self.filename];
+    }
+
+    [str appendString:@">"];
+    return str;
+}
+
 @end
