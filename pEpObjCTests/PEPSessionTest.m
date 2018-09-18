@@ -288,6 +288,8 @@
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
 
+    // key_reset?
+
     // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
 
@@ -337,6 +339,8 @@
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+
+    // key_reset?
 
     XCTAssertTrue([session trustPersonalKey:alice error:&error]);
     XCTAssertNil(error);
@@ -414,6 +418,8 @@
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+
+    // key_reset?
 
     // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
@@ -538,7 +544,9 @@
     XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
 
     // Undo
-    XCTAssertNil(error);
+
+    // key_reset?
+
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
     XCTAssertNil(error);
     XCTAssertNotNil(identBob.fingerPrint);
