@@ -136,6 +136,11 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
         case PEP_UNKNOWN_ERROR: return @"PEP_UNKNOWN_ERROR";
         case PEP_VERSION_MISMATCH: return @"PEP_VERSION_MISMATCH";
         case PEP_CANNOT_REENCRYPT: return @"PEP_CANNOT_REENCRYPT";
+        case PEP_UNKNOWN_DB_ERROR: return @"PEP_UNKNOWN_DB_ERROR";
+        case PEP_MALFORMED_KEY_RESET_MSG: return @"PEP_MALFORMED_KEY_RESET_MSG";
+        case PEP_KEY_NOT_RESET: return @"PEP_KEY_NOT_RESET";
+        case PEP_SYNC_INJECT_FAILED: return @"PEP_SYNC_INJECT_FAILED";
+        case PEP_SYNC_NO_MESSAGE_SEND_CALLBACK: return @"PEP_SYNC_NO_MESSAGE_SEND_CALLBACK";
     }
 }
 
