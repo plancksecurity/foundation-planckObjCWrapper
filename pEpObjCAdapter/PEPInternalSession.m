@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
+#import "key_reset.h"
+
 #import "PEPInternalSession.h"
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
@@ -880,6 +882,24 @@ static NSDictionary *stringToRating;
 - (void)configurePassiveModeEnabled:(BOOL)enabled
 {
     config_passive_mode(_session, enabled);
+}
+
+- (BOOL)keyReset:(PEPIdentity * _Nullable)identity
+     fingerprint:(NSString * _Nullable)fingerprint
+           error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    PEP_STATUS status = key_reset(self.session,
+                                  [[fingerprint
+                                    precomposedStringWithCanonicalMapping]
+                                   UTF8String],
+                                  ident);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 @end

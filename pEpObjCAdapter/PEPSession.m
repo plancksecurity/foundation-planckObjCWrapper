@@ -335,4 +335,12 @@
     return [session configurePassiveModeEnabled:enabled];
 }
 
+- (BOOL)keyReset:(PEPIdentity * _Nullable)identity
+     fingerprint:(NSString * _Nullable)fingerprint
+           error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session keyReset:identity fingerprint:fingerprint error:error];
+}
+
 @end

@@ -240,4 +240,8 @@ typedef NSArray<NSString *> PEPStringList;
  */
 - (void)configurePassiveModeEnabled:(BOOL)enabled;
 
+- (BOOL)keyReset:(PEPIdentity * _Nullable)identity
+     fingerprint:(NSString * _Nullable)fingerprint
+           error:(NSError * _Nullable * _Nullable)error;
+
 @end
