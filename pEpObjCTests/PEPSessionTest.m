@@ -287,19 +287,6 @@
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
-
-    // key_reset?
-
-    // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
-
-    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
-    XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
-
-    XCTAssertTrue([session keyResetTrust:alice error:&error]);
-    XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 }
 
 /** ENGINE-384 */
@@ -339,20 +326,6 @@
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
-
-    // key_reset?
-
-    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
-    XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
-
-    XCTAssertTrue([session keyResetTrust:alice error:&error]);
-    XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
-
-    // This line provoked the crash
-    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
-    XCTAssertNil(error);
 }
 
 /**
@@ -418,20 +391,6 @@
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
-
-    // key_reset?
-
-    // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
-
-    XCTAssertTrue([session trustPersonalKey:alice error:&error]);
-    XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
-
-    XCTAssertTrue([session keyResetTrust:alice error:&error]);
-    XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
-
     dispatch_group_wait(backgroundGroup, DISPATCH_TIME_FOREVER);
 }
 
@@ -529,6 +488,8 @@
     XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
 
     // mistrust Bob
+    NSString *identBobFpr = identBob.fingerPrint;
+    XCTAssertNotNil(identBobFpr);
     XCTAssertTrue([session keyMistrusted:identBob error:&error]);
     XCTAssertNil(error);
 
@@ -542,62 +503,6 @@
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
-
-    // Undo
-
-    // key_reset?
-
-    XCTAssertTrue([session updateIdentity:identBob error:&error]);
-    XCTAssertNil(error);
-    XCTAssertNotNil(identBob.fingerPrint);
-
-    // Back to yellow
-    numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
-    XCTAssertNotNil(numRating);
-    XCTAssertNil(error);
-
-    // After ENGINE-371 has been fixed, this should be just PEP_rating_reliable
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
-    XCTAssertEqual([self ratingForIdentity:identBob session:session], PEP_rating_trusted);
-
-    // Trust again
-    XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
-    XCTAssertNil(error);
-
-    // Back to green
-    numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
-    XCTAssertNotNil(numRating);
-    XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
-
-    // Now let see if it turns back yellow if we add an unconfirmed folk.
-    // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
-    // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"0x70DCF575.asc" session:session]);
-
-    PEPIdentity *identJohn = [[PEPIdentity alloc]
-                              initWithAddress:@"pep.test.john@pep-project.org"
-                              userID:@"101" userName:@"pEp Test John"
-                              isOwn:NO
-                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
-
-    XCTAssertTrue([session updateIdentity:identJohn error:&error]);
-    XCTAssertNil(error);
-
-    msg.cc = @[[PEPTestUtils foreignPepIdentityWithAddress:@"pep.test.john@pep-project.org"
-                                                  userName:@"pEp Test John"]];
-    // Yellow ?
-    numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
-    XCTAssertNotNil(numRating);
-    XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
-
-    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
-    XCTAssertNotNil(encMsg);
-    XCTAssertNil(error);
-
-    XCTAssertEqualObjects(encMsg.shortMessage, @"p≡p");
-    XCTAssertTrue([encMsg.longMessage containsString:@"p≡p"]);
 }
 
 
