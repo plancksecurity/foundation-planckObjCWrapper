@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#include "message_api.h"
+#import "message_api.h"
 
 @class PEPIdentity;
 @class PEPMessage;
