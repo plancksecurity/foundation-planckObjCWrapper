@@ -794,19 +794,6 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return [NSArray arrayWithArray:langs];
 }
 
-- (BOOL)undoLastMistrustWithError:(NSError * _Nullable * _Nullable)error;
-{
-    [self lockWrite];
-    PEP_STATUS status = undo_last_mistrust(_session);
-    [self unlockWrite];
-
-    if ([NSError setError:error fromPEPStatus:status]) {
-        return NO;
-    }
-
-    return YES;
-}
-
 static NSDictionary *ratingToString;
 static NSDictionary *stringToRating;
 

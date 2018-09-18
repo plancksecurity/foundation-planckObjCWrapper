@@ -303,12 +303,6 @@
     return [session languageListWithError:error];
 }
 
-- (BOOL)undoLastMistrustWithError:(NSError * _Nullable * _Nullable)error;
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    return [session undoLastMistrustWithError:error];
-}
-
 - (PEP_rating)ratingFromString:(NSString * _Nonnull)string
 {
     PEPInternalSession *session = [PEPSessionProvider session];
