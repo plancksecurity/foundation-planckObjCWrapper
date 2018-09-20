@@ -672,7 +672,8 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return YES;
 }
 
-- (BOOL)importKey:(NSString * _Nonnull)keydata error:(NSError * _Nullable * _Nullable)error
+- (NSArray * _Nullable)importKey:(NSString * _Nonnull)keydata
+                           error:(NSError * _Nullable * _Nullable)error
 {
     [self lockWrite];
     PEP_STATUS status = import_key(_session,
@@ -681,10 +682,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     [self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
-        return NO;
+        return nil;
     }
 
-    return YES;
+    // TODO
+    return @[];
 }
 
 - (BOOL)logTitle:(NSString * _Nonnull)title
