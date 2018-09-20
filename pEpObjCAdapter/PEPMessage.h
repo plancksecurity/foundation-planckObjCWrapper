@@ -44,6 +44,11 @@
 /**
  For backwards compatiblity.
  */
+- (instancetype)initWithDictionary:(PEPDict *)dict;
+
+/**
+ For backwards compatiblity.
+ */
 - (PEPDict * _Nonnull)dictionary;
 
 /**

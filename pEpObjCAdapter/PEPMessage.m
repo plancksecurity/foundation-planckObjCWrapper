@@ -14,6 +14,32 @@
 
 @implementation PEPMessage
 
+- (instancetype)initWithDictionary:(PEPDict *)dict
+{
+    self = [super init];
+    if (self) {
+        self.messageID = [dict objectForKey:kPepID];
+        self.from = [dict objectForKey:kPepFrom];
+        self.to = [dict objectForKey:kPepTo];
+        self.cc = [dict objectForKey:kPepCC];
+        self.bcc = [dict objectForKey:kPepBCC];
+        self.shortMessage = [dict objectForKey:kPepShortMessage];
+        self.longMessage = [dict objectForKey:kPepLongMessage];
+        self.longMessageFormatted = [dict objectForKey:kPepLongMessageFormatted];
+        self.replyTo = [dict objectForKey:kPepReplyTo];
+        self.inReplyTo = [dict objectForKey:kPepInReplyTo];
+        self.references = [dict objectForKey:kPepReferences];
+        self.sentDate = [dict objectForKey:kPepSent];
+        self.receivedDate = [dict objectForKey:kPepReceived];
+        self.attachments = [dict objectForKey:kPepAttachments];
+        self.optionalFields = [dict objectForKey:kPepOptFields];
+        self.keywords = [dict objectForKey:kPepKeywords];
+        self.receivedBy = [dict objectForKey:kPepReceivedBy];
+        self.direction = (PEP_msg_direction) [dict objectForKey:kPepOutgoing];
+    }
+    return self;
+}
+
 // MARK: - NSKeyValueCoding
 
 - (BOOL)outgoing
