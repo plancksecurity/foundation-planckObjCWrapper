@@ -14,7 +14,7 @@
 
 @implementation PEPMessage
 
-- (instancetype)initWithDictionary:(PEPDict *)dict
+- (instancetype _Nonnull)initWithDictionary:(PEPDict *)dict
 {
     self = [super init];
     if (self) {
