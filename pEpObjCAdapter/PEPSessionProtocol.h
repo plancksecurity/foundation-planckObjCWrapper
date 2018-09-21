@@ -186,8 +186,8 @@ typedef NSArray<NSString *> PEPStringList;
 #pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
-- (NSArray * _Nullable)importKey:(NSString * _Nonnull)keydata
-                           error:(NSError * _Nullable * _Nullable)error;
+- (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
+                                          error:(NSError * _Nullable * _Nullable)error;
 
 - (BOOL)logTitle:(NSString * _Nonnull)title
           entity:(NSString * _Nonnull)entity

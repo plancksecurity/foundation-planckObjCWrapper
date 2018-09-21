@@ -672,21 +672,26 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return YES;
 }
 
-- (NSArray * _Nullable)importKey:(NSString * _Nonnull)keydata
-                           error:(NSError * _Nullable * _Nullable)error
+- (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
+                                          error:(NSError * _Nullable * _Nullable)error
 {
+    identity_list *identList = NULL;
+
     [self lockWrite];
     PEP_STATUS status = import_key(_session,
                                    [[keydata precomposedStringWithCanonicalMapping] UTF8String],
-                                   [keydata length], NULL);
+                                   [keydata length], &identList);
     [self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
+        free(identList);
         return nil;
     }
 
-    // TODO
-    return @[];
+    NSArray *idents = PEP_arrayFromIdentityList(identList);
+    free(identList);
+
+    return idents;
 }
 
 - (BOOL)logTitle:(NSString * _Nonnull)title
