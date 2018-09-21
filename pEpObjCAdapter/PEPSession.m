@@ -256,7 +256,8 @@
 
 #pragma mark Internal API (testing etc.)
 
-- (BOOL)importKey:(NSString * _Nonnull)keydata error:(NSError * _Nullable * _Nullable)error
+- (NSArray * _Nullable)importKey:(NSString * _Nonnull)keydata
+                           error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session importKey:keydata error:error];
