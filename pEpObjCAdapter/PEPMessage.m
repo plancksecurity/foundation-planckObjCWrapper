@@ -158,7 +158,7 @@
     self.longMessageFormatted = longMsgFormatted;
 }
 
-// MARK: Faking directory
+// MARK: - Faking directory
 
 - (PEPDict * _Nonnull)dictionary
 {
@@ -194,7 +194,7 @@
     self.direction = PEP_dir_incoming; // basically, 0
 }
 
-// MARK: Faking the pEp directory extension
+// MARK: - Faking the pEp directory extension
 
 - (void)replaceWithMessage:(message *)message
 {
