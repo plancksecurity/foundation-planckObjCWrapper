@@ -8,14 +8,11 @@
 
 #import "PEPMessage.h"
 #import "PEPIdentity.h"
-#import "PEPAttachment.h"
 
 #import "NSObject+Extension.h"
 #import "NSMutableDictionary+PEP.h"
 
 @implementation PEPMessage
-
-// MARK: - General public API
 
 - (instancetype _Nonnull)initWithDictionary:(PEPDict *)dict
 {
@@ -47,13 +44,6 @@
         }
     }
     return self;
-}
-
-- (BOOL)isLikelyPEPEncrypted
-{
-    return self.attachments.count == 2 &&
-    [self.attachments[0].mimeType isEqualToString:@"application/pgp-encrypted"] &&
-    [self.attachments[1].mimeType isEqualToString:@"file://msg.asc"];
 }
 
 // MARK: - NSKeyValueCoding

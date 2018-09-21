@@ -56,9 +56,4 @@
  */
 - (PEPMutableDict * _Nonnull)mutableDictionary;
 
-/**
- Test if this is likely a message encrypted by pEp.
- */
-- (BOOL)isLikelyPEPEncrypted;
-
 @end
