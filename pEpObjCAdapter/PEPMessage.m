@@ -35,7 +35,13 @@
         self.optionalFields = [dict objectForKey:kPepOptFields];
         self.keywords = [dict objectForKey:kPepKeywords];
         self.receivedBy = [dict objectForKey:kPepReceivedBy];
-        self.direction = (PEP_msg_direction) [dict objectForKey:kPepOutgoing];
+
+        NSNumber *boolNum = [dict objectForKey:kPepOutgoing];
+        if (boolNum.boolValue) {
+            self.direction = PEP_dir_outgoing;
+        } else {
+            self.direction = PEP_dir_incoming;
+        }
     }
     return self;
 }
