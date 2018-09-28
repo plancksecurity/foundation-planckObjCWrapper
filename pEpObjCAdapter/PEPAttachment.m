@@ -14,6 +14,7 @@
 {
     if (self = [super init]) {
         self.data = data;
+        self.size = data.length;
     }
     return self;
 }
