@@ -855,7 +855,7 @@ static NSDictionary *stringToRating;
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     bool isPEP;
-    PEP_STATUS status = is_pep_user(self.session, ident, &isPEP);
+    PEP_STATUS status = is_pEp_user(self.session, ident, &isPEP);
 
     if ([NSError setError:error fromPEPStatus:status]) {
         return nil;
