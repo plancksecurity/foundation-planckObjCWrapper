@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "pEpEngine.h"
+
+PEP_STATUS messageToSendObjc(struct _message *msg);
+int inject_sync_eventObjc(SYNC_EVENT ev, void *management);
+
 @interface PEPSync : NSObject
 
 @end

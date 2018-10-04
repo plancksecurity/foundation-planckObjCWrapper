@@ -22,6 +22,7 @@
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
 #import "PEPLock.h"
+#import "PEPSync.h"
 
 @implementation PEPInternalSession
 
@@ -32,7 +33,7 @@
         [PEPInternalSession setupTrustWordsDB];
 
         [self lockWrite];
-        PEP_STATUS status = init(&_session);
+        PEP_STATUS status = init(&_session, messageToSendObjc, inject_sync_eventObjc);
         [self unlockWrite];
 
         if (status != PEP_STATUS_OK) {
