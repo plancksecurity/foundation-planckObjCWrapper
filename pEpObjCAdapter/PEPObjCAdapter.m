@@ -466,26 +466,4 @@ static id <PEPSyncDelegate> syncDelegate = nil;
     }
 }
 
-+ (PEPMessage * _Nullable)mimeDecode:(NSString * _Nonnull)mimeText
-                          pEpMessage:(PEPMessage *_Nullable * _Nonnull)pEpMessage
-                               error:(NSError * _Nonnull * _Nullable)error
-{
-    message *dstMsg = NULL;
-    const char *utfString = [[mimeText precomposedStringWithCanonicalMapping] UTF8String];
-    PEP_STATUS status = mime_decode_message(utfString, strlen(utfString), &dstMsg);
-
-    if (status == PEP_STATUS_OK) {
-        if (dstMsg) {
-            return pEpMessageFromStruct(dstMsg);
-        } else {
-            return nil;
-        }
-    } else {
-        if (error) {
-            *error = [NSError errorWithPEPStatus:status];
-        }
-        return nil;
-    }
-}
-
 @end

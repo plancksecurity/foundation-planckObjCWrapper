@@ -79,8 +79,4 @@ extern const PEP_decrypt_flags PEP_decrypt_flag_none;
  */
 + (void)stopSync;
 
-+ (PEPMessage * _Nullable)mimeDecode:(NSString * _Nonnull)mimeText
-                          pEpMessage:(PEPMessage *_Nullable * _Nonnull)pEpMessage
-                               error:(NSError * _Nonnull * _Nullable)error;
-
 @end
