@@ -45,6 +45,7 @@
 		43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */; };
 		43E02A231C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */; };
 		43F73BD42165F6EC00AB4524 /* PEPLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F73BD32165F6EC00AB4524 /* PEPLock.m */; };
+		43F73BEA2166248E00AB4524 /* PEPSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F73BE92166248E00AB4524 /* PEPSync.m */; };
 		6400FB911B8CA543005221E3 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
@@ -186,6 +187,8 @@
 		43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_A3FC7F0A_from_mutt.ser; sourceTree = "<group>"; };
 		43F73BD22165F6EC00AB4524 /* PEPLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPLock.h; sourceTree = "<group>"; };
 		43F73BD32165F6EC00AB4524 /* PEPLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPLock.m; sourceTree = "<group>"; };
+		43F73BE82166248E00AB4524 /* PEPSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSync.h; sourceTree = "<group>"; };
+		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +333,8 @@
 				439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */,
 				43F73BD22165F6EC00AB4524 /* PEPLock.h */,
 				43F73BD32165F6EC00AB4524 /* PEPLock.m */,
+				43F73BE82166248E00AB4524 /* PEPSync.h */,
+				43F73BE92166248E00AB4524 /* PEPSync.m */,
 			);
 			path = pEpObjCAdapter;
 			sourceTree = "<group>";
@@ -514,6 +519,7 @@
 				43209B421ECC2DBC007E7E2E /* PEPQueue.m in Sources */,
 				435665CC2080A6CB00EC5B10 /* NSNumber+PEPRating.m in Sources */,
 				439393F8208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m in Sources */,
+				43F73BEA2166248E00AB4524 /* PEPSync.m in Sources */,
 				15206CC71F8E078B003FF880 /* PEPSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
