@@ -28,7 +28,6 @@
 		432FA2D71C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */; };
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
-		43368540203D5CEC0069A451 /* PEPTestSyncDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77F2010E20400A0DA20 /* PEPTestSyncDelegate.m */; };
 		433E28911FA741DE00E359B3 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E28901FA741DE00E359B3 /* PEPIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		434ED6D6207E27B8000A7590 /* PEPAutoPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */; };
@@ -131,8 +130,6 @@
 		15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProviderTest.m; sourceTree = "<group>"; };
 		15D3D77B2010DDC500A0DA20 /* PEPTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTestUtils.h; sourceTree = "<group>"; };
 		15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPTestUtils.m; sourceTree = "<group>"; };
-		15D3D77E2010E20400A0DA20 /* PEPTestSyncDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPTestSyncDelegate.h; sourceTree = "<group>"; };
-		15D3D77F2010E20400A0DA20 /* PEPTestSyncDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPTestSyncDelegate.m; sourceTree = "<group>"; };
 		352988AA1AEF964100FA7E2E /* libpEpObjCAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		35FB0ABB1B57F97E00377032 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35FB0ABD1B57F99D00377032 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -231,8 +228,6 @@
 			children = (
 				15D3D77B2010DDC500A0DA20 /* PEPTestUtils.h */,
 				15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */,
-				15D3D77E2010E20400A0DA20 /* PEPTestSyncDelegate.h */,
-				15D3D77F2010E20400A0DA20 /* PEPTestSyncDelegate.m */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -528,7 +523,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				152D58EF201B6DB200036219 /* PEPMessageUtilTest.m in Sources */,
-				43368540203D5CEC0069A451 /* PEPTestSyncDelegate.m in Sources */,
 				152A9C472010F50400F962ED /* PEPSessionTest.m in Sources */,
 				434226811D4F60000083ED79 /* PepTests.m in Sources */,
 				4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */,

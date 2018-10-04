@@ -14,7 +14,6 @@
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
-#import "PEPTestSyncDelegate.h"
 
 @interface PEPSessionTest : XCTestCase
 @end
@@ -33,39 +32,6 @@
 {
     [self pEpCleanUp];
     [super tearDown];
-}
-
-- (void)testSyncSession
-{
-    PEPSession *session = [PEPSession new];
-
-    // Dummy to set up the DB, since this is currenty only triggered by session use,
-    // which PEPObjCAdapter.startSync does not trigger.
-    NSError *error = nil;
-    XCTAssertNotNil([session getLogWithError:&error]);
-    XCTAssertNil(error);
-
-    PEPTestSyncDelegate *syncDelegate = [[PEPTestSyncDelegate alloc] init];
-
-    // This should attach session just created
-    [PEPObjCAdapter startSync:syncDelegate];
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
-                            userID:@"Me"
-                            userName:@"pEp Test iOS GenKey"
-                            isOwn:YES];
-
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-
-    bool res = [syncDelegate waitUntilSent:1];
-
-    // Can't currently work, engine doesn't contain sync.
-    XCTAssertFalse(res);
-
-    // This should detach session just created
-    [PEPObjCAdapter stopSync];
 }
 
 - (void)testTrustWords

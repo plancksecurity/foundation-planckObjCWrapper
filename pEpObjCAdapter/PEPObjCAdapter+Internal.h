@@ -29,16 +29,6 @@
  */
 + (BOOL)passiveModeEnabled;
 
-// this messages are for internal use only; do not call
-
-+ (void)registerExamineFunction:(PEP_SESSION)session;
-+ (PEPQueue*)getLookupQueue;
-
-+ (PEPQueue*)getSyncQueue;
-+ (id <PEPSyncDelegate>)getSyncDelegate;
-+ (void)bindSession:(PEPInternalSession*)session;
-+ (void)unbindSession:(PEPInternalSession*)session;
-
 @end
 
 #endif /* PEPIOSAdapter_Internal_h */
