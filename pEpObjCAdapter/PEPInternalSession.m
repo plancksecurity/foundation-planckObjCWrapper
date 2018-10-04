@@ -21,6 +21,7 @@
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
+#import "PEPLock.h"
 
 @implementation PEPInternalSession
 
@@ -63,12 +64,12 @@
 
 - (void)lockWrite
 {
-    [PEPObjCAdapter lockWrite];
+    [PEPLock lockWrite];
 }
 
 - (void)unlockWrite
 {
-    [PEPObjCAdapter unlockWrite];
+    [PEPLock unlockWrite];
 }
 
 + (void)setupTrustWordsDB

@@ -12,6 +12,7 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
+#import "PEPLock.h"
 
 #import "keymanagement.h"
 #import "mime.h"
@@ -105,7 +106,6 @@ void *retrieve_next_sync_msg(void *unused_mamagement, time_t *timeout)
 
 const char* _Nullable SystemDB = NULL;
 NSURL *s_homeURL;
-static NSLock *s_writeLock;
 
 static BOOL s_unEncryptedSubjectEnabled = NO;
 static BOOL s_passiveModeEnabled = NO;
@@ -142,7 +142,6 @@ static BOOL s_passiveModeEnabled = NO;
 {
     s_homeURL = [self createApplicationDirectory];
     [self setHomeDirectory:s_homeURL]; // Important, defines $HOME and $TEMP for the engine
-    s_writeLock = [[NSLock alloc] init];
 }
 
 + (NSURL *)homeURL
@@ -261,18 +260,6 @@ static NSMutableArray* boundSessions = nil;
     return boundSessions;
 }
 
-#pragma mark - sqlite locking
-
-+ (void)lockWrite
-{
-    [s_writeLock lock];
-}
-
-+ (void)unlockWrite
-{
-    [s_writeLock unlock];
-}
-
 #pragma mark - Old keysync implementation
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -379,9 +366,9 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         
         syncThreadJoinCond = [[NSConditionLock alloc] initWithCondition:NO];
         
-        [self lockWrite];
+        [PEPLock lockWrite];
         PEP_STATUS status = init(&sync_session);
-        [self unlockWrite];
+        [PEPLock unlockWrite];
         if (status != PEP_STATUS_OK) {
             return;
         }
@@ -437,9 +424,9 @@ static id <PEPSyncDelegate> syncDelegate = nil;
         [syncThreadJoinCond lockWhenCondition:YES];
         [syncThreadJoinCond unlock];
         
-        [self lockWrite];
+        [PEPLock lockWrite];
         release(sync_session);
-        [self unlockWrite];
+        [PEPLock unlockWrite];
 
         sync_session = NULL;
         syncThread = nil;

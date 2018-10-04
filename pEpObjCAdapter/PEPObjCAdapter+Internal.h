@@ -39,16 +39,6 @@
 + (void)bindSession:(PEPInternalSession*)session;
 + (void)unbindSession:(PEPInternalSession*)session;
 
-/**
- Locks for (potential) sqlite writes.
- */
-+ (void)lockWrite;
-
-/**
- Unlocks (potential) sqlite writes.
- */
-+ (void)unlockWrite;
-
 @end
 
 #endif /* PEPIOSAdapter_Internal_h */
