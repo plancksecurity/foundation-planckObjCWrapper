@@ -10,8 +10,6 @@
 
 #import "PEPSession.h"
 
-#include "sync_app.h"
-
 extern const PEP_decrypt_flags PEP_decrypt_flag_none;
 
 @class PEPLanguage;
