@@ -15,6 +15,10 @@ int inject_sync_eventObjc(SYNC_EVENT ev, void *management);
 
 @class PEPSyncSendMessageDelegate;
 
+/**
+ @see libpEpAdapter: Adapter.{cc|hh}
+ @see sync_codec.h
+ */
 @interface PEPSync : NSObject
 
 + (void)setPEPSyncSendMessageDelegate:
