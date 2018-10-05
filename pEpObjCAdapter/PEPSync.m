@@ -62,6 +62,17 @@ static __weak PEPSyncSendMessageDelegate *s_PEPSyncSendMessageDelegate;
     return s_PEPSyncSendMessageDelegate;
 }
 
+- (instancetype)initWithSyncSendMessageDelegate:(PEPSyncSendMessageDelegate *
+                                                 _Nonnull)syncSendMessageDelegate
+                        notifyHandshakeDelegate:(PEPNotifyHandshakeDelegate *
+                                                 _Nonnull)notifyHandshakeDelegate
+{
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
 - (void)setSyncSendMessageDelegate:(PEPSyncSendMessageDelegate *)syncSendMessageDelegate
 {
     [PEPSync setPEPSyncSendMessageDelegate:syncSendMessageDelegate];
