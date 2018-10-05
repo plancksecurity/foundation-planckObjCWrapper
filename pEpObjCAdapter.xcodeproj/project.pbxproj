@@ -661,7 +661,7 @@
 		352988BF1AEF964100FA7E2E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../pEpEngine/src/";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -679,13 +679,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
 			};
 			name = Debug;
 		};
 		352988C01AEF964100FA7E2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../pEpEngine/src/";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"-letpan-ios",
@@ -702,6 +703,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
 			};
 			name = Release;
 		};
