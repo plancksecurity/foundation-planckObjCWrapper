@@ -12,6 +12,8 @@
 #import "PEPMessageUtil.h"
 #import "PEPMessage.h"
 
+// MARK: - Declare internals
+
 @interface PEPSync ()
 
 + (void)setPEPSyncSendMessageDelegate:
@@ -22,6 +24,8 @@
 @property (nonatomic, nullable, weak) PEPSyncSendMessageDelegate *syncSendMessageDelegate;
 
 @end
+
+// MARK: - Globals called by the engine, used in session init
 
 PEP_STATUS messageToSendObjc(struct _message *msg)
 {
@@ -39,7 +43,11 @@ int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
     return 0;
 }
 
+// MARK: - Internal globals
+
 static __weak PEPSyncSendMessageDelegate *s_PEPSyncSendMessageDelegate;
+
+// MARK: - PEPSync class
 
 @implementation PEPSync
 
