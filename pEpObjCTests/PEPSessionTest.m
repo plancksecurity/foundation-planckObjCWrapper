@@ -14,8 +14,24 @@
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
+#import "PEPSync.h"
+#import "PEPSyncSendMessageDelegate.h"
+#import "PEPNotifyHandshakeDelegate.h"
+
+@interface SendDelegate : NSObject<PEPSyncSendMessageDelegate>
+
+@end
+
+@interface NotifyHandshakeDelegate : NSObject<PEPNotifyHandshakeDelegate>
+
+@end
 
 @interface PEPSessionTest : XCTestCase
+
+@property (nonatomic) PEPSync *sync;
+@property (nonatomic) SendDelegate *sendMessageDelegate;
+@property (nonatomic) NotifyHandshakeDelegate *notifyHandshakeDelegate;
+
 @end
 
 @implementation PEPSessionTest
@@ -23,6 +39,11 @@
 - (void)setUp
 {
     [super setUp];
+
+    self.sync = [[PEPSync alloc]
+                 initWithSyncSendMessageDelegate:self.sendMessageDelegate
+                 notifyHandshakeDelegate:self.notifyHandshakeDelegate];
+
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 
     [self pEpCleanUp];
@@ -30,6 +51,8 @@
 
 - (void)tearDown
 {
+    [self.sync shutdown];
+
     [self pEpCleanUp];
     [super tearDown];
 }
