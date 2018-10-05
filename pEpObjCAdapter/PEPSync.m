@@ -9,6 +9,7 @@
 #import "PEPSync.h"
 
 #import "PEPSyncSendMessageDelegate.h"
+#import "PEPNotifyHandshakeDelegate.h"
 #import "PEPMessageUtil.h"
 #import "PEPMessage.h"
 #import "PEPQueue.h"
@@ -19,8 +20,8 @@
 
 + (PEPSync * _Nullable)instance;
 
-@property (nonatomic, nullable, weak) PEPSyncSendMessageDelegate *syncSendMessageDelegate;
-@property (nonatomic, nullable, weak) PEPNotifyHandshakeDelegate *notifyHandshakeDelegate;
+@property (nonatomic, nullable, weak) id<PEPSyncSendMessageDelegate> syncSendMessageDelegate;
+@property (nonatomic, nullable, weak) id<PEPNotifyHandshakeDelegate> notifyHandshakeDelegate;
 @property (nonatomic, nonnull) PEPQueue *queue;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event;
@@ -31,7 +32,7 @@
 
 PEP_STATUS messageToSendObjc(struct _message *msg)
 {
-    PEPSyncSendMessageDelegate *delegate = [[PEPSync instance] syncSendMessageDelegate];
+    id<PEPSyncSendMessageDelegate> delegate = [[PEPSync instance] syncSendMessageDelegate];
     if (delegate) {
         PEPMessage *theMessage = pEpMessageFromStruct(msg);
         return [delegate sendMessage:theMessage];
@@ -68,9 +69,9 @@ static __weak PEPSync *s_pEpSync;
     return s_pEpSync;
 }
 
-- (instancetype)initWithSyncSendMessageDelegate:(PEPSyncSendMessageDelegate *
+- (instancetype)initWithSyncSendMessageDelegate:(id<PEPSyncSendMessageDelegate>
                                                  _Nonnull)syncSendMessageDelegate
-                        notifyHandshakeDelegate:(PEPNotifyHandshakeDelegate *
+                        notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
                                                  _Nonnull)notifyHandshakeDelegate
 {
     if (self = [super init]) {
