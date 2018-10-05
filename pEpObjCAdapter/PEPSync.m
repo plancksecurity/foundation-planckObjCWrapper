@@ -16,12 +16,11 @@
 
 @interface PEPSync ()
 
-+ (void)setPEPSyncSendMessageDelegate:
-(PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate;
-
 + (PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate;
++ (PEPNotifyHandshakeDelegate * _Nullable)notifyHandshakeDelegate;
 
 @property (nonatomic, nullable, weak) PEPSyncSendMessageDelegate *syncSendMessageDelegate;
+@property (nonatomic, nullable, weak) PEPNotifyHandshakeDelegate *notifyHandshakeDelegate;
 
 @end
 
@@ -40,12 +39,17 @@ PEP_STATUS messageToSendObjc(struct _message *msg)
 
 int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 {
-    return 0;
+    PEPNotifyHandshakeDelegate *delegate = [PEPSync notifyHandshakeDelegate];
+    if (delegate) {
+        return 0;
+    }
+    return 1;
 }
 
 // MARK: - Internal globals
 
-static __weak PEPSyncSendMessageDelegate *s_PEPSyncSendMessageDelegate;
+static __weak PEPSyncSendMessageDelegate *s_syncSendMessageDelegate;
+static __weak PEPNotifyHandshakeDelegate *s_notifyHandshakeDelegate;
 
 // MARK: - PEPSync class
 
@@ -54,12 +58,17 @@ static __weak PEPSyncSendMessageDelegate *s_PEPSyncSendMessageDelegate;
 + (void)setPEPSyncSendMessageDelegate:
 (PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate
 {
-    s_PEPSyncSendMessageDelegate = syncSendMessageDelegate;
+    s_syncSendMessageDelegate = syncSendMessageDelegate;
 }
 
 + (PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate
 {
-    return s_PEPSyncSendMessageDelegate;
+    return s_syncSendMessageDelegate;
+}
+
++ (PEPNotifyHandshakeDelegate * _Nullable)notifyHandshakeDelegate
+{
+    return s_notifyHandshakeDelegate;
 }
 
 - (instancetype)initWithSyncSendMessageDelegate:(PEPSyncSendMessageDelegate *
@@ -68,7 +77,8 @@ static __weak PEPSyncSendMessageDelegate *s_PEPSyncSendMessageDelegate;
                                                  _Nonnull)notifyHandshakeDelegate
 {
     if (self = [super init]) {
-        
+        self.syncSendMessageDelegate = syncSendMessageDelegate;
+        self.notifyHandshakeDelegate = notifyHandshakeDelegate;
     }
     return self;
 }
