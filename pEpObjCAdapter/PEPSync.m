@@ -18,9 +18,9 @@ PEP_STATUS messageToSendObjc(struct _message *msg)
     if (delegate) {
         PEPMessage *theMessage = pEpMessageFromStruct(msg);
         return [delegate sendMessage:theMessage];
+    } else {
+        return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
     }
-
-    return PEP_STATUS_OK;
 }
 
 int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
