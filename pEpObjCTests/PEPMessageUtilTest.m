@@ -10,18 +10,24 @@
 
 #import "PEPMessageUtil.h"
 #import "PEPIdentity.h"
+#import "PEPSync.h"
 
 @interface PEPMessageUtilTest : XCTestCase
+
 @property pEp_identity *pepIdentitySomeOne;
 @property NSDictionary *dictSomeOne;
 @property pEp_identity *pepIdentityMe;
 @property NSDictionary *dictMe;
+@property (nonatomic) PEPSync *sync;
+
 @end
 
 @implementation PEPMessageUtilTest
 
 - (void)setUp
 {
+    self.sync = [PEPSync new];
+
     // Someones (not "Me") identity as struct and dict.
     self.pepIdentitySomeOne = new_identity("some@some.com",
                                            "SOMEONES-FPR_IS_PRETTY_SHORT",
@@ -49,6 +55,11 @@
                          kPepUsername:@ "Me 12345",
                          kPepCommType:[NSNumber numberWithInt: PEP_ct_confirmed],
                          kPepIsOwn:[NSNumber numberWithBool: YES]};
+}
+
+- (void)tearDown
+{
+    [self.sync shutdown];
 }
 
 #pragma mark - PEP_identityDictToStruct
