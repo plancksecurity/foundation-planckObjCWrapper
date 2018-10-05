@@ -82,6 +82,10 @@ static __weak PEPSync *s_pEpSync;
     return self;
 }
 
+- (void)shutdown
+{
+}
+
 - (int)injectSyncEvent:(SYNC_EVENT)event
 {
     [self.queue enqueue:[NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)]];
