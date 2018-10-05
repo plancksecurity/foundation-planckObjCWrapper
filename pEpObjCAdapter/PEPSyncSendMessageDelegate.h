@@ -12,7 +12,7 @@
 
 @class PEPMessage;
 
-@interface PEPSyncSendMessageDelegate : NSObject
+@protocol PEPSyncSendMessageDelegate <NSObject>
 
 - (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message;
 
