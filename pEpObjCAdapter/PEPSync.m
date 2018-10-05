@@ -19,6 +19,8 @@
 
 + (PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate;
 
+@property (nonatomic, nullable, weak) PEPSyncSendMessageDelegate *syncSendMessageDelegate;
+
 @end
 
 PEP_STATUS messageToSendObjc(struct _message *msg)

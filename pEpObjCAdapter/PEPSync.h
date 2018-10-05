@@ -21,11 +21,4 @@ int inject_sync_eventObjc(SYNC_EVENT ev, void *management);
  */
 @interface PEPSync : NSObject
 
-+ (void)setPEPSyncSendMessageDelegate:
-(PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate;
-
-+ (PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate;
-
-@property (nonatomic, nullable, weak) PEPSyncSendMessageDelegate *syncSendMessageDelegate;
-
 @end
