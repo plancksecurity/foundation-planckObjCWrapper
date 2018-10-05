@@ -9,9 +9,17 @@
 #import "PEPSync.h"
 
 #import "PEPSyncSendMessageDelegate.h"
+#import "PEPMessageUtil.h"
+#import "PEPMessage.h"
 
 PEP_STATUS messageToSendObjc(struct _message *msg)
 {
+    PEPSyncSendMessageDelegate *delegate = [PEPSync syncSendMessageDelegate];
+    if (delegate) {
+        PEPMessage *theMessage = pEpMessageFromStruct(msg);
+        return [delegate sendMessage:theMessage];
+    }
+
     return PEP_STATUS_OK;
 }
 

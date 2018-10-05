@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+#import "pEpEngine.h"
+
+@class PEPMessage;
 
 @interface PEPSyncSendMessageDelegate : NSObject
 
-@end
+- (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message;
 
-NS_ASSUME_NONNULL_END
+@end
