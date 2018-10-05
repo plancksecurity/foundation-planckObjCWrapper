@@ -684,6 +684,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
@@ -708,6 +709,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
