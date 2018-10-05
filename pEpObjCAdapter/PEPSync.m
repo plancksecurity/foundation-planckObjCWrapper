@@ -11,6 +11,7 @@
 #import "PEPSyncSendMessageDelegate.h"
 #import "PEPMessageUtil.h"
 #import "PEPMessage.h"
+#import "PEPQueue.h"
 
 // MARK: - Declare internals
 
@@ -20,6 +21,9 @@
 
 @property (nonatomic, nullable, weak) PEPSyncSendMessageDelegate *syncSendMessageDelegate;
 @property (nonatomic, nullable, weak) PEPNotifyHandshakeDelegate *notifyHandshakeDelegate;
+@property (nonatomic, nonnull) PEPQueue *queue;
+
+- (int)injectSyncEvent:(SYNC_EVENT)event;
 
 @end
 
@@ -38,11 +42,17 @@ PEP_STATUS messageToSendObjc(struct _message *msg)
 
 int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 {
-    PEPNotifyHandshakeDelegate *delegate = [[PEPSync instance] notifyHandshakeDelegate];
-    if (delegate) {
-        return 0;
+    PEPSync *pEpSync = [PEPSync instance];
+
+    if (!pEpSync) {
+        pEpSync = (PEPSync *) CFBridgingRelease(management);
     }
-    return 1;
+
+    if (pEpSync) {
+        return [pEpSync injectSyncEvent:ev];
+    } else {
+        return 1;
+    }
 }
 
 // MARK: - Internal globals
@@ -66,9 +76,16 @@ static __weak PEPSync *s_pEpSync;
     if (self = [super init]) {
         _syncSendMessageDelegate = syncSendMessageDelegate;
         _notifyHandshakeDelegate = notifyHandshakeDelegate;
+        _queue = [PEPQueue new];
         s_pEpSync = self;
     }
     return self;
+}
+
+- (int)injectSyncEvent:(SYNC_EVENT)event
+{
+    [self.queue enqueue:[NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)]];
+    return 0;
 }
 
 @end
