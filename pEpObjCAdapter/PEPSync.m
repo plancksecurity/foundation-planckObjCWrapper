@@ -16,8 +16,7 @@
 
 @interface PEPSync ()
 
-+ (PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate;
-+ (PEPNotifyHandshakeDelegate * _Nullable)notifyHandshakeDelegate;
++ (PEPSync * _Nullable)instance;
 
 @property (nonatomic, nullable, weak) PEPSyncSendMessageDelegate *syncSendMessageDelegate;
 @property (nonatomic, nullable, weak) PEPNotifyHandshakeDelegate *notifyHandshakeDelegate;
@@ -28,7 +27,7 @@
 
 PEP_STATUS messageToSendObjc(struct _message *msg)
 {
-    PEPSyncSendMessageDelegate *delegate = [PEPSync syncSendMessageDelegate];
+    PEPSyncSendMessageDelegate *delegate = [[PEPSync instance] syncSendMessageDelegate];
     if (delegate) {
         PEPMessage *theMessage = pEpMessageFromStruct(msg);
         return [delegate sendMessage:theMessage];
@@ -39,7 +38,7 @@ PEP_STATUS messageToSendObjc(struct _message *msg)
 
 int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 {
-    PEPNotifyHandshakeDelegate *delegate = [PEPSync notifyHandshakeDelegate];
+    PEPNotifyHandshakeDelegate *delegate = [[PEPSync instance] notifyHandshakeDelegate];
     if (delegate) {
         return 0;
     }
@@ -48,27 +47,15 @@ int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 
 // MARK: - Internal globals
 
-static __weak PEPSyncSendMessageDelegate *s_syncSendMessageDelegate;
-static __weak PEPNotifyHandshakeDelegate *s_notifyHandshakeDelegate;
+static __weak PEPSync *s_pEpSync;
 
 // MARK: - PEPSync class
 
 @implementation PEPSync
 
-+ (void)setPEPSyncSendMessageDelegate:
-(PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate
++ (PEPSync * _Nullable)instance
 {
-    s_syncSendMessageDelegate = syncSendMessageDelegate;
-}
-
-+ (PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate
-{
-    return s_syncSendMessageDelegate;
-}
-
-+ (PEPNotifyHandshakeDelegate * _Nullable)notifyHandshakeDelegate
-{
-    return s_notifyHandshakeDelegate;
+    return s_pEpSync;
 }
 
 - (instancetype)initWithSyncSendMessageDelegate:(PEPSyncSendMessageDelegate *
@@ -77,20 +64,11 @@ static __weak PEPNotifyHandshakeDelegate *s_notifyHandshakeDelegate;
                                                  _Nonnull)notifyHandshakeDelegate
 {
     if (self = [super init]) {
-        self.syncSendMessageDelegate = syncSendMessageDelegate;
-        self.notifyHandshakeDelegate = notifyHandshakeDelegate;
+        _syncSendMessageDelegate = syncSendMessageDelegate;
+        _notifyHandshakeDelegate = notifyHandshakeDelegate;
+        s_pEpSync = self;
     }
     return self;
-}
-
-- (void)setSyncSendMessageDelegate:(PEPSyncSendMessageDelegate *)syncSendMessageDelegate
-{
-    [PEPSync setPEPSyncSendMessageDelegate:syncSendMessageDelegate];
-}
-
-- (PEPSyncSendMessageDelegate *)syncSendMessageDelegate
-{
-    return [PEPSync syncSendMessageDelegate];
 }
 
 @end
