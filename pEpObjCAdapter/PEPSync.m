@@ -12,6 +12,15 @@
 #import "PEPMessageUtil.h"
 #import "PEPMessage.h"
 
+@interface PEPSync ()
+
++ (void)setPEPSyncSendMessageDelegate:
+(PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate;
+
++ (PEPSyncSendMessageDelegate * _Nullable)syncSendMessageDelegate;
+
+@end
+
 PEP_STATUS messageToSendObjc(struct _message *msg)
 {
     PEPSyncSendMessageDelegate *delegate = [PEPSync syncSendMessageDelegate];
