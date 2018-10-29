@@ -229,10 +229,6 @@
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
-
-    XCTAssertTrue([session keyResetTrust:alice error:&error]);
-    XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 }
 
 - (void)testIdentityRatingTrustResetMistrustUndo
