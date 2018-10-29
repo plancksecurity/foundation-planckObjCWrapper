@@ -10,7 +10,8 @@
 
 #import "pEpEngine.h"
 
-@class PEPSyncSendMessageDelegate, PEPNotifyHandshakeDelegate;
+#import "PEPSyncSendMessageDelegate.h"
+#import "PEPNotifyHandshakeDelegate.h"
 
 PEP_STATUS messageToSendObjc(struct _message *msg);
 int inject_sync_eventObjc(SYNC_EVENT ev, void *management);
@@ -23,9 +24,9 @@ int inject_sync_eventObjc(SYNC_EVENT ev, void *management);
  */
 @interface PEPSync : NSObject
 
-- (instancetype)initWithSyncSendMessageDelegate:(PEPSyncSendMessageDelegate *
+- (instancetype)initWithSyncSendMessageDelegate:(id<PEPSyncSendMessageDelegate>
                                                  _Nonnull)syncSendMessageDelegate
-                        notifyHandshakeDelegate:(PEPNotifyHandshakeDelegate *
+                        notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
                                                  _Nonnull)notifyHandshakeDelegate;
 - (void)shutdown;
 
