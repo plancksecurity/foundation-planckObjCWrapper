@@ -16,21 +16,15 @@
 #import "PEPTestUtils.h"
 #import "PEPSync.h"
 #import "PEPSyncSendMessageDelegate.h"
-#import "PEPNotifyHandshakeDelegate.h"
 
-@interface SendDelegate : NSObject<PEPSyncSendMessageDelegate>
-
-@end
-
-@interface NotifyHandshakeDelegate : NSObject<PEPNotifyHandshakeDelegate>
-
-@end
+#import "PEPSessionTestNotifyHandshakeDelegate.h"
+#import "PEPSessionTestSendMessageDelegate.h"
 
 @interface PEPSessionTest : XCTestCase
 
 @property (nonatomic) PEPSync *sync;
-@property (nonatomic) SendDelegate *sendMessageDelegate;
-@property (nonatomic) NotifyHandshakeDelegate *notifyHandshakeDelegate;
+@property (nonatomic) PEPSessionTestSendMessageDelegate *sendMessageDelegate;
+@property (nonatomic) PEPSessionTestNotifyHandshakeDelegate *notifyHandshakeDelegate;
 
 @end
 
@@ -40,6 +34,8 @@
 {
     [super setUp];
 
+    self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
+    self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
     self.sync = [[PEPSync alloc]
                  initWithSyncSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
