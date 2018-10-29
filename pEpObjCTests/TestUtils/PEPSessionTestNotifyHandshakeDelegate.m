@@ -10,4 +10,8 @@
 
 @implementation PEPSessionTestNotifyHandshakeDelegate
 
+- (PEP_STATUS)nofifyHandshake:(void *)object me:(PEPIdentity * _Nonnull)me partner:(PEPIdentity * _Nonnull)partner signal:(sync_handshake_signal)signal {
+    return PEP_STATUS_OK;
+}
+
 @end

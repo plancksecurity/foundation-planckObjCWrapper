@@ -10,4 +10,8 @@
 
 @implementation PEPSessionTestSendMessageDelegate
 
+- (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message {
+    return PEP_STATUS_OK;
+}
+
 @end
