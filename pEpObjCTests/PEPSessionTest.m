@@ -1016,6 +1016,25 @@
     XCTAssertNotNil(error);
 }
 
+- (void)testKeyResetTrust
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    XCTAssertTrue([session keyResetTrust:identMe error:&error]);
+    XCTAssertNil(error);
+}
+
 /**
  ENGINE-381
  */
