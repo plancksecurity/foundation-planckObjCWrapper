@@ -91,7 +91,7 @@ static PEP_STATUS notifyHandshake(pEp_identity *me,
 
 static SYNC_EVENT retrieve_next_sync_event(void *management, time_t threshold)
 {
-    PEPSync *sync = (PEPSync *) CFBridgingRelease(management);
+    PEPSync *sync = [PEPSync instance];
     return [sync retrieveNextSyncEvent:threshold];
 }
 
