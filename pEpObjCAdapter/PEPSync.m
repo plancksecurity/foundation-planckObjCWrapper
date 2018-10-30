@@ -76,6 +76,13 @@ static int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 
 // MARK: - Callbacks called by the engine, used in register_sync_callbacks
 
+static PEP_STATUS notifyHandshake(pEp_identity *me,
+                                  pEp_identity *partner,
+                                  sync_handshake_signal signal)
+{
+    return PEP_STATUS_OK;
+}
+
 static SYNC_EVENT retrieve_next_sync_event(void *management, time_t threshold)
 {
     PEPSync *sync = (PEPSync *) CFBridgingRelease(management);
