@@ -32,13 +32,10 @@
     if (self) {
         [PEPInternalSession setupTrustWordsDB];
 
-        [self lockWrite];
-        PEP_STATUS status = init(&_session,
-                                 [PEPSync messageToSendCallback],
-                                 [PEPSync injectSyncCallback]);
-        [self unlockWrite];
+        NSError *error = nil;
+        _session = [PEPSync createSession:&error];
 
-        if (status != PEP_STATUS_OK) {
+        if (error) {
             return nil;
         }
     }
@@ -47,9 +44,7 @@
 
 - (void)dealloc
 {
-    [self lockWrite];
-    release(_session);
-    [self unlockWrite];
+    [PEPSync releaseSession:_session];
 }
 
 #pragma mark - CONFIG

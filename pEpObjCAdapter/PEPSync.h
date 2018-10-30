@@ -34,6 +34,16 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
  */
 + (t_injectSyncCallback)injectSyncCallback;
 
+/**
+ Creates an engine session.
+ */
++ (PEP_SESSION)createSession:(NSError **)error;
+
+/**
+ Releases an engine session that was created by `createSession`.
+ */
++ (void)releaseSession:(PEP_SESSION)session;
+
 - (instancetype)initWithSyncSendMessageDelegate:(id<PEPSyncSendMessageDelegate>
                                                  _Nonnull)syncSendMessageDelegate
                         notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>

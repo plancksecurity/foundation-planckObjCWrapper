@@ -13,6 +13,9 @@
 #import "PEPMessageUtil.h"
 #import "PEPMessage.h"
 #import "PEPQueue.h"
+#import "PEPLock.h"
+#import "PEPObjCAdapter.h"
+#import "NSError+PEP.h"
 
 // MARK: - Declare internals
 
@@ -82,6 +85,35 @@ static __weak PEPSync *s_pEpSync;
     return inject_sync_eventObjc;
 }
 
++ (PEP_SESSION)createSession:(NSError **)error
+{
+    [PEPSync setupTrustWordsDB];
+
+    PEP_SESSION session = NULL;
+
+    [PEPLock lockWrite];
+    PEP_STATUS status = init(&session,
+                             [PEPSync messageToSendCallback],
+                             [PEPSync injectSyncCallback]);
+    [PEPLock unlockWrite];
+
+    if (status != PEP_STATUS_OK) {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return nil;
+    }
+
+    return session;
+}
+
++ (void)releaseSession:(PEP_SESSION)session
+{
+    [PEPLock lockWrite];
+    release(session);
+    [PEPLock unlockWrite];
+}
+
 - (instancetype)initWithSyncSendMessageDelegate:(id<PEPSyncSendMessageDelegate>
                                                  _Nonnull)syncSendMessageDelegate
                         notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
@@ -113,6 +145,14 @@ static __weak PEPSync *s_pEpSync;
 + (PEPSync * _Nullable)instance
 {
     return s_pEpSync;
+}
+
++ (void)setupTrustWordsDB
+{
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
+    });
 }
 
 - (void)syncThreadLoop:(id)object {
