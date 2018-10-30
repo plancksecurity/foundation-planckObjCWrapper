@@ -39,6 +39,7 @@
     self.sync = [[PEPSync alloc]
                  initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
+    [self.sync startup];
 
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 

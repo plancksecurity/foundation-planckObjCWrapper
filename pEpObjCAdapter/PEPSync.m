@@ -162,6 +162,7 @@ static __weak PEPSync *s_pEpSync;
                                                       selector:@selector(syncThreadLoop:)
                                                         object:nil];
     self.syncThread = theSyncThread;
+    [theSyncThread start];
 }
 
 - (void)shutdown
