@@ -13,8 +13,8 @@
 #import "PEPSyncSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
 
-PEP_STATUS messageToSendObjc(struct _message *msg);
-int inject_sync_eventObjc(SYNC_EVENT ev, void *management);
+typedef PEP_STATUS (* t_messageToSendCallback)(struct _message *msg);
+typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 @class PEPSyncSendMessageDelegate;
 
@@ -23,6 +23,16 @@ int inject_sync_eventObjc(SYNC_EVENT ev, void *management);
  @see sync_codec.h
  */
 @interface PEPSync : NSObject
+
+/**
+ @Return: The callback for message sending that should be used on every session init.
+ */
++ (t_messageToSendCallback)messageToSendCallback;
+
+/**
+ @Return: The callback for injectiong sync messages that should be used on every session init.
+ */
++ (t_injectSyncCallback)injectSyncCallback;
 
 - (instancetype)initWithSyncSendMessageDelegate:(id<PEPSyncSendMessageDelegate>
                                                  _Nonnull)syncSendMessageDelegate

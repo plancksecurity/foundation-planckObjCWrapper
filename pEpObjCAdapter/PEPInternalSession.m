@@ -33,7 +33,9 @@
         [PEPInternalSession setupTrustWordsDB];
 
         [self lockWrite];
-        PEP_STATUS status = init(&_session, messageToSendObjc, inject_sync_eventObjc);
+        PEP_STATUS status = init(&_session,
+                                 [PEPSync messageToSendCallback],
+                                 [PEPSync injectSyncCallback]);
         [self unlockWrite];
 
         if (status != PEP_STATUS_OK) {

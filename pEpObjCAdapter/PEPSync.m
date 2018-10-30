@@ -31,7 +31,7 @@
 
 // MARK: - Callbacks called by the engine, used in session init and register_sync_callbacks
 
-PEP_STATUS messageToSendObjc(struct _message *msg)
+static PEP_STATUS messageToSendObjc(struct _message *msg)
 {
     id<PEPSyncSendMessageDelegate> delegate = [[PEPSync instance] syncSendMessageDelegate];
     if (delegate) {
@@ -42,7 +42,7 @@ PEP_STATUS messageToSendObjc(struct _message *msg)
     }
 }
 
-int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
+static int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 {
     PEPSync *pEpSync = [PEPSync instance];
 
@@ -64,6 +64,16 @@ static __weak PEPSync *s_pEpSync;
 // MARK: - Public PEPSync class
 
 @implementation PEPSync
+
++ (t_messageToSendCallback)messageToSendCallback
+{
+    return messageToSendObjc;
+}
+
++ (t_injectSyncCallback)injectSyncCallback
+{
+    return inject_sync_eventObjc;
+}
 
 + (PEPSync * _Nullable)instance
 {
