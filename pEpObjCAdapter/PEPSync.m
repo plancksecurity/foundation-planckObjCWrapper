@@ -30,6 +30,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nullable, weak) id<PEPNotifyHandshakeDelegate> notifyHandshakeDelegate;
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
+@property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
 
 /**
  @Return: The callback for message sending that should be used on every session init.
@@ -158,6 +159,7 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
+    self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
     NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
                                                       selector:@selector(syncThreadLoop:)
                                                         object:nil];
@@ -167,6 +169,12 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)shutdown
 {
+    if (self.syncThread) {
+        [self injectSyncEvent:nil];
+        [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
+        [self.conditionLockForJoiningSyncThread unlock];
+    }
+    self.conditionLockForJoiningSyncThread = nil;
 }
 
 // MARK: - Private
@@ -184,7 +192,10 @@ static __weak PEPSync *s_pEpSync;
     });
 }
 
-- (void)syncThreadLoop:(id)object {
+- (void)syncThreadLoop:(id)object
+{
+    [self.conditionLockForJoiningSyncThread lock];
+
     NSError *error = nil;
     PEP_SESSION session = [PEPSync createSession:&error];
 
@@ -197,6 +208,8 @@ static __weak PEPSync *s_pEpSync;
     }
 
     [PEPSync releaseSession:session];
+
+    [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
 }
 
 - (int)injectSyncEvent:(SYNC_EVENT)event
