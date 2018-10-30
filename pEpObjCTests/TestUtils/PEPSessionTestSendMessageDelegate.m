@@ -12,8 +12,17 @@
 
 @implementation PEPSessionTestSendMessageDelegate
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _messages = [NSMutableArray new];
+    }
+    return self;
+}
+
 - (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message {
-    self.lastMessage = message;
+    [self.messages addObject:message];
     return PEP_STATUS_OK;
 }
 

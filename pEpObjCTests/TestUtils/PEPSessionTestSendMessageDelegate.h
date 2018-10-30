@@ -14,6 +14,6 @@
 
 @interface PEPSessionTestSendMessageDelegate : NSObject<PEPSyncSendMessageDelegate>
 
-@property (nonatomic, nullable) PEPMessage *lastMessage;
+@property (nonatomic, nullable) NSMutableArray<PEPMessage *> *messages;
 
 @end
