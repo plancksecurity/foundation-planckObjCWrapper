@@ -81,15 +81,15 @@ static int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 
 // MARK: - Callbacks called by the engine, used in register_sync_callbacks
 
-static PEP_STATUS notifyHandshake(pEp_identity *me,
-                                  pEp_identity *partner,
-                                  sync_handshake_signal signal)
+static PEP_STATUS s_notifyHandshake(pEp_identity *me,
+                                    pEp_identity *partner,
+                                    sync_handshake_signal signal)
 {
     PEPSync *sync = [PEPSync instance];
     return [sync notifyHandshake:me partner:partner signal:signal];
 }
 
-static SYNC_EVENT retrieve_next_sync_event(void *management, time_t threshold)
+static SYNC_EVENT s_retrieve_next_sync_event(void *management, unsigned threshold)
 {
     PEPSync *sync = [PEPSync instance];
     return [sync retrieveNextSyncEvent:threshold];
@@ -188,7 +188,11 @@ static __weak PEPSync *s_pEpSync;
     PEP_SESSION session = [PEPSync createSession:&error];
 
     if (session) {
+        register_sync_callbacks(session, nil, s_notifyHandshake, s_retrieve_next_sync_event);
+        do_sync_protocol(session, nil);
+        unregister_sync_callbacks(session);
     } else {
+        // indicate error, maybe through `object`?
     }
 
     [PEPSync releaseSession:session];
