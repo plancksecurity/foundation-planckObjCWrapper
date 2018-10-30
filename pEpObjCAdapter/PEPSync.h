@@ -28,6 +28,9 @@ int inject_sync_eventObjc(SYNC_EVENT ev, void *management);
                                                  _Nonnull)syncSendMessageDelegate
                         notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
                                                  _Nonnull)notifyHandshakeDelegate;
+
+- (void)startup;
+
 - (void)shutdown;
 
 @end

@@ -23,6 +23,7 @@
 @property (nonatomic, nullable, weak) id<PEPSyncSendMessageDelegate> syncSendMessageDelegate;
 @property (nonatomic, nullable, weak) id<PEPNotifyHandshakeDelegate> notifyHandshakeDelegate;
 @property (nonatomic, nonnull) PEPQueue *queue;
+@property (nonatomic, nullable) NSThread *syncThread;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event;
 
@@ -60,7 +61,7 @@ int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 
 static __weak PEPSync *s_pEpSync;
 
-// MARK: - PEPSync class
+// MARK: - Public PEPSync class
 
 @implementation PEPSync
 
@@ -83,8 +84,22 @@ static __weak PEPSync *s_pEpSync;
     return self;
 }
 
+- (void)startup
+{
+    NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
+                                                      selector:@selector(syncThreadLoop:)
+                                                        object:nil];
+    self.syncThread = theSyncThread;
+}
+
 - (void)shutdown
 {
+}
+
+// MARK: - Private
+
+- (void)syncThreadLoop:(id)object {
+
 }
 
 - (int)injectSyncEvent:(SYNC_EVENT)event
