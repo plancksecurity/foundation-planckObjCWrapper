@@ -29,7 +29,7 @@
 
 @end
 
-// MARK: - Globals called by the engine, used in session init
+// MARK: - Callbacks called by the engine, used in session init and register_sync_callbacks
 
 PEP_STATUS messageToSendObjc(struct _message *msg)
 {
