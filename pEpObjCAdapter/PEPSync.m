@@ -19,6 +19,9 @@
 
 // MARK: - Declare internals
 
+typedef PEP_STATUS (* t_messageToSendCallback)(struct _message *msg);
+typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
+
 @interface PEPSync ()
 
 + (PEPSync * _Nullable)instance;
@@ -27,6 +30,16 @@
 @property (nonatomic, nullable, weak) id<PEPNotifyHandshakeDelegate> notifyHandshakeDelegate;
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
+
+/**
+ @Return: The callback for message sending that should be used on every session init.
+ */
++ (t_messageToSendCallback)messageToSendCallback;
+
+/**
+ @Return: The callback for injectiong sync messages that should be used on every session init.
+ */
++ (t_injectSyncCallback)injectSyncCallback;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event;
 - (SYNC_EVENT)retrieveNextSyncEvent:(time_t)threshold;
