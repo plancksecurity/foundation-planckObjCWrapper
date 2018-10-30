@@ -26,6 +26,7 @@
 @property (nonatomic, nullable) NSThread *syncThread;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event;
+- (SYNC_EVENT)retrieveNextSyncEvent:(time_t)threshold;
 
 @end
 
@@ -55,6 +56,12 @@ static int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
     } else {
         return 1;
     }
+}
+
+static SYNC_EVENT retrieve_next_sync_event(void *management, time_t threshold)
+{
+    PEPSync *sync = (PEPSync *) CFBridgingRelease(management);
+    return [sync retrieveNextSyncEvent:threshold];
 }
 
 // MARK: - Internal globals
@@ -115,6 +122,18 @@ static __weak PEPSync *s_pEpSync;
 {
     [self.queue enqueue:[NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)]];
     return 0;
+}
+
+- (SYNC_EVENT)retrieveNextSyncEvent:(time_t)threshold
+{
+    NSValue *value = [self.queue timedDequeue:&threshold];
+    if (value) {
+        SYNC_EVENT event;
+        [value getValue:&event];
+        return event;
+    } else {
+        return new_sync_timeout_event();
+    }
 }
 
 @end
