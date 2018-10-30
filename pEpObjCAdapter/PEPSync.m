@@ -42,6 +42,11 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 + (t_injectSyncCallback)injectSyncCallback;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event;
+
+- (PEP_STATUS)notifyHandshake:(pEp_identity *)me
+                      partner:(pEp_identity *)partner
+                       signal:(sync_handshake_signal)signal;
+
 - (SYNC_EVENT)retrieveNextSyncEvent:(time_t)threshold;
 
 @end
@@ -80,7 +85,8 @@ static PEP_STATUS notifyHandshake(pEp_identity *me,
                                   pEp_identity *partner,
                                   sync_handshake_signal signal)
 {
-    return PEP_STATUS_OK;
+    PEPSync *sync = [PEPSync instance];
+    return [sync notifyHandshake:me partner:partner signal:signal];
 }
 
 static SYNC_EVENT retrieve_next_sync_event(void *management, time_t threshold)
@@ -192,6 +198,22 @@ static __weak PEPSync *s_pEpSync;
 {
     [self.queue enqueue:[NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)]];
     return 0;
+}
+
+- (PEP_STATUS)notifyHandshake:(pEp_identity *)me
+                      partner:(pEp_identity *)partner
+                       signal:(sync_handshake_signal)signal
+{
+    if (self.notifyHandshakeDelegate) {
+        PEPIdentity *meIdentity = PEP_identityFromStruct(me);
+        PEPIdentity *partnerIdentity = PEP_identityFromStruct(partner);
+        return [self.notifyHandshakeDelegate nofifyHandshake:NULL
+                                                          me:meIdentity
+                                                     partner:partnerIdentity
+                                                      signal:signal];
+    } else {
+        return PEP_SYNC_NO_NOTIFY_CALLBACK;
+    }
 }
 
 - (SYNC_EVENT)retrieveNextSyncEvent:(time_t)threshold
