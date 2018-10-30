@@ -69,10 +69,6 @@ static int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
 {
     PEPSync *pEpSync = [PEPSync instance];
 
-    if (!pEpSync) {
-        pEpSync = (PEPSync *) CFBridgingRelease(management);
-    }
-
     if (pEpSync) {
         return [pEpSync injectSyncEvent:ev];
     } else {
