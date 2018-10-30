@@ -169,6 +169,14 @@ static __weak PEPSync *s_pEpSync;
 }
 
 - (void)syncThreadLoop:(id)object {
+    NSError *error = nil;
+    PEP_SESSION session = [PEPSync createSession:&error];
+
+    if (session) {
+    } else {
+    }
+
+    [PEPSync releaseSession:session];
 }
 
 - (int)injectSyncEvent:(SYNC_EVENT)event
