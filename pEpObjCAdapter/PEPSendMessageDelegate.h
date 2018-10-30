@@ -1,5 +1,5 @@
 //
-//  PEPSyncSendMessageDelegate.h
+//  PEPSendMessageDelegate.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 05.10.18.
@@ -12,7 +12,7 @@
 
 @class PEPMessage;
 
-@protocol PEPSyncSendMessageDelegate <NSObject>
+@protocol PEPSendMessageDelegate <NSObject>
 
 - (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message;
 

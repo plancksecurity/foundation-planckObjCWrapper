@@ -15,7 +15,7 @@
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
 #import "PEPSync.h"
-#import "PEPSyncSendMessageDelegate.h"
+#import "PEPSendMessageDelegate.h"
 
 #import "PEPSessionTestNotifyHandshakeDelegate.h"
 #import "PEPSessionTestSendMessageDelegate.h"
@@ -37,7 +37,7 @@
     self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
     self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
     self.sync = [[PEPSync alloc]
-                 initWithSyncSendMessageDelegate:self.sendMessageDelegate
+                 initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
 
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];

@@ -10,7 +10,7 @@
 
 #import "pEpEngine.h"
 
-#import "PEPSyncSendMessageDelegate.h"
+#import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
 
 @class PEPSyncSendMessageDelegate;
@@ -31,10 +31,10 @@
  */
 + (void)releaseSession:(PEP_SESSION)session;
 
-- (instancetype)initWithSyncSendMessageDelegate:(id<PEPSyncSendMessageDelegate>
-                                                 _Nonnull)syncSendMessageDelegate
-                        notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
-                                                 _Nonnull)notifyHandshakeDelegate;
+- (instancetype)initWithSendMessageDelegate:(id<PEPSendMessageDelegate>
+                                             _Nonnull)sendMessageDelegate
+                    notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
+                                             _Nonnull)notifyHandshakeDelegate;
 
 - (void)startup;
 

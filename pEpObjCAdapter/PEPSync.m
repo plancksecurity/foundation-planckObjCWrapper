@@ -8,7 +8,7 @@
 
 #import "PEPSync.h"
 
-#import "PEPSyncSendMessageDelegate.h"
+#import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
 #import "PEPMessageUtil.h"
 #import "PEPMessage.h"
@@ -26,7 +26,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 + (PEPSync * _Nullable)instance;
 
-@property (nonatomic, nullable, weak) id<PEPSyncSendMessageDelegate> syncSendMessageDelegate;
+@property (nonatomic, nullable, weak) id<PEPSendMessageDelegate> sendMessageDelegate;
 @property (nonatomic, nullable, weak) id<PEPNotifyHandshakeDelegate> notifyHandshakeDelegate;
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
@@ -55,7 +55,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 static PEP_STATUS messageToSendObjc(struct _message *msg)
 {
-    id<PEPSyncSendMessageDelegate> delegate = [[PEPSync instance] syncSendMessageDelegate];
+    id<PEPSendMessageDelegate> delegate = [[PEPSync instance] sendMessageDelegate];
     if (delegate) {
         PEPMessage *theMessage = pEpMessageFromStruct(msg);
         return [delegate sendMessage:theMessage];
@@ -142,13 +142,13 @@ static __weak PEPSync *s_pEpSync;
     [PEPLock unlockWrite];
 }
 
-- (instancetype)initWithSyncSendMessageDelegate:(id<PEPSyncSendMessageDelegate>
-                                                 _Nonnull)syncSendMessageDelegate
-                        notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
-                                                 _Nonnull)notifyHandshakeDelegate
+- (instancetype)initWithSendMessageDelegate:(id<PEPSendMessageDelegate>
+                                             _Nonnull)sendMessageDelegate
+                    notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
+                                             _Nonnull)notifyHandshakeDelegate
 {
     if (self = [super init]) {
-        _syncSendMessageDelegate = syncSendMessageDelegate;
+        _sendMessageDelegate = sendMessageDelegate;
         _notifyHandshakeDelegate = notifyHandshakeDelegate;
         _queue = [PEPQueue new];
         s_pEpSync = self;
@@ -207,7 +207,7 @@ static __weak PEPSync *s_pEpSync;
     if (self.notifyHandshakeDelegate) {
         PEPIdentity *meIdentity = PEP_identityFromStruct(me);
         PEPIdentity *partnerIdentity = PEP_identityFromStruct(partner);
-        return [self.notifyHandshakeDelegate nofifyHandshake:NULL
+        return [self.notifyHandshakeDelegate notifyHandshake:NULL
                                                           me:meIdentity
                                                      partner:partnerIdentity
                                                       signal:signal];

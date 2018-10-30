@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPSyncSendMessageDelegate.h"
+#import "PEPSendMessageDelegate.h"
 
 @class PEPMessage;
 
-@interface PEPSessionTestSendMessageDelegate : NSObject<PEPSyncSendMessageDelegate>
+@interface PEPSessionTestSendMessageDelegate : NSObject<PEPSendMessageDelegate>
 
 @property (nonatomic, nullable) NSMutableArray<PEPMessage *> *messages;
 
