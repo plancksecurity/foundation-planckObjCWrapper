@@ -46,7 +46,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 @end
 
-// MARK: - Callbacks called by the engine, used in session init and register_sync_callbacks
+// MARK: - Callbacks called by the engine, used in session init
 
 static PEP_STATUS messageToSendObjc(struct _message *msg)
 {
@@ -73,6 +73,8 @@ static int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
         return 1;
     }
 }
+
+// MARK: - Callbacks called by the engine, used in register_sync_callbacks
 
 static SYNC_EVENT retrieve_next_sync_event(void *management, time_t threshold)
 {
