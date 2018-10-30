@@ -1016,31 +1016,6 @@
     XCTAssertNotNil(error);
 }
 
-- (void)testKeyResetTrust
-{
-    PEPSession *session = [PEPSession new];
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-
-    XCTAssertNotNil(identMe.fingerPrint);
-    NSString *fpr1 = identMe.fingerPrint;
-
-    XCTAssertTrue([session keyResetTrust:identMe error:&error]);
-    XCTAssertNil(error);
-
-    identMe.fingerPrint = nil;
-    XCTAssertTrue([session updateIdentity:identMe error:&error]);
-    XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.fingerPrint, fpr1);
-}
-
 /**
  ENGINE-381
  */
@@ -1219,6 +1194,33 @@
     PEPAttachment *decryptedAttachment = [decmsg.attachments objectAtIndex:0];
     XCTAssertEqualObjects(decryptedAttachment.mimeType, attachment.mimeType);
     XCTAssertEqualObjects(decryptedAttachment.filename, attachment.filename);
+}
+
+#pragma mark - Key Reset
+
+- (void)testKeyResetTrust
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+    NSString *fpr1 = identMe.fingerPrint;
+
+    XCTAssertTrue([session keyResetTrust:identMe error:&error]);
+    XCTAssertNil(error);
+
+    identMe.fingerPrint = nil;
+    XCTAssertTrue([session updateIdentity:identMe error:&error]);
+    XCTAssertNotNil(identMe.fingerPrint);
+    XCTAssertNotEqual(identMe.fingerPrint, fpr1);
 }
 
 #pragma mark - Helpers
