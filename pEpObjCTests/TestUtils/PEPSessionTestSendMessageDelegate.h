@@ -10,6 +10,10 @@
 
 #import "PEPSyncSendMessageDelegate.h"
 
+@class PEPMessage;
+
 @interface PEPSessionTestSendMessageDelegate : NSObject<PEPSyncSendMessageDelegate>
+
+@property (nonatomic, nullable) PEPMessage *lastMessage;
 
 @end

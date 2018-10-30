@@ -8,9 +8,12 @@
 
 #import "PEPSessionTestSendMessageDelegate.h"
 
+#import "PEPMessage.h"
+
 @implementation PEPSessionTestSendMessageDelegate
 
 - (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message {
+    self.lastMessage = message;
     return PEP_STATUS_OK;
 }
 
