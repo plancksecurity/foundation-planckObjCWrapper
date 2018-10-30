@@ -75,11 +75,6 @@ static __weak PEPSync *s_pEpSync;
     return inject_sync_eventObjc;
 }
 
-+ (PEPSync * _Nullable)instance
-{
-    return s_pEpSync;
-}
-
 - (instancetype)initWithSyncSendMessageDelegate:(id<PEPSyncSendMessageDelegate>
                                                  _Nonnull)syncSendMessageDelegate
                         notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
@@ -108,8 +103,12 @@ static __weak PEPSync *s_pEpSync;
 
 // MARK: - Private
 
-- (void)syncThreadLoop:(id)object {
++ (PEPSync * _Nullable)instance
+{
+    return s_pEpSync;
+}
 
+- (void)syncThreadLoop:(id)object {
 }
 
 - (int)injectSyncEvent:(SYNC_EVENT)event
