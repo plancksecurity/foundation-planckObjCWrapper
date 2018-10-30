@@ -1030,9 +1030,15 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
+    NSString *fpr1 = identMe.fingerPrint;
 
     XCTAssertTrue([session keyResetTrust:identMe error:&error]);
     XCTAssertNil(error);
+
+    identMe.fingerPrint = nil;
+    XCTAssertTrue([session updateIdentity:identMe error:&error]);
+    XCTAssertNotNil(identMe.fingerPrint);
+    XCTAssertNotEqual(identMe.fingerPrint, fpr1);
 }
 
 /**
