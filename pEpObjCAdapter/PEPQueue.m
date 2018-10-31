@@ -50,7 +50,7 @@
     
     [_cond lock];
     
-    while (_queue && _queue.count == 0)
+    if (_queue && _queue.count == 0)
     {
         if (*timeout == 0)
         {
