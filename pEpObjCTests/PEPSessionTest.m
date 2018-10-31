@@ -1208,8 +1208,6 @@
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
 
-    NSLog(@"*** waiting for message on %lu", (unsigned long) self.sendMessageDelegate);
-
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
                                          object:self.sendMessageDelegate];
