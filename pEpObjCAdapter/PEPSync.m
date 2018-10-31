@@ -54,7 +54,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 // MARK: - Callbacks called by the engine, used in session init
 
-static PEP_STATUS messageToSendObjc(struct _message *msg)
+static PEP_STATUS s_messageToSendObjc(struct _message *msg)
 {
     id<PEPSendMessageDelegate> delegate = [[PEPSync instance] sendMessageDelegate];
     if (delegate) {
@@ -65,7 +65,7 @@ static PEP_STATUS messageToSendObjc(struct _message *msg)
     }
 }
 
-static int inject_sync_eventObjc(SYNC_EVENT ev, void *management)
+static int s_inject_sync_event(SYNC_EVENT ev, void *management)
 {
     PEPSync *pEpSync = [PEPSync instance];
 
@@ -102,12 +102,12 @@ static __weak PEPSync *s_pEpSync;
 
 + (t_messageToSendCallback)messageToSendCallback
 {
-    return messageToSendObjc;
+    return s_messageToSendObjc;
 }
 
 + (t_injectSyncCallback)injectSyncCallback
 {
-    return inject_sync_eventObjc;
+    return s_inject_sync_event;
 }
 
 + (PEP_SESSION)createSession:(NSError **)error
