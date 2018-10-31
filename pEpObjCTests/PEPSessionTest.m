@@ -1203,6 +1203,8 @@
 {
     PEPSession *session = [PEPSession new];
 
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
                             userID:@"me-myself-and-i"
@@ -1222,6 +1224,8 @@
     XCTAssertTrue([session updateIdentity:identMe error:&error]);
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.fingerPrint, fpr1);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 }
 
 #pragma mark - Helpers
