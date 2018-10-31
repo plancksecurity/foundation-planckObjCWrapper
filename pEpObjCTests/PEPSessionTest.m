@@ -1223,7 +1223,7 @@
 
     XCTAssertNotNil(identMe.fingerPrint);
 
-    [self waitForExpectations:@[expHaveMessage] timeout:1000];
+    [self waitForExpectations:@[expHaveMessage] timeout:20];
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 }
