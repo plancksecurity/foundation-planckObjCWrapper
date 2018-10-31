@@ -16,6 +16,8 @@
 #import "PEPLock.h"
 #import "PEPObjCAdapter.h"
 #import "NSError+PEP.h"
+#import "PEPSessionProvider.h"
+#import "PEPInternalSession.h"
 
 // MARK: - Declare internals
 
@@ -182,18 +184,17 @@ static __weak PEPSync *s_pEpSync;
 {
     [self.conditionLockForJoiningSyncThread lock];
 
-    NSError *error = nil;
-    PEP_SESSION session = [PEPSync createSession:&error];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     if (session) {
-        register_sync_callbacks(session, nil, s_notifyHandshake, s_retrieve_next_sync_event);
-        do_sync_protocol(session, nil);
-        unregister_sync_callbacks(session);
+        register_sync_callbacks(session.session, nil, s_notifyHandshake, s_retrieve_next_sync_event);
+        do_sync_protocol(session.session, nil);
+        unregister_sync_callbacks(session.session);
     } else {
         // indicate error, maybe through `object`?
     }
 
-    [PEPSync releaseSession:session];
+    session = nil;
 
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
 }
