@@ -34,6 +34,8 @@
 {
     [super setUp];
 
+    [self pEpCleanUp];
+
     self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
     self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
     self.sync = [[PEPSync alloc]
@@ -42,8 +44,6 @@
     [self.sync startup];
 
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
-
-    [self pEpCleanUp];
 }
 
 - (void)tearDown
