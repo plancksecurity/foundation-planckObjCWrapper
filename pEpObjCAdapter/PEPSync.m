@@ -187,7 +187,8 @@ static __weak PEPSync *s_pEpSync;
     PEPInternalSession *session = [PEPSessionProvider session];
 
     if (session) {
-        register_sync_callbacks(session.session, nil, s_notifyHandshake, s_retrieve_next_sync_event);
+        register_sync_callbacks(session.session, nil, s_notifyHandshake,
+                                s_retrieve_next_sync_event);
         do_sync_protocol(session.session, nil);
         unregister_sync_callbacks(session.session);
     } else {
