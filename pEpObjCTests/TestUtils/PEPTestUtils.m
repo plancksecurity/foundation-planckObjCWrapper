@@ -23,6 +23,8 @@
  */
 NSString * const ownUserId = @"pEp_own_userId";
 
+const NSInteger PEPTestInternalSyncTimeout = 20;
+
 @implementation PEPTestUtils
 
 + (PEPIdentity *)foreignPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;

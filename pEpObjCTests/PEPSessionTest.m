@@ -1223,7 +1223,7 @@
 
     XCTAssertNotNil(identMe.fingerPrint);
 
-    [self waitForExpectations:@[expHaveMessage] timeout:20];
+    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 }
@@ -1235,6 +1235,10 @@
     PEPSession *session = [PEPSession new];
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1256,11 +1260,7 @@
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.fingerPrint, fpr1);
 
-    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
-
-    [self waitForExpectations:@[expHaveMessage] timeout:1000];
+    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 }
