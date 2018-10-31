@@ -1225,6 +1225,12 @@
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.fingerPrint, fpr1);
 
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
+
+    [self waitForExpectations:@[expHaveMessage] timeout:1000];
+
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 }
 
