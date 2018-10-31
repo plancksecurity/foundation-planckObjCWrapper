@@ -112,8 +112,6 @@ static __weak PEPSync *s_pEpSync;
 
 + (PEP_SESSION)createSession:(NSError **)error
 {
-    [PEPSync setupTrustWordsDB];
-
     PEP_SESSION session = NULL;
 
     [PEPLock lockWrite];
@@ -178,14 +176,6 @@ static __weak PEPSync *s_pEpSync;
 + (PEPSync * _Nullable)instance
 {
     return s_pEpSync;
-}
-
-+ (void)setupTrustWordsDB
-{
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        [PEPObjCAdapter setupTrustWordsDB:[NSBundle bundleForClass:[self class]]];
-    });
 }
 
 - (void)syncThreadLoop:(id)object
