@@ -1199,7 +1199,7 @@
 
 #pragma mark - Key Reset
 
-- (void)testKeyResetTrust
+- (void)testBasicKeyResetTrust
 {
     PEPSession *session = [PEPSession new];
 
