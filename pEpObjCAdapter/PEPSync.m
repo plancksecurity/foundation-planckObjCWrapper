@@ -210,7 +210,6 @@ static __weak PEPSync *s_pEpSync;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event
 {
-    NSLog(@"*** inject event");
     [self.queue enqueue:[NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)]];
     return 0;
 }
@@ -233,10 +232,8 @@ static __weak PEPSync *s_pEpSync;
 
 - (SYNC_EVENT)retrieveNextSyncEvent:(time_t)threshold
 {
-    NSLog(@"*** retrieve");
     NSValue *value = [self.queue timedDequeue:&threshold];
     if (value) {
-        NSLog(@"*** retrieve have value");
         SYNC_EVENT event;
         [value getValue:&event];
         return event;
