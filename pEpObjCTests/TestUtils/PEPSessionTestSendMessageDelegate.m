@@ -23,6 +23,7 @@
 
 - (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message {
     [self.messages addObject:message];
+    self.lastMessage = message;
     return PEP_STATUS_OK;
 }
 
