@@ -22,6 +22,7 @@
 }
 
 - (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message {
+    NSLog(@"*** received message on %lu", (unsigned long) self);
     [self.messages addObject:message];
     self.lastMessage = message;
     return PEP_STATUS_OK;

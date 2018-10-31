@@ -1197,6 +1197,39 @@
     XCTAssertEqualObjects(decryptedAttachment.filename, attachment.filename);
 }
 
+#pragma mark - Send Message
+
+/**
+ Prove that mySelf triggers a message to be sent.
+ */
+- (void)testBasicSendMessage
+{
+    PEPSession *session = [PEPSession new];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+
+    NSLog(@"*** waiting for message on %lu", (unsigned long) self.sendMessageDelegate);
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    [self waitForExpectations:@[expHaveMessage] timeout:1000];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+}
+
 #pragma mark - Key Reset
 
 - (void)testBasicKeyResetTrust
