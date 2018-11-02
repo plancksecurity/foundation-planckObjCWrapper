@@ -44,6 +44,8 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
  */
 + (t_injectSyncCallback)injectSyncCallback;
 
+- (PEP_STATUS)messageToSend:(struct _message *)msg;
+
 - (int)injectSyncEvent:(SYNC_EVENT)event;
 
 - (PEP_STATUS)notifyHandshake:(pEp_identity *)me
@@ -58,12 +60,12 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 static PEP_STATUS s_messageToSendObjc(struct _message *msg)
 {
-    id<PEPSendMessageDelegate> delegate = [[PEPSync instance] sendMessageDelegate];
-    if (delegate) {
-        PEPMessage *theMessage = pEpMessageFromStruct(msg);
-        return [delegate sendMessage:theMessage];
+    PEPSync *pEpSync = [PEPSync instance];
+
+    if (pEpSync) {
+        return [pEpSync messageToSend:msg];
     } else {
-        return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
+        return PEP_SYNC_NO_NOTIFY_CALLBACK;
     }
 }
 
@@ -84,8 +86,13 @@ static PEP_STATUS s_notifyHandshake(pEp_identity *me,
                                     pEp_identity *partner,
                                     sync_handshake_signal signal)
 {
-    PEPSync *sync = [PEPSync instance];
-    return [sync notifyHandshake:me partner:partner signal:signal];
+    PEPSync *pEpSync = [PEPSync instance];
+
+    if (pEpSync) {
+        return [pEpSync notifyHandshake:me partner:partner signal:signal];
+    } else {
+        return PEP_SYNC_NO_NOTIFY_CALLBACK;
+    }
 }
 
 static SYNC_EVENT s_retrieve_next_sync_event(void *management, unsigned threshold)
@@ -203,6 +210,16 @@ static __weak PEPSync *s_pEpSync;
     session = nil;
 
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
+}
+
+- (PEP_STATUS)messageToSend:(struct _message *)msg
+{
+    if (self.sendMessageDelegate) {
+        PEPMessage *theMessage = pEpMessageFromStruct(msg);
+        return [self.sendMessageDelegate sendMessage:theMessage];
+    } else {
+        return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
+    }
 }
 
 - (int)injectSyncEvent:(SYNC_EVENT)event
