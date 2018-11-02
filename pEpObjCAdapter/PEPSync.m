@@ -155,6 +155,10 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
+    // assure the main session exists
+    PEPInternalSession *session = [PEPSessionProvider session];
+    session = nil;
+
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
     NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
                                                       selector:@selector(syncThreadLoop:)
