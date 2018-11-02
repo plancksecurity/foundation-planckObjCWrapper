@@ -159,6 +159,7 @@ static __weak PEPSync *s_pEpSync;
     NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
                                                       selector:@selector(syncThreadLoop:)
                                                         object:nil];
+    theSyncThread.name = @"pEp-sync-loop";
     self.syncThread = theSyncThread;
     [theSyncThread start];
 }
