@@ -36,12 +36,7 @@
 
     [self pEpCleanUp];
 
-    self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
-    self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
-    self.sync = [[PEPSync alloc]
-                 initWithSendMessageDelegate:self.sendMessageDelegate
-                 notifyHandshakeDelegate:self.notifyHandshakeDelegate];
-    [self.sync startup];
+    [self startSync];
 
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 }
@@ -1251,6 +1246,8 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
+    [self.sync shutdown];
+
     XCTAssertNotNil(identMe.fingerPrint);
     NSString *fpr1 = identMe.fingerPrint;
 
@@ -1268,6 +1265,23 @@
 }
 
 #pragma mark - Helpers
+
+- (void)reStartSync
+{
+    [self.sync shutdown];
+    [self startSync];
+}
+
+- (void)startSync
+{
+    self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
+    self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
+
+    self.sync = [[PEPSync alloc]
+                 initWithSendMessageDelegate:self.sendMessageDelegate
+                 notifyHandshakeDelegate:self.notifyHandshakeDelegate];
+    [self.sync startup];
+}
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                              session:(PEPSession *)session
