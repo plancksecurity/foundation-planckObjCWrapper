@@ -1227,59 +1227,6 @@
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 }
 
-#pragma mark - Key Reset
-
-- (void)testBasicKeyResetTrust
-{
-    PEPSession *session = [PEPSession new];
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
-    XCTAssertNil(self.sendMessageDelegate.lastMessage);
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-
-    [self reStartSync];
-
-    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
-
-    XCTAssertNotNil(identMe.fingerPrint);
-
-    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
-    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-
-    self.sendMessageDelegate.lastMessage = nil;
-
-    NSString *fpr1 = identMe.fingerPrint;
-
-    [self reStartSync];
-
-    XCTKVOExpectation *expHaveMessage2 = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
-
-    XCTAssertTrue([session keyResetTrust:identMe error:&error]);
-    XCTAssertNil(error);
-
-    identMe.fingerPrint = nil;
-    XCTAssertTrue([session updateIdentity:identMe error:&error]);
-    XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.fingerPrint, fpr1);
-
-    [self waitForExpectations:@[expHaveMessage2] timeout:PEPTestInternalSyncTimeout];
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-}
-
 #pragma mark - Helpers
 
 - (void)reStartSync
