@@ -35,8 +35,10 @@
 {
     [_cond lock];
     
-    if (_queue)
+    if (_queue) {
+        NSLog(@"*** enqueue %@", object);
         [_queue insertObject:object atIndex:0];
+    }
     
     [_cond signal];
     
@@ -79,7 +81,8 @@
     }
 
     [_cond unlock];
-    
+
+    NSLog(@"*** dequeue %@", tmp);
     return tmp;
 }
 
