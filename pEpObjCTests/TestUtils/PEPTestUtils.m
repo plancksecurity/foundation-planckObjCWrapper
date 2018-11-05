@@ -16,6 +16,7 @@
 #import "PEPMessage.h"
 #import "PEPSession.h"
 #import "PEPAttachment.h"
+#import "PEPSessionProvider.h"
 
 /**
  For now, safer to use that, until the engine copes with our own.
@@ -131,6 +132,11 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
 
 + (void)cleanUp
 {
+    // This triggers setting HOME und GPGHOME in the adapter.
+    // Important for tests which do a cleanup on test start.
+    PEPInternalSession *session = [PEPSessionProvider session];
+    session = nil;
+
     [PEPSession cleanup];
 
     for (id path in [self pEpWorkFiles]) {
