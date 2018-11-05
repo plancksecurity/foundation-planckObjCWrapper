@@ -1261,6 +1261,8 @@
 
     NSString *fpr1 = identMe.fingerPrint;
 
+    [self reStartSync];
+
     XCTKVOExpectation *expHaveMessage2 = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
                                          object:self.sendMessageDelegate];
