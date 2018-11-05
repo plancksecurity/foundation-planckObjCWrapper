@@ -1207,6 +1207,7 @@
     PEPSession *session = [PEPSession new];
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
 
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
@@ -1224,6 +1225,7 @@
     XCTAssertNotNil(identMe.fingerPrint);
 
     [self waitForExpectations:@[expHaveMessage] timeout:1000];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 }
