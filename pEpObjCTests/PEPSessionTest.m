@@ -1224,7 +1224,7 @@
 
     XCTAssertNotNil(identMe.fingerPrint);
 
-    [self waitForExpectations:@[expHaveMessage] timeout:1000];
+    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
