@@ -1204,10 +1204,6 @@
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
 
-    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
-
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
                             userID:@"me-myself-and-i"
@@ -1216,6 +1212,12 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
+
+    [self reStartSync];
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
 
     XCTAssertNotNil(identMe.fingerPrint);
 
@@ -1233,10 +1235,6 @@
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
 
-    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
-
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
                             userID:@"me-myself-and-i"
@@ -1246,7 +1244,11 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    [self.sync shutdown];
+    [self reStartSync];
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
 
     XCTAssertNotNil(identMe.fingerPrint);
     NSString *fpr1 = identMe.fingerPrint;
