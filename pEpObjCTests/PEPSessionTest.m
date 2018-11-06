@@ -1096,6 +1096,28 @@
     XCTAssertNil(encrypted);
 }
 
+- (void)testSetIdentityFlags
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    identity_flags theFlags[] = { PEP_idf_not_for_sync, PEP_idf_list, PEP_idf_devicegroup, 0 };
+    for (int i = 0;; ++i) {
+        identity_flags aFlag = theFlags[i];
+        if (aFlag == 0) {
+            break;
+        }
+        error = nil;
+        XCTAssertTrue([session setFlags:aFlag forIdentity:me error:&error]);
+        XCTAssertNil(error);
+    }
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
