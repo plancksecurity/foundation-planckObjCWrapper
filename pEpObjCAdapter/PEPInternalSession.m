@@ -886,4 +886,22 @@ static NSDictionary *stringToRating;
     config_passive_mode(_session, enabled);
 }
 
+- (BOOL)setFlags:(identity_flags_t)flags
+     forIdentity:(PEPIdentity *)identity
+           error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    PEP_STATUS status = set_identity_flags(self.session, ident, flags);
+    free_identity(ident);
+
+    if (status == PEP_STATUS_OK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return NO;
+    }
+}
+
 @end

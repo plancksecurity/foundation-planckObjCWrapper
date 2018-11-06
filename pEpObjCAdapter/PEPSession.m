@@ -336,4 +336,12 @@
     return [session configurePassiveModeEnabled:enabled];
 }
 
+- (BOOL)setFlags:(identity_flags_t)flags
+     forIdentity:(PEPIdentity *)identity
+           error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session setFlags:flags forIdentity:identity error:error];
+}
+
 @end
