@@ -749,6 +749,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
                             trustwords.charPointerPointer, &sizeWritten, full);
     [self unlockWrite];
 
+    free_identity(ident1);
+    free_identity(ident2);
+
     NSString *result = nil;
 
     if (![NSError setError:error fromPEPStatus:status]) {
@@ -857,6 +860,8 @@ static NSDictionary *stringToRating;
     bool isPEP;
     PEP_STATUS status = is_pep_user(self.session, ident, &isPEP);
 
+    free_identity(ident);
+
     if ([NSError setError:error fromPEPStatus:status]) {
         return nil;
     } else {
@@ -871,6 +876,8 @@ static NSDictionary *stringToRating;
     PEP_STATUS status = set_own_key(self.session, ident,
                                     [[fingerprint precomposedStringWithCanonicalMapping]
                                      UTF8String]);
+    free_identity(ident);
+
     if (status == PEP_STATUS_OK) {
         return YES;
     } else {
