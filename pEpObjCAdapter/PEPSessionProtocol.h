@@ -245,7 +245,7 @@ typedef NSArray<NSString *> PEPStringList;
  Wraps set_identity_flags
  */
 - (BOOL)setFlags:(identity_flags_t)flags
-     forIdentity:(PEPIdentity *)identity
+     forIdentity:(PEPIdentity * _Nonnull)identity
            error:(NSError * _Nullable * _Nullable)error;
 
 @end
