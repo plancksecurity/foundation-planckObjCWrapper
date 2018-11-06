@@ -241,4 +241,11 @@ typedef NSArray<NSString *> PEPStringList;
  */
 - (void)configurePassiveModeEnabled:(BOOL)enabled;
 
+/**
+ Wraps set_identity_flags
+ */
+- (BOOL)setFlags:(identity_flags_t)flags
+     forIdentity:(PEPIdentity *)identity
+           error:(NSError * _Nullable * _Nullable)error;
+
 @end

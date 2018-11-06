@@ -747,6 +747,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
                             trustwords.charPointerPointer, &sizeWritten, full);
     [self unlockWrite];
 
+    free_identity(ident1);
+    free_identity(ident2);
+
     NSString *result = nil;
 
     if (![NSError setError:error fromPEPStatus:status]) {
@@ -855,6 +858,8 @@ static NSDictionary *stringToRating;
     bool isPEP;
     PEP_STATUS status = is_pEp_user(self.session, ident, &isPEP);
 
+    free_identity(ident);
+
     if ([NSError setError:error fromPEPStatus:status]) {
         return nil;
     } else {
@@ -869,6 +874,8 @@ static NSDictionary *stringToRating;
     PEP_STATUS status = set_own_key(self.session, ident,
                                     [[fingerprint precomposedStringWithCanonicalMapping]
                                      UTF8String]);
+    free_identity(ident);
+
     if (status == PEP_STATUS_OK) {
         return YES;
     } else {
@@ -882,6 +889,24 @@ static NSDictionary *stringToRating;
 - (void)configurePassiveModeEnabled:(BOOL)enabled
 {
     config_passive_mode(_session, enabled);
+}
+
+- (BOOL)setFlags:(identity_flags_t)flags
+     forIdentity:(PEPIdentity *)identity
+           error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    PEP_STATUS status = set_identity_flags(self.session, ident, flags);
+    free_identity(ident);
+
+    if (status == PEP_STATUS_OK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return NO;
+    }
 }
 
 @end
