@@ -909,4 +909,22 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (BOOL)deliverHandshakeResult:(sync_handshake_result)result
+                    forPartner:(PEPIdentity * _Nonnull)partner
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *partnerIdent = PEP_identityToStruct(partner);
+    PEP_STATUS status = deliverHandshakeResult(self.session, partnerIdent, result);
+    free_identity(partnerIdent);
+
+    if (status == PEP_STATUS_OK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return NO;
+    }
+}
+
 @end

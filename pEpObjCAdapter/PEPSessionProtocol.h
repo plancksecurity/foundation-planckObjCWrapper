@@ -10,6 +10,8 @@
 
 #import "PEPMessageUtil.h"
 
+#import "sync_api.h"
+
 typedef NSDictionary<NSString *, id> PEPDict;
 typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
 typedef NSArray<NSString *> PEPStringList;
@@ -247,5 +249,9 @@ typedef NSArray<NSString *> PEPStringList;
 - (BOOL)setFlags:(identity_flags_t)flags
      forIdentity:(PEPIdentity * _Nonnull)identity
            error:(NSError * _Nullable * _Nullable)error;
+
+- (BOOL)deliverHandshakeResult:(sync_handshake_result)result
+                    forPartner:(PEPIdentity * _Nonnull)partner
+                         error:(NSError * _Nullable * _Nullable)error;
 
 @end
