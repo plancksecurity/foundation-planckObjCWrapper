@@ -344,6 +344,13 @@
     return [session setFlags:flags forIdentity:identity error:error];
 }
 
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
+                      error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session trustOwnKeyIdentity:identity error:error];
+}
+
 - (BOOL)deliverHandshakeResult:(sync_handshake_result)result
                     forPartner:(PEPIdentity * _Nonnull)partner
                          error:(NSError * _Nullable * _Nullable)error

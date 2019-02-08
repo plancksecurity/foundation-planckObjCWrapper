@@ -927,4 +927,21 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
+                      error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    PEP_STATUS status = trust_own_key(self.session, ident);
+    free_identity(ident);
+
+    if (status == PEP_STATUS_OK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return NO;
+    }
+}
+
 @end

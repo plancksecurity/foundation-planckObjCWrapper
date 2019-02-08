@@ -254,4 +254,10 @@ typedef NSArray<NSString *> PEPStringList;
                     forPartner:(PEPIdentity * _Nonnull)partner
                          error:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Wraps trust_own_key
+ */
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
+                      error:(NSError * _Nullable * _Nullable)error;
+
 @end

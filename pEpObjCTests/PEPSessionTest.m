@@ -1129,6 +1129,20 @@
     }
 }
 
+- (void)testTrustOwnKey
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertTrue([session trustOwnKeyIdentity:me error:&error]);
+    XCTAssertNil(error);
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
