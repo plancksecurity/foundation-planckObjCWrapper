@@ -140,6 +140,9 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
         case PEP_STATEMACHINE_ERROR: return @"PEP_STATEMACHINE_ERROR";
         case PEP_NO_TRUST: return @"PEP_NO_TRUST";
         case PEP_STATEMACHINE_CANNOT_SEND: return @"PEP_STATEMACHINE_CANNOT_SEND";
+        case PEP_KEY_IMPORTED: return @"PEP_KEY_IMPORTED";
+        case PEP_NO_KEY_IMPORTED: return @"PEP_NO_KEY_IMPORTED";
+        case PEP_KEY_IMPORT_STATUS_UNKNOWN: return @"PEP_KEY_IMPORT_STATUS_UNKNOWN";
     }
 }
 
