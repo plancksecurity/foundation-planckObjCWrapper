@@ -134,8 +134,7 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
 {
     // This triggers setting HOME und GPGHOME in the adapter.
     // Important for tests which do a cleanup on test start.
-    PEPInternalSession *session = [PEPSessionProvider session];
-    session = nil;
+    [PEPObjCAdapter homeURL];
 
     [PEPSession cleanup];
 
