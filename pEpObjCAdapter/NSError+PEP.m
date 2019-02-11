@@ -136,6 +136,9 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
         case PEP_UNKNOWN_ERROR: return @"PEP_UNKNOWN_ERROR";
         case PEP_VERSION_MISMATCH: return @"PEP_VERSION_MISMATCH";
         case PEP_CANNOT_REENCRYPT: return @"PEP_CANNOT_REENCRYPT";
+        case PEP_KEY_IMPORTED: return @"PEP_KEY_IMPORTED";
+        case PEP_NO_KEY_IMPORTED: return @"PEP_NO_KEY_IMPORTED";
+        case PEP_KEY_IMPORT_STATUS_UNKNOWN: return @"PEP_KEY_IMPORT_STATUS_UNKNOWN";
     }
 }
 
