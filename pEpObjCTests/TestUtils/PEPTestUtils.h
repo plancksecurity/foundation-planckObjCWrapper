@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString * const ownUserId;
 
+/**
+ Timeout for internal sync operations.
+ */
+extern const NSInteger PEPTestInternalSyncTimeout;
+
 @interface PEPTestUtils : NSObject
 
 + (PEPIdentity *)foreignPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;

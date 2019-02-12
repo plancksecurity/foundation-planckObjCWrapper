@@ -14,8 +14,18 @@
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
+#import "PEPSync.h"
+#import "PEPSendMessageDelegate.h"
+
+#import "PEPSessionTestNotifyHandshakeDelegate.h"
+#import "PEPSessionTestSendMessageDelegate.h"
 
 @interface PEPSessionTest : XCTestCase
+
+@property (nonatomic) PEPSync *sync;
+@property (nonatomic) PEPSessionTestSendMessageDelegate *sendMessageDelegate;
+@property (nonatomic) PEPSessionTestNotifyHandshakeDelegate *notifyHandshakeDelegate;
+
 @end
 
 @implementation PEPSessionTest
@@ -23,13 +33,18 @@
 - (void)setUp
 {
     [super setUp];
-    [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 
     [self pEpCleanUp];
+
+    [self startSync];
+
+    [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 }
 
 - (void)tearDown
 {
+    [self.sync shutdown];
+
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -210,10 +225,6 @@
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
-
-    XCTAssertTrue([session keyResetTrust:alice error:&error]);
-    XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
 }
 
 - (void)testIdentityRatingTrustResetMistrustUndo
@@ -1217,7 +1228,92 @@
     XCTAssertEqualObjects(decryptedAttachment.filename, attachment.filename);
 }
 
+#pragma mark - Sync
+
+/**
+ Prove that mySelf triggers a message to be sent.
+ */
+- (void)testBasicSendMessage
+{
+    PEPSession *session = [PEPSession new];
+    [self testSendMessageOnSession:session];
+}
+
+- (void)testDeliverHandshakeResult
+{
+    PEPSession *session = [PEPSession new];
+    [self testSendMessageOnSession:session];
+
+    PEPIdentity *forSureNotMe = [[PEPIdentity alloc]
+                                 initWithAddress:@"someoneelseentirely@pep-project.org"
+                                 userID:@"that_someone_else"
+                                 userName:@"other"
+                                 isOwn:NO];
+
+    sync_handshake_result handshakeResults[] = { SYNC_HANDSHAKE_CANCEL,
+        SYNC_HANDSHAKE_ACCEPTED, SYNC_HANDSHAKE_REJECTED };
+
+    for (int i = 0;; ++i) {
+        NSError *error = nil;
+        XCTAssertFalse([session
+                        deliverHandshakeResult:handshakeResults[i]
+                        forPartner:forSureNotMe
+                        error:&error]);
+        XCTAssertNotNil(error);
+        XCTAssertEqual([error code], PEP_ILLEGAL_VALUE);
+
+        if (handshakeResults[i] == SYNC_HANDSHAKE_REJECTED) {
+            break;
+        }
+    }
+}
+
 #pragma mark - Helpers
+
+- (void)testSendMessageOnSession:(PEPSession *)session
+{
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [self reStartSync];
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+}
+
+- (void)reStartSync
+{
+    [self.sync shutdown];
+    [self startSync];
+}
+
+- (void)startSync
+{
+    self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
+    self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
+
+    self.sync = [[PEPSync alloc]
+                 initWithSendMessageDelegate:self.sendMessageDelegate
+                 notifyHandshakeDelegate:self.notifyHandshakeDelegate];
+    [self.sync startup];
+}
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                              session:(PEPSession *)session

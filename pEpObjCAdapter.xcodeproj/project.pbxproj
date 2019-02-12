@@ -37,6 +37,8 @@
 		439393E6208F375800EB1DBD /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 439393E5208F375800EB1DBD /* NSObject+Extension.m */; };
 		439393F8208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */; };
 		43953B3520C91E2B001C7DDB /* NSDictionary+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */; };
+		4396CEB82187196600FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m */; };
+		4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPSessionTestSendMessageDelegate.m */; };
 		439D91A5208479EE003F6AC2 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D91A4208479EE003F6AC2 /* PEPAttachment.m */; };
 		43D27DE61F5DA7B700795687 /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D27DE51F5DA7B700795687 /* NSDictionary+Extension.m */; };
 		43DED786203C25E200D45CD6 /* NSError+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DED785203C25E200D45CD6 /* NSError+PEP.m */; };
@@ -45,6 +47,7 @@
 		43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */; };
 		43E02A231C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */; };
 		43F73BD42165F6EC00AB4524 /* PEPLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F73BD32165F6EC00AB4524 /* PEPLock.m */; };
+		43F73BEA2166248E00AB4524 /* PEPSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F73BE92166248E00AB4524 /* PEPSync.m */; };
 		6400FB911B8CA543005221E3 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
@@ -168,12 +171,18 @@
 		435796E21FB5E51A00395A9E /* PEPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
 		43676B631C57EA1A00233933 /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
+		438C4393216744DA00C7425B /* PEPSendMessageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSendMessageDelegate.h; sourceTree = "<group>"; };
+		438C439C21676C9300C7425B /* PEPNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
 		439393E4208F375800EB1DBD /* NSObject+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		439393E5208F375800EB1DBD /* NSObject+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		439393F6208F5B5E00EB1DBD /* NSMutableDictionary+PEP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+PEP.h"; sourceTree = "<group>"; };
 		439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+PEP.m"; sourceTree = "<group>"; };
 		43953B3320C91E2B001C7DDB /* NSDictionary+Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Debug.h"; sourceTree = "<group>"; };
 		43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Debug.m"; sourceTree = "<group>"; };
+		4396CEB52187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionTestNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
+		4396CEB62187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionTestNotifyHandshakeDelegate.m; sourceTree = "<group>"; };
+		4396CEC8218721F900FDD398 /* PEPSessionTestSendMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPSessionTestSendMessageDelegate.m; sourceTree = "<group>"; };
+		4396CEC9218721F900FDD398 /* PEPSessionTestSendMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSessionTestSendMessageDelegate.h; sourceTree = "<group>"; };
 		439D91A3208479EE003F6AC2 /* PEPAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPAttachment.h; sourceTree = "<group>"; };
 		439D91A4208479EE003F6AC2 /* PEPAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment.m; sourceTree = "<group>"; };
 		43D27DE41F5DA78700795687 /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
@@ -186,6 +195,8 @@
 		43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_A3FC7F0A_from_mutt.ser; sourceTree = "<group>"; };
 		43F73BD22165F6EC00AB4524 /* PEPLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPLock.h; sourceTree = "<group>"; };
 		43F73BD32165F6EC00AB4524 /* PEPLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPLock.m; sourceTree = "<group>"; };
+		43F73BE82166248E00AB4524 /* PEPSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSync.h; sourceTree = "<group>"; };
+		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +239,10 @@
 			children = (
 				15D3D77B2010DDC500A0DA20 /* PEPTestUtils.h */,
 				15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */,
+				4396CEB52187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.h */,
+				4396CEB62187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m */,
+				4396CEC9218721F900FDD398 /* PEPSessionTestSendMessageDelegate.h */,
+				4396CEC8218721F900FDD398 /* PEPSessionTestSendMessageDelegate.m */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -330,6 +345,10 @@
 				439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */,
 				43F73BD22165F6EC00AB4524 /* PEPLock.h */,
 				43F73BD32165F6EC00AB4524 /* PEPLock.m */,
+				43F73BE82166248E00AB4524 /* PEPSync.h */,
+				43F73BE92166248E00AB4524 /* PEPSync.m */,
+				438C4393216744DA00C7425B /* PEPSendMessageDelegate.h */,
+				438C439C21676C9300C7425B /* PEPNotifyHandshakeDelegate.h */,
 			);
 			path = pEpObjCAdapter;
 			sourceTree = "<group>";
@@ -514,6 +533,7 @@
 				43209B421ECC2DBC007E7E2E /* PEPQueue.m in Sources */,
 				435665CC2080A6CB00EC5B10 /* NSNumber+PEPRating.m in Sources */,
 				439393F8208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m in Sources */,
+				43F73BEA2166248E00AB4524 /* PEPSync.m in Sources */,
 				15206CC71F8E078B003FF880 /* PEPSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,10 +542,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */,
 				152D58EF201B6DB200036219 /* PEPMessageUtilTest.m in Sources */,
 				152A9C472010F50400F962ED /* PEPSessionTest.m in Sources */,
 				434226811D4F60000083ED79 /* PepTests.m in Sources */,
 				4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */,
+				4396CEB82187196600FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m in Sources */,
 				15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -673,7 +695,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
 				USE_HEADERMAP = NO;
 			};
 			name = Debug;
@@ -698,7 +720,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
@@ -732,7 +754,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pep.iOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
 			};
 			name = Debug;
 		};
@@ -761,7 +783,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pep.iOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src/";
 			};
 			name = Release;
 		};

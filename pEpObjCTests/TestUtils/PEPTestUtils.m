@@ -16,12 +16,15 @@
 #import "PEPMessage.h"
 #import "PEPSession.h"
 #import "PEPAttachment.h"
+#import "PEPSessionProvider.h"
 
 /**
  For now, safer to use that, until the engine copes with our own.
  Should mimick the value of PEP_OWN_USERID.
  */
 NSString * const ownUserId = @"pEp_own_userId";
+
+const NSInteger PEPTestInternalSyncTimeout = 20;
 
 @implementation PEPTestUtils
 
@@ -129,6 +132,10 @@ NSString * const ownUserId = @"pEp_own_userId";
 
 + (void)cleanUp
 {
+    // This triggers setting HOME und GPGHOME in the adapter.
+    // Important for tests which do a cleanup on test start.
+    [PEPObjCAdapter homeURL];
+
     [PEPSession cleanup];
 
     for (id path in [self pEpWorkFiles]) {

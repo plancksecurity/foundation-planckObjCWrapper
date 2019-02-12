@@ -35,8 +35,9 @@
 {
     [_cond lock];
     
-    if (_queue)
+    if (_queue) {
         [_queue insertObject:object atIndex:0];
+    }
     
     [_cond signal];
     
@@ -50,7 +51,7 @@
     
     [_cond lock];
     
-    while (_queue && _queue.count == 0)
+    if (_queue && _queue.count == 0)
     {
         if (*timeout == 0)
         {
@@ -79,7 +80,7 @@
     }
 
     [_cond unlock];
-    
+
     return tmp;
 }
 

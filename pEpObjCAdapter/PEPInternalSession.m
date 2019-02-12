@@ -22,6 +22,7 @@
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
 #import "PEPLock.h"
+#import "PEPSync.h"
 
 @implementation PEPInternalSession
 
@@ -31,11 +32,10 @@
     if (self) {
         [PEPInternalSession setupTrustWordsDB];
 
-        [self lockWrite];
-        PEP_STATUS status = init(&_session);
-        [self unlockWrite];
+        NSError *error = nil;
+        _session = [PEPSync createSession:&error];
 
-        if (status != PEP_STATUS_OK) {
+        if (error) {
             return nil;
         }
     }
@@ -44,9 +44,7 @@
 
 - (void)dealloc
 {
-    [self lockWrite];
-    release(_session);
-    [self unlockWrite];
+    [PEPSync releaseSession:_session];
 }
 
 #pragma mark - CONFIG
@@ -858,7 +856,7 @@ static NSDictionary *stringToRating;
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     bool isPEP;
-    PEP_STATUS status = is_pep_user(self.session, ident, &isPEP);
+    PEP_STATUS status = is_pEp_user(self.session, ident, &isPEP);
 
     free_identity(ident);
 
@@ -900,6 +898,24 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = PEP_identityToStruct(identity);
     PEP_STATUS status = set_identity_flags(self.session, ident, flags);
     free_identity(ident);
+
+    if (status == PEP_STATUS_OK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return NO;
+    }
+}
+
+- (BOOL)deliverHandshakeResult:(sync_handshake_result)result
+                    forPartner:(PEPIdentity * _Nonnull)partner
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *partnerIdent = PEP_identityToStruct(partner);
+    PEP_STATUS status = deliverHandshakeResult(self.session, partnerIdent, result);
+    free_identity(partnerIdent);
 
     if (status == PEP_STATUS_OK) {
         return YES;

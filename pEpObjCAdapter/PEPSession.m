@@ -351,4 +351,12 @@
     return [session trustOwnKeyIdentity:identity error:error];
 }
 
+- (BOOL)deliverHandshakeResult:(sync_handshake_result)result
+                    forPartner:(PEPIdentity * _Nonnull)partner
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session deliverHandshakeResult:result forPartner:partner error:error];
+}
+
 @end

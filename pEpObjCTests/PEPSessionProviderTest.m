@@ -18,6 +18,11 @@
 
 @implementation PEPSessionProviderTest
 
+- (void)tearDown
+{
+    [PEPSession cleanup];
+}
+
 - (void)testSeperatedSessionPerThread {
     // Get main session
     PEPInternalSession *sessionMain = [PEPSessionProvider session];
