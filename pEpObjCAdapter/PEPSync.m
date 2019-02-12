@@ -177,7 +177,6 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)shutdown
 {
-    NSLog(@"*** shutdown");
     if (self.syncThread) {
         [self injectSyncEvent:nil];
         [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
@@ -205,8 +204,7 @@ static __weak PEPSync *s_pEpSync;
         do_sync_protocol(session.session, nil);
         unregister_sync_callbacks(session.session);
     } else {
-        // indicate error, maybe through `object`?
-        NSLog(@"*** ERROR: Could not create internal session");
+        // TODO: indicate error, maybe through `object`?
     }
 
     session = nil;
@@ -226,9 +224,6 @@ static __weak PEPSync *s_pEpSync;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event
 {
-    if (event == NULL) {
-        NSLog(@"*** enqueueing NULL");
-    }
     [self.queue enqueue:[NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)]];
     return 0;
 }
@@ -257,7 +252,6 @@ static __weak PEPSync *s_pEpSync;
         [value getValue:&event];
         return event;
     } else {
-        NSLog(@"*** timeout event");
         return new_sync_timeout_event();
     }
 }

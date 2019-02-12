@@ -134,14 +134,9 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
 
     if ([NSThread isMainThread]) {
-        NSLog(@"*** assuring main session on main thread");
         creationBlock();
-        NSLog(@"*** assuring main session on main thread - DONE");
     } else {
-        NSLog(@"*** assuring main session on background thread %@",
-              [[NSThread currentThread] name]);
         dispatch_sync(dispatch_get_main_queue(), creationBlock);
-        NSLog(@"*** assuring main session on background thread - DONE");
     }
 }
 
