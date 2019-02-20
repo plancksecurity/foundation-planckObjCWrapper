@@ -163,8 +163,6 @@
 		433E288F1FA741DE00E359B3 /* PEPIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
 		433E28901FA741DE00E359B3 /* PEPIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 		434226801D4F60000083ED79 /* PepTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PepTests.m; sourceTree = "<group>"; };
-		43447C4B221D446200B6323E /* pEpObjCAdapterFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCAdapterFramework.h; sourceTree = "<group>"; };
-		43447C4C221D446200B6323E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		434ED6D4207E27B8000A7590 /* PEPAutoPointer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPAutoPointer.h; sourceTree = "<group>"; };
 		434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAutoPointer.m; sourceTree = "<group>"; };
 		435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+PEPRating.h"; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
 				43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */,
 				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
-				43447C4A221D446200B6323E /* pEpObjCAdapterFramework */,
 				352988AB1AEF964100FA7E2E /* Products */,
 				43447C51221D448500B6323E /* Frameworks */,
 			);
@@ -355,15 +352,6 @@
 				438C439C21676C9300C7425B /* PEPNotifyHandshakeDelegate.h */,
 			);
 			path = pEpObjCAdapter;
-			sourceTree = "<group>";
-		};
-		43447C4A221D446200B6323E /* pEpObjCAdapterFramework */ = {
-			isa = PBXGroup;
-			children = (
-				43447C4B221D446200B6323E /* pEpObjCAdapterFramework.h */,
-				43447C4C221D446200B6323E /* Info.plist */,
-			);
-			path = pEpObjCAdapterFramework;
 			sourceTree = "<group>";
 		};
 		43447C51221D448500B6323E /* Frameworks */ = {
