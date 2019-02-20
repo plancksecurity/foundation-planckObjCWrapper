@@ -66,6 +66,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		43E39863221D7E9A008E7983 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 64796A3E1B455AA5004B1C24;
+			remoteInfo = pEpEngine;
+		};
+		43E39865221D7E9A008E7983 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 644297BE1BE11C65002BC73B;
+			remoteInfo = pEpTrustWords;
+		};
 		640F89471BE37C4F00B34B30 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
@@ -451,6 +465,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				43E39864221D7E9A008E7983 /* PBXTargetDependency */,
+				43E39866221D7E9A008E7983 /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapterFramework;
 			productName = PEPObjCAdapterFramework;
@@ -634,6 +650,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		43E39864221D7E9A008E7983 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pEpEngine;
+			targetProxy = 43E39863221D7E9A008E7983 /* PBXContainerItemProxy */;
+		};
+		43E39866221D7E9A008E7983 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pEpTrustWords;
+			targetProxy = 43E39865221D7E9A008E7983 /* PBXContainerItemProxy */;
+		};
 		640F89481BE37C4F00B34B30 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = pEpTrustWords;
