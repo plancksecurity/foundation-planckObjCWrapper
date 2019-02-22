@@ -22,3 +22,4 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterFrameworkVersionString[];
 
 #import <PEPObjCAdapterFramework/message_api.h>
 #import <PEPObjCAdapterFramework/dynamic_api.h>
+#import <PEPObjCAdapterFramework/stringlist.h>
