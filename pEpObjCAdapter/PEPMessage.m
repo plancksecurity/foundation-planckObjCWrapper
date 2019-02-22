@@ -11,6 +11,7 @@
 
 #import "NSObject+Extension.h"
 #import "NSMutableDictionary+PEP.h"
+#import "PEPMessageUtil.h"
 
 @implementation PEPMessage
 
