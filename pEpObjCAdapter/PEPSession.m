@@ -10,7 +10,7 @@
 
 #import "PEPInternalSession.h"
 #import "PEPSessionProvider.h"
-#import "PEPIdentity.h"
+#import <PEPObjCAdapterFramework/PEPIdentity.h>
 
 @implementation PEPSession
 

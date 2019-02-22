@@ -8,7 +8,7 @@
 
 #import "PEPMessageUtil.h"
 
-#import "PEPIdentity.h"
+#import <PEPObjCAdapterFramework/PEPIdentity.h>
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "NSMutableDictionary+PEP.h"

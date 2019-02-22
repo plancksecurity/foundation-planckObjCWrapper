@@ -10,7 +10,7 @@
 
 #import "PEPObjCAdapter.h"
 #import "NSDictionary+Extension.h"
-#import "PEPIdentity.h"
+#import <PEPObjCAdapterFramework/PEPIdentity.h>
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"

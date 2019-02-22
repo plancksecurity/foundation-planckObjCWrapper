@@ -6,7 +6,7 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
-#import "PEPIdentity.h"
+#import <PEPObjCAdapterFramework/PEPIdentity.h>
 
 #import "pEpEngine.h"
 #import "PEPMessageUtil.h"

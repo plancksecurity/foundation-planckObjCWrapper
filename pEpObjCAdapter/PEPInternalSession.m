@@ -15,7 +15,7 @@
 #import "NSArray+Extension.h"
 #import "NSDictionary+Extension.h"
 #import "NSDictionary+Debug.h"
-#import "PEPIdentity.h"
+#import <PEPObjCAdapterFramework/PEPIdentity.h>
 #import "PEPMessage.h"
 #import "NSError+PEP.h"
 #import "PEPAutoPointer.h"
