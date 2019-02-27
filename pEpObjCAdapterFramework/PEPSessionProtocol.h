@@ -244,11 +244,11 @@ typedef NSArray<NSString *> PEPStringList;
 /**
  Wraps set_identity_flags
  */
-- (BOOL)setFlags:(identity_flags_t)flags
+- (BOOL)setFlags:(PEPIdentityFlags)flags
      forIdentity:(PEPIdentity * _Nonnull)identity
            error:(NSError * _Nullable * _Nullable)error;
 
-- (BOOL)deliverHandshakeResult:(sync_handshake_result)result
+- (BOOL)deliverHandshakeResult:(SyncHandshakeResult)result
                     forPartner:(PEPIdentity * _Nonnull)partner
                          error:(NSError * _Nullable * _Nullable)error;
 
