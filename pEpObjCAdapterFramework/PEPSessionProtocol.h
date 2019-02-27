@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "message_api.h"
-#import "sync_api.h"
+#import <PEPObjCAdapterFramework/PEPConstants.h>
 
 typedef NSDictionary<NSString *, id> PEPDict;
 typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
