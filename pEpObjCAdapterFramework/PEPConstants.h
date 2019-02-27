@@ -27,4 +27,21 @@ typedef enum _PEP_enc_format {
     PEPEncPGPMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1 // Message B0rken by Outlook type 1
 } PEPEncFormat;
 
+typedef enum _PEP_rating {
+    PEPRatingUndefined = 0,// PEP_rating_undefined = 0,
+    PEPRatingCannotDecrypt, // PEP_rating_cannot_decrypt,
+    PEPRatingHaveNoKey, // PEP_rating_have_no_key,
+    PEPRatingUnencrypted, // PEP_rating_unencrypted,
+    PEPRatingUnencryptedForSome, // PEP_rating_unencrypted_for_some, // don't use this any more
+    PEPRatingUnreliable, // PEP_rating_unreliable,
+    PEPRatingReliable, // PEP_rating_reliable,
+    PEPRatingTrusted, // PEP_rating_trusted,
+    PEPRatingTrustedAndAnonymized, // PEP_rating_trusted_and_anonymized,
+    PEPRatingFullyAnonymous, // PEP_rating_fully_anonymous,
+
+    PEPRatingMistrust = -1, // PEP_rating_mistrust = -1,
+    PEPRatingB0rken = -2, // PEP_rating_b0rken = -2,
+    PEPRatingUnderAttack = -3 // PEP_rating_under_attack = -3
+} PEPRating;
+
 #endif /* PEPConstants_h */
