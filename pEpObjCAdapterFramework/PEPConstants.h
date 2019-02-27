@@ -141,4 +141,12 @@ typedef enum {
     PEPVersionMismatch                            = -7, // PEP_VERSION_MISMATCH
 } PEPStatus;
 
+typedef enum _ObjC_identity_flags {
+    // the first octet flags are app defined settings
+    PEPIdfNotForSync = 0x0001, // PEP_idf_not_for_sync = 0x0001,   // don't use this identity for sync
+    PEPIdfList = 0x0002, // PEP_idf_list = 0x0002,           // identity of list of persons
+    // the second octet flags are calculated
+    PEPIdfDeviceGroup = 0x0100 // PEP_idf_devicegroup = 0x0100     // identity of a device group member
+} PEPIdentityFlags;
+
 #endif /* PEPConstants_h */
