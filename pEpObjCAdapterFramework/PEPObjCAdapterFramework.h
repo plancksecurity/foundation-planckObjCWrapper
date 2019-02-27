@@ -28,3 +28,4 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterFrameworkVersionString[];
 #import <PEPObjCAdapterFramework/timestamp.h>
 #import <PEPObjCAdapterFramework/keymanagement.h>
 #import <PEPObjCAdapterFramework/message.h>
+#import <PEPObjCAdapterFramework/identity_list.h>
