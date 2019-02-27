@@ -54,6 +54,7 @@
 		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		43E39869221D7EC2008E7983 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E39868221D7EC2008E7983 /* libbz2.tbd */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
+		43FF2ED12226AFE9000D9567 /* PEPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */; };
@@ -397,6 +398,7 @@
 			files = (
 				435F5164222045FB006EB11F /* PEPIdentity.h in Headers */,
 				43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */,
+				43FF2ED12226AFE9000D9567 /* PEPConstants.h in Headers */,
 				435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
