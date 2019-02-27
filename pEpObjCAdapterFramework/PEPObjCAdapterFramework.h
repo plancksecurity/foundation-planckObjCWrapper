@@ -25,3 +25,4 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterFrameworkVersionString[];
 #import <PEPObjCAdapterFramework/stringlist.h>
 #import <PEPObjCAdapterFramework/stringpair.h>
 #import <PEPObjCAdapterFramework/labeled_int_list.h>
+#import <PEPObjCAdapterFramework/timestamp.h>
