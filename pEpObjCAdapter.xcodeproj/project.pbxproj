@@ -61,6 +61,7 @@
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
 		43FF2EB1222694DA000D9567 /* labeled_int_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2EB0222694DA000D9567 /* labeled_int_list.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43FF2EB32226951C000D9567 /* timestamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2EB22226951C000D9567 /* timestamp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43FF2EB52226955F000D9567 /* keymanagement.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2EB42226955F000D9567 /* keymanagement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */; };
@@ -200,6 +201,7 @@
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
 		43FF2EB0222694DA000D9567 /* labeled_int_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = labeled_int_list.h; path = ../../pEpEngine/src/labeled_int_list.h; sourceTree = "<group>"; };
 		43FF2EB22226951C000D9567 /* timestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timestamp.h; path = ../../pEpEngine/src/timestamp.h; sourceTree = "<group>"; };
+		43FF2EB42226955F000D9567 /* keymanagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keymanagement.h; path = ../../pEpEngine/src/keymanagement.h; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,6 +371,7 @@
 		43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
 			isa = PBXGroup;
 			children = (
+				43FF2EB42226955F000D9567 /* keymanagement.h */,
 				43FF2EB22226951C000D9567 /* timestamp.h */,
 				43FF2EB0222694DA000D9567 /* labeled_int_list.h */,
 				435F519B22204DDC006EB11F /* stringpair.h */,
@@ -419,6 +422,7 @@
 				43FF2EB1222694DA000D9567 /* labeled_int_list.h in Headers */,
 				435F5164222045FB006EB11F /* PEPIdentity.h in Headers */,
 				43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */,
+				43FF2EB52226955F000D9567 /* keymanagement.h in Headers */,
 				435F519A22204DAC006EB11F /* stringlist.h in Headers */,
 				435F519C22204DDC006EB11F /* stringpair.h in Headers */,
 				43FF2EB32226951C000D9567 /* timestamp.h in Headers */,
