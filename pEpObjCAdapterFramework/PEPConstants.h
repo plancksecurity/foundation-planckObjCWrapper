@@ -149,4 +149,10 @@ typedef enum _ObjC_identity_flags {
     PEPIdfDeviceGroup = 0x0100 // PEP_idf_devicegroup = 0x0100     // identity of a device group member
 } PEPIdentityFlags;
 
+typedef enum _ObjC_sync_handshake_result {
+    SyncHandshakeResultCancel = -1, // SYNC_HANDSHAKE_CANCEL = -1,
+    SyncHandshakeResultAccepted = 0, // SYNC_HANDSHAKE_ACCEPTED = 0,
+    SyncHandshakeResultRejected = 1 // SYNC_HANDSHAKE_REJECTED = 1
+} SyncHandshakeResult;
+
 #endif /* PEPConstants_h */
