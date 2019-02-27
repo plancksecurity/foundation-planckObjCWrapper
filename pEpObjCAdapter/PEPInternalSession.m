@@ -104,10 +104,10 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 }
 
 - (PEPDict * _Nullable)decryptMessageDict:(PEPMutableDict * _Nonnull)messageDict
-                                    flags:(PEP_decrypt_flags * _Nullable)flags
+                                    flags:(PEPDecryptFlags * _Nullable)flags
                                    rating:(PEP_rating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                   status:(PEP_STATUS * _Nullable)status
+                                   status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     if (rating) {
@@ -117,7 +117,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *_src = PEP_messageDictToStruct(messageDict);
     message *_dst = NULL;
     stringlist_t *theKeys = NULL;
-    PEP_decrypt_flags theFlags = 0;
+    PEPDecryptFlags theFlags = 0;
 
     if (flags) {
         theFlags = *flags;
@@ -130,7 +130,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     PEP_rating internalRating = PEP_rating_undefined;
 
     [self lockWrite];
-    PEP_STATUS theStatus = decrypt_message(_session,
+    PEPStatus theStatus = decrypt_message(_session,
                                            _src,
                                            &_dst,
                                            &theKeys,
@@ -177,10 +177,10 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 }
 
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
-                                   flags:(PEP_decrypt_flags * _Nullable)flags
+                                   flags:(PEPDecryptFlags * _Nullable)flags
                                   rating:(PEP_rating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                  status:(PEP_STATUS * _Nullable)status
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *destDict = [self
@@ -203,7 +203,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
                      xKeyList:(PEPStringList * _Nullable)xKeyList
                        rating:(PEP_rating * _Nonnull)rating
-                       status:(PEP_STATUS * _Nullable)status
+                       status:(PEPStatus * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
 {
     message *_src = PEP_messageDictToStruct(messageDict);
@@ -214,7 +214,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     [self lockWrite];
-    PEP_STATUS theStatus = re_evaluate_message_rating(_session,
+    PEPStatus theStatus = re_evaluate_message_rating(_session,
                                                       _src,
                                                       theKeys,
                                                       *rating,
@@ -238,7 +238,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
                  xKeyList:(PEPStringList * _Nullable)xKeyList
                    rating:(PEP_rating * _Nonnull)rating
-                   status:(PEP_STATUS * _Nullable)status
+                   status:(PEPStatus * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
 {
     return [self reEvaluateMessageDict:(PEPDict *) message
@@ -268,8 +268,8 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
-                                encFormat:(PEP_enc_format)encFormat
-                                   status:(PEP_STATUS * _Nullable)status
+                                encFormat:(PEPEncFormat)encFormat
+                                   status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEP_encrypt_flags_t flags = 0;
@@ -279,7 +279,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
     [self lockWrite];
-    PEP_STATUS theStatus = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
+    PEPStatus theStatus = encrypt_message(_session, _src, _keys, &_dst, encFormat, flags);
     [self unlockWrite];
 
     if (status) {
@@ -308,8 +308,8 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                    extraKeys:(PEPStringList * _Nullable)extraKeys
-                               encFormat:(PEP_enc_format)encFormat
-                                  status:(PEP_STATUS * _Nullable)status
+                               encFormat:(PEPEncFormat)encFormat
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *encryptedDict = [self encryptMessageDict:(NSDictionary *) message
@@ -328,7 +328,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                    extraKeys:(PEPStringList * _Nullable)extraKeys
-                                  status:(PEP_STATUS * _Nullable)status
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     return [self
@@ -342,7 +342,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                   forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   status:(PEP_STATUS * _Nullable)status
+                                   status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEP_encrypt_flags_t flags = 0;
@@ -354,7 +354,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
 
     [self lockWrite];
-    PEP_STATUS theStatus = encrypt_message_for_self(_session,
+    PEPStatus theStatus = encrypt_message_for_self(_session,
                                                     ident,
                                                     _src,
                                                     keysStringList,
@@ -392,7 +392,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                  status:(PEP_STATUS * _Nullable)status
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *target = [self
@@ -414,16 +414,16 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                     toFpr:(NSString * _Nonnull)toFpr
-                                encFormat:(PEP_enc_format)encFormat
-                                    flags:(PEP_decrypt_flags)flags
-                                   status:(PEP_STATUS * _Nullable)status
+                                encFormat:(PEPEncFormat)encFormat
+                                    flags:(PEPDecryptFlags)flags
+                                   status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated
 {
     message *src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
     message *dst = NULL;
 
     [self lockWrite];
-    PEP_STATUS theStatus =
+    PEPStatus theStatus =
     encrypt_message_and_add_priv_key(_session, src, &dst,
                                      [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
                                      encFormat, flags);
@@ -446,9 +446,9 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                    toFpr:(NSString * _Nonnull)toFpr
-                               encFormat:(PEP_enc_format)encFormat
-                                   flags:(PEP_decrypt_flags)flags
-                                  status:(PEP_STATUS * _Nullable)status
+                               encFormat:(PEPEncFormat)encFormat
+                                   flags:(PEPDecryptFlags)flags
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPDict *target = [self
@@ -468,7 +468,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 }
 
-typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, PEP_rating *rating);
+typedef PEPStatus (* rating_function_type)(PEP_SESSION session, message *msg, PEP_rating *rating);
 
 - (NSNumber * _Nullable)helperOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                         ratingFunction:(rating_function_type)ratingFunction
@@ -478,7 +478,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     PEP_rating rating = PEP_rating_undefined;
 
     [self lockWrite];
-    PEP_STATUS status = outgoing_message_rating(_session, _msg, &rating);
+    PEPStatus status = outgoing_message_rating(_session, _msg, &rating);
     [self unlockWrite];
 
     free_message(_msg);
@@ -515,7 +515,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     PEP_rating rating = PEP_rating_undefined;
 
     [self lockWrite];
-    PEP_STATUS status = identity_rating(_session, ident, &rating);
+    PEPStatus status = identity_rating(_session, ident, &rating);
     [self unlockWrite];
 
     free_identity(ident);
@@ -546,7 +546,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         PEPAutoPointer *word = [PEPAutoPointer new];
         size_t size;
 
-        PEP_STATUS status = trustword(_session,
+        PEPStatus status = trustword(_session,
                                       value,
                                       [[languageID precomposedStringWithCanonicalMapping]
                                        UTF8String],
@@ -568,7 +568,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
-    PEP_STATUS status = myself(_session, ident);
+    PEPStatus status = myself(_session, ident);
     [self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
@@ -591,7 +591,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         pEp_identity *ident = PEP_identityToStruct(identity);
 
         [self lockWrite];
-        PEP_STATUS status = update_identity(_session, ident);
+        PEPStatus status = update_identity(_session, ident);
         [self unlockWrite];
 
         if ([NSError setError:error fromPEPStatus:status]) {
@@ -613,7 +613,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
-    PEP_STATUS status = trust_personal_key(_session, ident);
+    PEPStatus status = trust_personal_key(_session, ident);
     [self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
@@ -632,7 +632,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
-    PEP_STATUS status = key_mistrusted(_session, ident);
+    PEPStatus status = key_mistrusted(_session, ident);
     [self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
@@ -653,7 +653,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     [self lockWrite];
-    PEP_STATUS status = key_reset_trust(_session, ident);
+    PEPStatus status = key_reset_trust(_session, ident);
     [self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
@@ -674,7 +674,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     identity_list *identList = NULL;
 
     [self lockWrite];
-    PEP_STATUS status = import_key(_session,
+    PEPStatus status = import_key(_session,
                                    [[keydata precomposedStringWithCanonicalMapping] UTF8String],
                                    [keydata length], &identList);
     [self unlockWrite];
@@ -697,7 +697,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
            error:(NSError * _Nullable * _Nullable)error
 {
     [self lockWrite];
-    PEP_STATUS status = log_event(_session,
+    PEPStatus status = log_event(_session,
                                   [[title precomposedStringWithCanonicalMapping] UTF8String],
                                   [[entity precomposedStringWithCanonicalMapping] UTF8String],
                                   [[description precomposedStringWithCanonicalMapping] UTF8String],
@@ -714,7 +714,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
     char *theChars = NULL;
-    PEP_STATUS status = get_crashdump_log(_session, 0, &theChars);
+    PEPStatus status = get_crashdump_log(_session, 0, &theChars);
 
     if ([NSError setError:error fromPEPStatus:status]) {
         return nil;
@@ -736,7 +736,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident1 = PEP_identityToStruct(identity1);
     pEp_identity *ident2 = PEP_identityToStruct(identity2);
-    PEP_STATUS status;
+    PEPStatus status;
 
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     size_t sizeWritten = 0;
@@ -763,7 +763,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
     PEPAutoPointer *chLangs = [PEPAutoPointer new];
-    PEP_STATUS status = get_languagelist(_session, chLangs.charPointerPointer);
+    PEPStatus status = get_languagelist(_session, chLangs.charPointerPointer);
 
     if ([NSError setError:error fromPEPStatus:status]) {
         return nil;
@@ -857,7 +857,7 @@ static NSDictionary *stringToRating;
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     bool isPEP;
-    PEP_STATUS status = is_pEp_user(self.session, ident, &isPEP);
+    PEPStatus status = is_pEp_user(self.session, ident, &isPEP);
 
     free_identity(ident);
 
@@ -872,12 +872,12 @@ static NSDictionary *stringToRating;
             error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEP_STATUS status = set_own_key(self.session, ident,
+    PEPStatus status = set_own_key(self.session, ident,
                                     [[fingerprint precomposedStringWithCanonicalMapping]
                                      UTF8String]);
     free_identity(ident);
 
-    if (status == PEP_STATUS_OK) {
+    if (status == PEPStatus_OK) {
         return YES;
     } else {
         if (error) {
@@ -897,10 +897,10 @@ static NSDictionary *stringToRating;
            error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEP_STATUS status = set_identity_flags(self.session, ident, flags);
+    PEPStatus status = set_identity_flags(self.session, ident, flags);
     free_identity(ident);
 
-    if (status == PEP_STATUS_OK) {
+    if (status == PEPStatus_OK) {
         return YES;
     } else {
         if (error) {
@@ -910,15 +910,15 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)deliverHandshakeResult:(sync_handshake_result)result
+- (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
                     forPartner:(PEPIdentity * _Nonnull)partner
                          error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *partnerIdent = PEP_identityToStruct(partner);
-    PEP_STATUS status = deliverHandshakeResult(self.session, partnerIdent, result);
+    PEPStatus status = deliverHandshakeResult(self.session, partnerIdent, result);
     free_identity(partnerIdent);
 
-    if (status == PEP_STATUS_OK) {
+    if (status == PEPStatus_OK) {
         return YES;
     } else {
         if (error) {
@@ -932,10 +932,10 @@ static NSDictionary *stringToRating;
                       error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEP_STATUS status = trust_own_key(self.session, ident);
+    PEPStatus status = trust_own_key(self.session, ident);
     free_identity(ident);
 
-    if (status == PEP_STATUS_OK) {
+    if (status == PEPStatus_OK) {
         return YES;
     } else {
         if (error) {
