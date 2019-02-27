@@ -42,12 +42,7 @@
 		435F517B222046C2006EB11F /* NSMutableDictionary+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */; };
 		435F517C222046C2006EB11F /* PEPLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F73BD32165F6EC00AB4524 /* PEPLock.m */; };
 		435F517D222046C2006EB11F /* PEPSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F73BE92166248E00AB4524 /* PEPSync.m */; };
-		435F5186222047F2006EB11F /* message_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5185222047F2006EB11F /* message_api.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		435F518B22204893006EB11F /* pEpEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F518A22204892006EB11F /* pEpEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F518F22204A67006EB11F /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		435F519522204CE1006EB11F /* dynamic_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F519422204CE1006EB11F /* dynamic_api.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		435F519A22204DAC006EB11F /* stringlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F519922204DAC006EB11F /* stringlist.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		435F519C22204DDC006EB11F /* stringpair.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F519B22204DDC006EB11F /* stringpair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		4396CEB82187196600FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPSessionTestSendMessageDelegate.m */; };
@@ -59,11 +54,6 @@
 		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		43E39869221D7EC2008E7983 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E39868221D7EC2008E7983 /* libbz2.tbd */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
-		43FF2EB1222694DA000D9567 /* labeled_int_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2EB0222694DA000D9567 /* labeled_int_list.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43FF2EB32226951C000D9567 /* timestamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2EB22226951C000D9567 /* timestamp.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43FF2EB52226955F000D9567 /* keymanagement.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2EB42226955F000D9567 /* keymanagement.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43FF2EB72226959F000D9567 /* message.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2EB62226959F000D9567 /* message.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43FF2EB9222695CA000D9567 /* identity_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2EB8222695CA000D9567 /* identity_list.h */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */; };
@@ -162,12 +152,7 @@
 		435796E11FB5E51A00395A9E /* PEPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMessage.h; sourceTree = "<group>"; };
 		435796E21FB5E51A00395A9E /* PEPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
 		435F5163222045FB006EB11F /* PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEPIdentity.h; path = pEpObjCAdapterFramework/PEPIdentity.h; sourceTree = SOURCE_ROOT; };
-		435F5185222047F2006EB11F /* message_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message_api.h; path = ../../pEpEngine/src/message_api.h; sourceTree = "<group>"; };
-		435F518A22204892006EB11F /* pEpEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pEpEngine.h; path = ../../pEpEngine/src/pEpEngine.h; sourceTree = "<group>"; };
 		435F518F22204A67006EB11F /* PEPSessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEPSessionProtocol.h; path = pEpObjCAdapterFramework/PEPSessionProtocol.h; sourceTree = SOURCE_ROOT; };
-		435F519422204CE1006EB11F /* dynamic_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dynamic_api.h; path = ../../pEpEngine/src/dynamic_api.h; sourceTree = "<group>"; };
-		435F519922204DAC006EB11F /* stringlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stringlist.h; path = ../../pEpEngine/src/stringlist.h; sourceTree = "<group>"; };
-		435F519B22204DDC006EB11F /* stringpair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stringpair.h; path = ../../pEpEngine/src/stringpair.h; sourceTree = "<group>"; };
 		43676B631C57EA1A00233933 /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
 		438C4393216744DA00C7425B /* PEPSendMessageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSendMessageDelegate.h; sourceTree = "<group>"; };
@@ -201,11 +186,6 @@
 		43F73BD32165F6EC00AB4524 /* PEPLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPLock.m; sourceTree = "<group>"; };
 		43F73BE82166248E00AB4524 /* PEPSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSync.h; sourceTree = "<group>"; };
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
-		43FF2EB0222694DA000D9567 /* labeled_int_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = labeled_int_list.h; path = ../../pEpEngine/src/labeled_int_list.h; sourceTree = "<group>"; };
-		43FF2EB22226951C000D9567 /* timestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = timestamp.h; path = ../../pEpEngine/src/timestamp.h; sourceTree = "<group>"; };
-		43FF2EB42226955F000D9567 /* keymanagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keymanagement.h; path = ../../pEpEngine/src/keymanagement.h; sourceTree = "<group>"; };
-		43FF2EB62226959F000D9567 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = message.h; path = ../../pEpEngine/src/message.h; sourceTree = "<group>"; };
-		43FF2EB8222695CA000D9567 /* identity_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = identity_list.h; path = ../../pEpEngine/src/identity_list.h; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -375,17 +355,7 @@
 		43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
 			isa = PBXGroup;
 			children = (
-				43FF2EB8222695CA000D9567 /* identity_list.h */,
-				43FF2EB62226959F000D9567 /* message.h */,
-				43FF2EB42226955F000D9567 /* keymanagement.h */,
-				43FF2EB22226951C000D9567 /* timestamp.h */,
-				43FF2EB0222694DA000D9567 /* labeled_int_list.h */,
-				435F519B22204DDC006EB11F /* stringpair.h */,
-				435F519922204DAC006EB11F /* stringlist.h */,
-				435F519422204CE1006EB11F /* dynamic_api.h */,
 				435F518F22204A67006EB11F /* PEPSessionProtocol.h */,
-				435F518A22204892006EB11F /* pEpEngine.h */,
-				435F5185222047F2006EB11F /* message_api.h */,
 				435F5163222045FB006EB11F /* PEPIdentity.h */,
 				43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */,
 				43E3985E221D7E56008E7983 /* Info.plist */,
@@ -423,19 +393,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43FF2EB72226959F000D9567 /* message.h in Headers */,
-				435F518B22204893006EB11F /* pEpEngine.h in Headers */,
-				435F519522204CE1006EB11F /* dynamic_api.h in Headers */,
-				43FF2EB1222694DA000D9567 /* labeled_int_list.h in Headers */,
 				435F5164222045FB006EB11F /* PEPIdentity.h in Headers */,
 				43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */,
-				43FF2EB52226955F000D9567 /* keymanagement.h in Headers */,
-				435F519A22204DAC006EB11F /* stringlist.h in Headers */,
-				435F519C22204DDC006EB11F /* stringpair.h in Headers */,
-				43FF2EB32226951C000D9567 /* timestamp.h in Headers */,
-				435F5186222047F2006EB11F /* message_api.h in Headers */,
 				435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */,
-				43FF2EB9222695CA000D9567 /* identity_list.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

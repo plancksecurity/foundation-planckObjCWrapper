@@ -17,15 +17,4 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterFrameworkVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <PEPObjCAdapterFramework/PublicHeader.h>
 
 #import <PEPObjCAdapterFramework/PEPIdentity.h>
-#import <PEPObjCAdapterFramework/pEpEngine.h>
 #import <PEPObjCAdapterFramework/PEPSessionProtocol.h>
-
-#import <PEPObjCAdapterFramework/message_api.h>
-#import <PEPObjCAdapterFramework/dynamic_api.h>
-#import <PEPObjCAdapterFramework/stringlist.h>
-#import <PEPObjCAdapterFramework/stringpair.h>
-#import <PEPObjCAdapterFramework/labeled_int_list.h>
-#import <PEPObjCAdapterFramework/timestamp.h>
-#import <PEPObjCAdapterFramework/keymanagement.h>
-#import <PEPObjCAdapterFramework/message.h>
-#import <PEPObjCAdapterFramework/identity_list.h>
