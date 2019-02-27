@@ -150,9 +150,9 @@ typedef enum _ObjC_identity_flags {
 } PEPIdentityFlags;
 
 typedef enum _ObjC_sync_handshake_result {
-    SyncHandshakeResultCancel = -1, // SYNC_HANDSHAKE_CANCEL = -1,
-    SyncHandshakeResultAccepted = 0, // SYNC_HANDSHAKE_ACCEPTED = 0,
-    SyncHandshakeResultRejected = 1 // SYNC_HANDSHAKE_REJECTED = 1
-} SyncHandshakeResult;
+    PEPSyncHandshakeResultCancel = -1, // SYNC_HANDSHAKE_CANCEL = -1,
+    PEPSyncHandshakeResultAccepted = 0, // SYNC_HANDSHAKE_ACCEPTED = 0,
+    PEPSyncHandshakeResultRejected = 1 // SYNC_HANDSHAKE_REJECTED = 1
+} PEPSyncHandshakeResult;
 
 #endif /* PEPConstants_h */

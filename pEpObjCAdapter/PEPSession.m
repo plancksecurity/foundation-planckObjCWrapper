@@ -351,7 +351,7 @@
     return [session trustOwnKeyIdentity:identity error:error];
 }
 
-- (BOOL)deliverHandshakeResult:(SyncHandshakeResult)result
+- (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
                     forPartner:(PEPIdentity * _Nonnull)partner
                          error:(NSError * _Nullable * _Nullable)error
 {
