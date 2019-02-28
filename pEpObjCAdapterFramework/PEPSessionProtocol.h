@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPObjCAdapterFramework/PEPConstants.h>
+#import <PEPObjCAdapterFramework/PEPTypes.h>
 
 typedef NSDictionary<NSString *, id> PEPDict;
 typedef NSMutableDictionary<NSString *, id> PEPMutableDict;

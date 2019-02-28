@@ -6,7 +6,7 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import <PEPObjCAdapterFramework/PEPConstants.h>
+#import <PEPObjCAdapterFramework/PEPTypes.h>
 
 #import "NSError+PEP.h"
 #import "NSError+PEP+Internal.h"

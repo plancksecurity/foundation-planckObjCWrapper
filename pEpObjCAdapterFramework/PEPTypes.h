@@ -1,13 +1,13 @@
 //
-//  PEPConstants.h
+//  PEPTypes.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 27.02.19.
 //  Copyright © 2019 p≡p. All rights reserved.
 //
 
-#ifndef PEPConstants_h
-#define PEPConstants_h
+#ifndef PEPTypes_h
+#define PEPTypes_h
 
 typedef enum _ObjC_PEP_decrypt_flags {
     PEPDecryptFlagOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key = 0x1,
@@ -216,4 +216,4 @@ typedef enum _PEPCommType {
     PEPCtPEP = 0xff // PEP_ct_pEp = 0xff
 } PEPCommType;
 
-#endif /* PEPConstants_h */
+#endif /* PEPTypes_h */

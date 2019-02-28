@@ -18,5 +18,5 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterFrameworkVersionString[];
 
 #import <PEPObjCAdapterFramework/PEPIdentity.h>
 #import <PEPObjCAdapterFramework/PEPSessionProtocol.h>
-#import <PEPObjCAdapterFramework/PEPConstants.h>
+#import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPObjCAdapter.h>
