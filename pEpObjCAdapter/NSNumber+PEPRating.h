@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <PEPObjCAdapterFramework/PEPConstants.h>
+
 #import "message_api.h"
 
 /**
@@ -15,10 +17,10 @@
  */
 @interface NSNumber (Extension)
 
-@property (nonatomic) PEP_rating pEpRating;
+@property (nonatomic, readonly) PEPRating pEpRating;
 
-- initWithPEPRating:(PEP_rating)pEpRating;
+- initWithPEPRating:(PEPRating)pEpRating;
 
-+ (NSNumber *)numberWithPEPRating:(PEP_rating)pEpRating;
++ (NSNumber *)numberWithPEPRating:(PEPRating)pEpRating;
 
 @end
