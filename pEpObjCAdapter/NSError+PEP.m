@@ -6,10 +6,10 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#import <PEPObjCAdapterFramework/PEPConstants.h>
+
 #import "NSError+PEP.h"
 #import "NSError+PEP+Internal.h"
-
-#import <PEPObjCAdapterFramework/PEPConstants.h>
 
 static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
 
@@ -162,11 +162,12 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
 + (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status
                                 userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
 {
-    [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:dict];
+    return [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:dict];
 }
 
 + (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status
 {
+    return [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:nil];
 }
 
 @end

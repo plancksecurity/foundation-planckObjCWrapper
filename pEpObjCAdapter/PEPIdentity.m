@@ -21,7 +21,7 @@
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
-                               commType:(PEP_comm_type)commType
+                               commType:(PEPCommType)commType
                                language:(NSString * _Nullable)language {
     if (self = [super init]) {
         self.address = address;
