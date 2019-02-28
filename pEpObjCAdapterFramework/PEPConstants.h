@@ -155,4 +155,65 @@ typedef enum _ObjC_sync_handshake_result {
     PEPSyncHandshakeResultRejected = 1 // SYNC_HANDSHAKE_REJECTED = 1
 } PEPSyncHandshakeResult;
 
+typedef enum _PEPCommType {
+    PEPCtUnknown = 0, // PEP_ct_unknown = 0,
+
+    // range 0x01 to 0x09: no encryption, 0x0a to 0x0e: nothing reasonable
+
+    PEPCtNoEncryption = 0x01, // PEP_ct_no_encryption = 0x01,                // generic
+    PEPCtNoEncrypted_channel = 0x02, // PEP_ct_no_encrypted_channel = 0x02,
+    PEPCtKeyNotFound = 0x03, // PEP_ct_key_not_found = 0x03,
+    PEPCtKeyExpired = 0x04, // PEP_ct_key_expired = 0x04,
+    PEPCtKeyRevoked = 0x05, // PEP_ct_key_revoked = 0x05,
+    PEPCtKeyBr0ken = 0x06, // PEP_ct_key_b0rken = 0x06,
+    PEPCtKeyExpiredButConfirmed = 0x07, // PEP_ct_key_expired_but_confirmed = 0x07, // NOT with confirmed bit. Just retaining info here in case of renewal.
+    PEPCtMyKeyNotIncluded = 0x09, // PEP_ct_my_key_not_included = 0x09,
+
+    PEPCtSecurityByObscurity = 0x0a, // PEP_ct_security_by_obscurity = 0x0a,
+    PEPCtBr0kenCrypto = 0x0b, // PEP_ct_b0rken_crypto = 0x0b,
+    PEPCtKeyTooShort = 0x0c, // PEP_ct_key_too_short = 0x0c,
+
+    PEPCtCompromised = 0x0e, // PEP_ct_compromized = 0x0e,                  // deprecated misspelling
+    PEPCtMistrusted = 0x0f, // PEP_ct_mistrusted = 0x0f,                   // known mistrusted key
+
+    // range 0x10 to 0x3f: unconfirmed encryption
+
+    PEPCtUnconfirmedEncryption = 0x10, // PEP_ct_unconfirmed_encryption = 0x10,       // generic
+    PEPCtOpenPGPWeakUnconfirmed = 0x11, // PEP_ct_OpenPGP_weak_unconfirmed = 0x11,     // RSA 1024 is weak
+
+    PEPCtToBeChecked = 0x20, // PEP_ct_to_be_checked = 0x20,                // generic
+    PEPCtSMIMEUnconfirmed = 0x21, // PEP_ct_SMIME_unconfirmed = 0x21,
+    PEPCtCMSUnconfirmed = 0x22, // PEP_ct_CMS_unconfirmed = 0x22,
+
+    PEPCtStongButUnconfirmed = 0x30, // PEP_ct_strong_but_unconfirmed = 0x30,       // generic
+    PEPCtOpenPGPUnconfirmed = 0x38, // PEP_ct_OpenPGP_unconfirmed = 0x38,          // key at least 2048 bit RSA or EC
+    PEPCtOTRUnconfirmed = 0x3a, // PEP_ct_OTR_unconfirmed = 0x3a,
+
+    // range 0x40 to 0x7f: unconfirmed encryption and anonymization
+
+    PEPCtUnconfirmedEncAnon = 0x40, // PEP_ct_unconfirmed_enc_anon = 0x40,         // generic
+    PEPCtPEPUnconfirmed = 0x7f, // PEP_ct_pEp_unconfirmed = 0x7f,
+
+    PEPCtConfirmed = 0x80, // PEP_ct_confirmed = 0x80,                    // this bit decides if trust is confirmed
+
+    // range 0x81 to 0x8f: reserved
+    // range 0x90 to 0xbf: confirmed encryption
+
+    PEPCtConfirmedEncryption = 0x90, // PEP_ct_confirmed_encryption = 0x90,         // generic
+    PEPCtOpenPGPWeak = 0x91, // PEP_ct_OpenPGP_weak = 0x91,                 // RSA 1024 is weak (unused)
+
+    PEPCtToBeCheckedConfirmed = 0xa0, // PEP_ct_to_be_checked_confirmed = 0xa0,      // generic
+    PEPCtSMIME = 0xa1, // PEP_ct_SMIME = 0xa1,
+    PEPCtCMS = 0xa2, // PEP_ct_CMS = 0xa2,
+
+    PEPCtStongEncryption = 0xb0, // PEP_ct_strong_encryption = 0xb0,            // generic
+    PEPCtOpenPGP = 0xb8, // PEP_ct_OpenPGP = 0xb8,                      // key at least 2048 bit RSA or EC
+    PEPCtOTR = 0xba, // PEP_ct_OTR = 0xba,
+
+    // range 0xc0 to 0xff: confirmed encryption and anonymization
+
+    PEPCtConfirmedEncAnon = 0xc0, // PEP_ct_confirmed_enc_anon = 0xc0,           // generic
+    PEPCtPEP = 0xff // PEP_ct_pEp = 0xff
+} PEPCommType;
+
 #endif /* PEPConstants_h */
