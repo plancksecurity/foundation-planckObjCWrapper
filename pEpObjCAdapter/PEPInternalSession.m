@@ -105,13 +105,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPDict * _Nullable)decryptMessageDict:(PEPMutableDict * _Nonnull)messageDict
                                     flags:(PEPDecryptFlags * _Nullable)flags
-                                   rating:(PEP_rating * _Nullable)rating
+                                   rating:(PEPRating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                    status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     if (rating) {
-        *rating = PEP_rating_undefined;
+        *rating = PEPRatingUndefined;
     }
 
     message *_src = PEP_messageDictToStruct(messageDict);
@@ -127,15 +127,15 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = PEP_arrayToStringlist(*extraKeys);
     }
 
-    PEP_rating internalRating = PEP_rating_undefined;
+    PEPRating internalRating = PEPRatingUndefined;
 
     [self lockWrite];
-    PEPStatus theStatus = decrypt_message(_session,
-                                           _src,
-                                           &_dst,
-                                           &theKeys,
-                                           &internalRating,
-                                           &theFlags);
+    PEPStatus theStatus = (PEPStatus) decrypt_message(_session,
+                                                      _src,
+                                                      &_dst,
+                                                      &theKeys,
+                                                      (PEP_rating *) &internalRating,
+                                                      &theFlags);
     [self unlockWrite];
 
     if (status) {
@@ -178,7 +178,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
                                    flags:(PEPDecryptFlags * _Nullable)flags
-                                  rating:(PEP_rating * _Nullable)rating
+                                  rating:(PEPRating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
@@ -202,7 +202,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
                      xKeyList:(PEPStringList * _Nullable)xKeyList
-                       rating:(PEP_rating * _Nonnull)rating
+                       rating:(PEPRating * _Nonnull)rating
                        status:(PEPStatus * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
 {
@@ -237,7 +237,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
                  xKeyList:(PEPStringList * _Nullable)xKeyList
-                   rating:(PEP_rating * _Nonnull)rating
+                   rating:(PEPRating * _Nonnull)rating
                    status:(PEPStatus * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
 {
@@ -468,14 +468,14 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 }
 
-typedef PEPStatus (* rating_function_type)(PEP_SESSION session, message *msg, PEP_rating *rating);
+typedef PEPStatus (* rating_function_type)(PEP_SESSION session, message *msg, PEPRating *rating);
 
 - (NSNumber * _Nullable)helperOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                         ratingFunction:(rating_function_type)ratingFunction
                                                  error:(NSError * _Nullable * _Nullable)error
 {
     message *_msg = PEP_messageToStruct(theMessage);
-    PEP_rating rating = PEP_rating_undefined;
+    PEPRating rating = PEPRatingUndefined;
 
     [self lockWrite];
     PEPStatus status = outgoing_message_rating(_session, _msg, &rating);
@@ -512,7 +512,7 @@ typedef PEPStatus (* rating_function_type)(PEP_SESSION session, message *msg, PE
                                     error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEP_rating rating = PEP_rating_undefined;
+    PEPRating rating = PEPRatingUndefined;
 
     [self lockWrite];
     PEPStatus status = identity_rating(_session, ident, &rating);
@@ -807,19 +807,19 @@ static NSDictionary *stringToRating;
 {
     NSDictionary *ratingToStringIntern =
     @{
-      [NSNumber numberWithInteger:PEP_rating_cannot_decrypt]: @"cannot_decrypt",
-      [NSNumber numberWithInteger:PEP_rating_have_no_key]: @"have_no_key",
-      [NSNumber numberWithInteger:PEP_rating_unencrypted]: @"unencrypted",
-      [NSNumber numberWithInteger:PEP_rating_unencrypted_for_some]: @"unencrypted_for_some",
-      [NSNumber numberWithInteger:PEP_rating_unreliable]: @"unreliable",
-      [NSNumber numberWithInteger:PEP_rating_reliable]: @"reliable",
-      [NSNumber numberWithInteger:PEP_rating_trusted]: @"trusted",
-      [NSNumber numberWithInteger:PEP_rating_trusted_and_anonymized]: @"trusted_and_anonymized",
-      [NSNumber numberWithInteger:PEP_rating_fully_anonymous]: @"fully_anonymous",
-      [NSNumber numberWithInteger:PEP_rating_mistrust]: @"mistrust",
-      [NSNumber numberWithInteger:PEP_rating_b0rken]: @"b0rken",
-      [NSNumber numberWithInteger:PEP_rating_under_attack]: @"under_attack",
-      [NSNumber numberWithInteger:PEP_rating_undefined]: @"undefined",
+      [NSNumber numberWithInteger:PEPRating_cannot_decrypt]: @"cannot_decrypt",
+      [NSNumber numberWithInteger:PEPRating_have_no_key]: @"have_no_key",
+      [NSNumber numberWithInteger:PEPRating_unencrypted]: @"unencrypted",
+      [NSNumber numberWithInteger:PEPRating_unencrypted_for_some]: @"unencrypted_for_some",
+      [NSNumber numberWithInteger:PEPRating_unreliable]: @"unreliable",
+      [NSNumber numberWithInteger:PEPRating_reliable]: @"reliable",
+      [NSNumber numberWithInteger:PEPRating_trusted]: @"trusted",
+      [NSNumber numberWithInteger:PEPRating_trusted_and_anonymized]: @"trusted_and_anonymized",
+      [NSNumber numberWithInteger:PEPRating_fully_anonymous]: @"fully_anonymous",
+      [NSNumber numberWithInteger:PEPRating_mistrust]: @"mistrust",
+      [NSNumber numberWithInteger:PEPRating_b0rken]: @"b0rken",
+      [NSNumber numberWithInteger:PEPRating_under_attack]: @"under_attack",
+      [NSNumber numberWithInteger:PEPRatingUndefined]: @"undefined",
       };
     NSMutableDictionary *stringToRatingMutable = [NSMutableDictionary
                                                   dictionaryWithCapacity:
@@ -832,17 +832,17 @@ static NSDictionary *stringToRating;
     stringToRating = [NSDictionary dictionaryWithDictionary:stringToRatingMutable];
 }
 
-- (PEP_rating)ratingFromString:(NSString * _Nonnull)string
+- (PEPRating)ratingFromString:(NSString * _Nonnull)string
 {
     NSNumber *num = [stringToRating objectForKey:string];
     if (num) {
-        return (PEP_rating) [num integerValue];
+        return (PEPRating) [num integerValue];
     } else {
-        return PEP_rating_undefined;
+        return PEPRatingUndefined;
     }
 }
 
-- (NSString * _Nonnull)stringFromRating:(PEP_rating)rating
+- (NSString * _Nonnull)stringFromRating:(PEPRating)rating
 {
     NSString *stringRating = [ratingToString objectForKey:[NSNumber numberWithInteger:rating]];
     if (stringRating) {
