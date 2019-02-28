@@ -167,7 +167,7 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
 
 + (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status
 {
-    return [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:nil];
+    return [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:[NSDictionary new]];
 }
 
 @end
