@@ -18,7 +18,7 @@
 #import "NSDictionary+Debug.h"
 #import <PEPObjCAdapterFramework/PEPIdentity.h>
 #import "PEPMessage.h"
-#import "NSError+PEP.h"
+#import "NSError+PEP+Internal.h"
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
