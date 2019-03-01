@@ -231,4 +231,10 @@ typedef enum _ObjC_PEP_color {
     PEPColorRed = -1,
 } PEPColor;
 
+typedef enum {
+    PEPContentDispAttachment = 0,
+    PEPContentDispInline = 1,
+    PEPContentDispOther = -1      // must be affirmatively set
+} PEPContentDispositionType;
+
 #endif /* PEPTypes_h */
