@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "bloblist.h"
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 
 @interface PEPAttachment : NSObject
 
@@ -16,7 +16,7 @@
 @property (nonatomic) NSInteger size;
 @property (nonatomic, nullable) NSString *mimeType;
 @property (nonatomic, nullable) NSString *filename;
-@property (nonatomic) content_disposition_type contentDisposition;
+@property (nonatomic) PEPContentDisposition contentDisposition;
 
 - (_Nonnull instancetype)initWithData:(NSData *)data;
 
