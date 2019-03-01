@@ -7,6 +7,7 @@
 //
 
 #import <PEPObjCAdapterFramework/PEPIdentity.h>
+#import <PEPObjCAdapterFramework/PEPConstants.h>
 
 #import "pEpEngine.h"
 #import "PEPMessageUtil.h"

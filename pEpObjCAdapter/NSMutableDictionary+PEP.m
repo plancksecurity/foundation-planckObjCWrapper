@@ -8,6 +8,8 @@
 
 #import "NSMutableDictionary+PEP.h"
 
+#import <PEPObjCAdapterFramework/PEPConstants.h>
+
 #import "PEPMessageUtil.h"
 
 void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *message)

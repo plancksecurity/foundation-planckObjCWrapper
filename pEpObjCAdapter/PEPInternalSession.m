@@ -8,6 +8,8 @@
 
 #import "PEPInternalSession.h"
 
+#import <PEPObjCAdapterFramework/PEPConstants.h>
+
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessageUtil.h"

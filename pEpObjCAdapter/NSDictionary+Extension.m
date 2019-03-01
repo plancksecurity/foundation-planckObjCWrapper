@@ -10,6 +10,8 @@
 
 #import "NSDictionary+Extension.h"
 
+#import <PEPObjCAdapterFramework/PEPConstants.h>
+
 #import "PEPMessageUtil.h"
 
 @implementation NSDictionary (Extension)
