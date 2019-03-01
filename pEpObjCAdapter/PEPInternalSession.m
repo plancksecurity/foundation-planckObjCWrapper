@@ -961,4 +961,9 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (PEPColor)colorFromRating:(PEPRating)rating
+{
+    return (PEPColor) color_from_rating((PEP_rating) rating);
+}
+
 @end

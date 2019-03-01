@@ -255,4 +255,9 @@
 - (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
                       error:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Wraps color_from_rating.
+ */
+- (PEPColor)colorFromRating:(PEPRating)rating;
+
 @end

@@ -362,4 +362,10 @@
     return [session deliverHandshakeResult:result forPartner:partner error:error];
 }
 
+- (PEPColor)colorFromRating:(PEPRating)rating
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session colorFromRating:rating];
+}
+
 @end
