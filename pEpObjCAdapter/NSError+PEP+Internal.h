@@ -9,6 +9,8 @@
 #ifndef NSError_PEP_Internal_h
 #define NSError_PEP_Internal_h
 
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
+
 /**
  Extension for creating `NSError`s from `PEP_STATUS`
  */
