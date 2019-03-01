@@ -21,7 +21,7 @@
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		435C0C8C22291FFB0025C6B5 /* PEPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 15206CC51F8E078B003FF880 /* PEPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435C0C9922292C080025C6B5 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 435796E11FB5E51A00395A9E /* PEPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		435C0CA222292E7C0025C6B5 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C0CA022292E7C0025C6B5 /* PEPTypes.h */; };
+		435C0CA222292E7C0025C6B5 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C0CA022292E7C0025C6B5 /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F5164222045FB006EB11F /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5163222045FB006EB11F /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F5168222046C2006EB11F /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */; };
 		435F5169222046C2006EB11F /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
@@ -363,10 +363,10 @@
 		43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
 			isa = PBXGroup;
 			children = (
-				435C0CA022292E7C0025C6B5 /* PEPTypes.h */,
 				435796E11FB5E51A00395A9E /* PEPMessage.h */,
 				15206CC51F8E078B003FF880 /* PEPSession.h */,
 				43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */,
+				435C0CA022292E7C0025C6B5 /* PEPTypes.h */,
 				43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */,
 				435F518F22204A67006EB11F /* PEPSessionProtocol.h */,
 				435F5163222045FB006EB11F /* PEPIdentity.h */,
