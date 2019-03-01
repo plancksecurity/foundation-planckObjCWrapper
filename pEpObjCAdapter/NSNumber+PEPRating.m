@@ -8,6 +8,8 @@
 
 #import "NSNumber+PEPRating.h"
 
+#import "message_api.h"
+
 @implementation NSNumber (Extension)
 
 - initWithPEPRating:(PEPRating)pEpRating
