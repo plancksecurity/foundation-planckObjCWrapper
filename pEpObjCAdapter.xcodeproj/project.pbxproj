@@ -24,6 +24,7 @@
 		435C0CA222292E7C0025C6B5 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C0CA022292E7C0025C6B5 /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435C0CAC222930340025C6B5 /* PEPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C0CAA222930340025C6B5 /* PEPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435C0CAD222930340025C6B5 /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 435C0CAB222930340025C6B5 /* PEPConstants.m */; };
+		435C0CBB2229380E0025C6B5 /* NSNumber+PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F5164222045FB006EB11F /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5163222045FB006EB11F /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F5168222046C2006EB11F /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */; };
 		435F5169222046C2006EB11F /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
@@ -338,7 +339,6 @@
 				43DED785203C25E200D45CD6 /* NSError+PEP.m */,
 				434ED6D4207E27B8000A7590 /* PEPAutoPointer.h */,
 				434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */,
-				435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */,
 				4360A9FE2227EBB200E62E5A /* NSNumber+PEPRating+Internal.h */,
 				435665CB2080A6CB00EC5B10 /* NSNumber+PEPRating.m */,
 				439393E4208F375800EB1DBD /* NSObject+Extension.h */,
@@ -367,6 +367,7 @@
 		43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
 			isa = PBXGroup;
 			children = (
+				435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */,
 				435C0CAA222930340025C6B5 /* PEPConstants.h */,
 				435C0CAB222930340025C6B5 /* PEPConstants.m */,
 				435796E11FB5E51A00395A9E /* PEPMessage.h */,
@@ -421,6 +422,7 @@
 				435C0CAC222930340025C6B5 /* PEPConstants.h in Headers */,
 				43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */,
 				435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */,
+				435C0CBB2229380E0025C6B5 /* NSNumber+PEPRating.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

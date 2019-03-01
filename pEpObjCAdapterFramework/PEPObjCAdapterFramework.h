@@ -24,3 +24,4 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterFrameworkVersionString[];
 #import <PEPObjCAdapterFramework/PEPSession.h>
 #import <PEPObjCAdapterFramework/PEPMessage.h>
 #import <PEPObjCAdapterFramework/PEPConstants.h>
+#import <PEPObjCAdapterFramework/NSNumber+PEPRating.h>
