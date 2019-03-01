@@ -220,4 +220,9 @@ typedef enum _PEPCommType {
     PEPCtPEP = 0xff // PEP_ct_pEp = 0xff
 } PEPCommType;
 
+typedef enum _ObjC_PEP_msg_direction {
+    PEPDirIncoming = 0,
+    PEPDirOutgoing
+} PEPMsgDirection;
+
 #endif /* PEPTypes_h */

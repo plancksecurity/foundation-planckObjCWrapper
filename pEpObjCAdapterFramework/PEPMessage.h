@@ -38,7 +38,7 @@
 @property (nonatomic, nullable) NSArray<NSArray<NSString *> *> *optionalFields;
 @property (nonatomic, nullable) NSArray<NSString *> *keywords;
 @property (nonatomic, nullable) PEPIdentity *receivedBy;
-@property (nonatomic) PEP_msg_direction direction;
+@property (nonatomic) PEPMsgDirection direction;
 
 /**
  For backwards compatiblity.
