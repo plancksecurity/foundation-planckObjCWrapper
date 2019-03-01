@@ -20,6 +20,7 @@
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		435C0C8C22291FFB0025C6B5 /* PEPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 15206CC51F8E078B003FF880 /* PEPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		435C0C9922292C080025C6B5 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 435796E11FB5E51A00395A9E /* PEPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F5164222045FB006EB11F /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5163222045FB006EB11F /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F5168222046C2006EB11F /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */; };
 		435F5169222046C2006EB11F /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
@@ -323,7 +324,6 @@
 				15206CA91F8BA183003FF880 /* PEPSessionProvider.m */,
 				15206CC61F8E078B003FF880 /* PEPSession.m */,
 				433E28901FA741DE00E359B3 /* PEPIdentity.m */,
-				435796E11FB5E51A00395A9E /* PEPMessage.h */,
 				435796E21FB5E51A00395A9E /* PEPMessage.m */,
 				439D91A3208479EE003F6AC2 /* PEPAttachment.h */,
 				439D91A4208479EE003F6AC2 /* PEPAttachment.m */,
@@ -361,6 +361,7 @@
 		43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
 			isa = PBXGroup;
 			children = (
+				435796E11FB5E51A00395A9E /* PEPMessage.h */,
 				15206CC51F8E078B003FF880 /* PEPSession.h */,
 				43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */,
 				43FF2ECC2226AE7E000D9567 /* PEPTypes.h */,
@@ -403,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4360AA0E2227F22900E62E5A /* PEPObjCAdapter.h in Headers */,
+				435C0C9922292C080025C6B5 /* PEPMessage.h in Headers */,
 				435F5164222045FB006EB11F /* PEPIdentity.h in Headers */,
 				43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */,
 				435C0C8C22291FFB0025C6B5 /* PEPSession.h in Headers */,

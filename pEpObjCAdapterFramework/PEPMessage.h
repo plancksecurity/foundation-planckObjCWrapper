@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "message.h"
-#import "PEPSessionProtocol.h"
-
 @class PEPIdentity;
 @class PEPAttachment;
 
