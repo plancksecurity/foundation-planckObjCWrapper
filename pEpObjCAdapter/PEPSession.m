@@ -12,6 +12,9 @@
 #import "PEPSessionProvider.h"
 #import <PEPObjCAdapterFramework/PEPIdentity.h>
 
+#import "PEPMessageUtil.h"
+#import "NSNumber+PEPRating.h"
+
 @implementation PEPSession
 
 #pragma mark - Public API
