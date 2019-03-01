@@ -9,6 +9,8 @@
 #ifndef PEPTypes_h
 #define PEPTypes_h
 
+#import <Foundation/Foundation.h>
+
 typedef NSDictionary<NSString *, id> PEPDict;
 typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
 typedef NSArray<NSString *> PEPStringList;
