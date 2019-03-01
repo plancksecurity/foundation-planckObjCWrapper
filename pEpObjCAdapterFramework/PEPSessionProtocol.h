@@ -10,10 +10,6 @@
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 
-typedef NSDictionary<NSString *, id> PEPDict;
-typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
-typedef NSArray<NSString *> PEPStringList;
-
 @class PEPLanguage;
 @class PEPIdentity;
 @class PEPMessage;
