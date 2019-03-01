@@ -57,7 +57,7 @@
 		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		43E39869221D7EC2008E7983 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E39868221D7EC2008E7983 /* libbz2.tbd */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
-		43FF2ED12226AFE9000D9567 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */; };
@@ -192,7 +192,7 @@
 		43F73BD32165F6EC00AB4524 /* PEPLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPLock.m; sourceTree = "<group>"; };
 		43F73BE82166248E00AB4524 /* PEPSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSync.h; sourceTree = "<group>"; };
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
-		43FF2ECC2226AE7E000D9567 /* PEPTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPTypes.h; path = pEpObjCAdapterFramework/PEPTypes.h; sourceTree = SOURCE_ROOT; };
+		43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPEngineTypes.h; path = pEpObjCAdapterFramework/PEPEngineTypes.h; sourceTree = SOURCE_ROOT; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,7 +364,7 @@
 				435796E11FB5E51A00395A9E /* PEPMessage.h */,
 				15206CC51F8E078B003FF880 /* PEPSession.h */,
 				43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */,
-				43FF2ECC2226AE7E000D9567 /* PEPTypes.h */,
+				43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */,
 				435F518F22204A67006EB11F /* PEPSessionProtocol.h */,
 				435F5163222045FB006EB11F /* PEPIdentity.h */,
 				43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */,
@@ -408,7 +408,7 @@
 				435F5164222045FB006EB11F /* PEPIdentity.h in Headers */,
 				43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */,
 				435C0C8C22291FFB0025C6B5 /* PEPSession.h in Headers */,
-				43FF2ED12226AFE9000D9567 /* PEPTypes.h in Headers */,
+				43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */,
 				435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
