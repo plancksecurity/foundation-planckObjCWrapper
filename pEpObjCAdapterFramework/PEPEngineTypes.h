@@ -223,4 +223,11 @@ typedef enum _ObjC_PEP_msg_direction {
     PEPDirOutgoing
 } PEPMsgDirection;
 
+typedef enum _ObjC_PEP_color {
+    PEPColorNoColor = 0,
+    PEPColorYellow,
+    PEPColorGreen,
+    PEPColorRed = -1,
+} PEPColor;
+
 #endif /* PEPTypes_h */
