@@ -11,10 +11,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NSDictionary<NSString *, id> PEPDict;
-typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
-typedef NSArray<NSString *> PEPStringList;
-
 typedef enum _ObjC_PEP_decrypt_flags {
     PEPDecryptFlagOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key = 0x1,
     PEPDecryptFlagConsume = 0x2, // PEP_decrypt_flag_consume = 0x2,
