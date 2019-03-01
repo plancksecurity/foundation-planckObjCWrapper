@@ -235,6 +235,6 @@ typedef enum {
     PEPContentDispAttachment = 0,
     PEPContentDispInline = 1,
     PEPContentDispOther = -1      // must be affirmatively set
-} PEPContentDispositionType;
+} PEPContentDisposition;
 
 #endif /* PEPTypes_h */
