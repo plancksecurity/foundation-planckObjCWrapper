@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 
 typedef enum _ObjC_PEP_decrypt_flags {
+    PEPDecryptFlagNone = 0x1, // This defined only in the adpater, not the engine.
     PEPDecryptFlagOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key = 0x1,
     PEPDecryptFlagConsume = 0x2, // PEP_decrypt_flag_consume = 0x2,
     PEPDecryptFlagIgnore = 0x4, // PEP_decrypt_flag_ignore = 0x4,
