@@ -342,7 +342,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     return [self
             encryptMessage:message
             extraKeys:extraKeys
-            encFormat:PEPEncPEP
+            encFormat:PEPEncFormatPEP
             status:status
             error:error];
 }
