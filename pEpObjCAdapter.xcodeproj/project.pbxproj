@@ -55,6 +55,7 @@
 		43753CFB222D4911002EE98B /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2A1ECC2ACD007E7E2E /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4396CEB82187196600FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPSessionTestSendMessageDelegate.m */; };
+		43BCEFF7222FBA2400148303 /* NSDictionary+CommType.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D27DE41F5DA78700795687 /* NSDictionary+CommType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
 		43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */; };
@@ -322,7 +323,6 @@
 				43209B321ECC2ACD007E7E2E /* PEPQueue.m */,
 				43209B341ECC2ACD007E7E2E /* PEPInternalSession.h */,
 				43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */,
-				43D27DE41F5DA78700795687 /* NSDictionary+CommType.h */,
 				43D27DE51F5DA7B700795687 /* NSDictionary+CommType.m */,
 				43953B3320C91E2B001C7DDB /* NSDictionary+Debug.h */,
 				43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */,
@@ -367,6 +367,7 @@
 		43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
 			isa = PBXGroup;
 			children = (
+				43D27DE41F5DA78700795687 /* NSDictionary+CommType.h */,
 				43209B2A1ECC2ACD007E7E2E /* PEPLanguage.h */,
 				439D91A3208479EE003F6AC2 /* PEPAttachment.h */,
 				435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */,
@@ -427,6 +428,7 @@
 				435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */,
 				435C0CD922296B660025C6B5 /* PEPAttachment.h in Headers */,
 				435C0CBB2229380E0025C6B5 /* NSNumber+PEPRating.h in Headers */,
+				43BCEFF7222FBA2400148303 /* NSDictionary+CommType.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

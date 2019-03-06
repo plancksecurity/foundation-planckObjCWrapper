@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "pEpEngine.h"
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 
 @interface NSDictionary (CommType)
 
@@ -16,6 +16,6 @@
  If we interpret the self as a dictionary denoting a p≡p Identity,
  does the comm type denote a PGP user?
  */
-@property (nonatomic, readonly) PEP_comm_type commType;
+@property (nonatomic, readonly) PEPCommType commType;
 
 @end
