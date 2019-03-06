@@ -1,5 +1,5 @@
 //
-//  NSDictionary_NSDictionary_Extension.h
+//  NSDictionary+Extension.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 04.09.17.
@@ -10,7 +10,7 @@
 
 #import "pEpEngine.h"
 
-@interface NSDictionary (Extension)
+@interface NSDictionary (CommType)
 
 /**
  If we interpret the self as a dictionary denoting a p≡p Identity,
