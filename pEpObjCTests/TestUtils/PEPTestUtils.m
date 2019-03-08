@@ -10,8 +10,7 @@
 
 #import "PEPTestUtils.h"
 
-#import "NSDictionary+Extension.h"
-#import <PEPObjCAdapterFramework/PEPIdentity.h>
+#import <PEPObjCAdapterFramework/PEPObjCAdapterFramework.h>
 #import "PEPInternalSession.h"
 #import "PEPMessage.h"
 #import "PEPSession.h"

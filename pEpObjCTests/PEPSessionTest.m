@@ -8,9 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
+#import <PEPObjCAdapterFramework/PEPObjCAdapterFramework.h>
+
 #import "PEPObjCAdapter.h"
-#import "NSDictionary+Extension.h"
-#import <PEPObjCAdapterFramework/PEPIdentity.h>
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
