@@ -53,6 +53,7 @@
 		4360AA0E2227F22900E62E5A /* PEPObjCAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		43753CFB222D4911002EE98B /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2A1ECC2ACD007E7E2E /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		437BEA9122328E570051E3A1 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
 		4396CEB82187196600FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPSessionTestSendMessageDelegate.m */; };
 		43BCEFF7222FBA2400148303 /* NSDictionary+CommType.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D27DE41F5DA78700795687 /* NSDictionary+CommType.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -540,6 +541,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437BEA9122328E570051E3A1 /* pEpTrustWords.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
