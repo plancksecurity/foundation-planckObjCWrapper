@@ -17,10 +17,6 @@
 
 @interface PEPSessionTest : XCTestCase
 
-@property (nonatomic) PEPSync *sync;
-@property (nonatomic) PEPSessionTestSendMessageDelegate *sendMessageDelegate;
-@property (nonatomic) PEPSessionTestNotifyHandshakeDelegate *notifyHandshakeDelegate;
-
 @end
 
 @implementation PEPSessionTest
@@ -38,8 +34,6 @@
 
 - (void)tearDown
 {
-    [self.sync shutdown];
-
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -1232,35 +1226,6 @@
 {
     PEPSession *session = [PEPSession new];
     [self testSendMessageOnSession:session];
-}
-
-- (void)testDeliverHandshakeResult
-{
-    PEPSession *session = [PEPSession new];
-    [self testSendMessageOnSession:session];
-
-    PEPIdentity *forSureNotMe = [[PEPIdentity alloc]
-                                 initWithAddress:@"someoneelseentirely@pep-project.org"
-                                 userID:@"that_someone_else"
-                                 userName:@"other"
-                                 isOwn:NO];
-
-    sync_handshake_result handshakeResults[] = { SYNC_HANDSHAKE_CANCEL,
-        SYNC_HANDSHAKE_ACCEPTED, SYNC_HANDSHAKE_REJECTED };
-
-    for (int i = 0;; ++i) {
-        NSError *error = nil;
-        XCTAssertFalse([session
-                        deliverHandshakeResult:handshakeResults[i]
-                        forPartner:forSureNotMe
-                        error:&error]);
-        XCTAssertNotNil(error);
-        XCTAssertEqual([error code], PEP_ILLEGAL_VALUE);
-
-        if (handshakeResults[i] == SYNC_HANDSHAKE_REJECTED) {
-            break;
-        }
-    }
 }
 
 #pragma mark - Helpers
