@@ -15,7 +15,6 @@
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
 
-#import "PEPSessionTestNotifyHandshakeDelegate.h"
 #import "PEPSessionTestSendMessageDelegate.h"
 
 @interface PEPSessionTest : XCTestCase
