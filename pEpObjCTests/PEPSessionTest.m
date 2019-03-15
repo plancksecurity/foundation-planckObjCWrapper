@@ -70,7 +70,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
     XCTAssertTrue([identMe isPEPUser:session error:&error]);
 }
@@ -90,7 +90,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
     XCTAssertTrue([identMe isPEPUser:session error:&error]);
 
@@ -329,7 +329,7 @@
         msg.to = @[alice];
         msg.shortMessage = @"The subject";
         msg.longMessage = @"Lots and lots of text";
-        msg.direction = PEP_dir_outgoing;
+        msg.direction = PEPMsgDirectionOutgoing;
 
         PEPStatus status;
         NSError *error = nil;
@@ -389,7 +389,7 @@
         msgGray.to = @[identUnknownBob];
         msgGray.shortMessage = @"All Gray Test";
         msgGray.longMessage = @"This is a text content";
-        msgGray.direction = PEP_dir_outgoing;
+        msgGray.direction = PEPMsgDirectionOutgoing;
 
         NSError *error = nil;
 
@@ -416,7 +416,7 @@
     msg.to = @[identBob];
     msg.shortMessage = @"All Gray Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSError *error = nil;
 
@@ -495,7 +495,7 @@
                                              userID:@"42" userName:@"pEp Test Bob" isOwn:NO]];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     // Test with unknown Bob
     PEPRating rating;
@@ -619,7 +619,7 @@
                                            userName:@"pEp Test Bob" isOwn:NO]];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     // Gray == PEPRatingUnencrypted
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
@@ -696,7 +696,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Myself";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
@@ -940,7 +940,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
@@ -1091,7 +1091,7 @@
                              encFormat:PEPEncFormatPEP
                              flags:0
                              status:&status error:&error];
-    XCTAssertEqual(status, PEP_ILLEGAL_VALUE);
+    XCTAssertEqual(status, PEPStatusIllegalValue);
     XCTAssertNotNil(error);
     XCTAssertNil(encrypted);
 }
@@ -1310,7 +1310,7 @@
     NSString *shortMessage = @"whatever it may be";
     NSString *longMessage = [NSString stringWithFormat:@"%@ %@", shortMessage, shortMessage];
     PEPMessage *message = [PEPMessage new];
-    message.direction = PEP_dir_outgoing;
+    message.direction = PEPMsgDirectionOutgoing;
     message.from = identMe;
     message.to = @[identAlice];
     message.shortMessage = shortMessage;
@@ -1535,7 +1535,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
