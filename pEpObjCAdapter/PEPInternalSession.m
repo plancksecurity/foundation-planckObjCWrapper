@@ -25,6 +25,7 @@
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
 #import "PEPLock.h"
+#import "PEPSync.h"
 
 #import "pEpEngine.h"
 
@@ -37,6 +38,7 @@
         [PEPInternalSession setupTrustWordsDB];
 
         NSError *error = nil;
+        _session = [PEPSync createSession:&error];
 
         if (error) {
             return nil;
@@ -47,6 +49,7 @@
 
 - (void)dealloc
 {
+    [PEPSync releaseSession:_session];
 }
 
 #pragma mark - CONFIG
