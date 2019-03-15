@@ -15,8 +15,6 @@
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
 
-#import "PEPSessionTestSendMessageDelegate.h"
-
 @interface PEPSessionTest : XCTestCase
 
 @property (nonatomic) PEPSync *sync;
