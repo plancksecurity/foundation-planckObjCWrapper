@@ -1264,7 +1264,7 @@
                                                      status:&status
                                                       error:&error];
     XCTAssertNil(error);
-    XCTAssertEqual(status, PEP_UNENCRYPTED);
+    XCTAssertEqual(status, PEPStatusUnencrypted);
 
     if (passiveModeEnabled) {
         XCTAssertNil(encryptedMessage.attachments);
@@ -1379,7 +1379,7 @@
                                  shortMessage:shortMessage
                                   longMessage:longMessage
                                      outgoing:YES];
-    PEPStatus status = PEP_UNKNOWN_ERROR;
+    PEPStatus status = PEPStatusUnknownError;
     PEPMessage *encMessage = [session
                               encryptMessage:mail
                               forSelf:me
@@ -1408,7 +1408,7 @@
     NSString *longMessage = @"Oh, this is a long body text!";
     PEPMessage *mail = [PEPTestUtils mailFrom:me toIdent:me shortMessage:shortMessage longMessage:longMessage outgoing:YES];
 
-    PEP_STATUS status;
+    PEPStatus status;
     PEPMessage *encMessage = [session
                               encryptMessage:mail
                               forSelf:me
@@ -1486,7 +1486,7 @@
 
     PEPMessage *encMsg;
 
-    PEPStatus statusEnc = PEP_VERSION_MISMATCH;
+    PEPStatus statusEnc = PEPStatusVersionMismatch;
     if (toSelf) {
         encMsg = [session
                   encryptMessage:msg
@@ -1494,7 +1494,7 @@
                   extraKeys:nil
                   status:&statusEnc
                   error:&error];
-        XCTAssertEqual(statusEnc, PEP_STATUS_OK);
+        XCTAssertEqual(statusEnc, PEPStatusOK);
     } else {
         encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
         XCTAssertNotNil(encMsg);
