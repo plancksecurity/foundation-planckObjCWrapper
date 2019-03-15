@@ -14,7 +14,6 @@
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
-#import "PEPSync.h"
 #import "PEPSendMessageDelegate.h"
 
 #import "PEPSessionTestNotifyHandshakeDelegate.h"
