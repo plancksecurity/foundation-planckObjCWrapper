@@ -10,11 +10,6 @@
 
 #import "pEpEngine.h"
 
-#import "PEPSendMessageDelegate.h"
-#import "PEPNotifyHandshakeDelegate.h"
-
-@class PEPSyncSendMessageDelegate;
-
 /**
  @see libpEpAdapter: Adapter.{cc|hh}
  @see sync_codec.h
@@ -30,14 +25,5 @@
  Releases an engine session that was created by `createSession`.
  */
 + (void)releaseSession:(PEP_SESSION)session;
-
-- (instancetype)initWithSendMessageDelegate:(id<PEPSendMessageDelegate>
-                                             _Nonnull)sendMessageDelegate
-                    notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
-                                             _Nonnull)notifyHandshakeDelegate;
-
-- (void)startup;
-
-- (void)shutdown;
 
 @end
