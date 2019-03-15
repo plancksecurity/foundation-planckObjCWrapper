@@ -10,10 +10,9 @@
 
 #import "PEPSendMessageDelegate.h"
 #import "PEPMessageUtil.h"
-#import <PEPObjCAdapterFramework/PEPMessage.h>
 #import "PEPQueue.h"
 #import "PEPLock.h"
-#import "PEPObjCAdapter.h"
+#import <PEPObjCAdapterFramework/PEPObjCAdapter.h>
 #import "NSError+PEP+Internal.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
