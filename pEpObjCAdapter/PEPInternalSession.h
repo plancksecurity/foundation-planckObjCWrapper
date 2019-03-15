@@ -10,8 +10,6 @@
 
 #import <PEPObjCAdapterFramework/PEPSessionProtocol.h>
 
-#import "sync_api.h"
-
 #import "PEPObjCAdapter.h"
 
 /**
