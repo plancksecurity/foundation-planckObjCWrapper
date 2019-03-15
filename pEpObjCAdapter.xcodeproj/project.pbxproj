@@ -19,7 +19,7 @@
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
-		4356FB8E223BE22F0059EFB5 /* PEPSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 4356FB8D223BE22F0059EFB5 /* PEPSync.m */; };
+		4356FB90223BE3E00059EFB5 /* PEPSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 4356FB8D223BE22F0059EFB5 /* PEPSync.m */; };
 		435C0C8C22291FFB0025C6B5 /* PEPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 15206CC51F8E078B003FF880 /* PEPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435C0C9922292C080025C6B5 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 435796E11FB5E51A00395A9E /* PEPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435C0CA222292E7C0025C6B5 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C0CA022292E7C0025C6B5 /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -569,6 +569,7 @@
 				435F5170222046C2006EB11F /* NSDictionary+Debug.m in Sources */,
 				435F5176222046C2006EB11F /* PEPAttachment.m in Sources */,
 				435F5178222046C2006EB11F /* PEPAutoPointer.m in Sources */,
+				4356FB90223BE3E00059EFB5 /* PEPSync.m in Sources */,
 				435F516C222046C2006EB11F /* PEPObjCAdapter.m in Sources */,
 				435F5177222046C2006EB11F /* NSError+PEP.m in Sources */,
 				435F517B222046C2006EB11F /* NSMutableDictionary+PEP.m in Sources */,
@@ -599,7 +600,6 @@
 				152A9C472010F50400F962ED /* PEPSessionTest.m in Sources */,
 				434226811D4F60000083ED79 /* PepTests.m in Sources */,
 				4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */,
-				4356FB8E223BE22F0059EFB5 /* PEPSync.m in Sources */,
 				15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
