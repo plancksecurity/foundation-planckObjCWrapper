@@ -1217,63 +1217,7 @@
     XCTAssertEqualObjects(decryptedAttachment.filename, attachment.filename);
 }
 
-#pragma mark - Sync
-
-/**
- Prove that mySelf triggers a message to be sent.
- */
-- (void)testBasicSendMessage
-{
-    PEPSession *session = [PEPSession new];
-    [self testSendMessageOnSession:session];
-}
-
 #pragma mark - Helpers
-
-- (void)testSendMessageOnSession:(PEPSession *)session
-{
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
-    XCTAssertNil(self.sendMessageDelegate.lastMessage);
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-
-    [self reStartSync];
-
-    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
-
-    XCTAssertNotNil(identMe.fingerPrint);
-
-    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
-    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-}
-
-- (void)reStartSync
-{
-    [self.sync shutdown];
-    [self startSync];
-}
-
-- (void)startSync
-{
-    self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
-    self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
-
-    self.sync = [[PEPSync alloc]
-                 initWithSendMessageDelegate:self.sendMessageDelegate
-                 notifyHandshakeDelegate:self.notifyHandshakeDelegate];
-    [self.sync startup];
-}
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                              session:(PEPSession *)session
