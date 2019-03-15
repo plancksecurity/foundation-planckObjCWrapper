@@ -27,8 +27,6 @@
 
     [self pEpCleanUp];
 
-    [self startSync];
-
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 }
 
