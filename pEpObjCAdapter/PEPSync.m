@@ -11,7 +11,7 @@
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
 #import "PEPMessageUtil.h"
-#import <PEPObjCAdapterFramework/PEPMessage.h>
+#import "PEPMessage.h"
 #import "PEPQueue.h"
 #import "PEPLock.h"
 #import "PEPObjCAdapter.h"

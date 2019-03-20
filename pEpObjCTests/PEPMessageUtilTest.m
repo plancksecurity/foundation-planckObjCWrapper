@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "PEPMessageUtil.h"
-#import <PEPObjCAdapterFramework/PEPObjCAdapterFramework.h>
+#import "PEPObjCAdapterFramework.h"
 
 @interface PEPMessageUtilTest : XCTestCase
 @property pEp_identity *pepIdentitySomeOne;

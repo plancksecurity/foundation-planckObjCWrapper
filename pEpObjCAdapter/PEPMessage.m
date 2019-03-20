@@ -8,8 +8,8 @@
 
 #import "PEPMessage.h"
 
-#import <PEPObjCAdapterFramework/PEPIdentity.h>
-#import <PEPObjCAdapterFramework/PEPConstants.h>
+#import "PEPIdentity.h"
+#import "PEPConstants.h"
 
 #import "NSObject+Extension.h"
 #import "NSMutableDictionary+PEP.h"

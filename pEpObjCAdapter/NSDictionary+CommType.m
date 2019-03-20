@@ -10,7 +10,7 @@
 
 #import "NSDictionary+CommType.h"
 
-#import <PEPObjCAdapterFramework/PEPConstants.h>
+#import "PEPConstants.h"
 
 #import "PEPMessageUtil.h"
 

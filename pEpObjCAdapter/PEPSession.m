@@ -10,7 +10,7 @@
 
 #import "PEPInternalSession.h"
 #import "PEPSessionProvider.h"
-#import <PEPObjCAdapterFramework/PEPIdentity.h>
+#import "PEPIdentity.h"
 
 #import "PEPMessageUtil.h"
 #import "NSNumber+PEPRating.h"

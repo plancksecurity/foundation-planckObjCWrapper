@@ -10,7 +10,7 @@
 
 #import "PEPTestUtils.h"
 
-#import <PEPObjCAdapterFramework/PEPObjCAdapterFramework.h>
+#import "PEPObjCAdapterFramework.h"
 #import "PEPInternalSession.h"
 #import "PEPMessage.h"
 #import "PEPSession.h"

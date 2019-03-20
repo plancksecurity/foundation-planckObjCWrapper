@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPObjCAdapterFramework/PEPTypes.h>
-#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
+#import "PEPTypes.h"
+#import "PEPEngineTypes.h"
 
 @class PEPLanguage;
 @class PEPIdentity;

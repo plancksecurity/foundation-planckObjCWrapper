@@ -6,8 +6,8 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
-#import <PEPObjCAdapterFramework/PEPIdentity.h>
-#import <PEPObjCAdapterFramework/PEPConstants.h>
+#import "PEPIdentity.h"
+#import "PEPConstants.h"
 
 #import "pEpEngine.h"
 #import "PEPMessageUtil.h"

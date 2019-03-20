@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <PEPObjCAdapterFramework/PEPObjCAdapterFramework.h>
+#import "PEPObjCAdapterFramework.h"
 
 #import "PEPObjCAdapter.h"
 #import "PEPMessage.h"
