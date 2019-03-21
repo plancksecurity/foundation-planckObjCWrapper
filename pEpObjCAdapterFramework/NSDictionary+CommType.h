@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
+#import "PEPEngineTypes.h"
 
 @interface NSDictionary (CommType)
 

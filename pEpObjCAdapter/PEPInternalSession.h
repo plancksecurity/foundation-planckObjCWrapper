@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPSessionProtocol.h"
 #import "pEpEngine.h"
 
 #import <PEPObjCAdapterFramework/PEPSessionProtocol.h>

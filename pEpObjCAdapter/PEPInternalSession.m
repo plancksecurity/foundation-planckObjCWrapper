@@ -8,7 +8,7 @@
 
 #import "PEPInternalSession.h"
 
-#import <PEPObjCAdapterFramework/PEPConstants.h>
+#import "PEPConstants.h"
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
@@ -18,7 +18,7 @@
 #import "NSArray+Extension.h"
 #import "NSDictionary+CommType.h"
 #import "NSDictionary+Debug.h"
-#import <PEPObjCAdapterFramework/PEPIdentity.h>
+#import "PEPIdentity.h"
 #import "PEPMessage.h"
 #import "NSError+PEP+Internal.h"
 #import "PEPAutoPointer.h"

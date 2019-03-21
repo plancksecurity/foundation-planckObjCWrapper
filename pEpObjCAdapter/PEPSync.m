@@ -10,6 +10,7 @@
 
 #import "PEPSendMessageDelegate.h"
 #import "PEPMessageUtil.h"
+#import "PEPMessage.h"
 #import "PEPQueue.h"
 #import "PEPLock.h"
 #import <PEPObjCAdapterFramework/PEPObjCAdapter.h>
