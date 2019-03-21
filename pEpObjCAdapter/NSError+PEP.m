@@ -6,14 +6,17 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#import "PEPTypes.h"
+
 #import "NSError+PEP.h"
+#import "NSError+PEP+Internal.h"
 
 static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
 
 @implementation NSError (Extension)
 
-+ (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status
-                                userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
++ (NSError * _Nonnull)errorWithPEPStatusInternal:(PEP_STATUS)status
+                                        userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
 {
     switch (status) {
         case PEP_STATUS_OK:
@@ -36,15 +39,15 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
     }
 }
 
-+ (NSError * _Nonnull)errorWithPEPStatus:(PEP_STATUS)status
++ (NSError * _Nonnull)errorWithPEPStatusInternal:(PEP_STATUS)status
 {
     NSDictionary *userInfo = [NSDictionary new];
-    return [self errorWithPEPStatus:status userInfo:userInfo];
+    return [self errorWithPEPStatusInternal:status userInfo:userInfo];
 }
 
 + (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEP_STATUS)status
 {
-    NSError *theError = [self errorWithPEPStatus:status];
+    NSError *theError = [self errorWithPEPStatusInternal:status];
     if (theError) {
         if (error) {
             *error = theError;
@@ -154,6 +157,17 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
     } else {
         return nil;
     }
+}
+
++ (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status
+                                userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
+{
+    return [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:dict];
+}
+
++ (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status
+{
+    return [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:[NSDictionary new]];
 }
 
 @end

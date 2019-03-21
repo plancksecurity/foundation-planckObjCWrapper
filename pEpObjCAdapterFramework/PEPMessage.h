@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "message.h"
-#import "PEPSessionProtocol.h"
+#import "PEPTypes.h"
+#import "PEPEngineTypes.h"
 
 @class PEPIdentity;
 @class PEPAttachment;
@@ -39,7 +39,7 @@
 @property (nonatomic, nullable) NSArray<NSArray<NSString *> *> *optionalFields;
 @property (nonatomic, nullable) NSArray<NSString *> *keywords;
 @property (nonatomic, nullable) PEPIdentity *receivedBy;
-@property (nonatomic) PEP_msg_direction direction;
+@property (nonatomic) PEPMsgDirection direction;
 
 /**
  For backwards compatiblity.

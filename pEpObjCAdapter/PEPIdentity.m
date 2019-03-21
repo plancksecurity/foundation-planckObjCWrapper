@@ -7,6 +7,7 @@
 //
 
 #import "PEPIdentity.h"
+#import "PEPConstants.h"
 
 #import "pEpEngine.h"
 #import "PEPMessageUtil.h"
@@ -21,7 +22,7 @@
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
-                               commType:(PEP_comm_type)commType
+                               commType:(PEPCommType)commType
                                language:(NSString * _Nullable)language {
     if (self = [super init]) {
         self.address = address;

@@ -8,17 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-#import "message_api.h"
+#import "PEPTypes.h"
+#import "PEPEngineTypes.h"
 
 /**
  Extension for wrapping the engine's PEP_rating inside a NSNumber.
  */
 @interface NSNumber (Extension)
 
-@property (nonatomic) PEP_rating pEpRating;
+@property (nonatomic, readonly) PEPRating pEpRating;
 
-- initWithPEPRating:(PEP_rating)pEpRating;
+- initWithPEPRating:(PEPRating)pEpRating;
 
-+ (NSNumber *)numberWithPEPRating:(PEP_rating)pEpRating;
++ (NSNumber *)numberWithPEPRating:(PEPRating)pEpRating;
 
 @end

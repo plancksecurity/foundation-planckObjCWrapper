@@ -15,7 +15,7 @@
 #import "PEPQueue.h"
 #import "PEPLock.h"
 #import "PEPObjCAdapter.h"
-#import "NSError+PEP.h"
+#import "NSError+PEP+Internal.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 
@@ -131,7 +131,7 @@ static __weak PEPSync *s_pEpSync;
 
     if (status != PEP_STATUS_OK) {
         if (error) {
-            *error = [NSError errorWithPEPStatus:status];
+            *error = [NSError errorWithPEPStatusInternal:status];
         }
         return nil;
     }

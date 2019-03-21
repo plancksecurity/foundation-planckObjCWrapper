@@ -10,8 +10,7 @@
 
 #import "PEPTestUtils.h"
 
-#import "NSDictionary+Extension.h"
-#import "PEPIdentity.h"
+#import "PEPObjCAdapterFramework.h"
 #import "PEPInternalSession.h"
 #import "PEPMessage.h"
 #import "PEPSession.h"
@@ -111,7 +110,7 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     PEPMessage *message = [PEPMessage new];
     message.from = fromIdent;
     message.to = @[toIdent];
-    message.direction = outgoing ? PEP_dir_outgoing:PEP_dir_incoming;
+    message.direction = outgoing ? PEPMsgDirectionOutgoing : PEPMsgDirectionIncoming;
     message.shortMessage = shortMessage;
     message.longMessage = longMessage;
     return message;

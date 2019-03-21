@@ -1,5 +1,5 @@
 //
-//  NSDictionary_NSDictionary_Extension.h
+//  NSDictionary+Extension.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 04.09.17.
@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "pEpEngine.h"
+#import "PEPEngineTypes.h"
 
-@interface NSDictionary (Extension)
+@interface NSDictionary (CommType)
 
 /**
  If we interpret the self as a dictionary denoting a p≡p Identity,
  does the comm type denote a PGP user?
  */
-@property (nonatomic, readonly) PEP_comm_type commType;
+@property (nonatomic, readonly) PEPCommType commType;
 
 @end
