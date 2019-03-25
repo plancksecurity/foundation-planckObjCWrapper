@@ -925,14 +925,10 @@ static NSDictionary *stringToRating;
 }
 
 - (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
-                    forPartner:(PEPIdentity * _Nonnull)partner
                          error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *partnerIdent = PEP_identityToStruct(partner);
     PEPStatus status = (PEPStatus) deliverHandshakeResult(self.session,
-                                                          partnerIdent,
                                                           (sync_handshake_result) result);
-    free_identity(partnerIdent);
 
     if (status == PEPStatusOK) {
         return YES;

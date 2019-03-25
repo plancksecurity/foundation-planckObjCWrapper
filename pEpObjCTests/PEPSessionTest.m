@@ -1244,12 +1244,6 @@
     PEPSession *session = [PEPSession new];
     [self testSendMessageOnSession:session];
 
-    PEPIdentity *forSureNotMe = [[PEPIdentity alloc]
-                                 initWithAddress:@"someoneelseentirely@pep-project.org"
-                                 userID:@"that_someone_else"
-                                 userName:@"other"
-                                 isOwn:NO];
-
     sync_handshake_result handshakeResults[] = { SYNC_HANDSHAKE_CANCEL,
         SYNC_HANDSHAKE_ACCEPTED, SYNC_HANDSHAKE_REJECTED };
 
@@ -1257,7 +1251,6 @@
         NSError *error = nil;
         XCTAssertFalse([session
                         deliverHandshakeResult:handshakeResults[i]
-                        forPartner:forSureNotMe
                         error:&error]);
         XCTAssertNotNil(error);
         XCTAssertEqual([error code], PEP_ILLEGAL_VALUE);

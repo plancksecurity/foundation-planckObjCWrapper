@@ -246,7 +246,6 @@
            error:(NSError * _Nullable * _Nullable)error;
 
 - (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
-                    forPartner:(PEPIdentity * _Nonnull)partner
                          error:(NSError * _Nullable * _Nullable)error;
 
 /**
