@@ -1244,8 +1244,8 @@
     PEPSession *session = [PEPSession new];
     [self testSendMessageOnSession:session];
 
-    sync_handshake_result handshakeResults[] = { SYNC_HANDSHAKE_CANCEL,
-        SYNC_HANDSHAKE_ACCEPTED, SYNC_HANDSHAKE_REJECTED };
+    PEPSyncHandshakeResult handshakeResults[] = { PEPSyncHandshakeResultCancel,
+        PEPSyncHandshakeResultAccepted, PEPSyncHandshakeResultRejected };
 
     for (int i = 0;; ++i) {
         NSError *error = nil;
