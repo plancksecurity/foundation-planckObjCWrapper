@@ -1239,6 +1239,7 @@
     [self testSendMessageOnSession:session];
 }
 
+/*
 - (void)testDeliverHandshakeResult
 {
     PEPSession *session = [PEPSession new];
@@ -1260,6 +1261,7 @@
         }
     }
 }
+ */
 
 #pragma mark - Helpers
 
