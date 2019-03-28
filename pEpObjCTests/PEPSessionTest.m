@@ -1239,6 +1239,28 @@
     [self testSendMessageOnSession:session];
 }
 
+- (void)testDeliverHandshakeResult
+{
+    PEPSession *session = [PEPSession new];
+    [self testSendMessageOnSession:session];
+
+    PEPSyncHandshakeResult handshakeResults[] = { PEPSyncHandshakeResultCancel,
+        PEPSyncHandshakeResultAccepted, PEPSyncHandshakeResultRejected };
+
+    for (int i = 0;; ++i) {
+        NSError *error = nil;
+        XCTAssertFalse([session
+                        deliverHandshakeResult:handshakeResults[i]
+                        error:&error]);
+        XCTAssertNotNil(error);
+        XCTAssertEqual([error code], PEP_ILLEGAL_VALUE);
+
+        if (handshakeResults[i] == SYNC_HANDSHAKE_REJECTED) {
+            break;
+        }
+    }
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
