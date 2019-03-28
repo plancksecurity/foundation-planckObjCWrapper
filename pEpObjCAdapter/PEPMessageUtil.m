@@ -247,20 +247,6 @@ NSArray<PEPIdentity *> *PEP_arrayFromIdentityList(identity_list *il)
     return array;
 }
 
-identity_list *PEP_arrayToIdentityList(NSArray *array)
-{
-    identity_list *il = new_identity_list(NULL);
-    if (!il)
-        return NULL;
-    
-    identity_list *_il = il;
-    for (NSDictionary *dict in array) {
-        _il = identity_list_add(_il, PEP_identityDictToStruct(dict));
-    }
-    
-    return il;
-}
-
 identity_list *PEP_identityArrayToList(NSArray *array)
 {
     identity_list *il = new_identity_list(NULL);
