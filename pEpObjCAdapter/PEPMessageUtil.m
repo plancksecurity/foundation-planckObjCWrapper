@@ -91,7 +91,7 @@ NSArray *PEP_arrayFromBloblist(bloblist_t *bl)
             theAttachment.mimeType = [NSString stringWithUTF8String:_bl->mime_type];
         }
 
-        theAttachment.contentDisposition = _bl->disposition;
+        theAttachment.contentDisposition = (PEPContentDisposition) _bl->disposition;
         
         [array addObject:theAttachment];
     }
@@ -126,7 +126,7 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
                             precomposedStringWithCanonicalMapping]
                            UTF8String]);
 
-        bl->disposition = theAttachment.contentDisposition;
+        bl->disposition = (content_disposition_type) theAttachment.contentDisposition;
     }
     return _bl;
 }
@@ -231,7 +231,7 @@ PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
         identity.language = [NSString stringWithUTF8String:ident->lang];
     }
 
-    identity.commType = ident->comm_type;
+    identity.commType = (PEPCommType) ident->comm_type;
 
     return identity;
 }
