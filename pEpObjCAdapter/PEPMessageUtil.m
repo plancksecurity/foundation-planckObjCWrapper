@@ -247,7 +247,7 @@ NSArray<PEPIdentity *> *PEP_arrayFromIdentityList(identity_list *il)
     return array;
 }
 
-identity_list *PEP_identityArrayToList(NSArray *array)
+identity_list *PEP_identityArrayToList(NSArray<PEPIdentity *> *array)
 {
     identity_list *il = new_identity_list(NULL);
     if (!il)
