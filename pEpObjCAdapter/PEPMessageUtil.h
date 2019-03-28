@@ -37,3 +37,5 @@ NSDictionary * _Nonnull PEP_messageDictFromStruct(message * _Nullable msg);
 NSArray *PEP_identityArrayFromList(identity_list *il);
 NSArray *PEP_arrayFromStringPairlist(stringpair_list_t *sl);
 NSArray *PEP_arrayFromBloblist(bloblist_t *bl);
+
+identity_list *PEP_identityArrayToList(NSArray *array);

@@ -246,6 +246,7 @@
            error:(NSError * _Nullable * _Nullable)error;
 
 - (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
+             identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
                          error:(NSError * _Nullable * _Nullable)error;
 
 /**

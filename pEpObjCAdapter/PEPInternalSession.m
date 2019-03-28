@@ -925,10 +925,20 @@ static NSDictionary *stringToRating;
 }
 
 - (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
-                         error:(NSError * _Nullable * _Nullable)error
+             identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
+                         error:(NSError * _Nullable * _Nullable)error;
 {
+    identity_list *identitiesSharingData = NULL;
+
+    if (identitiesSharing) {
+        identitiesSharingData = PEP_identityArrayToList(identitiesSharing);
+    }
+
     PEPStatus status = (PEPStatus) deliverHandshakeResult(self.session,
-                                                          (sync_handshake_result) result);
+                                                          (sync_handshake_result) result,
+                                                          identitiesSharingData);
+
+    free(identitiesSharingData);
 
     if (status == PEPStatusOK) {
         return YES;
