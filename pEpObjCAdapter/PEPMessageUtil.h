@@ -24,6 +24,7 @@ pEp_identity * _Nonnull PEP_identityToStruct(PEPIdentity * _Nonnull identity);
 PEPIdentity * _Nullable PEP_identityFromStruct(pEp_identity * _Nonnull ident);
 
 NSArray<PEPIdentity *> *PEP_arrayFromIdentityList(identity_list *il);
+identity_list *PEP_identityArrayToList(NSArray *array);
 
 pEp_identity * _Nullable PEP_identityDictToStruct(NSDictionary * _Nullable dict);
 NSDictionary * _Nonnull PEP_identityDictFromStruct(pEp_identity * _Nullable ident);
@@ -37,5 +38,3 @@ NSDictionary * _Nonnull PEP_messageDictFromStruct(message * _Nullable msg);
 NSArray *PEP_identityArrayFromList(identity_list *il);
 NSArray *PEP_arrayFromStringPairlist(stringpair_list_t *sl);
 NSArray *PEP_arrayFromBloblist(bloblist_t *bl);
-
-identity_list *PEP_identityArrayToList(NSArray *array);
