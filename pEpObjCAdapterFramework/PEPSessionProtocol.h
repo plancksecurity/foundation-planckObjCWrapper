@@ -245,6 +245,9 @@
      forIdentity:(PEPIdentity * _Nonnull)identity
            error:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Wraps the engine's deliverHandshakeResult.
+ */
 - (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
              identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
                          error:(NSError * _Nullable * _Nullable)error;
