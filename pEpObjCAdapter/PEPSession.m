@@ -355,10 +355,11 @@
 }
 
 - (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
-                         error:(NSError * _Nullable * _Nullable)error
+             identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
+                         error:(NSError * _Nullable * _Nullable)error;
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session deliverHandshakeResult:result error:error];
+    return [session deliverHandshakeResult:result identitiesSharing:identitiesSharing error:error];
 }
 
 - (PEPColor)colorFromRating:(PEPRating)rating
