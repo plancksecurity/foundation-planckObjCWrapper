@@ -950,7 +950,7 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
                       error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);

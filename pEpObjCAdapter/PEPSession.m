@@ -347,7 +347,7 @@
     return [session setFlags:flags forIdentity:identity error:error];
 }
 
-- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
                       error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];

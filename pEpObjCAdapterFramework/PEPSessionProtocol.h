@@ -255,7 +255,7 @@
 /**
  Wraps trust_own_key
  */
-- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
                       error:(NSError * _Nullable * _Nullable)error;
 
 /**
