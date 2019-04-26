@@ -1268,6 +1268,34 @@
     }
 }
 
+#pragma mark - key_reset_identity
+
+- (void)testKeyResetIdentity
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    NSString *fprOriginal = me.fingerPrint;
+    XCTAssertNotNil(fprOriginal);
+
+    XCTAssertTrue([session keyReset:me fingerprint:nil error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    NSString *fprAfterReset = me.fingerPrint;
+    XCTAssertNotNil(fprAfterReset);
+
+    XCTAssertNotEqual(fprOriginal, fprAfterReset);
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
