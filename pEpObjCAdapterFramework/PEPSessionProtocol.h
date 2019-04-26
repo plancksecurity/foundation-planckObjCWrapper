@@ -239,7 +239,7 @@
 - (void)configurePassiveModeEnabled:(BOOL)enabled;
 
 /**
- Wraps set_identity_flags
+ Wraps set_identity_flags.
  */
 - (BOOL)setFlags:(PEPIdentityFlags)flags
      forIdentity:(PEPIdentity * _Nonnull)identity
@@ -253,7 +253,7 @@
                          error:(NSError * _Nullable * _Nullable)error;
 
 /**
- Wraps trust_own_key
+ Wraps trust_own_key.
  */
 - (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
                       error:(NSError * _Nullable * _Nullable)error;
