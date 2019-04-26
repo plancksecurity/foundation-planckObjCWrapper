@@ -368,4 +368,12 @@
     return [session colorFromRating:rating];
 }
 
+- (BOOL)keyReset:(PEPIdentity * _Nonnull)identity
+     fingerprint:(NSString * _Nullable)fingerprint
+           error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session keyReset:identity fingerprint:fingerprint error:error];
+}
+
 @end
