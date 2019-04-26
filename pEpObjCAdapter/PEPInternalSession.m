@@ -27,6 +27,8 @@
 #import "PEPLock.h"
 #import "PEPSync.h"
 
+#import "key_reset.h"
+
 @implementation PEPInternalSession
 
 - (instancetype)init
@@ -970,6 +972,28 @@ static NSDictionary *stringToRating;
 - (PEPColor)colorFromRating:(PEPRating)rating
 {
     return (PEPColor) color_from_rating((PEP_rating) rating);
+}
+
+
+- (BOOL)keyReset:(PEPIdentity * _Nonnull)identity
+     fingerprint:(NSString * _Nullable)fingerprint
+           error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+    const char *fpr = [[fingerprint precomposedStringWithCanonicalMapping] UTF8String];
+
+    PEPStatus status = (PEPStatus) key_reset_identity(self.session, ident, fpr);
+
+    free_identity(ident);
+
+    if (status == PEPStatusOK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return NO;
+    }
 }
 
 @end
