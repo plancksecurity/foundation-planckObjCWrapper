@@ -1124,7 +1124,7 @@
             break;
         }
         error = nil;
-        XCTAssertTrue([session setFlags:aFlag forIdentity:me error:&error]);
+        XCTAssertTrue([session setFlags:(PEPIdentityFlags) aFlag forIdentity:me error:&error]);
         XCTAssertNil(error);
     }
 }
@@ -1266,6 +1266,34 @@
             break;
         }
     }
+}
+
+#pragma mark - key_reset_identity
+
+- (void)testKeyResetIdentity
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    NSString *fprOriginal = me.fingerPrint;
+    XCTAssertNotNil(fprOriginal);
+
+    XCTAssertTrue([session keyReset:me fingerprint:nil error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    NSString *fprAfterReset = me.fingerPrint;
+    XCTAssertNotNil(fprAfterReset);
+
+    XCTAssertNotEqual(fprOriginal, fprAfterReset);
 }
 
 #pragma mark - Helpers
@@ -1477,7 +1505,7 @@
                                  shortMessage:shortMessage
                                   longMessage:longMessage
                                      outgoing:YES];
-    PEPStatus status = PEP_UNKNOWN_ERROR;
+    PEPStatus status = PEPStatusUnknownError;
     PEPMessage *encMessage = [session
                               encryptMessage:mail
                               forSelf:me
@@ -1506,7 +1534,7 @@
     NSString *longMessage = @"Oh, this is a long body text!";
     PEPMessage *mail = [PEPTestUtils mailFrom:me toIdent:me shortMessage:shortMessage longMessage:longMessage outgoing:YES];
 
-    PEP_STATUS status;
+    PEPStatus status;
     PEPMessage *encMessage = [session
                               encryptMessage:mail
                               forSelf:me
@@ -1584,7 +1612,7 @@
 
     PEPMessage *encMsg;
 
-    PEPStatus statusEnc = PEP_VERSION_MISMATCH;
+    PEPStatus statusEnc = PEPStatusVersionMismatch;
     if (toSelf) {
         encMsg = [session
                   encryptMessage:msg

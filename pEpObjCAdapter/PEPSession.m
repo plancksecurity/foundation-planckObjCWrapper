@@ -347,7 +347,7 @@
     return [session setFlags:flags forIdentity:identity error:error];
 }
 
-- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
                       error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -366,6 +366,14 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session colorFromRating:rating];
+}
+
+- (BOOL)keyReset:(PEPIdentity * _Nonnull)identity
+     fingerprint:(NSString * _Nullable)fingerprint
+           error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session keyReset:identity fingerprint:fingerprint error:error];
 }
 
 @end
