@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "pEpEngine.h"
-
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
 

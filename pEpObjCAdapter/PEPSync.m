@@ -8,6 +8,8 @@
 
 #import "PEPSync.h"
 
+#import "pEpEngine.h"
+
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
 #import "PEPMessageUtil.h"
