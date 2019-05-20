@@ -44,7 +44,7 @@
 /**
  For backwards compatiblity.
  */
-- (instancetype _Nonnull)initWithDictionary:(PEPDict *)dict;
+- (instancetype _Nonnull)initWithDictionary:(PEPDict * _Nonnull)dict;
 
 /**
  For backwards compatiblity.
