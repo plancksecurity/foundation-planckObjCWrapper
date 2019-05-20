@@ -14,9 +14,9 @@
 
 @protocol PEPNotifyHandshakeDelegate <NSObject>
 
-- (PEP_STATUS)notifyHandshake:(void * _Nullable)object
-                           me:(PEPIdentity * _Nonnull)me
-                      partner:(PEPIdentity * _Nonnull)partner
-                       signal:(PEPSyncHandshakeSignal)signal;
+- (PEPStatus)notifyHandshake:(void * _Nullable)object
+                          me:(PEPIdentity * _Nonnull)me
+                     partner:(PEPIdentity * _Nonnull)partner
+                      signal:(PEPSyncHandshakeSignal)signal;
 
 @end
