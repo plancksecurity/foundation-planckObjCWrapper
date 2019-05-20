@@ -1262,7 +1262,7 @@
         XCTAssertNotNil(error);
         XCTAssertEqual([error code], PEPStatusIllegalValue);
 
-        if (handshakeResults[i] == SYNC_HANDSHAKE_REJECTED) {
+        if (handshakeResults[i] == PEPSyncHandshakeResultRejected) {
             break;
         }
     }
