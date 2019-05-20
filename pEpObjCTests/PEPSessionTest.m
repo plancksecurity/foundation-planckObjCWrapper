@@ -1396,7 +1396,7 @@
                                                      status:&status
                                                       error:&error];
     XCTAssertNil(error);
-    XCTAssertEqual(status, PEP_UNENCRYPTED);
+    XCTAssertEqual(status, PEPStatusUnencrypted);
 
     if (passiveModeEnabled) {
         XCTAssertNil(encryptedMessage.attachments);
