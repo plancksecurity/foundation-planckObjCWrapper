@@ -1117,9 +1117,15 @@
     XCTAssertTrue([session mySelf:me error:&error]);
     XCTAssertNil(error);
 
-    identity_flags theFlags[] = { PEP_idf_not_for_sync, PEP_idf_list, PEP_idf_devicegroup, 0 };
+    PEPIdentityFlags theFlags[] = {
+        PEPIdentityFlagsNotForSync,
+        PEPIdentityFlagsList,
+        PEPIdentityFlagsDeviceGroup,
+        0
+    };
+
     for (int i = 0;; ++i) {
-        identity_flags aFlag = theFlags[i];
+        PEPIdentityFlags aFlag = theFlags[i];
         if (aFlag == 0) {
             break;
         }
