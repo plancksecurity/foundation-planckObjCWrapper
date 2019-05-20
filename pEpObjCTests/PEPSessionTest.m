@@ -81,7 +81,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
     XCTAssertTrue([identMe isPEPUser:session error:&error]);
 }
@@ -101,7 +101,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
     XCTAssertTrue([identMe isPEPUser:session error:&error]);
 
