@@ -1102,7 +1102,7 @@
                              encFormat:PEPEncFormatPEP
                              flags:0
                              status:&status error:&error];
-    XCTAssertEqual(status, PEP_ILLEGAL_VALUE);
+    XCTAssertEqual(status, PEPStatusIllegalValue);
     XCTAssertNotNil(error);
     XCTAssertNil(encrypted);
 }
@@ -1260,7 +1260,7 @@
                         identitiesSharing:@[forSureNotMe]
                         error:&error]);
         XCTAssertNotNil(error);
-        XCTAssertEqual([error code], PEP_ILLEGAL_VALUE);
+        XCTAssertEqual([error code], PEPStatusIllegalValue);
 
         if (handshakeResults[i] == SYNC_HANDSHAKE_REJECTED) {
             break;
