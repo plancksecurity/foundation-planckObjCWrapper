@@ -1626,7 +1626,7 @@
                   extraKeys:nil
                   status:&statusEnc
                   error:&error];
-        XCTAssertEqual(statusEnc, PEP_STATUS_OK);
+        XCTAssertEqual(statusEnc, PEPStatusOK);
     } else {
         encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
         XCTAssertNotNil(encMsg);
