@@ -24,17 +24,17 @@
 /**
  Creates an engine session.
  */
-+ (PEP_SESSION)createSession:(NSError **)error;
++ (PEP_SESSION _Nullable)createSession:(NSError * _Nullable * _Nullable)error;
 
 /**
  Releases an engine session that was created by `createSession`.
  */
-+ (void)releaseSession:(PEP_SESSION)session;
++ (void)releaseSession:(PEP_SESSION _Nullable)session;
 
-- (instancetype)initWithSendMessageDelegate:(id<PEPSendMessageDelegate>
-                                             _Nonnull)sendMessageDelegate
-                    notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
-                                             _Nonnull)notifyHandshakeDelegate;
+- (instancetype _Nonnull)initWithSendMessageDelegate:(id <PEPSendMessageDelegate>
+                                                      _Nonnull)sendMessageDelegate
+                             notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
+                                                      _Nonnull)notifyHandshakeDelegate;
 
 - (void)startup;
 
