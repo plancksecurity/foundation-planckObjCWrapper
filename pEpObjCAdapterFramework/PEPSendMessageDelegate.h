@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "pEpEngine.h"
-
 @class PEPMessage;
 
 @protocol PEPSendMessageDelegate <NSObject>
