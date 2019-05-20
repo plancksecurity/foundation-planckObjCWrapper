@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "sync_api.h"
+#import "PEPEngineTypes.h"
 
 @class PEPIdentity;
 
@@ -17,6 +17,6 @@
 - (PEP_STATUS)notifyHandshake:(void * _Nullable)object
                            me:(PEPIdentity * _Nonnull)me
                       partner:(PEPIdentity * _Nonnull)partner
-                       signal:(sync_handshake_signal)signal;
+                       signal:(PEPSyncHandshakeSignal)signal;
 
 @end
