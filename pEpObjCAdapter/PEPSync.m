@@ -240,7 +240,7 @@ static __weak PEPSync *s_pEpSync;
         return [self.notifyHandshakeDelegate notifyHandshake:NULL
                                                           me:meIdentity
                                                      partner:partnerIdentity
-                                                      signal:signal];
+                                                      signal:(PEPSyncHandshakeSignal) signal];
     } else {
         return PEP_SYNC_NO_NOTIFY_CALLBACK;
     }
