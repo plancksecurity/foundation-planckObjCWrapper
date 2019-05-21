@@ -400,7 +400,7 @@
         msgGray.to = @[identUnknownBob];
         msgGray.shortMessage = @"All Gray Test";
         msgGray.longMessage = @"This is a text content";
-        msgGray.direction = PEPMsgDirectionIncoming;
+        msgGray.direction = PEPMsgDirectionOutgoing;
 
         NSError *error = nil;
 
@@ -427,7 +427,7 @@
     msg.to = @[identBob];
     msg.shortMessage = @"All Gray Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEPMsgDirectionIncoming;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSError *error = nil;
 
@@ -506,7 +506,7 @@
                                              userID:@"42" userName:@"pEp Test Bob" isOwn:NO]];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEPMsgDirectionIncoming;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     // Test with unknown Bob
     PEPRating rating;
@@ -630,7 +630,7 @@
                                            userName:@"pEp Test Bob" isOwn:NO]];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEPMsgDirectionIncoming;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     // Gray == PEPRatingUnencrypted
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
@@ -707,7 +707,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Myself";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEPMsgDirectionIncoming;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
@@ -951,7 +951,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
-    msg.direction = PEPMsgDirectionIncoming;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
@@ -1384,7 +1384,7 @@
     NSString *shortMessage = @"whatever it may be";
     NSString *longMessage = [NSString stringWithFormat:@"%@ %@", shortMessage, shortMessage];
     PEPMessage *message = [PEPMessage new];
-    message.direction = PEPMsgDirectionIncoming;
+    message.direction = PEPMsgDirectionOutgoing;
     message.from = identMe;
     message.to = @[identAlice];
     message.shortMessage = shortMessage;
@@ -1609,7 +1609,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
-    msg.direction = PEPMsgDirectionIncoming;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
