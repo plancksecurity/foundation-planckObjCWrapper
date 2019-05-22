@@ -95,3 +95,9 @@ extern NSString *const _Nonnull kXKeylist;
 
 /** Key for the boolean flag that denotes own identities */
 extern NSString *const _Nonnull kPepIsOwnIdentity;
+
+/** The key of the header for certain sync messages, "pEp-auto-consume". */
+extern NSString *const _Nonnull kPepHeaderAutoConsume;
+
+/** The positive value of the header for "pEp-auto-consume". */
+extern NSString *const _Nonnull kPepValueAutoConsumeYes;
