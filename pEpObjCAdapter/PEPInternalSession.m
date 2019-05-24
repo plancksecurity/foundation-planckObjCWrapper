@@ -25,7 +25,7 @@
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
 #import "PEPLock.h"
-#import "PEPSync.h"
+#import "PEPSync_Internal.h"
 
 #import "key_reset.h"
 

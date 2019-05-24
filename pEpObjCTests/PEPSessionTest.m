@@ -81,7 +81,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
     XCTAssertTrue([identMe isPEPUser:session error:&error]);
 }
@@ -101,7 +101,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
     XCTAssertTrue([identMe isPEPUser:session error:&error]);
 
@@ -340,7 +340,7 @@
         msg.to = @[alice];
         msg.shortMessage = @"The subject";
         msg.longMessage = @"Lots and lots of text";
-        msg.direction = PEP_dir_outgoing;
+        msg.direction = PEPMsgDirectionIncoming;
 
         PEPStatus status;
         NSError *error = nil;
@@ -400,7 +400,7 @@
         msgGray.to = @[identUnknownBob];
         msgGray.shortMessage = @"All Gray Test";
         msgGray.longMessage = @"This is a text content";
-        msgGray.direction = PEP_dir_outgoing;
+        msgGray.direction = PEPMsgDirectionOutgoing;
 
         NSError *error = nil;
 
@@ -427,7 +427,7 @@
     msg.to = @[identBob];
     msg.shortMessage = @"All Gray Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSError *error = nil;
 
@@ -506,7 +506,7 @@
                                              userID:@"42" userName:@"pEp Test Bob" isOwn:NO]];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     // Test with unknown Bob
     PEPRating rating;
@@ -630,7 +630,7 @@
                                            userName:@"pEp Test Bob" isOwn:NO]];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     // Gray == PEPRatingUnencrypted
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
@@ -707,7 +707,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Myself";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
@@ -951,7 +951,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
@@ -1102,7 +1102,7 @@
                              encFormat:PEPEncFormatPEP
                              flags:0
                              status:&status error:&error];
-    XCTAssertEqual(status, PEP_ILLEGAL_VALUE);
+    XCTAssertEqual(status, PEPStatusIllegalValue);
     XCTAssertNotNil(error);
     XCTAssertNil(encrypted);
 }
@@ -1117,9 +1117,15 @@
     XCTAssertTrue([session mySelf:me error:&error]);
     XCTAssertNil(error);
 
-    identity_flags theFlags[] = { PEP_idf_not_for_sync, PEP_idf_list, PEP_idf_devicegroup, 0 };
+    PEPIdentityFlags theFlags[] = {
+        PEPIdentityFlagsNotForSync,
+        PEPIdentityFlagsList,
+        PEPIdentityFlagsDeviceGroup,
+        0
+    };
+
     for (int i = 0;; ++i) {
-        identity_flags aFlag = theFlags[i];
+        PEPIdentityFlags aFlag = theFlags[i];
         if (aFlag == 0) {
             break;
         }
@@ -1260,9 +1266,9 @@
                         identitiesSharing:@[forSureNotMe]
                         error:&error]);
         XCTAssertNotNil(error);
-        XCTAssertEqual([error code], PEP_ILLEGAL_VALUE);
+        XCTAssertEqual([error code], PEPStatusIllegalValue);
 
-        if (handshakeResults[i] == SYNC_HANDSHAKE_REJECTED) {
+        if (handshakeResults[i] == PEPSyncHandshakeResultRejected) {
             break;
         }
     }
@@ -1378,7 +1384,7 @@
     NSString *shortMessage = @"whatever it may be";
     NSString *longMessage = [NSString stringWithFormat:@"%@ %@", shortMessage, shortMessage];
     PEPMessage *message = [PEPMessage new];
-    message.direction = PEP_dir_outgoing;
+    message.direction = PEPMsgDirectionOutgoing;
     message.from = identMe;
     message.to = @[identAlice];
     message.shortMessage = shortMessage;
@@ -1390,7 +1396,7 @@
                                                      status:&status
                                                       error:&error];
     XCTAssertNil(error);
-    XCTAssertEqual(status, PEP_UNENCRYPTED);
+    XCTAssertEqual(status, PEPStatusUnencrypted);
 
     if (passiveModeEnabled) {
         XCTAssertNil(encryptedMessage.attachments);
@@ -1603,7 +1609,7 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
@@ -1620,7 +1626,7 @@
                   extraKeys:nil
                   status:&statusEnc
                   error:&error];
-        XCTAssertEqual(statusEnc, PEP_STATUS_OK);
+        XCTAssertEqual(statusEnc, PEPStatusOK);
     } else {
         encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
         XCTAssertNotNil(encMsg);

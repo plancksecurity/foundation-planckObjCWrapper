@@ -21,10 +21,10 @@
     return self;
 }
 
-- (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message {
+- (PEPStatus)sendMessage:(PEPMessage * _Nonnull)message {
     [self.messages addObject:message];
     self.lastMessage = message;
-    return PEP_STATUS_OK;
+    return PEPStatusOK;
 }
 
 @end
