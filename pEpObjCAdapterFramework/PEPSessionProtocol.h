@@ -204,6 +204,13 @@
                                           full:(BOOL)full
                                          error:(NSError * _Nullable * _Nullable)error;
 
+/** Determine trustwords for two fprs */
+- (NSString * _Nullable)getTrustwordsFpr1:(NSString * _Nonnull)fpr1
+                                     fpr2:(NSString * _Nonnull)fpr2
+                                 language:(NSString * _Nullable)language
+                                     full:(BOOL)full
+                                    error:(NSError * _Nullable * _Nullable)error;
+
 /**
  @returns The list of supported languages for trustwords.
  */
