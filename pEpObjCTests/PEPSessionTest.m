@@ -836,7 +836,7 @@
 
     NSError *error = nil;
     NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                      language:nil full:YES error:&error];
+                                                      language:@"en" full:YES error:&error];
     XCTAssertNil(error);
     XCTAssertEqualObjects(trustwordsFull,
                           @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
