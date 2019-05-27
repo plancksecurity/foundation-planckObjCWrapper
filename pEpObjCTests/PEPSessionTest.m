@@ -36,8 +36,6 @@
 
     [self pEpCleanUp];
 
-    [self startSync];
-
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 }
 
@@ -1313,7 +1311,7 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    [self reStartSync];
+    [self startSync];
 
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
