@@ -841,11 +841,6 @@
     XCTAssertEqualObjects(trustwordsFull,
                           @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
 
-    NSString *trustwordsFullEnglish = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                             language:@"en" full:YES error:&error];
-    XCTAssertNil(error);
-    XCTAssertEqualObjects(trustwordsFullEnglish, trustwordsFull);
-
     NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
                                                            language:@"ZZ" full:YES error:&error];
     XCTAssertNotNil(error);
