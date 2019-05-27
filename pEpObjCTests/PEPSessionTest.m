@@ -1327,6 +1327,12 @@
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 }
 
+- (void)reStartSync
+{
+    [self.sync shutdown];
+    [self startSync];
+}
+
 - (void)startSync
 {
     self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
