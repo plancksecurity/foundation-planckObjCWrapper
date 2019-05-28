@@ -200,6 +200,8 @@ static __weak PEPSync *s_pEpSync;
 {
     [self.conditionLockForJoiningSyncThread lock];
 
+    os_log(OS_LOG_DEFAULT, "trying to start the sync loop");
+
     PEPInternalSession *session = [PEPSessionProvider session];
 
     if (session) {
@@ -219,6 +221,8 @@ static __weak PEPSync *s_pEpSync;
     } else {
         os_log_error(OS_LOG_DEFAULT, "could not create session for starting the sync loop");
     }
+
+    os_log(OS_LOG_DEFAULT, "sync loop finished");
 
     session = nil;
 
