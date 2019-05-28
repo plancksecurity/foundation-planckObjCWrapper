@@ -212,12 +212,12 @@ static __weak PEPSync *s_pEpSync;
         if (status == PEP_STATUS_OK) {
             status = do_sync_protocol(session.session, nil);
             if (status != PEP_STATUS_OK) {
-                os_log_error(self.logger, "do_sync_protocol returned %d", status);
+                os_log_error(self.logger, "do_sync_protocol returned PEP_STATUS %d", status);
                 os_log(self.logger, "sync loop is NOT running");
             }
             unregister_sync_callbacks(session.session);
         } else {
-            os_log_error(self.logger, "register_sync_callbacks returned %d", status);
+            os_log_error(self.logger, "register_sync_callbacks returned PEP_STATUS %d", status);
             os_log(self.logger, "sync loop is NOT running");
         }
     } else {
