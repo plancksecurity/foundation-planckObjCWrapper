@@ -43,7 +43,7 @@
                             fingerPrint:(NSString * _Nullable)fingerPrint
 {
     return [self initWithAddress:address userID:userID userName:userName isOwn:isOwn
-                     fingerPrint:fingerPrint commType:PEP_ct_unknown language:nil];
+                     fingerPrint:fingerPrint commType:PEPCommTypeUnknown language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -52,13 +52,13 @@
                                   isOwn:(BOOL)isOwn
 {
     return [self initWithAddress:address userID:userID userName:userName
-                           isOwn:isOwn fingerPrint:nil commType:PEP_ct_unknown language:nil];
+                           isOwn:isOwn fingerPrint:nil commType:PEPCommTypeUnknown language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
 {
     return [self initWithAddress:address userID:nil userName:nil isOwn:NO fingerPrint:nil
-                        commType:PEP_ct_unknown language:nil];
+                        commType:PEPCommTypeUnknown language:nil];
 }
 
 - (nonnull instancetype)initWithDictionary:(NSDictionary *)dictionary
@@ -145,7 +145,7 @@ static NSArray *s_keys;
     return self.commType;
 }
 
-- (void)setComm_type:(PEP_comm_type)ct
+- (void)setComm_type:(PEPCommType)ct
 {
     self.commType = ct;
 }
