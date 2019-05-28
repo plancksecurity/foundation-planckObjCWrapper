@@ -6,6 +6,8 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#import <os/log.h>
+
 #import "PEPSync.h"
 
 #import "pEpEngine.h"
@@ -201,12 +203,21 @@ static __weak PEPSync *s_pEpSync;
     PEPInternalSession *session = [PEPSessionProvider session];
 
     if (session) {
-        register_sync_callbacks(session.session, nil, s_notifyHandshake,
-                                s_retrieve_next_sync_event);
-        do_sync_protocol(session.session, nil);
-        unregister_sync_callbacks(session.session);
+        PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
+                                                    s_retrieve_next_sync_event);
+        if (status == PEP_STATUS_OK) {
+            status = do_sync_protocol(session.session, nil);
+            if (status != PEP_STATUS_OK) {
+                os_log_error(OS_LOG_DEFAULT, "do_sync_protocol returned %d", status);
+                os_log(OS_LOG_DEFAULT, "sync loop is NOT running");
+            }
+            unregister_sync_callbacks(session.session);
+        } else {
+            os_log_error(OS_LOG_DEFAULT, "register_sync_callbacks returned %d", status);
+            os_log(OS_LOG_DEFAULT, "sync loop is NOT running");
+        }
     } else {
-        // TODO: indicate error, maybe through `object`?
+        os_log_error(OS_LOG_DEFAULT, "could not create session for starting the sync loop");
     }
 
     session = nil;
