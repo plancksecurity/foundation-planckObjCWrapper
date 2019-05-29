@@ -1295,6 +1295,12 @@
     XCTAssertNotEqual(fprOriginal, fprAfterReset);
 }
 
+#pragma mark - leave_device_group
+
+- (void)testLeaveDeviceGroup
+{
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
