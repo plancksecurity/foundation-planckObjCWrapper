@@ -41,8 +41,6 @@
 
 - (void)tearDown
 {
-    [self.sync shutdown];
-
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -1329,6 +1327,8 @@
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+
+    [self.sync shutdown];
 }
 
 - (void)startSync
