@@ -376,4 +376,10 @@
     return [session keyReset:identity fingerprint:fingerprint error:error];
 }
 
+- (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session leaveDeviceGroupError:error];
+}
+
 @end

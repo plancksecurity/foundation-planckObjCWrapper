@@ -270,4 +270,7 @@
      fingerprint:(NSString * _Nullable)fingerprint
            error:(NSError * _Nullable * _Nullable)error;
 
+/** Wraps leave_device_group. */
+- (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error;
+
 @end

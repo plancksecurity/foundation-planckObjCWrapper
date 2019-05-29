@@ -996,4 +996,18 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error
+{
+    PEPStatus status = (PEPStatus) leave_device_group(self.session);
+
+    if (status == PEPStatusOK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return NO;
+    }
+}
+
 @end
