@@ -6,6 +6,8 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#import <os/log.h>
+
 #import "PEPSync.h"
 
 #import "pEpEngine.h"
@@ -35,6 +37,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
+@property (nonnull, readonly) os_log_t logger;
 
 /**
  @Return: The callback for message sending that should be used on every session init.
@@ -154,6 +157,7 @@ static __weak PEPSync *s_pEpSync;
                                              _Nonnull)notifyHandshakeDelegate
 {
     if (self = [super init]) {
+        _logger = os_log_create("security.pEp.adapter", "PEPSync");
         _sendMessageDelegate = sendMessageDelegate;
         _notifyHandshakeDelegate = notifyHandshakeDelegate;
         _queue = [PEPQueue new];
@@ -198,16 +202,29 @@ static __weak PEPSync *s_pEpSync;
 {
     [self.conditionLockForJoiningSyncThread lock];
 
+    os_log(self.logger, "trying to start the sync loop");
+
     PEPInternalSession *session = [PEPSessionProvider session];
 
     if (session) {
-        register_sync_callbacks(session.session, nil, s_notifyHandshake,
-                                s_retrieve_next_sync_event);
-        do_sync_protocol(session.session, nil);
-        unregister_sync_callbacks(session.session);
+        PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
+                                                    s_retrieve_next_sync_event);
+        if (status == PEP_STATUS_OK) {
+            status = do_sync_protocol(session.session, nil);
+            if (status != PEP_STATUS_OK) {
+                os_log_error(self.logger, "do_sync_protocol returned PEP_STATUS %d", status);
+                os_log(self.logger, "sync loop is NOT running");
+            }
+            unregister_sync_callbacks(session.session);
+        } else {
+            os_log_error(self.logger, "register_sync_callbacks returned PEP_STATUS %d", status);
+            os_log(self.logger, "sync loop is NOT running");
+        }
     } else {
-        // TODO: indicate error, maybe through `object`?
+        os_log_error(self.logger, "could not create session for starting the sync loop");
     }
+
+    os_log(self.logger, "sync loop finished");
 
     session = nil;
 
