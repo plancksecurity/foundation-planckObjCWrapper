@@ -139,7 +139,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                                       &_dst,
                                                       &theKeys,
                                                       (PEP_rating *) &internalRating,
-                                                      &theFlags);
+                                                      (PEP_decrypt_flags *) &theFlags);
     [self unlockWrite];
 
     if (status) {

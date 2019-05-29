@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, PEPDecryptFlags) {
+typedef NS_ENUM(int, PEPDecryptFlags) {
     PEPDecryptFlagsNone = 0x1, // This defined only in the adpater, not the engine.
     PEPDecryptFlagsOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key = 0x1,
     PEPDecryptFlagsConsume = 0x2, // PEP_decrypt_flag_consume = 0x2,
@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, PEPDecryptFlags) {
     PEPDecryptFlagsUntrustedServer = 0x100 // PEP_decrypt_flag_untrusted_server = 0x100
 }; // PEP_decrypt_flags;
 
-typedef NS_ENUM(NSUInteger, PEPEncFormat) {
+typedef NS_ENUM(int, PEPEncFormat) {
     PEPEncFormatNone = 0, // PEP_enc_none = 0, // message is not encrypted
     PEPEncFormatPieces, // PEP_enc_pieces, // inline PGP + PGP extensions
     PEPEncFormatSMIME, // PEP_enc_S_MIME, // RFC5751
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, PEPEncFormat) {
     PEPEncFormatPgpMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1 // Message B0rken by Outlook type 1
 };
 
-typedef NS_ENUM(NSInteger, PEPRating) {
+typedef NS_ENUM(int, PEPRating) {
     PEPRatingUndefined = 0,// PEP_rating_undefined = 0,
     PEPRatingCannotDecrypt, // PEP_rating_cannot_decrypt,
     PEPRatingHaveNoKey, // PEP_rating_have_no_key,
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, PEPRating) {
     PEPRatingUnderAttack = -3 // PEP_rating_under_attack = -3
 };
 
-typedef NS_ENUM(NSInteger, PEPStatus) {
+typedef NS_ENUM(int, PEPStatus) {
     PEPStatusOK                                   = 0, // PEP_STATUS_OK
 
     PEPStatusInitCannotLoadGPME                      = 0x0110, // PEP_INIT_CANNOT_LOAD_GPGME
@@ -144,7 +144,7 @@ typedef NS_ENUM(NSInteger, PEPStatus) {
     PEPStatusVersionMismatch                            = -7, // PEP_VERSION_MISMATCH
 };
 
-typedef NS_ENUM(NSUInteger, PEPIdentityFlags) {
+typedef NS_ENUM(int, PEPIdentityFlags) {
     // the first octet flags are app defined settings
     PEPIdentityFlagsNotForSync = 0x0001, // PEP_idf_not_for_sync = 0x0001,   // don't use this identity for sync
     PEPIdentityFlagsList = 0x0002, // PEP_idf_list = 0x0002,           // identity of list of persons
@@ -152,7 +152,7 @@ typedef NS_ENUM(NSUInteger, PEPIdentityFlags) {
     PEPIdentityFlagsDeviceGroup = 0x0100 // PEP_idf_devicegroup = 0x0100     // identity of a device group member
 };
 
-typedef NS_ENUM(NSInteger, PEPSyncHandshakeSignal) { // _sync_handshake_signal
+typedef NS_ENUM(int, PEPSyncHandshakeSignal) { // _sync_handshake_signal
     PEPSyncHandshakeSignalUndefined = 0, // SYNC_NOTIFY_UNDEFINED = 0,
 
     // request show handshake dialog
@@ -177,13 +177,13 @@ typedef NS_ENUM(NSInteger, PEPSyncHandshakeSignal) { // _sync_handshake_signal
     PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP = 255
 };
 
-typedef NS_ENUM(NSInteger, PEPSyncHandshakeResult) {
+typedef NS_ENUM(int, PEPSyncHandshakeResult) {
     PEPSyncHandshakeResultCancel = -1, // SYNC_HANDSHAKE_CANCEL = -1,
     PEPSyncHandshakeResultAccepted = 0, // SYNC_HANDSHAKE_ACCEPTED = 0,
     PEPSyncHandshakeResultRejected = 1 // SYNC_HANDSHAKE_REJECTED = 1
 };
 
-typedef NS_ENUM(NSUInteger, PEPCommType) {
+typedef NS_ENUM(int, PEPCommType) {
     PEPCommTypeUnknown = 0, // PEP_ct_unknown = 0,
 
     // range 0x01 to 0x09: no encryption, 0x0a to 0x0e: nothing reasonable
@@ -244,19 +244,19 @@ typedef NS_ENUM(NSUInteger, PEPCommType) {
     PEPCommTypePEP = 0xff // PEP_ct_pEp = 0xff
 };
 
-typedef NS_ENUM(NSUInteger, PEPMsgDirection) {
+typedef NS_ENUM(int, PEPMsgDirection) {
     PEPMsgDirectionIncoming = 0,
     PEPMsgDirectionOutgoing
 };
 
-typedef NS_ENUM(NSInteger, PEPColor) {
+typedef NS_ENUM(int, PEPColor) {
     PEPColorNoColor = 0,
     PEPColorYellow,
     PEPColorGreen,
     PEPColorRed = -1,
 };
 
-typedef NS_ENUM(NSInteger, PEPContentDisposition) {
+typedef NS_ENUM(int, PEPContentDisposition) {
     PEPContentDispositionAttachment = 0,
     PEPContentDispositionInline = 1,
     PEPContentDispositionOther = -1      // must be affirmatively set
