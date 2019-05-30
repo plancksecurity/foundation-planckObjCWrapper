@@ -1296,8 +1296,27 @@
 
 #pragma mark - leave_device_group
 
-- (void)testLeaveDeviceGroup
+/** Leaving a device group is successful even though none exists. */
+- (void)testSuccessfulLeaveDeviceGroup
 {
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    error = nil;
+    XCTAssertTrue([session leaveDeviceGroupError:&error]);
+    XCTAssertNil(error);
+
+    [self shutdownSync];
 }
 
 #pragma mark - Helpers
