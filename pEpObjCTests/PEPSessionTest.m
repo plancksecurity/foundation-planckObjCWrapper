@@ -41,6 +41,7 @@
 
 - (void)tearDown
 {
+    [self shutdownSync];
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -1328,7 +1329,7 @@
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 
-    [self.sync shutdown];
+    [self shutdownSync];
 }
 
 - (void)startSync
@@ -1340,6 +1341,11 @@
                  initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
     [self.sync startup];
+}
+
+- (void)shutdownSync
+{
+    [self.sync shutdown];
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
