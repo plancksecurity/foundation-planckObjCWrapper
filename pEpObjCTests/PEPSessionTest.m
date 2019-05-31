@@ -41,8 +41,7 @@
 
 - (void)tearDown
 {
-    [self.sync shutdown];
-
+    [self shutdownSync];
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -1295,6 +1294,31 @@
     XCTAssertNotEqual(fprOriginal, fprAfterReset);
 }
 
+#pragma mark - leave_device_group
+
+/** Leaving a device group is successful even though none exists. */
+- (void)testSuccessfulLeaveDeviceGroup
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    error = nil;
+    XCTAssertTrue([session leaveDeviceGroupError:&error]);
+    XCTAssertNil(error);
+
+    [self shutdownSync];
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
@@ -1323,6 +1347,7 @@
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+    [self shutdownSync];
 }
 
 - (void)startSync
@@ -1334,6 +1359,11 @@
                  initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
     [self.sync startup];
+}
+
+- (void)shutdownSync
+{
+    [self.sync shutdown];
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
