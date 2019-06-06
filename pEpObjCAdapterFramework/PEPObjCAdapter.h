@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPSession.h"
-
-extern const PEP_decrypt_flags PEP_decrypt_flag_none;
-
 @class PEPLanguage;
 
 @interface PEPObjCAdapter : NSObject

@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import "pEpEngine.h"
+#import "PEPEngineTypes.h"
 
 @class PEPMessage;
 
 @protocol PEPSendMessageDelegate <NSObject>
 
-- (PEP_STATUS)sendMessage:(PEPMessage * _Nonnull)message;
+- (PEPStatus)sendMessage:(PEPMessage * _Nonnull)message;
 
 @end

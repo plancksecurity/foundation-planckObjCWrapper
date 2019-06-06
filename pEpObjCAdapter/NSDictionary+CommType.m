@@ -1,5 +1,5 @@
 //
-//  NSDictionary+Extension.m
+//  NSDictionary+CommType.m
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 04.09.17.
@@ -8,17 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NSDictionary+Extension.h"
+#import "NSDictionary+CommType.h"
+
+#import "PEPConstants.h"
 
 #import "PEPMessageUtil.h"
 
-@implementation NSDictionary (Extension)
+@implementation NSDictionary (CommType)
 
-- (PEP_comm_type)commType
+- (PEPCommType)commType
 {
     NSNumber *ctNum = self[kPepCommType];
     if (!ctNum) {
-        return PEP_ct_unknown;
+        return PEPCommTypeUnknown;
     }
     return ctNum.intValue;
 }

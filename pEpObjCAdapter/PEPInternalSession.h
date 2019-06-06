@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPSessionProtocol.h"
+
+#import "sync_api.h"
+
 #import "PEPObjCAdapter.h"
 
 /**

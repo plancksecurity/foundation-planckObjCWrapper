@@ -8,21 +8,38 @@
 
 #import "NSNumber+PEPRating.h"
 
+#import "message_api.h"
+
 @implementation NSNumber (Extension)
 
-- initWithPEPRating:(PEP_rating)pEpRating
+- initWithPEPRating:(PEPRating)pEpRating
 {
     return [self initWithInt:pEpRating];
 }
 
-- (PEP_rating)pEpRating
+- initWithPEPRatingInternal:(PEP_rating)pEpRating
+{
+    return [self initWithInt:pEpRating];
+}
+
+- (PEPRating)pEpRating
 {
     return self.intValue;
 }
 
-+ (NSNumber *)numberWithPEPRating:(PEP_rating)pEpRating
+- (PEP_rating)pEpRatingInternal
+{
+    return self.intValue;
+}
+
++ (NSNumber *)numberWithPEPRating:(PEPRating)pEpRating
 {
     return [[NSNumber alloc] initWithPEPRating:pEpRating];
+}
+
++ (NSNumber *)numberWithPEPRatingInternal:(PEP_rating)pEpRating
+{
+    return [[NSNumber alloc] initWithPEPRatingInternal:pEpRating];
 }
 
 @end

@@ -8,67 +8,14 @@
 
 #import "PEPMessageUtil.h"
 
+#import "PEPConstants.h"
 #import "PEPIdentity.h"
+
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "NSMutableDictionary+PEP.h"
 
 #import "pEp_string.h"
-
-#pragma mark -- Constants
-
-NSString *const kPepUsername = @"username";
-
-NSString *const kPepAddress = @"address";
-
-NSString *const kPepUserID = @"user_id";
-
-NSString *const kPepIsOwn = @"isOwn";
-
-NSString *const kPepFingerprint = @"fpr";
-
-NSString *const kPepFrom = @"from";
-
-NSString *const kPepTo = @"to";
-
-NSString *const kPepCC = @"cc";
-
-NSString *const kPepBCC = @"bcc";
-
-NSString *const kPepShortMessage = @"shortmsg";
-
-NSString *const kPepLongMessage = @"longmsg";
-
-NSString *const kPepLongMessageFormatted = @"longmsg_formatted";
-
-NSString *const kPepOutgoing = @"outgoing";
-
-NSString *const kPepSent = @"sent";
-
-NSString *const kPepReceived = @"recv";
-
-NSString *const kPepID = @"id";
-
-NSString *const kPepReceivedBy = @"recv_by";
-NSString *const kPepReplyTo = @"reply_to";
-NSString *const kPepInReplyTo = @"in_reply_to";
-NSString *const kPepReferences = @"references";
-NSString *const kPepKeywords = @"keywords";
-NSString *const kPepOptFields = @"opt_fields";
-
-NSString *const kPepAttachments = @"attachments";
-
-NSString *const kPepCommType = @"comm_type";
-
-NSString *const kPepRawMessage = @"raw_message";
-
-NSString *const kXpEpVersion = @"X-pEp-Version";
-
-NSString *const kXEncStatus = @"X-EncStatus";
-
-NSString *const kXKeylist = @"X-KeyList";
-
-NSString *const _Nonnull kPepIsOwnIdentity = @"kPepIsOwnIdentity";
 
 NSArray *PEP_arrayFromStringlist(stringlist_t *sl)
 {
@@ -144,7 +91,7 @@ NSArray *PEP_arrayFromBloblist(bloblist_t *bl)
             theAttachment.mimeType = [NSString stringWithUTF8String:_bl->mime_type];
         }
 
-        theAttachment.contentDisposition = _bl->disposition;
+        theAttachment.contentDisposition = (PEPContentDisposition) _bl->disposition;
         
         [array addObject:theAttachment];
     }
@@ -179,7 +126,7 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
                             precomposedStringWithCanonicalMapping]
                            UTF8String]);
 
-        bl->disposition = theAttachment.contentDisposition;
+        bl->disposition = (content_disposition_type) theAttachment.contentDisposition;
     }
     return _bl;
 }
@@ -284,7 +231,7 @@ PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
         identity.language = [NSString stringWithUTF8String:ident->lang];
     }
 
-    identity.commType = ident->comm_type;
+    identity.commType = (PEPCommType) ident->comm_type;
 
     return identity;
 }
@@ -300,21 +247,7 @@ NSArray<PEPIdentity *> *PEP_arrayFromIdentityList(identity_list *il)
     return array;
 }
 
-identity_list *PEP_arrayToIdentityList(NSArray *array)
-{
-    identity_list *il = new_identity_list(NULL);
-    if (!il)
-        return NULL;
-    
-    identity_list *_il = il;
-    for (NSDictionary *dict in array) {
-        _il = identity_list_add(_il, PEP_identityDictToStruct(dict));
-    }
-    
-    return il;
-}
-
-identity_list *PEP_identityArrayToList(NSArray *array)
+identity_list *PEP_identityArrayToList(NSArray<PEPIdentity *> *array)
 {
     identity_list *il = new_identity_list(NULL);
     if (!il)

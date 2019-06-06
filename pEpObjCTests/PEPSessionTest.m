@@ -8,9 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
+#import "PEPObjCAdapterFramework.h"
+
 #import "PEPObjCAdapter.h"
-#import "NSDictionary+Extension.h"
-#import "PEPIdentity.h"
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPTestUtils.h"
@@ -36,15 +36,12 @@
 
     [self pEpCleanUp];
 
-    [self startSync];
-
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 }
 
 - (void)tearDown
 {
-    [self.sync shutdown];
-
+    [self shutdownSync];
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -81,7 +78,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
     XCTAssertTrue([identMe isPEPUser:session error:&error]);
 }
@@ -101,7 +98,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
-    XCTAssertNotEqual(identMe.commType, PEP_ct_unknown);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
     XCTAssertTrue([identMe isPEPUser:session error:&error]);
 
@@ -183,7 +180,7 @@
                        userID:@"Alice_User_ID"
                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                        session:session];
-    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -192,7 +189,7 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 }
 
 /** ENGINE-409 */
@@ -211,7 +208,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(me.fingerPrint);
-    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -220,11 +217,11 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
 - (void)testIdentityRatingTrustResetMistrustUndo
@@ -242,7 +239,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(me.fingerPrint);
-    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -251,19 +248,19 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     XCTAssertTrue([session trustPersonalKey:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingTrusted);
 
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
 /** ENGINE-384 */
@@ -281,7 +278,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(me.fingerPrint);
-    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -290,19 +287,19 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     XCTAssertTrue([session trustPersonalKey:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingTrusted);
 
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
 /**
@@ -322,7 +319,7 @@
     XCTAssertNil(error);
 
     XCTAssertNotNil(me.fingerPrint);
-    XCTAssertEqual([self ratingForIdentity:me session:session], PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -331,7 +328,7 @@
                           fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                           session: session];
     XCTAssertNotNil(alice);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     void (^encryptingBlock)(void) = ^{
         PEPSession *innerSession = [PEPSession new];
@@ -340,16 +337,16 @@
         msg.to = @[alice];
         msg.shortMessage = @"The subject";
         msg.longMessage = @"Lots and lots of text";
-        msg.direction = PEP_dir_outgoing;
+        msg.direction = PEPMsgDirectionIncoming;
 
-        PEP_STATUS status;
+        PEPStatus status;
         NSError *error = nil;
         PEPMessage *encMsg = [innerSession
                               encryptMessage:msg
                               forSelf:me
                               extraKeys:nil
                               status:&status error:&error];
-        XCTAssertEqual(status, PEP_STATUS_OK);
+        XCTAssertEqual(status, PEPStatusOK);
         XCTAssertNotNil(encMsg);
     };
 
@@ -359,15 +356,15 @@
 
     XCTAssertTrue([session trustPersonalKey:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_trusted);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingTrusted);
 
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_reliable);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     XCTAssertTrue([session keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEP_rating_have_no_key);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
 - (void)testOutgoingColors
@@ -400,7 +397,7 @@
         msgGray.to = @[identUnknownBob];
         msgGray.shortMessage = @"All Gray Test";
         msgGray.longMessage = @"This is a text content";
-        msgGray.direction = PEP_dir_outgoing;
+        msgGray.direction = PEPMsgDirectionOutgoing;
 
         NSError *error = nil;
 
@@ -411,7 +408,7 @@
                                error:&error];
         XCTAssertNotNil(numRating);
         XCTAssertNil(error);
-        XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
+        XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
     }
 
     PEPIdentity *identBob = [self
@@ -427,7 +424,7 @@
     msg.to = @[identBob];
     msg.shortMessage = @"All Gray Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSError *error = nil;
 
@@ -435,10 +432,10 @@
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
-    PEP_rating rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEP_rating_reliable);
+    PEPRating rating = [self ratingForIdentity:identBob session:session];
+    XCTAssertEqual(rating, PEPRatingReliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
@@ -448,10 +445,10 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingTrusted);
 
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEP_rating_trusted);
+    XCTAssertEqual(rating, PEPRatingTrusted);
 
     // Let' say we undo handshake
     XCTAssertTrue([session keyResetTrust:identBob error:&error]);
@@ -461,7 +458,7 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
     // mistrust Bob
     XCTAssertTrue([session keyMistrusted:identBob error:&error]);
@@ -472,11 +469,11 @@
     XCTAssertNil(error);
     XCTAssertNil(identBob.fingerPrint);
 
-    // Gray == PEP_rating_unencrypted
+    // Gray == PEPRatingUnencrypted
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 }
 
 
@@ -506,14 +503,14 @@
                                              userID:@"42" userName:@"pEp Test Bob" isOwn:NO]];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     // Test with unknown Bob
-    PEP_rating rating;
+    PEPRating rating;
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
@@ -533,10 +530,10 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEP_rating_reliable);
+    XCTAssertEqual(rating, PEPRatingReliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
@@ -546,10 +543,10 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingTrusted);
 
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEP_rating_trusted);
+    XCTAssertEqual(rating, PEPRatingTrusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
@@ -572,7 +569,7 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
     XCTAssertTrue([session trustPersonalKey:identJohn error:&error]);
     XCTAssertNil(error);
@@ -581,10 +578,10 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingTrusted);
 
     rating = [self ratingForIdentity:identJohn session:session];
-    XCTAssertEqual(rating, PEP_rating_trusted);
+    XCTAssertEqual(rating, PEPRatingTrusted);
 }
 
 - (void)testDontEncryptForMistrusted
@@ -630,13 +627,13 @@
                                            userName:@"pEp Test Bob" isOwn:NO]];
     msg.shortMessage = @"All Green Test";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
-    // Gray == PEP_rating_unencrypted
+    // Gray == PEPRatingUnencrypted
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
@@ -707,12 +704,12 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Myself";
     msg.longMessage = @"This is a text content";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
@@ -721,7 +718,7 @@
     NSArray *keys;
 
     error = nil;
-    PEP_rating rating = PEP_rating_undefined;
+    PEPRating rating = PEPRatingUndefined;
     PEPMessage *decmsg = [session
                           decryptMessage:encMsg
                           flags:nil
@@ -731,7 +728,7 @@
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
-    XCTAssertEqual(rating, PEP_rating_trusted_and_anonymized);
+    XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
 }
 
 - (void)testEncryptedMailFromMuttWithReencryption
@@ -774,8 +771,8 @@
 
     XCTAssertEqualObjects(msg, msgOriginal);
 
-    PEP_rating rating = PEP_rating_undefined;
-    PEP_decrypt_flags flags = PEP_decrypt_flag_untrusted_server;
+    PEPRating rating = PEPRatingUndefined;
+    PEPDecryptFlags flags = PEPDecryptFlagsUntrustedServer;
 
     PEPMessage *pepDecryptedMail = [session
                                     decryptMessage:msg
@@ -788,7 +785,7 @@
     XCTAssertNil(error);
 
     // Technically, the mail is encrypted, but the signatures don't match
-    XCTAssertEqual(rating, PEP_rating_unreliable);
+    XCTAssertEqual(rating, PEPRatingUnreliable);
 
     // Since we're requesting re-encryption, src should have been changed
     XCTAssertNotEqualObjects(msg, msgOriginal);
@@ -809,8 +806,8 @@
     XCTAssertTrue([session importKey:pubKeyPartner1 error:&error]);
     XCTAssertNil(error);
 
-    PEP_rating color = [self ratingForIdentity:partner1Orig session:session];
-    XCTAssertEqual(color, PEP_rating_reliable);
+    PEPRating color = [self ratingForIdentity:partner1Orig session:session];
+    XCTAssertEqual(color, PEPRatingReliable);
 }
 
 - (void)testGetTrustwords
@@ -836,15 +833,10 @@
 
     NSError *error = nil;
     NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                      language:nil full:YES error:&error];
+                                                      language:@"en" full:YES error:&error];
     XCTAssertNil(error);
     XCTAssertEqualObjects(trustwordsFull,
                           @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
-
-    NSString *trustwordsFullEnglish = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                             language:@"en" full:YES error:&error];
-    XCTAssertNil(error);
-    XCTAssertEqualObjects(trustwordsFullEnglish, trustwordsFull);
 
     NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
                                                            language:@"ZZ" full:YES error:&error];
@@ -855,43 +847,43 @@
 - (void)testStringToRating
 {
     PEPSession *session = [PEPSession new];
-    XCTAssertEqual([session ratingFromString:@"cannot_decrypt"], PEP_rating_cannot_decrypt);
-    XCTAssertEqual([session ratingFromString:@"have_no_key"], PEP_rating_have_no_key);
-    XCTAssertEqual([session ratingFromString:@"unencrypted"], PEP_rating_unencrypted);
+    XCTAssertEqual([session ratingFromString:@"cannot_decrypt"], PEPRatingCannotDecrypt);
+    XCTAssertEqual([session ratingFromString:@"have_no_key"], PEPRatingHaveNoKey);
+    XCTAssertEqual([session ratingFromString:@"unencrypted"], PEPRatingUnencrypted);
     XCTAssertEqual([session ratingFromString:@"unencrypted_for_some"],
-                   PEP_rating_unencrypted_for_some);
-    XCTAssertEqual([session ratingFromString:@"unreliable"], PEP_rating_unreliable);
-    XCTAssertEqual([session ratingFromString:@"reliable"], PEP_rating_reliable);
-    XCTAssertEqual([session ratingFromString:@"trusted"], PEP_rating_trusted);
+                   PEPRatingUnencryptedForSome);
+    XCTAssertEqual([session ratingFromString:@"unreliable"], PEPRatingUnreliable);
+    XCTAssertEqual([session ratingFromString:@"reliable"], PEPRatingReliable);
+    XCTAssertEqual([session ratingFromString:@"trusted"], PEPRatingTrusted);
     XCTAssertEqual([session ratingFromString:@"trusted_and_anonymized"],
-                   PEP_rating_trusted_and_anonymized);
-    XCTAssertEqual([session ratingFromString:@"fully_anonymous"], PEP_rating_fully_anonymous);
-    XCTAssertEqual([session ratingFromString:@"mistrust"], PEP_rating_mistrust);
-    XCTAssertEqual([session ratingFromString:@"b0rken"], PEP_rating_b0rken);
-    XCTAssertEqual([session ratingFromString:@"under_attack"], PEP_rating_under_attack);
-    XCTAssertEqual([session ratingFromString:@"undefined"], PEP_rating_undefined);
-    XCTAssertEqual([session ratingFromString:@"does not exist111"], PEP_rating_undefined);
+                   PEPRatingTrustedAndAnonymized);
+    XCTAssertEqual([session ratingFromString:@"fully_anonymous"], PEPRatingFullyAnonymous);
+    XCTAssertEqual([session ratingFromString:@"mistrust"], PEPRatingMistrust);
+    XCTAssertEqual([session ratingFromString:@"b0rken"], PEPRatingB0rken);
+    XCTAssertEqual([session ratingFromString:@"under_attack"], PEPRatingUnderAttack);
+    XCTAssertEqual([session ratingFromString:@"undefined"], PEPRatingUndefined);
+    XCTAssertEqual([session ratingFromString:@"does not exist111"], PEPRatingUndefined);
 }
 
 - (void)testRatingToString
 {
     PEPSession *session = [PEPSession new];
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_cannot_decrypt], @"cannot_decrypt");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_have_no_key], @"have_no_key");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_unencrypted], @"unencrypted");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_unencrypted_for_some],
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingCannotDecrypt], @"cannot_decrypt");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingHaveNoKey], @"have_no_key");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingUnencrypted], @"unencrypted");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingUnencryptedForSome],
                           @"unencrypted_for_some");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_unreliable], @"unreliable");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_reliable], @"reliable");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_trusted], @"trusted");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_trusted_and_anonymized],
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingUnreliable], @"unreliable");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingReliable], @"reliable");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingTrusted], @"trusted");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingTrustedAndAnonymized],
                           @"trusted_and_anonymized");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_fully_anonymous],
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingFullyAnonymous],
                           @"fully_anonymous");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_mistrust], @"mistrust");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_b0rken], @"b0rken");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_under_attack], @"under_attack");
-    XCTAssertEqualObjects([session stringFromRating:PEP_rating_undefined], @"undefined");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingMistrust], @"mistrust");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingB0rken], @"b0rken");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingUnderAttack], @"under_attack");
+    XCTAssertEqualObjects([session stringFromRating:PEPRatingUndefined], @"undefined");
     XCTAssertEqualObjects([session stringFromRating:500], @"undefined");
 }
 
@@ -916,13 +908,13 @@
 
 - (void)testXEncStatusForOutgoingEncryptedMail
 {
-    [self helperXEncStatusForOutgoingEncryptdMailToSelf:NO expectedRating:PEP_rating_reliable];
+    [self helperXEncStatusForOutgoingEncryptdMailToSelf:NO expectedRating:PEPRatingReliable];
 }
 
 - (void)testXEncStatusForOutgoingSelfEncryptedMail
 {
     [self helperXEncStatusForOutgoingEncryptdMailToSelf:YES
-                                         expectedRating:PEP_rating_trusted_and_anonymized];
+                                         expectedRating:PEPRatingTrustedAndAnonymized];
 }
 
 - (void)testEncryptMessagesWithoutKeys
@@ -951,12 +943,12 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_unencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
@@ -965,7 +957,7 @@
     XCTAssertNotNil(encMsg);
 
     PEPStringList *keys;
-    PEP_rating pEpRating;
+    PEPRating pEpRating;
     error = nil;
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
@@ -977,7 +969,7 @@
     XCTAssertNotNil(decMsg);
     XCTAssertNil(error);
 
-    XCTAssertEqual(pEpRating, PEP_rating_unencrypted);
+    XCTAssertEqual(pEpRating, PEPRatingUnencrypted);
     XCTAssertNotNil(decMsg);
 }
 
@@ -1042,8 +1034,8 @@
 
     void (^ratingBlock)(void) = ^{
         PEPSession *innerSession = [PEPSession new];
-        PEP_rating rating = [self ratingForIdentity:identAlice session:innerSession];
-        XCTAssertEqual(rating, PEP_rating_reliable);
+        PEPRating rating = [self ratingForIdentity:identAlice session:innerSession];
+        XCTAssertEqual(rating, PEPRatingReliable);
     };
 
     for (int i = 0; i < 4; ++i) {
@@ -1094,15 +1086,15 @@
     message.shortMessage = shortMessage;
     message.longMessage = longMessage;
 
-    PEP_STATUS status = PEP_KEY_NOT_FOUND;
+    PEPStatus status = PEPStatusKeyNotFound;
     error = nil;
     PEPMessage *encrypted = [session
                              encryptMessage:message
                              toFpr:fprAlice
-                             encFormat:PEP_enc_PEP
+                             encFormat:PEPEncFormatPEP
                              flags:0
                              status:&status error:&error];
-    XCTAssertEqual(status, PEP_ILLEGAL_VALUE);
+    XCTAssertEqual(status, PEPStatusIllegalValue);
     XCTAssertNotNil(error);
     XCTAssertNil(encrypted);
 }
@@ -1117,14 +1109,20 @@
     XCTAssertTrue([session mySelf:me error:&error]);
     XCTAssertNil(error);
 
-    identity_flags theFlags[] = { PEP_idf_not_for_sync, PEP_idf_list, PEP_idf_devicegroup, 0 };
+    PEPIdentityFlags theFlags[] = {
+        PEPIdentityFlagsNotForSync,
+        PEPIdentityFlagsList,
+        PEPIdentityFlagsDeviceGroup,
+        0
+    };
+
     for (int i = 0;; ++i) {
-        identity_flags aFlag = theFlags[i];
+        PEPIdentityFlags aFlag = theFlags[i];
         if (aFlag == 0) {
             break;
         }
         error = nil;
-        XCTAssertTrue([session setFlags:aFlag forIdentity:me error:&error]);
+        XCTAssertTrue([session setFlags:(PEPIdentityFlags) aFlag forIdentity:me error:&error]);
         XCTAssertNil(error);
     }
 }
@@ -1211,7 +1209,7 @@
 
     error = nil;
     PEPStringList *keys;
-    PEP_rating rating = PEP_rating_undefined;
+    PEPRating rating = PEPRatingUndefined;
     PEPMessage *decmsg = [session
                           decryptMessage:mail
                           flags:nil
@@ -1221,7 +1219,7 @@
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
-    XCTAssertEqual(rating, PEP_rating_unencrypted);
+    XCTAssertEqual(rating, PEPRatingUnencrypted);
 
     PEPAttachment *decryptedAttachment = [decmsg.attachments objectAtIndex:0];
     XCTAssertEqualObjects(decryptedAttachment.mimeType, attachment.mimeType);
@@ -1244,28 +1242,81 @@
     PEPSession *session = [PEPSession new];
     [self testSendMessageOnSession:session];
 
+    PEPSyncHandshakeResult handshakeResults[] = { PEPSyncHandshakeResultCancel,
+        PEPSyncHandshakeResultAccepted, PEPSyncHandshakeResultRejected };
+
     PEPIdentity *forSureNotMe = [[PEPIdentity alloc]
                                  initWithAddress:@"someoneelseentirely@pep-project.org"
                                  userID:@"that_someone_else"
                                  userName:@"other"
                                  isOwn:NO];
 
-    sync_handshake_result handshakeResults[] = { SYNC_HANDSHAKE_CANCEL,
-        SYNC_HANDSHAKE_ACCEPTED, SYNC_HANDSHAKE_REJECTED };
-
     for (int i = 0;; ++i) {
         NSError *error = nil;
         XCTAssertFalse([session
                         deliverHandshakeResult:handshakeResults[i]
-                        forPartner:forSureNotMe
+                        identitiesSharing:@[forSureNotMe]
                         error:&error]);
         XCTAssertNotNil(error);
-        XCTAssertEqual([error code], PEP_ILLEGAL_VALUE);
+        XCTAssertEqual([error code], PEPStatusIllegalValue);
 
-        if (handshakeResults[i] == SYNC_HANDSHAKE_REJECTED) {
+        if (handshakeResults[i] == PEPSyncHandshakeResultRejected) {
             break;
         }
     }
+}
+
+#pragma mark - key_reset_identity
+
+- (void)testKeyResetIdentity
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    NSString *fprOriginal = me.fingerPrint;
+    XCTAssertNotNil(fprOriginal);
+
+    XCTAssertTrue([session keyReset:me fingerprint:nil error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    NSString *fprAfterReset = me.fingerPrint;
+    XCTAssertNotNil(fprAfterReset);
+
+    XCTAssertNotEqual(fprOriginal, fprAfterReset);
+}
+
+#pragma mark - leave_device_group
+
+/** Leaving a device group is successful even though none exists. */
+- (void)testSuccessfulLeaveDeviceGroup
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    error = nil;
+    XCTAssertTrue([session leaveDeviceGroupError:&error]);
+    XCTAssertNil(error);
+
+    [self shutdownSync];
 }
 
 #pragma mark - Helpers
@@ -1284,7 +1335,7 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    [self reStartSync];
+    [self startSync];
 
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
@@ -1296,12 +1347,8 @@
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-}
 
-- (void)reStartSync
-{
-    [self.sync shutdown];
-    [self startSync];
+    [self shutdownSync];
 }
 
 - (void)startSync
@@ -1313,6 +1360,11 @@
                  initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
     [self.sync startup];
+}
+
+- (void)shutdownSync
+{
+    [self.sync shutdown];
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
@@ -1350,19 +1402,19 @@
     NSString *shortMessage = @"whatever it may be";
     NSString *longMessage = [NSString stringWithFormat:@"%@ %@", shortMessage, shortMessage];
     PEPMessage *message = [PEPMessage new];
-    message.direction = PEP_dir_outgoing;
+    message.direction = PEPMsgDirectionOutgoing;
     message.from = identMe;
     message.to = @[identAlice];
     message.shortMessage = shortMessage;
     message.longMessage = longMessage;
 
-    PEP_STATUS status = PEP_KEY_NOT_FOUND;
+    PEPStatus status = PEPStatusKeyNotFound;
     PEPMessage *encryptedMessage =  [session encryptMessage:message
                                                   extraKeys:@[]
                                                      status:&status
                                                       error:&error];
     XCTAssertNil(error);
-    XCTAssertEqual(status, PEP_UNENCRYPTED);
+    XCTAssertEqual(status, PEPStatusUnencrypted);
 
     if (passiveModeEnabled) {
         XCTAssertNil(encryptedMessage.attachments);
@@ -1373,9 +1425,9 @@
 
 /**
  Determines the rating for the given identity.
- @return PEP_rating_undefined on error
+ @return PEPRatingUndefined on error
  */
-- (PEP_rating)ratingForIdentity:(PEPIdentity *)identity session:(PEPSession *)session
+- (PEPRating)ratingForIdentity:(PEPIdentity *)identity session:(PEPSession *)session
 {
     NSError *error;
     NSNumber *numRating = [session ratingForIdentity:identity error:&error];
@@ -1477,7 +1529,7 @@
                                  shortMessage:shortMessage
                                   longMessage:longMessage
                                      outgoing:YES];
-    PEP_STATUS status = PEP_UNKNOWN_ERROR;
+    PEPStatus status = PEPStatusUnknownError;
     PEPMessage *encMessage = [session
                               encryptMessage:mail
                               forSelf:me
@@ -1506,7 +1558,7 @@
     NSString *longMessage = @"Oh, this is a long body text!";
     PEPMessage *mail = [PEPTestUtils mailFrom:me toIdent:me shortMessage:shortMessage longMessage:longMessage outgoing:YES];
 
-    PEP_STATUS status;
+    PEPStatus status;
     PEPMessage *encMessage = [session
                               encryptMessage:mail
                               forSelf:me
@@ -1516,7 +1568,7 @@
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
-    PEP_rating rating;
+    PEPRating rating;
     error = nil;
     PEPMessage *unencDict = [session
                              decryptMessage:encMessage
@@ -1528,7 +1580,7 @@
     XCTAssertNotNil(unencDict);
     XCTAssertNil(error);
 
-    XCTAssertGreaterThanOrEqual(rating, PEP_rating_reliable);
+    XCTAssertGreaterThanOrEqual(rating, PEPRatingReliable);
 
     XCTAssertEqualObjects(unencDict.shortMessage, shortMessage);
     XCTAssertEqualObjects(unencDict.longMessage, longMessage);
@@ -1542,7 +1594,7 @@
 }
 
 - (void)helperXEncStatusForOutgoingEncryptdMailToSelf:(BOOL)toSelf
-                                       expectedRating:(PEP_rating)expectedRating
+                                       expectedRating:(PEPRating)expectedRating
 {
     PEPSession *session = [PEPSession new];
 
@@ -1575,16 +1627,16 @@
     msg.to = @[identAlice];
     msg.shortMessage = @"Mail to Alice";
     msg.longMessage = @"Alice?";
-    msg.direction = PEP_dir_outgoing;
+    msg.direction = PEPMsgDirectionOutgoing;
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEP_rating_reliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
     PEPMessage *encMsg;
 
-    PEP_STATUS statusEnc = PEP_VERSION_MISMATCH;
+    PEPStatus statusEnc = PEPStatusVersionMismatch;
     if (toSelf) {
         encMsg = [session
                   encryptMessage:msg
@@ -1592,7 +1644,7 @@
                   extraKeys:nil
                   status:&statusEnc
                   error:&error];
-        XCTAssertEqual(statusEnc, PEP_STATUS_OK);
+        XCTAssertEqual(statusEnc, PEPStatusOK);
     } else {
         encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
         XCTAssertNotNil(encMsg);
@@ -1601,7 +1653,7 @@
     XCTAssertNotNil(encMsg);
 
     PEPStringList *keys;
-    PEP_rating pEpRating;
+    PEPRating pEpRating;
     error = nil;
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
@@ -1624,7 +1676,7 @@
     }
     XCTAssertNotNil(encStatusField);
     if (encStatusField) {
-        PEP_rating outgoingRating = [session ratingFromString:encStatusField[1]];
+        PEPRating outgoingRating = [session ratingFromString:encStatusField[1]];
         XCTAssertEqual(outgoingRating, expectedRating);
     }
 }

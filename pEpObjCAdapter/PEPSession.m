@@ -12,6 +12,9 @@
 #import "PEPSessionProvider.h"
 #import "PEPIdentity.h"
 
+#import "PEPMessageUtil.h"
+#import "NSNumber+PEPRating.h"
+
 @implementation PEPSession
 
 #pragma mark - Public API
@@ -22,10 +25,10 @@
 }
 
 - (PEPDict * _Nullable)decryptMessageDict:(PEPMutableDict * _Nonnull)messageDict
-                                    flags:(PEP_decrypt_flags * _Nullable)flags
-                                   rating:(PEP_rating * _Nullable)rating
+                                    flags:(PEPDecryptFlags * _Nullable)flags
+                                   rating:(PEPRating * _Nullable)rating
                                 extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                   status:(PEP_STATUS * _Nullable)status
+                                   status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -39,10 +42,10 @@
 }
 
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
-                                   flags:(PEP_decrypt_flags * _Nullable)flags
-                                  rating:(PEP_rating * _Nullable)rating
+                                   flags:(PEPDecryptFlags * _Nullable)flags
+                                  rating:(PEPRating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                  status:(PEP_STATUS * _Nullable)status
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -57,8 +60,8 @@
 
 - (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
                      xKeyList:(PEPStringList * _Nullable)xKeyList
-                       rating:(PEP_rating * _Nonnull)rating
-                       status:(PEP_STATUS * _Nullable)status
+                       rating:(PEPRating * _Nonnull)rating
+                       status:(PEPStatus * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -71,8 +74,8 @@
 
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
                  xKeyList:(PEPStringList * _Nullable)xKeyList
-                   rating:(PEP_rating * _Nonnull)rating
-                   status:(PEP_STATUS * _Nullable)status
+                   rating:(PEPRating * _Nonnull)rating
+                   status:(PEPStatus * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -85,8 +88,8 @@
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                     extraKeys:(PEPStringList * _Nullable)extraKeys
-                                encFormat:(PEP_enc_format)encFormat
-                                   status:(PEP_STATUS * _Nullable)status
+                                encFormat:(PEPEncFormat)encFormat
+                                   status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -100,8 +103,8 @@
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                               encFormat:(PEP_enc_format)encFormat
-                                  status:(PEP_STATUS * _Nullable)status
+                               encFormat:(PEPEncFormat)encFormat
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -115,7 +118,7 @@
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                  status:(PEP_STATUS * _Nullable)status
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -125,7 +128,7 @@
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                   forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                 extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   status:(PEP_STATUS * _Nullable)status
+                                   status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -140,7 +143,7 @@
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                  status:(PEP_STATUS * _Nullable)status
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -154,9 +157,9 @@
 
 - (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
                                     toFpr:(NSString * _Nonnull)toFpr
-                                encFormat:(PEP_enc_format)encFormat
-                                    flags:(PEP_decrypt_flags)flags
-                                   status:(PEP_STATUS * _Nullable)status
+                                encFormat:(PEPEncFormat)encFormat
+                                    flags:(PEPDecryptFlags)flags
+                                   status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error __deprecated
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -171,9 +174,9 @@
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                    toFpr:(NSString * _Nonnull)toFpr
-                               encFormat:(PEP_enc_format)encFormat
-                                   flags:(PEP_decrypt_flags)flags
-                                  status:(PEP_STATUS * _Nullable)status
+                               encFormat:(PEPEncFormat)encFormat
+                                   flags:(PEPDecryptFlags)flags
+                                  status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -304,13 +307,13 @@
     return [session languageListWithError:error];
 }
 
-- (PEP_rating)ratingFromString:(NSString * _Nonnull)string
+- (PEPRating)ratingFromString:(NSString * _Nonnull)string
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session ratingFromString:string];
 }
 
-- (NSString * _Nonnull)stringFromRating:(PEP_rating)rating
+- (NSString * _Nonnull)stringFromRating:(PEPRating)rating
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session stringFromRating:rating];
@@ -336,7 +339,7 @@
     return [session configurePassiveModeEnabled:enabled];
 }
 
-- (BOOL)setFlags:(identity_flags_t)flags
+- (BOOL)setFlags:(PEPIdentityFlags)flags
      forIdentity:(PEPIdentity *)identity
            error:(NSError * _Nullable * _Nullable)error
 {
@@ -344,19 +347,39 @@
     return [session setFlags:flags forIdentity:identity error:error];
 }
 
-- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
                       error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     return [session trustOwnKeyIdentity:identity error:error];
 }
 
-- (BOOL)deliverHandshakeResult:(sync_handshake_result)result
-                    forPartner:(PEPIdentity * _Nonnull)partner
-                         error:(NSError * _Nullable * _Nullable)error
+- (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
+             identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
+                         error:(NSError * _Nullable * _Nullable)error;
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    return [session deliverHandshakeResult:result forPartner:partner error:error];
+    return [session deliverHandshakeResult:result identitiesSharing:identitiesSharing error:error];
+}
+
+- (PEPColor)colorFromRating:(PEPRating)rating
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session colorFromRating:rating];
+}
+
+- (BOOL)keyReset:(PEPIdentity * _Nonnull)identity
+     fingerprint:(NSString * _Nullable)fingerprint
+           error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session keyReset:identity fingerprint:fingerprint error:error];
+}
+
+- (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session leaveDeviceGroupError:error];
 }
 
 @end

@@ -7,10 +7,13 @@
 //
 
 #import "PEPMessage.h"
+
 #import "PEPIdentity.h"
+#import "PEPConstants.h"
 
 #import "NSObject+Extension.h"
 #import "NSMutableDictionary+PEP.h"
+#import "PEPMessageUtil.h"
 
 @implementation PEPMessage
 

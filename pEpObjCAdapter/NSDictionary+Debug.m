@@ -8,6 +8,8 @@
 
 #import "NSDictionary+Debug.h"
 
+#import "PEPConstants.h"
+
 #import "PEPMessageUtil.h"
 
 @implementation NSDictionary (Debug)
