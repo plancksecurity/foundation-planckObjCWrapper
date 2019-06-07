@@ -32,7 +32,6 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 + (PEPSync * _Nullable)instance;
 
-@property (nonatomic, nullable, weak) id<PEPSendMessageDelegate> sendMessageDelegate;
 @property (nonatomic, nullable, weak) id<PEPNotifyHandshakeDelegate> notifyHandshakeDelegate;
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
@@ -152,7 +151,7 @@ static __weak PEPSync *s_pEpSync;
 }
 
 - (instancetype)initWithSendMessageDelegate:(id<PEPSendMessageDelegate>
-                                             _Nonnull)sendMessageDelegate
+                                             _Nullable)sendMessageDelegate
                     notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
                                              _Nonnull)notifyHandshakeDelegate
 {

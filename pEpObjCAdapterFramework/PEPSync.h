@@ -19,8 +19,10 @@
  */
 @interface PEPSync : NSObject
 
+@property (nonatomic, nullable, weak) id<PEPSendMessageDelegate> sendMessageDelegate;
+
 - (instancetype _Nonnull)initWithSendMessageDelegate:(id <PEPSendMessageDelegate>
-                                                      _Nonnull)sendMessageDelegate
+                                                      _Nullable)sendMessageDelegate
                              notifyHandshakeDelegate:(id<PEPNotifyHandshakeDelegate>
                                                       _Nonnull)notifyHandshakeDelegate;
 
