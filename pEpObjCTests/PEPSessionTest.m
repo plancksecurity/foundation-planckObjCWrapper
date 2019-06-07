@@ -36,15 +36,12 @@
 
     [self pEpCleanUp];
 
-    [self startSync];
-
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 }
 
 - (void)tearDown
 {
-    [self.sync shutdown];
-
+    [self shutdownSync];
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -836,15 +833,10 @@
 
     NSError *error = nil;
     NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                      language:nil full:YES error:&error];
+                                                      language:@"en" full:YES error:&error];
     XCTAssertNil(error);
     XCTAssertEqualObjects(trustwordsFull,
                           @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
-
-    NSString *trustwordsFullEnglish = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                             language:@"en" full:YES error:&error];
-    XCTAssertNil(error);
-    XCTAssertEqualObjects(trustwordsFullEnglish, trustwordsFull);
 
     NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
                                                            language:@"ZZ" full:YES error:&error];
@@ -1302,6 +1294,31 @@
     XCTAssertNotEqual(fprOriginal, fprAfterReset);
 }
 
+#pragma mark - leave_device_group
+
+/** Leaving a device group is successful even though none exists. */
+- (void)testSuccessfulLeaveDeviceGroup
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    error = nil;
+    XCTAssertTrue([session leaveDeviceGroupError:&error]);
+    XCTAssertNil(error);
+
+    [self shutdownSync];
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
@@ -1318,7 +1335,7 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    [self reStartSync];
+    [self startSync];
 
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
@@ -1330,12 +1347,8 @@
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-}
 
-- (void)reStartSync
-{
-    [self.sync shutdown];
-    [self startSync];
+    [self shutdownSync];
 }
 
 - (void)startSync
@@ -1347,6 +1360,11 @@
                  initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
     [self.sync startup];
+}
+
+- (void)shutdownSync
+{
+    [self.sync shutdown];
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage

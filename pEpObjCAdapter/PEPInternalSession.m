@@ -139,7 +139,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                                       &_dst,
                                                       &theKeys,
                                                       (PEP_rating *) &internalRating,
-                                                      &theFlags);
+                                                      (PEP_decrypt_flags *) &theFlags);
     [self unlockWrite];
 
     if (status) {
@@ -1015,6 +1015,20 @@ static NSDictionary *stringToRating;
     PEPStatus status = (PEPStatus) key_reset_identity(self.session, ident, fpr);
 
     free_identity(ident);
+
+    if (status == PEPStatusOK) {
+        return YES;
+    } else {
+        if (error) {
+            *error = [NSError errorWithPEPStatus:status];
+        }
+        return NO;
+    }
+}
+
+- (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error
+{
+    PEPStatus status = (PEPStatus) leave_device_group(self.session);
 
     if (status == PEPStatusOK) {
         return YES;
