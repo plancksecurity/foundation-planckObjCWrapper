@@ -1347,7 +1347,6 @@
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-
     [self shutdownSync];
 }
 
