@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		152A9C472010F50400F962ED /* PEPSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPSessionTest.m */; };
 		152D58EF201B6DB200036219 /* PEPMessageUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152D58EE201B6DB200036219 /* PEPMessageUtilTest.m */; };
+		155674D722B7F9C70097930C /* libsequoia_openpgp_ffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 155674D522B7F9A80097930C /* libsequoia_openpgp_ffi.a */; };
 		15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
 		430CD9B12292AC4900AAC37F /* PEPSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430CD9B62292ADAC00AAC37F /* PEPSendMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -131,6 +132,8 @@
 		15206CC61F8E078B003FF880 /* PEPSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSession.m; sourceTree = "<group>"; };
 		152A9C462010F50400F962ED /* PEPSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionTest.m; sourceTree = "<group>"; };
 		152D58EE201B6DB200036219 /* PEPMessageUtilTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessageUtilTest.m; sourceTree = "<group>"; };
+		155674D322B7F9670097930C /* libsequoia_openpgp_ffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsequoia_openpgp_ffi.a; path = ../Sequoia4iOS/build/lib/libsequoia_openpgp_ffi.a; sourceTree = "<group>"; };
+		155674D522B7F9A80097930C /* libsequoia_openpgp_ffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsequoia_openpgp_ffi.a; path = ../Sequoia4iOS/build/lib/libsequoia_openpgp_ffi.a; sourceTree = "<group>"; };
 		15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProviderTest.m; sourceTree = "<group>"; };
 		15D3D77B2010DDC500A0DA20 /* PEPTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTestUtils.h; sourceTree = "<group>"; };
 		15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPTestUtils.m; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				155674D722B7F9C70097930C /* libsequoia_openpgp_ffi.a in Frameworks */,
 				43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */,
 				43E39869221D7EC2008E7983 /* libbz2.tbd in Frameworks */,
 				43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */,
@@ -293,6 +297,7 @@
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
+				155674D522B7F9A80097930C /* libsequoia_openpgp_ffi.a */,
 				64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */,
 				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
@@ -363,6 +368,7 @@
 		43447C51221D448500B6323E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				155674D322B7F9670097930C /* libsequoia_openpgp_ffi.a */,
 				43E3986A221D7EDD008E7983 /* libiconv.2.tbd */,
 				43E39868221D7EC2008E7983 /* libbz2.tbd */,
 			);
@@ -696,7 +702,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -742,7 +750,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
