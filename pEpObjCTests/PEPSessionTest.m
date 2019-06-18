@@ -1466,7 +1466,8 @@
     }
 }
 
-- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
+                                         address:(NSString *)address
                                           userID:(NSString *)userID
                                      fingerPrint:(NSString *)fingerPrint
                                          session:(PEPSession *)session
