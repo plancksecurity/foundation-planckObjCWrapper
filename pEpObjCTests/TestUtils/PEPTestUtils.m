@@ -121,9 +121,9 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     // Only files whose content is affected by tests.
     NSString *home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
     NSString *gpgHome = [home stringByAppendingPathComponent:@".gnupg"];
-    return @[[home stringByAppendingPathComponent:@".pEp_management.db"],
-             [home stringByAppendingPathComponent:@".pEp_management.db-shm"],
-             [home stringByAppendingPathComponent:@".pEp_management.db-wal"],
+    return @[[home stringByAppendingPathComponent:@".pEp_keys.db"],
+             [home stringByAppendingPathComponent:@".pEp_keys.db-shm"],
+             [home stringByAppendingPathComponent:@".pEp_keys.db-wal"],
              [gpgHome stringByAppendingPathComponent:@"pubring.gpg"],
              [gpgHome stringByAppendingPathComponent:@"secring.gpg"]];
 
