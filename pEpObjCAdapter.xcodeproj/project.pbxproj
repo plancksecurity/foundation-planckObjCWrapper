@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		152A9C472010F50400F962ED /* PEPSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPSessionTest.m */; };
 		152D58EF201B6DB200036219 /* PEPMessageUtilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152D58EE201B6DB200036219 /* PEPMessageUtilTest.m */; };
+		155674ED22B82D710097930C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 155674EC22B82D710097930C /* libz.dylib */; };
 		15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
 		430CD9B12292AC4900AAC37F /* PEPSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430CD9B62292ADAC00AAC37F /* PEPSendMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -67,12 +68,10 @@
 		43E02A231C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */; };
 		43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
-		43E39869221D7EC2008E7983 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E39868221D7EC2008E7983 /* libbz2.tbd */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
 		43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
-		64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */; };
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; };
 		64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABB1B57F97E00377032 /* CFNetwork.framework */; };
 		64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
@@ -131,6 +130,7 @@
 		15206CC61F8E078B003FF880 /* PEPSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSession.m; sourceTree = "<group>"; };
 		152A9C462010F50400F962ED /* PEPSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionTest.m; sourceTree = "<group>"; };
 		152D58EE201B6DB200036219 /* PEPMessageUtilTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessageUtilTest.m; sourceTree = "<group>"; };
+		155674EC22B82D710097930C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProviderTest.m; sourceTree = "<group>"; };
 		15D3D77B2010DDC500A0DA20 /* PEPTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTestUtils.h; sourceTree = "<group>"; };
 		15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPTestUtils.m; sourceTree = "<group>"; };
@@ -204,7 +204,6 @@
 		43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PEPObjCAdapterFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterFramework.h; sourceTree = "<group>"; };
 		43E3985E221D7E56008E7983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43E39868221D7EC2008E7983 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		43E3986A221D7EDD008E7983 /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
 		43F73BD22165F6EC00AB4524 /* PEPLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPLock.h; sourceTree = "<group>"; };
 		43F73BD32165F6EC00AB4524 /* PEPLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPLock.m; sourceTree = "<group>"; };
@@ -214,7 +213,6 @@
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64415E1B1BE94FCB00F6CBB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.dylib; path = /usr/lib/libbz2.1.0.dylib; sourceTree = "<absolute>"; };
 		64415E421BEA523300F6CBB2 /* 6FF00E97.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 6FF00E97.asc; sourceTree = "<group>"; };
 		64415E431BEA523300F6CBB2 /* 6FF00E97_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 6FF00E97_sec.asc; sourceTree = "<group>"; };
 		64415E441BEA523300F6CBB2 /* 0x70DCF575.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0x70DCF575.asc; sourceTree = "<group>"; };
@@ -230,7 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */,
-				43E39869221D7EC2008E7983 /* libbz2.tbd in Frameworks */,
+				155674ED22B82D710097930C /* libz.dylib in Frameworks */,
 				43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +237,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64415E2E1BE9511300F6CBB2 /* libbz2.1.0.dylib in Frameworks */,
 				64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */,
 				64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */,
 			);
@@ -293,7 +290,6 @@
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
-				64415E2D1BE9511300F6CBB2 /* libbz2.1.0.dylib */,
 				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
@@ -364,7 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				43E3986A221D7EDD008E7983 /* libiconv.2.tbd */,
-				43E39868221D7EC2008E7983 /* libbz2.tbd */,
+				155674EC22B82D710097930C /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -681,6 +677,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -696,7 +693,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -732,6 +731,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -742,7 +742,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
