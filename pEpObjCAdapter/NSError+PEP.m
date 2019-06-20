@@ -18,7 +18,7 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
 + (NSError * _Nonnull)errorWithPEPStatusInternal:(PEP_STATUS)status
                                         userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
 {
-    switch (status) { //BUFF: missing state PEPStatusKeyImported
+    switch (status) {
         case PEP_STATUS_OK:
         case PEP_DECRYPTED:
         case PEP_UNENCRYPTED:
