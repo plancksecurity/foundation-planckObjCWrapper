@@ -1347,7 +1347,6 @@
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-
     [self shutdownSync];
 }
 
@@ -1467,7 +1466,8 @@
     }
 }
 
-- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
+                                         address:(NSString *)address
                                           userID:(NSString *)userID
                                      fingerPrint:(NSString *)fingerPrint
                                          session:(PEPSession *)session

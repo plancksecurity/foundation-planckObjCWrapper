@@ -23,6 +23,7 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
         case PEP_DECRYPTED:
         case PEP_UNENCRYPTED:
         case PEP_DECRYPT_NO_KEY:
+        case PEP_KEY_IMPORTED:
         case PEP_KEY_IMPORT_STATUS_UNKNOWN:
             return nil;
             break;
