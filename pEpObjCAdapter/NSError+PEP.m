@@ -151,6 +151,7 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
         case PEP_CANNOT_DELETE_KEY: return @"PEP_CANNOT_DELETE_KEY";
         case PEP_CANNOT_CONFIG: return @"PEP_CANNOT_CONFIG";
         case PEP_SYNC_CANNOT_START: return @"PEP_SYNC_CANNOT_START";
+        case PEP_SOME_KEYS_IMPORTED: return @"PEP_SOME_KEYS_IMPORTED";
     }
 }
 
