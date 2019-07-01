@@ -184,6 +184,8 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
     return dict;
 }
 
+//!!!: move. PEP_identityToStruct is not PEPMessage(Util) related. Should be an internal method on PEPIdentity. Somthing like .toStruct()
+//!!!: also check for other methods here. 
 pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
 {
     pEp_identity *ident = new_identity([[identity.address
@@ -232,6 +234,8 @@ PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
     }
 
     identity.commType = (PEPCommType) ident->comm_type;
+
+    identity.isOwn = ident->me;
 
     return identity;
 }
