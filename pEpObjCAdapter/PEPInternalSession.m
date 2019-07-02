@@ -776,6 +776,36 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return result;
 }
 
+- (NSString * _Nullable)getTrustwordsFpr1:(NSString * _Nonnull)fpr1
+                                     fpr2:(NSString * _Nonnull)fpr2
+                                      language:(NSString * _Nullable)language
+                                          full:(BOOL)full
+                                         error:(NSError * _Nullable * _Nullable)error
+{
+    const char *_fpr1 = [fpr1 UTF8String]; // fprs are NFC normalized anyway
+    const char *_fpr2 = [fpr2 UTF8String];
+    
+    PEPStatus status;
+    
+    PEPAutoPointer *trustwords = [PEPAutoPointer new];
+    size_t sizeWritten = 0;
+    
+    [self lockWrite];
+    status = (PEPStatus) get_trustwords_for_fprs(_session, _fpr1, _fpr2,
+                                        [[language precomposedStringWithCanonicalMapping]
+                                         UTF8String],
+                                        trustwords.charPointerPointer, &sizeWritten, full);
+    [self unlockWrite];
+    
+    NSString *result = nil;
+    
+    if (![NSError setError:error fromPEPStatus:status]) {
+        result = [NSString stringWithUTF8String:trustwords.charPointer];
+    }
+    
+    return result;
+}
+
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
     PEPAutoPointer *chLangs = [PEPAutoPointer new];
