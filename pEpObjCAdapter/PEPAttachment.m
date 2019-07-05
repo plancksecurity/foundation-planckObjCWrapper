@@ -15,8 +15,12 @@
 - (instancetype)initWithData:(NSData *)data
 {
     if (self = [super init]) {
-        self.data = data;
         self.size = data.length;
+
+        // 0-terminate the blob, just in case
+        NSMutableData tmpData = [NSMutableData dataWithData:data];
+        [tmpData appendBytes:"\0" length:1]
+        self.data = [NSData dataWithData:tmpData];
     }
     return self;
 }
