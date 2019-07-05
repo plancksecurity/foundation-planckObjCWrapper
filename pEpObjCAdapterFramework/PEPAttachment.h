@@ -18,6 +18,11 @@
 @property (readonly, nonnull) NSData *dataWith0Terminator;
 
 /**
+ The blob (binary data) of this attachment, _without_ \0 terminator.
+ */
+@property (readonly, nonnull) NSData *dataWithout0Terminator;
+
+/**
  The size (length in bytes) of the binary blob _without_ the trailing \0,
  in other words, the size of the raw data.
  */

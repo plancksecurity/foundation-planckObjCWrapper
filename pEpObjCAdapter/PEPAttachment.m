@@ -12,6 +12,7 @@
 
 @interface PEPAttachment ()
 
+/** Blob (binary data) _with_ 0-terminator. */
 @property (nonatomic, nonnull) NSData *data;
 
 @end
@@ -34,6 +35,11 @@
 - (NSData *)dataWith0Terminator
 {
     return self.data;
+}
+
+- (NSData *)dataWithout0Terminator
+{
+    return [NSData dataWithBytes:self.data.bytes length:self.size];
 }
 
 - (NSString *)description
