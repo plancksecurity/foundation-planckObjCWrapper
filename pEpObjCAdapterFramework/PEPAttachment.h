@@ -12,8 +12,17 @@
 
 @interface PEPAttachment : NSObject
 
+/**
+ The blob (binary data) of this attachment, terminated by one \0.
+ */
 @property (nonatomic, nonnull) NSData *data;
+
+/**
+ The size (length in bytes) of the binary blob _without_ the trailing \0,
+ in other words, the size of the raw data.
+ */
 @property (nonatomic) NSInteger size;
+
 @property (nonatomic, nullable) NSString *mimeType;
 @property (nonatomic, nullable) NSString *filename;
 @property (nonatomic) PEPContentDisposition contentDisposition;
