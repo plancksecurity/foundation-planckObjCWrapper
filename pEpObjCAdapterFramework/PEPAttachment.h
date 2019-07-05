@@ -15,12 +15,12 @@
 /**
  The blob (binary data) of this attachment, terminated by one \0.
  */
-@property (readonly, nonnull) NSData *dataWith0Terminator;
+@property (readonly, nonnull) NSData *dataWithZeroTerminator;
 
 /**
  The blob (binary data) of this attachment, _without_ \0 terminator.
  */
-@property (readonly, nonnull) NSData *dataWithout0Terminator;
+@property (readonly, nonnull) NSData *dataWithoutZeroTerminator;
 
 /**
  The size (length in bytes) of the binary blob _without_ the trailing \0,
