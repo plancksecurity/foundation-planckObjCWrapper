@@ -15,7 +15,7 @@
 /**
  The blob (binary data) of this attachment, terminated by one \0.
  */
-@property (nonatomic, nonnull) NSData *data;
+@property (readonly, nonnull) NSData *dataWith0Terminator;
 
 /**
  The size (length in bytes) of the binary blob _without_ the trailing \0,

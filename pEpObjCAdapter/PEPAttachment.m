@@ -10,6 +10,12 @@
 
 #import "bloblist.h"
 
+@interface PEPAttachment ()
+
+@property (nonatomic, nonnull) NSData *data;
+
+@end
+
 @implementation PEPAttachment
 
 - (instancetype)initWithData:(NSData *)data
@@ -18,11 +24,16 @@
         self.size = data.length;
 
         // 0-terminate the blob, just in case
-        NSMutableData tmpData = [NSMutableData dataWithData:data];
-        [tmpData appendBytes:"\0" length:1]
+        NSMutableData *tmpData = [NSMutableData dataWithData:data];
+        [tmpData appendBytes:"\0" length:1];
         self.data = [NSData dataWithData:tmpData];
     }
     return self;
+}
+
+- (NSData *)dataWith0Terminator
+{
+    return self.data;
 }
 
 - (NSString *)description

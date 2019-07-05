@@ -111,7 +111,7 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
     bl->release_value = (void (*) (char *)) free;
 
     for (PEPAttachment *theAttachment in array) {
-        NSData *data = theAttachment.data;
+        NSData *data = theAttachment.dataWith0Terminator;
         size_t size = [data length];
 
         char *buf = malloc(size);
