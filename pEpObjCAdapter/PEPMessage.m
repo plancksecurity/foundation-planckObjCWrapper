@@ -234,6 +234,10 @@
         [result addObject:@[kPepLongMessageFormatted, self.longMessageFormatted]];
     }
 
+    if (self.attachments) {
+        [result addObject:@[kPepAttachments, self.attachments]];
+    }
+
     BOOL outgoing = self.direction == PEP_dir_outgoing ? YES:NO;
     [result addObject:@[kPepOutgoing, [NSNumber numberWithBool:outgoing]]];
 
