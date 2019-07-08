@@ -13,6 +13,7 @@
 #import "PEPObjCAdapter.h"
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
+#import "PEPAttachment.h"
 #import "PEPTestUtils.h"
 #import "PEPSync.h"
 #import "PEPSendMessageDelegate.h"
@@ -1139,6 +1140,66 @@
 
     XCTAssertTrue([session trustOwnKeyIdentity:me error:&error]);
     XCTAssertNil(error);
+}
+
+- (void)testCorrectlyTerminatedAttachments
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me@example.com"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    NSString *originalString = @"Some Text";
+    NSData *attachedData = [originalString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *theMimeType = @"text/plain";
+    PEPAttachment *attachment = [[PEPAttachment alloc] initWithData:attachedData];
+    attachment.mimeType = theMimeType;
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = identMe;
+    msg.to = @[identMe];
+    msg.shortMessage = @"Mail to Myself";
+    msg.longMessage = @"This is a text content";
+    msg.attachments = @[attachment];
+    msg.direction = PEPMsgDirectionOutgoing;
+
+    NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
+    XCTAssertNotNil(numRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
+
+    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
+    XCTAssertNotNil(encMsg);
+    XCTAssertNil(error);
+
+    NSArray *keys;
+
+    error = nil;
+    PEPRating rating = PEPRatingUndefined;
+    PEPMessage *decmsg = [session
+                          decryptMessage:encMsg
+                          flags:nil
+                          rating:&rating
+                          extraKeys:&keys
+                          status:nil
+                          error:&error];
+    XCTAssertNotNil(decmsg);
+    XCTAssertNil(error);
+    XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+
+    XCTAssertEqual(decmsg.attachments.count, 1);
+    PEPAttachment *attachmentToVerify = decmsg.attachments.firstObject;
+    XCTAssertNotNil(attachmentToVerify);
+    NSString *dataString = [[NSString alloc]
+                            initWithData:attachmentToVerify.dataWithoutZeroTerminator
+                            encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(dataString, originalString);
 }
 
 #pragma mark - configUnencryptedSubject
