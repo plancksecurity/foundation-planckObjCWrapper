@@ -39,6 +39,9 @@
 
 - (NSData *)dataWithoutZeroTerminator
 {
+    // Maybe we can avoid this with `initWithBytesNoCopy`?
+    // But then we have to take care of memory management without
+    // creating ownership cycles.
     return [NSData dataWithBytes:self.data.bytes length:self.size];
 }
 
