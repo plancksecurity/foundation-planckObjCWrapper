@@ -1142,6 +1142,10 @@
     XCTAssertNil(error);
 }
 
+/**
+ * Tests that attachments are handled correctly between encryption and
+ * decryption (IOS-1704).
+ */
 - (void)testCorrectlyTerminatedAttachments
 {
     PEPSession *session = [PEPSession new];
