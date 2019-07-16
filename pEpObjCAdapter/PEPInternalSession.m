@@ -282,7 +282,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *_dst = NULL;
     stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
-    [self lockWrite];
     PEPStatus theStatus = (PEPStatus) encrypt_message(
                                                       _session,
                                                       _src,
@@ -290,7 +289,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                                       &_dst,
                                                       (PEP_enc_format) encFormat,
                                                       flags);
-    [self unlockWrite];
 
     if (status) {
         *status = theStatus;
