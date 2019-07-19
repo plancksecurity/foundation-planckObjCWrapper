@@ -133,14 +133,14 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     PEPRating internalRating = PEPRatingUndefined;
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus theStatus = (PEPStatus) decrypt_message(_session,
                                                       _src,
                                                       &_dst,
                                                       &theKeys,
                                                       (PEP_rating *) &internalRating,
                                                       (PEP_decrypt_flags *) &theFlags);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     if (status) {
         *status = theStatus;
@@ -217,13 +217,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = PEP_arrayToStringlist(xKeyList);
     }
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus theStatus = (PEPStatus) re_evaluate_message_rating(_session,
                                                                  _src,
                                                                  theKeys,
                                                                  (PEP_rating) *rating,
                                                                  (PEP_rating *) rating);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     free_message(_src);
     free_stringlist(theKeys);
@@ -361,7 +361,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus theStatus = (PEPStatus) encrypt_message_for_self(_session,
                                                                ident,
                                                                _src,
@@ -369,7 +369,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                                                &_dst,
                                                                PEP_enc_PGP_MIME,
                                                                flags);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     free_stringlist(keysStringList);
 
@@ -430,12 +430,12 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
     message *dst = NULL;
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus theStatus = (PEPStatus)
     encrypt_message_and_add_priv_key(_session, src, &dst,
                                      [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
                                      (PEP_enc_format) encFormat, flags);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     if (status) {
         *status = theStatus;
@@ -485,11 +485,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     message *_msg = PEP_messageToStruct(theMessage);
     PEPRating rating = PEPRatingUndefined;
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus status = (PEPStatus) outgoing_message_rating(_session,
                                                            _msg,
                                                            (PEP_rating *) &rating);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     free_message(_msg);
 
@@ -524,9 +524,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     pEp_identity *ident = PEP_identityToStruct(identity);
     PEPRating rating = PEPRatingUndefined;
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus status = (PEPStatus) identity_rating(_session, ident, (PEP_rating *) &rating);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     free_identity(ident);
 
@@ -577,9 +577,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus status = (PEPStatus) myself(_session, ident);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
@@ -600,9 +600,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     } else {
         pEp_identity *ident = PEP_identityToStruct(identity);
 
-        [self lockWrite];
+        //[self lockWrite];
         PEPStatus status = (PEPStatus) update_identity(_session, ident);
-        [self unlockWrite];
+        //[self unlockWrite];
 
         if ([NSError setError:error fromPEPStatus:status]) {
             free_identity(ident);
@@ -622,9 +622,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus status = (PEPStatus) trust_personal_key(_session, ident);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
@@ -641,9 +641,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus status = (PEPStatus) key_mistrusted(_session, ident);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
@@ -662,9 +662,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus status = (PEPStatus) key_reset_trust(_session, ident);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
@@ -683,11 +683,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     identity_list *identList = NULL;
 
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus status = (PEPStatus) import_key(_session,
                                    [[keydata precomposedStringWithCanonicalMapping] UTF8String],
                                    [keydata length], &identList);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free(identList);
@@ -706,7 +706,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
          comment:(NSString * _Nullable)comment
            error:(NSError * _Nullable * _Nullable)error
 {
-    [self lockWrite];
+    //[self lockWrite];
     PEPStatus status = (PEPStatus) log_event(_session,
                                              [[title precomposedStringWithCanonicalMapping]
                                               UTF8String],
@@ -716,7 +716,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
                                               UTF8String],
                                              [[comment precomposedStringWithCanonicalMapping]
                                               UTF8String]);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
@@ -755,12 +755,12 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     size_t sizeWritten = 0;
 
-    [self lockWrite];
+    //[self lockWrite];
     status = (PEPStatus) get_trustwords(_session, ident1, ident2,
                                         [[language precomposedStringWithCanonicalMapping]
                                          UTF8String],
                                         trustwords.charPointerPointer, &sizeWritten, full);
-    [self unlockWrite];
+    //[self unlockWrite];
 
     free_identity(ident1);
     free_identity(ident2);
@@ -788,12 +788,12 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     size_t sizeWritten = 0;
     
-    [self lockWrite];
+    //[self lockWrite];
     status = (PEPStatus) get_trustwords_for_fprs(_session, _fpr1, _fpr2,
                                         [[language precomposedStringWithCanonicalMapping]
                                          UTF8String],
                                         trustwords.charPointerPointer, &sizeWritten, full);
-    [self unlockWrite];
+    //[self unlockWrite];
     
     NSString *result = nil;
     
