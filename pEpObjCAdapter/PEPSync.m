@@ -156,9 +156,7 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
-    // assure the main session exists
-    PEPInternalSession *session = [PEPSessionProvider session];
-    session = nil;
+    [self assureMainSessionExists];
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
     NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
@@ -184,6 +182,11 @@ static __weak PEPSync *s_pEpSync;
 + (PEPSync * _Nullable)instance
 {
     return s_pEpSync;
+}
+
+- (void)assureMainSessionExists
+{
+    PEPInternalSession *session __attribute__((unused)) = [PEPSessionProvider session];
 }
 
 - (void)syncThreadLoop:(id)object
