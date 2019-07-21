@@ -17,7 +17,6 @@
 #import "PEPMessageUtil.h"
 #import "PEPMessage.h"
 #import "PEPQueue.h"
-#import "PEPLock.h"
 #import "PEPObjCAdapter.h"
 #import "NSError+PEP+Internal.h"
 #import "PEPSessionProvider.h"
@@ -126,11 +125,9 @@ static __weak PEPSync *s_pEpSync;
 {
     PEP_SESSION session = NULL;
 
-    [PEPLock lockWrite];
     PEP_STATUS status = init(&session,
                              [PEPSync messageToSendCallback],
                              [PEPSync injectSyncCallback]);
-    [PEPLock unlockWrite];
 
     if (status != PEP_STATUS_OK) {
         if (error) {
@@ -140,13 +137,6 @@ static __weak PEPSync *s_pEpSync;
     }
 
     return session;
-}
-
-+ (void)releaseSession:(PEP_SESSION)session
-{
-    [PEPLock lockWrite];
-    release(session);
-    [PEPLock unlockWrite];
 }
 
 - (instancetype)initWithSendMessageDelegate:(id<PEPSendMessageDelegate>
