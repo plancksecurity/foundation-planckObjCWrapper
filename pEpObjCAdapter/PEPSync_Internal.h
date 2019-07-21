@@ -18,11 +18,6 @@
  */
 + (PEP_SESSION _Nullable)createSession:(NSError * _Nullable * _Nullable)error;
 
-/**
- Releases an engine session that was created by `createSession`.
- */
-+ (void)releaseSession:(PEP_SESSION _Nullable)session;
-
 @end
 
 #endif /* PEPSync_Internal_h */
