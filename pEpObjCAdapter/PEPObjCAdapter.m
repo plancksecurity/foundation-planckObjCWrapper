@@ -12,7 +12,6 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
-#import "PEPLock.h"
 
 #import "keymanagement.h"
 #import "mime.h"
