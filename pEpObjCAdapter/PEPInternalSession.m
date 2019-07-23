@@ -662,7 +662,6 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 
     for (identity_list *_il = identList; _il && _il->ident; _il = _il->next) {
         PEP_STATUS status = update_identity(_session, _il->ident);
-        NSLog(@"update_identity() -> %d", status);
     }
 
     NSArray *idents = PEP_arrayFromIdentityList(identList);
