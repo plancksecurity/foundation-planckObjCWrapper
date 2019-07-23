@@ -267,18 +267,6 @@ identity_list *PEP_identityArrayToList(NSArray<PEPIdentity *> *array)
     return il;
 }
 
-NSArray *PEP_identityArrayFromList(identity_list *il)
-{
-    NSMutableArray *array = [NSMutableArray array];
-    
-    for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        PEPIdentity *ident = PEP_identityFromStruct(_il->ident);
-        [array addObject:ident];
-    }
-    
-    return array;
-}
-
 NSDictionary *PEP_messageDictFromStruct(message *msg)
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
