@@ -22,7 +22,7 @@
 /**
  The (optional) user ID.
  */
-@property (nonatomic, nullable) NSString *userID;
+@property (nonatomic, nonnull) NSString *userID;
 
 /**
  The (optional) user name.
