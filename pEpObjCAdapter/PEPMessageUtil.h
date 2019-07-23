@@ -23,7 +23,7 @@ pEp_identity * _Nonnull PEP_identityToStruct(PEPIdentity * _Nonnull identity);
  */
 PEPIdentity * _Nullable PEP_identityFromStruct(pEp_identity * _Nonnull ident);
 
-NSArray<PEPIdentity *> * _Nonnull PEP_arrayFromIdentityList(identity_list * _Nonnull il);
+NSArray<PEPIdentity *> * _Nonnull PEPIdentityArrayFromIdentityList(identity_list * _Nonnull il);
 identity_list * _Nullable PEP_identityArrayToList(NSArray<PEPIdentity *> * _Nullable array);
 
 pEp_identity * _Nullable PEP_identityDictToStruct(NSDictionary * _Nullable dict);

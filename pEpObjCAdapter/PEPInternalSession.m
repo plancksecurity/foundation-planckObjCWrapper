@@ -669,7 +669,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         }
     }
 
-    NSArray *idents = PEP_arrayFromIdentityList(identList);
+    NSArray *idents = PEPIdentityArrayFromIdentityList(identList);
     free(identList);
 
     return idents;

@@ -41,7 +41,7 @@ void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *me
     }
     
     if (message->to && message->to->ident) {
-        [dict setValue:PEP_arrayFromIdentityList(message->to) forKey:kPepTo];
+        [dict setValue:PEPIdentityArrayFromIdentityList(message->to) forKey:kPepTo];
     }
     
     if (message->recv_by) {
@@ -49,15 +49,15 @@ void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *me
     }
     
     if (message->cc && message->cc->ident) {
-        [dict setValue:PEP_arrayFromIdentityList(message->cc) forKey:kPepCC];
+        [dict setValue:PEPIdentityArrayFromIdentityList(message->cc) forKey:kPepCC];
     }
     
     if (message->bcc && message->bcc->ident) {
-        [dict setValue:PEP_arrayFromIdentityList(message->bcc) forKey:kPepBCC];
+        [dict setValue:PEPIdentityArrayFromIdentityList(message->bcc) forKey:kPepBCC];
     }
     
     if (message->reply_to && message->reply_to->ident) {
-        [dict setValue:PEP_arrayFromIdentityList(message->reply_to) forKey:kPepReplyTo];
+        [dict setValue:PEPIdentityArrayFromIdentityList(message->reply_to) forKey:kPepReplyTo];
     }
     
     if (message->in_reply_to) {
