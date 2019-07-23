@@ -9,10 +9,12 @@
 #ifndef PEPSync_Internal_h
 #define PEPSync_Internal_h
 
+#import "PEPSync.h"
+
 /**
  Internal methods of PEPSync.
  */
-@interface PEPSync : NSObject
+@interface PEPSync (Internal)
 /**
  Creates an engine session.
  */
