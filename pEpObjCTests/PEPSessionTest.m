@@ -1443,18 +1443,23 @@
         session = [PEPSession new];
     }
 
+    // Our test user:
+    PEPIdentity *identTest = [[PEPIdentity alloc]
+                              initWithAddress:address
+                              userID:userID
+                              userName:[NSString stringWithFormat:@"Some User Name %@", userID]
+                              isOwn:NO];
+
+    NSError *error = nil;
+
+    XCTAssertTrue([session updateIdentity:identTest error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNil(identTest.fingerPrint);
+
     BOOL success = [PEPTestUtils importBundledKey:filePath session:session];
     XCTAssertTrue(success);
 
     if (success) {
-        // Our test user:
-        PEPIdentity *identTest = [[PEPIdentity alloc]
-                                  initWithAddress:address
-                                  userID:userID
-                                  userName:[NSString stringWithFormat:@"Some User Name %@", userID]
-                                  isOwn:NO];
-
-        NSError *error = nil;
         XCTAssertTrue([session updateIdentity:identTest error:&error]);
         XCTAssertNil(error);
         XCTAssertNotNil(identTest.fingerPrint);
