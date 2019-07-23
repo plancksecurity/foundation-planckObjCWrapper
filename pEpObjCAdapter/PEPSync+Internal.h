@@ -1,5 +1,5 @@
 //
-//  PEPSync_Internal.h
+//  PEPSync+Internal.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 20.05.19.
