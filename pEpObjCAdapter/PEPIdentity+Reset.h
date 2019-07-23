@@ -6,7 +6,7 @@
 //  Copyright © 2019 p≡p. All rights reserved.
 //
 
-#import <PEPObjCAdapterFramework/PEPObjCAdapterFramework.h>
+#import "PEPIdentity.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
