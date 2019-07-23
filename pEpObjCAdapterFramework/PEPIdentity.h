@@ -55,7 +55,7 @@
 @property (readonly) BOOL isConfirmed;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                                 userID:(NSString * _Nullable)userID
+                                 userID:(NSString * _Nonnull)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
@@ -63,17 +63,18 @@
                                language:(NSString * _Nullable)language;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                                 userID:(NSString * _Nullable)userID
+                                 userID:(NSString * _Nonnull)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint;
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                                 userID:(NSString * _Nullable)userID
+                                 userID:(NSString * _Nonnull)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
+- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+                                 userID:(NSString * _Nonnull)userID;
 
 - (nonnull instancetype)initWithDictionary:(NSDictionary * _Nonnull)dictionary;
 
