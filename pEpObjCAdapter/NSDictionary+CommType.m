@@ -19,7 +19,7 @@
 - (PEPCommType)commType
 {
     NSNumber *ctNum = self[kPepCommType];
-    if (!ctNum) {
+    if (ctNum == nil) {
         return PEPCommTypeUnknown;
     }
     return ctNum.intValue;
