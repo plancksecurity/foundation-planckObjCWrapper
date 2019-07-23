@@ -662,6 +662,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 
     for (identity_list *_il = identList; _il && _il->ident; _il = _il->next) {
         PEP_STATUS status = update_identity(_session, _il->ident);
+        if (status != PEP_STATUS_OK) {
+            NSLog(@"Could not update identity after key import, status: %d", status);
+        }
     }
 
     NSArray *idents = PEP_arrayFromIdentityList(identList);
