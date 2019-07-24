@@ -61,7 +61,6 @@
 		4396CEB82187196600FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPSessionTestSendMessageDelegate.m */; };
 		43BCEFF7222FBA2400148303 /* NSDictionary+CommType.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D27DE41F5DA78700795687 /* NSDictionary+CommType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43DAF4BA22E72C3500A96685 /* PEPIdentity+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DAF4B922E72C3500A96685 /* PEPIdentity+Reset.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
 		43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */; };
@@ -69,6 +68,7 @@
 		43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
+		43F7E41522E84D9000EE43F4 /* PEPIdentity+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DAF4B922E72C3500A96685 /* PEPIdentity+Reset.m */; };
 		43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
@@ -619,6 +619,7 @@
 				435F516A222046C2006EB11F /* PEPLanguage.m in Sources */,
 				435F516F222046C2006EB11F /* NSDictionary+CommType.m in Sources */,
 				435F5173222046C2006EB11F /* PEPSession.m in Sources */,
+				43F7E41522E84D9000EE43F4 /* PEPIdentity+Reset.m in Sources */,
 				435F5168222046C2006EB11F /* NSArray+Extension.m in Sources */,
 				435F516E222046C2006EB11F /* PEPInternalSession.m in Sources */,
 				435F5172222046C2006EB11F /* PEPSessionProvider.m in Sources */,
@@ -644,7 +645,6 @@
 				152D58EF201B6DB200036219 /* PEPMessageUtilTest.m in Sources */,
 				152A9C472010F50400F962ED /* PEPSessionTest.m in Sources */,
 				434226811D4F60000083ED79 /* PepTests.m in Sources */,
-				43DAF4BA22E72C3500A96685 /* PEPIdentity+Reset.m in Sources */,
 				4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */,
 				4396CEB82187196600FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m in Sources */,
 				15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */,
