@@ -18,7 +18,7 @@
 @implementation PEPIdentity
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                                 userID:(NSString * _Nonnull)userID
+                                 userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
@@ -37,7 +37,7 @@
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                                 userID:(NSString * _Nonnull)userID
+                                 userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
@@ -47,7 +47,7 @@
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                                 userID:(NSString * _Nonnull)userID
+                                 userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
 {
@@ -56,9 +56,8 @@
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
-                                 userID:(NSString * _Nonnull)userID
 {
-    return [self initWithAddress:address userID:userID userName:nil isOwn:NO fingerPrint:nil
+    return [self initWithAddress:address userID:nil userName:nil isOwn:NO fingerPrint:nil
                         commType:PEPCommTypeUnknown language:nil];
 }
 

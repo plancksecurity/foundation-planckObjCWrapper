@@ -212,10 +212,14 @@ pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
 PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
 {
     PEPIdentity *identity = nil;
-    if (ident->address && ident->address[0] && ident->user_id && ident->user_id[0]) {
+
+    if (ident->address && ident->address[0]) {
         identity = [[PEPIdentity alloc]
-                    initWithAddress:[NSString stringWithUTF8String:ident->address]
-                    userID:[NSString stringWithUTF8String:ident->user_id]];
+                    initWithAddress:[NSString stringWithUTF8String:ident->address]];
+    }
+
+    if (ident->user_id && ident->user_id[0]) {
+        identity.userID = [NSString stringWithUTF8String:ident->user_id];
     }
 
     if (ident->fpr && ident->fpr[0]) {
