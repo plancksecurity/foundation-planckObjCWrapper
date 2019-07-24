@@ -48,7 +48,9 @@
 
 - (void)dealloc
 {
-    release(_session);
+    if (_session != nil) {
+        release(_session);
+    }
 }
 
 #pragma mark - CONFIG
