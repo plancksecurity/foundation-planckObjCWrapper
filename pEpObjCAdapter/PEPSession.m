@@ -14,8 +14,17 @@
 
 #import "PEPMessageUtil.h"
 #import "NSNumber+PEPRating.h"
+#import "NSError+PEP+Internal.h"
 
 @implementation PEPSession
+
+#define RETURN_NIL_ON_ERROR(session, error)\
+ if (session == nil) { \
+   if (error != nil) { \
+     *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR]; \
+     return nil; \
+   } \
+ }
 
 #pragma mark - Public API
 
