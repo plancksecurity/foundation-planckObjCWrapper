@@ -76,6 +76,7 @@
                         error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session reEvaluateMessageDict:messageDict
                                  xKeyList:xKeyList
                                    rating:rating
@@ -90,6 +91,7 @@
                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session reEvaluateMessage:message
                              xKeyList:xKeyList
                                rating:rating
@@ -248,6 +250,7 @@
 - (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session mySelf:identity error:error];
 }
 
@@ -255,6 +258,7 @@
                  error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session updateIdentity:identity error:error];
 }
 
@@ -262,6 +266,7 @@
                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session trustPersonalKey:identity error:error];
 }
 
@@ -269,6 +274,7 @@
                 error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session keyMistrusted:identity error:error];
 }
 
@@ -276,6 +282,7 @@
                 error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session keyResetTrust:identity error:error];
 }
 
@@ -296,6 +303,7 @@
            error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session
             logTitle:title
             entity:entity
@@ -368,6 +376,7 @@
             error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session setOwnKey:identity fingerprint:fingerprint error:error];
 }
 
@@ -382,6 +391,7 @@
            error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session setFlags:flags forIdentity:identity error:error];
 }
 
@@ -389,6 +399,7 @@
                       error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session trustOwnKeyIdentity:identity error:error];
 }
 
@@ -397,6 +408,7 @@
                          error:(NSError * _Nullable * _Nullable)error;
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session deliverHandshakeResult:result identitiesSharing:identitiesSharing error:error];
 }
 
@@ -411,12 +423,14 @@
            error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session keyReset:identity fingerprint:fingerprint error:error];
 }
 
 - (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
     return [session leaveDeviceGroupError:error];
 }
 
