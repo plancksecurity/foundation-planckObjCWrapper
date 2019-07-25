@@ -41,6 +41,7 @@
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             decryptMessageDict:messageDict
             flags:flags
@@ -58,6 +59,7 @@
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             decryptMessage:message
             flags:flags
@@ -102,6 +104,7 @@
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             encryptMessageDict:messageDict
             extraKeys:extraKeys
@@ -117,6 +120,7 @@
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             encryptMessage:message
             extraKeys:extraKeys
@@ -131,6 +135,7 @@
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session encryptMessage:message extraKeys:extraKeys status:status error:error];
 }
 
@@ -141,6 +146,7 @@
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             encryptMessageDict:messageDict
             forSelf:ownIdentity
@@ -156,6 +162,7 @@
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             encryptMessage:message
             forSelf:ownIdentity
@@ -172,6 +179,7 @@
                                     error:(NSError * _Nullable * _Nullable)error __deprecated
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             encryptMessageDict:messageDict
             toFpr:toFpr
@@ -189,6 +197,7 @@
                                    error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             encryptMessage:message
             toFpr:toFpr
@@ -202,6 +211,7 @@
                                            error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session outgoingRatingForMessage:theMessage error:error];
 }
 
@@ -209,6 +219,7 @@
                                                   error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session outgoingRatingPreviewForMessage:theMessage error:error];
 }
 
@@ -216,6 +227,7 @@
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session ratingForIdentity:identity error:error];
 }
 
@@ -225,6 +237,7 @@
                                           error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session
             trustwordsForFingerprint:fingerprint
             languageID:languageID
@@ -272,6 +285,7 @@
                            error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session importKey:keydata error:error];
 }
 
@@ -293,6 +307,7 @@
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session getLogWithError:error];
 }
 
@@ -303,6 +318,7 @@
                                          error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session getTrustwordsIdentity1:identity1
                                  identity2:identity2
                                   language:language
@@ -317,12 +333,14 @@
                                     error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session getTrustwordsFpr1:fpr1 fpr2:fpr2 language:language full:full error:error];
 }
 
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session languageListWithError:error];
 }
 
@@ -342,6 +360,7 @@
                             error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_NIL_ON_ERROR(session, error);
     return [session isPEPUser:identity error:error];
 }
 
