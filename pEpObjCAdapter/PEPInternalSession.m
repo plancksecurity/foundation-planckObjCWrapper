@@ -30,7 +30,7 @@
 
 @implementation PEPInternalSession
 
-- (instancetype)init
+- (_Nullable instancetype)init
 {
     self = [super init];
     if (self) {
