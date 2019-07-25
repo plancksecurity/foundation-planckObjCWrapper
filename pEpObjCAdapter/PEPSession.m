@@ -423,7 +423,7 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     if (session == nil) {
-        return PEP_color_no_color;
+        return PEPColorNoColor;
     }
     return [session colorFromRating:rating];
 }
