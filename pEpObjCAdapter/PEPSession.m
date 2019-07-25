@@ -355,12 +355,18 @@
 - (PEPRating)ratingFromString:(NSString * _Nonnull)string
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        return PEPRatingUndefined;
+    }
     return [session ratingFromString:string];
 }
 
 - (NSString * _Nonnull)stringFromRating:(PEPRating)rating
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        return @"undefined";
+    }
     return [session stringFromRating:rating];
 }
 
@@ -415,6 +421,9 @@
 - (PEPColor)colorFromRating:(PEPRating)rating
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        return PEP_color_no_color;
+    }
     return [session colorFromRating:rating];
 }
 
