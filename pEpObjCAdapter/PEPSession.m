@@ -15,6 +15,7 @@
 #import "PEPMessageUtil.h"
 #import "NSNumber+PEPRating.h"
 #import "NSError+PEP+Internal.h"
+#import "PEPInternalConstants.h"
 
 @implementation PEPSession
 
@@ -365,7 +366,7 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     if (session == nil) {
-        return @"undefined";
+        return kUndefined;
     }
     return [session stringFromRating:rating];
 }
