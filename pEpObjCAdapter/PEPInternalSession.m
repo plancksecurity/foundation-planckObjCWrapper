@@ -118,6 +118,8 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     if (extraKeys && [*extraKeys count]) {
         theKeys = PEP_arrayToStringlist(*extraKeys);
+    } else {
+        theKeys = PEP_arrayToStringlist(@[]);
     }
 
     PEPRating internalRating = PEPRatingUndefined;
@@ -200,9 +202,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *_src = PEP_messageDictToStruct(messageDict);
 
     stringlist_t *theKeys = NULL;
-    if ([xKeyList count]) {
-        theKeys = PEP_arrayToStringlist(xKeyList);
-    }
+    theKeys = PEP_arrayToStringlist(xKeyList);
 
     PEPStatus theStatus = (PEPStatus) re_evaluate_message_rating(_session,
                                                                  _src,
