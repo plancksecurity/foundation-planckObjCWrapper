@@ -116,7 +116,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theFlags = *flags;
     }
 
-    if (extraKeys && [*extraKeys count]) {
+    if (extraKeys) {
         theKeys = PEP_arrayToStringlist(*extraKeys);
     } else {
         theKeys = PEP_arrayToStringlist(@[]);
