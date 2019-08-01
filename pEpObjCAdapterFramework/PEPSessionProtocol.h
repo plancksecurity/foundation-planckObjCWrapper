@@ -256,7 +256,8 @@
  Indicate the user's choice during a handshake dialog display.
 
  Wraps the engine's deliverHandshakeResult. Should be called in response to
- PEPNotifyHandshakeDelegate.notifyHandshake in accordance with the user's choices.
+ [PEPNotifyHandshakeDelegate notifyHandshake:me:partner:signal
+ in accordance with the user's choices.
 
  @param result The choice the user made with regards to the currently active handshake dialog.
  @param identitiesSharing The identities that are involved for the user's choice.
