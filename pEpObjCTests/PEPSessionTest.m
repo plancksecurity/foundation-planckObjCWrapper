@@ -1319,6 +1319,22 @@
     [self shutdownSync];
 }
 
+#pragma mark - Enable/disable key-sync
+
+- (void)testEnableKeySyncOnPartnerIdentity
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identNotMe = [[PEPIdentity alloc]
+                               initWithAddress:@"not-me-no@example.com"
+                               userID:@"not-me-no"
+                               userName:@"Not Me"
+                               isOwn:NO];
+
+    XCTAssertFalse([identNotMe isKeySyncEnabled:session]);
+    [identNotMe enableKeySync:YES session:session];
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
