@@ -88,17 +88,7 @@
                     session:(PEPSession * _Nonnull)session
                       error:(NSError * _Nullable * _Nullable)error
 {
-    BOOL success = NO;
-    if (self.isOwn) {
-        success = [session mySelf:self error:error];
-    } else {
-        success = [session updateIdentity:self error:error];
-    }
-
-    if (success) {
-    }
-
-    return success;
+    return NO;
 }
 
 - (BOOL)enableKeySync:(BOOL)enabled

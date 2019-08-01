@@ -25,7 +25,6 @@
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
 #import "PEPSync_Internal.h"
-#import "PEPIdentity+Internal.h"
 
 #import "key_reset.h"
 
@@ -564,9 +563,6 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 
     [identity reset];
     [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
-
-    identity.flags = ident->flags;
-
     free_identity(ident);
 
     return YES;
@@ -588,9 +584,6 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 
         [identity reset];
         [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
-
-        identity.flags = ident->flags;
-
         free_identity(ident);
 
         return YES;
