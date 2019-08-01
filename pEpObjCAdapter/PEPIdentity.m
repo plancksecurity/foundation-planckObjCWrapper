@@ -88,7 +88,7 @@
     return NO;
 }
 
-- (void)setKeySyncEnabled:(BOOL)enabled session:(PEPSession * _Nonnull)session
+- (void)enableKeySync:(BOOL)enabled session:(PEPSession * _Nonnull)session
 {
 }
 
