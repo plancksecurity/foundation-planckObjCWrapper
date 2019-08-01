@@ -108,18 +108,27 @@
 /**
  Queries this identity for whether it has key-sync enabled or not.
 
+ @param enabled Out-parameter: YES if this identitity has key-sync enabled,
+                NO otherwise, or in case
+                the query caused an error.
  @param session The mandatory session to query on.
- @return YES if this identitity has key-sync enabled, NO otherwise, or in case
-         the query caused an error.
+ @param error Cocoa-style error handling.
+ @return YES if the call succeeded, NO if there was an error.
  */
-- (BOOL)isKeySyncEnabled:(PEPSession * _Nonnull)session;
+- (BOOL)queryKeySyncEnabled:(BOOL * _Nonnull)enabled
+                    session:(PEPSession * _Nonnull)session
+                      error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Enables or disables key-sync for this identity.
 
  @param enabled YES for "enable", NO for "disable".
  @param session Mandatory session to use for setting the state.
+ @param error Cocoa-style error handling.
+ @return YES if the call succeeded, NO if there was an error.
  */
-- (void)enableKeySync:(BOOL)enabled session:(PEPSession * _Nonnull)session;
+- (BOOL)enableKeySync:(BOOL)enabled
+              session:(PEPSession * _Nonnull)session
+                error:(NSError * _Nullable * _Nullable)error;
 
 @end

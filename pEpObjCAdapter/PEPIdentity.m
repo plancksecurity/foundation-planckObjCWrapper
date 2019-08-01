@@ -83,13 +83,18 @@
 
 // MARK: API
 
-- (BOOL)isKeySyncEnabled:(PEPSession * _Nonnull)session
+- (BOOL)queryKeySyncEnabled:(BOOL * _Nonnull)enabled
+                    session:(PEPSession * _Nonnull)session
+                      error:(NSError * _Nullable * _Nullable)error
 {
     return NO;
 }
 
-- (void)enableKeySync:(BOOL)enabled session:(PEPSession * _Nonnull)session
+- (BOOL)enableKeySync:(BOOL)enabled
+              session:(PEPSession * _Nonnull)session
+                error:(NSError * _Nullable * _Nullable)error
 {
+    return NO;
 }
 
 // MARK: Faking directory
