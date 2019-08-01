@@ -1141,6 +1141,45 @@
     XCTAssertNil(error);
 }
 
+- (void)testReEvaluateMessage
+{
+
+    PEPMessage *encMessage = [self mailWrittenToMySelf];
+    PEPSession *session = [PEPSession new];
+    PEPIdentity *me = encMessage.from;
+    XCTAssertNotNil(me);
+
+    NSError *error = nil;
+    PEPRating decryptRating;
+    PEPStatus decryptStatus;
+    NSArray *extraKeys = @[];
+    PEPMessage *decryptedMessage = [session
+                                    decryptMessage:encMessage
+                                    flags:nil
+                                    rating:&decryptRating
+                                    extraKeys:&extraKeys
+                                    status:&decryptStatus
+                                    error:&error];
+    XCTAssertNotNil(decryptedMessage);
+    XCTAssertNil(error);
+    XCTAssertEqual(decryptRating, PEPRatingTrustedAndAnonymized);
+    XCTAssertEqual(decryptStatus, PEPStatusOK);
+    XCTAssertGreaterThan(extraKeys.count, 0);
+
+    PEPRating reEvaluateRating;
+    PEPStatus reEvaluateStatus;
+    BOOL successReEvaluate = [session
+                              reEvaluateMessage:decryptedMessage
+                              xKeyList:extraKeys
+                              rating:&reEvaluateRating
+                              status:&reEvaluateStatus
+                              error:&error];
+    XCTAssertTrue(successReEvaluate);
+    XCTAssertNil(error);
+    XCTAssertEqual(reEvaluateRating, PEPRatingTrustedAndAnonymized);
+    XCTAssertEqual(reEvaluateStatus, PEPStatusOK);
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
