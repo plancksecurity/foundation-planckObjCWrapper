@@ -1331,8 +1331,45 @@
                                userName:@"Not Me"
                                isOwn:NO];
 
-    XCTAssertFalse([identNotMe isKeySyncEnabled:session]);
-    [identNotMe enableKeySync:YES session:session];
+    NSError *error = nil;
+
+    XCTAssertTrue([identNotMe enableKeySync:YES session:session error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    BOOL enabled;
+    XCTAssertTrue([identNotMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+}
+
+- (void)testEnableAndQueryKeySyncOnOwnIdentity
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-yes@example.com"
+                            userID:@"yes-me"
+                            userName:@"Yes Me"
+                            isOwn:NO];
+
+    NSError *error = nil;
+
+    BOOL enabled;
+    XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+    XCTAssertFalse(enabled);
+
+    error = nil;
+
+    XCTAssertTrue([identMe enableKeySync:YES session:session error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+    XCTAssertFalse(enabled);
 }
 
 #pragma mark - Helpers
