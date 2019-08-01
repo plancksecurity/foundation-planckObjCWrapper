@@ -81,6 +81,17 @@
                         language:identity.language];
 }
 
+// MARK: API
+
+- (BOOL)isKeySyncEnabled:(PEPSession * _Nonnull)session
+{
+    return NO;
+}
+
+- (void)setKeySyncEnabled:(BOOL)enabled session:(PEPSession * _Nonnull)session
+{
+}
+
 // MARK: Faking directory
 
 - (PEPDict * _Nonnull)dictionary

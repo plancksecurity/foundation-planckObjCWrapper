@@ -105,4 +105,21 @@
  */
 - (void)reset;
 
+/**
+ Queries this identity for whether it has key-sync enabled or not.
+
+ @param session The mandatory session to query on.
+ @return YES if this identitity has key-sync enabled, NO otherwise, or in case
+         the query caused an error.
+ */
+- (BOOL)isKeySyncEnabled:(PEPSession * _Nonnull)session;
+
+/**
+ Enables or disables key-sync for this identity.
+
+ @param enabled YES for "enable", NO for "disable".
+ @param session Mandatory session to use for setting the state.
+ */
+- (void)enableKeySync:(BOOL)enabled session:(PEPSession * _Nonnull)session;
+
 @end
