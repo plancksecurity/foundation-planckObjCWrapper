@@ -12,6 +12,7 @@
 #import "pEpEngine.h"
 #import "PEPMessageUtil.h"
 #import "PEPSession.h"
+#import "PEPMessageUtil.h"
 
 #import "NSObject+Extension.h"
 
@@ -87,7 +88,17 @@
                     session:(PEPSession * _Nonnull)session
                       error:(NSError * _Nullable * _Nullable)error
 {
-    return NO;
+    BOOL success = NO;
+    if (self.isOwn) {
+        success = [session mySelf:self error:error];
+    } else {
+        success = [session updateIdentity:self error:error];
+    }
+
+    if (success) {
+    }
+
+    return success;
 }
 
 - (BOOL)enableKeySync:(BOOL)enabled
