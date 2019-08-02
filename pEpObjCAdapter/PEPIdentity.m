@@ -16,7 +16,7 @@
 
 #import "NSObject+Extension.h"
 
-@interface PEPIdentity (Internal)
+@interface PEPIdentity ()
 
 @property (nonatomic) identity_flags_t flags;
 
