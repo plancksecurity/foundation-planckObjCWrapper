@@ -16,6 +16,12 @@
 
 #import "NSObject+Extension.h"
 
+@interface PEPIdentity (Internal)
+
+@property (nonatomic) identity_flags_t flags;
+
+@end
+
 @implementation PEPIdentity
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
