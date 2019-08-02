@@ -109,7 +109,16 @@
               session:(PEPSession * _Nonnull)session
                 error:(NSError * _Nullable * _Nullable)error
 {
-    return NO;
+    BOOL success = [session updateIdentity:self error:error];
+
+    if (!success) {
+        return NO;
+    }
+
+    identity_flags theFlags = self.flags;
+    theFlags = theFlags || PEP_idf_not_for_sync;
+
+    return [session setFlags:(PEPIdentityFlags) theFlags forIdentity:self error:error];
 }
 
 // MARK: Faking directory
