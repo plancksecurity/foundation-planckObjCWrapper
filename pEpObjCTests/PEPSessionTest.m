@@ -1367,9 +1367,35 @@
 
     error = nil;
 
+    // query 1st time
     XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
     XCTAssertNil(error);
     XCTAssertTrue(enabled);
+
+    error = nil;
+
+    // query 2nd time
+    XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue(enabled);
+
+    error = nil;
+
+    // query 3rd time
+    XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue(enabled);
+
+    error = nil;
+
+    XCTAssertTrue([identMe enableKeySync:NO session:session error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+    XCTAssertFalse(enabled);
 }
 
 #pragma mark - Helpers
