@@ -1341,6 +1341,14 @@
     BOOL enabled;
     XCTAssertTrue([identNotMe queryKeySyncEnabled:&enabled session:session error:&error]);
     XCTAssertNil(error);
+    XCTAssertTrue(enabled);
+
+    error = nil;
+
+    // query 2nd time
+    XCTAssertTrue([identNotMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue(enabled);
 }
 
 - (void)testEnableAndQueryKeySyncOnOwnIdentity
