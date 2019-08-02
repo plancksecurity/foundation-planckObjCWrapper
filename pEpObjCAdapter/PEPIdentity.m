@@ -94,17 +94,15 @@
                     session:(PEPSession * _Nonnull)session
                       error:(NSError * _Nullable * _Nullable)error
 {
-    BOOL success = NO;
-    if (self.isOwn) {
-        success = [session mySelf:self error:error];
-    } else {
-        success = [session updateIdentity:self error:error];
+    BOOL success = [session updateIdentity:self error:error];
+
+    if (!success) {
+        return NO;
     }
 
-    if (success) {
-    }
+    *enabled = self.flags & PEP_idf_not_for_sync;
 
-    return success;
+    return YES;
 }
 
 - (BOOL)enableKeySync:(BOOL)enabled
