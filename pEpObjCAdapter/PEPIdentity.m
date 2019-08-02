@@ -238,6 +238,7 @@ static NSArray *s_keys;
     self.userID = nil;
     self.userName = nil;
     self.isOwn = NO;
+    self.flags = 0;
 }
 
 // MARK: - NSDictionary - Helpers
