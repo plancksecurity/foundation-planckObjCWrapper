@@ -1369,7 +1369,7 @@
 
     XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
     XCTAssertNil(error);
-    XCTAssertFalse(enabled);
+    XCTAssertTrue(enabled);
 }
 
 #pragma mark - Helpers
