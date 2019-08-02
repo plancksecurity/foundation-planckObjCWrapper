@@ -90,6 +90,20 @@
 
 // MARK: API
 
+- (NSNumber * _Nullable)isPEPUser:(PEPSession * _Nullable)session
+                            error:(NSError * _Nullable * _Nullable)error
+{
+    if (!session) {
+        session = [PEPSession new];
+    }
+    return [session isPEPUser:self error:error];
+}
+
+- (BOOL)isConfirmed
+{
+    return self.commType & PEP_ct_confirmed;
+}
+
 - (BOOL)queryKeySyncEnabled:(BOOL * _Nonnull)enabled
                     session:(PEPSession * _Nonnull)session
                       error:(NSError * _Nullable * _Nullable)error
@@ -133,20 +147,6 @@
 {
     // most adapter use should be ok.
     return (PEPMutableDict *) self;
-}
-
-- (NSNumber * _Nullable)isPEPUser:(PEPSession * _Nullable)session
-                            error:(NSError * _Nullable * _Nullable)error
-{
-    if (!session) {
-        session = [PEPSession new];
-    }
-    return [session isPEPUser:self error:error];
-}
-
-- (BOOL)isConfirmed
-{
-    return self.commType & PEP_ct_confirmed;
 }
 
 // MARK: - Equality
