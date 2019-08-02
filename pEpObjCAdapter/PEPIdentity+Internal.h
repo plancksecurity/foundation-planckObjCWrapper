@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PEPIdentity (Internal)
 
 /**
- Internal access to identity flags. Are set by:
+ Internal access to identity flags. Are only set by:
  * [PEPSessionProtocol mySelf:error].
  * [PEPSessionProtocol updateIdentity:error]
  */
