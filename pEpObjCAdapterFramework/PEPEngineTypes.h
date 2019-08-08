@@ -83,6 +83,7 @@ typedef NS_ENUM(int, PEPStatus) {
     PEPStatusCannotSetTrust                            = 0x0384, // PEP_CANNOT_SET_TRUST
     PEPStatusKeyBlacklisted                             = 0x0385, // PEP_KEY_BLACKLISTED
     PEPStatusCannotFindPerson                          = 0x0386, // PEP_CANNOT_FIND_PERSON
+    PEPStatusCannotSetPEPVersion = 0X0387, // PEP_CANNOT_SET_PEP_VERSION
 
     PEPStatusCannotFindAlias                           = 0x0391, // PEP_CANNOT_FIND_ALIAS
     PEPStatusCannotSetAlias                            = 0x0392, // PEP_CANNOT_SET_ALIAS
