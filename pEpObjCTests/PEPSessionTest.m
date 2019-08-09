@@ -1208,10 +1208,13 @@
                                 error:&error];
     XCTAssertNotNil(decryptedMsg);
     XCTAssertNil(error);
-    XCTAssertEqual(decryptionStatus, PEPStatusOK);
+    XCTAssertEqual(decryptionStatus, PEPStatusDecryptNoKey);
 
-    XCTAssertEqualObjects(originalMsg.shortMessage, decryptedMsg.shortMessage);
-    XCTAssertEqualObjects(originalMsg.longMessage, decryptedMsg.longMessage);
+    XCTAssertNotEqualObjects(originalMsg.shortMessage, decryptedMsg.shortMessage);
+    XCTAssertNotEqualObjects(originalMsg.longMessage, decryptedMsg.longMessage);
+
+    XCTAssertEqualObjects(decryptedMsg.shortMessage, @"p≡p");
+    XCTAssertEqualObjects(decryptedMsg.longMessage, @"this message was encrypted with p≡p https://pEp-project.org");
 }
 
 #pragma mark - configUnencryptedSubject
