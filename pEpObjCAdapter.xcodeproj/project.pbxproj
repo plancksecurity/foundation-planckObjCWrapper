@@ -14,7 +14,6 @@
 		430CD9B12292AC4900AAC37F /* PEPSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430CD9B62292ADAC00AAC37F /* PEPSendMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430CD9BB2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4327F02322FD6BD000328A5C /* Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc in Resources */ = {isa = PBXBuildFile; fileRef = 4327F02222FD6BD000328A5C /* Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc */; };
 		4327F02522FD733600328A5C /* Secret_Key_Password_3E1979C24CF708CB23D106C24A88296EDAA91605.asc in Resources */ = {isa = PBXBuildFile; fileRef = 4327F02422FD733600328A5C /* Secret_Key_Password_3E1979C24CF708CB23D106C24A88296EDAA91605.asc */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
@@ -156,7 +155,6 @@
 		43209B321ECC2ACD007E7E2E /* PEPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPQueue.m; sourceTree = "<group>"; };
 		43209B341ECC2ACD007E7E2E /* PEPInternalSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPInternalSession.h; sourceTree = "<group>"; };
 		43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSession.m; sourceTree = "<group>"; };
-		4327F02222FD6BD000328A5C /* Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc; sourceTree = "<group>"; };
 		4327F02422FD733600328A5C /* Secret_Key_Password_3E1979C24CF708CB23D106C24A88296EDAA91605.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Secret_Key_Password_3E1979C24CF708CB23D106C24A88296EDAA91605.asc; sourceTree = "<group>"; };
 		432EF6091C58B77900B6782A /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		432EF60A1C58B77900B6782A /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
@@ -262,7 +260,6 @@
 		15DE372B200F5F93007FBD94 /* Recources */ = {
 			isa = PBXGroup;
 			children = (
-				4327F02222FD6BD000328A5C /* Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc */,
 				4327F02422FD733600328A5C /* Secret_Key_Password_3E1979C24CF708CB23D106C24A88296EDAA91605.asc */,
 				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
 				640F79221C9B517C00DBEC4E /* 5CB2C182.asc */,
@@ -567,7 +564,6 @@
 				43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */,
 				432FA2D31C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_sec.asc in Resources */,
 				64415E4D1BEA523300F6CBB2 /* C9C2EE39_sec.asc in Resources */,
-				4327F02322FD6BD000328A5C /* Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc in Resources */,
 				43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */,
 				64415E4A1BEA523300F6CBB2 /* 0x70DCF575.asc in Resources */,
 				64415E4B1BEA523300F6CBB2 /* 70DCF575_sec.asc in Resources */,

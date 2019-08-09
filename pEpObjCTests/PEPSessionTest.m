@@ -1145,14 +1145,6 @@
 {
     PEPSession *session = [PEPSession new];
 
-    // Who Isthis <whoisthis@example.com>
-    // Password: uiae
-    // gpg --full-generate-key
-    // gpg -a --export-secret-keys BC4927144EE992A09F96DC56487C55A8AE1B13CD
-    XCTAssertTrue([PEPTestUtils
-                   importBundledKey:@"Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc"
-                   session:session]);
-
     // Receiver <receiver@example.com>
     // Password: uiae
     // gpg --full-generate-key
@@ -1184,24 +1176,8 @@
 
     error = nil;
 
-    NSString *partnerFingerprint = @"BC4927144EE992A09F96DC56487C55A8AE1B13CD";
-    NSString *partnerUserId = @"partner";
-    PEPIdentity *partnerIdentity = [[PEPIdentity alloc]
-                                    initWithAddress:@"whoisthis@example.com"
-                                    userID:partnerUserId
-                                    userName:[NSString stringWithFormat:@"Some User Name %@", partnerUserId]
-                                    isOwn:NO
-                                    fingerPrint: nil];
-
-    XCTAssertTrue([session updateIdentity:partnerIdentity error:&error]);
-    XCTAssertNil(error);
-    XCTAssertNotNil(partnerIdentity.fingerPrint);
-    XCTAssertEqualObjects(partnerIdentity.fingerPrint, partnerFingerprint);
-
-    error = nil;
-
     PEPMessage *msg = [PEPMessage new];
-    msg.from = partnerIdentity;
+    msg.from = ownIdentity;
     msg.to = @[ownIdentity];
     msg.shortMessage = @"Some message";
     msg.longMessage = @"Not really";
@@ -1210,6 +1186,7 @@
     PEPStatus status;
     PEPMessage *encryptedMsg = [session
                                 encryptMessage:msg
+                                forSelf:ownIdentity
                                 extraKeys:@[]
                                 status:&status
                                 error:&error];
