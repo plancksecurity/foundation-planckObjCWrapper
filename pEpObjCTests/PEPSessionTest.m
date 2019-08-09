@@ -1197,6 +1197,24 @@
     XCTAssertNil(error);
     XCTAssertNotNil(partnerIdentity.fingerPrint);
     XCTAssertEqualObjects(partnerIdentity.fingerPrint, partnerFingerprint);
+
+    error = nil;
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.from = partnerIdentity;
+    msg.to = @[ownIdentity];
+    msg.shortMessage = @"Some message";
+    msg.longMessage = @"Not really";
+    msg.direction = PEPMsgDirectionOutgoing;
+
+    PEPStatus status;
+    PEPMessage *encryptedMsg = [session
+                                encryptMessage:msg
+                                extraKeys:@[]
+                                status:&status
+                                error:&error];
+    XCTAssertNotNil(encryptedMsg);
+    XCTAssertNil(error);
 }
 
 #pragma mark - configUnencryptedSubject
