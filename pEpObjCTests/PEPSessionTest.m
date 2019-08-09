@@ -1181,6 +1181,22 @@
 
     XCTAssertNotNil(ownIdentity.fingerPrint);
     XCTAssertEqualObjects(ownIdentity.fingerPrint, ownFingerprint);
+
+    error = nil;
+
+    NSString *partnerFingerprint = @"BC4927144EE992A09F96DC56487C55A8AE1B13CD";
+    NSString *partnerUserId = @"partner";
+    PEPIdentity *partnerIdentity = [[PEPIdentity alloc]
+                                    initWithAddress:@"whoisthis@example.com"
+                                    userID:partnerUserId
+                                    userName:[NSString stringWithFormat:@"Some User Name %@", partnerUserId]
+                                    isOwn:NO
+                                    fingerPrint: nil];
+
+    XCTAssertTrue([session updateIdentity:partnerIdentity error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNotNil(partnerIdentity.fingerPrint);
+    XCTAssertEqualObjects(partnerIdentity.fingerPrint, partnerFingerprint);
 }
 
 #pragma mark - configUnencryptedSubject
