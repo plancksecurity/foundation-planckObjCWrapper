@@ -19,6 +19,13 @@
 
 @implementation PEPSession
 
+/**
+ Macro for causing a return if the given session is nil, optionally setting an error.
+
+ @param session A session object that will be checked for being nil or not.
+ @param error If non-nil, will receive PEP_UNKNOWN_ERROR when the session is nil.
+ @param what The value to return in case of an error (session is nil).
+ */
 #define RETURN_ON_ERROR(session, error, what)\
   if (session == nil) { \
     if (error != nil) { \
