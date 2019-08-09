@@ -1141,6 +1141,19 @@
     XCTAssertNil(error);
 }
 
+- (void)testImportPasswordProtectedKey
+{
+    PEPSession *session = [PEPSession new];
+
+    // Who Isthis <whoisthis@example.com>
+    // Password: uiae
+    // gpg --full-generate-key
+    // gpg -a --export-secret-keys BC4927144EE992A09F96DC56487C55A8AE1B13CD
+    XCTAssertTrue([PEPTestUtils
+                   importBundledKey:@"Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc"
+                   session:session]);
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
