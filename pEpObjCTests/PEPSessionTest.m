@@ -1152,6 +1152,35 @@
     XCTAssertTrue([PEPTestUtils
                    importBundledKey:@"Secret_Key_Password_BC4927144EE992A09F96DC56487C55A8AE1B13CD.asc"
                    session:session]);
+
+    // Receiver <receiver@example.com>
+    // Password: uiae
+    // gpg --full-generate-key
+    // gpg -a --export-secret-keys 3E1979C24CF708CB23D106C24A88296EDAA91605
+    XCTAssertTrue([PEPTestUtils
+                   importBundledKey:@"Secret_Key_Password_3E1979C24CF708CB23D106C24A88296EDAA91605.asc"
+                   session:session]);
+
+    NSString *ownFingerprint = @"3E1979C24CF708CB23D106C24A88296EDAA91605";
+    NSString *ownUserId = @"own";
+    PEPIdentity *ownIdentity = [[PEPIdentity alloc]
+                                initWithAddress:@"receiver@example.com"
+                                userID:ownUserId
+                                userName:[NSString stringWithFormat:@"Some User Name %@", ownUserId]
+                                isOwn:YES
+                                fingerPrint: nil];
+
+    NSError *error;
+    XCTAssertTrue([session setOwnKey:ownIdentity fingerprint:ownFingerprint error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    XCTAssertTrue([session mySelf:ownIdentity error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(ownIdentity.fingerPrint);
+    XCTAssertEqualObjects(ownIdentity.fingerPrint, ownFingerprint);
 }
 
 #pragma mark - configUnencryptedSubject
