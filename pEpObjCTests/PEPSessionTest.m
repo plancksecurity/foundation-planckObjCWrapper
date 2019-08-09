@@ -1176,22 +1176,42 @@
 
     error = nil;
 
-    PEPMessage *msg = [PEPMessage new];
-    msg.from = ownIdentity;
-    msg.to = @[ownIdentity];
-    msg.shortMessage = @"Some message";
-    msg.longMessage = @"Not really";
-    msg.direction = PEPMsgDirectionOutgoing;
+    PEPMessage *originalMsg = [PEPMessage new];
+    originalMsg.from = ownIdentity;
+    originalMsg.to = @[ownIdentity];
+    originalMsg.shortMessage = @"Some message";
+    originalMsg.longMessage = @"Not really";
+    originalMsg.direction = PEPMsgDirectionOutgoing;
 
-    PEPStatus status;
+    PEPStatus encryptionStatus;
     PEPMessage *encryptedMsg = [session
-                                encryptMessage:msg
+                                encryptMessage:originalMsg
                                 forSelf:ownIdentity
                                 extraKeys:@[]
-                                status:&status
+                                status:&encryptionStatus
                                 error:&error];
     XCTAssertNotNil(encryptedMsg);
     XCTAssertNil(error);
+    XCTAssertEqual(encryptionStatus, PEPStatusOK);
+
+    error = nil;
+
+    NSArray *extraKeys = @[];
+    PEPRating decryptionRating;
+    PEPStatus decryptionStatus;
+    PEPMessage *decryptedMsg = [session
+                                decryptMessage:encryptedMsg
+                                flags:nil
+                                rating:&decryptionRating
+                                extraKeys:&extraKeys
+                                status:&decryptionStatus
+                                error:&error];
+    XCTAssertNotNil(decryptedMsg);
+    XCTAssertNil(error);
+    XCTAssertEqual(decryptionStatus, PEPStatusOK);
+
+    XCTAssertEqualObjects(originalMsg.shortMessage, decryptedMsg.shortMessage);
+    XCTAssertEqualObjects(originalMsg.longMessage, decryptedMsg.longMessage);
 }
 
 #pragma mark - configUnencryptedSubject
