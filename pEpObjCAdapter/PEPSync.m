@@ -132,6 +132,7 @@ static __weak PEPSync *s_pEpSync;
     if (status != PEP_STATUS_OK) {
         if (error) {
             *error = [NSError errorWithPEPStatusInternal:status];
+            NSLog(@"error creating session: %@", *error);
         }
         return nil;
     }
