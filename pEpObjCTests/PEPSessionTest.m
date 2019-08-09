@@ -1141,7 +1141,7 @@
     XCTAssertNil(error);
 }
 
-- (void)testImportPasswordProtectedKey
+- (void)testEncryptWithPasswordProtectedKey
 {
     PEPSession *session = [PEPSession new];
 
