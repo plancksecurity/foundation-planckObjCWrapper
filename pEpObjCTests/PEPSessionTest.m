@@ -1141,6 +1141,11 @@
     XCTAssertNil(error);
 }
 
+/**
+ Proves that the engine cannot use password encrypted secret keys for decryption,
+ but also doesn't crash when trying.
+ See IOS-1675, ENGINE-597.
+ */
 - (void)testEncryptWithPasswordProtectedKey
 {
     PEPSession *session = [PEPSession new];
