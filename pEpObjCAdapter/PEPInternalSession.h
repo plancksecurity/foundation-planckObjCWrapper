@@ -27,6 +27,8 @@
 
 @property (nonatomic) PEP_SESSION _Nullable session;
 
+- (_Nullable instancetype)init;
+
 /**
  Configures the session's unecryptedSubjectEnabled value.
 

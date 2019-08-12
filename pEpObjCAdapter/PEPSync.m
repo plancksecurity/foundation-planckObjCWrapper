@@ -17,13 +17,14 @@
 #import "PEPMessageUtil.h"
 #import "PEPMessage.h"
 #import "PEPQueue.h"
-#import "PEPLock.h"
 #import "PEPObjCAdapter.h"
 #import "NSError+PEP+Internal.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 
-// MARK: - Declare internals
+// MARK: - Internals
+
+os_log_t s_logger;
 
 typedef PEP_STATUS (* t_messageToSendCallback)(struct _message *msg);
 typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
@@ -35,7 +36,6 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
-@property (nonnull, readonly) os_log_t logger;
 
 /**
  @Return: The callback for message sending that should be used on every session init.
@@ -126,27 +126,19 @@ static __weak PEPSync *s_pEpSync;
 {
     PEP_SESSION session = NULL;
 
-    [PEPLock lockWrite];
     PEP_STATUS status = init(&session,
                              [PEPSync messageToSendCallback],
                              [PEPSync injectSyncCallback]);
-    [PEPLock unlockWrite];
 
     if (status != PEP_STATUS_OK) {
         if (error) {
             *error = [NSError errorWithPEPStatusInternal:status];
+            os_log(s_logger, "error creating session: %{public}@", *error);
         }
         return nil;
     }
 
     return session;
-}
-
-+ (void)releaseSession:(PEP_SESSION)session
-{
-    [PEPLock lockWrite];
-    release(session);
-    [PEPLock unlockWrite];
 }
 
 - (instancetype)initWithSendMessageDelegate:(id<PEPSendMessageDelegate>
@@ -155,7 +147,6 @@ static __weak PEPSync *s_pEpSync;
                                              _Nullable)notifyHandshakeDelegate
 {
     if (self = [super init]) {
-        _logger = os_log_create("security.pEp.adapter", "PEPSync");
         _sendMessageDelegate = sendMessageDelegate;
         _notifyHandshakeDelegate = notifyHandshakeDelegate;
         _queue = [PEPQueue new];
@@ -166,9 +157,7 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
-    // assure the main session exists
-    PEPInternalSession *session = [PEPSessionProvider session];
-    session = nil;
+    [self assureMainSessionExists];
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
     NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
@@ -191,16 +180,26 @@ static __weak PEPSync *s_pEpSync;
 
 // MARK: - Private
 
++ (void)initialize
+{
+    s_logger = os_log_create("security.pEp.adapter", "PEPSync");
+}
+
 + (PEPSync * _Nullable)instance
 {
     return s_pEpSync;
+}
+
+- (void)assureMainSessionExists
+{
+    PEPInternalSession *session __attribute__((unused)) = [PEPSessionProvider session];
 }
 
 - (void)syncThreadLoop:(id)object
 {
     [self.conditionLockForJoiningSyncThread lock];
 
-    os_log(self.logger, "trying to start the sync loop");
+    os_log(s_logger, "trying to start the sync loop");
 
     PEPInternalSession *session = [PEPSessionProvider session];
 
@@ -210,19 +209,19 @@ static __weak PEPSync *s_pEpSync;
         if (status == PEP_STATUS_OK) {
             status = do_sync_protocol(session.session, nil);
             if (status != PEP_STATUS_OK) {
-                os_log_error(self.logger, "do_sync_protocol returned PEP_STATUS %d", status);
-                os_log(self.logger, "sync loop is NOT running");
+                os_log_error(s_logger, "do_sync_protocol returned PEP_STATUS %d", status);
+                os_log(s_logger, "sync loop is NOT running");
             }
             unregister_sync_callbacks(session.session);
         } else {
-            os_log_error(self.logger, "register_sync_callbacks returned PEP_STATUS %d", status);
-            os_log(self.logger, "sync loop is NOT running");
+            os_log_error(s_logger, "register_sync_callbacks returned PEP_STATUS %d", status);
+            os_log(s_logger, "sync loop is NOT running");
         }
     } else {
-        os_log_error(self.logger, "could not create session for starting the sync loop");
+        os_log_error(s_logger, "could not create session for starting the sync loop");
     }
 
-    os_log(self.logger, "sync loop finished");
+    os_log(s_logger, "sync loop finished");
 
     session = nil;
 

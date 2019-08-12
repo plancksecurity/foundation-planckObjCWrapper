@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "352988A91AEF964100FA7E2E"
-               BuildableName = "libpEpObjCAdapter.a"
-               BlueprintName = "pEpObjCAdapter"
+               BlueprintIdentifier = "43E3985A221D7E56008E7983"
+               BuildableName = "PEPObjCAdapterFramework.framework"
+               BlueprintName = "PEPObjCAdapterFramework"
                ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "352988A91AEF964100FA7E2E"
-            BuildableName = "libpEpObjCAdapter.a"
-            BlueprintName = "pEpObjCAdapter"
+            BlueprintIdentifier = "43E3985A221D7E56008E7983"
+            BuildableName = "PEPObjCAdapterFramework.framework"
+            BlueprintName = "PEPObjCAdapterFramework"
             ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "352988A91AEF964100FA7E2E"
-            BuildableName = "libpEpObjCAdapter.a"
-            BlueprintName = "pEpObjCAdapter"
+            BlueprintIdentifier = "43E3985A221D7E56008E7983"
+            BuildableName = "PEPObjCAdapterFramework.framework"
+            BlueprintName = "PEPObjCAdapterFramework"
             ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

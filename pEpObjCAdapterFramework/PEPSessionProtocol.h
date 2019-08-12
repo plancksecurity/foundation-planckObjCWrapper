@@ -242,6 +242,7 @@
 
 /**
  Wraps the engine's `config_passive_mode`.
+ @note That there's absolutely no error handling.
  */
 - (void)configurePassiveModeEnabled:(BOOL)enabled;
 
@@ -253,7 +254,18 @@
            error:(NSError * _Nullable * _Nullable)error;
 
 /**
- Wraps the engine's deliverHandshakeResult.
+ Indicate the user's choice during a handshake dialog display.
+
+ Wraps the engine's deliverHandshakeResult. Should be called in response to
+ [PEPNotifyHandshakeDelegate notifyHandshake:me:partner:signal
+ in accordance with the user's choices.
+
+ @param result The choice the user made with regards to the currently active handshake dialog.
+ @param identitiesSharing The identities that are involved for the user's choice.
+                          That is, the user can chose to respond only for a subset of the
+                          identities that were originally involved in the handshake.
+ @param error The default cocoa error handling.
+ @return `YES` when the call succedded, `NO` otherwise. In the `NO` case, see `error` for details.
  */
 - (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
              identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
