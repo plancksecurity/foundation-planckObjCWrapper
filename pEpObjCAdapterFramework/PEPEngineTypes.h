@@ -173,6 +173,9 @@ typedef NS_ENUM(int, PEPSyncHandshakeSignal) { // _sync_handshake_signal
     // handshake dialog must be closed
     PEPSyncHandshakeSignalOvertaken = 9, // SYNC_NOTIFY_OVERTAKEN = 9,
 
+    /** currently exchanging private keys */
+    PEPSyncHandshakeSignalFormingGroup = 10, // SYNC_NOTIFY_FORMING_GROUP = 10
+
     // notificaton of actual group status
     PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE = 254,
     PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP = 255
