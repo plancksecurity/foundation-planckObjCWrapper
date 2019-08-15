@@ -1359,7 +1359,7 @@
                             initWithAddress:@"me-yes@example.com"
                             userID:@"yes-me"
                             userName:@"Yes Me"
-                            isOwn:NO];
+                            isOwn:YES];
 
     NSError *error = nil;
 
