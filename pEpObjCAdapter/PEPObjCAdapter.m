@@ -101,11 +101,7 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)setHomeDirectory:(NSURL *)homeDir
 {
     // create and set home directory
-    setenv("HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-    
-    // create and set temp directory
-    NSURL *tmpDirUrl = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
-    setenv("TEMP", [[tmpDirUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+    setenv("PEP_HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
 }
 
 + (NSString *)getBundlePathFor: (NSString *) filename
