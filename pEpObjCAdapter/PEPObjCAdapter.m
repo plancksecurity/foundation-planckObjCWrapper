@@ -19,7 +19,12 @@
 
 const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 
-const char* _Nullable SystemDB = NULL;
+#if TARGET_OS_IPHONE
+// macOS must use Engine's default directoties to potentially share the data with other apps.
+const char* _Nullable perMachineDirectory = NULL;
+const char* _Nullable perUserDirectory = NULL;
+#endif
+
 NSURL *s_homeURL;
 
 static BOOL s_unEncryptedSubjectEnabled = NO;
@@ -100,8 +105,12 @@ static BOOL s_passiveModeEnabled = NO;
 
 + (void)setHomeDirectory:(NSURL *)homeDir
 {
-    // create and set home directory
-    setenv("PEP_HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+#if TARGET_OS_IPHONE
+    if (perUserDirectory) {
+        free((void *) perUserDirectory);
+    }
+    perUserDirectory = strdup([homeDir path].UTF8String);
+#endif
 }
 
 + (NSString *)getBundlePathFor: (NSString *) filename
@@ -144,15 +153,17 @@ static BOOL s_passiveModeEnabled = NO;
     return destinationPath;
 }
 
-+ (void)setupTrustWordsDB:(NSBundle *)rootBundle{
++ (void)setupTrustWordsDB:(NSBundle *)rootBundle {
+#if TARGET_OS_IPHONE
     NSString *systemDBPath = [PEPObjCAdapter
                               copyAssetsIntoDocumentsDirectory:rootBundle
                               bundleName:@"pEpTrustWords.bundle"
                               fileName:@"system.db"];
-    if (SystemDB) {
-        free((void *) SystemDB);
+    if (perMachineDirectory) {
+        free((void *) perMachineDirectory);
     }
-    SystemDB = strdup(systemDBPath.UTF8String);
+    perMachineDirectory = strdup(systemDBPath.UTF8String);
+#endif
 }
 
 + (void)setupTrustWordsDB
