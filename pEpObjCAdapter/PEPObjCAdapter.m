@@ -19,7 +19,11 @@
 
 const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 
-const char* _Nullable SystemDB = NULL;
+#if TARGET_OS_IPHONE
+// marked for iOS to think about what we want on macOS
+const char* _Nullable perMachineDirectory = NULL;
+#endif
+
 NSURL *s_homeURL;
 
 static BOOL s_unEncryptedSubjectEnabled = NO;
@@ -56,7 +60,7 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)initialize
 {
     s_homeURL = [self createApplicationDirectory];
-    [self setHomeDirectory:s_homeURL]; // Important, defines $HOME and $TEMP for the engine
+    [self setPerMachineDirectory:s_homeURL]; // Important, defines $HOME for the engine //???: how I understand the OS does define HOME
 }
 
 + (NSURL *)homeURL
@@ -98,14 +102,14 @@ static BOOL s_passiveModeEnabled = NO;
     return dirPath;
 }
 
-+ (void)setHomeDirectory:(NSURL *)homeDir
++ (void)setPerMachineDirectory:(NSURL *)homeDir
 {
-    // create and set home directory
-    setenv("HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-    
-    // create and set temp directory
-    NSURL *tmpDirUrl = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
-    setenv("TEMP", [[tmpDirUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+#if TARGET_OS_IPHONE
+    if (perMachineDirectory) {
+        free((void *) perMachineDirectory);
+    }
+    perMachineDirectory = strdup([homeDir path].UTF8String);
+#endif
 }
 
 + (NSString *)getBundlePathFor: (NSString *) filename
@@ -113,25 +117,24 @@ static BOOL s_passiveModeEnabled = NO;
     return nil;
 }
 
-+ (NSString *)copyAssetsIntoDocumentsDirectory:(NSBundle *)rootBundle
++ (void)copyAssetsIntoDocumentsDirectory:(NSBundle *)rootBundle
                                     bundleName:(NSString *)bundleName
                                       fileName:(NSString *)fileName {
+
+    NSString *systemDir = [NSString stringWithUTF8String:perMachineDirectory];
     
-    NSURL *homeUrl = s_homeURL;
-    NSString *documentsDirectory = [homeUrl path];
-    
-    if(!(documentsDirectory && bundleName && fileName))
-        return nil;
+    if(!(systemDir && bundleName && fileName))
+        return;
     
     // Check if the database file exists in the documents directory.
-    NSString *destinationPath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    NSString *destinationPath = [systemDir stringByAppendingPathComponent:fileName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
         // The file does not exist in the documents directory, so copy it from bundle now.
         NSBundle *bundleObj = [NSBundle bundleWithPath:
                                [[rootBundle resourcePath]
                                 stringByAppendingPathComponent: bundleName]];
         if (!bundleObj)
-            return nil;
+            return;
         
         NSString *sourcePath =[[bundleObj resourcePath] stringByAppendingPathComponent: fileName];
         
@@ -142,21 +145,18 @@ static BOOL s_passiveModeEnabled = NO;
         // Check if any error occurred during copying and display it.
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
-            return nil;
         }
     }
-    return destinationPath;
 }
 
-+ (void)setupTrustWordsDB:(NSBundle *)rootBundle{
-    NSString *systemDBPath = [PEPObjCAdapter
-                              copyAssetsIntoDocumentsDirectory:rootBundle
-                              bundleName:@"pEpTrustWords.bundle"
-                              fileName:@"system.db"];
-    if (SystemDB) {
-        free((void *) SystemDB);
-    }
-    SystemDB = strdup(systemDBPath.UTF8String);
++ (void)setupTrustWordsDB:(NSBundle *)rootBundle {
+// iOS to force us to think about macOS
+#if TARGET_OS_IPHONE
+    [PEPObjCAdapter copyAssetsIntoDocumentsDirectory:rootBundle
+                                          bundleName:@"pEpTrustWords.bundle"
+                                            fileName:@"system.db"];
+
+#endif
 }
 
 + (void)setupTrustWordsDB
