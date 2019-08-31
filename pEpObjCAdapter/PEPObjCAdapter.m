@@ -61,7 +61,7 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)initialize
 {
     s_homeURL = [self createApplicationDirectory];
-    [self setHomeDirectory:s_homeURL]; // Important, defines $HOME and $TEMP for the engine
+    [self setHomeDirectory:s_homeURL]; // Important, defines $HOME for the engine
 }
 
 + (NSURL *)homeURL
