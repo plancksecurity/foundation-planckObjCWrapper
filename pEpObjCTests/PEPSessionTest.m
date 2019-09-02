@@ -1334,10 +1334,15 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    error = nil;
-
-    XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
-    XCTAssertNil(error);
+    for (int i = 0; i < 10; ++i) {
+        error = nil;
+        if (i % 2 == 0) {
+            XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
+        } else {
+            XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
+        }
+        XCTAssertNil(error);
+    }
 }
 
 #pragma mark - Helpers
