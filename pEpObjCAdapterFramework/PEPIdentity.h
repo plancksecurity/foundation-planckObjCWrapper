@@ -115,4 +115,14 @@
  */
 - (BOOL)enableKeySyncError:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Disables key sync on this identity.
+
+ Will invoke the needed methods on an own session.
+
+ @param error The usual cocoa error handling.
+ @return The usual cocoa error handling.
+ */
+- (BOOL)disableKeySyncError:(NSError * _Nullable * _Nullable)error;
+
 @end

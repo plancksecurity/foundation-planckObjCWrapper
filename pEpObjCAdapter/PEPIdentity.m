@@ -206,6 +206,12 @@ static NSArray *s_keys;
     return [session enableSyncForIdentity:self error:error];
 }
 
+- (BOOL)disableKeySyncError:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *session = [PEPSession new];
+    return [session disableSyncForIdentity:self error:error];
+}
+
 // MARK: - NSDictionary - Helpers
 
 - (NSArray<NSArray<NSString *> *> *)keyValuePairs
