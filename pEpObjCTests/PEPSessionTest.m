@@ -1376,6 +1376,61 @@
     XCTAssertFalse(enabled);
 }
 
+#pragma mark - ENGINE-604
+
+- (void)testMyselfUpdatesFlags
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-yes@example.com"
+                            userID:@"yes-me"
+                            userName:@"Yes Me"
+                            isOwn:YES];
+
+    NSError *error = nil;
+
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    BOOL enabled;
+    XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+    XCTAssertFalse(enabled);
+
+    error = nil;
+
+    XCTAssertTrue([identMe enableKeySync:YES session:session error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    // query 1st time
+    XCTAssertTrue([identMe queryKeySyncEnabled:&enabled session:session error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue(enabled);
+
+    error = nil;
+
+    // clone
+
+    PEPIdentity *identMe2 = [[PEPIdentity alloc]
+                             initWithAddress:@"me-yes@example.com"
+                             userID:@"yes-me"
+                             userName:@"Yes Me"
+                             isOwn:YES];
+    identMe2.fingerPrint = identMe.fingerPrint;
+
+    // Set a breakpoint here, and watch how mySelf updates the flags.
+    // (set _PEP_SQLITE_DEBUG to 1).
+    XCTAssertTrue([session mySelf:identMe2 error:&error]);
+
+    XCTAssertNil(error);
+    XCTAssertNotNil(identMe2.fingerPrint);
+    XCTAssertEqualObjects(identMe.fingerPrint, identMe2.fingerPrint);
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
