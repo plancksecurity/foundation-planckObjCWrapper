@@ -665,6 +665,23 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return YES;
 }
 
+- (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+
+    PEPStatus status = (PEPStatus) disable_identity_for_sync(_session, ident);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
+        return NO;
+    }
+
+    free_identity(ident);
+
+    return YES;
+}
+
 - (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
                                           error:(NSError * _Nullable * _Nullable)error
 {
