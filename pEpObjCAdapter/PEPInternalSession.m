@@ -691,7 +691,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
-        return NO;
+        return nil;
     }
 
     identity_flags_t flags = ident->flags;
