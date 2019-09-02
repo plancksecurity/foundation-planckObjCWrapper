@@ -1337,7 +1337,7 @@
     error = nil;
 
     XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
-    XCTAssertNotNil(error);
+    XCTAssertNil(error);
 
 }
 
