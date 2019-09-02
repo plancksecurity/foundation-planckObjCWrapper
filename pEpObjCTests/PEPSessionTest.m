@@ -1319,6 +1319,28 @@
     [self shutdownSync];
 }
 
+#pragma mark - enable/disable sync
+
+- (void)testEnableSync
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
+    XCTAssertNotNil(error);
+
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
