@@ -651,6 +651,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
                         error:(NSError * _Nullable * _Nullable)error
 {
+    if (!identity.isOwn) {
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        return NO;
+    }
+
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     PEPStatus status = (PEPStatus) enable_identity_for_sync(_session, ident);
@@ -668,6 +673,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
                          error:(NSError * _Nullable * _Nullable)error
 {
+    if (!identity.isOwn) {
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        return NO;
+    }
+
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     PEPStatus status = (PEPStatus) disable_identity_for_sync(_session, ident);
@@ -686,6 +696,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
                                                  error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
+
+    if (!identity.isOwn) {
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        return nil;
+    }
 
     PEPStatus status = (PEPStatus) myself(_session, ident);
 
