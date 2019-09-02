@@ -1321,36 +1321,6 @@
 
 #pragma mark - Enable/disable key-sync
 
-- (void)testEnableKeySyncOnPartnerIdentity
-{
-    PEPSession *session = [PEPSession new];
-
-    PEPIdentity *identNotMe = [[PEPIdentity alloc]
-                               initWithAddress:@"not-me-no@example.com"
-                               userID:@"not-me-no"
-                               userName:@"Not Me"
-                               isOwn:NO];
-
-    NSError *error = nil;
-
-    XCTAssertTrue([identNotMe enableKeySync:YES session:session error:&error]);
-    XCTAssertNil(error);
-
-    error = nil;
-
-    BOOL enabled;
-    XCTAssertTrue([identNotMe queryKeySyncEnabled:&enabled session:session error:&error]);
-    XCTAssertNil(error);
-    XCTAssertTrue(enabled);
-
-    error = nil;
-
-    // query 2nd time
-    XCTAssertTrue([identNotMe queryKeySyncEnabled:&enabled session:session error:&error]);
-    XCTAssertNil(error);
-    XCTAssertTrue(enabled);
-}
-
 - (void)testEnableAndQueryKeySyncOnOwnIdentity
 {
     PEPSession *session = [PEPSession new];
