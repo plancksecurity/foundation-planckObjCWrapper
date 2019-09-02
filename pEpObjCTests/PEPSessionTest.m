@@ -1321,6 +1321,27 @@
 
 #pragma mark - enable/disable sync
 
+- (void)testEnableDisableSyncOnPartnerIdentity
+{
+    PEPIdentity *notMe = [[PEPIdentity alloc]
+                             initWithAddress:@"notme@pep-project.org"
+                             userID:@"notme_ID"
+                             userName:@"notme"
+                             isOwn:NO];
+
+    NSError *error = nil;
+    XCTAssertFalse([notMe enableKeySync:&error]);
+    XCTAssertNotNil(error);
+
+    error = nil;
+    XCTAssertFalse([notMe disableKeySync:&error]);
+    XCTAssertNotNil(error);
+
+    error = nil;
+    XCTAssertNil([notMe queryKeySyncEnabled:&error]);
+    XCTAssertNotNil(error);
+}
+
 - (void)testEnableDisableSyncOnOwnIdentityWithQuery
 {
     PEPSession *session = [PEPSession new];
