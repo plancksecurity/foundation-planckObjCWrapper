@@ -1355,6 +1355,40 @@
     }
 }
 
+- (void)testEnableDisableSyncDirectlyOnOwnIdentityWithQuery
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    for (int i = 0; i < 10; ++i) {
+        error = nil;
+        BOOL enable = i % 2 == 0; // enable keysync on even numbers (roughly)
+        if (enable) {
+            XCTAssertTrue([identMe enableKeySyncError:&error]);
+        } else {
+            XCTAssertTrue([identMe disableKeySyncError:&error]);
+        }
+        XCTAssertNil(error);
+
+        NSNumber *keySyncState = [identMe queryKeySyncEnabledError:&error];
+        XCTAssertNil(error);
+        XCTAssertNotNil(keySyncState);
+        if (enable) {
+            XCTAssertTrue([keySyncState boolValue]);
+        } else {
+            XCTAssertFalse([keySyncState boolValue]);
+        }
+    }
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
