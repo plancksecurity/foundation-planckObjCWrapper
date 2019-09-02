@@ -1321,7 +1321,7 @@
 
 #pragma mark - enable/disable sync
 
-- (void)testEnableSyncOnOwnIdentity
+- (void)testEnableDisableSyncOnOwnIdentity
 {
     PEPSession *session = [PEPSession new];
 
