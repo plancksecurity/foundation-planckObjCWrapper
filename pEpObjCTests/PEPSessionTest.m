@@ -1336,20 +1336,18 @@
 
     for (int i = 0; i < 10; ++i) {
         error = nil;
-        BOOL expected = YES;
-        if (i % 2 == 0) {
+        BOOL enable = i % 2 == 0; // enable keysync on even numbers (roughly)
+        if (enable) {
             XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
-            expected = YES;
         } else {
             XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
-            expected = NO;
         }
         XCTAssertNil(error);
 
         NSNumber *keySyncState = [session queryKeySyncEnabledForIdentity:identMe error:&error];
         XCTAssertNil(error);
         XCTAssertNotNil(keySyncState);
-        if (expected) {
+        if (enable) {
             XCTAssertTrue([keySyncState boolValue]);
         } else {
             XCTAssertFalse([keySyncState boolValue]);
