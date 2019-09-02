@@ -1371,6 +1371,37 @@
     }
 }
 
+- (void)testQueryKeySyncOnOwnIdentityInALoop
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    for (NSNumber *numBool in @[@YES, @NO]) {
+        error = nil;
+        if ([numBool boolValue]) {
+            XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
+        } else {
+            XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
+        }
+        XCTAssertNil(error);
+
+        for (int i = 0; i < 10; ++i) {
+            NSNumber *numQuery = [session queryKeySyncEnabledForIdentity:identMe error:&error];
+            XCTAssertNotNil(numQuery);
+            XCTAssertEqualObjects(numBool, numQuery);
+            XCTAssertNil(error);
+        }
+    }
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
