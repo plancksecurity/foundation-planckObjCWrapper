@@ -1324,10 +1324,10 @@
 - (void)testEnableDisableFailForSyncOnPartnerIdentity
 {
     PEPIdentity *notMe = [[PEPIdentity alloc]
-                             initWithAddress:@"notme@pep-project.org"
-                             userID:@"notme_ID"
-                             userName:@"notme"
-                             isOwn:NO];
+                          initWithAddress:@"notme@pep-project.org"
+                          userID:@"notme_ID"
+                          userName:@"notme"
+                          isOwn:NO];
 
     NSError *error = nil;
     XCTAssertFalse([notMe enableKeySync:&error]);
