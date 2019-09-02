@@ -1321,7 +1321,7 @@
 
 #pragma mark - enable/disable sync
 
-- (void)testEnableDisableSyncOnPartnerIdentity
+- (void)testEnableDisableFailForSyncOnPartnerIdentity
 {
     PEPIdentity *notMe = [[PEPIdentity alloc]
                              initWithAddress:@"notme@pep-project.org"
