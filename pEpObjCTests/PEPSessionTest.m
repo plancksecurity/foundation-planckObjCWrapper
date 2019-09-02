@@ -1338,7 +1338,6 @@
 
     XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
     XCTAssertNil(error);
-
 }
 
 #pragma mark - Helpers
