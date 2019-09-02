@@ -83,6 +83,7 @@ typedef NS_ENUM(int, PEPStatus) {
     PEPStatusCannotSetTrust                            = 0x0384, // PEP_CANNOT_SET_TRUST
     PEPStatusKeyBlacklisted                             = 0x0385, // PEP_KEY_BLACKLISTED
     PEPStatusCannotFindPerson                          = 0x0386, // PEP_CANNOT_FIND_PERSON
+    PEPStatusCannotSetPEPVersion = 0X0387, // PEP_CANNOT_SET_PEP_VERSION
 
     PEPStatusCannotFindAlias                           = 0x0391, // PEP_CANNOT_FIND_ALIAS
     PEPStatusCannotSetAlias                            = 0x0392, // PEP_CANNOT_SET_ALIAS
@@ -171,6 +172,9 @@ typedef NS_ENUM(int, PEPSyncHandshakeSignal) { // _sync_handshake_signal
 
     // handshake dialog must be closed
     PEPSyncHandshakeSignalOvertaken = 9, // SYNC_NOTIFY_OVERTAKEN = 9,
+
+    /** currently exchanging private keys */
+    PEPSyncHandshakeSignalFormingGroup = 10, // SYNC_NOTIFY_FORMING_GROUP = 10
 
     // notificaton of actual group status
     PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE = 254,

@@ -242,6 +242,7 @@
 
 /**
  Wraps the engine's `config_passive_mode`.
+ @note That there's absolutely no error handling.
  */
 - (void)configurePassiveModeEnabled:(BOOL)enabled;
 

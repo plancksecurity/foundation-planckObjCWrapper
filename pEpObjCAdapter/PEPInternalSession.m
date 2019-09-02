@@ -26,12 +26,13 @@
 #import "NSMutableDictionary+PEP.h"
 #import "PEPSync_Internal.h"
 #import "PEPIdentity+Internal.h"
+#import "PEPInternalConstants.h"
 
 #import "key_reset.h"
 
 @implementation PEPInternalSession
 
-- (instancetype)init
+- (_Nullable instancetype)init
 {
     self = [super init];
     if (self) {
@@ -49,7 +50,9 @@
 
 - (void)dealloc
 {
-    release(_session);
+    if (_session != nil) {
+        release(_session);
+    }
 }
 
 #pragma mark - CONFIG
@@ -829,7 +832,7 @@ static NSDictionary *stringToRating;
       [NSNumber numberWithInteger:PEPRatingMistrust]: @"mistrust",
       [NSNumber numberWithInteger:PEPRatingB0rken]: @"b0rken",
       [NSNumber numberWithInteger:PEPRatingUnderAttack]: @"under_attack",
-      [NSNumber numberWithInteger:PEPRatingUndefined]: @"undefined",
+      [NSNumber numberWithInteger:PEPRatingUndefined]: kUndefined,
       };
     NSMutableDictionary *stringToRatingMutable = [NSMutableDictionary
                                                   dictionaryWithCapacity:
@@ -858,7 +861,7 @@ static NSDictionary *stringToRating;
     if (stringRating) {
         return stringRating;
     } else {
-        return @"undefined";
+        return kUndefined;
     }
 }
 
