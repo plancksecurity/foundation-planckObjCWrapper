@@ -1325,67 +1325,49 @@
 {
     PEPSession *session = [PEPSession new];
 
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
+    PEPIdentity *identMe1 = [[PEPIdentity alloc]
+                             initWithAddress:@"me-myself-and-i@pep-project.org"
+                             userID:@"me-myself-and-i"
+                             userName:@"pEp Me"
+                             isOwn:YES];
     NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertTrue([session mySelf:identMe1 error:&error]);
     XCTAssertNil(error);
+
+    error = nil;
+    PEPIdentity *identMe2 = [[PEPIdentity alloc]
+                             initWithAddress:@"me-myself-and-i2@pep-project.org"
+                             userID:@"me-myself-and-i2"
+                             userName:@"pEp Me2"
+                             isOwn:YES];
+    XCTAssertTrue([session mySelf:identMe2 error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotEqualObjects(identMe1.fingerPrint, identMe2.fingerPrint);
 
     for (int i = 0; i < 10; ++i) {
         error = nil;
         BOOL enable = i % 2 == 0; // enable keysync on even numbers (roughly)
         if (enable) {
-            XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
+            XCTAssertTrue([session enableSyncForIdentity:identMe1 error:&error]);
+            XCTAssertTrue([identMe2 enableKeySyncError:&error]);
         } else {
-            XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
+            XCTAssertTrue([session disableSyncForIdentity:identMe1 error:&error]);
+            XCTAssertTrue([identMe2 disableKeySyncError:&error]);
         }
         XCTAssertNil(error);
 
-        NSNumber *keySyncState = [session queryKeySyncEnabledForIdentity:identMe error:&error];
+        NSNumber *keySyncState1 = [session queryKeySyncEnabledForIdentity:identMe1 error:&error];
+        NSNumber *keySyncState2 = [identMe2 queryKeySyncEnabledError:&error];
         XCTAssertNil(error);
-        XCTAssertNotNil(keySyncState);
+        XCTAssertNotNil(keySyncState1);
+        XCTAssertNotNil(keySyncState2);
         if (enable) {
-            XCTAssertTrue([keySyncState boolValue]);
+            XCTAssertTrue([keySyncState1 boolValue]);
         } else {
-            XCTAssertFalse([keySyncState boolValue]);
+            XCTAssertFalse([keySyncState1 boolValue]);
         }
-    }
-}
-
-- (void)testEnableDisableSyncDirectlyOnOwnIdentityWithQuery
-{
-    PEPSession *session = [PEPSession new];
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-
-    for (int i = 0; i < 10; ++i) {
-        error = nil;
-        BOOL enable = i % 2 == 0; // enable keysync on even numbers (roughly)
-        if (enable) {
-            XCTAssertTrue([identMe enableKeySyncError:&error]);
-        } else {
-            XCTAssertTrue([identMe disableKeySyncError:&error]);
-        }
-        XCTAssertNil(error);
-
-        NSNumber *keySyncState = [identMe queryKeySyncEnabledError:&error];
-        XCTAssertNil(error);
-        XCTAssertNotNil(keySyncState);
-        if (enable) {
-            XCTAssertTrue([keySyncState boolValue]);
-        } else {
-            XCTAssertFalse([keySyncState boolValue]);
-        }
+        XCTAssertEqualObjects(keySyncState1, keySyncState2);
     }
 }
 
