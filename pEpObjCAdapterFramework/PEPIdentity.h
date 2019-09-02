@@ -113,7 +113,7 @@
  @param error The usual cocoa error handling.
  @return The usual cocoa error handling.
  */
-- (BOOL)enableKeySyncError:(NSError * _Nullable * _Nullable)error;
+- (BOOL)enableKeySync:(NSError * _Nullable * _Nullable)error;
 
 /**
  Disables key sync on this identity.
@@ -123,7 +123,7 @@
  @param error The usual cocoa error handling.
  @return The usual cocoa error handling.
  */
-- (BOOL)disableKeySyncError:(NSError * _Nullable * _Nullable)error;
+- (BOOL)disableKeySync:(NSError * _Nullable * _Nullable)error;
 
 /**
  Queries whether this own identity has key sync enabled or not.
@@ -134,6 +134,6 @@
  @return A NSNumber denoting whether this own identity has key sync enabled or not,
          or nil on error.
  */
-- (NSNumber * _Nullable)queryKeySyncEnabledError:(NSError * _Nullable * _Nullable)error;
+- (NSNumber * _Nullable)queryKeySyncEnabled:(NSError * _Nullable * _Nullable)error;
 
 @end

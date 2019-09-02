@@ -1350,15 +1350,15 @@
         BOOL enable = i % 2 == 0; // enable keysync on even numbers (roughly)
         if (enable) {
             XCTAssertTrue([session enableSyncForIdentity:identMe1 error:&error]);
-            XCTAssertTrue([identMe2 enableKeySyncError:&error]);
+            XCTAssertTrue([identMe2 enableKeySync:&error]);
         } else {
             XCTAssertTrue([session disableSyncForIdentity:identMe1 error:&error]);
-            XCTAssertTrue([identMe2 disableKeySyncError:&error]);
+            XCTAssertTrue([identMe2 disableKeySync:&error]);
         }
         XCTAssertNil(error);
 
         NSNumber *keySyncState1 = [session queryKeySyncEnabledForIdentity:identMe1 error:&error];
-        NSNumber *keySyncState2 = [identMe2 queryKeySyncEnabledError:&error];
+        NSNumber *keySyncState2 = [identMe2 queryKeySyncEnabled:&error];
         XCTAssertNil(error);
         XCTAssertNotNil(keySyncState1);
         XCTAssertNotNil(keySyncState2);

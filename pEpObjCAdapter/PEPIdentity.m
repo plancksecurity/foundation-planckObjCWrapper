@@ -200,19 +200,19 @@ static NSArray *s_keys;
     self.isOwn = NO;
 }
 
-- (BOOL)enableKeySyncError:(NSError * _Nullable * _Nullable)error
+- (BOOL)enableKeySync:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *session = [PEPSession new];
     return [session enableSyncForIdentity:self error:error];
 }
 
-- (BOOL)disableKeySyncError:(NSError * _Nullable * _Nullable)error
+- (BOOL)disableKeySync:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *session = [PEPSession new];
     return [session disableSyncForIdentity:self error:error];
 }
 
-- (NSNumber * _Nullable)queryKeySyncEnabledError:(NSError * _Nullable * _Nullable)error
+- (NSNumber * _Nullable)queryKeySyncEnabled:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *session = [PEPSession new];
     return [session queryKeySyncEnabledForIdentity:self error:error];
