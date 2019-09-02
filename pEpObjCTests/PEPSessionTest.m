@@ -1392,6 +1392,9 @@
     }
 }
 
+/**
+ ENGINE-604, just in case.
+ */
 - (void)testQueryKeySyncOnOwnIdentityInALoop
 {
     PEPSession *session = [PEPSession new];
