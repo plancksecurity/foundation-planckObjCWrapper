@@ -180,6 +180,9 @@
 - (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error;
 
+- (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                        error:(NSError * _Nullable * _Nullable)error;
+
 #pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
