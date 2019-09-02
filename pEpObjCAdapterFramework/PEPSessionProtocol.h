@@ -180,9 +180,27 @@
 - (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Enables key sync.
+
+ Wraps enable_identity_for_sync.
+
+ @param identity The (own) identity to enable key sync for.
+ @param error The usual cocoa error handling.
+ @return The usual cocoa error handling.
+ */
 - (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
                         error:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Disables key sync.
+
+ Wraps disable_identity_for_sync.
+
+ @param identity The (own) identity to disable key sync for.
+ @param error The usual cocoa error handling.
+ @return The usual cocoa error handling.
+ */
 - (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
                          error:(NSError * _Nullable * _Nullable)error;
 
