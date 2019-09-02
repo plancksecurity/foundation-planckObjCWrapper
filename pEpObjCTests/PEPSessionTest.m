@@ -1321,7 +1321,7 @@
 
 #pragma mark - enable/disable sync
 
-- (void)testEnableDisableSyncOnOwnIdentity
+- (void)testEnableDisableSyncOnOwnIdentityWithQuery
 {
     PEPSession *session = [PEPSession new];
 
@@ -1336,12 +1336,24 @@
 
     for (int i = 0; i < 10; ++i) {
         error = nil;
+        BOOL expected = YES;
         if (i % 2 == 0) {
             XCTAssertTrue([session enableSyncForIdentity:identMe error:&error]);
+            expected = YES;
         } else {
             XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
+            expected = NO;
         }
         XCTAssertNil(error);
+
+        NSNumber *keySyncState = [session queryKeySyncEnabledForIdentity:identMe error:&error];
+        XCTAssertNil(error);
+        XCTAssertNotNil(keySyncState);
+        if (expected) {
+            XCTAssertTrue([keySyncState boolValue]);
+        } else {
+            XCTAssertFalse([keySyncState boolValue]);
+        }
     }
 }
 
