@@ -294,6 +294,30 @@
     return [session keyResetTrust:identity error:error];
 }
 
+- (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                        error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
+    return [session enableSyncForIdentity:identity error:error];
+}
+
+- (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
+    return [session disableSyncForIdentity:identity error:error];
+}
+
+- (NSNumber * _Nullable)queryKeySyncEnabledForIdentity:(PEPIdentity * _Nonnull)identity
+                                                 error:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, nil);
+    return [session queryKeySyncEnabledForIdentity:identity error:error];
+}
+
 #pragma mark Internal API (testing etc.)
 
 - (NSArray * _Nullable)importKey:(NSString * _Nonnull)keydata
