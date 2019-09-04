@@ -60,7 +60,7 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)initialize
 {
     s_homeURL = [self createApplicationDirectory];
-    [self setPerMachineDirectory:s_homeURL]; // Important, defines $HOME for the engine //???: how I understand the OS does define HOME
+    [self setPerMachineDirectory:s_homeURL]; // Important, defines $HOME for the engine
 }
 
 + (NSURL *)homeURL
@@ -105,6 +105,9 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)setPerMachineDirectory:(NSURL *)homeDir
 {
 #if TARGET_OS_IPHONE
+    // Set HOME, which is also important for the perUser directory later
+    setenv("HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+
     if (perMachineDirectory) {
         free((void *) perMachineDirectory);
     }
