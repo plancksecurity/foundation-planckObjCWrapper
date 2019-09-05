@@ -168,12 +168,12 @@ static BOOL s_passiveModeEnabled = NO;
 }
 
 
-+ (NSString * _Nonnull)perUserDirectory
++ (NSString * _Nonnull)perUserDirectoryString
 {
     return [NSString stringWithCString:per_user_directory() encoding:NSUTF8StringEncoding];
 }
 
-+ (NSString * _Nonnull)perMachineDirectory
++ (NSString * _Nonnull)perMachineDirectoryString
 {
     return [NSString stringWithCString:per_machine_directory() encoding:NSUTF8StringEncoding];
 }

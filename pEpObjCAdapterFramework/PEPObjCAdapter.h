@@ -42,7 +42,7 @@
 
  @return An NSString denoting the directory where user-specific data gets stored by the engine.
  */
-+ (NSString * _Nonnull)perUserDirectory;
++ (NSString * _Nonnull)perUserDirectoryString;
 
 /**
  The directory where pEp stores data for all users on this machine.
@@ -50,6 +50,6 @@
  @return An NSString denoting the directory where global data (for all users of this machine
          or device) gets stored by the engine.
  */
-+ (NSString * _Nonnull)perMachineDirectory;
++ (NSString * _Nonnull)perMachineDirectoryString;
 
 @end
