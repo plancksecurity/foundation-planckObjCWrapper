@@ -135,33 +135,4 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     }
 }
 
-#pragma mark - PRIVATE
-
-+ (void)delFilePath:(NSString *)filePath
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error = nil;
-    if ([fileManager fileExistsAtPath:filePath]) {
-        BOOL success = [fileManager removeItemAtPath:filePath error:&error];
-        if (!success) {
-            NSLog(@"Error: %@", [error localizedDescription]);
-        }
-    }
-}
-
-+ (void)undelFileWithPath:(NSString *)path backup:(NSString *)backup;
-{
-    NSParameterAssert(backup);
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString* bpath = [path stringByAppendingString:backup];
-    BOOL fileExists = [fileManager fileExistsAtPath:bpath];
-    if (fileExists) {
-        NSError *error = nil;
-        BOOL success = [fileManager moveItemAtPath:bpath toPath:path error:&error];
-        if (!success) {
-            NSLog(@"Error: %@", [error localizedDescription]);
-        }
-    }
-}
-
 @end
