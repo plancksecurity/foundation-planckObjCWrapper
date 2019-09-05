@@ -648,6 +648,78 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return YES;
 }
 
+- (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                        error:(NSError * _Nullable * _Nullable)error
+{
+    if (!identity.isOwn) {
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        return NO;
+    }
+
+    pEp_identity *ident = PEP_identityToStruct(identity);
+
+    PEPStatus status = (PEPStatus) enable_identity_for_sync(_session, ident);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
+        return NO;
+    }
+
+    free_identity(ident);
+
+    return YES;
+}
+
+- (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    if (!identity.isOwn) {
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        return NO;
+    }
+
+    pEp_identity *ident = PEP_identityToStruct(identity);
+
+    PEPStatus status = (PEPStatus) disable_identity_for_sync(_session, ident);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
+        return NO;
+    }
+
+    free_identity(ident);
+
+    return YES;
+}
+
+- (NSNumber * _Nullable)queryKeySyncEnabledForIdentity:(PEPIdentity * _Nonnull)identity
+                                                 error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = PEP_identityToStruct(identity);
+
+    if (!identity.isOwn) {
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        return nil;
+    }
+
+    PEPStatus status = (PEPStatus) myself(_session, ident);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
+        return nil;
+    }
+
+    identity_flags_t flags = ident->flags;
+
+    free_identity(ident);
+
+    if (flags & PEP_idf_not_for_sync) {
+        return [NSNumber numberWithBool:NO];
+    } else {
+        return [NSNumber numberWithBool:YES];
+    }
+}
+
 - (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
                                           error:(NSError * _Nullable * _Nullable)error
 {
