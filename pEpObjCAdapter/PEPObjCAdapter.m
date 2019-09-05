@@ -167,4 +167,15 @@ static BOOL s_passiveModeEnabled = NO;
     [PEPObjCAdapter setupTrustWordsDB:[NSBundle mainBundle]];
 }
 
+
++ (NSString * _Nonnull)perUserDirectory
+{
+    return [NSString stringWithCString:per_user_directory() encoding:NSUTF8StringEncoding];
+}
+
++ (NSString * _Nonnull)perMachineDirectory
+{
+    return [NSString stringWithCString:per_machine_directory() encoding:NSUTF8StringEncoding];
+}
+
 @end
