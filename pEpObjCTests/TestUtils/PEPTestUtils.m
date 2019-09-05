@@ -129,7 +129,7 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
         NSURL *fileUrl = [NSURL fileURLWithPath:path isDirectory:NO relativeToURL:homeUrl];
         NSError *error = nil;
         if (![fileManager removeItemAtURL:fileUrl error:&error]) {
-            NSLog(@"Error deleting '%@': %@", path, [error localizedDescription]);
+            NSLog(@"Error deleting '%@': %@", fileUrl, [error localizedDescription]);
         }
     }
 }
