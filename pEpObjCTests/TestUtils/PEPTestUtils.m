@@ -116,36 +116,22 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     return message;
 }
 
-+ (NSArray *)pEpWorkFiles;
-{
-    // Only files whose content is affected by tests.
-    NSString *home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
-
-    NSArray *baseNames = @[@".pEp_keys", @".pEp_management"];
-    NSArray *baseEndings = @[@"db", @"db-shm", @"db-wal"];
-
-    NSMutableArray *result = [NSMutableArray array];
-
-    for (NSString *base in baseNames) {
-        for (NSString *ending in baseEndings) {
-            NSString *filename = [NSString stringWithFormat:@"%@.%@", base, ending];
-            [result addObject:[home stringByAppendingPathComponent:filename]];
-        }
-    }
-
-    return result;
-}
-
 + (void)cleanUp
 {
-    // This triggers setting HOME und GPGHOME in the adapter.
-    // Important for tests which do a cleanup on test start.
-    [PEPObjCAdapter homeURL];
-
     [PEPSession cleanup];
 
-    for (id path in [self pEpWorkFiles]) {
-        [self delFilePath:path];
+    NSString *homeString = [PEPObjCAdapter perUserDirectoryString];
+    NSURL *homeUrl = [NSURL fileURLWithPath:homeString isDirectory:YES];
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSDirectoryEnumerator<NSString *> *enumerator = [fileManager enumeratorAtPath:homeString];
+    for (NSString *path in enumerator) {
+        NSURL *fileUrl = [NSURL fileURLWithPath:path isDirectory:NO relativeToURL:homeUrl];
+        NSLog(@"file: |%@| -> |%@|", path, fileUrl);
+        NSError *error = nil;
+        if (![fileManager removeItemAtURL:fileUrl error:&error]) {
+            NSLog(@"Error deleting '%@': %@", path, [error localizedDescription]);
+        }
     }
 }
 
