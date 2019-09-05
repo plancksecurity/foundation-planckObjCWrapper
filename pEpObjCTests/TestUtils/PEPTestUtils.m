@@ -127,7 +127,6 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     NSDirectoryEnumerator<NSString *> *enumerator = [fileManager enumeratorAtPath:homeString];
     for (NSString *path in enumerator) {
         NSURL *fileUrl = [NSURL fileURLWithPath:path isDirectory:NO relativeToURL:homeUrl];
-        NSLog(@"file: |%@| -> |%@|", path, fileUrl);
         NSError *error = nil;
         if (![fileManager removeItemAtURL:fileUrl error:&error]) {
             NSLog(@"Error deleting '%@': %@", path, [error localizedDescription]);
