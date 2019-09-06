@@ -68,6 +68,18 @@ static BOOL s_passiveModeEnabled = NO;
     return s_homeURL;
 }
 
+/**
+ Looks up the application support directory and creates an app-specific subdirectory under it.
+
+ Directories derived from it:
+
+ * $HOME is set for the engine.
+ * The engine's per_user_directory (which is placed under $HOME).
+ * The engine's per_machine_directory.
+
+ @return A URL pointing to as app-specific directory under the OS defined
+         application support directory for the current user.
+ */
 + (NSURL *)createApplicationDirectory
 {
     NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
