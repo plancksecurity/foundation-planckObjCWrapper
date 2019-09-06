@@ -68,8 +68,50 @@ static BOOL s_passiveModeEnabled = NO;
     return s_homeURL;
 }
 
++ (void)dumpDirectories
+{
+    NSDictionary *constants =
+    @{
+      [NSNumber numberWithInteger:NSApplicationDirectory]: @"NSApplicationDirectory",
+      [NSNumber numberWithInteger:NSDemoApplicationDirectory]: @"NSDemoApplicationDirectory",
+      [NSNumber numberWithInteger:NSDeveloperApplicationDirectory]: @"NSDeveloperApplicationDirectory",
+      [NSNumber numberWithInteger:NSAdminApplicationDirectory]: @"NSAdminApplicationDirectory",
+      [NSNumber numberWithInteger:NSLibraryDirectory]: @"NSLibraryDirectory",
+      [NSNumber numberWithInteger:NSDeveloperDirectory]: @"NSDeveloperDirectory",
+      [NSNumber numberWithInteger:NSUserDirectory]: @"NSUserDirectory",
+      [NSNumber numberWithInteger:NSDocumentationDirectory]: @"NSDocumentationDirectory",
+      [NSNumber numberWithInteger:NSDocumentDirectory]: @"NSDocumentDirectory",
+      [NSNumber numberWithInteger:NSCoreServiceDirectory]: @"NSCoreServiceDirectory",
+      [NSNumber numberWithInteger:NSAutosavedInformationDirectory]: @"NSAutosavedInformationDirectory",
+      [NSNumber numberWithInteger:NSDesktopDirectory]: @"NSDesktopDirectory",
+      [NSNumber numberWithInteger:NSCachesDirectory]: @"NSCachesDirectory",
+      [NSNumber numberWithInteger:NSApplicationSupportDirectory]: @"NSApplicationSupportDirectory",
+      [NSNumber numberWithInteger:NSDownloadsDirectory]: @"NSDownloadsDirectory",
+      [NSNumber numberWithInteger:NSInputMethodsDirectory]: @"NSInputMethodsDirectory",
+      [NSNumber numberWithInteger:NSMoviesDirectory]: @"NSMoviesDirectory",
+      [NSNumber numberWithInteger:NSMusicDirectory]: @"NSMusicDirectory",
+      [NSNumber numberWithInteger:NSPicturesDirectory]: @"NSPicturesDirectory",
+      [NSNumber numberWithInteger:NSPrinterDescriptionDirectory]: @"NSPrinterDescriptionDirectory",
+      [NSNumber numberWithInteger:NSSharedPublicDirectory]: @"NSSharedPublicDirectory",
+      [NSNumber numberWithInteger:NSPreferencePanesDirectory]: @"NSPreferencePanesDirectory",
+      [NSNumber numberWithInteger:NSItemReplacementDirectory]: @"NSItemReplacementDirectory",
+      [NSNumber numberWithInteger:NSAllApplicationsDirectory]: @"NSAllApplicationsDirectory",
+      [NSNumber numberWithInteger:NSAllLibrariesDirectory]: @"NSAllLibrariesDirectory",
+      };
+
+    NSFileManager *fm = [NSFileManager defaultManager];
+
+    [constants enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, NSString *value, BOOL* stop) {
+        NSArray *dirs = [fm URLsForDirectory:[key integerValue]
+                                   inDomains:NSUserDomainMask];
+        NSLog(@"%@ => %@", value, dirs);
+    }];
+}
+
 + (NSURL *)createApplicationDirectory
 {
+    [self dumpDirectories];
+
     NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
     if (!bundleID) {
         // This can happen in unit tests
