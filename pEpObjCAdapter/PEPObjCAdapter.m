@@ -60,7 +60,12 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)initialize
 {
     s_homeURL = [self createApplicationDirectory];
-    [self setPerMachineDirectory:s_homeURL]; // Important, defines $HOME for the engine
+
+    // The engine will put its per_user_directory under this directory.
+    setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+
+    // This informs the engine's per_machine_directory.
+    [self setPerMachineDirectory:s_homeURL];
 }
 
 + (NSURL *)homeURL
@@ -117,9 +122,6 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)setPerMachineDirectory:(NSURL *)homeDir
 {
 #if TARGET_OS_IPHONE
-    // Set HOME, which is also important for the perUser directory later
-    setenv("HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-
     if (perMachineDirectory) {
         free((void *) perMachineDirectory);
     }
