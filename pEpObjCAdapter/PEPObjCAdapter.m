@@ -119,13 +119,18 @@ static BOOL s_passiveModeEnabled = NO;
     return dirPath;
 }
 
-+ (void)setPerMachineDirectory:(NSURL *)homeDir
+/**
+ Sets the directory that will be fed into the engine's per_machine_directory.
+
+ @param perMachineDir The url to use as the per_machine_directory directory.
+ */
++ (void)setPerMachineDirectory:(NSURL *)perMachineDir
 {
 #if TARGET_OS_IPHONE
     if (perMachineDirectory) {
         free((void *) perMachineDirectory);
     }
-    perMachineDirectory = strdup([homeDir path].UTF8String);
+    perMachineDirectory = strdup([perMachineDir path].UTF8String);
 #endif
 }
 
