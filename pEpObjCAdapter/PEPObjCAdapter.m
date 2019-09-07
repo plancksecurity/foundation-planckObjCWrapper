@@ -126,10 +126,12 @@ static BOOL s_passiveModeEnabled = NO;
  */
 + (void)setPerMachineDirectory:(NSURL *)perMachineDir
 {
+#if TARGET_OS_IPHONE
     if (perMachineDirectory) {
         free((void *) perMachineDirectory);
     }
     perMachineDirectory = strdup([perMachineDir path].UTF8String);
+#endif
 }
 
 + (NSString *)getBundlePathFor: (NSString *) filename
