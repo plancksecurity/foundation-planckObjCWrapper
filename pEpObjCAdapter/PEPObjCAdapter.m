@@ -78,9 +78,9 @@ static BOOL s_passiveModeEnabled = NO;
 
  Directories derived from it:
 
- * $HOME is set for the engine.
+ * $HOME (the engine uses that).
  * The engine's per_user_directory (which is placed under $HOME).
- * The engine's per_machine_directory.
+ * The engine's per_machine_directory (for iOS).
 
  @return A URL pointing to as app-specific directory under the OS defined
          application support directory for the current user.
