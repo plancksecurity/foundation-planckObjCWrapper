@@ -64,7 +64,7 @@ static BOOL s_passiveModeEnabled = NO;
     // The engine will put its per_user_directory under this directory.
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
 
-    // This informs the engine's per_machine_directory.
+    // This sets the engine's per_machine_directory under iOS.
     [self setPerMachineDirectory:s_homeURL];
 }
 
