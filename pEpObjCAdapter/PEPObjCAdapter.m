@@ -122,6 +122,9 @@ static BOOL s_passiveModeEnabled = NO;
 /**
  Sets the directory that will be fed into the engine's per_machine_directory.
 
+ Does not handle macOS. For macOS, either PER_MACHINE_DIRECTORY has to be defined
+ (if constant), or this method has to be extended to handle it.
+
  @param perMachineDir The url to use as the per_machine_directory directory.
  */
 + (void)setPerMachineDirectory:(NSURL *)perMachineDir
