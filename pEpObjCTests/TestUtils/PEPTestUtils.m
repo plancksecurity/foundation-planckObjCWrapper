@@ -116,64 +116,20 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     return message;
 }
 
-+ (NSArray *)pEpWorkFiles;
-{
-    // Only files whose content is affected by tests.
-    NSString *home = [[[NSProcessInfo processInfo]environment]objectForKey:@"HOME"];
-
-    NSArray *baseNames = @[@".pEp_keys", @".pEp_management"];
-    NSArray *baseEndings = @[@"db", @"db-shm", @"db-wal"];
-
-    NSMutableArray *result = [NSMutableArray array];
-
-    for (NSString *base in baseNames) {
-        for (NSString *ending in baseEndings) {
-            NSString *filename = [NSString stringWithFormat:@"%@.%@", base, ending];
-            [result addObject:[home stringByAppendingPathComponent:filename]];
-        }
-    }
-
-    return result;
-}
-
 + (void)cleanUp
 {
-    // This triggers setting HOME und GPGHOME in the adapter.
-    // Important for tests which do a cleanup on test start.
-    [PEPObjCAdapter homeURL];
-
     [PEPSession cleanup];
 
-    for (id path in [self pEpWorkFiles]) {
-        [self delFilePath:path];
-    }
-}
+    NSString *homeString = [PEPObjCAdapter perUserDirectoryString];
+    NSURL *homeUrl = [NSURL fileURLWithPath:homeString isDirectory:YES];
 
-#pragma mark - PRIVATE
-
-+ (void)delFilePath:(NSString *)filePath
-{
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error = nil;
-    if ([fileManager fileExistsAtPath:filePath]) {
-        BOOL success = [fileManager removeItemAtPath:filePath error:&error];
-        if (!success) {
-            NSLog(@"Error: %@", [error localizedDescription]);
-        }
-    }
-}
-
-+ (void)undelFileWithPath:(NSString *)path backup:(NSString *)backup;
-{
-    NSParameterAssert(backup);
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString* bpath = [path stringByAppendingString:backup];
-    BOOL fileExists = [fileManager fileExistsAtPath:bpath];
-    if (fileExists) {
+    NSDirectoryEnumerator<NSString *> *enumerator = [fileManager enumeratorAtPath:homeString];
+    for (NSString *path in enumerator) {
+        NSURL *fileUrl = [NSURL fileURLWithPath:path isDirectory:NO relativeToURL:homeUrl];
         NSError *error = nil;
-        BOOL success = [fileManager moveItemAtPath:bpath toPath:path error:&error];
-        if (!success) {
-            NSLog(@"Error: %@", [error localizedDescription]);
+        if (![fileManager removeItemAtURL:fileUrl error:&error]) {
+            NSLog(@"Error deleting '%@': %@", fileUrl, [error localizedDescription]);
         }
     }
 }

@@ -60,7 +60,12 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)initialize
 {
     s_homeURL = [self createApplicationDirectory];
-    [self setPerMachineDirectory:s_homeURL]; // Important, defines $HOME for the engine
+
+    // The engine will put its per_user_directory under this directory.
+    setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+
+    // This sets the engine's per_machine_directory under iOS.
+    [self setPerMachineDirectory:s_homeURL];
 }
 
 + (NSURL *)homeURL
@@ -68,6 +73,18 @@ static BOOL s_passiveModeEnabled = NO;
     return s_homeURL;
 }
 
+/**
+ Looks up the application support directory and creates an app-specific subdirectory under it.
+
+ Directories derived from it:
+
+ * $HOME (the engine uses that).
+ * The engine's per_user_directory (which is placed under $HOME).
+ * The engine's per_machine_directory (for iOS).
+
+ @return A URL pointing to as app-specific directory under the OS defined
+         application support directory for the current user.
+ */
 + (NSURL *)createApplicationDirectory
 {
     NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
@@ -102,16 +119,21 @@ static BOOL s_passiveModeEnabled = NO;
     return dirPath;
 }
 
-+ (void)setPerMachineDirectory:(NSURL *)homeDir
+/**
+ Sets the directory that will be fed into the engine's per_machine_directory.
+
+ Does not handle macOS. For macOS, either PER_MACHINE_DIRECTORY has to be defined
+ (if constant), or this method has to be extended to handle it.
+
+ @param perMachineDir The url to use as the per_machine_directory directory.
+ */
++ (void)setPerMachineDirectory:(NSURL *)perMachineDir
 {
 #if TARGET_OS_IPHONE
-    // Set HOME, which is also important for the perUser directory later
-    setenv("HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-
     if (perMachineDirectory) {
         free((void *) perMachineDirectory);
     }
-    perMachineDirectory = strdup([homeDir path].UTF8String);
+    perMachineDirectory = strdup([perMachineDir path].UTF8String);
 #endif
 }
 
@@ -165,6 +187,17 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)setupTrustWordsDB
 {
     [PEPObjCAdapter setupTrustWordsDB:[NSBundle mainBundle]];
+}
+
+
++ (NSString * _Nonnull)perUserDirectoryString
+{
+    return [NSString stringWithCString:per_user_directory() encoding:NSUTF8StringEncoding];
+}
+
++ (NSString * _Nonnull)perMachineDirectoryString
+{
+    return [NSString stringWithCString:per_machine_directory() encoding:NSUTF8StringEncoding];
 }
 
 @end
