@@ -1488,6 +1488,7 @@
             }
             [expThread1Finished fulfill];
         }];
+        [thread1 setName:@"Thread 1"];
 
         XCTestExpectation *expThread2Finished = [self expectationWithDescription:@"Thread2 finished"];
         NSThread *thread2 = [[NSThread alloc] initWithBlock:^{
@@ -1513,6 +1514,7 @@
             }
             [expThread2Finished fulfill];
         }];
+        [thread2 setName:@"Thread 2"];
 
         [thread1 start];
         [thread2 start];
