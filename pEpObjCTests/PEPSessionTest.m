@@ -1431,7 +1431,7 @@
 
  See IOSAD-141.
  */
-- (void)donttestTryToProvokeContentienIssues
+- (void)testTryToProvokeContentienIssues
 {
     PEPSession *sessionMain = [PEPSession new];
 
