@@ -1426,6 +1426,86 @@
     }
 }
 
+/**
+ Try to provoke sqlite lock contention by using the engine in parallel from several threads.
+
+ See IOSAD-141.
+ */
+- (void)testTryToProvokeContentienIssues
+{
+    PEPSession *sessionMain = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([sessionMain mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    PEPIdentity *aliceIdent = [self checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                                                      address:@"pep.test.alice@pep-project.org"
+                                                       userID:@"This Is Alice"
+                                                  fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                                                      session: nil];
+    XCTAssertNotNil(aliceIdent);
+
+    PEPIdentity *bobIdent = [self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                                                    address:@"pep.test.bob@pep-project.org"
+                                                     userID:@"This Is Bob"
+                                                fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                                                    session: nil];
+    XCTAssertNotNil(bobIdent);
+
+    for (int iOuter = 10; iOuter < 100; ++iOuter) {
+        XCTestExpectation *expThread1Finished = [self expectationWithDescription:@"Thread1 finished"];
+        NSThread *thread1 = [[NSThread alloc] initWithBlock:^{
+            PEPSession *session1 = [PEPSession new];
+            NSError *error1 = nil;
+
+            PEPMessage *msg = [PEPMessage new];
+            msg.to = @[aliceIdent, bobIdent];
+            msg.direction = PEPMsgDirectionOutgoing;
+            msg.shortMessage = @"Subject";
+            msg.longMessage = @"Just some message";
+
+            for (int i = 0; i < 100; ++i) {
+                NSLog(@"outgoingRatingForMessage %d\n", i);
+                NSError *error = nil;
+                NSNumber *num = [session1 outgoingRatingForMessage:msg error:&error1];
+                XCTAssertNotNil(num);
+                XCTAssertNil(error);
+            }
+            [expThread1Finished fulfill];
+        }];
+
+        XCTestExpectation *expThread2Finished = [self expectationWithDescription:@"Thread2 finished"];
+        NSThread *thread2 = [[NSThread alloc] initWithBlock:^{
+            PEPSession *session2 = [PEPSession new];
+            NSError *error2 = nil;
+
+            for (int i = 0; i < 2000; ++i) {
+                NSLog(@"getTrustwordsIdentity1 %d\n", i);
+                NSString *trustwords = [session2
+                                        getTrustwordsIdentity1:aliceIdent
+                                        identity2:bobIdent
+                                        language:@"en"
+                                        full:YES
+                                        error:&error2];
+                XCTAssertNotNil(trustwords);
+                XCTAssertNil(error);
+            }
+            [expThread2Finished fulfill];
+        }];
+
+        [thread1 start];
+        [thread2 start];
+
+        [self waitForExpectations:@[expThread1Finished, expThread2Finished] timeout:20];
+    }
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
