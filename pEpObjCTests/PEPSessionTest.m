@@ -1461,7 +1461,7 @@
     // Mix sessions between threads.
     __block PEPSession *sharedSession;
 
-    for (int iOuter = 0; iOuter < 10; ++iOuter) {
+    for (int iOuter = 0; iOuter < 1000; ++iOuter) {
         XCTestExpectation *expThread1Finished = [self expectationWithDescription:@"Thread1 finished"];
         NSThread *thread1 = [[NSThread alloc] initWithBlock:^{
             PEPSession *session1 = [PEPSession new];
