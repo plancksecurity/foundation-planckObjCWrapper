@@ -1458,6 +1458,9 @@
                                                     session: nil];
     XCTAssertNotNil(bobIdent);
 
+    // Mix sessions between threads.
+    __block PEPSession *sharedSession;
+
     for (int iOuter = 10; iOuter < 100; ++iOuter) {
         XCTestExpectation *expThread1Finished = [self expectationWithDescription:@"Thread1 finished"];
         NSThread *thread1 = [[NSThread alloc] initWithBlock:^{
@@ -1472,6 +1475,12 @@
 
             for (int i = 0; i < 100; ++i) {
                 NSLog(@"outgoingRatingForMessage %d\n", i);
+
+                // Mix sessions between threads.
+                if (sharedSession == nil) {
+                    sharedSession = session1;
+                }
+
                 NSError *error = nil;
                 NSNumber *num = [session1 outgoingRatingForMessage:msg error:&error1];
                 XCTAssertNotNil(num);
@@ -1487,6 +1496,12 @@
 
             for (int i = 0; i < 2000; ++i) {
                 NSLog(@"getTrustwordsIdentity1 %d\n", i);
+
+                // Mix sessions between threads.
+                if (sharedSession != nil) {
+                    session2 = sharedSession;
+                }
+
                 NSString *trustwords = [session2
                                         getTrustwordsIdentity1:aliceIdent
                                         identity2:bobIdent
