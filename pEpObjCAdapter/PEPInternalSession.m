@@ -466,6 +466,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
                                         ratingFunction:(rating_function_type)ratingFunction
                                                  error:(NSError * _Nullable * _Nullable)error
 {
+    NSLog(@"**** > helperOutgoingRatingForMessage");
     message *_msg = PEP_messageToStruct(theMessage);
     PEPRating rating = PEPRatingUndefined;
 
@@ -479,6 +480,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         return nil;
     }
 
+    NSLog(@"**** < helperOutgoingRatingForMessage");
     return [NSNumber numberWithPEPRating:rating];
 }
 
