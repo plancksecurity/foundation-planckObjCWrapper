@@ -1458,20 +1458,29 @@
                                                     session: nil];
     XCTAssertNotNil(bobIdent);
 
-    for (int iOuter = 0; iOuter < 1000; ++iOuter) {
+    NSInteger dataCount = 5 * 1024;
+    NSMutableData *msgData = [NSMutableData dataWithLength:5 * 1024];
+    for (NSInteger c = 0; c < dataCount; ++c) {
+        const char *pStr = "H";
+        [msgData appendBytes:pStr length:1];
+    }
+
+    PEPMessage *msg = [PEPMessage new];
+    msg.to = @[aliceIdent, bobIdent];
+    msg.direction = PEPMsgDirectionOutgoing;
+    msg.shortMessage = @"Subject";
+    msg.longMessage = @"Just some message";
+
+    NSInteger loopCount = 200;
+
+    for (NSUInteger iOuter = 0; iOuter < 100; ++iOuter) {
         XCTestExpectation *expThread1Finished = [self expectationWithDescription:@"Thread1 finished"];
         NSThread *thread1 = [[NSThread alloc] initWithBlock:^{
             PEPSession *session1 = [PEPSession new];
             NSError *error1 = nil;
 
-            PEPMessage *msg = [PEPMessage new];
-            msg.to = @[aliceIdent, bobIdent];
-            msg.direction = PEPMsgDirectionOutgoing;
-            msg.shortMessage = @"Subject";
-            msg.longMessage = @"Just some message";
-
-            for (int i = 0; i < 100; ++i) {
-                NSLog(@"outgoingRatingForMessage %d\n", i);
+            for (NSUInteger i = 0; i < loopCount; ++i) {
+                NSLog(@"outgoingRatingForMessage %lu\n", (unsigned long) i);
 
                 NSError *error = nil;
                 NSNumber *num = [session1 outgoingRatingForMessage:msg error:&error1];
@@ -1487,17 +1496,18 @@
             PEPSession *session2 = [PEPSession new];
             NSError *error2 = nil;
 
-            for (int i = 0; i < 2000; ++i) {
-                NSLog(@"getTrustwordsIdentity1 %d\n", i);
+            for (NSUInteger i = 0; i < loopCount; ++i) {
+                NSLog(@"encryptForSelf %lu\n", (unsigned long) i);
 
-                NSString *trustwords = [session2
-                                        getTrustwordsIdentity1:aliceIdent
-                                        identity2:bobIdent
-                                        language:@"en"
-                                        full:YES
-                                        error:&error2];
-                XCTAssertNotNil(trustwords);
-                XCTAssertNil(error);
+                PEPStatus status;
+                [session2
+                 encryptMessage:msg
+                 forSelf:identMe
+                 extraKeys:@[]
+                 status:&status
+                 error:&error2];
+                XCTAssertNil(error2);
+                XCTAssertEqual(status, PEPStatusOK);
             }
             [expThread2Finished fulfill];
         }];
