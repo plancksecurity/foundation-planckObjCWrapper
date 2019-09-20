@@ -157,6 +157,9 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
+    // Make sure queue is empty when we start.
+    [self.queue removeAllObjects];
+
     [self assureMainSessionExists];
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
