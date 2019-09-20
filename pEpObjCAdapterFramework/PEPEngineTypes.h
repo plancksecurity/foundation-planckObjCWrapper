@@ -150,11 +150,9 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
 };
 
 typedef NS_CLOSED_ENUM(int, PEPIdentityFlags) {
-    // the first octet flags are app defined settings
-    PEPIdentityFlagsNotForSync = 0x0001, // PEP_idf_not_for_sync = 0x0001,   // don't use this identity for sync
-    PEPIdentityFlagsList = 0x0002, // PEP_idf_list = 0x0002,           // identity of list of persons
-    // the second octet flags are calculated
-    PEPIdentityFlagsDeviceGroup = 0x0100 // PEP_idf_devicegroup = 0x0100     // identity of a device group member
+    PEPIdentityFlagsNotForSync = 0x0001, // PEP_idf_not_for_sync
+    PEPIdentityFlagsList = 0x0002, // PEP_idf_list = 0x0002
+    PEPIdentityFlagsDeviceGroup = 0x0100 // PEP_idf_devicegroup
 };
 
 typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) { // _sync_handshake_signal
