@@ -121,6 +121,7 @@ typedef NS_ENUM(int, PEPStatus) {
     PEPStatusSyncNoChannel = 0x0904, // PEP_SYNC_NO_CHANNEL
     PEPStatusSyncCannotEncrypt = 0x0905, // PEP_SYNC_CANNOT_ENCRYPT
     PEPStatusSyncNoMessageSendCallback = 0x0906, // PEP_SYNC_NO_MESSAGE_SEND_CALLBACK
+    PEPStatusSyncCannotStart = 0x0907, // PEP_SYNC_CANNOT_START
 
     PEPStatusCannotIncreaseSequence = 0x0971, // PEP_CANNOT_INCREASE_SEQUENCE
 
