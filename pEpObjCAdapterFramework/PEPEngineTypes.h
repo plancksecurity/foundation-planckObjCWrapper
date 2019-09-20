@@ -155,32 +155,24 @@ typedef NS_CLOSED_ENUM(int, PEPIdentityFlags) {
     PEPIdentityFlagsDeviceGroup = 0x0100 // PEP_idf_devicegroup
 };
 
-typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) { // _sync_handshake_signal
-    PEPSyncHandshakeSignalUndefined = 0, // SYNC_NOTIFY_UNDEFINED = 0,
+typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
+    PEPSyncHandshakeSignalUndefined = 0, // SYNC_NOTIFY_UNDEFINED
 
-    // request show handshake dialog
-    PEPSyncHandshakeSignalInitAddOurDevice = 1, // SYNC_NOTIFY_INIT_ADD_OUR_DEVICE = 1,
-    PEPSyncHandshakeSignalInitAddOtherDevice = 2, // SYNC_NOTIFY_INIT_ADD_OTHER_DEVICE = 2,
-    PEPSyncHandshakeSignalInitFormGroup = 3, // SYNC_NOTIFY_INIT_FORM_GROUP = 3,
-    // SYNC_NOTIFY_INIT_MOVE_OUR_DEVICE = 4,
+    PEPSyncHandshakeSignalInitAddOurDevice = 1, // SYNC_NOTIFY_INIT_ADD_OUR_DEVICE
+    PEPSyncHandshakeSignalInitAddOtherDevice = 2, // SYNC_NOTIFY_INIT_ADD_OTHER_DEVICE
+    PEPSyncHandshakeSignalInitFormGroup = 3, // SYNC_NOTIFY_INIT_FORM_GROUP
 
-    // handshake process timed out
-    PEPSyncHandshakeSignalTimeout = 5, // SYNC_NOTIFY_TIMEOUT = 5,
+    PEPSyncHandshakeSignalTimeout = 5, // SYNC_NOTIFY_TIMEOUT
 
-    // handshake accepted by user
-    PEPSyncHandshakeSignalAcceptedDeviceAdded = 6, // SYNC_NOTIFY_ACCEPTED_DEVICE_ADDED = 6,
-    PEPSyncHandshakeSignalAcceptedGroupCreated = 7, // SYNC_NOTIFY_ACCEPTED_GROUP_CREATED = 7,
-    // SYNC_NOTIFY_ACCEPTED_DEVICE_MOVED = 8,
+    PEPSyncHandshakeSignalAcceptedDeviceAdded = 6, // SYNC_NOTIFY_ACCEPTED_DEVICE_ADDED
+    PEPSyncHandshakeSignalAcceptedGroupCreated = 7, // SYNC_NOTIFY_ACCEPTED_GROUP_CREATED
 
-    // handshake dialog must be closed
-    PEPSyncHandshakeSignalOvertaken = 9, // SYNC_NOTIFY_OVERTAKEN = 9,
+    PEPSyncHandshakeSignalOvertaken = 9, // SYNC_NOTIFY_OVERTAKEN
 
-    /** currently exchanging private keys */
-    PEPSyncHandshakeSignalFormingGroup = 10, // SYNC_NOTIFY_FORMING_GROUP = 10
+    PEPSyncHandshakeSignalFormingGroup = 10, // SYNC_NOTIFY_FORMING_GROUP
 
-    // notificaton of actual group status
-    PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE = 254,
-    PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP = 255
+    PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE
+    PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP
 };
 
 typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeResult) {
