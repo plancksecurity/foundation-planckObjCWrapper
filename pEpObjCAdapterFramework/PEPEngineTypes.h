@@ -176,9 +176,9 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
 };
 
 typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeResult) {
-    PEPSyncHandshakeResultCancel = -1, // SYNC_HANDSHAKE_CANCEL = -1,
-    PEPSyncHandshakeResultAccepted = 0, // SYNC_HANDSHAKE_ACCEPTED = 0,
-    PEPSyncHandshakeResultRejected = 1 // SYNC_HANDSHAKE_REJECTED = 1
+    PEPSyncHandshakeResultCancel = -1, // SYNC_HANDSHAKE_CANCEL
+    PEPSyncHandshakeResultAccepted = 0, // SYNC_HANDSHAKE_ACCEPTED
+    PEPSyncHandshakeResultRejected = 1 // SYNC_HANDSHAKE_REJECTED
 };
 
 typedef NS_CLOSED_ENUM(int, PEPCommType) {
