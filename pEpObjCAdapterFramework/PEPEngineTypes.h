@@ -188,12 +188,12 @@ typedef NS_CLOSED_ENUM(int, PEPCommType) {
     PEPCommTypeKeyNotFound = 0x03, // PEP_ct_key_not_found
     PEPCommTypeKeyExpired = 0x04, // PEP_ct_key_expired
     PEPCommTypeKeyRevoked = 0x05, // PEP_ct_key_revoked
-    PEPCommTypeKeyBr0ken = 0x06, // PEP_ct_key_b0rken
+    PEPCommTypeKeyB0rken = 0x06, // PEP_ct_key_b0rken
     PEPCommTypeKeyExpiredButConfirmed = 0x07, // PEP_ct_key_expired_but_confirmed renewal.
     PEPCommTypeMyKeyNotIncluded = 0x09, // PEP_ct_my_key_not_included
 
     PEPCommTypeSecurityByObscurity = 0x0a, // PEP_ct_security_by_obscurity
-    PEPCommTypeBr0kenCrypto = 0x0b, // PEP_ct_b0rken_crypto
+    PEPCommTypeB0rkenCrypto = 0x0b, // PEP_ct_b0rken_crypto
     PEPCommTypeKeyTooShort = 0x0c, // PEP_ct_key_too_short
 
     PEPCommTypeCompromised = 0x0e, // PEP_ct_compromized
