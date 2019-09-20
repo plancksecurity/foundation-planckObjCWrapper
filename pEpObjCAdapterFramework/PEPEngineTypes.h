@@ -31,20 +31,20 @@ typedef NS_ENUM(int, PEPEncFormat) {
 };
 
 typedef NS_ENUM(int, PEPRating) {
-    PEPRatingUndefined = 0,// PEP_rating_undefined = 0,
-    PEPRatingCannotDecrypt, // PEP_rating_cannot_decrypt,
-    PEPRatingHaveNoKey, // PEP_rating_have_no_key,
-    PEPRatingUnencrypted, // PEP_rating_unencrypted,
-    PEPRatingUnencryptedForSome, // PEP_rating_unencrypted_for_some, // don't use this any more
-    PEPRatingUnreliable, // PEP_rating_unreliable,
-    PEPRatingReliable, // PEP_rating_reliable,
-    PEPRatingTrusted, // PEP_rating_trusted,
-    PEPRatingTrustedAndAnonymized, // PEP_rating_trusted_and_anonymized,
-    PEPRatingFullyAnonymous, // PEP_rating_fully_anonymous,
+    PEPRatingUndefined = 0, // PEP_rating_undefined
+    PEPRatingCannotDecrypt, // PEP_rating_cannot_decrypt
+    PEPRatingHaveNoKey, // PEP_rating_have_no_key
+    PEPRatingUnencrypted, // PEP_rating_unencrypted
+    PEPRatingUnencryptedForSome, // PEP_rating_unencrypted_for_some
+    PEPRatingUnreliable, // PEP_rating_unreliable
+    PEPRatingReliable, // PEP_rating_reliable
+    PEPRatingTrusted, // PEP_rating_trusted
+    PEPRatingTrustedAndAnonymized, // PEP_rating_trusted_and_anonymized
+    PEPRatingFullyAnonymous, // PEP_rating_fully_anonymous
 
-    PEPRatingMistrust = -1, // PEP_rating_mistrust = -1,
-    PEPRatingB0rken = -2, // PEP_rating_b0rken = -2,
-    PEPRatingUnderAttack = -3 // PEP_rating_under_attack = -3
+    PEPRatingMistrust = -1, // PEP_rating_mistrust
+    PEPRatingB0rken = -2, // PEP_rating_b0rken
+    PEPRatingUnderAttack = -3 // PEP_rating_under_attack
 };
 
 typedef NS_ENUM(int, PEPStatus) {
