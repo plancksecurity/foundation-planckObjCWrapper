@@ -11,15 +11,15 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(int, PEPDecryptFlags) {
-    PEPDecryptFlagsNone = 0x1, // This defined only in the adpater, not the engine.
-    PEPDecryptFlagsOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key = 0x1,
-    PEPDecryptFlagsConsume = 0x2, // PEP_decrypt_flag_consume = 0x2,
-    PEPDecryptFlagsIgnore = 0x4, // PEP_decrypt_flag_ignore = 0x4,
-    PEPDecryptFlagsSrcModified = 0x8, // PEP_decrypt_flag_src_modified = 0x8,
-    // input flags
-    PEPDecryptFlagsUntrustedServer = 0x100 // PEP_decrypt_flag_untrusted_server = 0x100
-}; // PEP_decrypt_flags;
+typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
+    PEPDecryptFlagsNone = 0x0, // not actually defined in the engine
+    PEPDecryptFlagsOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key
+    PEPDecryptFlagsConsume = 0x2, //PEP_decrypt_flag_consume
+    PEPDecryptFlagsIgnore = 0x4, // PEP_decrypt_flag_ignore
+    PEPDecryptFlagsSourceModified = 0x8, // PEP_decrypt_flag_src_modified
+    PEPDecryptFlagsUntrustedServer = 0x100, // PEP_decrypt_flag_untrusted_server
+    PEPDecryptFlagsDontTriggerSync = 0x200, // PEP_decrypt_flag_dont_trigger_sync
+};
 
 typedef NS_ENUM(int, PEPEncFormat) {
     PEPEncFormatNone = 0, // PEP_enc_none = 0, // message is not encrypted
