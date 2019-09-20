@@ -231,8 +231,8 @@ typedef NS_CLOSED_ENUM(int, PEPCommType) {
 };
 
 typedef NS_CLOSED_ENUM(int, PEPMsgDirection) {
-    PEPMsgDirectionIncoming = 0,
-    PEPMsgDirectionOutgoing
+    PEPMsgDirectionIncoming = 0, // PEP_dir_incoming
+    PEPMsgDirectionOutgoing // PEP_dir_outgoing
 };
 
 typedef NS_CLOSED_ENUM(int, PEPColor) {
