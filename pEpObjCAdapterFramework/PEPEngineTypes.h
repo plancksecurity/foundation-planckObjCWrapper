@@ -22,12 +22,12 @@ typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
 };
 
 typedef NS_ENUM(int, PEPEncFormat) {
-    PEPEncFormatNone = 0, // PEP_enc_none = 0, // message is not encrypted
-    PEPEncFormatPieces, // PEP_enc_pieces, // inline PGP + PGP extensions
-    PEPEncFormatSMIME, // PEP_enc_S_MIME, // RFC5751
-    PEPEncFormatPgpMIME, // PEP_enc_PGP_MIME, // RFC3156
-    PEPEncFormatPEP, // PEP_enc_PEP, // pEp encryption format
-    PEPEncFormatPgpMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1 // Message B0rken by Outlook type 1
+    PEPEncFormatNone = 0, // PEP_enc_none
+    PEPEncFormatPieces, // PEP_enc_pieces, PEP_enc_inline
+    PEPEncFormatSMIME, // PEP_enc_S_MIME
+    PEPEncFormatPGPMIME, // PEP_enc_PGP_MIME
+    PEPEncFormatPEP, // PEP_enc_PEP
+    PEPEncFormatPGPMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1
 };
 
 typedef NS_ENUM(int, PEPRating) {
