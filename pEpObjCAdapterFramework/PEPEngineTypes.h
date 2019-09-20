@@ -243,9 +243,9 @@ typedef NS_CLOSED_ENUM(int, PEPColor) {
 };
 
 typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
-    PEPContentDispositionAttachment = 0,
-    PEPContentDispositionInline = 1,
-    PEPContentDispositionOther = -1      // must be affirmatively set
+    PEPContentDispositionAttachment = 0, // PEP_CONTENT_DISP_ATTACHMENT
+    PEPContentDispositionInline = 1, // PEP_CONTENT_DISP_INLINE
+    PEPContentDispositionOther = -1 // PEP_CONTENT_DISP_OTHER
 };
 
 #endif /* PEPTypes_h */
