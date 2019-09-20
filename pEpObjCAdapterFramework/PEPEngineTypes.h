@@ -76,6 +76,7 @@ typedef NS_ENUM(int, PEPStatus) {
     PEPStatusKeyImported = 0x0220, // PEP_KEY_IMPORTED
     PEPStatusNoKeyImported = 0x0221, // PEP_NO_KEY_IMPORTED
     PEPStatusKeyImportStatusUnknown = 0x0222, // PEP_KEY_IMPORT_STATUS_UNKNOWN
+    PEPStatusSomeKeysImported = 0x0223, // PEP_SOME_KEYS_IMPORTED
 
     PEPStatusCannotFindIdentity = 0x0301, // PEP_CANNOT_FIND_IDENTITY
     PEPStatusCannotSetPerson = 0x0381, // PEP_CANNOT_SET_PERSON
