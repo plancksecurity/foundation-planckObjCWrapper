@@ -137,6 +137,7 @@ typedef NS_ENUM(int, PEPStatus) {
     PEPStatusCommitFailed = 0xff01, // PEP_COMMIT_FAILED
     PEPStatusMessageConsume = 0xff02, // PEP_MESSAGE_CONSUME
     PEPStatusMessageIgnore = 0xff03, // PEP_MESSAGE_IGNORE
+    PEPStatusCannotConfig = 0xff04, // PEP_CANNOT_CONFIG
 
     PEPStatusRecordNotFound = -6, // PEP_RECORD_NOT_FOUND
     PEPStatusCannotCreateTempFile = -5, // PEP_CANNOT_CREATE_TEMP_FILE
