@@ -236,10 +236,10 @@ typedef NS_CLOSED_ENUM(int, PEPMsgDirection) {
 };
 
 typedef NS_CLOSED_ENUM(int, PEPColor) {
-    PEPColorNoColor = 0,
-    PEPColorYellow,
-    PEPColorGreen,
-    PEPColorRed = -1,
+    PEPColorNoColor = 0, // PEP_color_no_color
+    PEPColorYellow, // PEP_color_yellow
+    PEPColorGreen, // PEP_color_green
+    PEPColorRed = -1, // PEP_color_red
 };
 
 typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
