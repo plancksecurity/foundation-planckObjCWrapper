@@ -1473,8 +1473,13 @@
 
     NSInteger loopCount = 200;
 
+    NSMutableArray *expectationsToWaitFor = [NSMutableArray new];
+
     for (NSUInteger iOuter = 0; iOuter < 100; ++iOuter) {
-        XCTestExpectation *expThread1Finished = [self expectationWithDescription:@"Thread1 finished"];
+        NSString *threadName1 = [NSString stringWithFormat:@"Thread_%lu_1", (unsigned long) iOuter];
+        NSString *threadName1Finished = [NSString stringWithFormat:@"%@ finished", threadName1];
+        XCTestExpectation *expThread1Finished = [self expectationWithDescription:threadName1Finished];
+        [expectationsToWaitFor addObject:expThread1Finished];
         NSThread *thread1 = [[NSThread alloc] initWithBlock:^{
             PEPSession *session1 = [PEPSession new];
             NSError *error1 = nil;
@@ -1489,9 +1494,12 @@
             }
             [expThread1Finished fulfill];
         }];
-        [thread1 setName:@"Thread 1"];
+        [thread1 setName:threadName1];
 
-        XCTestExpectation *expThread2Finished = [self expectationWithDescription:@"Thread2 finished"];
+        NSString *threadName2 = [NSString stringWithFormat:@"Thread_%lu_2", (unsigned long) iOuter];
+        NSString *threadName2Finished = [NSString stringWithFormat:@"%@ finished", threadName1];
+        XCTestExpectation *expThread2Finished = [self expectationWithDescription:threadName2Finished];
+        [expectationsToWaitFor addObject:expThread2Finished];
         NSThread *thread2 = [[NSThread alloc] initWithBlock:^{
             PEPSession *session2 = [PEPSession new];
             NSError *error2 = nil;
@@ -1511,13 +1519,13 @@
             }
             [expThread2Finished fulfill];
         }];
-        [thread2 setName:@"Thread 2"];
+        [thread2 setName:threadName2];
 
         [thread1 start];
         [thread2 start];
-
-        [self waitForExpectations:@[expThread1Finished, expThread2Finished] timeout:20];
     }
+
+    [self waitForExpectations:expectationsToWaitFor timeout:DBL_MAX];
 }
 
 #pragma mark - Helpers
