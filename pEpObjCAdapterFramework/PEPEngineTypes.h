@@ -71,6 +71,7 @@ typedef NS_ENUM(int, PEPStatus) {
     PEPStatusKeyUnsuitable = 0x0206, // PEP_KEY_UNSUITABLE
     PEPStatusMalformedKeyResetMsg = 0x0210, // PEP_MALFORMED_KEY_RESET_MSG
     PEPStatusKeyNotReset = 0x0211, // PEP_KEY_NOT_RESET
+    PEPStatusCannotDeleteKey = 0x0212, // PEP_CANNOT_DELETE_KEY
 
     PEPStatusKeyImported = 0x0220, // PEP_KEY_IMPORTED
     PEPStatusNoKeyImported = 0x0221, // PEP_NO_KEY_IMPORTED
