@@ -116,6 +116,16 @@
     [_cond unlock];
 }
 
+- (void)removeAllObjects
+{
+    [_cond lock];
+
+    [self.queue removeAllObjects];
+
+    [_cond signal];
+    [_cond unlock];
+}
+
 
 - (void)dealloc
 {
