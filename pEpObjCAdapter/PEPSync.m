@@ -24,7 +24,7 @@
 
 // MARK: - Internals
 
-os_log_t s_logger;
+static os_log_t s_logger;
 
 typedef PEP_STATUS (* t_messageToSendCallback)(struct _message *msg);
 typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
@@ -157,6 +157,9 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
+    // Make sure queue is empty when we start.
+    [self.queue removeAllObjects];
+
     [self assureMainSessionExists];
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
