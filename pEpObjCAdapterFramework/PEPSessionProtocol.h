@@ -180,6 +180,41 @@
 - (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Enables key sync.
+
+ Wraps enable_identity_for_sync.
+
+ @param identity The (own) identity to enable key sync for.
+ @param error The usual cocoa error handling.
+ @return The usual cocoa error handling.
+ */
+- (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                        error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ Disables key sync.
+
+ Wraps disable_identity_for_sync.
+
+ @param identity The (own) identity to disable key sync for.
+ @param error The usual cocoa error handling.
+ @return The usual cocoa error handling.
+ */
+- (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                         error:(NSError * _Nullable * _Nullable)error;
+
+/**
+ Queries the given own identity on whether it has key sync disabled or not.
+
+ @param identity The (own) identity to query.
+ @param error The usual cocoa error handling.
+ @return An NSNumber containing a boolean denoting whether key sync is enabled or not, or
+         nil on error. YES means that key sync is allowed for this identity, otherwise it's NO.
+ */
+- (NSNumber * _Nullable)queryKeySyncEnabledForIdentity:(PEPIdentity * _Nonnull)identity
+                                                 error:(NSError * _Nullable * _Nullable)error;
+
 #pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
@@ -242,6 +277,7 @@
 
 /**
  Wraps the engine's `config_passive_mode`.
+ @note That there's absolutely no error handling.
  */
 - (void)configurePassiveModeEnabled:(BOOL)enabled;
 
