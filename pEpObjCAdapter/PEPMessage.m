@@ -238,6 +238,14 @@
         [result addObject:@[kPepAttachments, self.attachments]];
     }
 
+    if (self.references) {
+        [result addObject:@[kPepReferences, self.references]];
+    }
+
+    if (self.inReplyTo) {
+        [result addObject:@[kPepInReplyTo, self.inReplyTo]];
+    }
+
     BOOL outgoing = self.direction == PEP_dir_outgoing ? YES:NO;
     [result addObject:@[kPepOutgoing, [NSNumber numberWithBool:outgoing]]];
 
