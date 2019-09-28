@@ -1426,6 +1426,62 @@
     }
 }
 
+/**
+ Tests feeding an old beacon message to the engine, which can occur due to key reset.
+
+ Tests the following:
+ * Do a mySelf.
+ * Catch the sent out beacon message.
+ * Do a key reset on the own identity.
+ * Decrypt the beacon message.
+ */
+- (void)testDecryptOldBeaconAfterKeyReset
+{
+    PEPSession *session = [PEPSession new];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    [self startSync];
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
+
+    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+
+    PEPMessage *oldBeacon = self.sendMessageDelegate.lastMessage;
+
+    XCTAssertTrue([session keyReset:identMe fingerprint:identMe.fingerPrint error:&error]);
+    XCTAssertNil(error);
+
+    PEPRating rating;
+    PEPStringList *extraKeys;
+    PEPStatus status;
+    PEPMessage *decryptedOldBeacon = [session decryptMessage:oldBeacon
+                                                       flags:nil
+                                                      rating:&rating
+                                                   extraKeys:&extraKeys
+                                                      status:&status
+                                                       error:&error];
+    XCTAssertNotNil(decryptedOldBeacon);
+    XCTAssertNil(error);
+
+    [self shutdownSync];
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
