@@ -1433,7 +1433,8 @@
  * Do a mySelf.
  * Catch the sent out beacon message.
  * Do a key reset on the own identity.
- * Decrypt the beacon message.
+ * Catch the sent out beacon message.
+ * Decrypt all the caught beacon messages.
  */
 - (void)testDecryptOldBeaconAfterKeyReset
 {
@@ -1454,11 +1455,11 @@
 
     [self startSync];
 
-    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
+    XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
+                                          initWithKeyPath:@"lastMessage"
+                                          object:self.sendMessageDelegate];
 
-    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
+    [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
 
@@ -1467,9 +1468,21 @@
     XCTAssertTrue([session keyReset:identMe fingerprint:identMe.fingerPrint error:&error]);
     XCTAssertNil(error);
 
+    XCTKVOExpectation *expHaveMessage2 = [[XCTKVOExpectation alloc]
+                                          initWithKeyPath:@"lastMessage"
+                                          object:self.sendMessageDelegate];
+
+    [self waitForExpectations:@[expHaveMessage2] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 2);
+
+    PEPMessage *newBeacon = self.sendMessageDelegate.lastMessage;
+
+    XCTAssertNotEqual(oldBeacon, newBeacon);
+
     PEPRating rating;
     PEPStringList *extraKeys;
     PEPStatus status;
+
     PEPMessage *decryptedOldBeacon = [session decryptMessage:oldBeacon
                                                        flags:nil
                                                       rating:&rating
@@ -1477,6 +1490,15 @@
                                                       status:&status
                                                        error:&error];
     XCTAssertNotNil(decryptedOldBeacon);
+    XCTAssertNil(error);
+
+    PEPMessage *decryptedNewBeacon = [session decryptMessage:newBeacon
+                                                       flags:nil
+                                                      rating:&rating
+                                                   extraKeys:&extraKeys
+                                                      status:&status
+                                                       error:&error];
+    XCTAssertNotNil(decryptedNewBeacon);
     XCTAssertNil(error);
 
     [self shutdownSync];
