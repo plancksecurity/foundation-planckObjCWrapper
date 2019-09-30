@@ -1436,7 +1436,7 @@
  * Catch the sent out sync message.
  * Decrypt the caught sync messages.
  */
-- (void)testDecryptOldBeaconAfterKeyReset
+- (void)testDecryptBeaconsAfterKeyReset
 {
     PEPSession *session = [PEPSession new];
 
