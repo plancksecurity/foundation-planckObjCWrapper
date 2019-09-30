@@ -1426,6 +1426,82 @@
     }
 }
 
+/**
+ Tests [PEPSessionProtocol keyResetAllOwnKeysError:error].
+
+ Does the following:
+ * Do a mySelf.
+ * Catch the sent out sync (beacon?) message.
+ * Do a key reset on all own identities ([PEPSessionProtocol keyResetAllOwnKeysError:error]).
+ * Catch the sent out sync message.
+ * Decrypt the caught sync messages.
+ */
+- (void)testDecryptOldBeaconAfterKeyReset
+{
+    PEPSession *session = [PEPSession new];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    [self startSync];
+
+    XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
+                                          initWithKeyPath:@"lastMessage"
+                                          object:self.sendMessageDelegate];
+    [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+
+    PEPMessage *oldBeacon = self.sendMessageDelegate.lastMessage;
+
+    XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
+    XCTAssertNil(error);
+
+    XCTKVOExpectation *expHaveMessage2 = [[XCTKVOExpectation alloc]
+                                          initWithKeyPath:@"lastMessage"
+                                          object:self.sendMessageDelegate];
+    [self waitForExpectations:@[expHaveMessage2] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 2);
+
+    PEPMessage *newBeacon = self.sendMessageDelegate.lastMessage;
+
+    XCTAssertNotEqual(oldBeacon, newBeacon);
+
+    PEPRating rating;
+    PEPStringList *extraKeys;
+    PEPStatus status;
+    PEPMessage *decryptedOldBeacon = [session decryptMessage:oldBeacon
+                                                       flags:nil
+                                                      rating:&rating
+                                                   extraKeys:&extraKeys
+                                                      status:&status
+                                                       error:&error];
+    XCTAssertNotNil(decryptedOldBeacon);
+    XCTAssertNil(error);
+
+    PEPMessage *decryptedNewBeacon = [session decryptMessage:newBeacon
+                                                       flags:nil
+                                                      rating:&rating
+                                                   extraKeys:&extraKeys
+                                                      status:&status
+                                                       error:&error];
+    XCTAssertNotNil(decryptedNewBeacon);
+    XCTAssertNil(error);
+
+    [self shutdownSync];
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
