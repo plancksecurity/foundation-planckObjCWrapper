@@ -17,8 +17,7 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
 
 @implementation NSError (Extension)
 
-+ (NSError * _Nonnull)errorWithPEPStatusInternal:(PEP_STATUS)status
-                                        userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
++ (NSError * _Nullable)errorWithPEPStatusInternal:(PEP_STATUS)status
 {
     switch (status) {
         case PEP_STATUS_OK:
@@ -30,22 +29,19 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
             return nil;
             break;
 
-        default:
-            if (![dict objectForKey:NSLocalizedDescriptionKey]) {
-                NSMutableDictionary *dict2 = [NSMutableDictionary dictionaryWithDictionary:dict];
-                [dict2 setValue:localizedErrorStringFromPEPStatus(status)
-                         forKey:NSLocalizedDescriptionKey];
-                dict = dict2;
-            }
+        default: {
+            NSDictionary *dict = [NSDictionary
+                                  dictionaryWithObjectsAndKeys:localizedErrorStringFromPEPStatus(status),
+                                  NSLocalizedDescriptionKey, nil];
             return [NSError errorWithDomain:s_pEpAdapterDomain code:status userInfo:dict];
+        }
             break;
     }
 }
 
-+ (NSError * _Nonnull)errorWithPEPStatusInternal:(PEP_STATUS)status
++ (NSError * _Nullable)errorWithPEPStatus:(PEPStatus)status
 {
-    NSDictionary *userInfo = [NSDictionary new];
-    return [self errorWithPEPStatusInternal:status userInfo:userInfo];
+    return [self errorWithPEPStatusInternal:(PEP_STATUS) status];
 }
 
 + (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEP_STATUS)status
@@ -83,17 +79,6 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
     } else {
         return nil;
     }
-}
-
-+ (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status
-                                userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict
-{
-    return [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:dict];
-}
-
-+ (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status
-{
-    return [self errorWithPEPStatusInternal:(PEP_STATUS) status userInfo:[NSDictionary new]];
 }
 
 @end

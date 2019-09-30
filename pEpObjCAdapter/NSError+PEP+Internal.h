@@ -16,15 +16,9 @@
  */
 @interface NSError (Internal)
 
-+ (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status
-                                userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict;
++ (NSError * _Nullable)errorWithPEPStatus:(PEPStatus)status;
 
-+ (NSError * _Nonnull)errorWithPEPStatus:(PEPStatus)status;
-
-+ (NSError * _Nonnull)errorWithPEPStatusInternal:(PEP_STATUS)status
-                                        userInfo:(NSDictionary<NSErrorUserInfoKey, id> * _Nonnull)dict;
-
-+ (NSError * _Nonnull)errorWithPEPStatusInternal:(PEP_STATUS)status;
++ (NSError * _Nullable)errorWithPEPStatusInternal:(PEP_STATUS)status;
 
 /**
  If the given status indicates an error, tries to set the given error accordingly.
