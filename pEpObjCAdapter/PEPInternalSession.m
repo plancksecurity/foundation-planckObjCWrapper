@@ -953,13 +953,10 @@ static NSDictionary *stringToRating;
                                                 UTF8String]);
     free_identity(ident);
 
-    if (status == PEPStatusOK) {
-        return YES;
-    } else {
-        if (error) {
-            *error = [NSError errorWithPEPStatus:status];
-        }
+    if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
+    } else {
+        return YES;
     }
 }
 
@@ -976,13 +973,10 @@ static NSDictionary *stringToRating;
     PEPStatus status = (PEPStatus) set_identity_flags(self.session, ident, flags);
     free_identity(ident);
 
-    if (status == PEPStatusOK) {
-        return YES;
-    } else {
-        if (error) {
-            *error = [NSError errorWithPEPStatus:status];
-        }
+    if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
+    } else {
+        return YES;
     }
 }
 
@@ -1002,13 +996,10 @@ static NSDictionary *stringToRating;
 
     free(identitiesSharingData);
 
-    if (status == PEPStatusOK) {
-        return YES;
-    } else {
-        if (error) {
-            *error = [NSError errorWithPEPStatus:status];
-        }
+    if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
+    } else {
+        return YES;
     }
 }
 
@@ -1019,13 +1010,10 @@ static NSDictionary *stringToRating;
     PEPStatus status = (PEPStatus) trust_own_key(self.session, ident);
     free_identity(ident);
 
-    if (status == PEPStatusOK) {
-        return YES;
-    } else {
-        if (error) {
-            *error = [NSError errorWithPEPStatus:status];
-        }
+    if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
+    } else {
+        return YES;
     }
 }
 
@@ -1046,13 +1034,10 @@ static NSDictionary *stringToRating;
 
     free_identity(ident);
 
-    if (status == PEPStatusOK) {
-        return YES;
-    } else {
-        if (error) {
-            *error = [NSError errorWithPEPStatus:status];
-        }
+    if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
+    } else {
+        return YES;
     }
 }
 
@@ -1060,13 +1045,10 @@ static NSDictionary *stringToRating;
 {
     PEPStatus status = (PEPStatus) leave_device_group(self.session);
 
-    if (status == PEPStatusOK) {
-        return YES;
-    } else {
-        if (error) {
-            *error = [NSError errorWithPEPStatus:status];
-        }
+    if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
+    } else {
+        return YES;
     }
 }
 
@@ -1074,15 +1056,11 @@ static NSDictionary *stringToRating;
 {
     PEPStatus status = (PEPStatus) key_reset_all_own_keys(self.session);
 
-    NSError *errorChecked = [NSError errorWithPEPStatus:status];
-    if (errorChecked) {
-        if (error) {
-            *error = errorChecked;
-        }
+    if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
+    } else {
+        return YES;
     }
-
-    return YES;
 }
 
 @end
