@@ -327,4 +327,12 @@
 /** Wraps leave_device_group. */
 - (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error;
 
+/**
+ Revoke and mistrust all own keys. See key_reset_all_own_keys for details.
+
+ @param error The default cocoa error handling.
+ @return YES on success, NO if there were errors.
+ */
+- (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error;
+
 @end

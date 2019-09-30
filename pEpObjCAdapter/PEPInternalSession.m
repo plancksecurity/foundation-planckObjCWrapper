@@ -1070,4 +1070,19 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error
+{
+    PEPStatus status = (PEPStatus) key_reset_all_own_keys(self.session);
+
+    NSError *errorChecked = [NSError errorWithPEPStatus:status];
+    if (errorChecked) {
+        if (error) {
+            *error = errorChecked;
+        }
+        return NO;
+    }
+
+    return YES;
+}
+
 @end
