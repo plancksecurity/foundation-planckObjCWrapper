@@ -475,4 +475,11 @@
     return [session leaveDeviceGroupError:error];
 }
 
+- (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
+    return [session keyResetAllOwnKeysError:error];
+}
+
 @end
