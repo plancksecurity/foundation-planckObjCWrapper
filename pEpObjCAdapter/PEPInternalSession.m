@@ -125,18 +125,18 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     PEPRating internalRating = PEPRatingUndefined;
 
-    PEPStatus theStatus = (PEPStatus) decrypt_message(_session,
-                                                      _src,
-                                                      &_dst,
-                                                      &theKeys,
-                                                      (PEP_rating *) &internalRating,
-                                                      (PEP_decrypt_flags *) &theFlags);
+    PEP_STATUS theStatus = decrypt_message(_session,
+                                           _src,
+                                           &_dst,
+                                           &theKeys,
+                                           (PEP_rating *) &internalRating,
+                                           (PEP_decrypt_flags *) &theFlags);
 
     if (status) {
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([NSError setError:error fromPEPStatusInternal:theStatus]) {
         decryptMessageDictFree(_src, _dst, theKeys);
         return nil;
     }
@@ -207,11 +207,11 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = PEP_arrayToStringlist(xKeyList);
     }
 
-    PEPStatus theStatus = (PEPStatus) re_evaluate_message_rating(_session,
-                                                                 _src,
-                                                                 theKeys,
-                                                                 (PEP_rating) *rating,
-                                                                 (PEP_rating *) rating);
+    PEP_STATUS theStatus = re_evaluate_message_rating(_session,
+                                                      _src,
+                                                      theKeys,
+                                                      (PEP_rating) *rating,
+                                                      (PEP_rating *) rating);
 
     free_message(_src);
     free_stringlist(theKeys);
@@ -220,7 +220,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([NSError setError:error fromPEPStatusInternal:theStatus]) {
         return NO;
     } else {
         return YES;
@@ -270,19 +270,19 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *_dst = NULL;
     stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
-    PEPStatus theStatus = (PEPStatus) encrypt_message(
-                                                      _session,
-                                                      _src,
-                                                      _keys,
-                                                      &_dst,
-                                                      (PEP_enc_format) encFormat,
-                                                      flags);
+    PEP_STATUS theStatus = encrypt_message(
+                                           _session,
+                                           _src,
+                                           _keys,
+                                           &_dst,
+                                           (PEP_enc_format) encFormat,
+                                           flags);
 
     if (status) {
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([NSError setError:error fromPEPStatusInternal:theStatus]) {
         return nil;
     }
 
@@ -349,13 +349,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
 
-    PEPStatus theStatus = (PEPStatus) encrypt_message_for_self(_session,
-                                                               ident,
-                                                               _src,
-                                                               keysStringList,
-                                                               &_dst,
-                                                               PEP_enc_PGP_MIME,
-                                                               flags);
+    PEP_STATUS theStatus = encrypt_message_for_self(_session,
+                                                    ident,
+                                                    _src,
+                                                    keysStringList,
+                                                    &_dst,
+                                                    PEP_enc_PGP_MIME,
+                                                    flags);
 
     free_stringlist(keysStringList);
 
@@ -363,7 +363,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([NSError setError:error fromPEPStatusInternal:theStatus]) {
         return nil;
     }
 
@@ -469,11 +469,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     message *_msg = PEP_messageToStruct(theMessage);
     PEPRating rating = PEPRatingUndefined;
 
-    PEPStatus status = (PEPStatus) ratingFunction(_session, _msg, (PEP_rating *) &rating);
+    PEP_STATUS status = ratingFunction(_session, _msg, (PEP_rating *) &rating);
 
     free_message(_msg);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return nil;
     }
 
@@ -504,11 +504,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     pEp_identity *ident = PEP_identityToStruct(identity);
     PEPRating rating = PEPRatingUndefined;
 
-    PEPStatus status = (PEPStatus) identity_rating(_session, ident, (PEP_rating *) &rating);
+    PEP_STATUS status = identity_rating(_session, ident, (PEP_rating *) &rating);
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return nil;
     }
 
@@ -534,14 +534,14 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         PEPAutoPointer *word = [PEPAutoPointer new];
         size_t size;
 
-        PEPStatus status = (PEPStatus) trustword(_session,
-                                                 value,
-                                                 [[languageID precomposedStringWithCanonicalMapping]
-                                                  UTF8String],
-                                                 word.charPointerPointer,
-                                                 &size);
+        PEP_STATUS status = trustword(_session,
+                                      value,
+                                      [[languageID precomposedStringWithCanonicalMapping]
+                                       UTF8String],
+                                      word.charPointerPointer,
+                                      &size);
 
-        if ([NSError setError:error fromPEPStatus:status]) {
+        if ([NSError setError:error fromPEPStatusInternal:status]) {
             return nil;
         }
 
@@ -555,9 +555,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) myself(_session, ident);
+    PEP_STATUS status = myself(_session, ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         free_identity(ident);
         return NO;
     }
@@ -576,9 +576,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     } else {
         pEp_identity *ident = PEP_identityToStruct(identity);
 
-        PEPStatus status = (PEPStatus) update_identity(_session, ident);
+        PEP_STATUS status = update_identity(_session, ident);
         
-        if ([NSError setError:error fromPEPStatus:status]) {
+        if ([NSError setError:error fromPEPStatusInternal:status]) {
             free_identity(ident);
             return NO;
         }
@@ -596,9 +596,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) trust_personal_key(_session, ident);
+    PEP_STATUS status = trust_personal_key(_session, ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         free_identity(ident);
         return NO;
     }
@@ -613,9 +613,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) key_mistrusted(_session, ident);
+    PEP_STATUS status = key_mistrusted(_session, ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         free_identity(ident);
         return NO;
     }
@@ -632,9 +632,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) key_reset_trust(_session, ident);
+    PEP_STATUS status = key_reset_trust(_session, ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         free_identity(ident);
         return NO;
     }
@@ -650,15 +650,15 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
                         error:(NSError * _Nullable * _Nullable)error
 {
     if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        [NSError setError:error fromPEPStatusInternal:PEP_ILLEGAL_VALUE];
         return NO;
     }
 
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) enable_identity_for_sync(_session, ident);
+    PEP_STATUS status = enable_identity_for_sync(_session, ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         free_identity(ident);
         return NO;
     }
@@ -672,15 +672,15 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
                          error:(NSError * _Nullable * _Nullable)error
 {
     if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        [NSError setError:error fromPEPStatusInternal:PEP_ILLEGAL_VALUE];
         return NO;
     }
 
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) disable_identity_for_sync(_session, ident);
+    PEP_STATUS status = disable_identity_for_sync(_session, ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         free_identity(ident);
         return NO;
     }
@@ -696,13 +696,13 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        [NSError setError:error fromPEPStatus:PEP_ILLEGAL_VALUE];
         return nil;
     }
 
-    PEPStatus status = (PEPStatus) myself(_session, ident);
+    PEP_STATUS status = myself(_session, ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         free_identity(ident);
         return nil;
     }
@@ -723,11 +723,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     identity_list *identList = NULL;
 
-    PEPStatus status = (PEPStatus) import_key(_session,
-                                              [[keydata precomposedStringWithCanonicalMapping] UTF8String],
-                                              [keydata length], &identList);
+    PEP_STATUS status = import_key(_session,
+                                   [[keydata precomposedStringWithCanonicalMapping] UTF8String],
+                                   [keydata length], &identList);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         free(identList);
         return nil;
     }
@@ -744,17 +744,17 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
          comment:(NSString * _Nullable)comment
            error:(NSError * _Nullable * _Nullable)error
 {
-    PEPStatus status = (PEPStatus) log_event(_session,
-                                             [[title precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[entity precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[description precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[comment precomposedStringWithCanonicalMapping]
-                                              UTF8String]);
+    PEP_STATUS status = log_event(_session,
+                                  [[title precomposedStringWithCanonicalMapping]
+                                   UTF8String],
+                                  [[entity precomposedStringWithCanonicalMapping]
+                                   UTF8String],
+                                  [[description precomposedStringWithCanonicalMapping]
+                                   UTF8String],
+                                  [[comment precomposedStringWithCanonicalMapping]
+                                   UTF8String]);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     } else {
         return YES;
@@ -764,9 +764,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
     char *theChars = NULL;
-    PEPStatus status = (PEPStatus) get_crashdump_log(_session, 0, &theChars);
+    PEP_STATUS status = get_crashdump_log(_session, 0, &theChars);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return nil;
     }
 
@@ -786,22 +786,21 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident1 = PEP_identityToStruct(identity1);
     pEp_identity *ident2 = PEP_identityToStruct(identity2);
-    PEPStatus status;
 
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     size_t sizeWritten = 0;
 
-    status = (PEPStatus) get_trustwords(_session, ident1, ident2,
-                                        [[language precomposedStringWithCanonicalMapping]
-                                         UTF8String],
-                                        trustwords.charPointerPointer, &sizeWritten, full);
+    PEP_STATUS status = get_trustwords(_session, ident1, ident2,
+                                       [[language precomposedStringWithCanonicalMapping]
+                                        UTF8String],
+                                       trustwords.charPointerPointer, &sizeWritten, full);
 
     free_identity(ident1);
     free_identity(ident2);
 
     NSString *result = nil;
 
-    if (![NSError setError:error fromPEPStatus:status]) {
+    if (![NSError setError:error fromPEPStatusInternal:status]) {
         result = [NSString stringWithUTF8String:trustwords.charPointer];
     }
 
@@ -817,19 +816,17 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     const char *_fpr1 = [fpr1 UTF8String]; // fprs are NFC normalized anyway
     const char *_fpr2 = [fpr2 UTF8String];
     
-    PEPStatus status;
-    
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     size_t sizeWritten = 0;
 
-    status = (PEPStatus) get_trustwords_for_fprs(_session, _fpr1, _fpr2,
-                                                 [[language precomposedStringWithCanonicalMapping]
-                                                  UTF8String],
-                                                 trustwords.charPointerPointer, &sizeWritten, full);
+    PEP_STATUS status = get_trustwords_for_fprs(_session, _fpr1, _fpr2,
+                                                [[language precomposedStringWithCanonicalMapping]
+                                                 UTF8String],
+                                                trustwords.charPointerPointer, &sizeWritten, full);
     
     NSString *result = nil;
     
-    if (![NSError setError:error fromPEPStatus:status]) {
+    if (![NSError setError:error fromPEPStatusInternal:status]) {
         result = [NSString stringWithUTF8String:trustwords.charPointer];
     }
     
@@ -839,9 +836,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
     PEPAutoPointer *chLangs = [PEPAutoPointer new];
-    PEPStatus status = (PEPStatus) get_languagelist(_session, chLangs.charPointerPointer);
+    PEP_STATUS status = get_languagelist(_session, chLangs.charPointerPointer);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return nil;
     }
 
@@ -933,11 +930,11 @@ static NSDictionary *stringToRating;
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     bool isPEP;
-    PEPStatus status = (PEPStatus) is_pEp_user(self.session, ident, &isPEP);
+    PEP_STATUS status = is_pEp_user(self.session, ident, &isPEP);
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return nil;
     } else {
         return [NSNumber numberWithBool:isPEP];
@@ -948,12 +945,12 @@ static NSDictionary *stringToRating;
             error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEPStatus status = (PEPStatus) set_own_key(self.session, ident,
-                                               [[fingerprint precomposedStringWithCanonicalMapping]
-                                                UTF8String]);
+    PEP_STATUS status = set_own_key(self.session, ident,
+                                    [[fingerprint precomposedStringWithCanonicalMapping]
+                                     UTF8String]);
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     } else {
         return YES;
@@ -970,10 +967,10 @@ static NSDictionary *stringToRating;
            error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEPStatus status = (PEPStatus) set_identity_flags(self.session, ident, flags);
+    PEP_STATUS status = set_identity_flags(self.session, ident, flags);
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     } else {
         return YES;
@@ -990,13 +987,13 @@ static NSDictionary *stringToRating;
         identitiesSharingData = PEP_identityArrayToList(identitiesSharing);
     }
 
-    PEPStatus status = (PEPStatus) deliverHandshakeResult(self.session,
+    PEP_STATUS status = deliverHandshakeResult(self.session,
                                                           (sync_handshake_result) result,
                                                           identitiesSharingData);
 
     free(identitiesSharingData);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     } else {
         return YES;
@@ -1007,10 +1004,10 @@ static NSDictionary *stringToRating;
                       error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEPStatus status = (PEPStatus) trust_own_key(self.session, ident);
+    PEP_STATUS status = trust_own_key(self.session, ident);
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     } else {
         return YES;
@@ -1030,11 +1027,11 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = PEP_identityToStruct(identity);
     const char *fpr = [[fingerprint precomposedStringWithCanonicalMapping] UTF8String];
 
-    PEPStatus status = (PEPStatus) key_reset_identity(self.session, ident, fpr);
+    PEP_STATUS status = key_reset_identity(self.session, ident, fpr);
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     } else {
         return YES;
@@ -1043,9 +1040,9 @@ static NSDictionary *stringToRating;
 
 - (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error
 {
-    PEPStatus status = (PEPStatus) leave_device_group(self.session);
+    PEP_STATUS status = leave_device_group(self.session);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     } else {
         return YES;
@@ -1054,9 +1051,9 @@ static NSDictionary *stringToRating;
 
 - (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error
 {
-    PEPStatus status = (PEPStatus) key_reset_all_own_keys(self.session);
+    PEP_STATUS status = key_reset_all_own_keys(self.session);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     } else {
         return YES;
