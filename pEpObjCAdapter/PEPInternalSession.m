@@ -24,7 +24,7 @@
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
-#import "PEPSync_Internal.h"
+#import "PEPSync_Internal.h" // for [PEPSync createSession:]
 #import "PEPInternalConstants.h"
 
 #import "key_reset.h"
@@ -38,6 +38,9 @@
         [PEPInternalSession setupTrustWordsDB];
 
         NSError *error = nil;
+
+        // Get an engine session from PEPSync, because its creation requires callbacks
+        // that PEPSync is responsible for.
         _session = [PEPSync createSession:&error];
 
         if (error) {
