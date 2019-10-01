@@ -37,13 +37,12 @@
     if (self) {
         [PEPInternalSession setupTrustWordsDB];
 
-        NSError *error = nil;
-
         // Get an engine session from PEPSync, because its creation requires callbacks
         // that PEPSync is responsible for.
-        _session = [PEPSync createSession:&error];
+        _session = [PEPSync createSession:nil];
 
-        if (error) {
+        // [PEPSync createSession:] has already logged any errors.
+        if (!_session) {
             return nil;
         }
     }
