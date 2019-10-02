@@ -13,8 +13,15 @@
  Internal methods of PEPSync.
  */
 @interface PEPSync : NSObject
+
 /**
- Creates an engine session.
+ Creates an engine session (PEP_SESSION).
+
+ PEPSync is responsible for engine session creation because the engine
+ has mandatory callback parameters on its init, which PEPSync is managing.
+
+ @param error The usual cocoa error handling.
+ @return A valid engine PEP_SESSION or NULL if there was an error.
  */
 + (PEP_SESSION _Nullable)createSession:(NSError * _Nullable * _Nullable)error;
 
