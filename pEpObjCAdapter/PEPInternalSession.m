@@ -269,6 +269,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     PEP_encrypt_flags_t flags = 0;
 
     message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
+    _src->enc_format = (PEP_enc_format) encFormat;
     message *_dst = NULL;
     stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
@@ -416,6 +417,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                     error:(NSError * _Nullable * _Nullable)error __deprecated
 {
     message *src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
+    src->enc_format = (PEP_enc_format) encFormat;
     message *dst = NULL;
 
     PEPStatus theStatus = (PEPStatus)
