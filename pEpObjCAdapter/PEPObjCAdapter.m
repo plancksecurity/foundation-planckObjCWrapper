@@ -87,12 +87,16 @@ static BOOL s_passiveModeEnabled = NO;
  */
 + (NSURL *)createApplicationDirectory
 {
+    NSString *appGroupId = @"group.security.pep.pep4ios";
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupId];
+    NSLog(@"containerUrl |%@|", containerUrl);
+
     NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
     if (!bundleID) {
         // This can happen in unit tests
         bundleID = @"test";
     }
-    NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *dirPath = nil;
     
     // Find the application support directory in the home directory.
