@@ -106,7 +106,6 @@ static BOOL s_passiveModeEnabled = NO;
     NSURL *dirPath = [containerUrl URLByAppendingPathComponent:@"pEp_home"];
 
     // If the directory does not exist, this method creates it.
-    // This method is only available in OS X v10.7 and iOS 5.0 or later.
     NSError *theError = nil;
     if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
                        attributes:nil error:&theError]) {
