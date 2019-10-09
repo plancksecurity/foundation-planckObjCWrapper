@@ -92,6 +92,17 @@ static BOOL s_passiveModeEnabled = NO;
     NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupId];
     NSLog(@"containerUrl '%@'", containerUrl);
 
+    if (containerUrl == nil) {
+        // Will happen when running tests, so fall back.
+        NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                            inDomains:NSUserDomainMask];
+        containerUrl = [appSupportDir lastObject];
+    }
+
+    if (containerUrl == nil) {
+        NSLog(@"ERROR: No app container, no application support directory.");
+    }
+
     NSURL *dirPath = [containerUrl URLByAppendingPathComponent:@"pEp_home"];
 
     // If the directory does not exist, this method creates it.
