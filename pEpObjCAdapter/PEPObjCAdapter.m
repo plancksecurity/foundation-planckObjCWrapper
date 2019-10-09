@@ -19,6 +19,11 @@
 
 const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 
+/**
+ The pEp part of the home directory (where pEp is supposed to store data).
+ */
+static NSString * const s_pEpHomeComponent = @"pEp_home";
+
 #if TARGET_OS_IPHONE
 // marked for iOS to think about what we want on macOS
 const char* _Nullable perMachineDirectory = NULL;
@@ -74,27 +79,15 @@ static BOOL s_passiveModeEnabled = NO;
 }
 
 /**
- Looks up the application support directory and creates an app-specific subdirectory under it.
+ Looks up (and creates if necessary) a pEp directory under "Application Support".
 
- Directories derived from it:
-
- * $HOME (the engine uses that).
- * The engine's per_user_directory (which is placed under $HOME).
- * The engine's per_machine_directory (for iOS).
-
- @return A URL pointing to as app-specific directory under the OS defined
-         application support directory for the current user.
+ @return A URL pointing a pEp directory under "Application Support".
  */
-+ (NSURL *)createApplicationDirectory
++ (NSURL *)createApplicationDirectoryOSX
 {
-    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
-    if (!bundleID) {
-        // This can happen in unit tests
-        bundleID = @"test";
-    }
     NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *dirPath = nil;
-    
+
     // Find the application support directory in the home directory.
     NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
                                         inDomains:NSUserDomainMask];
@@ -103,8 +96,8 @@ static BOOL s_passiveModeEnabled = NO;
         // Append the bundle ID to the URL for the
         // Application Support directory.
         // Mainly needed for OS X, but doesn't do any harm on iOS
-        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:bundleID];
-        
+        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:s_pEpHomeComponent];
+
         // If the directory does not exist, this method creates it.
         // This method is only available in OS X v10.7 and iOS 5.0 or later.
         NSError *theError = nil;
@@ -115,8 +108,64 @@ static BOOL s_passiveModeEnabled = NO;
             return nil;
         }
     }
-    
+
     return dirPath;
+}
+
+/**
+ Looks up the shared directory for pEp apps under iOS and makes sure it exists.
+
+ @return A URL pointing a pEp directory in the app container.
+*/
++ (NSURL *)createApplicationDirectoryiOS
+{
+    NSString *appGroupId = @"group.security.pep.pep4ios";
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupId];
+    NSLog(@"containerUrl '%@'", containerUrl);
+
+    if (containerUrl == nil) {
+        // Will happen when running tests, so fall back.
+        NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                            inDomains:NSUserDomainMask];
+        containerUrl = [appSupportDir lastObject];
+    }
+
+    if (containerUrl == nil) {
+        NSLog(@"ERROR: No app container, no application support directory.");
+    }
+
+    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
+
+    // If the directory does not exist, this method creates it.
+    NSError *theError = nil;
+    if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                       attributes:nil error:&theError]) {
+        NSLog(@"ERROR: Could not create pEp home directory, directly writing to app container instead.");
+    }
+
+    return dirPath;
+}
+
+/**
+ Looks up the shared directory for pEp apps under iOS and makes sure it exists.
+
+ Derived settings:
+
+ * $HOME (the engine uses that).
+ * The engine's per_user_directory (which is placed under $HOME).
+ * The engine's per_machine_directory (see [PEPObjCAdapter setPerMachineDirectory:]).
+
+ @return A URL pointing to as app-specific directory under the OS defined
+ application support directory for the current user.
+ */
++ (NSURL *)createApplicationDirectory
+{
+#if TARGET_OS_IPHONE
+    return [self createApplicationDirectoryiOS];
+#else
+    return [self createApplicationDirectoryOSX];
+#endif
 }
 
 /**
