@@ -19,6 +19,8 @@
 
 const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 
+static NSString * const s_pEpHomeComponent = @"pEp_home";
+
 #if TARGET_OS_IPHONE
 // marked for iOS to think about what we want on macOS
 const char* _Nullable perMachineDirectory = NULL;
@@ -74,18 +76,45 @@ static BOOL s_passiveModeEnabled = NO;
 }
 
 /**
+ Looks up (and creates if necessary) a pEp directory under "Application Support".
+
+ @return A URL pointing a pEp directory under "Application Support".
+ */
++ (NSURL *)createApplicationDirectoryOSX
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *dirPath = nil;
+
+    // Find the application support directory in the home directory.
+    NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                        inDomains:NSUserDomainMask];
+    if ([appSupportDir count] > 0)
+    {
+        // Append the bundle ID to the URL for the
+        // Application Support directory.
+        // Mainly needed for OS X, but doesn't do any harm on iOS
+        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:s_pEpHomeComponent];
+
+        // If the directory does not exist, this method creates it.
+        // This method is only available in OS X v10.7 and iOS 5.0 or later.
+        NSError *theError = nil;
+        if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                           attributes:nil error:&theError])
+        {
+            // Handle the error.
+            return nil;
+        }
+    }
+
+    return dirPath;
+}
+
+/**
  Looks up the shared directory for pEp apps under iOS and makes sure it exists.
 
- Derived settings:
-
- * $HOME (the engine uses that).
- * The engine's per_user_directory (which is placed under $HOME).
- * The engine's per_machine_directory (see [PEPObjCAdapter setPerMachineDirectory:]).
-
- @return A URL pointing to as app-specific directory under the OS defined
-         application support directory for the current user.
- */
-+ (NSURL *)createApplicationDirectory
+ @return A URL pointing a pEp directory in the app container.
+*/
++ (NSURL *)createApplicationDirectoryiOS
 {
     NSString *appGroupId = @"group.security.pep.pep4ios";
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -103,7 +132,7 @@ static BOOL s_passiveModeEnabled = NO;
         NSLog(@"ERROR: No app container, no application support directory.");
     }
 
-    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:@"pEp_home"];
+    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
 
     // If the directory does not exist, this method creates it.
     NSError *theError = nil;
@@ -113,6 +142,22 @@ static BOOL s_passiveModeEnabled = NO;
     }
 
     return dirPath;
+}
+
+/**
+ Looks up the shared directory for pEp apps under iOS and makes sure it exists.
+
+ Derived settings:
+
+ * $HOME (the engine uses that).
+ * The engine's per_user_directory (which is placed under $HOME).
+ * The engine's per_machine_directory (see [PEPObjCAdapter setPerMachineDirectory:]).
+
+ @return A URL pointing to as app-specific directory under the OS defined
+ application support directory for the current user.
+ */
++ (NSURL *)createApplicationDirectory
+{
 }
 
 /**
