@@ -158,6 +158,11 @@ static BOOL s_passiveModeEnabled = NO;
  */
 + (NSURL *)createApplicationDirectory
 {
+#if TARGET_OS_IPHONE
+    return [self createApplicationDirectoryiOS];
+#else
+    return [self createApplicationDirectoryOSX];
+#endif
 }
 
 /**
