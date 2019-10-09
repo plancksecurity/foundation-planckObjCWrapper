@@ -74,13 +74,13 @@ static BOOL s_passiveModeEnabled = NO;
 }
 
 /**
- Looks up the application support directory and creates an app-specific subdirectory under it.
+ Looks up the shared directory for pEp apps under iOS and makes sure it exists.
 
- Directories derived from it:
+ Derived settings:
 
  * $HOME (the engine uses that).
  * The engine's per_user_directory (which is placed under $HOME).
- * The engine's per_machine_directory (for iOS).
+ * The engine's per_machine_directory (see [PEPObjCAdapter setPerMachineDirectory:]).
 
  @return A URL pointing to as app-specific directory under the OS defined
          application support directory for the current user.
