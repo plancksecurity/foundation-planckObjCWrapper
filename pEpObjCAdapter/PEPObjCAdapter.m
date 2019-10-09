@@ -90,37 +90,8 @@ static BOOL s_passiveModeEnabled = NO;
     NSString *appGroupId = @"group.security.pep.pep4ios";
     NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupId];
-    NSLog(@"containerUrl |%@|", containerUrl);
-
-    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
-    if (!bundleID) {
-        // This can happen in unit tests
-        bundleID = @"test";
-    }
-    NSURL *dirPath = nil;
-    
-    // Find the application support directory in the home directory.
-    NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
-                                        inDomains:NSUserDomainMask];
-    if ([appSupportDir count] > 0)
-    {
-        // Append the bundle ID to the URL for the
-        // Application Support directory.
-        // Mainly needed for OS X, but doesn't do any harm on iOS
-        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:bundleID];
-        
-        // If the directory does not exist, this method creates it.
-        // This method is only available in OS X v10.7 and iOS 5.0 or later.
-        NSError *theError = nil;
-        if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
-                           attributes:nil error:&theError])
-        {
-            // Handle the error.
-            return nil;
-        }
-    }
-    
-    return dirPath;
+    NSLog(@"containerUrl '%@'", containerUrl);
+    return containerUrl;
 }
 
 /**
