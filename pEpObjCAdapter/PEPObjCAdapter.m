@@ -19,6 +19,9 @@
 
 const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 
+/**
+ The pEp part of the home directory (where pEp is supposed to store data).
+ */
 static NSString * const s_pEpHomeComponent = @"pEp_home";
 
 #if TARGET_OS_IPHONE
