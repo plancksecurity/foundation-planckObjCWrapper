@@ -91,7 +91,18 @@ static BOOL s_passiveModeEnabled = NO;
     NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupId];
     NSLog(@"containerUrl '%@'", containerUrl);
-    return containerUrl;
+
+    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:@"pEp_home"];
+
+    // If the directory does not exist, this method creates it.
+    // This method is only available in OS X v10.7 and iOS 5.0 or later.
+    NSError *theError = nil;
+    if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                       attributes:nil error:&theError]) {
+        NSLog(@"ERROR: Could not create pEp home directory, directly writing to app container instead.");
+    }
+
+    return dirPath;
 }
 
 /**
