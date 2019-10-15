@@ -75,23 +75,6 @@
 
 #pragma mark - DEBUG UTILS
 
-/**
- Saves the given message dict as a plist to the local filesystem
- (directly under NSApplicationSupportDirectory).
- Since the complete output file will be logged by `debugSaveToFilePath`,
- you can get access to the files easily when it's the simulator.
- */
-- (void)debugOutPutMessageDict:(PEPDict * _Nonnull)src
-{
-    NSString *from = src[kPepFrom][kPepAddress];
-    NSArray *tos = src[kPepTo];
-    NSString *to = tos[0][kPepAddress];
-    NSString *msgID = src[kPepID];
-    NSString *fileName = [NSString stringWithFormat:@"%@_from(%@)_%@",
-                          to, from, msgID];
-    [src debugSaveToFilePath:fileName];
-}
-
 #pragma mark - PEPSessionProtocol
 
 void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
@@ -272,8 +255,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *_dst = NULL;
     stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
-    PEPStatus theStatus = (PEPStatus) encrypt_message(
-                                                      _session,
+    PEPStatus theStatus = (PEPStatus) encrypt_message(_session,
                                                       _src,
                                                       _keys,
                                                       &_dst,
@@ -397,7 +379,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                        extraKeys:extraKeys
                        status:status
                        error:error];
-
     if (target) {
         PEPMessage *encrypted = [PEPMessage new];
         [encrypted setValuesForKeysWithDictionary:target];

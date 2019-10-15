@@ -18,14 +18,6 @@
 @protocol PEPSessionProtocol <NSObject>
 
 /** Decrypt a message */
-- (PEPDict * _Nullable)decryptMessageDict:(PEPMutableDict * _Nonnull)messageDict
-                                    flags:(PEPDecryptFlags * _Nullable)flags
-                                   rating:(PEPRating * _Nullable)rating
-                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
-
-/** Decrypt a message */
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
                                    flags:(PEPDecryptFlags * _Nullable)flags
                                   rating:(PEPRating * _Nullable)rating
@@ -34,28 +26,11 @@
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Re-evaluate rating of decrypted message */
-- (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
-                     xKeyList:(PEPStringList *_Nullable)xKeyList
-                       rating:(PEPRating * _Nonnull)rating
-                       status:(PEPStatus * _Nullable)status
-                        error:(NSError * _Nullable * _Nullable)error __deprecated;
-
-/** Re-evaluate rating of decrypted message */
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
                  xKeyList:(PEPStringList *_Nullable)xKeyList
                    rating:(PEPRating * _Nonnull)rating
                    status:(PEPStatus * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error;
-
-/**
- Encrypt a message dictionary, indicating the encoding format.
- @note The resulting message dict could be the input one.
- */
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                encFormat:(PEPEncFormat)encFormat
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
 
 /**
  Encrypt a message, indicating the encoding format
@@ -73,13 +48,6 @@
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
-/** Encrypt a message dict for the given own identity */
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
-                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
-
 /** Encrypt a message for the given own identity */
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
@@ -87,15 +55,7 @@
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
-/** Encrypt a message dict to the given recipient FPR, attaching the private key */
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                    toFpr:(NSString * _Nonnull)toFpr
-                                encFormat:(PEPEncFormat)encFormat
-                                    flags:(PEPDecryptFlags)flags
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
-
-/** Encrypt a message dict to the given recipient FPR, attaching the private key */
+/** Encrypt a message to the given recipient FPR, attaching the private key */
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                    toFpr:(NSString * _Nonnull)toFpr
                                encFormat:(PEPEncFormat)encFormat
@@ -128,7 +88,6 @@
 /**
  Supply an account used by our user himself. The identity is supplemented with the missing parts
 
- An identity is a `NSDictionary` mapping a field name as `NSString` to different values.
  An identity can have the following fields (all other keys are ignored).
  It is not necessary to supply all fields; missing fields are supplemented by p≡p engine.
 
@@ -143,11 +102,9 @@
  As an example:
 
  User has a mailbox. The mail address is "Dipul Khatri <dipul@inboxcube.com>". Then this would be:
-
- NSDictionary *ident = [NSDictionary dictionaryWithObjectsAndKeys:
- @"Dipul Khatri", @"username", @"dipul@inboxcube.com", @"address",
- @"23", @"user_id", nil];
-
+ username = @"Dipul Khatri"
+ address= @"dipul@inboxcube.com"
+ user_id" = 23"
  */
 - (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error;
 
@@ -161,21 +118,18 @@
 
 /**
  Mark a key as trusted with a person.
- See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
 - (BOOL)trustPersonalKey:(PEPIdentity * _Nonnull)identity
                    error:(NSError * _Nullable * _Nullable)error;
 
 /**
  if a key is not trusted by the user tell this using this message
- See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
 - (BOOL)keyMistrusted:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
- See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
  */
 - (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error;
