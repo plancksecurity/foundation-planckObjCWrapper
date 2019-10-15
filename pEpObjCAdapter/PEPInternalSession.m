@@ -807,7 +807,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         result = [NSString stringWithUTF8String:trustwords.charPointer];
     }
 
-    return result;
+    return [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
 - (NSString * _Nullable)getTrustwordsFpr1:(NSString * _Nonnull)fpr1
@@ -835,7 +835,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         result = [NSString stringWithUTF8String:trustwords.charPointer];
     }
     
-    return result;
+    return [result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
