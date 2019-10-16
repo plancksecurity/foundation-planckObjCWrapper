@@ -41,24 +41,6 @@
     [PEPSessionProvider cleanup];
 }
 
-- (PEPDict * _Nullable)decryptMessageDict:(PEPMutableDict * _Nonnull)messageDict
-                                    flags:(PEPDecryptFlags * _Nullable)flags
-                                   rating:(PEPRating * _Nullable)rating
-                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    RETURN_ON_ERROR(session, error, nil);
-    return [session
-            decryptMessageDict:messageDict
-            flags:flags
-            rating:rating
-            extraKeys:extraKeys
-            status:status
-            error:error];
-}
-
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
                                    flags:(PEPDecryptFlags * _Nullable)flags
                                   rating:(PEPRating * _Nullable)rating
@@ -77,21 +59,6 @@
             error:error];
 }
 
-- (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
-                     xKeyList:(PEPStringList * _Nullable)xKeyList
-                       rating:(PEPRating * _Nonnull)rating
-                       status:(PEPStatus * _Nullable)status
-                        error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    RETURN_ON_ERROR(session, error, NO);
-    return [session reEvaluateMessageDict:messageDict
-                                 xKeyList:xKeyList
-                                   rating:rating
-                                   status:status
-                                    error:error];
-}
-
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
                  xKeyList:(PEPStringList * _Nullable)xKeyList
                    rating:(PEPRating * _Nonnull)rating
@@ -105,22 +72,6 @@
                                rating:rating
                                status:status
                                 error:error];
-}
-
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                    extraKeys:(PEPStringList * _Nullable)extraKeys
-                                encFormat:(PEPEncFormat)encFormat
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    RETURN_ON_ERROR(session, error, nil);
-    return [session
-            encryptMessageDict:messageDict
-            extraKeys:extraKeys
-            encFormat:encFormat
-            status:status
-            error:error];
 }
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
@@ -149,22 +100,6 @@
     return [session encryptMessage:message extraKeys:extraKeys status:status error:error];
 }
 
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
-                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    RETURN_ON_ERROR(session, error, nil);
-    return [session
-            encryptMessageDict:messageDict
-            forSelf:ownIdentity
-            extraKeys:extraKeys
-            status:status
-            error:error];
-}
-
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
@@ -177,24 +112,6 @@
             encryptMessage:message
             forSelf:ownIdentity
             extraKeys:extraKeys
-            status:status
-            error:error];
-}
-
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                    toFpr:(NSString * _Nonnull)toFpr
-                                encFormat:(PEPEncFormat)encFormat
-                                    flags:(PEPDecryptFlags)flags
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    RETURN_ON_ERROR(session, error, nil);
-    return [session
-            encryptMessageDict:messageDict
-            toFpr:toFpr
-            encFormat:encFormat
-            flags:flags
             status:status
             error:error];
 }
