@@ -1502,6 +1502,72 @@
     [self shutdownSync];
 }
 
+/// Reproduces the essential parts of IOS-1943.
+- (void)testExtraKeysRating
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    // Our test user :
+    // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
+    // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
+
+    NSString *aliceFingerprint = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
+    PEPIdentity *identAlice = [[PEPIdentity alloc]
+                               initWithAddress:@"pep.test.alice@pep-project.org"
+                               userID:ownUserId
+                               userName:@"pEp Test Alice"
+                               isOwn:NO
+                               fingerPrint:aliceFingerprint];
+    [self updateAndVerifyPartnerIdentity:identAlice session:session];
+
+    PEPMessage *myMsg = [PEPMessage new];
+    myMsg.direction = PEPMsgDirectionOutgoing;
+    myMsg.from = identMe;
+    myMsg.to = @[identAlice];
+
+    NSNumber *outRating = [session outgoingRatingForMessage:myMsg error:&error];
+    XCTAssertNotNil(outRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(outRating.intValue, PEPRatingReliable);
+
+    XCTAssertNil(error);
+    XCTAssertTrue([session trustPersonalKey:identAlice error:&error]);
+
+    outRating = [session outgoingRatingForMessage:myMsg error:&error];
+    XCTAssertNotNil(outRating);
+    XCTAssertNil(error);
+    XCTAssertEqual(outRating.intValue, PEPRatingTrusted);
+
+    PEPStatus status;
+    PEPMessage *encryptedMsgWithoutExtraKeys = [session
+                                                encryptMessage:myMsg
+                                                extraKeys:@[]
+                                                status:&status
+                                                error:&error];
+    XCTAssertNotNil(encryptedMsgWithoutExtraKeys);
+    XCTAssertNil(error);
+    XCTAssertEqual(status, PEPStatusOK);
+
+    PEPMessage *encryptedMsgWithExtraKeys = [session
+                                             encryptMessage:myMsg
+                                             extraKeys:@[aliceFingerprint]
+                                             status:&status
+                                             error:&error];
+    XCTAssertNotNil(encryptedMsgWithExtraKeys);
+    XCTAssertNil(error);
+    XCTAssertEqual(status, PEPStatusOK);
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
