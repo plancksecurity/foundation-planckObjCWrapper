@@ -1516,7 +1516,7 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    // Our test user :
+    // Our extra keys user:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
     XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
@@ -1533,20 +1533,12 @@
     PEPMessage *myMsg = [PEPMessage new];
     myMsg.direction = PEPMsgDirectionOutgoing;
     myMsg.from = identMe;
-    myMsg.to = @[identAlice];
+    myMsg.to = @[identMe];
 
     NSNumber *outRating = [session outgoingRatingForMessage:myMsg error:&error];
     XCTAssertNotNil(outRating);
     XCTAssertNil(error);
-    XCTAssertEqual(outRating.intValue, PEPRatingReliable);
-
-    XCTAssertNil(error);
-    XCTAssertTrue([session trustPersonalKey:identAlice error:&error]);
-
-    outRating = [session outgoingRatingForMessage:myMsg error:&error];
-    XCTAssertNotNil(outRating);
-    XCTAssertNil(error);
-    XCTAssertEqual(outRating.intValue, PEPRatingTrusted);
+    XCTAssertEqual(outRating.intValue, PEPRatingTrustedAndAnonymized);
 
     PEPStatus status;
     PEPMessage *encryptedMsgWithoutExtraKeys = [session
@@ -1566,6 +1558,30 @@
     XCTAssertNotNil(encryptedMsgWithExtraKeys);
     XCTAssertNil(error);
     XCTAssertEqual(status, PEPStatusOK);
+
+    PEPDecryptFlags flags;
+    PEPRating rating;
+    NSArray *extraKeysWithoutExtraKeys;
+    PEPMessage *decryptedMsgWithoutExtraKeys = [session
+                                                decryptMessage:encryptedMsgWithoutExtraKeys
+                                                flags:&flags
+                                                rating:&rating
+                                                extraKeys:&extraKeysWithoutExtraKeys
+                                                status:&status
+                                                error:&error];
+    XCTAssertNotNil(decryptedMsgWithoutExtraKeys);
+    XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+
+    NSArray *extraKeysWithExtraKeys;
+    PEPMessage *decryptedMsgWithExtraKeys = [session
+                                             decryptMessage:encryptedMsgWithExtraKeys
+                                             flags:&flags
+                                             rating:&rating
+                                             extraKeys:&extraKeysWithExtraKeys
+                                             status:&status
+                                             error:&error];
+    XCTAssertNotNil(decryptedMsgWithExtraKeys);
+    XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
 }
 
 #pragma mark - Helpers
