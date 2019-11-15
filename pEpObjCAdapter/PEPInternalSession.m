@@ -1024,7 +1024,7 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error
+- (BOOL)leaveDeviceGroup:(NSError * _Nullable * _Nullable)error
 {
     PEPStatus status = (PEPStatus) leave_device_group(self.session);
 

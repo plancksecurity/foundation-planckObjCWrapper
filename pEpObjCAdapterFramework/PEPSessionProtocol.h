@@ -279,7 +279,7 @@
            error:(NSError * _Nullable * _Nullable)error;
 
 /** Wraps leave_device_group. */
-- (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error;
+- (BOOL)leaveDeviceGroup:(NSError * _Nullable * _Nullable)error;
 
 /**
  Revoke and mistrust all own keys. See key_reset_all_own_keys for details.
