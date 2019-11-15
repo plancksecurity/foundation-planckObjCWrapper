@@ -1313,7 +1313,7 @@
     [self startSync];
 
     error = nil;
-    XCTAssertTrue([session leaveDeviceGroupError:&error]);
+    XCTAssertTrue([session leaveDeviceGroup:&error]);
     XCTAssertNil(error);
 
     [self shutdownSync];

@@ -167,9 +167,7 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
     PEPSyncHandshakeSignalAcceptedDeviceAdded = 6, // SYNC_NOTIFY_ACCEPTED_DEVICE_ADDED
     PEPSyncHandshakeSignalAcceptedGroupCreated = 7, // SYNC_NOTIFY_ACCEPTED_GROUP_CREATED
 
-    PEPSyncHandshakeSignalOvertaken = 9, // SYNC_NOTIFY_OVERTAKEN
-
-    PEPSyncHandshakeSignalFormingGroup = 10, // SYNC_NOTIFY_FORMING_GROUP
+    PEPSyncHandshakeSignalAcceptedDeviceAccepted = 8, // SYNC_NOTIFY_ACCEPTED_DEVICE_ACCEPTED
 
     PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE
     PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP
