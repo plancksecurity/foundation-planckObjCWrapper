@@ -31,9 +31,7 @@ typedef void (^deleteOp)(id);
 
 - (void)purge:(deleteOp)del;
 
-/**
- Removes all objects from the queue.
- */
+/// Removes all objects from the queue.
 - (void)removeAllObjects;
 
 @end
