@@ -175,10 +175,7 @@ static __weak PEPSync *s_pEpSync;
 {
     if (self.syncThread) {
         [self injectSyncEvent:nil];
-        [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
-        [self.conditionLockForJoiningSyncThread unlock];
     }
-    self.conditionLockForJoiningSyncThread = nil;
 }
 
 // MARK: - Private
@@ -249,7 +246,11 @@ static __weak PEPSync *s_pEpSync;
         [self.queue enqueue:value];
     } else {
         [self.queue prequeue:value];
+        [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
+        [self.conditionLockForJoiningSyncThread unlock];
+        self.conditionLockForJoiningSyncThread = nil;
     }
+
     return 0;
 }
 
