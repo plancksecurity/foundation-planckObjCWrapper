@@ -157,6 +157,8 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
+    self.isRunning = YES;
+
     // Make sure queue is empty when we start.
     [self.queue removeAllObjects];
 
@@ -176,11 +178,6 @@ static __weak PEPSync *s_pEpSync;
     if (self.syncThread) {
         [self injectSyncEvent:nil];
     }
-}
-
-- (BOOL)isRunning
-{
-    return self.conditionLockForJoiningSyncThread != nil;
 }
 
 // MARK: - Private
@@ -225,6 +222,8 @@ static __weak PEPSync *s_pEpSync;
     } else {
         os_log_error(s_logger, "could not create session for starting the sync loop");
     }
+
+    self.isRunning = NO;
 
     os_log(s_logger, "sync loop finished");
 
