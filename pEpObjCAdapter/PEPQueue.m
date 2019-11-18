@@ -31,11 +31,11 @@
     return self;
 }
 
-/// A block that gets called to modify the queue model.
+/// A block that gets called to modify the queue model (internal).
 typedef void (^queueOp)(NSMutableArray *queue);
 
 /// Lock the queue and calls the given block.
-/// @param block The block to invoke once the queue is locked.
+/// @param block The block to invoke once the queue is locked (internal).
 - (void)lockQueueAndUpdateWithBlock:(queueOp)block
 {
     [_cond lock];
