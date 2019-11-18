@@ -41,7 +41,7 @@
 
 - (void)tearDown
 {
-    [self shutdownSync];
+    [self shutdownSyncCheckIfRunning:NO];
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -1316,7 +1316,10 @@
     XCTAssertTrue([session leaveDeviceGroup:&error]);
     XCTAssertNil(error);
 
-    [self shutdownSync];
+    // leaving a device group should disable sync
+    XCTAssertFalse(self.sync.isRunning);
+
+    [self shutdownSyncCheckIfRunning:NO];
 }
 
 #pragma mark - enable/disable sync
@@ -1499,7 +1502,7 @@
     XCTAssertNotNil(decryptedNewBeacon);
     XCTAssertNil(error);
 
-    [self shutdownSync];
+    [self shutdownSyncCheckIfRunning:YES];
 }
 
 #pragma mark - Helpers
@@ -1514,6 +1517,7 @@
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
+
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
@@ -1530,7 +1534,7 @@
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-    [self shutdownSync];
+    [self shutdownSyncCheckIfRunning:YES];
 }
 
 - (void)startSync
@@ -1542,11 +1546,23 @@
                  initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
     [self.sync startup];
+
+    XCTKVOExpectation *expHaveStartedSync = [[XCTKVOExpectation alloc]
+                                             initWithKeyPath:@"isRunning"
+                                             object:self.sync
+                                             expectedValue: [NSNumber numberWithBool:YES]];
+    [self waitForExpectations:@[expHaveStartedSync] timeout:PEPTestInternalSyncTimeout];
+
+    XCTAssertTrue(self.sync.isRunning);
 }
 
-- (void)shutdownSync
+- (void)shutdownSyncCheckIfRunning:(BOOL)checkIfRunning
 {
+    if (checkIfRunning) {
+        XCTAssertTrue(self.sync.isRunning);
+    }
     [self.sync shutdown];
+    XCTAssertFalse(self.sync.isRunning);
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
