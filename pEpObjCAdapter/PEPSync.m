@@ -180,7 +180,7 @@ static __weak PEPSync *s_pEpSync;
 
 - (BOOL)isRunning
 {
-    return NO;
+    return self.conditionLockForJoiningSyncThread != nil;
 }
 
 // MARK: - Private
