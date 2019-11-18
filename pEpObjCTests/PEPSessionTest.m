@@ -1470,6 +1470,8 @@
     XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
     XCTAssertNil(error);
 
+    XCTAssertTrue(self.sync.isRunning);
+
     XCTKVOExpectation *expHaveMessage2 = [[XCTKVOExpectation alloc]
                                           initWithKeyPath:@"lastMessage"
                                           object:self.sendMessageDelegate];
