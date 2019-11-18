@@ -243,7 +243,13 @@ static __weak PEPSync *s_pEpSync;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event
 {
-    [self.queue enqueue:[NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)]];
+    NSValue *value = [NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)];
+
+    if (event) {
+        [self.queue enqueue:value];
+    } else {
+        [self.queue prequeue:value];
+    }
     return 0;
 }
 
