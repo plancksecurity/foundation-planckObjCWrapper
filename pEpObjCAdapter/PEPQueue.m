@@ -40,9 +40,19 @@
     }
     
     [_cond signal];
-    
     [_cond unlock];
-    
+}
+
+- (void)prequeue:(id)object
+{
+    [_cond lock];
+
+    if (_queue) {
+        [_queue addObject:object];
+    }
+
+    [_cond signal];
+    [_cond unlock];
 }
 
 - (id)timedDequeue:(time_t*)timeout

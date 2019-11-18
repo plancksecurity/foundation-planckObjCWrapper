@@ -18,6 +18,11 @@ typedef void (^deleteOp)(id);
 /// @param object The object to put into the queue.
 - (void)enqueue:(id)object;
 
+/// Puts an object into the queue, so that it will be dequeued before the
+/// existing objects.
+/// @param object The object to put into the queue.
+- (void)prequeue:(id)object;
+
 - (id)timedDequeue:(time_t*)timeout;
 
 - (id)dequeue;
