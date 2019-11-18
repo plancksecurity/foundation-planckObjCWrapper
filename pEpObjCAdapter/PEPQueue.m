@@ -31,28 +31,35 @@
     return self;
 }
 
-- (void)enqueue:(id)object
+/// A block that gets called to modify the queue model.
+typedef void (^queueOp)(NSMutableArray *queue);
+
+/// Lock the queue and calls the given block.
+/// @param block The block to invoke once the queue is locked.
+- (void)lockQueueAndUpdateWithBlock:(queueOp)block
 {
     [_cond lock];
-    
+
     if (_queue) {
-        [_queue insertObject:object atIndex:0];
+        block(_queue);
     }
-    
+
     [_cond signal];
     [_cond unlock];
 }
 
+- (void)enqueue:(id)object
+{
+    [self lockQueueAndUpdateWithBlock:^(NSMutableArray *queue){
+        [queue insertObject:object atIndex:0];
+    }];
+}
+
 - (void)prequeue:(id)object
 {
-    [_cond lock];
-
-    if (_queue) {
-        [_queue addObject:object];
-    }
-
-    [_cond signal];
-    [_cond unlock];
+    [self lockQueueAndUpdateWithBlock:^(NSMutableArray *queue){
+        [queue addObject:object];
+    }];
 }
 
 - (id)timedDequeue:(time_t*)timeout
