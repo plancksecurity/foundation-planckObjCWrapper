@@ -178,6 +178,11 @@ static __weak PEPSync *s_pEpSync;
     }
 }
 
+- (BOOL)isRunning
+{
+    return NO;
+}
+
 // MARK: - Private
 
 + (void)initialize

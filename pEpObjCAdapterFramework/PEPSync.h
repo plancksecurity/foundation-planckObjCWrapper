@@ -48,4 +48,7 @@
  */
 - (void)shutdown;
 
+/// Is the sync loop running?
+- (BOOL)isRunning;
+
 @end
