@@ -17,6 +17,9 @@
 
 @protocol PEPSessionProtocol <NSObject>
 
+/// Boolean for whether pEp sync is enabled (running) or not.
+- (BOOL)isKeySyncEnabled;
+
 /** Decrypt a message */
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
                                    flags:(PEPDecryptFlags * _Nullable)flags

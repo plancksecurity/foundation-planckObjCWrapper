@@ -18,10 +18,6 @@
  */
 @interface PEPSync : NSObject
 
-/// Is the sync loop running?
-@property (nonatomic) BOOL isRunning;
-
-
 @property (nonatomic, nullable, weak) id<PEPSendMessageDelegate> sendMessageDelegate;
 @property (nonatomic, nullable, weak) id<PEPNotifyHandshakeDelegate> notifyHandshakeDelegate;
 

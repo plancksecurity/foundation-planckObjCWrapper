@@ -1317,7 +1317,7 @@
     XCTAssertNil(error);
 
     // leaving a device group should disable sync
-    XCTAssertFalse(self.sync.isRunning);
+    XCTAssertFalse(session.isKeySyncEnabled);
 
     [self shutdownSyncCheckIfRunning:NO];
 }
@@ -1470,7 +1470,7 @@
     XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
     XCTAssertNil(error);
 
-    XCTAssertTrue(self.sync.isRunning);
+    XCTAssertTrue(session.isKeySyncEnabled);
 
     XCTKVOExpectation *expHaveMessage2 = [[XCTKVOExpectation alloc]
                                           initWithKeyPath:@"lastMessage"
@@ -1555,16 +1555,16 @@
                                              expectedValue: [NSNumber numberWithBool:YES]];
     [self waitForExpectations:@[expHaveStartedSync] timeout:PEPTestInternalSyncTimeout];
 
-    XCTAssertTrue(self.sync.isRunning);
+    XCTAssertTrue([[PEPSession new] isKeySyncEnabled]);
 }
 
 - (void)shutdownSyncCheckIfRunning:(BOOL)checkIfRunning
 {
     if (checkIfRunning) {
-        XCTAssertTrue(self.sync.isRunning);
+        XCTAssertTrue([[PEPSession new] isKeySyncEnabled]);
     }
     [self.sync shutdown];
-    XCTAssertFalse(self.sync.isRunning);
+    XCTAssertFalse([[PEPSession new] isKeySyncEnabled]);
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage

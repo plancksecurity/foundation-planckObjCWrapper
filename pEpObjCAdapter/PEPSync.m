@@ -9,6 +9,7 @@
 #import <os/log.h>
 
 #import "PEPSync.h"
+#import "PEPSync_Internal.h"
 
 #import "pEpEngine.h"
 
@@ -23,6 +24,8 @@
 #import "PEPInternalSession.h"
 
 // MARK: - Internals
+
+BOOL g_isKeySyncEnabled = NO;
 
 static os_log_t s_logger;
 
@@ -158,6 +161,7 @@ static __weak PEPSync *s_pEpSync;
 - (void)startup
 {
     self.isRunning = YES;
+    g_isKeySyncEnabled = YES;
 
     // Make sure queue is empty when we start.
     [self.queue removeAllObjects];
@@ -224,6 +228,7 @@ static __weak PEPSync *s_pEpSync;
     }
 
     self.isRunning = NO;
+    g_isKeySyncEnabled = NO;
 
     os_log(s_logger, "sync loop finished");
 

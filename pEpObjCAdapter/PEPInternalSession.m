@@ -24,6 +24,7 @@
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
 #import "NSMutableDictionary+PEP.h"
+#import "PEPSync.h"
 #import "PEPSync_Internal.h" // for [PEPSync createSession:]
 #import "PEPInternalConstants.h"
 
@@ -76,6 +77,11 @@
 #pragma mark - DEBUG UTILS
 
 #pragma mark - PEPSessionProtocol
+
+- (BOOL)isKeySyncEnabled
+{
+    return g_isKeySyncEnabled;
+}
 
 void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 {
