@@ -9,13 +9,10 @@
 #ifndef PEPSync_Internal_h
 #define PEPSync_Internal_h
 
-/// Is pEp sync running or not?
-extern BOOL g_isKeySyncEnabled;
-
 /**
  Internal methods of PEPSync.
  */
-@interface PEPSync()
+@interface PEPSync : NSObject
 
 /**
  Creates an engine session (PEP_SESSION).

@@ -41,15 +41,6 @@
     [PEPSessionProvider cleanup];
 }
 
-- (BOOL)isKeySyncEnabled
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    if (session == nil) {
-        return NO;
-    }
-    return session.isKeySyncEnabled;
-}
-
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
                                    flags:(PEPDecryptFlags * _Nullable)flags
                                   rating:(PEPRating * _Nullable)rating
