@@ -12,7 +12,7 @@
 /**
  Internal methods of PEPSync.
  */
-@interface PEPSync : NSObject
+@interface PEPSync ()
 
 /**
  Creates an engine session (PEP_SESSION).

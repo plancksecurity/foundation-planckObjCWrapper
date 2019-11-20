@@ -1316,6 +1316,9 @@
     XCTAssertTrue([session leaveDeviceGroup:&error]);
     XCTAssertNil(error);
 
+    // leaving a device group should disable sync
+    XCTAssertTrue(self.notifyHandshakeDelegate.engineDidShutdownKeySync);
+
     [self shutdownSync];
 }
 
@@ -1514,6 +1517,7 @@
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
+
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);

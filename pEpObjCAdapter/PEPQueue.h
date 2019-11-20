@@ -10,9 +10,18 @@
 
 typedef void (^deleteOp)(id);
 
+/// FiFo queue.
 @interface PEPQueue : NSObject
 
+/// Puts an object into the queue (FiFo, first in, first out, so that the objects
+/// that were put in before are dequeued before this one).
+/// @param object The object to put into the queue.
 - (void)enqueue:(id)object;
+
+/// Puts an object into the queue, so that it will be dequeued before the
+/// existing objects.
+/// @param object The object to put into the queue.
+- (void)prequeue:(id)object;
 
 - (id)timedDequeue:(time_t*)timeout;
 
@@ -22,9 +31,7 @@ typedef void (^deleteOp)(id);
 
 - (void)purge:(deleteOp)del;
 
-/**
- Removes all objects from the queue.
- */
+/// Removes all objects from the queue.
 - (void)removeAllObjects;
 
 @end

@@ -18,4 +18,9 @@
     return PEPStatusOK;
 }
 
+- (void)engineShutdownKeySync
+{
+    self.engineDidShutdownKeySync = YES;
+}
+
 @end

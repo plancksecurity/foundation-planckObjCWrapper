@@ -8,9 +8,10 @@
 
 #import <os/log.h>
 
-#import "PEPSync.h"
-
 #import "pEpEngine.h"
+
+#import "PEPSync.h"
+#import "PEPSync_Internal.h"
 
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
@@ -49,7 +50,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 - (PEP_STATUS)messageToSend:(struct _message *)msg;
 
-- (int)injectSyncEvent:(SYNC_EVENT)event;
+- (int)injectSyncEvent:(SYNC_EVENT)event isFromShutdown:(BOOL)isFromShutdown;
 
 - (PEP_STATUS)notifyHandshake:(pEp_identity *)me
                       partner:(pEp_identity *)partner
@@ -77,7 +78,9 @@ static int s_inject_sync_event(SYNC_EVENT ev, void *management)
     PEPSync *pEpSync = [PEPSync instance];
 
     if (pEpSync) {
-        return [pEpSync injectSyncEvent:ev];
+        // The inject comes from the engine, so we know it's not the
+        // adapter client calling shutdown.
+        return [pEpSync injectSyncEvent:ev isFromShutdown:NO];
     } else {
         return 1;
     }
@@ -174,11 +177,8 @@ static __weak PEPSync *s_pEpSync;
 - (void)shutdown
 {
     if (self.syncThread) {
-        [self injectSyncEvent:nil];
-        [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
-        [self.conditionLockForJoiningSyncThread unlock];
+        [self injectSyncEvent:nil isFromShutdown:YES];
     }
-    self.conditionLockForJoiningSyncThread = nil;
 }
 
 // MARK: - Private
@@ -241,9 +241,23 @@ static __weak PEPSync *s_pEpSync;
     }
 }
 
-- (int)injectSyncEvent:(SYNC_EVENT)event
+- (int)injectSyncEvent:(SYNC_EVENT)event isFromShutdown:(BOOL)isFromShutdown
 {
-    [self.queue enqueue:[NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)]];
+    NSValue *value = [NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)];
+
+    if (event) {
+        [self.queue enqueue:value];
+    } else {
+        [self.queue prequeue:value];
+        [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
+        [self.conditionLockForJoiningSyncThread unlock];
+        self.conditionLockForJoiningSyncThread = nil;
+        if (!isFromShutdown) {
+            // Only inform the delegate if the shutdown came from the engine
+            [self.notifyHandshakeDelegate engineShutdownKeySync];
+        }
+    }
+
     return 0;
 }
 
