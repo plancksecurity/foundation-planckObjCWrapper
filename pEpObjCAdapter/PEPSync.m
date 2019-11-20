@@ -25,8 +25,6 @@
 
 // MARK: - Internals
 
-BOOL g_isKeySyncEnabled = NO;
-
 static os_log_t s_logger;
 
 typedef PEP_STATUS (* t_messageToSendCallback)(struct _message *msg);
@@ -160,8 +158,6 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
-    g_isKeySyncEnabled = YES;
-
     // Make sure queue is empty when we start.
     [self.queue removeAllObjects];
 
@@ -225,8 +221,6 @@ static __weak PEPSync *s_pEpSync;
     } else {
         os_log_error(s_logger, "could not create session for starting the sync loop");
     }
-
-    g_isKeySyncEnabled = NO;
 
     os_log(s_logger, "sync loop finished");
 
