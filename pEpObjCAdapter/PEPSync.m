@@ -250,6 +250,7 @@ static __weak PEPSync *s_pEpSync;
         [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
         [self.conditionLockForJoiningSyncThread unlock];
         self.conditionLockForJoiningSyncThread = nil;
+        [self.notifyHandshakeDelegate keySyncDisabled];
     }
 
     return 0;
