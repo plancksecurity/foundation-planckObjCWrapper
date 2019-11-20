@@ -41,7 +41,7 @@
 
 - (void)tearDown
 {
-    [self shutdownSyncCheckIfRunning:NO];
+    [self shutdownSync];
     [self pEpCleanUp];
     [super tearDown];
 }
@@ -1317,9 +1317,9 @@
     XCTAssertNil(error);
 
     // leaving a device group should disable sync
-    XCTAssertFalse(session.isKeySyncEnabled);
+    XCTAssertTrue(self.notifyHandshakeDelegate.keySyncDisabled);
 
-    [self shutdownSyncCheckIfRunning:NO];
+    [self shutdownSync];
 }
 
 #pragma mark - enable/disable sync
@@ -1470,8 +1470,6 @@
     XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
     XCTAssertNil(error);
 
-    XCTAssertTrue(session.isKeySyncEnabled);
-
     XCTKVOExpectation *expHaveMessage2 = [[XCTKVOExpectation alloc]
                                           initWithKeyPath:@"lastMessage"
                                           object:self.sendMessageDelegate];
@@ -1504,7 +1502,7 @@
     XCTAssertNotNil(decryptedNewBeacon);
     XCTAssertNil(error);
 
-    [self shutdownSyncCheckIfRunning:YES];
+    [self shutdownSync];
 }
 
 #pragma mark - Helpers
@@ -1536,7 +1534,7 @@
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
-    [self shutdownSyncCheckIfRunning:YES];
+    [self shutdownSync];
 }
 
 - (void)startSync
@@ -1548,17 +1546,12 @@
                  initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
     [self.sync startup];
-
-    XCTAssertTrue([[PEPSession new] isKeySyncEnabled]);
 }
 
-- (void)shutdownSyncCheckIfRunning:(BOOL)checkIfRunning
+- (void)shutdownSync
 {
-    if (checkIfRunning) {
-        XCTAssertTrue([[PEPSession new] isKeySyncEnabled]);
-    }
     [self.sync shutdown];
-    XCTAssertFalse([[PEPSession new] isKeySyncEnabled]);
+    XCTAssertTrue(self.notifyHandshakeDelegate.keySyncDisabled);
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
