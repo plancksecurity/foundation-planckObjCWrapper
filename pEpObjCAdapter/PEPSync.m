@@ -160,7 +160,6 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
-    self.isRunning = YES;
     g_isKeySyncEnabled = YES;
 
     // Make sure queue is empty when we start.
@@ -227,7 +226,6 @@ static __weak PEPSync *s_pEpSync;
         os_log_error(s_logger, "could not create session for starting the sync loop");
     }
 
-    self.isRunning = NO;
     g_isKeySyncEnabled = NO;
 
     os_log(s_logger, "sync loop finished");

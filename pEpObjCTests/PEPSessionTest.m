@@ -1549,12 +1549,6 @@
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
     [self.sync startup];
 
-    XCTKVOExpectation *expHaveStartedSync = [[XCTKVOExpectation alloc]
-                                             initWithKeyPath:@"isRunning"
-                                             object:self.sync
-                                             expectedValue: [NSNumber numberWithBool:YES]];
-    [self waitForExpectations:@[expHaveStartedSync] timeout:PEPTestInternalSyncTimeout];
-
     XCTAssertTrue([[PEPSession new] isKeySyncEnabled]);
 }
 
