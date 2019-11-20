@@ -18,4 +18,9 @@
     return PEPStatusOK;
 }
 
+- (void)keySyncDisabled
+{
+    self.engineDisabledKeySync = YES;
+}
+
 @end

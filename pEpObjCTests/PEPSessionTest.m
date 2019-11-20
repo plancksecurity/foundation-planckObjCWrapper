@@ -1317,7 +1317,7 @@
     XCTAssertNil(error);
 
     // leaving a device group should disable sync
-    XCTAssertTrue(self.notifyHandshakeDelegate.keySyncDisabled);
+    XCTAssertTrue(self.notifyHandshakeDelegate.engineDisabledKeySync);
 
     [self shutdownSync];
 }
@@ -1551,7 +1551,6 @@
 - (void)shutdownSync
 {
     [self.sync shutdown];
-    XCTAssertTrue(self.notifyHandshakeDelegate.keySyncDisabled);
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage

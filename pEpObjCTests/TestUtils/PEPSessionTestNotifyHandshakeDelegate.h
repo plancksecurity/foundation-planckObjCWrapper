@@ -13,6 +13,6 @@
 @interface PEPSessionTestNotifyHandshakeDelegate : NSObject<PEPNotifyHandshakeDelegate>
 
 /// This is set to YES if the _engine_ shut the sync loop down.
-@property (nonatomic) BOOL keySyncDisabled;
+@property (nonatomic) BOOL engineDisabledKeySync;
 
 @end
