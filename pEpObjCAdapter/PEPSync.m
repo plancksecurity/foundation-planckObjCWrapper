@@ -50,7 +50,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 - (PEP_STATUS)messageToSend:(struct _message *)msg;
 
-- (int)injectSyncEvent:(SYNC_EVENT)event;
+- (int)injectSyncEvent:(SYNC_EVENT)event isFromShutdown:(BOOL)isFromShutdown;
 
 - (PEP_STATUS)notifyHandshake:(pEp_identity *)me
                       partner:(pEp_identity *)partner
@@ -78,7 +78,9 @@ static int s_inject_sync_event(SYNC_EVENT ev, void *management)
     PEPSync *pEpSync = [PEPSync instance];
 
     if (pEpSync) {
-        return [pEpSync injectSyncEvent:ev];
+        // The inject comes from the engine, so we know it's not the
+        // adapter client calling shutdown.
+        return [pEpSync injectSyncEvent:ev isFromShutdown:NO];
     } else {
         return 1;
     }
@@ -175,7 +177,7 @@ static __weak PEPSync *s_pEpSync;
 - (void)shutdown
 {
     if (self.syncThread) {
-        [self injectSyncEvent:nil];
+        [self injectSyncEvent:nil isFromShutdown:YES];
     }
 }
 
@@ -239,7 +241,7 @@ static __weak PEPSync *s_pEpSync;
     }
 }
 
-- (int)injectSyncEvent:(SYNC_EVENT)event
+- (int)injectSyncEvent:(SYNC_EVENT)event isFromShutdown:(BOOL)isFromShutdown
 {
     NSValue *value = [NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)];
 
@@ -250,7 +252,10 @@ static __weak PEPSync *s_pEpSync;
         [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
         [self.conditionLockForJoiningSyncThread unlock];
         self.conditionLockForJoiningSyncThread = nil;
-        [self.notifyHandshakeDelegate keySyncDisabled];
+        if (!isFromShutdown) {
+            // Only inform the delegate if the shutdown came from the engine
+            [self.notifyHandshakeDelegate keySyncDisabled];
+        }
     }
 
     return 0;
