@@ -17,24 +17,22 @@
  */
 @protocol PEPNotifyHandshakeDelegate <NSObject>
 
-/**
- Requests the app to show a handshake dialog, or change the icon that represents
- the key-sync state (as in, grouped, or sole, etc.).
-
- After the dialog has been shown, the user's choices can be communicated back to the engine
- via [PEPSessionProtocol deliverHandshakeResult:identitiesSharing:error].
-
- @param object This can be used to thread information from the app through the sync-loop back to
-               the app. Currently unused and always nil.
- @param me The own identity.
-           Note that in some cases, only the most essential properties are set.
- @param partner The partner identity.
-                Note that in some cases, only the most essential properties are set.
- @param signal The kind of action that is happening or requested.
- @return A status indicating errors in the immediate/synchronous handling of the call.
-         The (delayed) response from the user are communicated to the engine
-         via separate method calls, as noted in the discussion.
- */
+/// Requests the app to show a handshake dialog, or change the icon that represents
+/// the key-sync state (as in, grouped, or sole, etc.).
+///
+/// After the dialog has been shown, the user's choices can be communicated back to the engine
+/// via [PEPSessionProtocol deliverHandshakeResult:identitiesSharing:error].
+///
+/// @param object This can be used to thread information from the app through the sync-loop back to
+///   the app. Currently unused and always nil.
+/// @param me The own identity.
+///   Note that in some cases, only the most essential properties are set.
+/// @param partner The partner identity.
+///   Note that in some cases, only the most essential properties are set.
+/// @param signal The kind of action that is happening or requested.
+/// @return A status indicating errors in the immediate/synchronous handling of the call.
+///   The (delayed) response from the user are communicated to the engine
+///   via separate method calls, as noted in the discussion.
 - (PEPStatus)notifyHandshake:(void * _Nullable)object
                           me:(PEPIdentity * _Nonnull)me
                      partner:(PEPIdentity * _Nonnull)partner
