@@ -38,7 +38,8 @@
                      partner:(PEPIdentity * _Nonnull)partner
                       signal:(PEPSyncHandshakeSignal)signal;
 
-/// Sent when the sync loop was shut down
-- (void)keySyncDisabled;
+/// Sent when the sync loop was shut down by the engine,
+/// e.g. in response to leving the device group
+- (void)engineShutdownKeySync;
 
 @end

@@ -18,9 +18,9 @@
     return PEPStatusOK;
 }
 
-- (void)keySyncDisabled
+- (void)engineShutdownKeySync
 {
-    self.engineDisabledKeySync = YES;
+    self.engineDidShutdownKeySync = YES;
 }
 
 @end

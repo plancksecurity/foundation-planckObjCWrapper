@@ -254,7 +254,7 @@ static __weak PEPSync *s_pEpSync;
         self.conditionLockForJoiningSyncThread = nil;
         if (!isFromShutdown) {
             // Only inform the delegate if the shutdown came from the engine
-            [self.notifyHandshakeDelegate keySyncDisabled];
+            [self.notifyHandshakeDelegate engineShutdownKeySync];
         }
     }
 
