@@ -160,17 +160,23 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
+    if (self.syncThread != nil) {
+        // already started
+        return;
+    }
+
+    NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
+                                                      selector:@selector(syncThreadLoop:)
+                                                        object:nil];
+    theSyncThread.name = @"pEp-sync-loop";
+    self.syncThread = theSyncThread;
+
     // Make sure queue is empty when we start.
     [self.queue removeAllObjects];
 
     [self assureMainSessionExists];
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
-    NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
-                                                      selector:@selector(syncThreadLoop:)
-                                                        object:nil];
-    theSyncThread.name = @"pEp-sync-loop";
-    self.syncThread = theSyncThread;
     [theSyncThread start];
 }
 
