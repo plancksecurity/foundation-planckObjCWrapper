@@ -1266,6 +1266,33 @@
     }
 }
 
+/// Test the disable of sync via myself.
+- (void)testNoBeaconOnMyself
+{
+    PEPSession *session = [PEPSession new];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe pEpSyncEnabled:NO error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    [NSThread sleepForTimeInterval:2];
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    [self shutdownSync];
+}
+
 #pragma mark - key_reset_identity
 
 - (void)testKeyResetIdentity
