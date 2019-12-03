@@ -85,7 +85,19 @@
                                       shortened:(BOOL)shortened
                                           error:(NSError * _Nullable * _Nullable)error;
 
-/// Marks an identity as an own identity.
+/// Marks an identity as an own identity, not changing its participation in pEp sync.
+///
+/// @return Returns YES on success, NO on error, setting `*error` accordingly if possible.
+///
+/// @note See the engine's myself function for details.
+///
+/// @param identity The identity to mark as own.
+///
+/// @param error Standard cocoa error handling.
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
+         error:(NSError * _Nullable * _Nullable)error;
+
+/// Marks an identity as an own identity, and decides about participation in pEp sync.
 ///
 /// @return Returns YES on success, NO on error, setting `*error` accordingly if possible.
 ///
