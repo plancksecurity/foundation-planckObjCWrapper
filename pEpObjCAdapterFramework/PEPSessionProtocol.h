@@ -86,8 +86,7 @@
                                           error:(NSError * _Nullable * _Nullable)error;
 
 /// Marks an identity as an own identity.
-/// @return Returns YES on success, NO on error, setting `*error` accordingly if possible
-/// (standard cocoa error handling).
+/// @return Returns YES on success, NO on error, setting `*error` accordingly if possible.
 /// @note See the engine's myself function for details.
 /// @param identity The identity to mark as own.
 /// @param pEpSyncEnabled Whether to enable sync, or not. Will set PEP_idf_not_for_sync
