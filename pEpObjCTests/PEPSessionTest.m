@@ -1228,9 +1228,7 @@
 
 #pragma mark - Sync
 
-/**
- Prove that mySelf triggers a message to be sent.
- */
+/// Prove that mySelf triggers a message to be sent.
 - (void)testBasicSendMessage
 {
     PEPSession *session = [PEPSession new];
