@@ -535,8 +535,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return array;
 }
 
-- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
-{
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
+pEpSyncEnabled:(BOOL)pEpSyncEnabled
+         error:(NSError * _Nullable * _Nullable)error {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     PEPStatus status = (PEPStatus) myself(_session, ident);

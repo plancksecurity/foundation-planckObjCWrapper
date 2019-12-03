@@ -85,28 +85,17 @@
                                       shortened:(BOOL)shortened
                                           error:(NSError * _Nullable * _Nullable)error;
 
-/**
- Supply an account used by our user himself. The identity is supplemented with the missing parts
-
- An identity can have the following fields (all other keys are ignored).
- It is not necessary to supply all fields; missing fields are supplemented by p≡p engine.
-
- @"username": real name or nick name (if pseudonymous) of identity
- @"address": URI or SMTP address
- @"user_id": persistent unique ID for the *user* that belongs to the identity.
-                A user can have multiple identities which all of them MUST use the same user_id.
- @"lang": preferred languageID for communication with this ID (default: @"en")
- @"fpr": fingerprint of key to use for communication with this ID
- @"comm_type": communication type code (usually not needed)
-
- As an example:
-
- User has a mailbox. The mail address is "Dipul Khatri <dipul@inboxcube.com>". Then this would be:
- username = @"Dipul Khatri"
- address= @"dipul@inboxcube.com"
- user_id" = 23"
- */
-- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error;
+/// Marks an identity as an own identity.
+/// @return Returns YES on success, NO on error, setting `*error` accordingly if possible
+/// (standard cocoa error handling).
+/// @note See the engine's myself function for details.
+/// @param identity The identity to mark as own.
+/// @param pEpSyncEnabled Whether to enable sync, or not. Will set PEP_idf_not_for_sync
+/// accordingly.
+/// @param error Standard cocoa error handling.
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
+pEpSyncEnabled:(BOOL)pEpSyncEnabled
+         error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Supplement missing information for an arbitrary identity (used for communication partners).

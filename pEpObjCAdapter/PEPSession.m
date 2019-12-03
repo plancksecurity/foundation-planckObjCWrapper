@@ -172,11 +172,12 @@
             error:error];
 }
 
-- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
-{
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
+pEpSyncEnabled:(BOOL)pEpSyncEnabled
+         error:(NSError * _Nullable * _Nullable)error {
     PEPInternalSession *session = [PEPSessionProvider session];
     RETURN_ON_ERROR(session, error, NO);
-    return [session mySelf:identity error:error];
+    return [session mySelf:identity pEpSyncEnabled:pEpSyncEnabled error:error];
 }
 
 - (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity
