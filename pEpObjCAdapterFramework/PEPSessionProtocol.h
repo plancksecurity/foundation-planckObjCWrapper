@@ -86,22 +86,31 @@
                                           error:(NSError * _Nullable * _Nullable)error;
 
 /// Marks an identity as an own identity.
+///
 /// @return Returns YES on success, NO on error, setting `*error` accordingly if possible.
+///
 /// @note See the engine's myself function for details.
+///
 /// @param identity The identity to mark as own.
+///
 /// @param pEpSyncEnabled Whether to enable sync, or not. Will set PEP_idf_not_for_sync
 /// accordingly.
+///
 /// @param error Standard cocoa error handling.
 - (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
 pEpSyncEnabled:(BOOL)pEpSyncEnabled
          error:(NSError * _Nullable * _Nullable)error;
 
 /// Calls the engine's update_identity on the given identity.
+///
 /// @note Prior this was invoking myself if the identity was identified as being an own
 /// identity, but this not the case anymore, since it cannot decide if the identity should
 /// participate in pEp sync or not.
+///
 /// @return Returns YES on success, NO on error, setting `*error` accordingly if possible.
+///
 /// @param identity The identity for which to call update_identity.
+/// 
 /// @param error Standart cocoa error handling.
 - (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity
                  error:(NSError * _Nullable * _Nullable)error;
