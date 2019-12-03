@@ -549,6 +549,10 @@ pEpSyncEnabled:(BOOL)pEpSyncEnabled
          error:(NSError * _Nullable * _Nullable)error {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
+    if (!pEpSyncEnabled) {
+        ident->flags |= PEP_idf_not_for_sync;
+    }
+
     PEPStatus status = (PEPStatus) myself(_session, ident);
 
     if ([NSError setError:error fromPEPStatus:status]) {
