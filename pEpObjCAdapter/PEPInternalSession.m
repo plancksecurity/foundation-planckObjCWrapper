@@ -556,24 +556,20 @@ pEpSyncEnabled:(BOOL)pEpSyncEnabled
 
 - (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
 {
-    if (identity.isOwn) {
-        return [self mySelf:identity error:error];
-    } else {
-        pEp_identity *ident = PEP_identityToStruct(identity);
+    pEp_identity *ident = PEP_identityToStruct(identity);
 
-        PEPStatus status = (PEPStatus) update_identity(_session, ident);
-        
-        if ([NSError setError:error fromPEPStatus:status]) {
-            free_identity(ident);
-            return NO;
-        }
+    PEPStatus status = (PEPStatus) update_identity(_session, ident);
 
-        [identity reset];
-        [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
+    if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
-
-        return YES;
+        return NO;
     }
+
+    [identity reset];
+    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
+    free_identity(ident);
+
+    return YES;
 }
 
 - (BOOL)trustPersonalKey:(PEPIdentity * _Nonnull)identity

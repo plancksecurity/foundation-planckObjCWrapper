@@ -97,11 +97,13 @@
 pEpSyncEnabled:(BOOL)pEpSyncEnabled
          error:(NSError * _Nullable * _Nullable)error;
 
-/**
- Supplement missing information for an arbitrary identity (used for communication partners).
- Will call the engine's myself() or update_identity() internally, depending on the given
- identity.
- */
+/// Calls the engine's update_identity on the given identity.
+/// @note Prior this was invoking myself if the identity was identified as being an own
+/// identity, but this not the case anymore, since it cannot decide if the identity should
+/// participate in pEp sync or not.
+/// @return Returns YES on success, NO on error, setting `*error` accordingly if possible.
+/// @param identity The identity for which to call update_identity.
+/// @param error Standart cocoa error handling.
 - (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity
                  error:(NSError * _Nullable * _Nullable)error;
 
