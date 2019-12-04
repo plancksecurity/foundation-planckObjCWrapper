@@ -535,9 +535,23 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return array;
 }
 
-- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
+         error:(NSError * _Nullable * _Nullable)error
 {
+    // The default for pEpSyncEnabled is YES, that means the adapter
+    // will not change the engine identity in that regard after new_identity
+    // (called by PEP_identityToStruct).
+    return [self mySelf:identity pEpSyncEnabled:YES error:error];
+}
+
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
+pEpSyncEnabled:(BOOL)pEpSyncEnabled
+         error:(NSError * _Nullable * _Nullable)error {
     pEp_identity *ident = PEP_identityToStruct(identity);
+
+    if (!pEpSyncEnabled) {
+        ident->flags |= PEP_idf_not_for_sync;
+    }
 
     PEPStatus status = (PEPStatus) myself(_session, ident);
 
@@ -561,7 +575,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         pEp_identity *ident = PEP_identityToStruct(identity);
 
         PEPStatus status = (PEPStatus) update_identity(_session, ident);
-        
+
         if ([NSError setError:error fromPEPStatus:status]) {
             free_identity(ident);
             return NO;
