@@ -1291,6 +1291,38 @@
     [self shutdownSync];
 }
 
+/// ENGINE-684
+- (void)testMyselfWithQueryKeySyncEnabledForIdentity
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMeEnabled = [[PEPIdentity alloc]
+                                   initWithAddress:@"me-myself-and-i-enabled@pep-project.org"
+                                   userID:@"me-myself-and-i-enabled"
+                                   userName:@"pEp Me Enabled"
+                                   isOwn:YES];
+
+    PEPIdentity *identMeDisabled = [[PEPIdentity alloc]
+                                    initWithAddress:@"me-myself-and-i-disabled@pep-project.org"
+                                    userID:@"me-myself-and-i-disabled"
+                                    userName:@"pEp Me Disabled"
+                                    isOwn:YES];
+
+    for (PEPIdentity *ident in @[identMeEnabled, identMeDisabled]) {
+        BOOL expectEnabled = ident == identMeEnabled ? YES : NO;
+
+        NSError *error = nil;
+        XCTAssertTrue([session mySelf:identMeEnabled pEpSyncEnabled:expectEnabled error:&error]);
+        XCTAssertNil(error);
+
+        NSNumber *enabledNum = [session queryKeySyncEnabledForIdentity:identMeEnabled error:&error];
+        XCTAssertNotNil(enabledNum);
+        XCTAssertNil(error);
+
+        XCTAssertEqual([enabledNum boolValue], expectEnabled);
+    }
+}
+
 #pragma mark - key_reset_identity
 
 - (void)testKeyResetIdentity
