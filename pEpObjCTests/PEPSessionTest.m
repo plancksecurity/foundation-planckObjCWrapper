@@ -1292,6 +1292,51 @@
     [self shutdownSync];
 }
 
+/// Test creating an identity with pEp sync enabled,
+/// starting the sync loop and then creating a 2nd own identity with pEp sync disabled.
+/// Make sure there is a beacon sent out for the 1st, but not for the 2nd identity.
+- (void)testNoBeaconOnMyselfOnSecondIdentity
+{
+    PEPSession *session = [PEPSession new];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMe1 = [[PEPIdentity alloc]
+                             initWithAddress:@"me-myself-and-i-1@pep-project.org"
+                             userID:@"me-myself-and-i-1"
+                             userName:@"pEp Me"
+                             isOwn:YES];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe1 pEpSyncEnabled:YES error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
+                                          initWithKeyPath:@"lastMessage"
+                                          object:self.sendMessageDelegate];
+    [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+
+    PEPIdentity *identMe2 = [[PEPIdentity alloc]
+                             initWithAddress:@"me-myself-and-i-2@pep-project.org"
+                             userID:@"me-myself-and-i-2"
+                             userName:@"pEp Me"
+                             isOwn:YES];
+
+    XCTAssertTrue([session mySelf:identMe2 pEpSyncEnabled:NO error:&error]);
+    XCTAssertNil(error);
+
+    [NSThread sleepForTimeInterval:2];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+
+    [self shutdownSync];
+}
+
 /// ENGINE-684
 - (void)testMyselfWithQueryKeySyncEnabledForIdentity
 {
