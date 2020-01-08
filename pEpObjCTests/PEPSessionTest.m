@@ -1302,8 +1302,9 @@
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
 
+    NSString *emailAddress1 = @"me-myself-and-i-1@pep-project.org";
     PEPIdentity *identMe1 = [[PEPIdentity alloc]
-                             initWithAddress:@"me-myself-and-i-1@pep-project.org"
+                             initWithAddress:emailAddress1
                              userID:@"me-myself-and-i-1"
                              userName:@"pEp Me"
                              isOwn:YES];
@@ -1332,7 +1333,13 @@
 
     [NSThread sleepForTimeInterval:2];
 
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+    // Make sure all beacon messages are for the pEp sync enabled identity.
+    for (PEPMessage *msg in self.sendMessageDelegate.messages) {
+        XCTAssertEqualObjects(msg.from.address, emailAddress1);
+        for (PEPIdentity *receiver in msg.to) {
+            XCTAssertEqualObjects(receiver.address, emailAddress1);
+        }
+    }
 
     [self shutdownSync];
 }
