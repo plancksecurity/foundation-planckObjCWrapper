@@ -549,15 +549,25 @@ pEpSyncEnabled:(BOOL)pEpSyncEnabled
          error:(NSError * _Nullable * _Nullable)error {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    if (!pEpSyncEnabled) {
-        ident->flags |= PEP_idf_not_for_sync;
-    }
-
     PEPStatus status = (PEPStatus) myself(_session, ident);
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
         return NO;
+    }
+
+    if (!pEpSyncEnabled) {
+        // If pEp sync shall be disabled for the given identity,
+        // immediately announce this to the engine.
+        // If myself ever receives an additional parameter for deciding that,
+        // use it.
+        // See  https://pep.foundation/jira/browse/ENGINE-675?focusedCommentId=26860&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-26860
+        BOOL success = [self disableSyncForIdentity:identity error:error];
+
+        if (!success) {
+            free_identity(ident);
+            return NO;
+        }
     }
 
     [identity reset];
