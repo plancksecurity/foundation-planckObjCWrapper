@@ -1264,8 +1264,9 @@
     }
 }
 
-/// Test the disable of sync via myself.
-- (void)testNoBeaconOnMyself
+/// Test creating the 1st own identity with pEp sync disabled.
+/// Make sure there is no beacon sent out.
+- (void)testNoBeaconOnMyselfOnFirstIdentity
 {
     PEPSession *session = [PEPSession new];
 
