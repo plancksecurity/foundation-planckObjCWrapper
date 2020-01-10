@@ -1279,7 +1279,9 @@
                             isOwn:YES];
 
     NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe pEpSyncEnabled:NO error:&error]);
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
     XCTAssertNil(error);
 
     [self startSync];
@@ -1312,10 +1314,15 @@
         BOOL expectEnabled = ident == identMeEnabled ? YES : NO;
 
         NSError *error = nil;
-        XCTAssertTrue([session mySelf:identMeEnabled pEpSyncEnabled:expectEnabled error:&error]);
+        XCTAssertTrue([session mySelf:ident error:&error]);
         XCTAssertNil(error);
 
-        NSNumber *enabledNum = [session queryKeySyncEnabledForIdentity:identMeEnabled error:&error];
+        if (!expectEnabled) {
+            XCTAssertTrue([session disableSyncForIdentity:ident error:&error]);
+            XCTAssertNil(error);
+        }
+
+        NSNumber *enabledNum = [session queryKeySyncEnabledForIdentity:ident error:&error];
         XCTAssertNotNil(enabledNum);
         XCTAssertNil(error);
 
