@@ -198,6 +198,7 @@ static NSArray *s_keys;
     self.userID = nil;
     self.userName = nil;
     self.isOwn = NO;
+    self.flags = 0;
 }
 
 - (BOOL)enableKeySync:(NSError * _Nullable * _Nullable)error
