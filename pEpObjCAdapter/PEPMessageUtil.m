@@ -146,6 +146,10 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
     }
 
     if (dict && ident) {
+        if ([dict objectForKey:@"flags"]) {
+            ident->flags = [[dict objectForKey:@"flags"] intValue];
+        }
+
         if ([dict objectForKey:@"lang"])
             strncpy(ident->lang, [[[dict objectForKey:@"lang"]
                                    precomposedStringWithCanonicalMapping] UTF8String], 2);
@@ -180,6 +184,7 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
             [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
         
         [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:kPepCommType];
+        [dict setObject:[NSNumber numberWithInt: ident->flags] forKey:@"flags"];
     }
     return dict;
 }
@@ -198,6 +203,7 @@ pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
                                          precomposedStringWithCanonicalMapping] UTF8String]);
 
     ident->me = identity.isOwn;
+    ident->flags = identity.flags;
 
     if (identity.language) {
         strncpy(ident->lang, [[identity.language
@@ -236,6 +242,7 @@ PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
     identity.commType = (PEPCommType) ident->comm_type;
 
     identity.isOwn = ident->me;
+    identity.flags = ident->flags;
 
     return identity;
 }
