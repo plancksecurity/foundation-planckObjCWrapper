@@ -1124,6 +1124,8 @@
         error = nil;
         XCTAssertTrue([session setFlags:(PEPIdentityFlags) aFlag forIdentity:me error:&error]);
         XCTAssertNil(error);
+
+        XCTAssertTrue(me.flags & theFlags[i]);
     }
 }
 

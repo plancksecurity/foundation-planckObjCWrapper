@@ -955,11 +955,14 @@ static NSDictionary *stringToRating;
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
     PEPStatus status = (PEPStatus) set_identity_flags(self.session, ident, flags);
-    free_identity(ident);
 
     if ([NSError setError:error fromPEPStatus:status]) {
+        free_identity(ident);
         return NO;
     } else {
+        [identity reset];
+        [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
+        free_identity(ident);
         return YES;
     }
 }
