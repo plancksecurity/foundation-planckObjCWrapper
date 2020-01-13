@@ -66,3 +66,5 @@ NSString *const _Nonnull kPepIsOwnIdentity = @"kPepIsOwnIdentity";
 NSString *const _Nonnull kPepHeaderAutoConsume = @"pEp-auto-consume";
 
 NSString *const _Nonnull kPepValueAutoConsumeYes = @"yes";
+
+NSString *const _Nonnull kPepFlags = @"flags";

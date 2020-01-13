@@ -226,7 +226,8 @@ static NSArray *s_keys;
     NSMutableArray *result = [@[ @[kPepAddress, self.address],
                                  @[kPepCommType,
                                    [NSNumber numberWithInteger:(NSInteger) self.commType]],
-                                 @[kPepIsOwnIdentity, [NSNumber numberWithBool:self.isOwn]]]
+                                 @[kPepIsOwnIdentity, [NSNumber numberWithBool:self.isOwn]],
+                                 @[kPepFlags, [NSNumber numberWithInt:self.flags]]]
                               mutableCopy];
 
     if (self.fingerPrint) {
