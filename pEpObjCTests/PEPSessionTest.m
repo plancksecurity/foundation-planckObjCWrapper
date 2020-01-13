@@ -1277,6 +1277,7 @@
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
+    identMe.flags |= PEPIdentityFlagsNotForSync;
 
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
@@ -1286,7 +1287,7 @@
 
     [self startSync];
 
-    [NSThread sleepForTimeInterval:2];
+    [NSThread sleepForTimeInterval:1];
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
@@ -1312,6 +1313,10 @@
 
     for (PEPIdentity *ident in @[identMeEnabled, identMeDisabled]) {
         BOOL expectEnabled = ident == identMeEnabled ? YES : NO;
+
+        if (!expectEnabled) {
+            ident.flags |= PEPIdentityFlagsNotForSync;
+        }
 
         NSError *error = nil;
         XCTAssertTrue([session mySelf:ident error:&error]);
