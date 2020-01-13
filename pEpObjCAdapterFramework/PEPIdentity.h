@@ -50,8 +50,9 @@
  */
 @property BOOL isOwn;
 
-/// Flags controlling pEp sync behaviour.
-@property PEPIdentityFlags flags;
+/// Flags controlling pEp sync behaviour, consisting of PEPIdentityFlags enums
+/// ORed together.
+@property int flags;
 
 /**
  Comm type contains the PEP_ct_confirmed flag?
