@@ -146,8 +146,8 @@ pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
     }
 
     if (dict && ident) {
-        if ([dict objectForKey:@"flags"]) {
-            ident->flags = [[dict objectForKey:@"flags"] intValue];
+        if ([dict objectForKey:kPepFlags]) {
+            ident->flags = [[dict objectForKey:kPepFlags] intValue];
         }
 
         if ([dict objectForKey:@"lang"])
@@ -184,7 +184,7 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
             [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
         
         [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:kPepCommType];
-        [dict setObject:[NSNumber numberWithInt: ident->flags] forKey:@"flags"];
+        [dict setObject:[NSNumber numberWithInt: ident->flags] forKey:kPepFlags];
     }
     return dict;
 }
