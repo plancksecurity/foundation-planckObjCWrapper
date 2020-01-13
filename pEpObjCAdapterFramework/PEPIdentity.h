@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "PEPSessionProtocol.h"
+#import "PEPEngineTypes.h"
 
 @class PEPSession;
 
@@ -48,6 +49,9 @@
  Is this one of our own identities?
  */
 @property BOOL isOwn;
+
+/// Flags controlling pEp sync behaviour.
+@property PEPIdentityFlags flags;
 
 /**
  Comm type contains the PEP_ct_confirmed flag?
