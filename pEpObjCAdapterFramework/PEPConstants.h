@@ -101,3 +101,6 @@ extern NSString *const _Nonnull kPepHeaderAutoConsume;
 
 /** The positive value of the header for "pEp-auto-consume". */
 extern NSString *const _Nonnull kPepValueAutoConsumeYes;
+
+/// The key to the flags, which control pEp sync behaviour of an identity
+extern NSString *const _Nonnull kPepFlags;

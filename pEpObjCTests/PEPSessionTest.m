@@ -1124,6 +1124,8 @@
         error = nil;
         XCTAssertTrue([session setFlags:(PEPIdentityFlags) aFlag forIdentity:me error:&error]);
         XCTAssertNil(error);
+
+        XCTAssertTrue(me.flags & theFlags[i]);
     }
 }
 
@@ -1264,7 +1266,7 @@
     }
 }
 
-/// Test the disable of sync via myself.
+/// Test creating a new own identity with pEp sync disabled.
 - (void)testNoBeaconOnMyself
 {
     PEPSession *session = [PEPSession new];
@@ -1277,17 +1279,73 @@
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
+    identMe.flags |= PEPIdentityFlagsNotForSync;
 
     NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe pEpSyncEnabled:NO error:&error]);
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
     XCTAssertNil(error);
 
     [self startSync];
 
-    [NSThread sleepForTimeInterval:2];
+    [NSThread sleepForTimeInterval:1];
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    [self shutdownSync];
+}
+
+/// Test creating a new own identity with pEp sync disabled,
+/// and then creating one with sync enabled, ensuring that
+/// the beacon (on the 2nd identity with sync enabled) gets send out.
+- (void)testMyselfSyncDisabledMyselfSyncEnabled
+{
+    PEPSession *session = [PEPSession new];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMeDisabled = [[PEPIdentity alloc]
+                                    initWithAddress:@"me-myself-and-i@pep-project.org"
+                                    userID:@"me-myself-and-i"
+                                    userName:@"pEp Me"
+                                    isOwn:YES];
+    identMeDisabled.flags |= PEPIdentityFlagsNotForSync;
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMeDisabled error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue([session disableSyncForIdentity:identMeDisabled error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    [NSThread sleepForTimeInterval:1];
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+
+    PEPIdentity *identMeEnsabled = [[PEPIdentity alloc]
+                                    initWithAddress:@"me-myself-and-i_enabled@pep-project.org"
+                                    userID:@"me-myself-and-i_enabled"
+                                    userName:@"pEp Me_enabled"
+                                    isOwn:YES];
+
+    error = nil;
+    XCTAssertTrue([session mySelf:identMeEnsabled error:&error]);
+    XCTAssertNil(error);
+
+    XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
+                                          initWithKeyPath:@"lastMessage"
+                                          object:self.sendMessageDelegate];
+    [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+    XCTAssertGreaterThan(self.sendMessageDelegate.messages.count, 0);
+
+    XCTAssertEqualObjects(self.sendMessageDelegate.lastMessage.from.address,
+                          identMeEnsabled.address);
+
     [self shutdownSync];
 }
 
@@ -1311,11 +1369,20 @@
     for (PEPIdentity *ident in @[identMeEnabled, identMeDisabled]) {
         BOOL expectEnabled = ident == identMeEnabled ? YES : NO;
 
+        if (!expectEnabled) {
+            ident.flags |= PEPIdentityFlagsNotForSync;
+        }
+
         NSError *error = nil;
-        XCTAssertTrue([session mySelf:identMeEnabled pEpSyncEnabled:expectEnabled error:&error]);
+        XCTAssertTrue([session mySelf:ident error:&error]);
         XCTAssertNil(error);
 
-        NSNumber *enabledNum = [session queryKeySyncEnabledForIdentity:identMeEnabled error:&error];
+        if (!expectEnabled) {
+            XCTAssertTrue([session disableSyncForIdentity:ident error:&error]);
+            XCTAssertNil(error);
+        }
+
+        NSNumber *enabledNum = [session queryKeySyncEnabledForIdentity:ident error:&error];
         XCTAssertNotNil(enabledNum);
         XCTAssertNil(error);
 
