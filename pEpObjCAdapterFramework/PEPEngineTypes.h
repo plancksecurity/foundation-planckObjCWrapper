@@ -100,6 +100,7 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusVerifyNoKey = 0x0407, // PEP_VERIFY_NO_KEY
     PEPStatusVerifiedAndTrusted = 0x0408, // PEP_VERIFIED_AND_TRUSTED
     PEPStatusCannotReencrypt = 0x0409, // PEP_CANNOT_REENCRYPT
+    PEPStatusVerifySignerKeyRevoked = 0x040a, // PEP_VERIFY_SIGNER_KEY_REVOKED
     PEPStatusCannotDecryptUnknown = 0x04ff, // PEP_CANNOT_DECRYPT_UNKNOWN
 
     PEPStatusTrustwordNotFound = 0x0501, // PEP_TRUSTWORD_NOT_FOUND
