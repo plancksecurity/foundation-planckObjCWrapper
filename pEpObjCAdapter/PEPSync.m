@@ -255,10 +255,12 @@ static __weak PEPSync *s_pEpSync;
     if (event) {
         [self.queue enqueue:value];
     } else {
-        [self.queue prequeue:value];
-        [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
-        [self.conditionLockForJoiningSyncThread unlock];
-        self.conditionLockForJoiningSyncThread = nil;
+        if ([NSThread currentThread] != self.syncThread) {
+            [self.queue prequeue:value];
+            [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
+            [self.conditionLockForJoiningSyncThread unlock];
+            self.conditionLockForJoiningSyncThread = nil;
+        }
         if (!isFromShutdown) {
             // Only inform the delegate if the shutdown came from the engine
             [self.notifyHandshakeDelegate engineShutdownKeySync];
