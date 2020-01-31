@@ -248,6 +248,11 @@ static __weak PEPSync *s_pEpSync;
     }
 }
 
+/// Injects the given event into the queue.
+/// @param event The event to inject, which may contain a nil value, which means the
+///  sync loop should stop.
+/// @param isFromShutdown This is `YES` when coming from `shutdown` itself, and `NO`
+///  otherwise (e.g., when the engine requests a shutdown by injecting a nil event.
 - (int)injectSyncEvent:(SYNC_EVENT)event isFromShutdown:(BOOL)isFromShutdown
 {
     NSValue *value = [NSValue valueWithBytes:&event objCType:@encode(SYNC_EVENT)];
@@ -255,7 +260,10 @@ static __weak PEPSync *s_pEpSync;
     if (event) {
         [self.queue enqueue:value];
     } else {
+        // This is a nil event, which means shut it all down.
         if ([NSThread currentThread] != self.syncThread) {
+            // Only do this when the shutdown is not coming in on the sync thread.
+            // Otherwise it will just exit out of the sync loop and be done.
             [self.queue prequeue:value];
             [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
             [self.conditionLockForJoiningSyncThread unlock];
