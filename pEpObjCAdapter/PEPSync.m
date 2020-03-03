@@ -37,6 +37,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
+@property BOOL haveRegisteredSyncCallbacks;
 
 /**
  @Return: The callback for message sending that should be used on every session init.
@@ -181,8 +182,13 @@ static __weak PEPSync *s_pEpSync;
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
 
     [registeredSyncCallbacks lock];
+    self.haveRegisteredSyncCallbacks = NO;
     [theSyncThread start];
-    [registeredSyncCallbacks wait];
+
+    while (!self.haveRegisteredSyncCallbacks) {
+        [registeredSyncCallbacks wait];
+    }
+
     [registeredSyncCallbacks unlock];
 }
 
@@ -223,6 +229,7 @@ static __weak PEPSync *s_pEpSync;
                                                     s_retrieve_next_sync_event);
 
         [registeredSyncCallbacks lock];
+        self.haveRegisteredSyncCallbacks = YES;
         [registeredSyncCallbacks signal];
         [registeredSyncCallbacks unlock];
 
