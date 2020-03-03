@@ -165,9 +165,11 @@ static __weak PEPSync *s_pEpSync;
         return;
     }
 
+    NSCondition *registeredSyncCallbacks = [NSCondition new];
+
     NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
                                                       selector:@selector(syncThreadLoop:)
-                                                        object:nil];
+                                                        object:registeredSyncCallbacks];
     theSyncThread.name = @"pEp-sync-loop";
     self.syncThread = theSyncThread;
 
@@ -177,7 +179,11 @@ static __weak PEPSync *s_pEpSync;
     [self assureMainSessionExists];
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
+
+    [registeredSyncCallbacks lock];
     [theSyncThread start];
+    [registeredSyncCallbacks wait];
+    [registeredSyncCallbacks unlock];
 }
 
 - (void)shutdown
@@ -204,7 +210,7 @@ static __weak PEPSync *s_pEpSync;
     PEPInternalSession *session __attribute__((unused)) = [PEPSessionProvider session];
 }
 
-- (void)syncThreadLoop:(id)object
+- (void)syncThreadLoop:(NSCondition *)registeredSyncCallbacks
 {
     [self.conditionLockForJoiningSyncThread lock];
 
@@ -215,6 +221,11 @@ static __weak PEPSync *s_pEpSync;
     if (session) {
         PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
                                                     s_retrieve_next_sync_event);
+
+        [registeredSyncCallbacks lock];
+        [registeredSyncCallbacks signal];
+        [registeredSyncCallbacks unlock];
+
         if (status == PEP_STATUS_OK) {
             status = do_sync_protocol(session.session, nil);
             if (status != PEP_STATUS_OK) {
