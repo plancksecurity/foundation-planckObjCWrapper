@@ -1287,7 +1287,7 @@
     XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
     XCTAssertNil(error);
 
-    [self startSync];
+    [self startSyncWithLastMessageExpectationEnabled:NO];
 
     [NSThread sleepForTimeInterval:1];
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
@@ -1319,7 +1319,7 @@
     XCTAssertTrue([session disableSyncForIdentity:identMeDisabled error:&error]);
     XCTAssertNil(error);
 
-    [self startSync];
+    [self startSyncWithLastMessageExpectationEnabled:NO];
 
     [NSThread sleepForTimeInterval:1];
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
@@ -1434,7 +1434,7 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    [self startSync];
+    [self startSyncWithLastMessageExpectationEnabled:NO];
 
     error = nil;
     XCTAssertTrue([session leaveDeviceGroup:&error]);
@@ -1580,11 +1580,8 @@
     XCTAssertNil(error);
     XCTAssertNotNil(identMe.fingerPrint);
 
-    [self startSync];
+    XCTKVOExpectation *expHaveMessage1 = [self startSyncWithLastMessageExpectationEnabled:YES];
 
-    XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
-                                          initWithKeyPath:@"lastMessage"
-                                          object:self.sendMessageDelegate];
     [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
@@ -1646,11 +1643,7 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    [self startSync];
-
-    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
+    XCTKVOExpectation *expHaveMessage = [self startSyncWithLastMessageExpectationEnabled:YES];
 
     XCTAssertNotNil(identMe.fingerPrint);
 
@@ -1661,15 +1654,25 @@
     [self shutdownSync];
 }
 
-- (void)startSync
+- (XCTKVOExpectation * _Nullable)startSyncWithLastMessageExpectationEnabled:(BOOL)expectationEnabled
 {
     self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
     self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
+
+    XCTKVOExpectation *expHaveMessage = nil;
+
+    if (expectationEnabled) {
+        expHaveMessage = [[XCTKVOExpectation alloc]
+                          initWithKeyPath:@"lastMessage"
+                          object:self.sendMessageDelegate];
+    }
 
     self.sync = [[PEPSync alloc]
                  initWithSendMessageDelegate:self.sendMessageDelegate
                  notifyHandshakeDelegate:self.notifyHandshakeDelegate];
     [self.sync startup];
+
+    return expHaveMessage;
 }
 
 - (void)shutdownSync
