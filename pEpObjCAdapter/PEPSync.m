@@ -37,6 +37,13 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
+
+/// Condition that gets signaled when the sync thread has registered the sync callbacks,
+/// in tandem with haveRegisteredSyncCallbacks.
+@property (nonatomic, nullable) NSCondition *haveRegisteredSyncCallbacksCondition;
+
+/// Tracks whether the sync callbacks have been registered or not, in tandem with
+/// haveRegisteredSyncCallbacksCondition.
 @property BOOL haveRegisteredSyncCallbacks;
 
 /**
@@ -166,11 +173,9 @@ static __weak PEPSync *s_pEpSync;
         return;
     }
 
-    NSCondition *registeredSyncCallbacks = [NSCondition new];
-
     NSThread *theSyncThread = [[NSThread alloc] initWithTarget:self
                                                       selector:@selector(syncThreadLoop:)
-                                                        object:registeredSyncCallbacks];
+                                                        object:nil];
     theSyncThread.name = @"pEp-sync-loop";
     self.syncThread = theSyncThread;
 
@@ -181,15 +186,16 @@ static __weak PEPSync *s_pEpSync;
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
 
-    [registeredSyncCallbacks lock];
+    self.haveRegisteredSyncCallbacksCondition = [NSCondition new];
+    [self.haveRegisteredSyncCallbacksCondition lock];
     self.haveRegisteredSyncCallbacks = NO;
     [theSyncThread start];
 
     while (!self.haveRegisteredSyncCallbacks) {
-        [registeredSyncCallbacks wait];
+        [self.haveRegisteredSyncCallbacksCondition wait];
     }
 
-    [registeredSyncCallbacks unlock];
+    [self.haveRegisteredSyncCallbacksCondition unlock];
 }
 
 - (void)shutdown
@@ -216,7 +222,7 @@ static __weak PEPSync *s_pEpSync;
     PEPInternalSession *session __attribute__((unused)) = [PEPSessionProvider session];
 }
 
-- (void)syncThreadLoop:(NSCondition *)registeredSyncCallbacks
+- (void)syncThreadLoop:(id)object
 {
     [self.conditionLockForJoiningSyncThread lock];
 
@@ -228,10 +234,10 @@ static __weak PEPSync *s_pEpSync;
         PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
                                                     s_retrieve_next_sync_event);
 
-        [registeredSyncCallbacks lock];
+        [self.haveRegisteredSyncCallbacksCondition lock];
         self.haveRegisteredSyncCallbacks = YES;
-        [registeredSyncCallbacks signal];
-        [registeredSyncCallbacks unlock];
+        [self.haveRegisteredSyncCallbacksCondition signal];
+        [self.haveRegisteredSyncCallbacksCondition unlock];
 
         if (status == PEP_STATUS_OK) {
             status = do_sync_protocol(session.session, nil);
