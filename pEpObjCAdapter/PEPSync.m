@@ -232,7 +232,9 @@ static __weak PEPSync *s_pEpSync;
     PEPInternalSession *session = [PEPSessionProvider session];
 
     if (session) {
-        PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
+        PEP_STATUS status = register_sync_callbacks(session.session,
+                                                    nil,
+                                                    s_notifyHandshake,
                                                     s_retrieve_next_sync_event);
 
         // Signal the condition "sync callbacks have been registered" to fulfilled (YES).
