@@ -36,10 +36,15 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
-@property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
+
+/// Condition lock for the condition "the sync thread has finished".
+/// Is set to NO before the sync thread is started, and set to YES shortly before
+/// the sync thread finishes.
+@property (nonatomic, nullable) NSConditionLock *conditionLockSyncThreadHasFinished;
 
 /// Condition lock that gets changed to YES when the sync thread has registered the sync callbacks,
-/// and is NO before that happens.
+/// and is NO before that happens. This is set to fulfilled (YES) regardless of succes of the
+/// registration attempt.
 @property (nonatomic, nullable) NSConditionLock *conditionLockHaveRegisteredSyncCallbacksCondition;
 
 /**
@@ -180,15 +185,16 @@ static __weak PEPSync *s_pEpSync;
 
     [self assureMainSessionExists];
 
-    self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
+    // Set the condition "sync thread has finished" to unfulfilled (NO).
+    self.conditionLockSyncThreadHasFinished = [[NSConditionLock alloc] initWithCondition:NO];
 
-    // Set the condition "sync callbacks have been registered" to unfulfilled.
+    // Set the condition "sync callbacks have been registered" to unfulfilled (NO).
     self.conditionLockHaveRegisteredSyncCallbacksCondition = [[NSConditionLock alloc]
                                                               initWithCondition:NO];
 
     [theSyncThread start];
 
-    // Wait for the condition "sync callbacks have been registered" to be fulfilled.
+    // Wait for the condition "sync callbacks have been registered" to be fulfilled (YES).
     [self.conditionLockHaveRegisteredSyncCallbacksCondition lockWhenCondition:YES];
 }
 
@@ -218,7 +224,7 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)syncThreadLoop:(id)object
 {
-    [self.conditionLockForJoiningSyncThread lock];
+    [self.conditionLockSyncThreadHasFinished lock];
     [self.conditionLockHaveRegisteredSyncCallbacksCondition lock];
 
     os_log(s_logger, "trying to start the sync loop");
@@ -229,7 +235,7 @@ static __weak PEPSync *s_pEpSync;
         PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
                                                     s_retrieve_next_sync_event);
 
-        // Signal the condition "sync callbacks have been registered" to YES.
+        // Signal the condition "sync callbacks have been registered" to fulfilled (YES).
         [self.conditionLockHaveRegisteredSyncCallbacksCondition unlockWithCondition:YES];
 
         if (status == PEP_STATUS_OK) {
@@ -252,7 +258,9 @@ static __weak PEPSync *s_pEpSync;
     session = nil;
 
     self.syncThread = nil;
-    [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
+
+    // Signal the condition "sync thread has finished" to fulfilled (YES).
+    [self.conditionLockSyncThreadHasFinished unlockWithCondition:YES];
 }
 
 - (PEP_STATUS)messageToSend:(struct _message *)msg
@@ -282,9 +290,9 @@ static __weak PEPSync *s_pEpSync;
             // Only do this when the shutdown is not coming in on the sync thread.
             // Otherwise it will just exit out of the sync loop and be done.
             [self.queue prequeue:value];
-            [self.conditionLockForJoiningSyncThread lockWhenCondition:YES];
-            [self.conditionLockForJoiningSyncThread unlock];
-            self.conditionLockForJoiningSyncThread = nil;
+            [self.conditionLockSyncThreadHasFinished lockWhenCondition:YES];
+            [self.conditionLockSyncThreadHasFinished unlock];
+            self.conditionLockSyncThreadHasFinished = nil;
         }
         if (!isFromShutdown) {
             // Only inform the delegate if the shutdown came from the engine
