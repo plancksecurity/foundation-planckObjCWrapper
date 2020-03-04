@@ -38,13 +38,9 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
 
-/// Condition that gets signaled when the sync thread has registered the sync callbacks,
-/// in tandem with haveRegisteredSyncCallbacks.
-@property (nonatomic, nullable) NSCondition *haveRegisteredSyncCallbacksCondition;
-
-/// Tracks whether the sync callbacks have been registered or not, in tandem with
-/// haveRegisteredSyncCallbacksCondition.
-@property BOOL haveRegisteredSyncCallbacks;
+/// Condition lock that gets changed to YES when the sync thread has registered the sync callbacks,
+/// and is NO before that happens.
+@property (nonatomic, nullable) NSConditionLock *conditionLockHaveRegisteredSyncCallbacksCondition;
 
 /**
  @Return: The callback for message sending that should be used on every session init.
@@ -186,16 +182,14 @@ static __weak PEPSync *s_pEpSync;
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
 
-    self.haveRegisteredSyncCallbacksCondition = [NSCondition new];
-    [self.haveRegisteredSyncCallbacksCondition lock];
-    self.haveRegisteredSyncCallbacks = NO;
+    // Set the condition "sync callbacks have been registered" to unfulfilled.
+    self.conditionLockHaveRegisteredSyncCallbacksCondition = [[NSConditionLock alloc]
+                                                              initWithCondition:NO];
+
     [theSyncThread start];
 
-    while (!self.haveRegisteredSyncCallbacks) {
-        [self.haveRegisteredSyncCallbacksCondition wait];
-    }
-
-    [self.haveRegisteredSyncCallbacksCondition unlock];
+    // Wait for the condition "sync callbacks have been registered" to be fulfilled.
+    [self.conditionLockHaveRegisteredSyncCallbacksCondition lockWhenCondition:YES];
 }
 
 - (void)shutdown
@@ -225,6 +219,7 @@ static __weak PEPSync *s_pEpSync;
 - (void)syncThreadLoop:(id)object
 {
     [self.conditionLockForJoiningSyncThread lock];
+    [self.conditionLockHaveRegisteredSyncCallbacksCondition lock];
 
     os_log(s_logger, "trying to start the sync loop");
 
@@ -234,10 +229,8 @@ static __weak PEPSync *s_pEpSync;
         PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
                                                     s_retrieve_next_sync_event);
 
-        [self.haveRegisteredSyncCallbacksCondition lock];
-        self.haveRegisteredSyncCallbacks = YES;
-        [self.haveRegisteredSyncCallbacksCondition signal];
-        [self.haveRegisteredSyncCallbacksCondition unlock];
+        // Signal the condition "sync callbacks have been registered" to YES.
+        [self.conditionLockHaveRegisteredSyncCallbacksCondition unlockWithCondition:YES];
 
         if (status == PEP_STATUS_OK) {
             status = do_sync_protocol(session.session, nil);
