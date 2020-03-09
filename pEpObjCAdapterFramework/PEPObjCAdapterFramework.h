@@ -16,16 +16,16 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterFrameworkVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <PEPObjCAdapterFramework/PublicHeader.h>
 
-#import <PEPObjCAdapterFramework/PEPIdentity.h>
-#import <PEPObjCAdapterFramework/PEPSessionProtocol.h>
-#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
-#import <PEPObjCAdapterFramework/PEPTypes.h>
-#import <PEPObjCAdapterFramework/PEPObjCAdapter.h>
-#import <PEPObjCAdapterFramework/PEPSession.h>
-#import <PEPObjCAdapterFramework/PEPMessage.h>
-#import <PEPObjCAdapterFramework/PEPConstants.h>
-#import <PEPObjCAdapterFramework/NSNumber+PEPRating.h>
-#import <PEPObjCAdapterFramework/PEPAttachment.h>
-#import <PEPObjCAdapterFramework/PEPLanguage.h>
-#import <PEPObjCAdapterFramework/NSDictionary+CommType.h>
-#import <PEPObjCAdapterFramework/PEPSync.h>
+#import "PEPIdentity.h"
+#import "PEPSessionProtocol.h"
+#import "PEPEngineTypes.h"
+#import "PEPTypes.h"
+#import "PEPObjCAdapter.h"
+#import "PEPSession.h"
+#import "PEPMessage.h"
+#import "PEPConstants.h"
+#import "NSNumber+PEPRating.h"
+#import "PEPAttachment.h"
+#import "PEPLanguage.h"
+#import "NSDictionary+CommType.h"
+#import "PEPSync.h"
