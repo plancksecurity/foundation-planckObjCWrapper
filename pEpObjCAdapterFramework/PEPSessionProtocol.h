@@ -267,7 +267,7 @@
 - (PEPColor)colorFromRating:(PEPRating)rating;
 
 /**
- Wraps key_reset_identity.
+ Wraps key_reset_user.
  */
 - (BOOL)keyReset:(PEPIdentity * _Nonnull)identity
      fingerprint:(NSString * _Nullable)fingerprint

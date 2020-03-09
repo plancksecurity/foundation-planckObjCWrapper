@@ -1017,7 +1017,7 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = PEP_identityToStruct(identity);
     const char *fpr = [[fingerprint precomposedStringWithCanonicalMapping] UTF8String];
 
-    PEPStatus status = (PEPStatus) key_reset_identity(self.session, ident, fpr);
+    PEPStatus status = (PEPStatus) key_reset_user(self.session, ident->user_id, fpr);
 
     free_identity(ident);
 
