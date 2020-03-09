@@ -21,9 +21,9 @@
 @property (nonatomic, nonnull) NSString *address;
 
 /**
- The (optional) user ID.
+ The user ID.
  */
-@property (nonatomic, nullable) NSString *userID;
+@property (nonatomic, nonnull) NSString *userID;
 
 /**
  The (optional) user name.
