@@ -57,7 +57,6 @@
 		4360AA0E2227F22900E62E5A /* PEPObjCAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		43753CFB222D4911002EE98B /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2A1ECC2ACD007E7E2E /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		437BEA9122328E570051E3A1 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
 		4396CEB82187196600FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPSessionTestSendMessageDelegate.m */; };
 		43AD0E3022E99ECE00D46F56 /* PEPInternalConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 43AD0E2E22E99ECE00D46F56 /* PEPInternalConstants.h */; };
@@ -68,14 +67,12 @@
 		43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */; };
 		43E02A231C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */; };
 		43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
 		43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; };
 		64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABB1B57F97E00377032 /* CFNetwork.framework */; };
-		64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
 		64415E481BEA523300F6CBB2 /* 6FF00E97.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E421BEA523300F6CBB2 /* 6FF00E97.asc */; };
 		64415E491BEA523300F6CBB2 /* 6FF00E97_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E431BEA523300F6CBB2 /* 6FF00E97_sec.asc */; };
 		64415E4A1BEA523300F6CBB2 /* 0x70DCF575.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E441BEA523300F6CBB2 /* 0x70DCF575.asc */; };
@@ -83,44 +80,6 @@
 		64415E4C1BEA523300F6CBB2 /* 0xC9C2EE39.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E461BEA523300F6CBB2 /* 0xC9C2EE39.asc */; };
 		64415E4D1BEA523300F6CBB2 /* C9C2EE39_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E471BEA523300F6CBB2 /* C9C2EE39_sec.asc */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		43E39863221D7E9A008E7983 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 64796A3E1B455AA5004B1C24;
-			remoteInfo = pEpEngine;
-		};
-		43E39865221D7E9A008E7983 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 644297BE1BE11C65002BC73B;
-			remoteInfo = pEpTrustWords;
-		};
-		64289E551B8B70E800FC617B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64796A3F1B455AA5004B1C24;
-			remoteInfo = pEpEngine;
-		};
-		64415E3F1BE95B2000F6CBB2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 644297BE1BE11C65002BC73B;
-			remoteInfo = pEpTrustWords;
-		};
-		64AE6B201BE15E3A000867E4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 644297BF1BE11C65002BC73B;
-			remoteInfo = pEpTrustWords;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPCopyableThread.h; sourceTree = "<group>"; };
@@ -220,7 +179,6 @@
 		64415E451BEA523300F6CBB2 /* 70DCF575_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 70DCF575_sec.asc; sourceTree = "<group>"; };
 		64415E461BEA523300F6CBB2 /* 0xC9C2EE39.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xC9C2EE39.asc; sourceTree = "<group>"; };
 		64415E471BEA523300F6CBB2 /* C9C2EE39_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = C9C2EE39_sec.asc; sourceTree = "<group>"; };
-		64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpEngine.xcodeproj; path = "../pEpEngine/build-mac/pEpEngine.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,7 +188,6 @@
 			files = (
 				43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */,
 				155674ED22B82D710097930C /* libz.dylib in Frameworks */,
-				43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +248,6 @@
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
-				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
 				43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */,
@@ -391,15 +347,6 @@
 			path = PEPObjCAdapterFramework;
 			sourceTree = "<group>";
 		};
-		64289E521B8B70E800FC617B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				64289E561B8B70E800FC617B /* libpEpEngine.a */,
-				64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		64415E181BE94FCB00F6CBB2 /* pEpObjCTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,8 +405,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				43E39864221D7E9A008E7983 /* PBXTargetDependency */,
-				43E39866221D7E9A008E7983 /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapterFramework;
 			productName = PEPObjCAdapterFramework;
@@ -477,7 +422,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				64415E401BE95B2000F6CBB2 /* PBXTargetDependency */,
 			);
 			name = pEpObjCAdapterTests;
 			productName = iOSTests;
@@ -516,12 +460,6 @@
 			mainGroup = 352988A11AEF964100FA7E2E;
 			productRefGroup = 352988AB1AEF964100FA7E2E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 64289E521B8B70E800FC617B /* Products */;
-					ProjectRef = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */,
@@ -530,29 +468,11 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		64289E561B8B70E800FC617B /* libpEpEngine.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libpEpEngine.a;
-			remoteRef = 64289E551B8B70E800FC617B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = pEpTrustWords.bundle;
-			remoteRef = 64AE6B201BE15E3A000867E4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		43E39859221D7E56008E7983 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				437BEA9122328E570051E3A1 /* pEpTrustWords.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,7 +499,6 @@
 				64415E491BEA523300F6CBB2 /* 6FF00E97_sec.asc in Resources */,
 				432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */,
 				64415E481BEA523300F6CBB2 /* 6FF00E97.asc in Resources */,
-				64415E411BE95C2800F6CBB2 /* pEpTrustWords.bundle in Resources */,
 				432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,24 +573,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		43E39864221D7E9A008E7983 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pEpEngine;
-			targetProxy = 43E39863221D7E9A008E7983 /* PBXContainerItemProxy */;
-		};
-		43E39866221D7E9A008E7983 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pEpTrustWords;
-			targetProxy = 43E39865221D7E9A008E7983 /* PBXContainerItemProxy */;
-		};
-		64415E401BE95B2000F6CBB2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pEpTrustWords;
-			targetProxy = 64415E3F1BE95B2000F6CBB2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		352988BC1AEF964100FA7E2E /* Debug */ = {
