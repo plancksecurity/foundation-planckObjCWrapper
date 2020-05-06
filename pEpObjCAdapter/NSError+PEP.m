@@ -26,10 +26,11 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
         case PEP_DECRYPT_NO_KEY:
         case PEP_KEY_IMPORTED:
         case PEP_KEY_IMPORT_STATUS_UNKNOWN:
+        /*
         case PEP_VERIFY_SIGNER_KEY_REVOKED:
             return nil;
             break;
-
+         */
         default: {
             NSDictionary *dict = [NSDictionary
                                   dictionaryWithObjectsAndKeys:localizedErrorStringFromPEPStatus(status),
