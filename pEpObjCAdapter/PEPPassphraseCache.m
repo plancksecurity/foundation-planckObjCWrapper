@@ -8,6 +8,10 @@
 
 #import "PEPPassphraseCache.h"
 
+@interface PEPPassphraseCache ()
+
+@end
+
 @implementation PEPPassphraseCache
 
 /// Internal constructor (for now).
