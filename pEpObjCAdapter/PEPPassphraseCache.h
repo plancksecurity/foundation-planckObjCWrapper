@@ -1,5 +1,5 @@
 //
-//  PEPPasswordCache.h
+//  PEPPassphraseCache.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 25.06.20.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPPasswordCache : NSObject
+@interface PEPPassphraseCache : NSObject
 
 /// Timeout of passwords in seconds, the default being 10 minutes.
 @property (nonatomic) NSUInteger timeout;

@@ -1,14 +1,14 @@
 //
-//  PEPPasswordCache.m
+//  PEPPassphraseCache.m
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 25.06.20.
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-#import "PEPPasswordCache.h"
+#import "PEPPassphraseCache.h"
 
-@implementation PEPPasswordCache
+@implementation PEPPassphraseCache
 
 /// Internal constructor (for now).
 - (instancetype)initTimeout:(NSUInteger)timeout

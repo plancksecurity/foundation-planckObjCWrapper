@@ -1,5 +1,5 @@
 //
-//  PEPPasswordCacheTest.m
+//  PEPPassphraseCacheTest.m
 //  pEpObjCAdapterTests
 //
 //  Created by Dirk Zimmermann on 25.06.20.
@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPPasswordCache.h"
+#import "PEPPassphraseCache.h"
 
 @interface PEPPasswordCacheTest : XCTestCase
 
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation PEPPasswordCacheTest
+@implementation PEPPassphraseCacheTest
 
 - (void)setUp
 {
