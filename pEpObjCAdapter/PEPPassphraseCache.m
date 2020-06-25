@@ -8,9 +8,12 @@
 
 #import "PEPPassphraseCache.h"
 
+static NSUInteger s_numberOfPassphrases = 20;
+
 @interface PEPPassphraseCache ()
 
 @property (nonatomic) dispatch_queue_t queue;
+@property (nonatomic) NSMutableArray *mutablePassphrases;
 
 @end
 
@@ -23,6 +26,7 @@
     if (self) {
         _timeout = timeout;
         _queue = dispatch_queue_create("PEPPassphraseCache Queue", DISPATCH_QUEUE_SERIAL);
+        _mutablePassphrases = [NSMutableArray arrayWithCapacity:s_numberOfPassphrases];
     }
     return self;
 }
@@ -39,7 +43,15 @@
 
 - (NSArray *)passphrases
 {
-    return @[];
+    NSMutableArray *resultingPassphrases = [NSMutableArray
+                                            arrayWithCapacity:s_numberOfPassphrases + 1];
+    [resultingPassphrases addObject:@""];
+    dispatch_sync(self.queue, ^{
+        for (NSString *passphrase in self.mutablePassphrases) {
+            [resultingPassphrases addObject:passphrase];
+        }
+    });
+    return [NSArray arrayWithArray:resultingPassphrases];
 }
 
 @end
