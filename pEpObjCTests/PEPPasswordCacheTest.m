@@ -25,16 +25,16 @@
 
 - (void)testContainsEmptyPassphrase
 {
-    XCTAssertEqual(self.cache.passwords.count, 1);
-    XCTAssertEqualObjects(self.cache.passwords, @[@""]);
+    XCTAssertEqual(self.cache.passphrases.count, 1);
+    XCTAssertEqualObjects(self.cache.passphrases, @[@""]);
 }
 
 - (void)testContainsSetPassphrase
 {
     NSString *passphrase = @"somepass";
-    [self.cache addPassword:passphrase];
-    XCTAssertEqual(self.cache.passwords.count, 2);
-    XCTAssertEqualObjects(self.cache.passwords, @[@""]);
+    [self.cache addPassphrase:passphrase];
+    XCTAssertEqual(self.cache.passphrases.count, 2);
+    XCTAssertEqualObjects(self.cache.passphrases, @[@""]);
 }
 
 @end

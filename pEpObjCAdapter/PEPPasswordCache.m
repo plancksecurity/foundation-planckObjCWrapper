@@ -26,11 +26,11 @@
     return [self initTimeout:10 * 60];
 }
 
-- (void)addPassword:(NSString *)password
+- (void)addPassphrase:(NSString *)passphrase
 {
 }
 
-- (NSArray *)passwords
+- (NSArray *)passphrases
 {
     return @[];
 }

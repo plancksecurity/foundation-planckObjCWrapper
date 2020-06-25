@@ -16,10 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSUInteger timeout;
 
 /// Add a new password.
-- (void)addPassword:(NSString *)password;
+- (void)addPassphrase:(NSString *)passphrase;
 
 /// Retrieve the current list of cached passwords, including the empty one.
-- (NSArray *)passwords;
+- (NSArray *)passphrases;
 
 @end
 
