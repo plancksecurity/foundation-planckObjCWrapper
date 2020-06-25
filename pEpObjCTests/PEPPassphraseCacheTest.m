@@ -34,7 +34,21 @@
     NSString *passphrase = @"somepass";
     [self.cache addPassphrase:passphrase];
     XCTAssertEqual(self.cache.passphrases.count, 2);
-    XCTAssertEqualObjects(self.cache.passphrases, @[@""]);
+    NSArray *expected = @[@"", passphrase];
+    XCTAssertEqualObjects(self.cache.passphrases, expected);
+}
+
+- (void)testContainsSetPassphrases
+{
+    NSString *passphrase1 = @"somepass1";
+    NSString *passphrase2 = @"somepass2";
+
+    [self.cache addPassphrase:passphrase1];
+    [self.cache addPassphrase:passphrase2];
+
+    XCTAssertEqual(self.cache.passphrases.count, 3);
+    NSArray *expected = @[@"", passphrase1, passphrase2];
+    XCTAssertEqualObjects(self.cache.passphrases, expected);
 }
 
 @end
