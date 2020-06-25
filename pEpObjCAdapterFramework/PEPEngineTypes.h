@@ -140,6 +140,10 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusMessageIgnore = 0xff03, // PEP_MESSAGE_IGNORE
     PEPStatusCannotConfig = 0xff04, // PEP_CANNOT_CONFIG
 
+    PEPStatusPassphraseRequired = 0x0a00, // PEP_PASSPHRASE_REQUIRED
+    PEPStatusWrongPassphrase = 0x0a01, // PEP_WRONG_PASSPHRASE
+    PEPStatusPassphraseForNewKeysRequired = 0x0a02, // PEP_PASSPHRASE_FOR_NEW_KEYS_REQUIRED
+
     PEPStatusRecordNotFound = -6, // PEP_RECORD_NOT_FOUND
     PEPStatusCannotCreateTempFile = -5, // PEP_CANNOT_CREATE_TEMP_FILE
     PEPStatusIllegalValue = -4, // PEP_ILLEGAL_VALUE
