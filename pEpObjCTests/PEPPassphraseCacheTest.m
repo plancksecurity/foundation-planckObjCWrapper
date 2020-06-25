@@ -10,9 +10,9 @@
 
 #import "PEPPassphraseCache.h"
 
-@interface PEPPasswordCacheTest : XCTestCase
+@interface PEPPassphraseCacheTest : XCTestCase
 
-@property (nonatomic) PEPPasswordCache *cache;
+@property (nonatomic) PEPPassphraseCache *cache;
 
 @end
 
@@ -20,7 +20,7 @@
 
 - (void)setUp
 {
-    self.cache = [[PEPPasswordCache alloc] init];
+    self.cache = [[PEPPassphraseCache alloc] init];
 }
 
 - (void)testContainsEmptyPassphrase
