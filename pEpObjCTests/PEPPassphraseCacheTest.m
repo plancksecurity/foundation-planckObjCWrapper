@@ -68,18 +68,19 @@
 
 - (void)testTwentyOnePassphrases
 {
-    NSMutableArray *passphrases = [NSMutableArray arrayWithCapacity:20];
+    NSMutableArray *expectedPassphrases = [NSMutableArray arrayWithCapacity:20];
     for (NSUInteger i = 0; i < 20; ++i) {
         NSString *newPhrase = [NSString stringWithFormat:@"passphrase_%lu", (unsigned long) i];
-        [passphrases addObject:newPhrase];
+        [expectedPassphrases addObject:newPhrase];
         [self.cache addPassphrase:newPhrase];
     }
 
     NSString *latestPassphrase = @"theLatest";
-    [passphrases replaceObjectAtIndex:0 withObject:latestPassphrase];
+    [expectedPassphrases removeObjectAtIndex:0];
+    [expectedPassphrases addObject:latestPassphrase];
 
-    XCTAssertEqual(self.cache.passphrases.count, passphrases.count + 1);
-    NSMutableArray *expected = [NSMutableArray arrayWithArray:passphrases];
+    XCTAssertEqual(self.cache.passphrases.count, expectedPassphrases.count + 1);
+    NSMutableArray *expected = [NSMutableArray arrayWithArray:expectedPassphrases];
     [expected insertObject:@"" atIndex:0];
     XCTAssertEqualObjects(self.cache.passphrases, expected);
 }
