@@ -10,6 +10,8 @@
 
 @interface PEPPassphraseCache ()
 
+@property (nonatomic) dispatch_queue_t queue;
+
 @end
 
 @implementation PEPPassphraseCache
@@ -20,6 +22,7 @@
     self = [super init];
     if (self) {
         _timeout = timeout;
+        _queue = dispatch_queue_create("PEPPassphraseCache Queue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
