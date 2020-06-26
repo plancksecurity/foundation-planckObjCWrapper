@@ -8,13 +8,15 @@
 
 #import "PEPPassphraseCache.h"
 
+#import "PEPPassphraseCacheEntry.h"
+
 static NSUInteger s_maxNumberOfPassphrases = 20;
 static NSUInteger s_defaultTimeoutInSeconds = 10 * 60;
 
 @interface PEPPassphraseCache ()
 
 @property (nonatomic) dispatch_queue_t queue;
-@property (nonatomic) NSMutableArray *mutablePassphrases;
+@property (nonatomic) NSMutableArray<PEPPassphraseCacheEntry *> *mutablePassphrases;
 
 @end
 
@@ -40,8 +42,10 @@ static NSUInteger s_defaultTimeoutInSeconds = 10 * 60;
 
 - (void)addPassphrase:(NSString *)passphrase
 {
+    PEPPassphraseCacheEntry *entry = [[PEPPassphraseCacheEntry alloc]
+                                      initWithPassphrase:passphrase];
     dispatch_sync(self.queue, ^{
-        [self.mutablePassphrases addObject:passphrase];
+        [self.mutablePassphrases addObject:entry];
         if (self.mutablePassphrases.count > s_maxNumberOfPassphrases) {
             [self.mutablePassphrases removeObjectAtIndex:0];
         }
@@ -54,8 +58,8 @@ static NSUInteger s_defaultTimeoutInSeconds = 10 * 60;
                                             arrayWithCapacity:s_maxNumberOfPassphrases + 1];
     [resultingPassphrases addObject:@""];
     dispatch_sync(self.queue, ^{
-        for (NSString *passphrase in self.mutablePassphrases) {
-            [resultingPassphrases addObject:passphrase];
+        for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
+            [resultingPassphrases addObject:entry.passphrase];
         }
     });
     return [NSArray arrayWithArray:resultingPassphrases];
