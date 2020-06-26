@@ -29,6 +29,17 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 
 @implementation PEPPassphraseCache
 
+static PEPPassphraseCache *s_sharedInstance;
+
++ (void)initialize
+{
+    static BOOL initialized = NO;
+    if (!initialized) {
+        initialized = YES;
+        s_sharedInstance = [[PEPPassphraseCache alloc] init];
+    }
+}
+
 /// Internal constructor (for now).
 - (instancetype)initWithPassphraseTimeout:(NSTimeInterval)timeout
                       checkExpiryInterval:(NSTimeInterval)checkExpiryInterval
