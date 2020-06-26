@@ -25,7 +25,7 @@ static NSTimeInterval s_defaultTimeoutInSeconds = 10 * 60;
 @implementation PEPPassphraseCache
 
 /// Internal constructor (for now).
-- (instancetype)initWithTimeout:(NSUInteger)timeout
+- (instancetype)initWithTimeout:(NSTimeInterval)timeout
 {
     self = [super init];
     if (self) {

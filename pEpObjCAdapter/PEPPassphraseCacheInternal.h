@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPPassphraseCache (internal)
 
-- (instancetype)initWithTimeout:(NSUInteger)timeout;
+- (instancetype)initWithTimeout:(NSTimeInterval)timeout;
 
 @end
 
