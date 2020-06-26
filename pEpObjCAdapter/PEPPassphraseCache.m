@@ -14,6 +14,7 @@
 
 static NSUInteger s_maxNumberOfPassphrases = 20;
 static NSTimeInterval s_defaultTimeoutInSeconds = 10 * 60;
+static NSTimeInterval s_defaultRemoveStalePassphrasesTimeout = 60;
 
 @interface PEPPassphraseCache ()
 
