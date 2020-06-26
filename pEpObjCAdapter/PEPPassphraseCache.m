@@ -11,7 +11,7 @@
 #import "PEPPassphraseCacheEntry.h"
 
 static NSUInteger s_maxNumberOfPassphrases = 20;
-static NSUInteger s_defaultTimeoutInSeconds = 10 * 60;
+static NSTimeInterval s_defaultTimeoutInSeconds = 10 * 60;
 
 @interface PEPPassphraseCache ()
 
@@ -63,6 +63,27 @@ static NSUInteger s_defaultTimeoutInSeconds = 10 * 60;
         }
     });
     return [NSArray arrayWithArray:resultingPassphrases];
+}
+
+/// Remove password entries that have timed out.
+- (void)removeStaleEntries
+{
+    NSDate *now = [NSDate date];
+    NSDate *minimum = [now dateByAddingTimeInterval:-s_defaultTimeoutInSeconds];
+    NSTimeInterval minimumTimeInterval = [minimum timeIntervalSinceReferenceDate];
+    dispatch_sync(self.queue, ^{
+        NSMutableArray *resultingPassphrases = [NSMutableArray
+                                                arrayWithCapacity:s_maxNumberOfPassphrases];
+
+        for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
+            if ([entry.dateAdded timeIntervalSinceReferenceDate] >= minimumTimeInterval) {
+                [resultingPassphrases addObject:entry];
+            }
+        }
+
+        [self.mutablePassphrases removeAllObjects];
+        [self.mutablePassphrases addObjectsFromArray:resultingPassphrases];
+    });
 }
 
 @end
