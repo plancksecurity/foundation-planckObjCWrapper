@@ -89,10 +89,10 @@
 
 - (void)testTimeout
 {
-    NSTimeInterval timeout = 0.5;
+    NSTimeInterval timeout = 0.2;
     PEPPassphraseCache *ownCache = [[PEPPassphraseCache alloc]
                                     initWithPassphraseTimeout:timeout
-                                    checkExpiryInterval:timeout];
+                                    checkExpiryInterval:timeout/2];
 
     NSString *ownPassphrase = @"blah";
     [ownCache addPassphrase:ownPassphrase];
@@ -100,7 +100,7 @@
     NSArray *expectedBefore = @[@"", ownPassphrase];
     XCTAssertEqualObjects(ownCache.passphrases, expectedBefore);
 
-    [NSThread sleepForTimeInterval:3*timeout];
+    [NSThread sleepForTimeInterval:2*timeout];
     XCTAssertEqualObjects(ownCache.passphrases, @[@""]);
 }
 
