@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "PEPPassphraseCache.h"
+#import "PEPPassphraseCacheInternal.h"
 
 @interface PEPPassphraseCacheTest : XCTestCase
 
@@ -84,6 +85,21 @@
     NSMutableArray *expected = [NSMutableArray arrayWithArray:expectedPassphrases];
     [expected insertObject:@"" atIndex:0];
     XCTAssertEqualObjects(self.cache.passphrases, expected);
+}
+
+- (void)testTimeout
+{
+    NSTimeInterval timeout = 0.5;
+    PEPPassphraseCache *ownCache = [[PEPPassphraseCache alloc] initWithTimeout:timeout];
+
+    NSString *ownPassphrase = @"blah";
+    [ownCache addPassphrase:ownPassphrase];
+
+    NSArray *expectedBefore = @[@"", ownPassphrase];
+    XCTAssertEqualObjects(ownCache.passphrases, expectedBefore);
+
+    [NSThread sleepForTimeInterval:timeout];
+    XCTAssertEqualObjects(ownCache.passphrases, @[@""]);
 }
 
 @end
