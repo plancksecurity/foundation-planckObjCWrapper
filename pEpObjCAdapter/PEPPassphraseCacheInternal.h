@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPPassphraseCache (internal)
 
-- (instancetype)initWithTimeout:(NSTimeInterval)timeout
- removeStalePassphrasesInterval:(NSTimeInterval)removeStalePassphrasesInterval;
+- (instancetype)initWithPassphraseTimeout:(NSTimeInterval)timeout
+                      checkExpiryInterval:(NSTimeInterval)checkExpiryInterval;
 
 @end
 

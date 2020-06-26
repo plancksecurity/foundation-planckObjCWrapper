@@ -14,7 +14,7 @@
 
 static NSUInteger s_maxNumberOfPassphrases = 20;
 static NSTimeInterval s_defaultTimeoutInSeconds = 10 * 60;
-static NSTimeInterval s_defaultRemoveStalePassphrasesInterval = 60;
+static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 
 @interface PEPPassphraseCache ()
 
@@ -26,8 +26,8 @@ static NSTimeInterval s_defaultRemoveStalePassphrasesInterval = 60;
 @implementation PEPPassphraseCache
 
 /// Internal constructor (for now).
-- (instancetype)initWithTimeout:(NSTimeInterval)timeout
- removeStalePassphrasesInterval:(NSTimeInterval)removeStalePassphrasesInterval
+- (instancetype)initWithPassphraseTimeout:(NSTimeInterval)timeout
+                      checkExpiryInterval:(NSTimeInterval)checkExpiryInterval
 {
     self = [super init];
     if (self) {
@@ -41,9 +41,8 @@ static NSTimeInterval s_defaultRemoveStalePassphrasesInterval = 60;
 /// Public constructor with default values.
 - (instancetype)init
 {
-    return [self
-            initWithTimeout:s_defaultTimeoutInSeconds
-            removeStalePassphrasesInterval:s_defaultRemoveStalePassphrasesInterval];
+    return [self initWithPassphraseTimeout:s_defaultTimeoutInSeconds
+                       checkExpiryInterval:s_defaultCheckExpiryInterval];
 }
 
 - (void)addPassphrase:(NSString *)passphrase

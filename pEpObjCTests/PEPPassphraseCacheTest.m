@@ -91,8 +91,8 @@
 {
     NSTimeInterval timeout = 0.5;
     PEPPassphraseCache *ownCache = [[PEPPassphraseCache alloc]
-                                    initWithTimeout:timeout
-                                    removeStalePassphrasesInterval:timeout];
+                                    initWithPassphraseTimeout:timeout
+                                    checkExpiryInterval:timeout];
 
     NSString *ownPassphrase = @"blah";
     [ownCache addPassphrase:ownPassphrase];
