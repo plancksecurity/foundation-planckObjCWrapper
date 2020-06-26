@@ -92,7 +92,7 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 - (void)removeStaleEntries
 {
     NSDate *now = [NSDate date];
-    NSDate *minimum = [now dateByAddingTimeInterval:-s_defaultTimeoutInSeconds];
+    NSDate *minimum = [now dateByAddingTimeInterval:-self.timeout];
     NSTimeInterval minimumTimeInterval = [minimum timeIntervalSinceReferenceDate];
     NSMutableArray *resultingPassphrases = [NSMutableArray
                                             arrayWithCapacity:s_maxNumberOfPassphrases];
