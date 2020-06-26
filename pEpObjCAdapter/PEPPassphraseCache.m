@@ -39,6 +39,12 @@ static NSUInteger s_numberOfPassphrases = 20;
 
 - (void)addPassphrase:(NSString *)passphrase
 {
+    dispatch_sync(self.queue, ^{
+        [self.mutablePassphrases addObject:passphrase];
+        if (self.mutablePassphrases.count > s_numberOfPassphrases) {
+            [self.mutablePassphrases removeObjectAtIndex:0];
+        }
+    });
 }
 
 - (NSArray *)passphrases
