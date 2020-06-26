@@ -20,6 +20,7 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 
 @property (nonatomic) dispatch_queue_t queue;
 @property (nonatomic) NSMutableArray<PEPPassphraseCacheEntry *> *mutablePassphrases;
+@property (nonatomic) NSTimer *checkExpiryTimer;
 
 @end
 
@@ -34,8 +35,22 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
         _timeout = timeout;
         _queue = dispatch_queue_create("PEPPassphraseCache Queue", DISPATCH_QUEUE_SERIAL);
         _mutablePassphrases = [NSMutableArray arrayWithCapacity:s_maxNumberOfPassphrases];
+
+        // we have a strong reference to the timer, but the timer doesn't have one to us
+        typeof(self) __weak weakSelf = self;
+        _checkExpiryTimer = [NSTimer
+                             scheduledTimerWithTimeInterval:checkExpiryInterval
+                             repeats:YES
+                             block:^(NSTimer *timer) {
+            [weakSelf removeStaleEntries];
+        }];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [_checkExpiryTimer invalidate];
 }
 
 /// Public constructor with default values.
