@@ -85,24 +85,23 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 }
 
 /// Remove password entries that have timed out.
+/// - Note: Assumes it gets called on `queue`.
 - (void)removeStaleEntries
 {
     NSDate *now = [NSDate date];
     NSDate *minimum = [now dateByAddingTimeInterval:-s_defaultTimeoutInSeconds];
     NSTimeInterval minimumTimeInterval = [minimum timeIntervalSinceReferenceDate];
-    dispatch_sync(self.queue, ^{
-        NSMutableArray *resultingPassphrases = [NSMutableArray
-                                                arrayWithCapacity:s_maxNumberOfPassphrases];
+    NSMutableArray *resultingPassphrases = [NSMutableArray
+                                            arrayWithCapacity:s_maxNumberOfPassphrases];
 
-        for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
-            if ([entry.dateAdded timeIntervalSinceReferenceDate] >= minimumTimeInterval) {
-                [resultingPassphrases addObject:entry];
-            }
+    for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
+        if ([entry.dateAdded timeIntervalSinceReferenceDate] >= minimumTimeInterval) {
+            [resultingPassphrases addObject:entry];
         }
+    }
 
-        [self.mutablePassphrases removeAllObjects];
-        [self.mutablePassphrases addObjectsFromArray:resultingPassphrases];
-    });
+    [self.mutablePassphrases removeAllObjects];
+    [self.mutablePassphrases addObjectsFromArray:resultingPassphrases];
 }
 
 @end
