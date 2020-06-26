@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addPassphrase:(NSString *)passphrase;
 
 /// Retrieve the current list of cached passwords, including the empty one.
-- (NSArray *)passphrases;
+- (NSArray<NSString *> *)passphrases;
 
 @end
 
