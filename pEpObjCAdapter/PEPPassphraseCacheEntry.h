@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *password;
 @property (nonatomic) NSDate *dateAdded;
 
+- (instancetype)initPassword:(NSString *)password;
+
 @end
 
 NS_ASSUME_NONNULL_END

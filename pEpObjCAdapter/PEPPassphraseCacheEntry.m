@@ -10,4 +10,14 @@
 
 @implementation PEPPassphraseCacheEntry
 
+- (instancetype)initPassword:(NSString *)password
+{
+    self = [super init];
+    if (self) {
+        self.password = password;
+        self.dateAdded = [NSDate date];
+    }
+    return self;
+}
+
 @end
