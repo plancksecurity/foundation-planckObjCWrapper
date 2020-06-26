@@ -12,9 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPPassphraseCache : NSObject
 
-/// Timeout of passwords in seconds.
-@property (nonatomic) NSTimeInterval timeout;
-
 /// Add a new password.
 - (void)addPassphrase:(NSString *)passphrase;
 

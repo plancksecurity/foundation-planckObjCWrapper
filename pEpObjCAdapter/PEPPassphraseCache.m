@@ -18,6 +18,9 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 
 @interface PEPPassphraseCache ()
 
+/// Timeout of passwords in seconds.
+@property (nonatomic) NSTimeInterval timeout;
+
 @property (nonatomic) dispatch_queue_t queue;
 @property (nonatomic) NSMutableArray<PEPPassphraseCacheEntry *> *mutablePassphrases;
 @property (nonatomic) dispatch_source_t timer;
