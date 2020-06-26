@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPPassphraseCache : NSObject
 
++ (instancetype)sharedInstance;
+
 /// Add a new password.
 - (void)addPassphrase:(NSString *)passphrase;
 

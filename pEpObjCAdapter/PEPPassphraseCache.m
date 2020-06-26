@@ -40,6 +40,11 @@ static PEPPassphraseCache *s_sharedInstance;
     }
 }
 
++ (instancetype)sharedInstance
+{
+    return s_sharedInstance;
+}
+
 /// Internal constructor (for now).
 - (instancetype)initWithPassphraseTimeout:(NSTimeInterval)timeout
                       checkExpiryInterval:(NSTimeInterval)checkExpiryInterval
