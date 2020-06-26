@@ -172,6 +172,7 @@
 		4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSizeTest.m; sourceTree = "<group>"; };
 		433DFBAA24A5E04000AB373B /* PEPPassphraseCacheEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseCacheEntry.h; sourceTree = "<group>"; };
 		433DFBAB24A5E04000AB373B /* PEPPassphraseCacheEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseCacheEntry.m; sourceTree = "<group>"; };
+		433DFBAE24A5ED0D00AB373B /* PEPPassphraseCacheInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseCacheInternal.h; sourceTree = "<group>"; };
 		433E28901FA741DE00E359B3 /* PEPIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 		434226801D4F60000083ED79 /* PepTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PepTests.m; sourceTree = "<group>"; };
 		434ED6D4207E27B8000A7590 /* PEPAutoPointer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPAutoPointer.h; sourceTree = "<group>"; };
@@ -364,6 +365,7 @@
 				43AD0E2E22E99ECE00D46F56 /* PEPInternalConstants.h */,
 				43AD0E2F22E99ECE00D46F56 /* PEPInternalConstants.m */,
 				43589EF524A4A3B70079BEA2 /* PEPPassphraseCache.h */,
+				433DFBAE24A5ED0D00AB373B /* PEPPassphraseCacheInternal.h */,
 				43589EF624A4A3B70079BEA2 /* PEPPassphraseCache.m */,
 				433DFBAA24A5E04000AB373B /* PEPPassphraseCacheEntry.h */,
 				433DFBAB24A5E04000AB373B /* PEPPassphraseCacheEntry.m */,

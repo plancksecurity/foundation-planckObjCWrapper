@@ -8,6 +8,8 @@
 
 #import "PEPPassphraseCache.h"
 
+#import "PEPPassphraseCacheInternal.h"
+
 #import "PEPPassphraseCacheEntry.h"
 
 static NSUInteger s_maxNumberOfPassphrases = 20;
@@ -23,7 +25,7 @@ static NSTimeInterval s_defaultTimeoutInSeconds = 10 * 60;
 @implementation PEPPassphraseCache
 
 /// Internal constructor (for now).
-- (instancetype)initTimeout:(NSUInteger)timeout
+- (instancetype)initWithTimeout:(NSUInteger)timeout
 {
     self = [super init];
     if (self) {
@@ -37,7 +39,7 @@ static NSTimeInterval s_defaultTimeoutInSeconds = 10 * 60;
 /// Public constructor with default values.
 - (instancetype)init
 {
-    return [self initTimeout:s_defaultTimeoutInSeconds];
+    return [self initWithTimeout:s_defaultTimeoutInSeconds];
 }
 
 - (void)addPassphrase:(NSString *)passphrase
