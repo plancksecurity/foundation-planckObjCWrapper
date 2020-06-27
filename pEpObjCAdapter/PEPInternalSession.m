@@ -1095,6 +1095,15 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
         *error = nil;
     }
 
+    NSString *normalizedPassphrase = [passphrase precomposedStringWithCanonicalMapping];
+    PEP_STATUS status = config_passphrase_for_new_keys(_session,
+                                                       enable,
+                                                       [normalizedPassphrase UTF8String]);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return NO;
+    }
+
     return YES;
 }
 
