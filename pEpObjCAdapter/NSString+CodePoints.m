@@ -10,4 +10,9 @@
 
 @implementation NSString (CodePoints)
 
+- (NSUInteger)numberOfCodePoints
+{
+    return [self lengthOfBytesUsingEncoding:NSUTF32StringEncoding] / 4;
+}
+
 @end
