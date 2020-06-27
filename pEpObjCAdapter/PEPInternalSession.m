@@ -101,7 +101,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *_src = PEP_messageDictToStruct(messageDict);
     __block message *_dst = NULL;
     __block stringlist_t *theKeys = NULL;
-    PEPDecryptFlags theFlags = 0;
+    __block PEPDecryptFlags theFlags = 0;
 
     if (flags) {
         theFlags = *flags;
@@ -111,7 +111,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = PEP_arrayToStringlist(*extraKeys);
     }
 
-    PEPRating internalRating = PEPRatingUndefined;
+    __block PEPRating internalRating = PEPRatingUndefined;
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return decrypt_message(session,
