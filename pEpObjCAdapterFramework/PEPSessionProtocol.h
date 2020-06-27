@@ -298,6 +298,7 @@ typedef NS_CLOSED_ENUM(int, PEPAdapterError) {
 - (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error;
 
 /// Add a passphrase for secret keys to the cache.
+///
 /// You can add as many passphrases to the cache as needed by calling this method.
 /// Every passphrase is valid for 10 min (default, compile-time configurable),
 /// after that it gets removed from memory. The maximum count of passphrases is 20.
@@ -316,7 +317,7 @@ typedef NS_CLOSED_ENUM(int, PEPAdapterError) {
 /// approximated by checking the string length.
 /// If the passphrase exceeds this limit, the adapter throws PEPAdapterErrorPassphraseTooLong
 /// with a domain of PEPObjCAdapterErrorDomain.
-/// Throws: PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain).
+/// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain).
 - (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
                       error:(NSError * _Nullable * _Nullable)error;
 
