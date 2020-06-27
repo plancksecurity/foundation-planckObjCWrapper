@@ -113,7 +113,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     __block PEPRating internalRating = PEPRatingUndefined;
 
-    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return decrypt_message(session,
                                _src,
                                &_dst,
@@ -198,7 +198,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = PEP_arrayToStringlist(xKeyList);
     }
 
-    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return re_evaluate_message_rating(session,
                                           _src,
                                           theKeys,
