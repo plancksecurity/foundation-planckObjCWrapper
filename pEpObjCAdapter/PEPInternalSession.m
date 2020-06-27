@@ -100,7 +100,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     message *_src = PEP_messageDictToStruct(messageDict);
     __block message *_dst = NULL;
-    __block stringlist_t * theKeys = NULL;
+    __block stringlist_t *theKeys = NULL;
     PEPDecryptFlags theFlags = 0;
 
     if (flags) {
