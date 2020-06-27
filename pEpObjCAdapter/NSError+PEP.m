@@ -45,10 +45,10 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
     return [self errorWithPEPStatusInternal:(PEP_STATUS) status];
 }
 
-+ (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEP_STATUS)status
++ (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEPStatus)status
 {
     // Determine if the given status is an error.
-    NSError *errorFromStatus = [self errorWithPEPStatusInternal:status];
+    NSError *errorFromStatus = [self errorWithPEPStatus:status];
 
     // Set caller's error, if given
     if (error) {
