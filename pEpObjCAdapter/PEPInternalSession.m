@@ -1085,6 +1085,12 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
 
     [[PEPPassphraseCache sharedInstance] addPassphrase:normalizedPassphrase];
 
+    PEP_STATUS status = config_passphrase(_session, [normalizedPassphrase UTF8String]);
+
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
+        return NO;
+    }
+
     return YES;
 }
 
