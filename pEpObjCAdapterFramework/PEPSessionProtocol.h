@@ -21,6 +21,13 @@ static NSString * _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
 /// Domain for errors indicated by the pEp adapter itself.
 static NSString * _Nonnull PEPObjCAdapterErrorDomain;
 
+/// Possible errors from adapter without involvement from the engine.
+typedef NS_CLOSED_ENUM(int, PEPAdapterError) {
+    /// Passwords are limited in size, and this error indicates a password that contains
+    /// too many codepoints.
+    PEPAdapterErrorPassphraseTooLong = 0
+};
+
 @protocol PEPSessionProtocol <NSObject>
 
 /** Decrypt a message */
