@@ -1050,4 +1050,14 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
+                      error:(NSError * _Nullable * _Nullable)error
+{
+    if (error) {
+        *error = nil;
+    }
+
+    return YES;
+}
+
 @end
