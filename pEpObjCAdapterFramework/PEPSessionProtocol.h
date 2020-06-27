@@ -313,11 +313,10 @@ typedef NS_CLOSED_ENUM(int, PEPAdapterError) {
 /// If the engine indicates PEPStatusPassphraseRequired, and there are no passwords,
 /// the adapter will throw PEPStatusPassphraseRequired.
 /// The passphrase can have a "maximum number of code points of 250", which is
-/// approximated by checking for the string length.
+/// approximated by checking the string length.
 /// If the passphrase exceeds this limit, the adapter throws PEPAdapterErrorPassphraseTooLong
 /// with a domain of PEPObjCAdapterErrorDomain.
-/// Throws: PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
-/// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain).
+/// Throws: PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain).
 - (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
                       error:(NSError * _Nullable * _Nullable)error;
 
