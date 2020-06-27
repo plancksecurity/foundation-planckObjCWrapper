@@ -399,4 +399,20 @@
     return [session keyResetAllOwnKeysError:error];
 }
 
+- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error {
+    PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
+    return [session configurePassphrase:passphrase error:error];
+}
+
+
+- (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                               enable:(BOOL)enable
+                                error:(NSError * _Nullable __autoreleasing * _Nullable)error {
+    PEPInternalSession *session = [PEPSessionProvider session];
+    RETURN_ON_ERROR(session, error, NO);
+    return [session configurePassphraseForNewKeys:passphrase enable:enable error:error];
+}
+
 @end
