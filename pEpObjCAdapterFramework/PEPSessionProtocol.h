@@ -15,6 +15,12 @@
 @class PEPIdentity;
 @class PEPMessage;
 
+/// Domain for errors indicated by the pEp engine.
+static NSString * _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
+
+/// Domain for errors indicated by the pEp adapter itself.
+static NSString * _Nonnull PEPObjCAdapterErrorDomain;
+
 @protocol PEPSessionProtocol <NSObject>
 
 /** Decrypt a message */
