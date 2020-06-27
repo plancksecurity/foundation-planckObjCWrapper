@@ -406,12 +406,16 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                     error:(NSError * _Nullable * _Nullable)error __deprecated
 {
     message *src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    message *dst = NULL;
+    __block message *dst = NULL;
 
-    PEPStatus theStatus = (PEPStatus)
-    encrypt_message_and_add_priv_key(_session, src, &dst,
-                                     [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
-                                     (PEP_enc_format) encFormat, flags);
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return encrypt_message_and_add_priv_key(session,
+                                                src,
+                                                &dst,
+                                                [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
+                                                (PEP_enc_format) encFormat,
+                                                flags);
+    }];
 
     if (status) {
         *status = theStatus;
