@@ -1100,7 +1100,7 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
                                                        enable,
                                                        [normalizedPassphrase UTF8String]);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatusInternal:status]) {
         return NO;
     }
 
