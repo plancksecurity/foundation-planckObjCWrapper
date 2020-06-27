@@ -190,18 +190,23 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                        status:(PEPStatus * _Nullable)status
                         error:(NSError * _Nullable * _Nullable)error
 {
-    message *_src = PEP_messageDictToStruct(messageDict);
+    __block PEPRating *theRating = rating;
+    __block message *_src = PEP_messageDictToStruct(messageDict);
 
-    stringlist_t *theKeys = NULL;
+    __block stringlist_t *theKeys = NULL;
     if ([xKeyList count]) {
         theKeys = PEP_arrayToStringlist(xKeyList);
     }
 
-    PEPStatus theStatus = (PEPStatus) re_evaluate_message_rating(_session,
-                                                                 _src,
-                                                                 theKeys,
-                                                                 (PEP_rating) *rating,
-                                                                 (PEP_rating *) rating);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return re_evaluate_message_rating(session,
+                                          _src,
+                                          theKeys,
+                                          (PEP_rating) *rating,
+                                          (PEP_rating *) theRating);
+    }];
+
+    *rating = *theRating;
 
     free_message(_src);
     free_stringlist(theKeys);
