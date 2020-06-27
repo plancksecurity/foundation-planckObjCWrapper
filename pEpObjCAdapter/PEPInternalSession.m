@@ -28,6 +28,7 @@
 #import "PEPSync_Internal.h" // for [PEPSync createSession:]
 #import "PEPInternalConstants.h"
 #import "PEPPassphraseCache.h"
+#import "PEPInternalSession+PassphraseCache.h"
 
 #import "key_reset.h"
 
@@ -98,8 +99,8 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     message *_src = PEP_messageDictToStruct(messageDict);
-    message *_dst = NULL;
-    stringlist_t *theKeys = NULL;
+    __block message *_dst = NULL;
+    __block stringlist_t * theKeys = NULL;
     PEPDecryptFlags theFlags = 0;
 
     if (flags) {
@@ -112,12 +113,14 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     PEPRating internalRating = PEPRatingUndefined;
 
-    PEPStatus theStatus = (PEPStatus) decrypt_message(_session,
-                                                      _src,
-                                                      &_dst,
-                                                      &theKeys,
-                                                      (PEP_rating *) &internalRating,
-                                                      (PEP_decrypt_flags *) &theFlags);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION  _Nonnull session) {
+        return decrypt_message(session,
+                               _src,
+                               &_dst,
+                               &theKeys,
+                               (PEP_rating *) &internalRating,
+                               (PEP_decrypt_flags *) &theFlags);
+    }];
 
     if (status) {
         *status = theStatus;
