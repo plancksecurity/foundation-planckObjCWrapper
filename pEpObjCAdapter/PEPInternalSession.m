@@ -1061,9 +1061,9 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
         *error = nil;
     }
 
-    NSString *normalized = [passphrase precomposedStringWithCanonicalMapping];
+    NSString *normalizedPassphrase = [passphrase precomposedStringWithCanonicalMapping];
 
-    if ([normalized length] > s_passphraseMaxNumberOfCodePoints) {
+    if ([normalizedPassphrase length] > s_passphraseMaxNumberOfCodePoints) {
         if (error) {
             *error = [NSError errorWithDomain:PEPObjCAdapterEngineStatusErrorDomain
                                          code:PEPAdapterErrorPassphraseTooLong
@@ -1071,6 +1071,8 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
             return NO;
         }
     }
+
+    [[PEPPassphraseCache sharedInstance] addPassphrase:normalizedPassphrase];
 
     return YES;
 }
