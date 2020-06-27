@@ -14,7 +14,7 @@
 
 @implementation PEPInternalSession (PassphraseCache)
 
-- (PEP_STATUS)runWithPasswords:(PEP_STATUS (^)(void))block
+- (PEP_STATUS)runWithPasswords:(PEP_STATUS (^)(PEP_SESSION session))block
 {
     PEP_STATUS lastStatus = PEP_UNKNOWN_ERROR;
 
@@ -26,7 +26,7 @@
             return status;
         }
 
-        lastStatus = block();
+        lastStatus = block(self.session);
 
         if (lastStatus != PEP_PASSPHRASE_REQUIRED && lastStatus != PEP_WRONG_PASSPHRASE) {
             return lastStatus;
