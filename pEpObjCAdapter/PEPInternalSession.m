@@ -1052,7 +1052,7 @@ static NSDictionary *stringToRating;
 }
 
 /// The maximum number of code points allowed in a passphrase
-static NSUInteger s_passPhraseMaxNumberOfCodePoints = 250;
+static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
 
 - (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
                       error:(NSError * _Nullable * _Nullable)error
@@ -1063,7 +1063,7 @@ static NSUInteger s_passPhraseMaxNumberOfCodePoints = 250;
 
     NSString *normalized = [passphrase precomposedStringWithCanonicalMapping];
 
-    if ([normalized length] > s_passPhraseMaxNumberOfCodePoints) {
+    if ([normalized length] > s_passphraseMaxNumberOfCodePoints) {
         if (error) {
             *error = [NSError errorWithDomain:PEPObjCAdapterEngineStatusErrorDomain
                                          code:PEPAdapterErrorPassphraseTooLong
