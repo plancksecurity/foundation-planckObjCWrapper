@@ -20,7 +20,7 @@
 
     NSArray *passphrases = [[PEPPassphraseCache sharedInstance] passphrases];
     for (NSString *passphrase in passphrases) {
-        PEP_STATUS status = config_passphrase(self.session, [passphrase UTF8String])
+        PEP_STATUS status = config_passphrase(self.session, [passphrase UTF8String]);
 
         if (status != PEPStatusOK) {
             return status;
