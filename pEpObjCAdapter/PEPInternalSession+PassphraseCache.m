@@ -16,7 +16,7 @@
 
 - (PEP_STATUS)runWithPasswords:(PEP_STATUS (^)(void))block
 {
-    PEP_STATUS lastStatus = PEPStatusUnknownError;
+    PEP_STATUS lastStatus = PEP_UNKNOWN_ERROR;
 
     NSArray *passphrases = [[PEPPassphraseCache sharedInstance] passphrases];
     for (NSString *passphrase in passphrases) {
