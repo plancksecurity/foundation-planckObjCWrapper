@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// until it returns something else other than PEP_PASSPHRASE_REQUIRED
 /// or PEP_WRONG_PASSPHRASE, or there are no passwords anymore.
 /// @param block The status-returning block to execute against different passwords
-- (PEP_STATUS)runWithPasswords:(PEP_STATUS (^)(PEP_SESSION session))block;
+- (PEPStatus)runWithPasswords:(PEP_STATUS (^)(PEP_SESSION session))block;
 
 @end
 
