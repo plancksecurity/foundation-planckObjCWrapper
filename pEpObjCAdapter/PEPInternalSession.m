@@ -1088,4 +1088,14 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
     return YES;
 }
 
+- (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                               enable:(BOOL)enable error:(NSError * _Nullable * _Nullable)error
+{
+    if (error) {
+        *error = nil;
+    }
+
+    return YES;
+}
+
 @end
