@@ -113,7 +113,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     __block PEPRating internalRating = PEPRatingUndefined;
 
-    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return decrypt_message(session,
                                _src,
                                &_dst,
@@ -198,7 +198,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = PEP_arrayToStringlist(xKeyList);
     }
 
-    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return re_evaluate_message_rating(session,
                                           _src,
                                           theKeys,
@@ -259,18 +259,20 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                    status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
-    PEP_encrypt_flags_t flags = 0;
+    __block PEP_encrypt_flags_t flags = 0;
 
-    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    message *_dst = NULL;
-    stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
+    __block message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
+    __block message *_dst = NULL;
+    __block stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
-    PEPStatus theStatus = (PEPStatus) encrypt_message(_session,
-                                                      _src,
-                                                      _keys,
-                                                      &_dst,
-                                                      (PEP_enc_format) encFormat,
-                                                      flags);
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return encrypt_message(session,
+                               _src,
+                               _keys,
+                               &_dst,
+                               (PEP_enc_format) encFormat,
+                               flags);
+    }];
 
     if (status) {
         *status = theStatus;

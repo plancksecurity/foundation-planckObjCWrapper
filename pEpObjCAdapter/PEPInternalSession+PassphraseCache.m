@@ -14,7 +14,7 @@
 
 @implementation PEPInternalSession (PassphraseCache)
 
-- (PEP_STATUS)runWithPasswords:(PEP_STATUS (^)(PEP_SESSION session))block
+- (PEPStatus)runWithPasswords:(PEP_STATUS (^)(PEP_SESSION session))block
 {
     PEP_STATUS lastStatus = PEP_UNKNOWN_ERROR;
 
@@ -23,19 +23,19 @@
         PEP_STATUS status = config_passphrase(self.session, [passphrase UTF8String]);
 
         if (status != PEPStatusOK) {
-            return status;
+            return (PEPStatus) status;
         }
 
         lastStatus = block(self.session);
 
         if (lastStatus != PEP_PASSPHRASE_REQUIRED && lastStatus != PEP_WRONG_PASSPHRASE) {
-            return lastStatus;
+            return (PEPStatus) lastStatus;
         }
     }
 
     // If execution lands here, it means we ran out of passwords to set while
     // receiving password-related error codes.
-    return lastStatus;
+    return (PEPStatus) lastStatus;
 }
 
 @end
