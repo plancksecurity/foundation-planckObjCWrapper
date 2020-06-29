@@ -78,11 +78,14 @@
     }
 
     NSString *latestPassphrase = @"theLatest";
-
     [self.cache addPassphrase:latestPassphrase];
+    [expectedPassphrases addObject:latestPassphrase];
 
+    // Last added passphrase is the newest, so it comes first.
     expectedPassphrases = [NSMutableArray arrayWithArray:[self reversedArray:expectedPassphrases]];
-    [expectedPassphrases replaceObjectAtIndex:0 withObject:latestPassphrase];
+
+    // There are 21 passphrases, so the oldest (last) is removed.
+    [expectedPassphrases removeLastObject];
 
     [expectedPassphrases insertObject:@"" atIndex:0];
     XCTAssertEqualObjects(self.cache.passphrases, expectedPassphrases);
