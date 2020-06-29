@@ -78,14 +78,14 @@
     }
 
     NSString *latestPassphrase = @"theLatest";
-    [expectedPassphrases removeObjectAtIndex:0];
-    [expectedPassphrases addObject:latestPassphrase];
+
     [self.cache addPassphrase:latestPassphrase];
 
-    XCTAssertEqual(self.cache.passphrases.count, expectedPassphrases.count + 1);
-    NSMutableArray *expected = [NSMutableArray arrayWithArray:expectedPassphrases];
-    [expected insertObject:@"" atIndex:0];
-    XCTAssertEqualObjects(self.cache.passphrases, expected);
+    expectedPassphrases = [NSMutableArray arrayWithArray:[self reversedArray:expectedPassphrases]];
+    [expectedPassphrases replaceObjectAtIndex:0 withObject:latestPassphrase];
+
+    [expectedPassphrases insertObject:@"" atIndex:0];
+    XCTAssertEqualObjects(self.cache.passphrases, expectedPassphrases);
 }
 
 - (void)testTimeout
