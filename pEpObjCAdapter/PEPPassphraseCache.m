@@ -107,14 +107,11 @@ static PEPPassphraseCache *s_sharedInstance;
 /// - Note: Assumes it gets called on `queue`.
 - (void)removeStaleEntries
 {
-    NSDate *now = [NSDate date];
-    NSDate *minimum = [now dateByAddingTimeInterval:-self.timeout];
-    NSTimeInterval minimumTimeInterval = [minimum timeIntervalSinceReferenceDate];
     NSMutableArray *resultingPassphrases = [NSMutableArray
                                             arrayWithCapacity:s_maxNumberOfPassphrases];
 
     for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
-        if ([entry.dateAdded timeIntervalSinceReferenceDate] >= minimumTimeInterval) {
+        if (![self isExpiredPassphraseEntry:entry]) {
             [resultingPassphrases addObject:entry];
         }
     }
