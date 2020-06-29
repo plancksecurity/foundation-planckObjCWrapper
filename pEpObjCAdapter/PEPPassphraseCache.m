@@ -123,4 +123,15 @@ static PEPPassphraseCache *s_sharedInstance;
     [self.mutablePassphrases addObjectsFromArray:resultingPassphrases];
 }
 
+- (void)resetTimeoutForPassphrase:(NSString *)passphrase
+{
+    dispatch_sync(self.queue, ^{
+        for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
+            if ([entry.passphrase isEqualToString:passphrase]) {
+                entry.dateAdded = [NSDate date];
+            }
+        }
+    });
+}
+
 @end

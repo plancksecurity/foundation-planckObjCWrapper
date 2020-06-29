@@ -23,6 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// Retrieve the current list of cached passwords, including the empty one.
 - (NSArray<NSString *> *)passphrases;
 
+/// Indicate that the given passphrase was just successfully used and its timeout
+/// should be reset.
+- (void)resetTimeoutForPassphrase:(NSString *)passphrase;
+
 @end
 
 NS_ASSUME_NONNULL_END
