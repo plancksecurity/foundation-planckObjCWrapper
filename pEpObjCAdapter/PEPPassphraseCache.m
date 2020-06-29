@@ -90,7 +90,7 @@ static PEPPassphraseCache *s_sharedInstance;
     });
 }
 
-- (NSArray *)passphrases
+- (NSArray<NSString *> *)passphrases
 {
     NSMutableArray *resultingPassphrases = [NSMutableArray
                                             arrayWithCapacity:s_maxNumberOfPassphrases + 1];
