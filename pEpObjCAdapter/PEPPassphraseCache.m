@@ -151,4 +151,21 @@ static PEPPassphraseCache *s_sharedInstance;
     return NO;
 }
 
+- (NSArray<PEPPassphraseCacheEntry *> *)sortedArrayByDateNewestFirst:(NSArray<PEPPassphraseCacheEntry *> *)array
+{
+    return [array sortedArrayUsingComparator:^NSComparisonResult(PEPPassphraseCacheEntry *entry1,
+                                                                 PEPPassphraseCacheEntry *entry2) {
+        NSTimeInterval interval1 = [entry1.dateAdded timeIntervalSinceReferenceDate];
+        NSTimeInterval interval2 = [entry2.dateAdded timeIntervalSinceReferenceDate];
+
+        if (interval1 > interval2) {
+            return NSOrderedAscending;
+        } else if (interval1 < interval2) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedSame;
+        }
+    }];
+}
+
 @end
