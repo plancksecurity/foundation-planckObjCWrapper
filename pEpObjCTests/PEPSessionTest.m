@@ -1541,6 +1541,24 @@
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
+
+    error = nil;
+
+    XCTAssertTrue([session configurePassphrase:@"wrong passphrase" error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+    status = PEPStatusOutOfMemory;
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMeWithPassphrase
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
 }
 
 #pragma mark - Helpers
