@@ -61,10 +61,7 @@
         [self.cache addPassphrase:newPhrase];
     }
 
-    NSMutableArray *expected = [NSMutableArray arrayWithCapacity:passphrases.count + 1];
-    for (id obj in [passphrases reverseObjectEnumerator]) {
-        [expected addObject:obj];
-    }
+    NSMutableArray *expected = [NSMutableArray arrayWithArray:[self reversedArray:passphrases]];
 
     XCTAssertEqual(self.cache.passphrases.count, expected.count + 1);
     [expected insertObject:@"" atIndex:0];
@@ -106,6 +103,17 @@
 
     [NSThread sleepForTimeInterval:2*timeout];
     XCTAssertEqualObjects(ownCache.passphrases, @[@""]);
+}
+
+#pragma mark - Helpers
+
+- (NSArray *)reversedArray:(NSArray *)array
+{
+    NSMutableArray *reversedArray = [NSMutableArray arrayWithCapacity:array.count];
+    for (id obj in [array reverseObjectEnumerator]) {
+        [reversedArray addObject:obj];
+    }
+    return [NSArray arrayWithArray:reversedArray];
 }
 
 @end
