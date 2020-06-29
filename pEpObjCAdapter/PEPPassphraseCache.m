@@ -87,6 +87,8 @@ static PEPPassphraseCache *s_sharedInstance;
         if (self.mutablePassphraseEntries.count > s_maxNumberOfPassphrases) {
             [self.mutablePassphraseEntries removeObjectAtIndex:0];
         }
+
+        [self sortPassphrases];
     });
 }
 
@@ -131,10 +133,16 @@ static PEPPassphraseCache *s_sharedInstance;
     }
 
     dispatch_sync(self.queue, ^{
+        BOOL foundAtLeastOnce = NO;
         for (PEPPassphraseCacheEntry *entry in self.mutablePassphraseEntries) {
             if ([entry.passphrase isEqualToString:passphrase]) {
+                foundAtLeastOnce = YES;
                 entry.dateAdded = [NSDate date];
             }
+        }
+
+        if (foundAtLeastOnce) {
+            [self sortPassphrases];
         }
     });
 }
@@ -150,6 +158,16 @@ static PEPPassphraseCache *s_sharedInstance;
     }
 
     return NO;
+}
+
+/// Sort the stored passphrases, last (successfully) used or added first.
+/// Assumes being called from the internal queue.
+- (void)sortPassphrases
+{
+    NSArray *sorted = [self sortedArrayByDateNewestFirst:self.mutablePassphraseEntries];
+    [self.mutablePassphraseEntries
+     replaceObjectsInRange:NSMakeRange(0, [self.mutablePassphraseEntries count])
+     withObjectsFromArray:sorted];
 }
 
 - (NSArray<PEPPassphraseCacheEntry *> *)sortedArrayByDateNewestFirst:(NSArray<PEPPassphraseCacheEntry *> *)array
