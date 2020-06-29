@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PEPPassphraseCacheEntry : NSObject
 
 @property (nonatomic) NSString *passphrase;
+
+/// The date the passphrase was last added or successfully used.
 @property (nonatomic) NSDate *dateAdded;
 
 - (instancetype)initWithPassphrase:(NSString *)passphrase;
