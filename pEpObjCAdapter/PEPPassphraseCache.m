@@ -125,7 +125,8 @@ static PEPPassphraseCache *s_sharedInstance;
 - (void)resetTimeoutForPassphrase:(NSString *)passphrase
 {
     if ([passphrase isEqualToString:@""]) {
-        // ignore the empty passphrase, it's always there
+        // Ignore the empty passphrase, it's always there from the client's view,
+        // but not contained in the internal model.
         return;
     }
 
