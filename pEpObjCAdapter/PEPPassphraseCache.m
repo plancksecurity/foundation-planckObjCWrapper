@@ -22,7 +22,7 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 @property (nonatomic) NSTimeInterval timeout;
 
 @property (nonatomic) dispatch_queue_t queue;
-@property (nonatomic) NSMutableArray<PEPPassphraseCacheEntry *> *mutablePassphrases;
+@property (nonatomic) NSMutableArray<PEPPassphraseCacheEntry *> *mutablePassphraseEntries;
 @property (nonatomic) dispatch_source_t timer;
 
 @end
@@ -53,7 +53,7 @@ static PEPPassphraseCache *s_sharedInstance;
     if (self) {
         _timeout = timeout;
         _queue = dispatch_queue_create("PEPPassphraseCache Queue", DISPATCH_QUEUE_SERIAL);
-        _mutablePassphrases = [NSMutableArray arrayWithCapacity:s_maxNumberOfPassphrases];
+        _mutablePassphraseEntries = [NSMutableArray arrayWithCapacity:s_maxNumberOfPassphrases];
 
         // we have a strong reference to the timer, but the timer doesn't have one to us
         typeof(self) __weak weakSelf = self;
@@ -83,9 +83,9 @@ static PEPPassphraseCache *s_sharedInstance;
     PEPPassphraseCacheEntry *entry = [[PEPPassphraseCacheEntry alloc]
                                       initWithPassphrase:passphrase];
     dispatch_sync(self.queue, ^{
-        [self.mutablePassphrases addObject:entry];
-        if (self.mutablePassphrases.count > s_maxNumberOfPassphrases) {
-            [self.mutablePassphrases removeObjectAtIndex:0];
+        [self.mutablePassphraseEntries addObject:entry];
+        if (self.mutablePassphraseEntries.count > s_maxNumberOfPassphrases) {
+            [self.mutablePassphraseEntries removeObjectAtIndex:0];
         }
     });
 }
@@ -96,7 +96,7 @@ static PEPPassphraseCache *s_sharedInstance;
                                             arrayWithCapacity:s_maxNumberOfPassphrases + 1];
     [resultingPassphrases addObject:@""];
     dispatch_sync(self.queue, ^{
-        for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
+        for (PEPPassphraseCacheEntry *entry in self.mutablePassphraseEntries) {
             [resultingPassphrases addObject:entry.passphrase];
         }
     });
@@ -110,14 +110,14 @@ static PEPPassphraseCache *s_sharedInstance;
     NSMutableArray *resultingPassphrases = [NSMutableArray
                                             arrayWithCapacity:s_maxNumberOfPassphrases];
 
-    for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
+    for (PEPPassphraseCacheEntry *entry in self.mutablePassphraseEntries) {
         if (![self isExpiredPassphraseEntry:entry]) {
             [resultingPassphrases addObject:entry];
         }
     }
 
-    [self.mutablePassphrases removeAllObjects];
-    [self.mutablePassphrases addObjectsFromArray:resultingPassphrases];
+    [self.mutablePassphraseEntries removeAllObjects];
+    [self.mutablePassphraseEntries addObjectsFromArray:resultingPassphrases];
 }
 
 - (void)resetTimeoutForPassphrase:(NSString *)passphrase
@@ -128,7 +128,7 @@ static PEPPassphraseCache *s_sharedInstance;
     }
 
     dispatch_sync(self.queue, ^{
-        for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
+        for (PEPPassphraseCacheEntry *entry in self.mutablePassphraseEntries) {
             if ([entry.passphrase isEqualToString:passphrase]) {
                 entry.dateAdded = [NSDate date];
             }
