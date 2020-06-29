@@ -139,4 +139,17 @@ static PEPPassphraseCache *s_sharedInstance;
     });
 }
 
+- (BOOL)isExpiredPassphraseEntry:(PEPPassphraseCacheEntry *)passphraseEntry
+{
+    NSDate *now = [NSDate date];
+    NSDate *minimum = [now dateByAddingTimeInterval:-self.timeout];
+    NSTimeInterval minimumTimeInterval = [minimum timeIntervalSinceReferenceDate];
+
+    if ([passphraseEntry.dateAdded timeIntervalSinceReferenceDate] < minimumTimeInterval) {
+        return YES;
+    }
+
+    return NO;
+}
+
 @end
