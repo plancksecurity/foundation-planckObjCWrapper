@@ -48,7 +48,7 @@
     [self.cache addPassphrase:passphrase2];
 
     XCTAssertEqual(self.cache.passphrases.count, 3);
-    NSArray *expected = @[@"", passphrase1, passphrase2];
+    NSArray *expected = @[@"", passphrase2, passphrase1];
     XCTAssertEqualObjects(self.cache.passphrases, expected);
 }
 
