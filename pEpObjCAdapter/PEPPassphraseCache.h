@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Add a new password.
 - (void)addPassphrase:(NSString *)passphrase;
 
-/// Retrieve the current list of cached passwords, including the empty one.
+/// Retrieve the current list of cached passwords, including the empty one (`@""`),
+/// in the order "last added first" (except the empty password, which is always first).
 - (NSArray<NSString *> *)passphrases;
 
 /// Indicate that the given passphrase was just successfully used and its timeout
