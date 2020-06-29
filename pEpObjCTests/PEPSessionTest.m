@@ -1497,6 +1497,52 @@
     }
 }
 
+- (void)testOwnKeyWithPasswordAndEncryptToSelf
+{
+    NSString *passphrase = @"passphrase";
+
+    PEPSession *session = [PEPSession new];
+
+    NSError *error = nil;
+
+    XCTAssertTrue([session configurePassphraseForNewKeys:passphrase enable:YES error:&error]);
+
+    PEPIdentity *identMeWithPassphrase = [[PEPIdentity alloc]
+                                          initWithAddress:@"me-myself-and-i@pep-project.org"
+                                          userID:@"me-myself-and-i"
+                                          userName:@"pEp Me"
+                                          isOwn:YES];
+
+    XCTAssertTrue([session mySelf:identMeWithPassphrase error:&error]);
+    XCTAssertNil(error);
+
+    PEPIdentity *receiver1 = [[PEPIdentity alloc]
+                              initWithAddress:@"partner1@example.com"
+                              userID:@"partner1"
+                              userName:@"Partner 1"
+                                          isOwn:NO];
+
+    PEPMessage *draftMail = [PEPTestUtils
+                             mailFrom:identMeWithPassphrase
+                             toIdent:receiver1
+                             shortMessage:@"hey"
+                             longMessage:@"hey hey"
+                             outgoing:YES];
+
+    error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMeWithPassphrase
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
