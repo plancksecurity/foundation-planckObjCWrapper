@@ -16,10 +16,10 @@
 @class PEPMessage;
 
 /// Domain for errors indicated by the pEp engine.
-static NSString * _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
+extern NSString * const _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
 
 /// Domain for errors indicated by the pEp adapter itself.
-static NSString * _Nonnull PEPObjCAdapterErrorDomain;
+extern NSString * const _Nonnull PEPObjCAdapterErrorDomain;
 
 /// Possible errors from adapter without involvement from the engine.
 typedef NS_CLOSED_ENUM(int, PEPAdapterError) {

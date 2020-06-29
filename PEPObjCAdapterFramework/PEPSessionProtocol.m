@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * _Nonnull PEPObjCAdapterEngineStatusErrorDomain = @"PEPObjCAdapterEngineStatusErrorDomain";
+NSString * _Nonnull const PEPObjCAdapterEngineStatusErrorDomain = @"PEPObjCAdapterEngineStatusErrorDomain";
 
-static NSString * _Nonnull PEPObjCAdapterErrorDomain = @"PEPObjCAdapterErrorDomain";
+NSString * _Nonnull const PEPObjCAdapterErrorDomain = @"PEPObjCAdapterErrorDomain";
