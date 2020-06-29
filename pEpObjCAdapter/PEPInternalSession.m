@@ -769,7 +769,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     if (theChars) {
         return [NSString stringWithUTF8String:theChars];
     } else {
-        [NSError setError:error fromPEPStatusInternal:PEP_UNKNOWN_ERROR];
+        [NSError setError:error fromPEPStatus:(PEPStatus) PEP_UNKNOWN_ERROR];
         return nil;
     }
 }
@@ -1087,7 +1087,7 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
 
     PEP_STATUS status = config_passphrase(_session, [normalizedPassphrase UTF8String]);
 
-    if ([NSError setError:error fromPEPStatusInternal:status]) {
+    if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
         return NO;
     }
 
@@ -1106,7 +1106,7 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
                                                        enable,
                                                        [normalizedPassphrase UTF8String]);
 
-    if ([NSError setError:error fromPEPStatusInternal:status]) {
+    if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
         return NO;
     }
 
