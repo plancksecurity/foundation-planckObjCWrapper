@@ -29,6 +29,9 @@
         lastStatus = block(self.session);
 
         if (lastStatus != PEP_PASSPHRASE_REQUIRED && lastStatus != PEP_WRONG_PASSPHRASE) {
+            // The passphrase worked, so reset its timeout
+            [[PEPPassphraseCache sharedInstance] resetTimeoutForPassphrase:passphrase];
+
             return (PEPStatus) lastStatus;
         }
     }
