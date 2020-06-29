@@ -125,6 +125,11 @@ static PEPPassphraseCache *s_sharedInstance;
 
 - (void)resetTimeoutForPassphrase:(NSString *)passphrase
 {
+    if ([passphrase isEqualToString:@""]) {
+        // ignore the empty passphrase, it's always there
+        return;
+    }
+
     dispatch_sync(self.queue, ^{
         for (PEPPassphraseCacheEntry *entry in self.mutablePassphrases) {
             if ([entry.passphrase isEqualToString:passphrase]) {
