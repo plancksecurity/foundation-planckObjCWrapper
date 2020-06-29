@@ -1499,13 +1499,16 @@
 
 - (void)testOwnKeyWithPasswordAndEncryptToSelf
 {
-    NSString *passphrase = @"passphrase";
+    NSString *correctPassphrase = @"passphrase";
 
     PEPSession *session = [PEPSession new];
 
     NSError *error = nil;
 
-    XCTAssertTrue([session configurePassphraseForNewKeys:passphrase enable:YES error:&error]);
+    XCTAssertTrue([session
+                   configurePassphraseForNewKeys:correctPassphrase
+                   enable:YES
+                   error:&error]);
 
     PEPIdentity *identMeWithPassphrase = [[PEPIdentity alloc]
                                           initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1559,6 +1562,22 @@
     XCTAssertNotNil(error);
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
+
+    error = nil;
+
+    XCTAssertTrue([session configurePassphrase:correctPassphrase error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+    status = PEPStatusOutOfMemory;
+
+    XCTAssertTrue([session
+                   encryptMessage:draftMail
+                   forSelf:identMeWithPassphrase
+                   extraKeys:nil
+                   status:&status
+                   error:&error]);
+    XCTAssertNil(error);
 }
 
 #pragma mark - Helpers
