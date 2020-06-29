@@ -105,6 +105,26 @@
     XCTAssertEqualObjects(ownCache.passphrases, @[@""]);
 }
 
+- (void)testResetTimeout
+{
+    NSString *passphrase1 = @"somepass1";
+    NSString *passphrase2 = @"somepass2";
+    NSString *passphrase3 = @"somepass3";
+
+    [self.cache addPassphrase:passphrase1];
+    [self.cache addPassphrase:passphrase2];
+    [self.cache addPassphrase:passphrase3];
+
+    [self.cache resetTimeoutForPassphrase:passphrase1];
+
+    NSArray *expected1 = @[@"", passphrase1, passphrase3, passphrase2];
+    XCTAssertEqualObjects(self.cache.passphrases, expected1);
+
+    [self.cache resetTimeoutForPassphrase:passphrase3];
+    NSArray *expected2 = @[@"", passphrase3, passphrase1, passphrase2];
+    XCTAssertEqualObjects(self.cache.passphrases, expected2);
+}
+
 #pragma mark - Helpers
 
 - (NSArray *)reversedArray:(NSArray *)array
