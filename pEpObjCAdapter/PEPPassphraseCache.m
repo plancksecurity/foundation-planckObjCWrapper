@@ -83,6 +83,7 @@ static PEPPassphraseCache *s_sharedInstance;
     PEPPassphraseCacheEntry *entry = [[PEPPassphraseCacheEntry alloc]
                                       initWithPassphrase:passphrase];
     dispatch_sync(self.queue, ^{
+        // Note newer passphrases are always added to the _end_
         [self.mutablePassphraseEntries addObject:entry];
         if (self.mutablePassphraseEntries.count > s_maxNumberOfPassphrases) {
             [self.mutablePassphraseEntries removeObjectAtIndex:0];
