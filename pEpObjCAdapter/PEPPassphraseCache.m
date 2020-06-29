@@ -97,7 +97,9 @@ static PEPPassphraseCache *s_sharedInstance;
     [resultingPassphrases addObject:@""];
     dispatch_sync(self.queue, ^{
         for (PEPPassphraseCacheEntry *entry in self.mutablePassphraseEntries) {
-            [resultingPassphrases addObject:entry.passphrase];
+            if (![self isExpiredPassphraseEntry:entry]) {
+                [resultingPassphrases addObject:entry.passphrase];
+            }
         }
     });
     return [NSArray arrayWithArray:resultingPassphrases];
