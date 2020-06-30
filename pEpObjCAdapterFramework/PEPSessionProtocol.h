@@ -22,7 +22,7 @@ extern NSString * const _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
 extern NSString * const _Nonnull PEPObjCAdapterErrorDomain;
 
 /// Possible errors from adapter without involvement from the engine.
-typedef NS_CLOSED_ENUM(int, PEPAdapterError) {
+typedef NS_CLOSED_ENUM(NSInteger, PEPAdapterError) {
     /// Passwords are limited in size, and this error indicates a password that contains
     /// too many codepoints.
     PEPAdapterErrorPassphraseTooLong = 0
