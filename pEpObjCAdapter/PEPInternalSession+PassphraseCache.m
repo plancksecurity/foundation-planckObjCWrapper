@@ -18,7 +18,11 @@
 {
     PEP_STATUS lastStatus = PEP_UNKNOWN_ERROR;
 
-    NSArray *passphrases = [[PEPPassphraseCache sharedInstance] passphrases];
+    NSMutableArray *passphrases = [NSMutableArray
+                                   arrayWithArray:[[PEPPassphraseCache sharedInstance]
+                                                   passphrases]];
+    [passphrases insertObject:@"" atIndex:0];
+
     for (NSString *passphrase in passphrases) {
         PEP_STATUS status = config_passphrase(self.session, [passphrase UTF8String]);
 

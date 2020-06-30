@@ -60,7 +60,7 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 - (NSArray<NSString *> *)passphrases
 {
     NSMutableArray *resultingPassphrases = [NSMutableArray
-                                            arrayWithCapacity:PEPPassphraseCacheMaxNumberOfPassphrases + 1];
+                                            arrayWithCapacity:PEPPassphraseCacheMaxNumberOfPassphrases];
     dispatch_sync(self.queue, ^{
         for (PEPPassphraseCacheEntry *entry in self.mutablePassphraseEntries) {
             if (![self isExpiredPassphraseEntry:entry]) {
@@ -68,15 +68,14 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
             }
         }
     });
-    [resultingPassphrases insertObject:@"" atIndex:0];
+
     return [NSArray arrayWithArray:resultingPassphrases];
 }
 
 - (void)resetTimeoutForPassphrase:(NSString *)passphrase
 {
     if ([passphrase isEqualToString:@""]) {
-        // Ignore the empty passphrase, it's always there from the client's view,
-        // but not contained in the internal model.
+        // Ignore the empty passphrase.
         return;
     }
 
