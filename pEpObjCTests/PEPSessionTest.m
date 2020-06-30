@@ -1510,6 +1510,8 @@
                    enable:YES
                    error:&error]);
 
+    XCTAssertNil(error);
+
     PEPIdentity *identMeWithPassphrase = [[PEPIdentity alloc]
                                           initWithAddress:@"me-myself-and-i@pep-project.org"
                                           userID:@"me-myself-and-i"
