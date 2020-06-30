@@ -626,11 +626,13 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    __block pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) key_reset_trust(_session, ident);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return key_reset_trust(_session, ident);
+    }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         free_identity(ident);
         return NO;
     }
