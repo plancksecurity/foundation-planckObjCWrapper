@@ -1033,11 +1033,13 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = PEP_identityToStruct(identity);
     const char *fpr = [[fingerprint precomposedStringWithCanonicalMapping] UTF8String];
 
-    PEPStatus status = (PEPStatus) key_reset_user(self.session, ident->user_id, fpr);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return key_reset_user(session, ident->user_id, fpr);
+    }];
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         return YES;
