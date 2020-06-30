@@ -674,9 +674,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) disable_identity_for_sync(_session, ident);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return disable_identity_for_sync(session, ident);
+    }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         free_identity(ident);
         return NO;
     }
