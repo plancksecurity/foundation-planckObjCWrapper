@@ -629,7 +629,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     __block pEp_identity *ident = PEP_identityToStruct(identity);
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return key_reset_trust(_session, ident);
+        return key_reset_trust(session, ident);
     }];
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
