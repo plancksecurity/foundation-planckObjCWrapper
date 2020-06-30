@@ -1582,6 +1582,49 @@
     XCTAssertNil(error);
 }
 
+- (void)testOwnKeyWithPasswordSendMessage
+{
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPSession *session = [PEPSession new];
+
+    NSError *error = nil;
+
+    NSString *correctPassphrase = @"passphrase";
+
+    XCTAssertTrue([session
+                   configurePassphraseForNewKeys:correctPassphrase
+                   enable:YES
+                   error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+    [self shutdownSync];
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
