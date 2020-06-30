@@ -242,7 +242,30 @@ static __weak PEPSync *s_pEpSync;
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
     if (msg == NULL && [NSThread currentThread] == self.syncThread) {
-        // TODO: Handle password management
+        static NSMutableArray *passphrasesCopy = nil;
+        static BOOL makeNewCopy = YES;
+
+        if (makeNewCopy) {
+            passphrasesCopy = [NSMutableArray
+                               arrayWithArray:[[PEPPassphraseCache sharedInstance] passphrases]];
+
+            if ([passphrasesCopy count] == 0) {
+                makeNewCopy = YES;
+                return PEP_PASSPHRASE_REQUIRED;
+            } else {
+                makeNewCopy = NO;
+            }
+        }
+
+        if ([passphrasesCopy count] == 0) {
+            makeNewCopy = YES;
+            return PEP_WRONG_PASSPHRASE;
+        } else {
+            NSString *password = [passphrasesCopy firstObject];
+            [passphrasesCopy removeObjectAtIndex:0];
+            // TODO: Configure that password
+        }
+
         return PEP_PASSPHRASE_REQUIRED;
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
