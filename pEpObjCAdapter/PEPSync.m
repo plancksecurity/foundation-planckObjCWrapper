@@ -22,6 +22,7 @@
 #import "NSError+PEP+Internal.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
+#import "PEPPassphraseCache.h"
 
 // MARK: - Internals
 
