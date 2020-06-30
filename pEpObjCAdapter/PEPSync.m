@@ -27,7 +27,7 @@
 
 static os_log_t s_logger;
 
-typedef PEP_STATUS (* t_messageToSendCallback)(struct _message *msg);
+typedef PEP_STATUS (* t_messageToSendCallback)(struct _message * _Nullable msg);
 typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 @interface PEPSync ()
@@ -48,7 +48,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
  */
 + (t_injectSyncCallback)injectSyncCallback;
 
-- (PEP_STATUS)messageToSend:(struct _message *)msg;
+- (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event isFromShutdown:(BOOL)isFromShutdown;
 
@@ -62,7 +62,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 // MARK: - Callbacks called by the engine, used in session init
 
-static PEP_STATUS s_messageToSendObjc(struct _message *msg)
+static PEP_STATUS s_messageToSendObjc(struct _message * _Nullable msg)
 {
     PEPSync *pEpSync = [PEPSync instance];
 
@@ -238,13 +238,20 @@ static __weak PEPSync *s_pEpSync;
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
 }
 
-- (PEP_STATUS)messageToSend:(struct _message *)msg
+- (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
-    if (self.sendMessageDelegate) {
-        PEPMessage *theMessage = pEpMessageFromStruct(msg);
-        return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
+    if (msg == NULL && [NSThread currentThread] == self.syncThread) {
+        // TODO: Handle password management
+        return PEP_PASSPHRASE_REQUIRED;
+    } else if (msg != NULL) {
+        if (self.sendMessageDelegate) {
+            PEPMessage *theMessage = pEpMessageFromStruct(msg);
+            return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
+        } else {
+            return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
+        }
     } else {
-        return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
+        return PEP_SYNC_ILLEGAL_MESSAGE;
     }
 }
 
