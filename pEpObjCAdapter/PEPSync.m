@@ -39,6 +39,9 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
 
+/// The session created and used by the sync loop
+@property (nonatomic, nullable) PEPInternalSession *syncLoopSession;
+
 /**
  @Return: The callback for message sending that should be used on every session init.
  */
@@ -211,18 +214,20 @@ static __weak PEPSync *s_pEpSync;
 
     os_log(s_logger, "trying to start the sync loop");
 
-    PEPInternalSession *session = [PEPSessionProvider session];
+    self.syncLoopSession = [PEPSessionProvider session];
 
-    if (session) {
-        PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
+    if (self.syncLoopSession) {
+        PEP_STATUS status = register_sync_callbacks(self.syncLoopSession.session,
+                                                    nil,
+                                                    s_notifyHandshake,
                                                     s_retrieve_next_sync_event);
         if (status == PEP_STATUS_OK) {
-            status = do_sync_protocol(session.session, nil);
+            status = do_sync_protocol(self.syncLoopSession.session, nil);
             if (status != PEP_STATUS_OK) {
                 os_log_error(s_logger, "do_sync_protocol returned PEP_STATUS %d", status);
                 os_log(s_logger, "sync loop is NOT running");
             }
-            unregister_sync_callbacks(session.session);
+            unregister_sync_callbacks(self.syncLoopSession.session);
         } else {
             os_log_error(s_logger, "register_sync_callbacks returned PEP_STATUS %d", status);
             os_log(s_logger, "sync loop is NOT running");
@@ -233,7 +238,7 @@ static __weak PEPSync *s_pEpSync;
 
     os_log(s_logger, "sync loop finished");
 
-    session = nil;
+    self.syncLoopSession = nil;
 
     self.syncThread = nil;
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
