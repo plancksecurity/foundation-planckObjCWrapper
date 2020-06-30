@@ -1582,6 +1582,7 @@
     XCTAssertNil(error);
 }
 
+/*
 - (void)testOwnKeyWithPasswordSendMessage
 {
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
@@ -1624,6 +1625,7 @@
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
     [self shutdownSync];
 }
+*/
 
 #pragma mark - Helpers
 
