@@ -319,7 +319,7 @@ static __weak PEPSync *s_pEpSync;
 {
     if (self.notifyHandshakeDelegate) {
         PEPIdentity *meIdentity = PEP_identityFromStruct(me);
-        PEPIdentity *partnerIdentity = PEP_identityFromStruct(partner);
+        PEPIdentity *partnerIdentity = partner != nil ? PEP_identityFromStruct(partner) : nil;
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity
