@@ -1059,9 +1059,11 @@ static NSDictionary *stringToRating;
 
 - (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error
 {
-    PEPStatus status = (PEPStatus) key_reset_all_own_keys(self.session);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return key_reset_all_own_keys(self.session);
+    }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         return YES;
