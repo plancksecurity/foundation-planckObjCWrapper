@@ -268,10 +268,9 @@ static __weak PEPSync *s_pEpSync;
         } else {
             NSString *password = [passphrasesCopy firstObject];
             [passphrasesCopy removeObjectAtIndex:0];
-            // TODO: Configure that password
+            [self.syncLoopSession configurePassphrase:password error:nil];
+            return PEP_STATUS_OK;
         }
-
-        return PEP_PASSPHRASE_REQUIRED;
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
             PEPMessage *theMessage = pEpMessageFromStruct(msg);
