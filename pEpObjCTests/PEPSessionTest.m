@@ -1499,7 +1499,7 @@
 
 - (void)testOwnKeyWithPasswordAndEncryptToSelf
 {
-    NSString *correctPassphrase = @"passphrase";
+    NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordAndEncryptToSelf";
 
     PEPSession *session = [PEPSession new];
 
@@ -1591,7 +1591,7 @@
 
     NSError *error = nil;
 
-    NSString *correctPassphrase = @"passphrase";
+    NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordSendMessage";
 
     XCTAssertTrue([session
                    configurePassphraseForNewKeys:correctPassphrase
