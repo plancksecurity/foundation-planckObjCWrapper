@@ -12,7 +12,8 @@
 
 #import "PEPPassphraseCacheEntry.h"
 
-static NSUInteger s_maxNumberOfPassphrases = 20;
+const NSUInteger PEPPassphraseCacheMaxNumberOfPassphrases = 20;
+
 static NSTimeInterval s_defaultTimeoutInSeconds = 10 * 60;
 static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 
@@ -50,7 +51,7 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
                                       initWithPassphrase:passphrase];
     dispatch_sync(self.queue, ^{
         [self.mutablePassphraseEntries insertObject:entry atIndex:0];
-        if (self.mutablePassphraseEntries.count > s_maxNumberOfPassphrases) {
+        if (self.mutablePassphraseEntries.count > PEPPassphraseCacheMaxNumberOfPassphrases) {
             [self.mutablePassphraseEntries removeLastObject];
         }
     });
@@ -59,7 +60,7 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 - (NSArray<NSString *> *)passphrases
 {
     NSMutableArray *resultingPassphrases = [NSMutableArray
-                                            arrayWithCapacity:s_maxNumberOfPassphrases + 1];
+                                            arrayWithCapacity:PEPPassphraseCacheMaxNumberOfPassphrases + 1];
     dispatch_sync(self.queue, ^{
         for (PEPPassphraseCacheEntry *entry in self.mutablePassphraseEntries) {
             if (![self isExpiredPassphraseEntry:entry]) {
@@ -115,7 +116,8 @@ static PEPPassphraseCache *s_sharedInstance;
     if (self) {
         _timeout = timeout;
         _queue = dispatch_queue_create("PEPPassphraseCache Queue", DISPATCH_QUEUE_SERIAL);
-        _mutablePassphraseEntries = [NSMutableArray arrayWithCapacity:s_maxNumberOfPassphrases];
+        _mutablePassphraseEntries = [NSMutableArray
+                                     arrayWithCapacity:PEPPassphraseCacheMaxNumberOfPassphrases];
 
         // we have a strong reference to the timer, but the timer doesn't have one to us
         typeof(self) __weak weakSelf = self;
@@ -138,7 +140,7 @@ static PEPPassphraseCache *s_sharedInstance;
 - (void)removeStaleEntries
 {
     NSMutableArray *resultingPassphrases = [NSMutableArray
-                                            arrayWithCapacity:s_maxNumberOfPassphrases];
+                                            arrayWithCapacity:PEPPassphraseCacheMaxNumberOfPassphrases];
 
     for (PEPPassphraseCacheEntry *entry in self.mutablePassphraseEntries) {
         if (![self isExpiredPassphraseEntry:entry]) {

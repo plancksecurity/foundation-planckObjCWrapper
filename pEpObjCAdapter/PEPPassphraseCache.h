@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern const NSUInteger PEPPassphraseCacheMaxNumberOfPassphrases;
+
 /// Caches passwords the app sets after asking the user, for some time.
 /// - Note: The passwords are expected to be Unicode Normalization Form C,
 /// in order to meet the engine's requirement of being UTF-8 NFC strings.
