@@ -327,7 +327,9 @@ extern NSString * const _Nonnull PEPObjCAdapterErrorDomain;
 /// Uses the engine's `config_passphrase_for_new_keys`.
 /// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
 /// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
+/// @deprecated
 - (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
-                               enable:(BOOL)enable error:(NSError * _Nullable * _Nullable)error;
+                               enable:(BOOL)enable error:(NSError * _Nullable * _Nullable)error
+__deprecated;
 
 @end
