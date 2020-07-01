@@ -13,7 +13,7 @@
 #import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
-#import "PEPSync.h"
+#import "PEPSync_Internal.h"
 
 #import "keymanagement.h"
 #import "mime.h"
@@ -92,6 +92,8 @@ static NSString *s_passphraseForNewKeys = nil;
 
 + (void)restartSyncLoop
 {
+    [[PEPSync sharedInstance] shutdown];
+    [[PEPSync sharedInstance] startup];
 }
 
 #pragma mark - DB PATHS
