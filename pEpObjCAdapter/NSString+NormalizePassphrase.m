@@ -21,7 +21,7 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
 
     if ([normalizedPassphrase length] > s_passphraseMaxNumberOfCodePoints) {
         if (error) {
-            *error = [NSError errorWithDomain:PEPObjCAdapterEngineStatusErrorDomain
+            *error = [NSError errorWithDomain:PEPObjCAdapterErrorDomain
                                          code:PEPAdapterErrorPassphraseTooLong
                                      userInfo:nil];
             return nil;
