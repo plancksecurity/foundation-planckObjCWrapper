@@ -1593,10 +1593,9 @@
 
     XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:correctPassphrase error:&error]);
     XCTAssertNil(error);
+    error = nil;
 
     PEPSession *session = [PEPSession new];
-
-    error = nil;
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
