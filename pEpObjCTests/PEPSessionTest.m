@@ -1501,6 +1501,7 @@
     }
 }
 
+/*
 - (void)testOwnKeyWithPasswordAndEncryptToSelf
 {
     NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordAndEncryptToSelf";
@@ -1580,8 +1581,12 @@
                    status:&status
                    error:&error]);
     XCTAssertNil(error);
-}
 
+    [self shutdownSync];
+}
+*/
+
+/*
 - (void)testNotifyHandshakePassphraseRequired
 {
     NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordSendMessage";
@@ -1617,7 +1622,10 @@
     XCTAssertTrue(self.notifyHandshakeDelegate.notifyHandshakePassphraseRequired);
     self.notifyHandshakeDelegate.notifyHandshakePassphraseRequired = NO;
     XCTAssertTrue([session configurePassphrase:correctPassphrase error:&error]);
+
+    [self shutdownSync];
 }
+*/
 
 #pragma mark - Helpers
 
