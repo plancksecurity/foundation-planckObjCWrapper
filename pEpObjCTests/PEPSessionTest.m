@@ -1610,15 +1610,10 @@
     [self startSync];
 
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"lastMessage"
-                                         object:self.sendMessageDelegate];
-
-    XCTAssertNotNil(identMe.fingerPrint);
+                                         initWithKeyPath:@"notifyHandshakePassphraseRequired"
+                                         object:self.notifyHandshakeDelegate];
 
     [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
-    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
     [self shutdownSync];
 }
 
