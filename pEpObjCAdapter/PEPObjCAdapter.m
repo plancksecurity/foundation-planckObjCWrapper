@@ -69,8 +69,11 @@ static NSString *s_passphraseForNewKeys = nil;
                                 error:(NSError * _Nullable * _Nullable)error
 {
     if (passphrase == nil) {
+        BOOL shouldRestart = s_passphraseForNewKeys != nil;
         s_passphraseForNewKeys = nil;
-        [self restartSyncLoop];
+        if (shouldRestart) {
+            [self restartSyncLoop];
+        }
         return YES;
     } else {
         NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
@@ -79,8 +82,11 @@ static NSString *s_passphraseForNewKeys = nil;
             return NO;
         }
 
+        BOOL shouldRestart = ![s_passphraseForNewKeys isEqualToString:normalizedPassphrase];
         s_passphraseForNewKeys = normalizedPassphrase;
-        [self restartSyncLoop];
+        if (shouldRestart) {
+            [self restartSyncLoop];
+        }
         return YES;
     }
 }
