@@ -34,6 +34,7 @@ NSURL *s_homeURL;
 
 static BOOL s_unEncryptedSubjectEnabled = NO;
 static BOOL s_passiveModeEnabled = NO;
+static NSString *s_passphraseForOwnKeys = nil;
 
 @implementation PEPObjCAdapter
 
@@ -67,7 +68,7 @@ static BOOL s_passiveModeEnabled = NO;
                                 error:(NSError * _Nullable * _Nullable)error
 {
     if (passphrase == nil) {
-        // TODO: Set for future
+        s_passphraseForOwnKeys = nil;
         return YES;
     } else {
         NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
@@ -76,7 +77,7 @@ static BOOL s_passiveModeEnabled = NO;
             return NO;
         }
 
-        // TODO: Set for future
+        s_passphraseForOwnKeys = normalizedPassphrase;
         return YES;
     }
 }
