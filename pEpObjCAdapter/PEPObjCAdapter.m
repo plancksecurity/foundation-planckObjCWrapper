@@ -34,7 +34,7 @@ NSURL *s_homeURL;
 
 static BOOL s_unEncryptedSubjectEnabled = NO;
 static BOOL s_passiveModeEnabled = NO;
-static NSString *s_passphraseForOwnKeys = nil;
+static NSString *s_passphraseForNewKeys = nil;
 
 @implementation PEPObjCAdapter
 
@@ -68,7 +68,7 @@ static NSString *s_passphraseForOwnKeys = nil;
                                 error:(NSError * _Nullable * _Nullable)error
 {
     if (passphrase == nil) {
-        s_passphraseForOwnKeys = nil;
+        s_passphraseForNewKeys = nil;
         return YES;
     } else {
         NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
@@ -77,9 +77,14 @@ static NSString *s_passphraseForOwnKeys = nil;
             return NO;
         }
 
-        s_passphraseForOwnKeys = normalizedPassphrase;
+        s_passphraseForNewKeys = normalizedPassphrase;
         return YES;
     }
+}
+
++ (NSString * _Nullable)passphraseForNewKeys
+{
+    return s_passphraseForNewKeys;
 }
 
 #pragma mark - DB PATHS
