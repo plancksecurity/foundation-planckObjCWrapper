@@ -1582,7 +1582,7 @@
     XCTAssertNil(error);
 }
 
-- (void)testOwnKeyWithPasswordSendMessage
+- (void)testNotifyHandshakePassphraseRequired
 {
     NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordSendMessage";
 
@@ -1608,12 +1608,15 @@
 
     [self startSync];
 
-    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
-                                         initWithKeyPath:@"notifyHandshakePassphraseRequired"
-                                         object:self.notifyHandshakeDelegate];
+    XCTKVOExpectation *expAskedForPassphrase = [[XCTKVOExpectation alloc]
+                                                initWithKeyPath:@"notifyHandshakePassphraseRequired"
+                                                object:self.notifyHandshakeDelegate];
 
-    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
-    [self shutdownSync];
+    [self waitForExpectations:@[expAskedForPassphrase] timeout:PEPTestInternalSyncTimeout];
+
+    XCTAssertTrue(self.notifyHandshakeDelegate.notifyHandshakePassphraseRequired);
+    self.notifyHandshakeDelegate.notifyHandshakePassphraseRequired = NO;
+    XCTAssertTrue([session configurePassphrase:correctPassphrase error:&error]);
 }
 
 #pragma mark - Helpers
