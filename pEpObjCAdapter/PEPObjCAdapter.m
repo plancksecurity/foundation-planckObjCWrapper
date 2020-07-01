@@ -13,7 +13,6 @@
 #import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
-#import "PEPSync_Internal.h"
 
 #import "keymanagement.h"
 #import "mime.h"
@@ -69,11 +68,7 @@ static NSString *s_passphraseForNewKeys = nil;
                                 error:(NSError * _Nullable * _Nullable)error
 {
     if (passphrase == nil) {
-        BOOL shouldRestart = s_passphraseForNewKeys != nil;
         s_passphraseForNewKeys = nil;
-        if (shouldRestart) {
-            [self restartSyncLoop];
-        }
         return YES;
     } else {
         NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
@@ -82,11 +77,7 @@ static NSString *s_passphraseForNewKeys = nil;
             return NO;
         }
 
-        BOOL shouldRestart = ![s_passphraseForNewKeys isEqualToString:normalizedPassphrase];
         s_passphraseForNewKeys = normalizedPassphrase;
-        if (shouldRestart) {
-            [self restartSyncLoop];
-        }
         return YES;
     }
 }
@@ -94,12 +85,6 @@ static NSString *s_passphraseForNewKeys = nil;
 + (NSString * _Nullable)passphraseForNewKeys
 {
     return s_passphraseForNewKeys;
-}
-
-+ (void)restartSyncLoop
-{
-    [[PEPSync sharedInstance] shutdown];
-    [[PEPSync sharedInstance] startup];
 }
 
 #pragma mark - DB PATHS
