@@ -1092,6 +1092,9 @@ static NSDictionary *stringToRating;
         return NO;
     }
 
+    [[PEPSync sharedInstance] shutdown];
+    [[PEPSync sharedInstance] startup];
+
     return YES;
 }
 
