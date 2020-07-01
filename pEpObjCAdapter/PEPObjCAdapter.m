@@ -60,6 +60,15 @@ static BOOL s_passiveModeEnabled = NO;
     s_passiveModeEnabled = enabled;
 }
 
+#pragma mark - Passphrase for own keys
+
++ (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                                error:(NSError * _Nullable * _Nullable)error
+{
+    // TODO
+    return NO;
+}
+
 #pragma mark - DB PATHS
 
 + (void)initialize
