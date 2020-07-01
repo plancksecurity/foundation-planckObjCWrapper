@@ -12,6 +12,7 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
+#import "NSString+NormalizePassphrase.h"
 
 #import "keymanagement.h"
 #import "mime.h"
@@ -65,18 +66,19 @@ static BOOL s_passiveModeEnabled = NO;
 + (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
                                 error:(NSError * _Nullable * _Nullable)error
 {
-    NSString *normalizedPassphrase = [passphrase precomposedStringWithCanonicalMapping];
+    if (passphrase == nil) {
+        // TODO: Set for future
+        return YES;
+    } else {
+        NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
 
-    if ([normalizedPassphrase length] > 250) { // TODO: Use shared internal constant
-        if (error) {
-            *error = [NSError errorWithDomain:PEPObjCAdapterEngineStatusErrorDomain
-                                         code:PEPAdapterErrorPassphraseTooLong
-                                     userInfo:nil];
+        if (normalizedPassphrase == nil) {
             return NO;
         }
-    }
 
-    return NO;
+        // TODO: Set for future
+        return YES;
+    }
 }
 
 #pragma mark - DB PATHS
