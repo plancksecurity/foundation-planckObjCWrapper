@@ -6,6 +6,8 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
+#import <os/log.h>
+
 #import "PEPSessionProvider.h"
 
 #import "PEPObjCAdapter+Internal.h"
@@ -69,6 +71,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 {
     s_sessionForThreadLock = [NSLock new];
     s_sessionForThreadDict = [NSMutableDictionary new];
+    s_logger = os_log_create("security.pEp.adapter", "PEPSessionProvider");
 }
 
 #pragma mark - Lock
@@ -89,6 +92,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 {
     [self setConfigUnEncryptedSubjectOnSession:session];
     [self setPassiveModeOnSession:session];
+    [self setPassphraseForNewKeysOnSession:session];
 }
 
 + (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
@@ -103,7 +107,25 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     [session configurePassiveModeEnabled:passiveModeEnabled];
 }
 
++ (void)setPassphraseForNewKeysOnSession:(PEPInternalSession *)session
+{
+    NSString *passphrase = [PEPObjCAdapter passphraseForNewKeys];
+
+    PEP_STATUS status = PEP_ILLEGAL_VALUE;
+    if (passphrase) {
+        status = config_passphrase_for_new_keys(session.session, YES, [passphrase UTF8String]);
+    } else {
+        status = config_passphrase_for_new_keys(session.session, NO, NULL);
+    }
+
+    if (status != PEPStatusOK) {
+        os_log_error(s_logger, "could not configure passphrase for new keys: %d", status);
+    }
+}
+
 #pragma mark -
+
+static os_log_t s_logger;
 
 /**
  Assures a session for the main thread is set.
