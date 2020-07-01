@@ -1582,23 +1582,19 @@
     XCTAssertNil(error);
 }
 
-/*
 - (void)testOwnKeyWithPasswordSendMessage
 {
+    NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordSendMessage";
+
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
 
-    PEPSession *session = [PEPSession new];
-
     NSError *error = nil;
 
-    NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordSendMessage";
-
-    XCTAssertTrue([session
-                   configurePassphraseForNewKeys:correctPassphrase
-                   enable:YES
-                   error:&error]);
+    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:correctPassphrase error:&error]);
     XCTAssertNil(error);
+
+    PEPSession *session = [PEPSession new];
 
     error = nil;
 
@@ -1625,7 +1621,6 @@
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
     [self shutdownSync];
 }
-*/
 
 #pragma mark - Helpers
 
