@@ -33,8 +33,6 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 @interface PEPSync ()
 
-+ (PEPSync * _Nullable)instance;
-
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
@@ -68,7 +66,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 static PEP_STATUS s_messageToSendObjc(struct _message * _Nullable msg)
 {
-    PEPSync *pEpSync = [PEPSync instance];
+    PEPSync *pEpSync = [PEPSync sharedInstance];
 
     if (pEpSync) {
         return [pEpSync messageToSend:msg];
@@ -79,7 +77,7 @@ static PEP_STATUS s_messageToSendObjc(struct _message * _Nullable msg)
 
 static int s_inject_sync_event(SYNC_EVENT ev, void *management)
 {
-    PEPSync *pEpSync = [PEPSync instance];
+    PEPSync *pEpSync = [PEPSync sharedInstance];
 
     if (pEpSync) {
         // The inject comes from the engine, so we know it's not the
@@ -96,7 +94,7 @@ static PEP_STATUS s_notifyHandshake(pEp_identity *me,
                                     pEp_identity *partner,
                                     sync_handshake_signal signal)
 {
-    PEPSync *pEpSync = [PEPSync instance];
+    PEPSync *pEpSync = [PEPSync sharedInstance];
 
     if (pEpSync) {
         return [pEpSync notifyHandshake:me partner:partner signal:signal];
@@ -107,7 +105,7 @@ static PEP_STATUS s_notifyHandshake(pEp_identity *me,
 
 static SYNC_EVENT s_retrieve_next_sync_event(void *management, unsigned threshold)
 {
-    PEPSync *sync = [PEPSync instance];
+    PEPSync *sync = [PEPSync sharedInstance];
     return [sync retrieveNextSyncEvent:threshold];
 }
 
@@ -198,7 +196,7 @@ static __weak PEPSync *s_pEpSync;
     s_logger = os_log_create("security.pEp.adapter", "PEPSync");
 }
 
-+ (PEPSync * _Nullable)instance
++ (PEPSync * _Nullable)sharedInstance
 {
     return s_pEpSync;
 }

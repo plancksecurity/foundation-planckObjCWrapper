@@ -25,6 +25,9 @@
  */
 + (PEP_SESSION _Nullable)createSession:(NSError * _Nullable * _Nullable)error;
 
+/// The one and only sync instance, or nil, if none exists.
++ (PEPSync * _Nullable)sharedInstance;
+
 @end
 
 #endif /* PEPSync_Internal_h */
