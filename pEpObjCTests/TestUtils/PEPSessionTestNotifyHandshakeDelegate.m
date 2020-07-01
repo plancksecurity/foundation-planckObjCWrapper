@@ -15,6 +15,10 @@
                      partner:(PEPIdentity * _Nullable)partner
                       signal:(PEPSyncHandshakeSignal)signal
 {
+    if (partner == nil && signal == PEPSyncHandshakeSignalPassphraseRequired) {
+        self.notifyHandshakePassphraseRequired = YES;
+    }
+
     return PEPStatusOK;
 }
 
