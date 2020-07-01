@@ -65,7 +65,17 @@ static BOOL s_passiveModeEnabled = NO;
 + (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
                                 error:(NSError * _Nullable * _Nullable)error
 {
-    // TODO
+    NSString *normalizedPassphrase = [passphrase precomposedStringWithCanonicalMapping];
+
+    if ([normalizedPassphrase length] > 250) { // TODO: Use shared internal constant
+        if (error) {
+            *error = [NSError errorWithDomain:PEPObjCAdapterEngineStatusErrorDomain
+                                         code:PEPAdapterErrorPassphraseTooLong
+                                     userInfo:nil];
+            return NO;
+        }
+    }
+
     return NO;
 }
 
