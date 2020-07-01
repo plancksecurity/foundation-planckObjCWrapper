@@ -1501,16 +1501,12 @@
 {
     NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordAndEncryptToSelf";
 
-    PEPSession *session = [PEPSession new];
-
     NSError *error = nil;
 
-    XCTAssertTrue([session
-                   configurePassphraseForNewKeys:correctPassphrase
-                   enable:YES
-                   error:&error]);
-
+    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:correctPassphrase error:&error]);
     XCTAssertNil(error);
+
+    PEPSession *session = [PEPSession new];
 
     PEPIdentity *identMeWithPassphrase = [[PEPIdentity alloc]
                                           initWithAddress:@"me-myself-and-i@pep-project.org"
