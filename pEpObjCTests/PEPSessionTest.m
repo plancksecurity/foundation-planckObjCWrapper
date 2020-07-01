@@ -37,6 +37,10 @@
     [self pEpCleanUp];
 
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
+
+    NSError *error = nil;
+    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:nil error:&error]);
+    XCTAssertNil(error);
 }
 
 - (void)tearDown
