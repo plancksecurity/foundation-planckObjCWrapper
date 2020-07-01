@@ -29,6 +29,7 @@
 #import "PEPInternalConstants.h"
 #import "PEPPassphraseCache.h"
 #import "PEPInternalSession+PassphraseCache.h"
+#import "NSString+NormalizePassphrase.h"
 
 #import "key_reset.h"
 
@@ -1070,9 +1071,6 @@ static NSDictionary *stringToRating;
     }
 }
 
-/// The maximum number of code points allowed in a passphrase
-static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
-
 - (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
                       error:(NSError * _Nullable * _Nullable)error
 {
@@ -1080,15 +1078,10 @@ static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
         *error = nil;
     }
 
-    NSString *normalizedPassphrase = [passphrase precomposedStringWithCanonicalMapping];
+    NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
 
-    if ([normalizedPassphrase length] > s_passphraseMaxNumberOfCodePoints) {
-        if (error) {
-            *error = [NSError errorWithDomain:PEPObjCAdapterEngineStatusErrorDomain
-                                         code:PEPAdapterErrorPassphraseTooLong
-                                     userInfo:nil];
-            return NO;
-        }
+    if (normalizedPassphrase == nil) {
+        return NO;
     }
 
     [[PEPPassphraseCache sharedInstance] addPassphrase:normalizedPassphrase];
