@@ -19,6 +19,7 @@
 
 #import "PEPSessionTestNotifyHandshakeDelegate.h"
 #import "PEPSessionTestSendMessageDelegate.h"
+#import "PEPPassphraseCache+Reset.h"
 
 @interface PEPSessionTest : XCTestCase
 
@@ -41,6 +42,8 @@
     NSError *error = nil;
     XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:nil error:&error]);
     XCTAssertNil(error);
+
+    [PEPPassphraseCache reset];
 }
 
 - (void)tearDown
