@@ -1501,7 +1501,6 @@
     }
 }
 
-/*
 - (void)testOwnKeyWithPasswordAndEncryptToSelf
 {
     NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordAndEncryptToSelf";
@@ -1584,7 +1583,6 @@
 
     [self shutdownSync];
 }
-*/
 
 /*
 - (void)testNotifyHandshakePassphraseRequired
