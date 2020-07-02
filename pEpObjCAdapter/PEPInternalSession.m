@@ -1086,7 +1086,7 @@ static NSDictionary *stringToRating;
         return NO;
     }
 
-    [[PEPPassphraseCache sharedInstance] addPassphrase:normalizedPassphrase];
+    [self.passphraseCache addPassphrase:normalizedPassphrase];
 
     PEP_STATUS status = config_passphrase(_session, [normalizedPassphrase UTF8String]);
 

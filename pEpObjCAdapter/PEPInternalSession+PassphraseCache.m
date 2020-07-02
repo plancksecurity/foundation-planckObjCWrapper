@@ -19,8 +19,7 @@
     PEP_STATUS lastStatus = PEP_UNKNOWN_ERROR;
 
     NSMutableArray *passphrases = [NSMutableArray
-                                   arrayWithArray:[[PEPPassphraseCache sharedInstance]
-                                                   passphrases]];
+                                   arrayWithArray:[self.passphraseCache passphrases]];
     [passphrases insertObject:@"" atIndex:0];
 
     for (NSString *passphrase in passphrases) {
@@ -34,7 +33,7 @@
 
         if (lastStatus != PEP_PASSPHRASE_REQUIRED && lastStatus != PEP_WRONG_PASSPHRASE) {
             // The passphrase worked, so reset its timeout
-            [[PEPPassphraseCache sharedInstance] resetTimeoutForPassphrase:passphrase];
+            [self.passphraseCache resetTimeoutForPassphrase:passphrase];
 
             return (PEPStatus) lastStatus;
         }

@@ -258,7 +258,7 @@ static __weak PEPSync *s_pEpSync;
 
         if (makeNewCopy) {
             passphrasesCopy = [NSMutableArray
-                               arrayWithArray:[[PEPPassphraseCache sharedInstance] passphrases]];
+                               arrayWithArray:[self.syncLoopSession.passphraseCache passphrases]];
 
             if ([passphrasesCopy count] == 0) {
                 makeNewCopy = YES;
