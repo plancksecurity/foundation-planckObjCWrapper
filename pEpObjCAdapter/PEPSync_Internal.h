@@ -14,7 +14,7 @@
 /**
  Internal methods of PEPSync.
  */
-@interface PEPSync ()
+@interface PEPSync (Internal)
 
 /**
  Creates an engine session (PEP_SESSION).
