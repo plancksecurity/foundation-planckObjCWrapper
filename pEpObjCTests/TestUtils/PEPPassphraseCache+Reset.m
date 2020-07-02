@@ -8,6 +8,8 @@
 
 #import "PEPPassphraseCache+Reset.h"
 
+extern PEPPassphraseCache * _Nullable g_passphraseCache;
+
 @implementation PEPPassphraseCache (Reset)
 
 + (void)reset
