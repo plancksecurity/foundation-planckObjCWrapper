@@ -1094,8 +1094,6 @@ static NSDictionary *stringToRating;
         return NO;
     }
 
-    [[PEPSync sharedInstance] restartIfRunning];
-
     return YES;
 }
 
