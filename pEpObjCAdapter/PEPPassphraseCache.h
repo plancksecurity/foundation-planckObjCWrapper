@@ -17,8 +17,6 @@ extern const NSUInteger PEPPassphraseCacheMaxNumberOfPassphrases;
 /// in order to meet the engine's requirement of being UTF-8 NFC strings.
 @interface PEPPassphraseCache : NSObject
 
-+ (instancetype)sharedInstance;
-
 /// Add a new password.
 - (void)addPassphrase:(NSString *)passphrase;
 

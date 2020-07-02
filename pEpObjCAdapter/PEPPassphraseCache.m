@@ -33,11 +33,6 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 
 #pragma mark - API
 
-+ (instancetype)sharedInstance
-{
-    return s_sharedInstance;
-}
-
 /// Public constructor with default values.
 - (instancetype)init
 {
@@ -95,17 +90,6 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 }
 
 #pragma mark - Internals
-
-static PEPPassphraseCache *s_sharedInstance;
-
-+ (void)initialize
-{
-    static BOOL initialized = NO;
-    if (!initialized) {
-        initialized = YES;
-        s_sharedInstance = [[PEPPassphraseCache alloc] init];
-    }
-}
 
 /// Internal constructor (for now).
 - (instancetype)initWithPassphraseTimeout:(NSTimeInterval)timeout
