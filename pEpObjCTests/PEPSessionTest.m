@@ -1625,19 +1625,6 @@
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
 
-    XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
-                                          initWithKeyPath:@"lastMessage"
-                                          object:self.sendMessageDelegate];
-
-    XCTAssertTrue([session configurePassphrase:correctPassphrase error:&error]);
-
-    [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
-
-    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-    XCTAssertGreaterThan(self.sendMessageDelegate.messages.count, 0);
-
-    XCTAssertEqualObjects(self.sendMessageDelegate.lastMessage.from.address,
-                          identMe.address);
     [self shutdownSync];
 }
 
