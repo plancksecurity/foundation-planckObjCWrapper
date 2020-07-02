@@ -14,7 +14,7 @@ extern PEPPassphraseCache * _Nullable g_passphraseCache;
 
 + (void)reset
 {
-    // TODO
+    g_passphraseCache = [[PEPPassphraseCache alloc] init];
 }
 
 @end
