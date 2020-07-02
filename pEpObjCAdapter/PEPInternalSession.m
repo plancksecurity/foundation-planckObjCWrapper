@@ -33,6 +33,8 @@
 
 #import "key_reset.h"
 
+PEPPassphraseCache * _Nullable g_passphraseCache;
+
 @implementation PEPInternalSession
 
 - (_Nullable instancetype)init
@@ -1114,6 +1116,16 @@ static NSDictionary *stringToRating;
     }
 
     return YES;
+}
+
+- (PEPPassphraseCache * _Nonnull)passphraseCache
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        g_passphraseCache = [[PEPPassphraseCache alloc] init];
+    });
+
+    return g_passphraseCache;
 }
 
 @end
