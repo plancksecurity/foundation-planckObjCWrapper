@@ -189,6 +189,14 @@ static __weak PEPSync *s_pEpSync;
     }
 }
 
+- (void)restartIfRunning
+{
+    if (self.syncThread != nil) { // is running
+        [self shutdown];
+        [self startup];
+    }
+}
+
 // MARK: - Private
 
 + (void)initialize
