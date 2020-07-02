@@ -40,8 +40,6 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 /// The session created and used by the sync loop
 @property (nonatomic, nullable) PEPInternalSession *syncLoopSession;
 
-@property (nonatomic) BOOL isRunning;
-
 /**
  @Return: The callback for message sending that should be used on every session init.
  */
@@ -212,8 +210,6 @@ static __weak PEPSync *s_pEpSync;
 {
     [self.conditionLockForJoiningSyncThread lock];
 
-    self.isRunning = YES;
-
     os_log(s_logger, "trying to start the sync loop");
 
     self.syncLoopSession = [PEPSessionProvider session];
@@ -242,7 +238,6 @@ static __weak PEPSync *s_pEpSync;
 
     self.syncLoopSession = nil;
     self.syncThread = nil;
-    self.isRunning = NO;
 
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
 }

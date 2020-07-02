@@ -16,9 +16,6 @@
  */
 @interface PEPSync (Internal)
 
-/// Indicates whether the sync loop is currently executing.
-@property (nonatomic, readonly) BOOL isRunning;
-
 /**
  Creates an engine session (PEP_SESSION).
 
