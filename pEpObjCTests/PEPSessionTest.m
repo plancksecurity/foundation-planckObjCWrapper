@@ -1584,7 +1584,6 @@
     [self shutdownSync];
 }
 
-/*
 - (void)testNotifyHandshakePassphraseRequired
 {
     NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordSendMessage";
@@ -1623,7 +1622,6 @@
 
     [self shutdownSync];
 }
-*/
 
 #pragma mark - Helpers
 
