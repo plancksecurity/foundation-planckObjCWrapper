@@ -260,6 +260,12 @@ static __weak PEPSync *s_pEpSync;
             passphrasesCopy = [NSMutableArray
                                arrayWithArray:[self.syncLoopSession.passphraseCache passphrases]];
 
+            if (self.syncLoopSession.passphraseCache.storedPassphrase) {
+                [passphrasesCopy
+                 insertObject:self.syncLoopSession.passphraseCache.storedPassphrase
+                 atIndex:0];
+            }
+
             if ([passphrasesCopy count] == 0) {
                 makeNewCopy = YES;
                 return PEP_PASSPHRASE_REQUIRED;
