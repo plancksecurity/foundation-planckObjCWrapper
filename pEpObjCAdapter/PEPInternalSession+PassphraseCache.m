@@ -23,7 +23,7 @@
     [passphrases insertObject:@"" atIndex:0];
 
     if (self.passphraseCache.storedPassphrase) {
-        [passphrases insertObject:self.passphraseCache atIndex:1];
+        [passphrases insertObject:self.passphraseCache.storedPassphrase atIndex:1];
     }
 
     for (NSString *passphrase in passphrases) {
