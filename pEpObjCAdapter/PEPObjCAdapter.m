@@ -13,6 +13,8 @@
 #import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
+#import "PEPInternalSession.h"
+#import "PEPPassphraseCache.h"
 
 #import "keymanagement.h"
 #import "mime.h"
@@ -69,6 +71,8 @@ static NSString *s_passphraseForNewKeys = nil;
 {
     if (passphrase == nil) {
         s_passphraseForNewKeys = nil;
+        [[PEPInternalSession passphraseCache] setStoredPassphrase:passphrase];
+
         return YES;
     } else {
         NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
@@ -78,6 +82,8 @@ static NSString *s_passphraseForNewKeys = nil;
         }
 
         s_passphraseForNewKeys = normalizedPassphrase;
+        [[PEPInternalSession passphraseCache] setStoredPassphrase:passphrase];
+
         return YES;
     }
 }
