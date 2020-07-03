@@ -27,6 +27,9 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 @property (nonatomic) NSMutableArray<PEPPassphraseCacheEntry *> *mutablePassphraseEntries;
 @property (nonatomic) dispatch_source_t timer;
 
+/// Storage for `self.storedPassphrase`
+@property (nonatomic) NSString * _Nullable theStoredPassphrase;
+
 @end
 
 @implementation PEPPassphraseCache
@@ -87,6 +90,24 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
             [self sortPassphrases];
         }
     });
+}
+
+- (void)setStoredPassphrase:(NSString *)storedPassphrase
+{
+    dispatch_sync(self.queue, ^{
+        self.theStoredPassphrase = storedPassphrase;
+    });
+}
+
+- (NSString * _Nullable)storedPassphrase
+{
+    __block NSString *returnValue = nil;
+
+    dispatch_sync(self.queue, ^{
+        returnValue = self.theStoredPassphrase;
+    });
+
+    return returnValue;
 }
 
 #pragma mark - Internals
