@@ -17,7 +17,10 @@ extern const NSUInteger PEPPassphraseCacheMaxNumberOfPassphrases;
 /// in order to meet the engine's requirement of being UTF-8 NFC strings.
 @interface PEPPassphraseCache : NSObject
 
-/// Add a new password.
+/// An optional passphrase that does not time out.
+@property (nonatomic) NSString * _Nullable storedPassphrase;
+
+/// Add a new passphrase that will be removed from the cache after some time.
 - (void)addPassphrase:(NSString *)passphrase;
 
 /// Retrieve the current list of cached passwords, including the empty one (`@""`),
