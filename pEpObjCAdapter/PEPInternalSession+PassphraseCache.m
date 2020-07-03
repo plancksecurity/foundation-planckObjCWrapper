@@ -22,6 +22,10 @@
                                    arrayWithArray:[self.passphraseCache passphrases]];
     [passphrases insertObject:@"" atIndex:0];
 
+    if (self.passphraseCache.storedPassphrase) {
+        [passphrases insertObject:self.passphraseCache atIndex:1];
+    }
+
     for (NSString *passphrase in passphrases) {
         PEP_STATUS status = config_passphrase(self.session, [passphrase UTF8String]);
 
