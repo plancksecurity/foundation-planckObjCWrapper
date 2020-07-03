@@ -27,6 +27,20 @@
  */
 + (void)setPassiveModeEnabled:(BOOL)enabled;
 
+/// Sets a passphrase (with a maximum of 250 code points) for
+/// (own) secret keys generated from now on.
+///
+/// A `nil` password means disable own passwords for future keys,
+/// which is the default.
+///
+/// The password will be kept in memory until overwritten by another,
+/// which includes `nil`. It will be set or unset to _each_ session,
+/// similar to other configurable options in the adapter.
+///
+/// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
++ (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                                error:(NSError * _Nullable * _Nullable)error;
+
 #pragma mark -
 
 /**

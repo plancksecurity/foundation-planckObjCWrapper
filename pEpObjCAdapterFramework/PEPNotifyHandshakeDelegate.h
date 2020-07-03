@@ -28,14 +28,15 @@
 /// @param me The own identity.
 ///   Note that in some cases, only the most essential properties are set.
 /// @param partner The partner identity.
-///   Note that in some cases, only the most essential properties are set.
+///   Note that in some cases, only the most essential properties are set, or it
+///   can be nil in the case of PEPSyncHandshakeSignalPassphraseRequired.
 /// @param signal The kind of action that is happening or requested.
 /// @return A status indicating errors in the immediate/synchronous handling of the call.
 ///   The (delayed) response from the user are communicated to the engine
 ///   via separate method calls, as noted in the discussion.
 - (PEPStatus)notifyHandshake:(void * _Nullable)object
                           me:(PEPIdentity * _Nonnull)me
-                     partner:(PEPIdentity * _Nonnull)partner
+                     partner:(PEPIdentity * _Nullable)partner
                       signal:(PEPSyncHandshakeSignal)signal;
 
 /// Sent when the sync loop was shut down by the engine,

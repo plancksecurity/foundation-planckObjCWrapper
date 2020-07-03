@@ -135,6 +135,12 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusStatemachineInhibitedEvent = 0x0986, // PEP_STATEMACHINE_INHIBITED_EVENT
     PEPStatusStatemachineCannotSend = 0x0987, // PEP_STATEMACHINE_CANNOT_SEND
 
+    PEPStatusPassphraseRequired = 0x0a00, // PEP_PASSPHRASE_REQUIRED
+    PEPStatusWrongPassphrase = 0x0a01, // PEP_WRONG_PASSPHRASE
+    PEPStatusPassphraseForNewKeysRequired = 0x0a02, // PEP_PASSPHRASE_FOR_NEW_KEYS_REQUIRED
+
+    PEPStatusDistributionIllegalMessage = 0x1002, // PEP_DISTRIBUTION_ILLEGAL_MESSAGE,
+
     PEPStatusCommitFailed = 0xff01, // PEP_COMMIT_FAILED
     PEPStatusMessageConsume = 0xff02, // PEP_MESSAGE_CONSUME
     PEPStatusMessageIgnore = 0xff03, // PEP_MESSAGE_IGNORE
@@ -169,6 +175,8 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
     PEPSyncHandshakeSignalAcceptedGroupCreated = 7, // SYNC_NOTIFY_ACCEPTED_GROUP_CREATED
 
     PEPSyncHandshakeSignalAcceptedDeviceAccepted = 8, // SYNC_NOTIFY_ACCEPTED_DEVICE_ACCEPTED
+
+    PEPSyncHandshakeSignalPassphraseRequired = 128, // SYNC_PASSPHRASE_REQUIRED
 
     PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE
     PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP

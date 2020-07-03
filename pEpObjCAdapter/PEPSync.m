@@ -22,21 +22,23 @@
 #import "NSError+PEP+Internal.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
+#import "PEPPassphraseCache.h"
 
 // MARK: - Internals
 
 static os_log_t s_logger;
 
-typedef PEP_STATUS (* t_messageToSendCallback)(struct _message *msg);
+typedef PEP_STATUS (* t_messageToSendCallback)(struct _message * _Nullable msg);
 typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 @interface PEPSync ()
 
-+ (PEPSync * _Nullable)instance;
-
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
+
+/// The session created and used by the sync loop
+@property (nonatomic, nullable) PEPInternalSession *syncLoopSession;
 
 /**
  @Return: The callback for message sending that should be used on every session init.
@@ -48,7 +50,7 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
  */
 + (t_injectSyncCallback)injectSyncCallback;
 
-- (PEP_STATUS)messageToSend:(struct _message *)msg;
+- (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event isFromShutdown:(BOOL)isFromShutdown;
 
@@ -62,9 +64,9 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 
 // MARK: - Callbacks called by the engine, used in session init
 
-static PEP_STATUS s_messageToSendObjc(struct _message *msg)
+static PEP_STATUS s_messageToSendObjc(struct _message * _Nullable msg)
 {
-    PEPSync *pEpSync = [PEPSync instance];
+    PEPSync *pEpSync = [PEPSync sharedInstance];
 
     if (pEpSync) {
         return [pEpSync messageToSend:msg];
@@ -75,7 +77,7 @@ static PEP_STATUS s_messageToSendObjc(struct _message *msg)
 
 static int s_inject_sync_event(SYNC_EVENT ev, void *management)
 {
-    PEPSync *pEpSync = [PEPSync instance];
+    PEPSync *pEpSync = [PEPSync sharedInstance];
 
     if (pEpSync) {
         // The inject comes from the engine, so we know it's not the
@@ -92,7 +94,7 @@ static PEP_STATUS s_notifyHandshake(pEp_identity *me,
                                     pEp_identity *partner,
                                     sync_handshake_signal signal)
 {
-    PEPSync *pEpSync = [PEPSync instance];
+    PEPSync *pEpSync = [PEPSync sharedInstance];
 
     if (pEpSync) {
         return [pEpSync notifyHandshake:me partner:partner signal:signal];
@@ -103,7 +105,7 @@ static PEP_STATUS s_notifyHandshake(pEp_identity *me,
 
 static SYNC_EVENT s_retrieve_next_sync_event(void *management, unsigned threshold)
 {
-    PEPSync *sync = [PEPSync instance];
+    PEPSync *sync = [PEPSync sharedInstance];
     return [sync retrieveNextSyncEvent:threshold];
 }
 
@@ -187,6 +189,14 @@ static __weak PEPSync *s_pEpSync;
     }
 }
 
+- (void)restartIfRunning
+{
+    if (self.syncThread != nil) { // is running
+        [self shutdown];
+        [self startup];
+    }
+}
+
 // MARK: - Private
 
 + (void)initialize
@@ -194,7 +204,7 @@ static __weak PEPSync *s_pEpSync;
     s_logger = os_log_create("security.pEp.adapter", "PEPSync");
 }
 
-+ (PEPSync * _Nullable)instance
++ (PEPSync * _Nullable)sharedInstance
 {
     return s_pEpSync;
 }
@@ -210,18 +220,20 @@ static __weak PEPSync *s_pEpSync;
 
     os_log(s_logger, "trying to start the sync loop");
 
-    PEPInternalSession *session = [PEPSessionProvider session];
+    self.syncLoopSession = [PEPSessionProvider session];
 
-    if (session) {
-        PEP_STATUS status = register_sync_callbacks(session.session, nil, s_notifyHandshake,
+    if (self.syncLoopSession) {
+        PEP_STATUS status = register_sync_callbacks(self.syncLoopSession.session,
+                                                    nil,
+                                                    s_notifyHandshake,
                                                     s_retrieve_next_sync_event);
         if (status == PEP_STATUS_OK) {
-            status = do_sync_protocol(session.session, nil);
+            status = do_sync_protocol(self.syncLoopSession.session, nil);
             if (status != PEP_STATUS_OK) {
                 os_log_error(s_logger, "do_sync_protocol returned PEP_STATUS %d", status);
                 os_log(s_logger, "sync loop is NOT running");
             }
-            unregister_sync_callbacks(session.session);
+            unregister_sync_callbacks(self.syncLoopSession.session);
         } else {
             os_log_error(s_logger, "register_sync_callbacks returned PEP_STATUS %d", status);
             os_log(s_logger, "sync loop is NOT running");
@@ -232,19 +244,54 @@ static __weak PEPSync *s_pEpSync;
 
     os_log(s_logger, "sync loop finished");
 
-    session = nil;
-
+    self.syncLoopSession = nil;
     self.syncThread = nil;
+
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
 }
 
-- (PEP_STATUS)messageToSend:(struct _message *)msg
+- (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
-    if (self.sendMessageDelegate) {
-        PEPMessage *theMessage = pEpMessageFromStruct(msg);
-        return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
+    if (msg == NULL && [NSThread currentThread] == self.syncThread) {
+        static NSMutableArray *passphrasesCopy = nil;
+        static BOOL makeNewCopy = YES;
+
+        if (makeNewCopy) {
+            passphrasesCopy = [NSMutableArray
+                               arrayWithArray:[self.syncLoopSession.passphraseCache passphrases]];
+
+            if (self.syncLoopSession.passphraseCache.storedPassphrase) {
+                [passphrasesCopy
+                 insertObject:self.syncLoopSession.passphraseCache.storedPassphrase
+                 atIndex:0];
+            }
+
+            if ([passphrasesCopy count] == 0) {
+                makeNewCopy = YES;
+                return PEP_PASSPHRASE_REQUIRED;
+            } else {
+                makeNewCopy = NO;
+            }
+        }
+
+        if ([passphrasesCopy count] == 0) {
+            makeNewCopy = YES;
+            return PEP_WRONG_PASSPHRASE;
+        } else {
+            NSString *password = [passphrasesCopy firstObject];
+            [passphrasesCopy removeObjectAtIndex:0];
+            [self.syncLoopSession configurePassphrase:password error:nil];
+            return PEP_STATUS_OK;
+        }
+    } else if (msg != NULL) {
+        if (self.sendMessageDelegate) {
+            PEPMessage *theMessage = pEpMessageFromStruct(msg);
+            return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
+        } else {
+            return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
+        }
     } else {
-        return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
+        return PEP_SYNC_ILLEGAL_MESSAGE;
     }
 }
 
@@ -284,7 +331,7 @@ static __weak PEPSync *s_pEpSync;
 {
     if (self.notifyHandshakeDelegate) {
         PEPIdentity *meIdentity = PEP_identityFromStruct(me);
-        PEPIdentity *partnerIdentity = PEP_identityFromStruct(partner);
+        PEPIdentity *partnerIdentity = partner != nil ? PEP_identityFromStruct(partner) : nil;
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity

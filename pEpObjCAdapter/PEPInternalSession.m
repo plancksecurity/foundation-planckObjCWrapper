@@ -27,8 +27,13 @@
 #import "PEPSync.h"
 #import "PEPSync_Internal.h" // for [PEPSync createSession:]
 #import "PEPInternalConstants.h"
+#import "PEPPassphraseCache.h"
+#import "PEPInternalSession+PassphraseCache.h"
+#import "NSString+NormalizePassphrase.h"
 
 #import "key_reset.h"
+
+PEPPassphraseCache * _Nullable g_passphraseCache;
 
 @implementation PEPInternalSession
 
@@ -97,9 +102,9 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     message *_src = PEP_messageDictToStruct(messageDict);
-    message *_dst = NULL;
-    stringlist_t *theKeys = NULL;
-    PEPDecryptFlags theFlags = 0;
+    __block message *_dst = NULL;
+    __block stringlist_t *theKeys = NULL;
+    __block PEPDecryptFlags theFlags = 0;
 
     if (flags) {
         theFlags = *flags;
@@ -109,14 +114,16 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = PEP_arrayToStringlist(*extraKeys);
     }
 
-    PEPRating internalRating = PEPRatingUndefined;
+    __block PEPRating internalRating = PEPRatingUndefined;
 
-    PEPStatus theStatus = (PEPStatus) decrypt_message(_session,
-                                                      _src,
-                                                      &_dst,
-                                                      &theKeys,
-                                                      (PEP_rating *) &internalRating,
-                                                      (PEP_decrypt_flags *) &theFlags);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return decrypt_message(session,
+                               _src,
+                               &_dst,
+                               &theKeys,
+                               (PEP_rating *) &internalRating,
+                               (PEP_decrypt_flags *) &theFlags);
+    }];
 
     if (status) {
         *status = theStatus;
@@ -250,18 +257,20 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                    status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
-    PEP_encrypt_flags_t flags = 0;
+    __block PEP_encrypt_flags_t flags = 0;
 
-    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    message *_dst = NULL;
-    stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
+    __block message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
+    __block message *_dst = NULL;
+    __block stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
 
-    PEPStatus theStatus = (PEPStatus) encrypt_message(_session,
-                                                      _src,
-                                                      _keys,
-                                                      &_dst,
-                                                      (PEP_enc_format) encFormat,
-                                                      flags);
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return encrypt_message(session,
+                               _src,
+                               _keys,
+                               &_dst,
+                               (PEP_enc_format) encFormat,
+                               flags);
+    }];
 
     if (status) {
         *status = theStatus;
@@ -326,21 +335,23 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                    status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
-    PEP_encrypt_flags_t flags = 0;
+    __block PEP_encrypt_flags_t flags = 0;
 
-    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    pEp_identity *ident = PEP_identityToStruct(ownIdentity);
-    message *_dst = NULL;
+    __block message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
+    __block pEp_identity *ident = PEP_identityToStruct(ownIdentity);
+    __block message *_dst = NULL;
 
-    stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
+    __block stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
 
-    PEPStatus theStatus = (PEPStatus) encrypt_message_for_self(_session,
-                                                               ident,
-                                                               _src,
-                                                               keysStringList,
-                                                               &_dst,
-                                                               PEP_enc_PGP_MIME,
-                                                               flags);
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return encrypt_message_for_self(session,
+                                        ident,
+                                        _src,
+                                        keysStringList,
+                                        &_dst,
+                                        PEP_enc_PGP_MIME,
+                                        flags);
+    }];
 
     free_stringlist(keysStringList);
 
@@ -398,12 +409,16 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                     error:(NSError * _Nullable * _Nullable)error __deprecated
 {
     message *src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    message *dst = NULL;
+    __block message *dst = NULL;
 
-    PEPStatus theStatus = (PEPStatus)
-    encrypt_message_and_add_priv_key(_session, src, &dst,
-                                     [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
-                                     (PEP_enc_format) encFormat, flags);
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return encrypt_message_and_add_priv_key(session,
+                                                src,
+                                                &dst,
+                                                [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
+                                                (PEP_enc_format) encFormat,
+                                                flags);
+    }];
 
     if (status) {
         *status = theStatus;
@@ -614,11 +629,13 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = PEP_identityToStruct(identity);
+    __block pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) key_reset_trust(_session, ident);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return key_reset_trust(session, ident);
+    }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         free_identity(ident);
         return NO;
     }
@@ -662,9 +679,11 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) disable_identity_for_sync(_session, ident);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return disable_identity_for_sync(session, ident);
+    }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         free_identity(ident);
         return NO;
     }
@@ -757,7 +776,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     if (theChars) {
         return [NSString stringWithUTF8String:theChars];
     } else {
-        [NSError setError:error fromPEPStatusInternal:PEP_UNKNOWN_ERROR];
+        [NSError setError:error fromPEPStatus:(PEPStatus) PEP_UNKNOWN_ERROR];
         return nil;
     }
 }
@@ -1017,11 +1036,13 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = PEP_identityToStruct(identity);
     const char *fpr = [[fingerprint precomposedStringWithCanonicalMapping] UTF8String];
 
-    PEPStatus status = (PEPStatus) key_reset_user(self.session, ident->user_id, fpr);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return key_reset_user(session, ident->user_id, fpr);
+    }];
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         return YES;
@@ -1041,13 +1062,73 @@ static NSDictionary *stringToRating;
 
 - (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error
 {
-    PEPStatus status = (PEPStatus) key_reset_all_own_keys(self.session);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return key_reset_all_own_keys(self.session);
+    }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         return YES;
     }
+}
+
+- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
+                      error:(NSError * _Nullable * _Nullable)error
+{
+    if (error) {
+        *error = nil;
+    }
+
+    NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
+
+    if (normalizedPassphrase == nil) {
+        return NO;
+    }
+
+    [self.passphraseCache addPassphrase:normalizedPassphrase];
+
+    PEP_STATUS status = config_passphrase(_session, [normalizedPassphrase UTF8String]);
+
+    if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
+        return NO;
+    }
+
+    return YES;
+}
+
+- (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                               enable:(BOOL)enable error:(NSError * _Nullable * _Nullable)error
+{
+    if (error) {
+        *error = nil;
+    }
+
+    NSString *normalizedPassphrase = [passphrase precomposedStringWithCanonicalMapping];
+    PEP_STATUS status = config_passphrase_for_new_keys(_session,
+                                                       enable,
+                                                       [normalizedPassphrase UTF8String]);
+
+    if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
+        return NO;
+    }
+
+    return YES;
+}
+
+- (PEPPassphraseCache * _Nonnull)passphraseCache
+{
+    return [PEPInternalSession passphraseCache];
+}
+
++ (PEPPassphraseCache * _Nonnull)passphraseCache
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        g_passphraseCache = [[PEPPassphraseCache alloc] init];
+    });
+
+    return g_passphraseCache;
 }
 
 @end

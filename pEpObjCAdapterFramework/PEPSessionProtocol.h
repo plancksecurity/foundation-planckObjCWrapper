@@ -15,6 +15,12 @@
 @class PEPIdentity;
 @class PEPMessage;
 
+/// Domain for errors indicated by the pEp engine.
+extern NSString * const _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
+
+/// Domain for errors indicated by the pEp adapter itself.
+extern NSString * const _Nonnull PEPObjCAdapterErrorDomain;
+
 @protocol PEPSessionProtocol <NSObject>
 
 /** Decrypt a message */
@@ -283,5 +289,47 @@
  @return YES on success, NO if there were errors.
  */
 - (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error;
+
+/// Add a passphrase for secret keys to the cache.
+///
+/// You can add as many passphrases to the cache as needed by calling this method.
+/// Every passphrase is valid for 10 min (default, compile-time configurable),
+/// after that it gets removed from memory. The maximum count of passphrases is 20.
+/// Setting the 21st replaces the 1st.
+/// On error, `NO` is returned and the (optional) parameter `error`
+/// is set to the error that occurred.
+/// On every engine call that returns PEPStatusPassphraseRequired, or PEPStatusWrongPassphrase,
+/// the adapter will automatically repeat the call after setting the next cached passphrase
+/// (using the engine's `config_passphrase`). The first attempet as always with an empty password.
+/// This will be repeated until the call either succeeds, or until
+/// the adapter runs out of usable passwords.
+/// When the adapter runs out of passwords to try, PEPStatusWrongPassphrase will be thrown.
+/// If the engine indicates PEPStatusPassphraseRequired, and there are no passwords,
+/// the adapter will throw PEPStatusPassphraseRequired.
+/// The passphrase can have a "maximum number of code points of 250", which is
+/// approximated by checking the string length.
+/// If the passphrase exceeds this limit, the adapter throws PEPAdapterErrorPassphraseTooLong
+/// with a domain of PEPObjCAdapterErrorDomain.
+/// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
+/// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
+- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
+                      error:(NSError * _Nullable * _Nullable)error;
+
+/// Sets a passphrase (with a maximum of 250 code points) for
+/// (own) secret keys generated from now on.
+///
+/// For setting a passphrase, `enable` must be set to `YES`,
+/// in which case the `passphrase` should contain an actual passphrase.
+/// A `nil` `passphrase` with `enable` set to `YES` is undefined.
+/// The passphrase can be unset by setting `enable` to `NO`
+/// (with or without passphrase, this gets (assumedly)
+/// ignored in this case, but has to be verified).
+/// Uses the engine's `config_passphrase_for_new_keys`.
+/// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
+/// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
+/// @deprecated
+- (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                               enable:(BOOL)enable error:(NSError * _Nullable * _Nullable)error
+__deprecated;
 
 @end

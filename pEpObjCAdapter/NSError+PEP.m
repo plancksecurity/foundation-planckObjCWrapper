@@ -13,7 +13,7 @@
 
 #import "status_to_string.h"
 
-static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
+#import "PEPSessionProtocol.h"
 
 @implementation NSError (Extension)
 
@@ -34,7 +34,10 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
             NSDictionary *dict = [NSDictionary
                                   dictionaryWithObjectsAndKeys:localizedErrorStringFromPEPStatus(status),
                                   NSLocalizedDescriptionKey, nil];
-            return [NSError errorWithDomain:s_pEpAdapterDomain code:status userInfo:dict];
+            return [NSError
+                    errorWithDomain:PEPObjCAdapterEngineStatusErrorDomain
+                    code:status
+                    userInfo:dict];
         }
             break;
     }
@@ -45,10 +48,10 @@ static NSString *s_pEpAdapterDomain = @"security.pEp.ObjCAdapter";
     return [self errorWithPEPStatusInternal:(PEP_STATUS) status];
 }
 
-+ (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEP_STATUS)status
++ (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEPStatus)status
 {
     // Determine if the given status is an error.
-    NSError *errorFromStatus = [self errorWithPEPStatusInternal:status];
+    NSError *errorFromStatus = [self errorWithPEPStatus:status];
 
     // Set caller's error, if given
     if (error) {
@@ -77,7 +80,7 @@ NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
 
 - (NSString * _Nullable)pEpErrorString
 {
-    if ([self.domain isEqualToString:s_pEpAdapterDomain]) {
+    if ([self.domain isEqualToString:PEPObjCAdapterEngineStatusErrorDomain]) {
         return stringFromPEPStatus((PEP_STATUS) self.code);
     } else {
         return nil;

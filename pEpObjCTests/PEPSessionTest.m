@@ -19,6 +19,7 @@
 
 #import "PEPSessionTestNotifyHandshakeDelegate.h"
 #import "PEPSessionTestSendMessageDelegate.h"
+#import "PEPPassphraseCache+Reset.h"
 
 @interface PEPSessionTest : XCTestCase
 
@@ -37,6 +38,12 @@
     [self pEpCleanUp];
 
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
+
+    NSError *error = nil;
+    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:nil error:&error]);
+    XCTAssertNil(error);
+
+    [PEPPassphraseCache reset];
 }
 
 - (void)tearDown
@@ -917,62 +924,6 @@
                                          expectedRating:PEPRatingTrustedAndAnonymized];
 }
 
-- (void)testEncryptMessagesWithoutKeys
-{
-    PEPSession *session = [PEPSession new];
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-
-    XCTAssertNotNil(identMe.fingerPrint);
-
-    PEPIdentity *identAlice = [[PEPIdentity alloc]
-                               initWithAddress:@"alice@pep-project.org"
-                               userID:@"alice"
-                               userName:@"pEp Test Alice"
-                               isOwn:NO];
-
-    PEPMessage *msg = [PEPMessage new];
-    msg.from = identMe;
-    msg.to = @[identAlice];
-    msg.shortMessage = @"Mail to Alice";
-    msg.longMessage = @"Alice?";
-    msg.direction = PEPMsgDirectionOutgoing;
-
-    NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
-    XCTAssertNotNil(numRating);
-    XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
-
-    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
-    XCTAssertNotNil(encMsg);
-    XCTAssertNil(error);
-
-    XCTAssertNotNil(encMsg);
-
-    PEPStringList *keys;
-    PEPRating pEpRating;
-    error = nil;
-    PEPMessage *decMsg = [session
-                          decryptMessage:encMsg
-                          flags:nil
-                          rating:&pEpRating
-                          extraKeys:&keys
-                          status:nil
-                          error:&error];
-    XCTAssertNotNil(decMsg);
-    XCTAssertNil(error);
-
-    XCTAssertEqual(pEpRating, PEPRatingUnencrypted);
-    XCTAssertNotNil(decMsg);
-}
-
 /**
  ENGINE-364. Tries to invoke trustPersonalKey on an identity without key,
  giving it a fake fingerprint.
@@ -1553,32 +1504,74 @@
     }
 }
 
-/**
- Tests [PEPSessionProtocol keyResetAllOwnKeysError:error].
-
- Does the following:
- * Do a mySelf.
- * Catch the sent out sync (beacon?) message.
- * Do a key reset on all own identities ([PEPSessionProtocol keyResetAllOwnKeysError:error]).
- * Catch the sent out sync message.
- * Decrypt the caught sync messages.
- */
-- (void)testDecryptBeaconsAfterKeyReset
+- (void)testOwnKeyWithPasswordAndEncryptToSelf
 {
+    NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordAndEncryptToSelf";
+
+    NSError *error = nil;
+
+    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:correctPassphrase error:&error]);
+    XCTAssertNil(error);
+
     PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMeWithPassphrase = [[PEPIdentity alloc]
+                                          initWithAddress:@"me-myself-and-i@pep-project.org"
+                                          userID:@"me-myself-and-i"
+                                          userName:@"pEp Me"
+                                          isOwn:YES];
+
+    XCTAssertTrue([session mySelf:identMeWithPassphrase error:&error]);
+    XCTAssertNil(error);
+
+    PEPIdentity *receiver1 = [[PEPIdentity alloc]
+                              initWithAddress:@"partner1@example.com"
+                              userID:@"partner1"
+                              userName:@"Partner 1"
+                                          isOwn:NO];
+
+    PEPMessage *draftMail = [PEPTestUtils
+                             mailFrom:identMeWithPassphrase
+                             toIdent:receiver1
+                             shortMessage:@"hey"
+                             longMessage:@"hey hey"
+                             outgoing:YES];
+
+    error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    XCTAssertTrue([session
+                   encryptMessage:draftMail
+                   forSelf:identMeWithPassphrase
+                   extraKeys:nil
+                   status:&status
+                   error:&error]);
+    XCTAssertNil(error);
+}
+
+- (void)testNotifyHandshakePassphraseNotRequired
+{
+    NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordSendMessage";
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    NSError *error = nil;
+
+    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:correctPassphrase error:&error]);
+    XCTAssertNil(error);
+    error = nil;
+
+    PEPSession *session = [PEPSession new];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
-    NSError *error = nil;
+
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-    XCTAssertNotNil(identMe.fingerPrint);
 
     [self startSync];
 
@@ -1587,44 +1580,9 @@
                                           object:self.sendMessageDelegate];
     [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+    XCTAssertGreaterThan(self.sendMessageDelegate.messages.count, 0);
 
-    PEPMessage *oldBeacon = self.sendMessageDelegate.lastMessage;
-
-    XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
-    XCTAssertNil(error);
-
-    XCTKVOExpectation *expHaveMessage2 = [[XCTKVOExpectation alloc]
-                                          initWithKeyPath:@"lastMessage"
-                                          object:self.sendMessageDelegate];
-    [self waitForExpectations:@[expHaveMessage2] timeout:PEPTestInternalSyncTimeout];
-    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 2);
-
-    PEPMessage *newBeacon = self.sendMessageDelegate.lastMessage;
-
-    XCTAssertNotEqual(oldBeacon, newBeacon);
-
-    PEPRating rating;
-    PEPStringList *extraKeys;
-    PEPStatus status;
-    PEPMessage *decryptedOldBeacon = [session decryptMessage:oldBeacon
-                                                       flags:nil
-                                                      rating:&rating
-                                                   extraKeys:&extraKeys
-                                                      status:&status
-                                                       error:&error];
-    XCTAssertNotNil(decryptedOldBeacon);
-    XCTAssertNil(error);
-
-    PEPMessage *decryptedNewBeacon = [session decryptMessage:newBeacon
-                                                       flags:nil
-                                                      rating:&rating
-                                                   extraKeys:&extraKeys
-                                                      status:&status
-                                                       error:&error];
-    XCTAssertNotNil(decryptedNewBeacon);
-    XCTAssertNil(error);
+    XCTAssertEqualObjects(self.sendMessageDelegate.lastMessage.from.address, identMe.address);
 
     [self shutdownSync];
 }

@@ -12,9 +12,13 @@
 
 - (PEPStatus)notifyHandshake:(void * _Nullable)object
                           me:(PEPIdentity * _Nonnull)me
-                     partner:(PEPIdentity * _Nonnull)partner
+                     partner:(PEPIdentity * _Nullable)partner
                       signal:(PEPSyncHandshakeSignal)signal
 {
+    if (partner == nil && signal == PEPSyncHandshakeSignalPassphraseRequired) {
+        self.notifyHandshakePassphraseRequired = YES;
+    }
+
     return PEPStatusOK;
 }
 

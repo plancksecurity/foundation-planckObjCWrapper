@@ -9,10 +9,12 @@
 #ifndef PEPSync_Internal_h
 #define PEPSync_Internal_h
 
+#import "PEPSync.h"
+
 /**
  Internal methods of PEPSync.
  */
-@interface PEPSync ()
+@interface PEPSync (Internal)
 
 /**
  Creates an engine session (PEP_SESSION).
@@ -24,6 +26,9 @@
  @return A valid engine PEP_SESSION or NULL if there was an error.
  */
 + (PEP_SESSION _Nullable)createSession:(NSError * _Nullable * _Nullable)error;
+
+/// The one and only sync instance, or nil, if none exists.
++ (PEPSync * _Nullable)sharedInstance;
 
 @end
 

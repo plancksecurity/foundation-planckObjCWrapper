@@ -12,6 +12,8 @@
 #import "PEPQueue.h"
 #import "PEPInternalSession.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PEPObjCAdapter ()
 
 /**
@@ -27,6 +29,11 @@
  */
 + (BOOL)passiveModeEnabled;
 
+/// The passphrase to be used for new own keys, can be `nil`.
++ (NSString * _Nullable)passphraseForNewKeys;
+
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* PEPIOSAdapter_Internal_h */

@@ -12,6 +12,9 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
+#import "NSString+NormalizePassphrase.h"
+#import "PEPInternalSession.h"
+#import "PEPPassphraseCache.h"
 
 #import "keymanagement.h"
 #import "mime.h"
@@ -33,6 +36,7 @@ NSURL *s_homeURL;
 
 static BOOL s_unEncryptedSubjectEnabled = NO;
 static BOOL s_passiveModeEnabled = NO;
+static NSString *s_passphraseForNewKeys = nil;
 
 @implementation PEPObjCAdapter
 
@@ -58,6 +62,35 @@ static BOOL s_passiveModeEnabled = NO;
 + (void)setPassiveModeEnabled:(BOOL)enabled
 {
     s_passiveModeEnabled = enabled;
+}
+
+#pragma mark - Passphrase for own keys
+
++ (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                                error:(NSError * _Nullable * _Nullable)error
+{
+    if (passphrase == nil) {
+        s_passphraseForNewKeys = nil;
+        [[PEPInternalSession passphraseCache] setStoredPassphrase:passphrase];
+
+        return YES;
+    } else {
+        NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
+
+        if (normalizedPassphrase == nil) {
+            return NO;
+        }
+
+        s_passphraseForNewKeys = normalizedPassphrase;
+        [[PEPInternalSession passphraseCache] setStoredPassphrase:passphrase];
+
+        return YES;
+    }
+}
+
++ (NSString * _Nullable)passphraseForNewKeys
+{
+    return s_passphraseForNewKeys;
 }
 
 #pragma mark - DB PATHS

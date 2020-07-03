@@ -14,6 +14,8 @@
 
 #import "PEPObjCAdapter.h"
 
+@class PEPPassphraseCache;
+
 /**
  Represents a real pEp session (in contrast to PEPSession, which is a fake session to handle to the client).
  Never expose this class to the client.
@@ -35,5 +37,11 @@
  @param enabled Whether or not mail subjects should be encrypted when using this session
  */
 - (void)configUnEncryptedSubjectEnabled:(BOOL)enabled;
+
+/// Get the (global) passphrase cache
+- (PEPPassphraseCache * _Nonnull)passphraseCache;
+
+/// Get the (global) passphrase cache
++ (PEPPassphraseCache * _Nonnull)passphraseCache;
 
 @end
