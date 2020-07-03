@@ -38,7 +38,10 @@
  */
 - (void)configUnEncryptedSubjectEnabled:(BOOL)enabled;
 
-/// Get the passphrase cache
+/// Get the (global) passphrase cache
 - (PEPPassphraseCache * _Nonnull)passphraseCache;
+
+/// Get the (global) passphrase cache
++ (PEPPassphraseCache * _Nonnull)passphraseCache;
 
 @end

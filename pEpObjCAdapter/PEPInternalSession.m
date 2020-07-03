@@ -1118,6 +1118,11 @@ static NSDictionary *stringToRating;
 
 - (PEPPassphraseCache * _Nonnull)passphraseCache
 {
+    return [PEPInternalSession passphraseCache];
+}
+
++ (PEPPassphraseCache * _Nonnull)passphraseCache
+{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         g_passphraseCache = [[PEPPassphraseCache alloc] init];
