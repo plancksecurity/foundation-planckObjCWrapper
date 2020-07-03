@@ -1540,42 +1540,6 @@
     error = nil;
     PEPStatus status = PEPStatusOutOfMemory;
 
-    XCTAssertFalse([session
-                    encryptMessage:draftMail
-                    forSelf:identMeWithPassphrase
-                    extraKeys:nil
-                    status:&status
-                    error:&error]);
-    XCTAssertNotNil(error);
-    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
-    XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
-
-    error = nil;
-
-    XCTAssertTrue([session configurePassphrase:@"wrong passphrase" error:&error]);
-    XCTAssertNil(error);
-
-    error = nil;
-    status = PEPStatusOutOfMemory;
-
-    XCTAssertFalse([session
-                    encryptMessage:draftMail
-                    forSelf:identMeWithPassphrase
-                    extraKeys:nil
-                    status:&status
-                    error:&error]);
-    XCTAssertNotNil(error);
-    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
-    XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
-
-    error = nil;
-
-    XCTAssertTrue([session configurePassphrase:correctPassphrase error:&error]);
-    XCTAssertNil(error);
-
-    error = nil;
-    status = PEPStatusOutOfMemory;
-
     XCTAssertTrue([session
                    encryptMessage:draftMail
                    forSelf:identMeWithPassphrase
@@ -1583,8 +1547,6 @@
                    status:&status
                    error:&error]);
     XCTAssertNil(error);
-
-    [self shutdownSync];
 }
 
 - (void)testNotifyHandshakePassphraseRequired
