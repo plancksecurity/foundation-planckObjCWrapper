@@ -1093,6 +1093,7 @@ static NSDictionary *stringToRating;
     if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
         return NO;
     }
+    [PEPSync.sharedInstance handleNewPassphraseConfigured];
 
     return YES;
 }
