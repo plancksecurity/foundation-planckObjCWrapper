@@ -30,6 +30,9 @@
 /// The one and only sync instance, or nil, if none exists.
 + (PEPSync * _Nullable)sharedInstance;
 
+/// MUST be called whenever a passphrase is configured
+- (void)handleNewPassphraseConfigured;
+
 @end
 
 #endif /* PEPSync_Internal_h */

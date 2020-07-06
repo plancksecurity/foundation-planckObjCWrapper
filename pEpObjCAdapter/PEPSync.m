@@ -36,6 +36,8 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nonnull) PEPQueue *queue;
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
+/// Used to block messageToSend() until the client configured a passphrase.
+@property (atomic, nullable)  dispatch_group_t blockmessageToSendGroup;
 
 /// The session created and used by the sync loop
 @property (nonatomic, nullable) PEPInternalSession *syncLoopSession;
@@ -162,6 +164,8 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
+    [self stopWaiting];
+
     if (self.syncThread != nil) {
         // already started
         return;
@@ -176,7 +180,7 @@ static __weak PEPSync *s_pEpSync;
     // Make sure queue is empty when we start.
     [self.queue removeAllObjects];
 
-    [self assureMainSessionExists];
+    [self assureMainSessionExists]; //???: Why do we need that? Afaics syncThreadLoop gets the session from PEPSessionProvider, which should have taken care of main session existance.
 
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
     [theSyncThread start];
@@ -184,6 +188,8 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)shutdown
 {
+    [self stopWaiting];
+
     if (self.syncThread) {
         [self injectSyncEvent:nil isFromShutdown:YES];
     }
@@ -197,6 +203,10 @@ static __weak PEPSync *s_pEpSync;
     }
 }
 
+- (void)handleNewPassphraseConfigured {
+    [self stopWaiting];
+}
+
 // MARK: - Private
 
 + (void)initialize
@@ -204,7 +214,7 @@ static __weak PEPSync *s_pEpSync;
     s_logger = os_log_create("security.pEp.adapter", "PEPSync");
 }
 
-+ (PEPSync * _Nullable)sharedInstance
++ (PEPSync * _Nullable)sharedInstance //!!!: is not private but internal
 {
     return s_pEpSync;
 }
@@ -252,6 +262,8 @@ static __weak PEPSync *s_pEpSync;
 
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
+    [self blockUntilPassphraseIsEnteredIfRequired];
+
     if (msg == NULL && [NSThread currentThread] == self.syncThread) {
         static NSMutableArray *passphrasesCopy = nil;
         static BOOL makeNewCopy = YES;
@@ -268,6 +280,7 @@ static __weak PEPSync *s_pEpSync;
 
             if ([passphrasesCopy count] == 0) {
                 makeNewCopy = YES;
+                [self nextCallMustWait];
                 return PEP_PASSPHRASE_REQUIRED;
             } else {
                 makeNewCopy = NO;
@@ -276,6 +289,7 @@ static __weak PEPSync *s_pEpSync;
 
         if ([passphrasesCopy count] == 0) {
             makeNewCopy = YES;
+            [self nextCallMustWait];
             return PEP_WRONG_PASSPHRASE;
         } else {
             NSString *password = [passphrasesCopy firstObject];
@@ -351,6 +365,28 @@ static __weak PEPSync *s_pEpSync;
         return event;
     } else {
         return new_sync_timeout_event();
+    }
+}
+
+// MARK: Blocking (messageToSend)
+
+- (void)blockUntilPassphraseIsEnteredIfRequired {
+    if (self.blockmessageToSendGroup) {
+        dispatch_group_wait(self.blockmessageToSendGroup, DISPATCH_TIME_FOREVER);
+    }
+}
+
+- (void)nextCallMustWait {
+    if (!self.blockmessageToSendGroup) {
+        self.blockmessageToSendGroup = dispatch_group_create();
+    }
+    dispatch_group_enter(self.blockmessageToSendGroup);
+}
+
+- (void)stopWaiting {
+    if (self.blockmessageToSendGroup) {
+        dispatch_group_leave(self.blockmessageToSendGroup);
+        self.blockmessageToSendGroup = nil;
     }
 }
 
