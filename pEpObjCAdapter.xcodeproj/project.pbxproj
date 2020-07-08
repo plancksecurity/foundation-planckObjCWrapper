@@ -423,9 +423,9 @@
 				435F518F22204A67006EB11F /* PEPSessionProtocol.h */,
 				433DFBBB24A73AD400AB373B /* PEPSessionProtocol.m */,
 				435F5163222045FB006EB11F /* PEPIdentity.h */,
+				436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */,
 				43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */,
 				43E3985E221D7E56008E7983 /* Info.plist */,
-				436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */,
 			);
 			path = PEPObjCAdapterFramework;
 			sourceTree = "<group>";
