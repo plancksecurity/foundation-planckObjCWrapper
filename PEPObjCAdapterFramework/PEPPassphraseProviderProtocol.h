@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Callback an app can use to provide a passphrase to the adapter after user input
+typedef void (^PEPPassphraseProviderCallback)(NSString * _Nullable passphrase);
+
 @protocol PEPPassphraseProviderProtocol <NSObject>
 
 @end
