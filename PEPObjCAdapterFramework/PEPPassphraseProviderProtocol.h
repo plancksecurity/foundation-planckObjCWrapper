@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Callback an app can use to provide a passphrase to the adapter after user input
+/// Callback an app can use to provide a passphrase to the adapter after user input.
+///
+/// A nil passphrase means to throw the original error
+/// (PEPStatusPassphraseRequired or PEPStatusWrongPassphrase), otherwise
+/// the current call is tried again with the given passphrase.
 typedef void (^PEPPassphraseProviderCallback)(NSString * _Nullable passphrase);
 
 @protocol PEPPassphraseProviderProtocol <NSObject>
