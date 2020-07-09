@@ -63,11 +63,11 @@
         while (YES) {
             if (lastPassphraseProviderStatus == PEP_PASSPHRASE_REQUIRED) {
                 dispatch_group_enter(group);
-                [passphraseProvider passphraseRequiredCompletion:passPhraseCallback];
+                [passphraseProvider passphraseRequired:passPhraseCallback];
                 dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
             } else if (lastPassphraseProviderStatus == PEP_WRONG_PASSPHRASE) {
                 dispatch_group_enter(group);
-                [passphraseProvider wrongPassphraseCompletion:passPhraseCallback];
+                [passphraseProvider wrongPassphrase:passPhraseCallback];
                 dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
             }
 

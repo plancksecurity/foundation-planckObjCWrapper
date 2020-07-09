@@ -32,7 +32,7 @@ typedef void (^PEPPassphraseProviderCallback)(NSString * _Nullable passphrase);
 /// @param completion Callback that either retries the engine call that lead
 /// to the adapter calling into the PEPPassphraseProviderProtocol delegate,
 /// or, if the given passphrase is nil, return the error to the caller.
-- (void)passphraseRequiredCompletion:(PEPPassphraseProviderCallback)completion;
+- (void)passphraseRequired:(PEPPassphraseProviderCallback)completion;
 
 /// Called by the adapter when the engine signals PEPStatusWrongPassphrase.
 ///
@@ -41,7 +41,7 @@ typedef void (^PEPPassphraseProviderCallback)(NSString * _Nullable passphrase);
 /// @param completion Callback that either retries the engine call that lead
 /// to the adapter calling into the PEPPassphraseProviderProtocol delegate,
 /// or, if the given passphrase is nil, return the error to the caller.
-- (void)wrongPassphraseCompletion:(PEPPassphraseProviderCallback)completion;
+- (void)wrongPassphrase:(PEPPassphraseProviderCallback)completion;
 
 /// Signals that the passphrase indicated by the callback in one of the calls of
 /// this delegate was too long and cannot be used.
