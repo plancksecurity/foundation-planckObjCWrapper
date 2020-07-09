@@ -64,7 +64,7 @@
         __block PEP_STATUS lastPassphraseProviderStatus = lastStatus;
         __block NSString *lastPassphrase = nil;
 
-        PEPPassphraseProviderCallback passPhraseCallback = ^(NSString * _Nullable passphrase) {
+        PEPPassphraseProviderCallback passphraseCallback = ^(NSString * _Nullable passphrase) {
             lastPassphrase = passphrase;
             dispatch_group_leave(group);
         };
@@ -72,11 +72,11 @@
         while (YES) {
             if (lastPassphraseProviderStatus == PEP_PASSPHRASE_REQUIRED) {
                 dispatch_group_enter(group);
-                [passphraseProvider passphraseRequired:passPhraseCallback];
+                [passphraseProvider passphraseRequired:passphraseCallback];
                 dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
             } else if (lastPassphraseProviderStatus == PEP_WRONG_PASSPHRASE) {
                 dispatch_group_enter(group);
-                [passphraseProvider wrongPassphrase:passPhraseCallback];
+                [passphraseProvider wrongPassphrase:passphraseCallback];
                 dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
             }
 
@@ -90,7 +90,7 @@
 
             if (normalizedPassphrase == nil) {
                 dispatch_group_enter(group);
-                [passphraseProvider passphraseTooLong:passPhraseCallback];
+                [passphraseProvider passphraseTooLong:passphraseCallback];
                 dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
                 continue;
             }
