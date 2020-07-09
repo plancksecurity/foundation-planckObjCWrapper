@@ -1592,7 +1592,8 @@
 
 #pragma mark - Passphrase Cache
 
-- (void)testImportedKeyWithPassphrase
+/// Tests encryption with an imported key (with passphrase set)
+- (void)testEnrcyptWithImportedKeyWithPassphraseUsingPassphraseProvider
 {
     PEPSession *session = [PEPSession new];
 
@@ -1621,6 +1622,8 @@
                              longMessage:@"hey hey"
                              outgoing:YES];
 
+    // Use case: No passphrase provider
+
     NSError *error = nil;
     PEPStatus status = PEPStatusOutOfMemory;
 
@@ -1638,6 +1641,8 @@
     [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
                                            initWithPassphrases:@[]]];
 
+    // Use case: Passphrase provider set, but never produces the correct passphrase
+
     error = nil;
 
     XCTAssertFalse([session
@@ -1650,6 +1655,25 @@
 
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
+
+    NSArray *nonsensePassphrases = @[@"blah1", @"blah2", @"blah3"];
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
+                                           initWithPassphrases:nonsensePassphrases]];
+
+    // Use case: Passphrase provider set, has correct passphrase after 2 unsuccessful attempts
+
+    error = nil;
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
 
     NSString *correctPassphrase = @"uiae";
     NSArray *passphrases = @[@"blah1", @"blah2", correctPassphrase];
