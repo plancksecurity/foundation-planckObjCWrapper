@@ -1677,6 +1677,31 @@
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
 
+    // Use case: 1 Passphrase, but too long
+
+    error = nil;
+
+    NSString *passphraseBase = @"base";
+    NSString *passphraseTooLong = passphraseBase;
+    for (NSUInteger i = 0; i < 250; ++i) {
+        passphraseTooLong = [passphraseTooLong stringByAppendingString:passphraseBase];
+    }
+
+    NSArray *onePassphraseThatIsTooLong = @[passphraseTooLong];
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
+                                           initWithPassphrases:onePassphraseThatIsTooLong]];
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
+
     // Use case: Passphrase provider set, has correct passphrase after 2 unsuccessful attempts
 
     error = nil;
