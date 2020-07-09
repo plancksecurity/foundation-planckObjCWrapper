@@ -1593,7 +1593,7 @@
 #pragma mark - Passphrase Cache
 
 /// Use case: No passphrase provider
-- (void)testEnrcyptWithImportedKeyWithPassphraseWithoutPassphraseProvider
+- (void)testNoPassphraseProvider
 {
     // Variables set by set up method
 
@@ -1623,7 +1623,7 @@
 }
 
 /// Use case: Passphrase provider set, but never delivers passphrases
-- (void)testEnrcyptWithImportedKeyWithPassphraseUsingEmptyPassphraseProvider
+- (void)testEmptyPassphraseProvider
 {
     // Variables set by set up method
 
@@ -1656,7 +1656,7 @@
 }
 
 /// Use case: Passphrase provider set, only delivers incorrect passphrases
-- (void)testEnrcyptWithImportedKeyWithPassphrasePassphraseProviderWrongPassphrases
+- (void)testEnrcyptPassphraseProviderWrongPassphrases
 {
     // Variables set by set up method
 
@@ -1690,7 +1690,7 @@
 }
 
 /// Use case: 1 Passphrase, but too long
-- (void)testEnrcyptWithImportedKeyWithPassphraseWithPassphraseProviderPassphraseTooLong
+- (void)testPassphraseProviderPassphraseTooLong
 {
     // Variables set by set up method
 
@@ -1733,7 +1733,7 @@
 }
 
 /// Use case: Passphrase provider set, has correct passphrase after 2 unsuccessful attempts
-- (void)testEnrcyptWithImportedKeyWithPassphraseWithPassphraseProviderCorrectPassphrase
+- (void)testPassphraseProviderCorrectPassphrase
 {
     // Variables set by set up method
 
