@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPPassphraseProviderMock : NSObject<PEPPassphraseProviderProtocol>
 
+- (instancetype)initWithPassphrases:(NSArray<NSString *> *)passphrases;
+
 @end
 
 NS_ASSUME_NONNULL_END
