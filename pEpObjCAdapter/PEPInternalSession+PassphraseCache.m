@@ -47,7 +47,16 @@
 
     // If execution lands here, it means we ran out of passwords to set while
     // receiving password-related error codes.
+    return [self tryPassphraseProviderLastStatus:lastStatus block:block];
+}
 
+#pragma mark - Private
+
+/// Invokes the given block while setting passphrases requested from the
+/// passphrase provider, if set.
+- (PEPStatus)tryPassphraseProviderLastStatus:(PEP_STATUS)lastStatus
+                                       block:(PEP_STATUS (^)(PEP_SESSION session))block
+{
     id<PEPPassphraseProviderProtocol> passphraseProvider = [PEPObjCAdapter passphraseProvider];
     if (passphraseProvider) {
         dispatch_group_t group = dispatch_group_create();
