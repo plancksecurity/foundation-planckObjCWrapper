@@ -98,6 +98,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
 + (void)setPassphraseProvider:(id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider
 {
+    s_passphraseProvider = passphraseProvider;
 }
 
 #pragma mark - DB PATHS
