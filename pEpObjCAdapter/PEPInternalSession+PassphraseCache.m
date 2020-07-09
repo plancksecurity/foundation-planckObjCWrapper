@@ -86,6 +86,9 @@
 
             NSString *normalizedPassphrase = [lastPassphrase normalizedPassphraseWithError:nil];
 
+            //Add the new passphrase to our cache to not having to bother the client again.
+            [self.passphraseCache addPassphrase:normalizedPassphrase];
+
             if (normalizedPassphrase == nil) {
                 // Assume excessively long passphrase means PEP_WRONG_PASSPHRASE
                 lastPassphraseProviderStatus = PEP_WRONG_PASSPHRASE;
