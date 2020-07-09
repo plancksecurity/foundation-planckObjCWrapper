@@ -1591,6 +1591,23 @@
 
 #pragma mark - Passphrase Cache
 
+- (void)testImportedKeyWithPassphrase
+{
+    PEPSession *session = [PEPSession new];
+
+    NSString *fingerprint = [@"9DD8 3053 3B93 988A 9777  52CA 4802 9ADE 43F2 70EC"
+                             stringByReplacingOccurrencesOfString:@" " withString:@""];
+    fingerprint = [fingerprint stringByReplacingOccurrencesOfString:@"  " withString:@""];
+
+    PEPIdentity *identMe = [self
+                            checkMySelfImportingKeyFilePath:@"Rick Deckard (43F270EC) – Secret.asc"
+                            address:@"deckard@example.com"
+                            userID:@"deckard_user_id"
+                            fingerPrint:fingerprint
+                            session:session];
+    XCTAssertNotNil(identMe);
+}
+
 #pragma mark - Helpers
 
 - (void)testSendMessageOnSession:(PEPSession *)session
