@@ -37,6 +37,7 @@ NSURL *s_homeURL;
 static BOOL s_unEncryptedSubjectEnabled = NO;
 static BOOL s_passiveModeEnabled = NO;
 static NSString *s_passphraseForNewKeys = nil;
+static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
 @implementation PEPObjCAdapter
 

@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
                                 error:(NSError * _Nullable * _Nullable)error;
 
 /// Sets a passphrase provider.
+///
+/// @note The reference is strong, so the caller can relinquish ownership if needed.
 + (void)setPassphraseProvider:(id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider;
 
 #pragma mark -
