@@ -50,7 +50,7 @@
 
     id<PEPPassphraseProviderProtocol> passphraseProvider = [PEPObjCAdapter passphraseProvider];
     if (passphraseProvider) {
-        dispatch_group_t group;
+        dispatch_group_t group = dispatch_group_create();
 
         __block PEP_STATUS lastPassphraseProviderStatus = lastStatus;
         __block NSString *lastPassphrase = nil;
