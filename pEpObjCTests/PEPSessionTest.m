@@ -1606,6 +1606,33 @@
                             fingerPrint:fingerprint
                             session:session];
     XCTAssertNotNil(identMe);
+
+    PEPIdentity *dummyReceiver = [[PEPIdentity alloc]
+                                  initWithAddress:@"partner1@example.com"
+                                  userID:@"partner1"
+                                  userName:@"Partner 1"
+                                  isOwn:NO];
+
+    PEPMessage *draftMail = [PEPTestUtils
+                             mailFrom:identMe
+                             toIdent:dummyReceiver
+                             shortMessage:@"hey"
+                             longMessage:@"hey hey"
+                             outgoing:YES];
+
+    NSError *error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
 }
 
 #pragma mark - Helpers
