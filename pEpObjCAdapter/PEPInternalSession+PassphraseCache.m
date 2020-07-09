@@ -87,6 +87,9 @@
             NSString *normalizedPassphrase = [lastPassphrase normalizedPassphraseWithError:nil];
 
             if (normalizedPassphrase == nil) {
+                // Assume excessively long passphrase means PEP_WRONG_PASSPHRASE
+                lastPassphraseProviderStatus = PEP_WRONG_PASSPHRASE;
+
                 dispatch_group_enter(group);
                 [passphraseProvider passphraseTooLong:passphraseCallback];
                 dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
