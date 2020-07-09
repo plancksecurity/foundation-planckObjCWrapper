@@ -1593,7 +1593,7 @@
 #pragma mark - Passphrase Cache
 
 /// Use case: No passphrase provider
-- (void)testNoPassphraseProvider
+- (void)testPassphraseProviderNone
 {
     PEPMessage *draftMail = nil;
     PEPSession *session = nil;
@@ -1619,7 +1619,7 @@
 }
 
 /// Use case: Passphrase provider set, but never delivers passphrases
-- (void)testEmptyPassphraseProvider
+- (void)testPassphraseProviderEmpty
 {
     PEPMessage *draftMail = nil;
     PEPSession *session = nil;
@@ -1648,7 +1648,7 @@
 }
 
 /// Use case: Passphrase provider set, only delivers incorrect passphrases
-- (void)testEnrcyptPassphraseProviderWrongPassphrases
+- (void)testPassphraseProviderWrongPassphrases
 {
     PEPMessage *draftMail = nil;
     PEPSession *session = nil;
