@@ -1504,6 +1504,8 @@
     }
 }
 
+#pragma mark - Basic Passphrases
+
 - (void)testOwnKeyWithPasswordAndEncryptToSelf
 {
     NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordAndEncryptToSelf";
@@ -1586,6 +1588,8 @@
 
     [self shutdownSync];
 }
+
+#pragma mark - Passphrase Cache
 
 #pragma mark - Helpers
 
