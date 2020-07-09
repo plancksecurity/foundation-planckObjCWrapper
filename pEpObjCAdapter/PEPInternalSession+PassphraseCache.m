@@ -11,6 +11,7 @@
 #import "pEpEngine.h"
 
 #import "PEPPassphraseCache.h"
+#import "PEPObjCAdapter+Internal.h"
 
 @implementation PEPInternalSession (PassphraseCache)
 
@@ -45,7 +46,56 @@
 
     // If execution lands here, it means we ran out of passwords to set while
     // receiving password-related error codes.
-    return (PEPStatus) lastStatus;
+
+    id<PEPPassphraseProviderProtocol> passphraseProvider = [PEPObjCAdapter passphraseProvider];
+    if (passphraseProvider) {
+        dispatch_group_t group;
+
+        __block PEP_STATUS lastPassphraseProviderStatus = lastStatus;
+        __block NSString *lastPassphrase = nil;
+
+        PEPPassphraseProviderCallback passPhraseCallback = ^(NSString * _Nullable passphrase) {
+            lastPassphrase = passphrase;
+            dispatch_group_leave(group);
+        };
+
+        while (YES) {
+            if (lastPassphraseProviderStatus == PEP_PASSPHRASE_REQUIRED) {
+                dispatch_group_enter(group);
+                [passphraseProvider passphraseRequiredCompletion:passPhraseCallback];
+                dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+            } else if (lastPassphraseProviderStatus == PEP_WRONG_PASSPHRASE) {
+                dispatch_group_enter(group);
+                [passphraseProvider wrongPassphraseCompletion:passPhraseCallback];
+                dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+            }
+
+            if (lastPassphrase) {
+                lastPassphraseProviderStatus = config_passphrase(self.session,
+                                                                 [lastPassphrase UTF8String]);
+                if (lastPassphraseProviderStatus != PEPStatusOK) {
+                    return (PEPStatus) lastPassphraseProviderStatus;
+                }
+
+                lastPassphraseProviderStatus = block(self.session);
+
+                if (lastPassphraseProviderStatus != PEP_PASSPHRASE_REQUIRED &&
+                    lastPassphraseProviderStatus != PEP_WRONG_PASSPHRASE) {
+                    // The passphrase worked, so reset its timeout
+                    [self.passphraseCache resetTimeoutForPassphrase:lastPassphrase];
+
+                    return (PEPStatus) lastPassphraseProviderStatus;
+                }
+            } else {
+                return (PEPStatus) lastPassphraseProviderStatus;
+            }
+        }
+
+        return (PEPStatus) lastPassphraseProviderStatus;
+    } else {
+        // no passphrase provider
+        return (PEPStatus) lastStatus;
+    }
 }
 
 @end
