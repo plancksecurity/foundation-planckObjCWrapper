@@ -1595,6 +1595,8 @@
 /// Tests encryption with an imported key (with passphrase set)
 - (void)testEnrcyptWithImportedKeyWithPassphraseUsingPassphraseProvider
 {
+    // Set up
+
     PEPSession *session = [PEPSession new];
 
     NSString *fingerprint = [@"9DD8 3053 3B93 988A 9777  52CA 4802 9ADE 43F2 70EC"
@@ -1638,12 +1640,12 @@
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
 
-    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
-                                           initWithPassphrases:@[]]];
-
-    // Use case: Passphrase provider set, but never produces the correct passphrase
+    // Use case: Passphrase provider set, but never delivers passphrases
 
     error = nil;
+
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
+                                           initWithPassphrases:@[]]];
 
     XCTAssertFalse([session
                     encryptMessage:draftMail
@@ -1656,13 +1658,13 @@
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
 
+    // Use case: Passphrase provider set, only delivers incorrect passphrases
+
+    error = nil;
+
     NSArray *nonsensePassphrases = @[@"blah1", @"blah2", @"blah3"];
     [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
                                            initWithPassphrases:nonsensePassphrases]];
-
-    // Use case: Passphrase provider set, has correct passphrase after 2 unsuccessful attempts
-
-    error = nil;
 
     XCTAssertFalse([session
                     encryptMessage:draftMail
@@ -1675,12 +1677,14 @@
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
 
+    // Use case: Passphrase provider set, has correct passphrase after 2 unsuccessful attempts
+
+    error = nil;
+
     NSString *correctPassphrase = @"uiae";
     NSArray *passphrases = @[@"blah1", @"blah2", correctPassphrase];
     [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
                                            initWithPassphrases:passphrases]];
-
-    error = nil;
 
     XCTAssertTrue([session
                    encryptMessage:draftMail
