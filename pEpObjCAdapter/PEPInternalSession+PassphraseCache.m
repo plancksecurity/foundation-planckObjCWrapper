@@ -84,9 +84,7 @@
                 return (PEPStatus) lastPassphraseProviderStatus;
             }
 
-            NSError *passphraseError = nil;
-            NSString *normalizedPassphrase = [lastPassphrase
-                                              normalizedPassphraseWithError:&passphraseError];
+            NSString *normalizedPassphrase = [lastPassphrase normalizedPassphraseWithError:nil];
 
             if (normalizedPassphrase == nil) {
                 dispatch_group_enter(group);
