@@ -20,6 +20,7 @@
 #import "PEPSessionTestNotifyHandshakeDelegate.h"
 #import "PEPSessionTestSendMessageDelegate.h"
 #import "PEPPassphraseCache+Reset.h"
+#import "PEPPassphraseProviderMock.h"
 
 @interface PEPSessionTest : XCTestCase
 
@@ -1633,6 +1634,37 @@
 
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
+
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
+                                           initWithPassphrases:@[]]];
+
+    error = nil;
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
+
+    NSString *correctPassphrase = @"uiae";
+    NSArray *passphrases = @[@"blah1", @"blah2", correctPassphrase];
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
+                                           initWithPassphrases:passphrases]];
+
+    error = nil;
+
+    XCTAssertTrue([session
+                   encryptMessage:draftMail
+                   forSelf:identMe
+                   extraKeys:nil
+                   status:&status
+                   error:&error]);
+    XCTAssertNil(error);
 }
 
 #pragma mark - Helpers
