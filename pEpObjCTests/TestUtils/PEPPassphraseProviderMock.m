@@ -34,6 +34,7 @@
 }
 
 - (void)passphraseTooLong:(nonnull PEPPassphraseProviderCallback)completion {
+    self.passphraseTooLongWasCalled = YES;
     [self answerWithLatestPassphrase:completion];
 }
 

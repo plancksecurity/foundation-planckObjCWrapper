@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPPassphraseProviderMock : NSObject<PEPPassphraseProviderProtocol>
 
+@property (nonatomic) BOOL passphraseTooLongWasCalled;
+
 - (instancetype)initWithPassphrases:(NSArray<NSString *> *)passphrases;
 
 @end
