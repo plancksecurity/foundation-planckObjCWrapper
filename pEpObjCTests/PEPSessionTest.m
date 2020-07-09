@@ -1688,8 +1688,10 @@
     }
 
     NSArray *onePassphraseThatIsTooLong = @[passphraseTooLong];
-    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
-                                           initWithPassphrases:onePassphraseThatIsTooLong]];
+    PEPPassphraseProviderMock *passphraseProviderMock1 = [[PEPPassphraseProviderMock
+                                                           alloc]
+                                                          initWithPassphrases:onePassphraseThatIsTooLong];
+    [PEPObjCAdapter setPassphraseProvider:passphraseProviderMock1];
 
     XCTAssertFalse([session
                     encryptMessage:draftMail
@@ -1701,6 +1703,7 @@
 
     XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
+    XCTAssertTrue(passphraseProviderMock1.passphraseTooLongWasCalled);
 
     // Use case: Passphrase provider set, has correct passphrase after 2 unsuccessful attempts
 
