@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPPassphraseProviderProtocol.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class PEPLanguage;
@@ -42,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
 + (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
                                 error:(NSError * _Nullable * _Nullable)error;
+
+/// Sets a passphrase provider.
++ (void)setPassphraseProvider:(id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider;
 
 #pragma mark -
 

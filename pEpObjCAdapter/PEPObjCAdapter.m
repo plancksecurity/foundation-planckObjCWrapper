@@ -93,6 +93,12 @@ static NSString *s_passphraseForNewKeys = nil;
     return s_passphraseForNewKeys;
 }
 
+#pragma mark - Passphrase Provider
+
++ (void)setPassphraseProvider:(id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider
+{
+}
+
 #pragma mark - DB PATHS
 
 + (void)initialize
