@@ -19,6 +19,10 @@ typedef void (^PEPPassphraseProviderCallback)(NSString * _Nullable passphrase);
 
 @protocol PEPPassphraseProviderProtocol <NSObject>
 
+- (void)passphraseRequiredCompletion:(PEPPassphraseProviderCallback)completion;
+- (void)wrongPassphraseCompletion:(PEPPassphraseProviderCallback)completion;
+- (void)passphraseTooLong:(PEPPassphraseProviderCallback)completion;
+
 @end
 
 NS_ASSUME_NONNULL_END
