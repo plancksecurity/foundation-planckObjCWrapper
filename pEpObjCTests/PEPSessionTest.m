@@ -1595,34 +1595,17 @@
 /// Tests encryption with an imported key (with passphrase set)
 - (void)testEnrcyptWithImportedKeyWithPassphraseUsingPassphraseProvider
 {
+    // Variables set by set up method
+
+    PEPMessage *draftMail = nil;
+    PEPSession *session = nil;
+    PEPIdentity *identMe = nil;
+
     // Set up
 
-    PEPSession *session = [PEPSession new];
-
-    NSString *fingerprint = [@"9DD8 3053 3B93 988A 9777  52CA 4802 9ADE 43F2 70EC"
-                             stringByReplacingOccurrencesOfString:@" " withString:@""];
-    fingerprint = [fingerprint stringByReplacingOccurrencesOfString:@"  " withString:@""];
-
-    PEPIdentity *identMe = [self
-                            checkMySelfImportingKeyFilePath:@"Rick Deckard (43F270EC) – Secret.asc"
-                            address:@"deckard@example.com"
-                            userID:@"deckard_user_id"
-                            fingerPrint:fingerprint
-                            session:session];
-    XCTAssertNotNil(identMe);
-
-    PEPIdentity *dummyReceiver = [[PEPIdentity alloc]
-                                  initWithAddress:@"partner1@example.com"
-                                  userID:@"partner1"
-                                  userName:@"Partner 1"
-                                  isOwn:NO];
-
-    PEPMessage *draftMail = [PEPTestUtils
-                             mailFrom:identMe
-                             toIdent:dummyReceiver
-                             shortMessage:@"hey"
-                             longMessage:@"hey hey"
-                             outgoing:YES];
+    [self setupEncryptWithImportedKeySession:&session
+                                 ownIdentity:&identMe
+                            messageToEncrypt:&draftMail];
 
     // Use case: No passphrase provider
 
@@ -1724,6 +1707,38 @@
 }
 
 #pragma mark - Helpers
+
+- (void)setupEncryptWithImportedKeySession:(PEPSession **)session
+                               ownIdentity:(PEPIdentity **)ownIdentity
+                          messageToEncrypt:(PEPMessage **)messageToEncrypt
+{
+    *session = [PEPSession new];
+
+    NSString *fingerprint = [@"9DD8 3053 3B93 988A 9777  52CA 4802 9ADE 43F2 70EC"
+                             stringByReplacingOccurrencesOfString:@" " withString:@""];
+    fingerprint = [fingerprint stringByReplacingOccurrencesOfString:@"  " withString:@""];
+
+    *ownIdentity = [self
+                    checkMySelfImportingKeyFilePath:@"Rick Deckard (43F270EC) – Secret.asc"
+                    address:@"deckard@example.com"
+                    userID:@"deckard_user_id"
+                    fingerPrint:fingerprint
+                    session:*session];
+    XCTAssertNotNil(*ownIdentity);
+
+    PEPIdentity *dummyReceiver = [[PEPIdentity alloc]
+                                  initWithAddress:@"partner1@example.com"
+                                  userID:@"partner1"
+                                  userName:@"Partner 1"
+                                  isOwn:NO];
+
+    *messageToEncrypt = [PEPTestUtils
+                         mailFrom:*ownIdentity
+                         toIdent:dummyReceiver
+                         shortMessage:@"hey"
+                         longMessage:@"hey hey"
+                         outgoing:YES];
+}
 
 - (void)testSendMessageOnSession:(PEPSession *)session
 {
