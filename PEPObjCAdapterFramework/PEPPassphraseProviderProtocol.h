@@ -45,6 +45,12 @@ typedef void (^PEPPassphraseProviderCallback)(NSString * _Nullable passphrase);
 
 /// Signals that the passphrase indicated by the callback in one of the calls of
 /// this delegate was too long and cannot be used.
+///
+/// See `PEPPassphraseProviderProtocol` for a general description.
+///
+/// @param completion Callback that either retries the engine call that lead
+/// to the adapter calling into the PEPPassphraseProviderProtocol delegate,
+/// or, if the given passphrase is nil, return the error to the caller.
 - (void)passphraseTooLong:(PEPPassphraseProviderCallback)completion;
 
 @end
