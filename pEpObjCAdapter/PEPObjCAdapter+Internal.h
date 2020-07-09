@@ -11,6 +11,7 @@
 
 #import "PEPQueue.h"
 #import "PEPInternalSession.h"
+#import "PEPPassphraseProviderProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// The passphrase to be used for new own keys, can be `nil`.
 + (NSString * _Nullable)passphraseForNewKeys;
+
+/// Get the currently set passphrase provider.
++ (id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider;
 
 @end
 
