@@ -1595,13 +1595,9 @@
 /// Use case: No passphrase provider
 - (void)testNoPassphraseProvider
 {
-    // Variables set by set up method
-
     PEPMessage *draftMail = nil;
     PEPSession *session = nil;
     PEPIdentity *identMe = nil;
-
-    // Set up
 
     [self setupEncryptWithImportedKeySession:&session
                                  ownIdentity:&identMe
@@ -1625,13 +1621,9 @@
 /// Use case: Passphrase provider set, but never delivers passphrases
 - (void)testEmptyPassphraseProvider
 {
-    // Variables set by set up method
-
     PEPMessage *draftMail = nil;
     PEPSession *session = nil;
     PEPIdentity *identMe = nil;
-
-    // Set up
 
     [self setupEncryptWithImportedKeySession:&session
                                  ownIdentity:&identMe
@@ -1658,13 +1650,9 @@
 /// Use case: Passphrase provider set, only delivers incorrect passphrases
 - (void)testEnrcyptPassphraseProviderWrongPassphrases
 {
-    // Variables set by set up method
-
     PEPMessage *draftMail = nil;
     PEPSession *session = nil;
     PEPIdentity *identMe = nil;
-
-    // Set up
 
     [self setupEncryptWithImportedKeySession:&session
                                  ownIdentity:&identMe
@@ -1692,13 +1680,9 @@
 /// Use case: 1 Passphrase, but too long
 - (void)testPassphraseProviderPassphraseTooLong
 {
-    // Variables set by set up method
-
     PEPMessage *draftMail = nil;
     PEPSession *session = nil;
     PEPIdentity *identMe = nil;
-
-    // Set up
 
     [self setupEncryptWithImportedKeySession:&session
                                  ownIdentity:&identMe
@@ -1735,13 +1719,9 @@
 /// Use case: Passphrase provider set, has correct passphrase after 2 unsuccessful attempts
 - (void)testPassphraseProviderCorrectPassphrase
 {
-    // Variables set by set up method
-
     PEPMessage *draftMail = nil;
     PEPSession *session = nil;
     PEPIdentity *identMe = nil;
-
-    // Set up
 
     [self setupEncryptWithImportedKeySession:&session
                                  ownIdentity:&identMe
