@@ -48,7 +48,4 @@
  */
 - (void)shutdown;
 
-/// Restart the sync loop if it is currently running, or don't do anything if not.
-- (void)restartIfRunning;
-
 @end

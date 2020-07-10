@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPPassphraseProviderProtocol.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
 @class PEPLanguage;
 
 @interface PEPObjCAdapter : NSObject
@@ -41,22 +45,27 @@
 + (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
                                 error:(NSError * _Nullable * _Nullable)error;
 
+/// Sets a passphrase provider.
+///
+/// @note The reference is strong, so the caller can relinquish ownership if needed.
++ (void)setPassphraseProvider:(id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider;
+
 #pragma mark -
 
 /**
  The HOME URL, where all pEp related files will be stored.
  */
-+ (NSURL * _Nonnull)homeURL;
++ (NSURL *)homeURL;
 
 + (void)setupTrustWordsDB;
-+ (void)setupTrustWordsDB:(NSBundle * _Nonnull)rootBundle;
++ (void)setupTrustWordsDB:(NSBundle *)rootBundle;
 
 /**
  The directory where pEp stores user-specific data.
 
  @return An NSString denoting the directory where user-specific data gets stored by the engine.
  */
-+ (NSString * _Nonnull)perUserDirectoryString;
++ (NSString *)perUserDirectoryString;
 
 /**
  The directory where pEp stores data for all users on this machine.
@@ -64,6 +73,8 @@
  @return An NSString denoting the directory where global data (for all users of this machine
          or device) gets stored by the engine.
  */
-+ (NSString * _Nonnull)perMachineDirectoryString;
++ (NSString *)perMachineDirectoryString;
 
 @end
+
+NS_ASSUME_NONNULL_END

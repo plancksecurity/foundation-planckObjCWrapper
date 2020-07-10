@@ -37,6 +37,7 @@ NSURL *s_homeURL;
 static BOOL s_unEncryptedSubjectEnabled = NO;
 static BOOL s_passiveModeEnabled = NO;
 static NSString *s_passphraseForNewKeys = nil;
+static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
 @implementation PEPObjCAdapter
 
@@ -91,6 +92,18 @@ static NSString *s_passphraseForNewKeys = nil;
 + (NSString * _Nullable)passphraseForNewKeys
 {
     return s_passphraseForNewKeys;
+}
+
+#pragma mark - Passphrase Provider
+
++ (void)setPassphraseProvider:(id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider
+{
+    s_passphraseProvider = passphraseProvider;
+}
+
++ (id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider
+{
+    return s_passphraseProvider;
 }
 
 #pragma mark - DB PATHS
