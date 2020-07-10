@@ -20,6 +20,7 @@
 #import "PEPSessionTestNotifyHandshakeDelegate.h"
 #import "PEPSessionTestSendMessageDelegate.h"
 #import "PEPPassphraseCache+Reset.h"
+#import "PEPPassphraseProviderMock.h"
 
 @interface PEPSessionTest : XCTestCase
 
@@ -1504,6 +1505,8 @@
     }
 }
 
+#pragma mark - Basic Passphrases
+
 - (void)testOwnKeyWithPasswordAndEncryptToSelf
 {
     NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordAndEncryptToSelf";
@@ -1587,7 +1590,193 @@
     [self shutdownSync];
 }
 
+#pragma mark - Passphrase Cache
+
+/// Use case: No passphrase provider
+- (void)testPassphraseProviderNone
+{
+    PEPMessage *draftMail = nil;
+    PEPSession *session = nil;
+    PEPIdentity *identMe = nil;
+
+    [self setupEncryptWithImportedKeySession:&session
+                                 ownIdentity:&identMe
+                            messageToEncrypt:&draftMail];
+
+    NSError *error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
+}
+
+/// Use case: Passphrase provider set, but never delivers passphrases
+- (void)testPassphraseProviderEmpty
+{
+    PEPMessage *draftMail = nil;
+    PEPSession *session = nil;
+    PEPIdentity *identMe = nil;
+
+    [self setupEncryptWithImportedKeySession:&session
+                                 ownIdentity:&identMe
+                            messageToEncrypt:&draftMail];
+
+    NSError *error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
+                                           initWithPassphrases:@[]]];
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
+}
+
+/// Use case: Passphrase provider set, only delivers incorrect passphrases
+- (void)testPassphraseProviderWrongPassphrases
+{
+    PEPMessage *draftMail = nil;
+    PEPSession *session = nil;
+    PEPIdentity *identMe = nil;
+
+    [self setupEncryptWithImportedKeySession:&session
+                                 ownIdentity:&identMe
+                            messageToEncrypt:&draftMail];
+
+    NSError *error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    NSArray *nonsensePassphrases = @[@"blah1", @"blah2", @"blah3"];
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
+                                           initWithPassphrases:nonsensePassphrases]];
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
+}
+
+/// Use case: 1 Passphrase, but too long
+- (void)testPassphraseProviderPassphraseTooLong
+{
+    PEPMessage *draftMail = nil;
+    PEPSession *session = nil;
+    PEPIdentity *identMe = nil;
+
+    [self setupEncryptWithImportedKeySession:&session
+                                 ownIdentity:&identMe
+                            messageToEncrypt:&draftMail];
+
+    NSError *error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    NSString *passphraseBase = @"base";
+    NSString *passphraseTooLong = passphraseBase;
+    for (NSUInteger i = 0; i < 250; ++i) {
+        passphraseTooLong = [passphraseTooLong stringByAppendingString:passphraseBase];
+    }
+
+    NSArray *onePassphraseThatIsTooLong = @[passphraseTooLong];
+    PEPPassphraseProviderMock *passphraseProviderMock1 = [[PEPPassphraseProviderMock
+                                                           alloc]
+                                                          initWithPassphrases:onePassphraseThatIsTooLong];
+    [PEPObjCAdapter setPassphraseProvider:passphraseProviderMock1];
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
+    XCTAssertTrue(passphraseProviderMock1.passphraseTooLongWasCalled);
+}
+
+/// Use case: Passphrase provider set, has correct passphrase after 2 unsuccessful attempts
+- (void)testPassphraseProviderCorrectPassphrase
+{
+    PEPMessage *draftMail = nil;
+    PEPSession *session = nil;
+    PEPIdentity *identMe = nil;
+
+    [self setupEncryptWithImportedKeySession:&session
+                                 ownIdentity:&identMe
+                            messageToEncrypt:&draftMail];
+
+    NSError *error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    NSString *correctPassphrase = @"uiae";
+    NSArray *passphrases = @[@"blah1", @"blah2", correctPassphrase];
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
+                                           initWithPassphrases:passphrases]];
+
+    XCTAssertTrue([session
+                   encryptMessage:draftMail
+                   forSelf:identMe
+                   extraKeys:nil
+                   status:&status
+                   error:&error]);
+    XCTAssertNil(error);
+}
+
 #pragma mark - Helpers
+
+- (void)setupEncryptWithImportedKeySession:(PEPSession **)session
+                               ownIdentity:(PEPIdentity **)ownIdentity
+                          messageToEncrypt:(PEPMessage **)messageToEncrypt
+{
+    *session = [PEPSession new];
+
+    NSString *fingerprint = [@"9DD8 3053 3B93 988A 9777  52CA 4802 9ADE 43F2 70EC"
+                             stringByReplacingOccurrencesOfString:@" " withString:@""];
+    fingerprint = [fingerprint stringByReplacingOccurrencesOfString:@"  " withString:@""];
+
+    *ownIdentity = [self
+                    checkMySelfImportingKeyFilePath:@"Rick Deckard (43F270EC) – Secret.asc"
+                    address:@"deckard@example.com"
+                    userID:@"deckard_user_id"
+                    fingerPrint:fingerprint
+                    session:*session];
+    XCTAssertNotNil(*ownIdentity);
+
+    PEPIdentity *dummyReceiver = [[PEPIdentity alloc]
+                                  initWithAddress:@"partner1@example.com"
+                                  userID:@"partner1"
+                                  userName:@"Partner 1"
+                                  isOwn:NO];
+
+    *messageToEncrypt = [PEPTestUtils
+                         mailFrom:*ownIdentity
+                         toIdent:dummyReceiver
+                         shortMessage:@"hey"
+                         longMessage:@"hey hey"
+                         outgoing:YES];
+}
 
 - (void)testSendMessageOnSession:(PEPSession *)session
 {

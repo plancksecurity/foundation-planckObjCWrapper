@@ -81,9 +81,6 @@ extern NSString *const _Nonnull kPepCommType;
 /** The raw message created by pEp (NSData) */
 extern NSString *const _Nonnull kPepRawMessage;
 
-/** NSError parameters will use this domain */
-extern NSString *const _Nonnull PEPSessionErrorDomain;
-
 /** Optional field "X-pEp-Version" */
 extern NSString *const _Nonnull kXpEpVersion;
 

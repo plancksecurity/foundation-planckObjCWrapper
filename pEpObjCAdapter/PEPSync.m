@@ -37,7 +37,11 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 @property (nonatomic, nullable) NSThread *syncThread;
 @property (nonatomic, nullable) NSConditionLock *conditionLockForJoiningSyncThread;
 /// Used to block messageToSend() until the client configured a passphrase.
-@property (atomic, nullable)  dispatch_group_t blockmessageToSendGroup;
+@property (atomic, nullable) dispatch_group_t blockmessageToSendGroup;
+/// Object used for synchronizing modifications of `blockmessageToSendGroup`.
+@property (atomic, nonnull) NSObject *lockObjectBlockmessageToSendGroupChanges;
+/// True if someone called `shutdown()`
+@property (atomic) BOOL shutdownRequested;
 
 /// The session created and used by the sync loop
 @property (nonatomic, nullable) PEPInternalSession *syncLoopSession;
@@ -158,12 +162,15 @@ static __weak PEPSync *s_pEpSync;
         _notifyHandshakeDelegate = notifyHandshakeDelegate;
         _queue = [PEPQueue new];
         s_pEpSync = self;
+        _lockObjectBlockmessageToSendGroupChanges = [NSObject new];
+        _shutdownRequested = NO;
     }
     return self;
 }
 
 - (void)startup
 {
+    self.shutdownRequested = NO;
     [self stopWaiting];
 
     if (self.syncThread != nil) {
@@ -188,18 +195,11 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)shutdown
 {
+    self.shutdownRequested = YES;
     [self stopWaiting];
 
     if (self.syncThread) {
         [self injectSyncEvent:nil isFromShutdown:YES];
-    }
-}
-
-- (void)restartIfRunning
-{
-    if (self.syncThread != nil) { // is running
-        [self shutdown];
-        [self startup];
     }
 }
 
@@ -263,6 +263,12 @@ static __weak PEPSync *s_pEpSync;
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
     [self blockUntilPassphraseIsEnteredIfRequired];
+    if (self.shutdownRequested) {
+        // The client has signalled that she was unable to provide a passphrase by calling
+        // `shutdown()`.
+        // We signal the same to the Engine.
+        return PEP_SYNC_NO_CHANNEL;
+    }
 
     if (msg == NULL && [NSThread currentThread] == self.syncThread) {
         static NSMutableArray *passphrasesCopy = nil;
@@ -377,16 +383,20 @@ static __weak PEPSync *s_pEpSync;
 }
 
 - (void)nextCallMustWait {
-    if (!self.blockmessageToSendGroup) {
-        self.blockmessageToSendGroup = dispatch_group_create();
+    @synchronized (self.blockmessageToSendGroup) {
+        if (!self.blockmessageToSendGroup) {
+            self.blockmessageToSendGroup = dispatch_group_create();
+        }
+        dispatch_group_enter(self.blockmessageToSendGroup);
     }
-    dispatch_group_enter(self.blockmessageToSendGroup);
 }
 
 - (void)stopWaiting {
-    if (self.blockmessageToSendGroup) {
-        dispatch_group_leave(self.blockmessageToSendGroup);
-        self.blockmessageToSendGroup = nil;
+    @synchronized (self.blockmessageToSendGroup) {
+        if (self.blockmessageToSendGroup) {
+            dispatch_group_leave(self.blockmessageToSendGroup);
+            self.blockmessageToSendGroup = nil;
+        }
     }
 }
 
