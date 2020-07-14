@@ -144,7 +144,7 @@ static __weak PEPSync *s_pEpSync;
     if (status != PEP_STATUS_OK) {
         if (error) {
             *error = [NSError errorWithPEPStatusInternal:status];
-            os_log(s_logger, "error creating session: %{public}@", *error);
+            os_log(s_logger, "error creating session: %{public}@", *error); //BUFF: oh, that silently fails?
         }
         return nil;
     }
