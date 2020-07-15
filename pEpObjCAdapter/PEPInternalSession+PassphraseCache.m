@@ -47,10 +47,56 @@
 
     // If execution lands here, it means we ran out of passwords to set while
     // receiving password-related error codes.
-    return [self tryPassphraseProviderAsyncLastStatus:lastStatus block:block];
+    if ([NSThread currentThread] == [NSThread mainThread]) {
+        return [self tryPassphraseProviderLastStatus:lastStatus block:block];
+    } else {
+        return [self tryPassphraseProviderAsyncLastStatus:lastStatus block:block];
+    }
 }
 
 #pragma mark - Private
+
+- (void)exitCurrentRunLoopAndTryPassphraseDummy
+{
+    NSLog(@"*** dummy called");
+}
+
+/// Invokes the given block while setting passphrases requested from the
+/// passphrase provider, if set, taking care of the main run loop.
+- (PEPStatus)tryPassphraseProviderLastStatus:(PEP_STATUS)lastStatus
+                                       block:(PEP_STATUS (^)(PEP_SESSION session))block
+{
+    id<PEPPassphraseProviderProtocol> passphraseProvider = [PEPObjCAdapter passphraseProvider];
+    if (passphraseProvider) {
+        NSRunLoop *mainRunLoop = [NSRunLoop currentRunLoop];
+
+        __block NSString *lastPassphrase = nil;
+        __block BOOL done = NO;
+
+        id theSelf = self;
+
+        PEPPassphraseProviderCallback passphraseCallback = ^(NSString * _Nullable passphrase) {
+            lastPassphrase = passphrase;
+            [NSThread performSelectorOnMainThread:@selector(exitCurrentRunLoopAndTryPassphraseDummy)
+                                       withObject:theSelf
+                                    waitUntilDone:NO];
+        };
+
+        [passphraseProvider passphraseRequired:passphraseCallback];
+
+        while (!done) {
+            SInt32 result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10, YES);
+            if ((result == kCFRunLoopRunStopped) || (result == kCFRunLoopRunFinished)) {
+                done = YES;
+            }
+        }
+        // TODO: This is fake
+        return (PEPStatus) lastStatus;
+    } else {
+        // no passphrase provider
+        return (PEPStatus) lastStatus;
+    }
+}
 
 /// Invokes the given block while setting passphrases requested from the
 /// passphrase provider, if set.

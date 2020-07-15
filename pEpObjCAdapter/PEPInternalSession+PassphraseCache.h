@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param block The status-returning block to execute against different passwords
 - (PEPStatus)runWithPasswords:(PEP_STATUS (^)(PEP_SESSION session))block;
 
+/// Used for passphrase handling on the main thread.
+- (void)exitCurrentRunLoopAndTryPassphraseDummy;
+
 @end
 
 NS_ASSUME_NONNULL_END
