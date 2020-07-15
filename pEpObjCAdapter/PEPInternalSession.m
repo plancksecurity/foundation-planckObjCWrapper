@@ -788,15 +788,16 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident1 = PEP_identityToStruct(identity1);
     pEp_identity *ident2 = PEP_identityToStruct(identity2);
-    PEPStatus status;
 
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
-    size_t sizeWritten = 0;
+    __block size_t sizeWritten = 0;
 
-    status = (PEPStatus) get_trustwords(_session, ident1, ident2,
-                                        [[language precomposedStringWithCanonicalMapping]
-                                         UTF8String],
-                                        trustwords.charPointerPointer, &sizeWritten, full);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return get_trustwords(session, ident1, ident2,
+                              [[language precomposedStringWithCanonicalMapping]
+                               UTF8String],
+                              trustwords.charPointerPointer, &sizeWritten, full);
+    }];
 
     free_identity(ident1);
     free_identity(ident2);
