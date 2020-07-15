@@ -56,9 +56,11 @@
 
 #pragma mark - Private
 
-- (void)exitCurrentRunLoopAndTryPassphraseDummy
+/// Calling this via `- [NSObject performSelectorOnMainThread]` should
+/// exit the current `CFRunLoopRunInMode` call with `kCFRunLoopRunHandledSource`.
+- (void)triggerRunLoopRunHandledSource
 {
-    NSLog(@"*** dummy called");
+    NSLog(@"*** triggerRunLoopRunHandledSource called");
 }
 
 /// Invokes the given block while setting passphrases requested from the
@@ -77,7 +79,7 @@
         PEPPassphraseProviderCallback passphraseCallback = ^(NSString * _Nullable passphrase) {
             lastPassphrase = passphrase;
             tryNextPassphrase = YES;
-            [self performSelectorOnMainThread:@selector(exitCurrentRunLoopAndTryPassphraseDummy)
+            [self performSelectorOnMainThread:@selector(triggerRunLoopRunHandledSource)
                                    withObject:nil
                                 waitUntilDone:NO];
         };
