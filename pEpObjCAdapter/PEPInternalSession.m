@@ -744,11 +744,13 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
                                           error:(NSError * _Nullable * _Nullable)error
 {
-    identity_list *identList = NULL;
+    __block identity_list *identList = NULL;
 
-    PEPStatus status = (PEPStatus) import_key(_session,
-                                              [[keydata precomposedStringWithCanonicalMapping] UTF8String],
-                                              [keydata length], &identList);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return import_key(session,
+                          [[keydata precomposedStringWithCanonicalMapping] UTF8String],
+                          [keydata length], &identList);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free(identList);
