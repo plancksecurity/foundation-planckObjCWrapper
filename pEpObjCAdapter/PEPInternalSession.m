@@ -721,7 +721,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         return nil;
     }
 
-    PEPStatus status = (PEPStatus) myself(_session, ident);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return myself(session, ident);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
