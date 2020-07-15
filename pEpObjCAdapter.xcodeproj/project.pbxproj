@@ -67,6 +67,7 @@
 		435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F518F22204A67006EB11F /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4360AA0E2227F22900E62E5A /* PEPObjCAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
+		43691D7424BF292A0002FD4D /* PEPPassphraseProviderUIMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 43691D7324BF292A0002FD4D /* PEPPassphraseProviderUIMock.m */; };
 		436E916E24B65805000296FF /* PEPPassphraseProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
@@ -209,6 +210,8 @@
 		4360A9FE2227EBB200E62E5A /* NSNumber+PEPRating+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+PEPRating+Internal.h"; sourceTree = "<group>"; };
 		43676B631C57EA1A00233933 /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
+		43691D7224BF292A0002FD4D /* PEPPassphraseProviderUIMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderUIMock.h; sourceTree = "<group>"; };
+		43691D7324BF292A0002FD4D /* PEPPassphraseProviderUIMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseProviderUIMock.m; sourceTree = "<group>"; };
 		436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderProtocol.h; sourceTree = "<group>"; };
 		436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Rick Deckard (43F270EC) – Secret.asc"; sourceTree = "<group>"; };
 		436E917524B71E12000296FF /* PEPPassphraseProviderMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderMock.h; sourceTree = "<group>"; };
@@ -290,6 +293,8 @@
 				4349CD7824ADDB8800A22A13 /* PEPPassphraseCache+Reset.m */,
 				436E917524B71E12000296FF /* PEPPassphraseProviderMock.h */,
 				436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */,
+				43691D7224BF292A0002FD4D /* PEPPassphraseProviderUIMock.h */,
+				43691D7324BF292A0002FD4D /* PEPPassphraseProviderUIMock.m */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -703,6 +708,7 @@
 			files = (
 				4331CE94229C2AAF00DDDC65 /* PEPSizeTest.m in Sources */,
 				4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */,
+				43691D7424BF292A0002FD4D /* PEPPassphraseProviderUIMock.m in Sources */,
 				152D58EF201B6DB200036219 /* PEPMessageUtilTest.m in Sources */,
 				152A9C472010F50400F962ED /* PEPSessionTest.m in Sources */,
 				434226811D4F60000083ED79 /* PepTests.m in Sources */,
