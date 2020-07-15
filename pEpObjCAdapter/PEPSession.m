@@ -245,22 +245,6 @@
     return [session importKey:keydata error:error];
 }
 
-- (BOOL)logTitle:(NSString * _Nonnull)title
-          entity:(NSString * _Nonnull)entity
-     description:(NSString * _Nullable)description
-         comment:(NSString * _Nullable)comment
-           error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    RETURN_ON_ERROR(session, error, NO);
-    return [session
-            logTitle:title
-            entity:entity
-            description:description
-            comment:comment
-            error:error];
-}
-
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];

@@ -176,12 +176,6 @@ extern NSString * const _Nonnull PEPObjCAdapterErrorDomain;
 - (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
                                           error:(NSError * _Nullable * _Nullable)error;
 
-- (BOOL)logTitle:(NSString * _Nonnull)title
-          entity:(NSString * _Nonnull)entity
-     description:(NSString * _Nullable)description
-         comment:(NSString * _Nullable)comment
-           error:(NSError * _Nullable * _Nullable)error;
-
 /**
  Retrieves the log from the engine, or nil, if there is nothing yet.
  */

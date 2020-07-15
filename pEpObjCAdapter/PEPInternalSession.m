@@ -763,29 +763,6 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return idents;
 }
 
-- (BOOL)logTitle:(NSString * _Nonnull)title
-          entity:(NSString * _Nonnull)entity
-     description:(NSString * _Nullable)description
-         comment:(NSString * _Nullable)comment
-           error:(NSError * _Nullable * _Nullable)error
-{
-    PEPStatus status = (PEPStatus) log_event(_session,
-                                             [[title precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[entity precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[description precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[comment precomposedStringWithCanonicalMapping]
-                                              UTF8String]);
-
-    if ([NSError setError:error fromPEPStatus:status]) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
     char *theChars = NULL;
