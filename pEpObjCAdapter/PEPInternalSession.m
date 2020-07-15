@@ -955,9 +955,13 @@ static NSDictionary *stringToRating;
             error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEPStatus status = (PEPStatus) set_own_key(self.session, ident,
-                                               [[fingerprint precomposedStringWithCanonicalMapping]
-                                                UTF8String]);
+
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return set_own_key(session, ident,
+                           [[fingerprint precomposedStringWithCanonicalMapping]
+                            UTF8String]);
+    }];
+
     free_identity(ident);
 
     if ([NSError setError:error fromPEPStatus:status]) {
