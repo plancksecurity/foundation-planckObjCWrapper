@@ -470,7 +470,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     message *_msg = PEP_messageToStruct(theMessage);
     PEPRating rating = PEPRatingUndefined;
 
-    PEPStatus status = (PEPStatus) ratingFunction(_session, _msg, (PEP_rating *) &rating);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return ratingFunction(session, _msg, (PEP_rating *) &rating);
+    }];
 
     free_message(_msg);
 
