@@ -1024,7 +1024,11 @@ static NSDictionary *stringToRating;
                       error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEPStatus status = (PEPStatus) trust_own_key(self.session, ident);
+
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return trust_own_key(session, ident);
+    }];
+
     free_identity(ident);
 
     if ([NSError setError:error fromPEPStatus:status]) {
