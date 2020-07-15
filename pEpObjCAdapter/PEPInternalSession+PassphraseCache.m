@@ -72,21 +72,29 @@
 
         __block NSString *lastPassphrase = nil;
         __block BOOL done = NO;
-
-        id theSelf = self;
+        __block BOOL tryNextPassphrase = NO;
 
         PEPPassphraseProviderCallback passphraseCallback = ^(NSString * _Nullable passphrase) {
             lastPassphrase = passphrase;
-            [NSThread performSelectorOnMainThread:@selector(exitCurrentRunLoopAndTryPassphraseDummy)
-                                       withObject:theSelf
-                                    waitUntilDone:NO];
+            tryNextPassphrase = YES;
+            [self performSelectorOnMainThread:@selector(exitCurrentRunLoopAndTryPassphraseDummy)
+                                   withObject:nil
+                                waitUntilDone:NO];
         };
 
         [passphraseProvider passphraseRequired:passphraseCallback];
 
         while (!done) {
             SInt32 result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10, YES);
-            if ((result == kCFRunLoopRunStopped) || (result == kCFRunLoopRunFinished)) {
+            if (result == kCFRunLoopRunHandledSource) {
+                if (tryNextPassphrase) {
+                    NSLog(@"*** try again with latest passphrase");
+                    tryNextPassphrase = NO;
+                } else {
+                    NSLog(@"*** source was handled, but no passphrase");
+                }
+            } else if ((result == kCFRunLoopRunStopped) || (result == kCFRunLoopRunFinished)) {
+                // This should never happen, but exit this run loop anyways.
                 done = YES;
             }
         }
