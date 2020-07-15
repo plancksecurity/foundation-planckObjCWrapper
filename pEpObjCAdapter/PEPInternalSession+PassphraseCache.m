@@ -87,16 +87,19 @@
         [passphraseProvider passphraseRequired:passphraseCallback];
 
         while (!done) {
-            SInt32 result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10, YES);
-            if (result == kCFRunLoopRunHandledSource) {
+            BOOL result = [mainRunLoop
+                           runMode:NSDefaultRunLoopMode
+                           beforeDate:[NSDate
+                                       dateWithTimeIntervalSinceNow:10.0]];
+            if (result) {
                 if (tryNextPassphrase) {
                     NSLog(@"*** try again with latest passphrase");
                     tryNextPassphrase = NO;
                 } else {
                     NSLog(@"*** source was handled, but no passphrase");
                 }
-            } else if ((result == kCFRunLoopRunStopped) || (result == kCFRunLoopRunFinished)) {
-                // This should never happen, but exit this run loop anyways.
+            } else {
+                // Run loop could not run
                 done = YES;
             }
         }
