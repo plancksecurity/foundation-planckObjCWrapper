@@ -21,6 +21,7 @@
 #import "PEPSessionTestSendMessageDelegate.h"
 #import "PEPPassphraseCache+Reset.h"
 #import "PEPPassphraseProviderMock.h"
+#import "PEPPassphraseProviderUIMock.h"
 
 @interface PEPSessionTest : XCTestCase
 
@@ -1742,6 +1743,34 @@
                    status:&status
                    error:&error]);
     XCTAssertNil(error);
+}
+
+/// Use case: Passphrase provider set that uses UI.
+- (void)testPassphraseProviderUI
+{
+    PEPMessage *draftMail = nil;
+    PEPSession *session = nil;
+    PEPIdentity *identMe = nil;
+
+    [self setupEncryptWithImportedKeySession:&session
+                                 ownIdentity:&identMe
+                            messageToEncrypt:&draftMail];
+
+    NSError *error = nil;
+    PEPStatus status = PEPStatusOutOfMemory;
+
+    [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderUIMock alloc] init]];
+
+    XCTAssertFalse([session
+                    encryptMessage:draftMail
+                    forSelf:identMe
+                    extraKeys:nil
+                    status:&status
+                    error:&error]);
+    XCTAssertNotNil(error);
+
+    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
 }
 
 #pragma mark - Helpers
