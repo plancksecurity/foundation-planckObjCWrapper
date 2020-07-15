@@ -981,7 +981,10 @@ static NSDictionary *stringToRating;
            error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEPStatus status = (PEPStatus) set_identity_flags(self.session, ident, flags);
+
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return set_identity_flags(session, ident, flags);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
