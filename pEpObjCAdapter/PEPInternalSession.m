@@ -337,13 +337,12 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                    status:(PEPStatus * _Nullable)status
                                     error:(NSError * _Nullable * _Nullable)error
 {
-    __block PEP_encrypt_flags_t flags = 0;
+    PEP_encrypt_flags_t flags = 0;
 
-    __block message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    __block pEp_identity *ident = PEP_identityToStruct(ownIdentity);
+    message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
+    pEp_identity *ident = PEP_identityToStruct(ownIdentity);
     __block message *_dst = NULL;
-
-    __block stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
+    stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return encrypt_message_for_self(session,
