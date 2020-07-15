@@ -626,7 +626,9 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) key_mistrusted(_session, ident);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return key_mistrusted(session, ident);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
