@@ -505,7 +505,7 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
                                     error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEPRating rating = PEPRatingUndefined;
+    __block PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return identity_rating(session, ident, (PEP_rating *) &rating);
