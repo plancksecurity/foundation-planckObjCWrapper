@@ -47,69 +47,10 @@
 
     // If execution lands here, it means we ran out of passwords to set while
     // receiving password-related error codes.
-    if ([NSThread currentThread] == [NSThread mainThread]) {
-        return [self tryPassphraseProviderLastStatus:lastStatus block:block];
-    } else {
-        return [self tryPassphraseProviderAsyncLastStatus:lastStatus block:block];
-    }
+    return [self tryPassphraseProviderAsyncLastStatus:lastStatus block:block];
 }
 
 #pragma mark - Private
-
-/// Calling this via `- [NSObject performSelectorOnMainThread]` should
-/// exit the current `CFRunLoopRunInMode` call with `kCFRunLoopRunHandledSource`.
-- (void)triggerRunLoopRunHandledSource
-{
-    NSLog(@"*** triggerRunLoopRunHandledSource called");
-}
-
-/// Invokes the given block while setting passphrases requested from the
-/// passphrase provider, if set, taking care of the main run loop.
-- (PEPStatus)tryPassphraseProviderLastStatus:(PEP_STATUS)lastStatus
-                                       block:(PEP_STATUS (^)(PEP_SESSION session))block
-{
-    id<PEPPassphraseProviderProtocol> passphraseProvider = [PEPObjCAdapter passphraseProvider];
-    if (passphraseProvider) {
-        NSRunLoop *mainRunLoop = [NSRunLoop currentRunLoop];
-
-        __block NSString *lastPassphrase = nil;
-        __block BOOL done = NO;
-        __block BOOL tryNextPassphrase = NO;
-
-        PEPPassphraseProviderCallback passphraseCallback = ^(NSString * _Nullable passphrase) {
-            lastPassphrase = passphrase;
-            tryNextPassphrase = YES;
-            [self performSelectorOnMainThread:@selector(triggerRunLoopRunHandledSource)
-                                   withObject:nil
-                                waitUntilDone:NO];
-        };
-
-        [passphraseProvider passphraseRequired:passphraseCallback];
-
-        while (!done) {
-            BOOL result = [mainRunLoop
-                           runMode:NSDefaultRunLoopMode
-                           beforeDate:[NSDate
-                                       dateWithTimeIntervalSinceNow:10.0]];
-            if (result) {
-                if (tryNextPassphrase) {
-                    NSLog(@"*** try again with latest passphrase");
-                    tryNextPassphrase = NO;
-                } else {
-                    NSLog(@"*** source was handled, but no passphrase");
-                }
-            } else {
-                // Run loop could not run
-                done = YES;
-            }
-        }
-        // TODO: This is fake
-        return (PEPStatus) lastStatus;
-    } else {
-        // no passphrase provider
-        return (PEPStatus) lastStatus;
-    }
-}
 
 /// Invokes the given block while setting passphrases requested from the
 /// passphrase provider, if set.
