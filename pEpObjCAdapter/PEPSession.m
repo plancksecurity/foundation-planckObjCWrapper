@@ -158,10 +158,10 @@
     return [session ratingForIdentity:identity error:error]; //BUFF: according to fdik intern API
 }
 
-- (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
-                                     languageID:(NSString * _Nonnull)languageID
-                                      shortened:(BOOL)shortened
-                                          error:(NSError * _Nullable * _Nullable)error
+- (NSArray<NSString *> * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
+                                                 languageID:(NSString * _Nonnull)languageID
+                                                  shortened:(BOOL)shortened
+                                                      error:(NSError * _Nullable * _Nullable)error
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     RETURN_ON_ERROR(session, error, nil);
