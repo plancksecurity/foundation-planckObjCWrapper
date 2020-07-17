@@ -103,7 +103,7 @@ extern PEPPassphraseCache * _Nullable g_passphraseCache;
 
 #pragma mark - Helpers
 
-static void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
+static void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     free_message(src);
     free_message(dst);
@@ -152,7 +152,7 @@ static void decryptMessageDictFree(message *src, message *dst, stringlist_t *ext
     }
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
-        decryptMessageDictFree(_src, _dst, theKeys);
+        decryptMessageFree(_src, _dst, theKeys);
         return nil;
     }
 
@@ -176,7 +176,7 @@ static void decryptMessageDictFree(message *src, message *dst, stringlist_t *ext
         *extraKeys = PEP_arrayFromStringlist(theKeys);
     }
 
-    decryptMessageDictFree(_src, _dst, theKeys);
+    decryptMessageFree(_src, _dst, theKeys);
 
     if (rating) {
         *rating = internalRating;
