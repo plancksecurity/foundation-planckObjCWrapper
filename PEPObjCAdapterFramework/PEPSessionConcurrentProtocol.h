@@ -17,6 +17,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Indicates that an error occurred.
+typedef void (^PEPErrorCallback)(NSError *error);
+
 @protocol PEPSessionConcurrentProtocol <NSObject>
 
 /** Decrypt a message */
