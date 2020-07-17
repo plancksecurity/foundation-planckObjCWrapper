@@ -30,6 +30,7 @@ typedef void (^PEPErrorCallback)(NSError *error);
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
+/*
 /// Re-evaluate rating of decrypted message
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
                  xKeyList:(PEPStringList *_Nullable)xKeyList
@@ -267,6 +268,7 @@ typedef void (^PEPErrorCallback)(NSError *error);
 /// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
 - (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
                       error:(NSError * _Nullable * _Nullable)error;
+*/
 
 @end
 
