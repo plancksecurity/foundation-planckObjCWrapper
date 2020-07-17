@@ -32,6 +32,7 @@
 #import "NSString+NormalizePassphrase.h"
 #import "PEPObjCAdapter.h"
 #import "PEPInternalSessionConcurrent+PassphraseCache.h"
+#import "PEPMessage+Internal.h"
 
 #import "pEpEngine.h"
 #import "key_reset.h"
@@ -184,28 +185,77 @@ static void decryptMessageDictFree(message *src, message *dst, stringlist_t *ext
     return dst_;
 }
 
-- (PEPMessage * _Nullable)decryptMessage:(PEPMessage *)message
+- (PEPMessage * _Nullable)decryptMessage:(PEPMessage *)messageInOut
                                    flags:(PEPDecryptFlags * _Nullable)flags
                                   rating:(PEPRating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *destDict = [self
-                         decryptMessageDict:message.mutableDictionary
-                         flags:flags
-                         rating:rating
-                         extraKeys:extraKeys
-                         status:status
-                         error:error];
+    if (rating) {
+        *rating = PEPRatingUndefined;
+    }
 
-    if (destDict) {
-        PEPMessage *msg = [PEPMessage new];
-        [msg setValuesForKeysWithDictionary:destDict];
-        return msg;
-    } else {
+    message *_src = PEP_messageToStruct(messageInOut);
+    __block message *_dst = NULL;
+    __block stringlist_t *theKeys = NULL;
+    __block PEPDecryptFlags theFlags = 0;
+
+    if (flags) {
+        theFlags = *flags;
+    }
+
+    if (extraKeys && [*extraKeys count]) {
+        theKeys = PEP_arrayToStringlist(*extraKeys);
+    }
+
+    __block PEPRating internalRating = PEPRatingUndefined;
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return decrypt_message(session,
+                               _src,
+                               &_dst,
+                               &theKeys,
+                               (PEP_rating *) &internalRating,
+                               (PEP_decrypt_flags *) &theFlags);
+    }];
+
+    if (status) {
+        *status = theStatus;
+    }
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        decryptMessageDictFree(_src, _dst, theKeys);
         return nil;
     }
+
+    if (flags) {
+        *flags = theFlags;
+    }
+
+    NSDictionary *dst_;
+
+    if (_dst) {
+        dst_ = PEP_messageDictFromStruct(_dst);
+    } else {
+        dst_ = PEP_messageDictFromStruct(_src);
+    }
+
+    if (theFlags & PEP_decrypt_flag_untrusted_server) {
+        [messageInOut replaceWithMessage:_src];
+    }
+
+    if (extraKeys) {
+        *extraKeys = PEP_arrayFromStringlist(theKeys);
+    }
+
+    decryptMessageDictFree(_src, _dst, theKeys);
+
+    if (rating) {
+        *rating = internalRating;
+    }
+
+    return dst_;
 }
 
 @end
