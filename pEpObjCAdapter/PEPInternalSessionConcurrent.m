@@ -160,12 +160,12 @@ static void decryptMessageDictFree(message *src, message *dst, stringlist_t *ext
         *flags = theFlags;
     }
 
-    NSDictionary *dst_;
+    PEPMessage *dst_;
 
     if (_dst) {
-        dst_ = PEP_messageDictFromStruct(_dst);
+        dst_ = pEpMessageFromStruct(_dst);
     } else {
-        dst_ = PEP_messageDictFromStruct(_src);
+        dst_ = pEpMessageFromStruct(_src);
     }
 
     if (theFlags & PEP_decrypt_flag_untrusted_server) {
