@@ -12,6 +12,8 @@
 
 #import "sync_api.h"
 
+#import "PEPObjCAdapter.h"
+
 @class PEPPassphraseCache;
 
 /**

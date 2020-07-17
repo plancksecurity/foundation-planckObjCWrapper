@@ -9,8 +9,6 @@
 #ifndef PEPIOSAdapter_Internal_h
 #define PEPIOSAdapter_Internal_h
 
-#import "PEPObjCAdapter.h"
-
 #import "PEPQueue.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseProviderProtocol.h"

@@ -83,7 +83,7 @@ PEPPassphraseCache * _Nullable g_passphraseCache;
 
 #pragma mark - PEPSessionProtocol
 
-static void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
+void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     free_message(src);
     free_message(dst);
