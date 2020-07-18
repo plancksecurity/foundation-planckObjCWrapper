@@ -118,11 +118,20 @@
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback
 {
-    [self encryptMessage:message
-               extraKeys:extraKeys
-               encFormat:PEPEncFormatPEP
-           errorCallback:errorCallback
-         successCallback:successCallback];
+    dispatch_async(self.queue, ^{
+        PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
+        NSError *error = nil;
+        PEPMessage *destMessage = [[PEPSession new]
+                                   encryptMessage:theMessage
+                                   extraKeys:extraKeys
+                                   status:nil
+                                   error:&error];
+        if (destMessage) {
+            successCallback(theMessage, destMessage);
+        } else {
+            errorCallback(error);
+        }
+    });
 }
 
 @end
