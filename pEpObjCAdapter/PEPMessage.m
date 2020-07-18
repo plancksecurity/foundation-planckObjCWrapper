@@ -49,6 +49,32 @@
     return self;
 }
 
+- (instancetype _Nonnull)initWithMessage:(PEPMessage *)message
+{
+    self = [super init];
+    if (self) {
+        self.messageID = message.messageID;
+        self.from = message.from;
+        self.to = message.to;
+        self.cc = message.cc;
+        self.bcc = message.bcc;
+        self.shortMessage = message.shortMessage;
+        self.longMessage = message.longMessage;
+        self.longMessageFormatted = message.longMessageFormatted;
+        self.replyTo = message.replyTo;
+        self.inReplyTo = message.inReplyTo;
+        self.references = message.references;
+        self.sentDate = message.sentDate;
+        self.receivedDate = message.receivedDate;
+        self.attachments = message.attachments;
+        self.optionalFields = message.optionalFields;
+        self.keywords = message.keywords;
+        self.receivedBy = message.receivedBy;
+        self.direction = message.direction;
+    }
+    return self;
+}
+
 // MARK: - NSKeyValueCoding
 
 - (BOOL)outgoing
