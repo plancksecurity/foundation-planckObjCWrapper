@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
                  flags:(PEPDecryptFlags)flags
              extraKeys:(PEPStringList *)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
-       successCallback:(void (^)(PEPMessage *message,
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *dstMessage,
                                  PEPStringList *keyList,
                                  PEPRating rating,
                                  PEPDecryptFlags flags))successCallback;

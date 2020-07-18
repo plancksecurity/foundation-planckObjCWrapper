@@ -18,7 +18,8 @@
                  flags:(PEPDecryptFlags)flags
              extraKeys:(PEPStringList *)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
-       successCallback:(void (^)(PEPMessage *message,
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *dstMessage,
                                  PEPStringList *keyList,
                                  PEPRating rating,
                                  PEPDecryptFlags flags))successCallback
@@ -39,7 +40,7 @@
                                                error:&error];
 
     if (newMessage) {
-        successCallback(newMessage, theExtraKeys, theRating, theFlags);
+        successCallback(theMessage, newMessage, theExtraKeys, theRating, theFlags);
     } else {
         errorCallback(error);
     }
