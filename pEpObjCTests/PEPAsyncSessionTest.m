@@ -73,7 +73,7 @@
     [asyncSession
      decryptMessage:encryptedMessage
      flags:0
-     extraKeys:@[]
+     extraKeys:nil
      errorCallback:^(NSError *error) {
         XCTFail();
         [expectationDecrypted fulfill];

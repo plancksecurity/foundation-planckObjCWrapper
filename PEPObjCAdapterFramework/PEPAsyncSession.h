@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)decryptMessage:(PEPMessage *)message
                  flags:(PEPDecryptFlags)flags
-             extraKeys:(PEPStringList *)extraKeys
+             extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *dstMessage,
