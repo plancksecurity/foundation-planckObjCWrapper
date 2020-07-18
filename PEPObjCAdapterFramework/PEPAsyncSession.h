@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
                                  PEPRating rating,
                                  PEPDecryptFlags flags))successCallback;
 
+- (void)reEvaluateMessage:(PEPMessage *)message
+                 xKeyList:(PEPStringList *_Nullable)xKeyList
+                   rating:(PEPRating)rating
+            errorCallback:(void (^)(NSError *error))errorCallback
+          successCallback:(void (^)(PEPRating rating))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
