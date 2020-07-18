@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback;
 
+/// Encrypt a message with explicit encryption format.
 - (void)encryptMessage:(PEPMessage *)message
              extraKeys:(PEPStringList * _Nullable)extraKeys
              encFormat:(PEPEncFormat)encFormat
@@ -42,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback;
 
+/// Encrypt a message with the default encryption format.
 - (void)encryptMessage:(PEPMessage *)message
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
