@@ -23,8 +23,6 @@
                                  PEPRating rating,
                                  PEPDecryptFlags flags))successCallback
 {
-    PEPSession *session = [PEPSession new];
-
     PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
 
     PEPDecryptFlags theFlags = flags;
@@ -33,7 +31,7 @@
     PEPStatus status;
     NSError *error = nil;
 
-    PEPMessage *newMessage = [session decryptMessage:theMessage
+    PEPMessage *newMessage = [[PEPSession new] decryptMessage:theMessage
                                                flags:&theFlags
                                               rating:&theRating
                                            extraKeys:&theExtraKeys
