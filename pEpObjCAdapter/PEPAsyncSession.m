@@ -69,15 +69,23 @@
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback
 {
-    PEPRating theRating = rating;
-    NSError *error = nil;
+    dispatch_async(self.queue, ^{
+        PEPRating theRating = rating;
+        NSError *error = nil;
 
-    BOOL result = [[PEPSession new]
-                   reEvaluateMessage:message
-                   xKeyList:xKeyList
-                   rating:&theRating
-                   status:nil
-                   error:&error];
+        BOOL result = [[PEPSession new]
+                       reEvaluateMessage:message
+                       xKeyList:xKeyList
+                       rating:&theRating
+                       status:nil
+                       error:&error];
+
+        if (result) {
+            successCallback(theRating);
+        } else {
+            errorCallback(error);
+        }
+    });
 }
 
 @end
