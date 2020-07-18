@@ -134,7 +134,7 @@
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message
+- (void)encryptMessage:(PEPMessage *)message //BUFF: wip
                forSelf:(PEPIdentity *)ownIdentity
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
