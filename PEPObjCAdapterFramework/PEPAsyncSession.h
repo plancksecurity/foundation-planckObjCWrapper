@@ -17,11 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPAsyncSession : NSObject
 
-- (void)decryptMessage:(PEPMessage * _Nonnull)message
+- (void)decryptMessage:(PEPMessage *)message
                  flags:(PEPDecryptFlags)flags
              extraKeys:(PEPStringList *)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
-       successCallback:(void (^)(PEPMessage *message, PEPStringList *keyList, PEPRating rating, PEPDecryptFlags flags))successCallback;
+       successCallback:(void (^)(PEPMessage *message,
+                                 PEPStringList *keyList,
+                                 PEPRating rating,
+                                 PEPDecryptFlags flags))successCallback;
 
 @end
 
