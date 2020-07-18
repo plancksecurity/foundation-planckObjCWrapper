@@ -100,6 +100,62 @@
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 }
 
+- (void)testEncryptAndAttachPrivateKeyIllegalValue
+{
+    PEPSession *session = [PEPSession new];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    NSString *fprAlice = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
+    PEPIdentity *identAlice = [self
+                               checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                               address:@"pep.test.alice@pep-project.org"
+                               userID:@"alice_user_id"
+                               fingerPrint:fprAlice
+                               session: session];
+    XCTAssertNotNil(identAlice);
+    XCTAssertEqualObjects(identAlice.fingerPrint, fprAlice);
+
+    NSString *shortMessage = @"whatever it may be";
+    NSString *longMessage = [NSString stringWithFormat:@"%@ %@", shortMessage, shortMessage];
+    PEPMessage *message = [PEPMessage new];
+    message.from = identMe;
+    message.to = @[identAlice];
+    message.shortMessage = shortMessage;
+    message.longMessage = longMessage;
+
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+
+    XCTestExpectation *expectationEncrypted = [self
+                                               expectationWithDescription:@"expectationEncrypted"];
+
+    __block PEPMessage *encryptedMessage = [PEPMessage new];
+
+    [asyncSession
+     encryptMessage:message
+     toFpr:fprAlice
+     encFormat:PEPEncFormatPEP
+     flags:0
+     errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expectationEncrypted fulfill];
+    } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
+        encryptedMessage = destMessage;
+        [expectationEncrypted fulfill];
+    }];
+
+    [self waitForExpectations:@[expectationEncrypted] timeout:PEPTestInternalSyncTimeout];
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
@@ -153,6 +209,38 @@
     NSNumber *ratingPreview = [session outgoingRatingPreviewForMessage:theMessage error:nil];
     XCTAssertEqual(ratingOriginal, ratingPreview);
     return ratingOriginal;
+}
+
+- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+                                    userID:(NSString *)userID
+                               fingerPrint:(NSString *)fingerPrint
+                                   session:(PEPSession *)session
+{
+    if (!session) {
+        session = [PEPSession new];
+    }
+
+    BOOL success = [PEPTestUtils importBundledKey:filePath session:session];
+    XCTAssertTrue(success);
+
+    if (success) {
+        // Our test user:
+        PEPIdentity *identTest = [[PEPIdentity alloc]
+                                  initWithAddress:address
+                                  userID:userID
+                                  userName:[NSString stringWithFormat:@"Some User Name %@", userID]
+                                  isOwn:NO];
+
+        NSError *error = nil;
+        XCTAssertTrue([session updateIdentity:identTest error:&error]);
+        XCTAssertNil(error);
+        XCTAssertNotNil(identTest.fingerPrint);
+        XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
+
+        return identTest;
+    } else {
+        return nil;
+    }
 }
 
 @end
