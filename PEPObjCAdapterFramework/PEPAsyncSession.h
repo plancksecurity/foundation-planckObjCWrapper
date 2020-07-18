@@ -58,6 +58,16 @@ NS_ASSUME_NONNULL_BEGIN
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback;
+
+/// Encrypt a message to a fingerprint.
+- (void)encryptMessage:(PEPMessage *)message
+                 toFpr:(NSString *)toFpr
+             encFormat:(PEPEncFormat)encFormat
+                 flags:(PEPDecryptFlags)flags
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
