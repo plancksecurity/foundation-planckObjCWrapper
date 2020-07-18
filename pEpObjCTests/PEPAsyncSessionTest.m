@@ -18,6 +18,30 @@
 
 @implementation PEPAsyncSessionTest
 
+- (void)setUp
+{
+    [super setUp];
+
+    [self pEpCleanUp];
+
+    [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
+
+    NSError *error = nil;
+    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:nil error:&error]);
+    XCTAssertNil(error);
+}
+
+- (void)tearDown
+{
+    [self pEpCleanUp];
+    [super tearDown];
+}
+
+- (void)pEpCleanUp
+{
+    [PEPTestUtils cleanUp];
+}
+
 - (void)testMailToMyself
 {
     PEPSession *session = [PEPSession new];
