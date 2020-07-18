@@ -38,10 +38,10 @@
                                               status:&status
                                                error:&error];
 
-    if (error) {
-        errorCallback(error);
-    } else {
+    if (newMessage) {
         successCallback(newMessage, theExtraKeys, theRating, theFlags);
+    } else {
+        errorCallback(error);
     }
 }
 
