@@ -94,7 +94,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message
+- (void)encryptMessage:(PEPMessage *)message //BUFF: done
              extraKeys:(PEPStringList * _Nullable)extraKeys
              encFormat:(PEPEncFormat)encFormat
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -118,7 +118,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message
+- (void)encryptMessage:(PEPMessage *)message //BUFF: done
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPMessage *srcMessage,
@@ -140,7 +140,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message //BUFF: wip
+- (void)encryptMessage:(PEPMessage *)message //BUFF: done
                forSelf:(PEPIdentity *)ownIdentity
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -164,7 +164,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message
+- (void)encryptMessage:(PEPMessage *)message //BUFF: unused.
                  toFpr:(NSString *)toFpr
              encFormat:(PEPEncFormat)encFormat
                  flags:(PEPDecryptFlags)flags
