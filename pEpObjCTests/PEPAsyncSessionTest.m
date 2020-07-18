@@ -60,7 +60,7 @@
     [[PEPAsyncSession new]
      decryptMessage:encMsg
      flags:0
-     extraKeys:nil
+     extraKeys:@[]
      errorCallback:^(NSError *error) {
         XCTFail();
         [expectationDecrypted fulfill];
