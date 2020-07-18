@@ -11,7 +11,6 @@
 #import "PEPObjCAdapterFramework.h"
 
 #import "PEPTestUtils.h"
-#import "PEPAsyncSession.h"
 
 @interface PEPAsyncSessionTest : XCTestCase
 
