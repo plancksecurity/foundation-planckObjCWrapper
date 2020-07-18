@@ -88,4 +88,28 @@
     });
 }
 
+- (void)encryptMessage:(PEPMessage *)message
+             extraKeys:(PEPStringList * _Nullable)extraKeys
+             encFormat:(PEPEncFormat)encFormat
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback
+{
+    dispatch_async(self.queue, ^{
+        PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
+        NSError *error = nil;
+        PEPMessage *destMessage = [[PEPSession new]
+                                   encryptMessage:theMessage
+                                   extraKeys:extraKeys
+                                   encFormat:encFormat
+                                   status:nil
+                                   error:&error];
+        if (destMessage) {
+            successCallback(theMessage, destMessage);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

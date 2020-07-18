@@ -35,6 +35,13 @@ NS_ASSUME_NONNULL_BEGIN
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback;
 
+- (void)encryptMessage:(PEPMessage *)message
+             extraKeys:(PEPStringList * _Nullable)extraKeys
+             encFormat:(PEPEncFormat)encFormat
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
