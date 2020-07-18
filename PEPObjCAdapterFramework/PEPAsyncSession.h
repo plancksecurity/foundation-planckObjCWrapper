@@ -42,6 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback;
 
+- (void)encryptMessage:(PEPMessage *)message
+             extraKeys:(PEPStringList * _Nullable)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -112,4 +112,17 @@
     });
 }
 
+- (void)encryptMessage:(PEPMessage *)message
+             extraKeys:(PEPStringList * _Nullable)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback
+{
+    [self encryptMessage:message
+               extraKeys:extraKeys
+               encFormat:PEPEncFormatPEP
+           errorCallback:errorCallback
+         successCallback:successCallback];
+}
+
 @end
