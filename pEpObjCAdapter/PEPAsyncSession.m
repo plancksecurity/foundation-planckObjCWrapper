@@ -35,7 +35,7 @@ static dispatch_queue_t queue;
     }
 }
 
-- (void)decryptMessage:(PEPMessage *)message
+- (void)decryptMessage:(PEPMessage *)message //BUFF: done
                  flags:(PEPDecryptFlags)flags
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
