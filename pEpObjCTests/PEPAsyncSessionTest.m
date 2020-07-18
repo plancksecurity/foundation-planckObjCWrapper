@@ -91,6 +91,60 @@
     [self waitForExpectations:@[expectationDecrypted] timeout:PEPTestInternalSyncTimeout];
 }
 
+- (void)testEncryptToSelf
+{
+    // Write mail to yourself ...
+    PEPMessage *encMessage = [self mailWrittenToMySelf];
+
+    // ... and assert subject is encrypted
+    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
+}
+
+#pragma mark - Helpers
+
+- (PEPMessage *)mailWrittenToMySelf
+{
+    PEPSession *session = [PEPSession new];
+
+    // Write a e-mail to yourself ...
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:me error:&error]);
+    XCTAssertNil(error);
+
+    NSString *shortMessage = @"Subject";
+    NSString *longMessage = @"Oh, this is a long body text!";
+    PEPMessage *mail = [PEPTestUtils mailFrom:me
+                                      toIdent:me
+                                 shortMessage:shortMessage
+                                  longMessage:longMessage
+                                     outgoing:YES];
+
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+
+    XCTestExpectation *expectationEncrypted = [self
+                                               expectationWithDescription:@"expectationEncrypted"];
+
+    __block PEPMessage *encryptedMessage = [PEPMessage new];
+
+    [asyncSession
+     encryptMessage:mail
+     forSelf:me
+     extraKeys:nil
+     errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expectationEncrypted fulfill];
+    } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
+        encryptedMessage = destMessage;
+        [expectationEncrypted fulfill];
+    }];
+
+    [self waitForExpectations:@[expectationEncrypted] timeout:PEPTestInternalSyncTimeout];
+
+    return encryptedMessage;
+}
+
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                              session:(PEPSession *)session
                                                error:(NSError * _Nullable * _Nullable)error
