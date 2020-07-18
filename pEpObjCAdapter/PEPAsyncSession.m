@@ -10,17 +10,38 @@
 
 #import "PEPMessage.h"
 #import "PEPEngineTypes.h"
+#import "PEPSession.h"
 
 @implementation PEPAsyncSession
 
-- (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
-                                   flags:(PEPDecryptFlags * _Nullable)flags
-                                  rating:(PEPRating * _Nullable)rating
-                               extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                  status:(PEPStatus * _Nullable)status
-                                   error:(NSError * _Nullable * _Nullable)error
+- (void)decryptMessage:(PEPMessage * _Nonnull)message
+                 flags:(PEPDecryptFlags)flags
+             extraKeys:(PEPStringList *)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *message, PEPStringList *keyList, PEPRating rating, PEPDecryptFlags flags))successCallback
 {
-    return nil;
+    PEPSession *session = [PEPSession new];
+
+    PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
+
+    PEPDecryptFlags theFlags = flags;
+    PEPRating theRating;
+    PEPStringList *theExtraKeys = extraKeys;
+    PEPStatus status;
+    NSError *error = nil;
+
+    PEPMessage *newMessage = [session decryptMessage:theMessage
+                                               flags:&theFlags
+                                              rating:&theRating
+                                           extraKeys:&theExtraKeys
+                                              status:&status
+                                               error:&error];
+
+    if (error) {
+        errorCallback(error);
+    } else {
+        successCallback(newMessage, theExtraKeys, theRating, theFlags);
+    }
 }
 
 @end

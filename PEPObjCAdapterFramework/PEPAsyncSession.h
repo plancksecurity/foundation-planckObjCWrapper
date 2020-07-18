@@ -8,9 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPEngineTypes.h"
+#import "PEPTypes.h"
+
+@class PEPMessage;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPAsyncSession : NSObject
+
+- (void)decryptMessage:(PEPMessage * _Nonnull)message
+                 flags:(PEPDecryptFlags)flags
+             extraKeys:(PEPStringList *)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *message, PEPStringList *keyList, PEPRating rating, PEPDecryptFlags flags))successCallback;
 
 @end
 
