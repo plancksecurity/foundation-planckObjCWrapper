@@ -50,14 +50,28 @@
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
 
-    PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
-    XCTAssertNotNil(encMsg);
-    XCTAssertNil(error);
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
-    XCTestExpectation *expectationDecrypted = [self expectationWithDescription:@"expectationDecrypted"];
+    XCTestExpectation *expectationEncrypted = [self
+                                               expectationWithDescription:@"expectationEncrypted"];
 
-    [[PEPAsyncSession new]
-     decryptMessage:encMsg
+    __block PEPMessage *encryptedMessage = [PEPMessage new];
+
+    [asyncSession encryptMessage:msg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expectationEncrypted fulfill];
+    } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
+        [expectationEncrypted fulfill];
+        encryptedMessage = destMessage;
+    }];
+
+    [self waitForExpectations:@[expectationEncrypted] timeout:PEPTestInternalSyncTimeout];
+
+    XCTestExpectation *expectationDecrypted = [self
+                                               expectationWithDescription:@"expectationDecrypted"];
+
+    [asyncSession
+     decryptMessage:encryptedMessage
      flags:0
      extraKeys:@[]
      errorCallback:^(NSError *error) {
