@@ -45,4 +45,21 @@
     }
 }
 
+- (void)reEvaluateMessage:(PEPMessage *)message
+                 xKeyList:(PEPStringList *_Nullable)xKeyList
+                   rating:(PEPRating)rating
+            errorCallback:(void (^)(NSError *error))errorCallback
+          successCallback:(void (^)(PEPRating rating))successCallback
+{
+    PEPRating theRating = rating;
+    NSError *error = nil;
+
+    BOOL result = [[PEPSession new]
+                   reEvaluateMessage:message
+                   xKeyList:xKeyList
+                   rating:&theRating
+                   status:nil
+                   error:&error];
+}
+
 @end
