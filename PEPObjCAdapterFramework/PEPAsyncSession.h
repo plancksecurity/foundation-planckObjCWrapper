@@ -12,6 +12,7 @@
 #import "PEPTypes.h"
 
 @class PEPMessage;
+@class PEPIdentity;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -50,6 +51,13 @@ NS_ASSUME_NONNULL_BEGIN
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback;
 
+/// Encrypt a message to an own identity.
+- (void)encryptMessage:(PEPMessage *)message
+               forSelf:(PEPIdentity *)ownIdentity
+             extraKeys:(PEPStringList * _Nullable)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -134,4 +134,28 @@
     });
 }
 
+- (void)encryptMessage:(PEPMessage *)message
+               forSelf:(PEPIdentity *)ownIdentity
+             extraKeys:(PEPStringList * _Nullable)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback
+{
+    dispatch_async(self.queue, ^{
+        PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
+        NSError *error = nil;
+        PEPMessage *destMessage = [[PEPSession new]
+                                   encryptMessage:theMessage
+                                   forSelf:ownIdentity
+                                   extraKeys:extraKeys
+                                   status:nil
+                                   error:&error];
+        if (destMessage) {
+            successCallback(theMessage, destMessage);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
