@@ -12,7 +12,22 @@
 #import "PEPEngineTypes.h"
 #import "PEPSession.h"
 
+@interface PEPAsyncSession ()
+
+@property (nonatomic) dispatch_queue_t queue;
+
+@end
+
 @implementation PEPAsyncSession
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _queue = dispatch_queue_create("PEPAsyncSession.queue", DISPATCH_QUEUE_CONCURRENT);
+    }
+    return self;
+}
 
 - (void)decryptMessage:(PEPMessage *)message
                  flags:(PEPDecryptFlags)flags
@@ -24,26 +39,30 @@
                                  PEPRating rating,
                                  PEPDecryptFlags flags))successCallback
 {
-    PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
+    dispatch_async(self.queue, ^{
+        PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
 
-    PEPDecryptFlags theFlags = flags;
-    PEPRating theRating;
-    PEPStringList *theExtraKeys = extraKeys;
-    PEPStatus status;
-    NSError *error = nil;
+        PEPDecryptFlags theFlags = flags;
+        PEPRating theRating;
+        PEPStringList *theExtraKeys = extraKeys;
+        PEPStatus status;
+        NSError *error = nil;
 
-    PEPMessage *newMessage = [[PEPSession new] decryptMessage:theMessage
-                                               flags:&theFlags
-                                              rating:&theRating
-                                           extraKeys:&theExtraKeys
-                                              status:&status
-                                               error:&error];
+        PEPMessage *newMessage = [[PEPSession new] decryptMessage:theMessage
+                                                   flags:&theFlags
+                                                  rating:&theRating
+                                               extraKeys:&theExtraKeys
+                                                  status:&status
+                                                   error:&error];
 
-    if (newMessage) {
-        successCallback(theMessage, newMessage, theExtraKeys, theRating, theFlags);
-    } else {
-        errorCallback(error);
-    }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (newMessage) {
+                successCallback(theMessage, newMessage, theExtraKeys, theRating, theFlags);
+            } else {
+                errorCallback(error);
+            }
+        });
+    });
 }
 
 - (void)reEvaluateMessage:(PEPMessage *)message
