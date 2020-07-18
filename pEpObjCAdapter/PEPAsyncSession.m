@@ -24,7 +24,7 @@
 {
     self = [super init];
     if (self) {
-        _queue = dispatch_queue_create("PEPAsyncSession.queue", DISPATCH_QUEUE_CONCURRENT);
+        _queue = dispatch_queue_create("PEPAsyncSession.queue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
