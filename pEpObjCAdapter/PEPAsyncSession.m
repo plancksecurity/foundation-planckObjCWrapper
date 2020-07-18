@@ -55,13 +55,11 @@
                                                   status:&status
                                                    error:&error];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (newMessage) {
-                successCallback(theMessage, newMessage, theExtraKeys, theRating, theFlags);
-            } else {
-                errorCallback(error);
-            }
-        });
+        if (newMessage) {
+            successCallback(theMessage, newMessage, theExtraKeys, theRating, theFlags);
+        } else {
+            errorCallback(error);
+        }
     });
 }
 
