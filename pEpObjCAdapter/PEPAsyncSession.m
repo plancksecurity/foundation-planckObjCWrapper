@@ -12,10 +12,9 @@
 #import "PEPEngineTypes.h"
 #import "PEPSession.h"
 
+static dispatch_queue_t queue;
+
 @interface PEPAsyncSession ()
-
-@property (nonatomic) dispatch_queue_t queue;
-
 @end
 
 @implementation PEPAsyncSession
@@ -24,9 +23,16 @@
 {
     self = [super init];
     if (self) {
-        _queue = dispatch_queue_create("PEPAsyncSession.queue", DISPATCH_QUEUE_SERIAL);
+        //
     }
     return self;
+}
+
++ (void)initialize
+{
+    if (self == [PEPAsyncSession class]) {
+        queue = dispatch_queue_create("PEPAsyncSession.queue", DISPATCH_QUEUE_SERIAL);
+    }
 }
 
 - (void)decryptMessage:(PEPMessage *)message
@@ -39,7 +45,7 @@
                                  PEPRating rating,
                                  PEPDecryptFlags flags))successCallback
 {
-    dispatch_async(self.queue, ^{
+    dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
 
         PEPDecryptFlags theFlags = flags;
@@ -69,7 +75,7 @@
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback
 {
-    dispatch_async(self.queue, ^{
+    dispatch_async(queue, ^{
         PEPRating theRating = rating;
         NSError *error = nil;
 
@@ -95,7 +101,7 @@
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback
 {
-    dispatch_async(self.queue, ^{
+    dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
         NSError *error = nil;
         PEPMessage *destMessage = [[PEPSession new]
@@ -118,7 +124,7 @@
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback
 {
-    dispatch_async(self.queue, ^{
+    dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
         NSError *error = nil;
         PEPMessage *destMessage = [[PEPSession new]
@@ -141,7 +147,7 @@
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback
 {
-    dispatch_async(self.queue, ^{
+    dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
         NSError *error = nil;
         PEPMessage *destMessage = [[PEPSession new]
@@ -166,7 +172,7 @@
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback
 {
-    dispatch_async(self.queue, ^{
+    dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
         NSError *error = nil;
         PEPMessage *destMessage = [[PEPSession new]
