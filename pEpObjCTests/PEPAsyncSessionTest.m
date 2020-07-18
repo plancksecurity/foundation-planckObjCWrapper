@@ -162,18 +162,15 @@
     XCTestExpectation *expectationEncrypted = [self
                                                expectationWithDescription:@"expectationEncrypted"];
 
-    __block PEPMessage *encryptedMessage = [PEPMessage new];
-
     [asyncSession
      encryptMessage:message
      toFpr:fprAlice
      encFormat:PEPEncFormatPEP
      flags:0
      errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         [expectationEncrypted fulfill];
     } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
-        encryptedMessage = destMessage;
+        XCTFail();
         [expectationEncrypted fulfill];
     }];
 
