@@ -11,6 +11,7 @@
 #import "PEPObjCAdapterFramework.h"
 
 #import "PEPTestUtils.h"
+#import "PEPAsyncSession.h"
 
 @interface PEPAsyncSessionTest : XCTestCase
 
@@ -54,20 +55,27 @@
     XCTAssertNotNil(encMsg);
     XCTAssertNil(error);
 
-    NSArray *keys;
+    XCTestExpectation *expectationDecrypted = [self expectationWithDescription:@"expectationDecrypted"];
 
-    error = nil;
-    PEPRating rating = PEPRatingUndefined;
-    PEPMessage *decmsg = [session
-                          decryptMessage:encMsg
-                          flags:nil
-                          rating:&rating
-                          extraKeys:&keys
-                          status:nil
-                          error:&error];
-    XCTAssertNotNil(decmsg);
-    XCTAssertNil(error);
-    XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+    [[PEPAsyncSession new]
+     decryptMessage:encMsg
+     flags:0
+     extraKeys:nil
+     errorCallback:^(NSError *error) {
+        XCTFail();
+        [expectationDecrypted fulfill];
+    }
+     successCallback:^(PEPMessage * srcMessage,
+                       PEPMessage * dstMessage,
+                       PEPStringList * keyList,
+                       PEPRating rating,
+                       PEPDecryptFlags flags) {
+        XCTAssertNotNil(dstMessage);
+        XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+        [expectationDecrypted fulfill];
+    }];
+
+    [self waitForExpectations:@[expectationDecrypted] timeout:PEPTestInternalSyncTimeout];
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
