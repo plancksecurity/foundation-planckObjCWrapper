@@ -69,7 +69,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)reEvaluateMessage:(PEPMessage *)message
+- (void)reEvaluateMessage:(PEPMessage *)message //BUFF: done
                  xKeyList:(PEPStringList *_Nullable)xKeyList
                    rating:(PEPRating)rating
             errorCallback:(void (^)(NSError *error))errorCallback
@@ -164,7 +164,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message //BUFF: unused.
+- (void)encryptMessage:(PEPMessage *)message //BUFF: unused. (done)
                  toFpr:(NSString *)toFpr
              encFormat:(PEPEncFormat)encFormat
                  flags:(PEPDecryptFlags)flags
