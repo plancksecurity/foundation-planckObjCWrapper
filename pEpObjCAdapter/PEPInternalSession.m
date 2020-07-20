@@ -618,8 +618,6 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
         return NO;
     }
 
-    [identity reset];
-    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
     free_identity(ident);
 
     return YES;
