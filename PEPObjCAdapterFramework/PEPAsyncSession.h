@@ -68,11 +68,11 @@ NS_ASSUME_NONNULL_BEGIN
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *destMessage))successCallback;
 
-- (void)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
+- (void)outgoingRatingForMessage:(PEPMessage *)theMessage
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPRating rating))successCallback;
 
-- (void)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
+- (void)outgoingRatingPreviewForMessage:(PEPMessage *)theMessage
                           errorCallback:(void (^)(NSError *error))errorCallback
                         successCallback:(void (^)(PEPRating rating))successCallback;
 
