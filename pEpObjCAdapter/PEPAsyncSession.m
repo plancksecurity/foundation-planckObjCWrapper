@@ -542,4 +542,19 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)trustOwnKeyIdentity:(PEPIdentity *)identity
+              errorCallback:(void (^)(NSError *error))errorCallback
+            successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] trustOwnKeyIdentity:identity error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
