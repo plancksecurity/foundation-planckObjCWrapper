@@ -785,8 +785,10 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
-    char *theChars = NULL;
-    PEPStatus status = (PEPStatus) get_crashdump_log(_session, 0, &theChars);
+    __block char *theChars = NULL;
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return get_crashdump_log(session, 0, &theChars);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         return nil;
