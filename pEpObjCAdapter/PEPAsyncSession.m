@@ -589,4 +589,18 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
+           successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] keyResetAllOwnKeysError:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

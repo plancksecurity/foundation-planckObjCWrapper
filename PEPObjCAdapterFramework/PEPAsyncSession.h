@@ -174,6 +174,9 @@ successCallback:(void (^)(NSString *log))successCallback;
 - (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback
          successCallback:(void (^)(void))successCallback;
 
+- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
+           successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
