@@ -65,16 +65,27 @@
 
     [self waitForExpectations:@[expectationKeyImported] timeout:PEPTestInternalSyncTimeout];
 
-    PEPIdentity *identAlice = [[PEPIdentity alloc]
-                               initWithAddress:@"pep.test.alice@pep-project.org"
-                               userID:ownUserId
-                               userName:@"pEp Test Alice"
-                               isOwn:YES
-                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    __block PEPIdentity *identAlice = [[PEPIdentity alloc]
+                                       initWithAddress:@"pep.test.alice@pep-project.org"
+                                       userID:ownUserId
+                                       userName:@"pEp Test Alice"
+                                       isOwn:YES
+                                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+
+    XCTestExpectation *expectationMyself = [self expectationWithDescription:@"expectationMyself"];
+
+    [asyncSession mySelf:identAlice
+           errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expectationMyself fulfill];
+    } successCallback:^(PEPIdentity * _Nonnull identity) {
+        [expectationMyself fulfill];
+        identAlice = identity;
+    }];
+
+    [self waitForExpectations:@[expectationMyself] timeout:PEPTestInternalSyncTimeout];
 
     NSError *error = nil;
-    XCTAssertTrue([session mySelf:identAlice error:&error]);
-    XCTAssertNil(error);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
