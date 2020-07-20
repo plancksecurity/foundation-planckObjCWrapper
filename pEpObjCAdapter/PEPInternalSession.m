@@ -482,10 +482,20 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error
 {
-    return [self
-            helperOutgoingRatingForMessage:theMessage
-            ratingFunction:&outgoing_message_rating
-            error:error];
+    message *_msg = PEP_messageToStruct(theMessage);
+    PEPRating rating = PEPRatingUndefined;
+
+    PEPStatus status = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return outgoing_message_rating(session, _msg, (PEP_rating *) &rating);
+    }];
+
+    free_message(_msg);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return nil;
+    }
+
+    return [NSNumber numberWithPEPRating:rating];
 }
 
 - (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
