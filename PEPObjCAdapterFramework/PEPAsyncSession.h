@@ -114,6 +114,10 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback;
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback;
 
+- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(BOOL enabled))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END

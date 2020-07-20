@@ -371,4 +371,20 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
+- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
+                                   errorCallback:(void (^)(NSError *error))errorCallback
+                                 successCallback:(void (^)(BOOL enabled))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSNumber *boolNum = [[PEPSession new] queryKeySyncEnabledForIdentity:identity
+                                                                       error:&error];
+        if (boolNum) {
+            successCallback(boolNum.boolValue);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
