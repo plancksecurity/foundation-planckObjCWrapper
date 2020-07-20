@@ -80,13 +80,13 @@ NS_ASSUME_NONNULL_BEGIN
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback;
 
-- (void)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
-                      languageID:(NSString * _Nonnull)languageID
+- (void)trustwordsForFingerprint:(NSString *)fingerprint
+                      languageID:(NSString *)languageID
                        shortened:(BOOL)shortened
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(NSArray<NSString *> * _Nullable trustwords))successCallback;
 
-- (void)mySelf:(PEPIdentity * _Nonnull)identity
+- (void)mySelf:(PEPIdentity *)identity
  errorCallback:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(void))successCallback;
 
