@@ -585,7 +585,9 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     } else {
         pEp_identity *ident = PEP_identityToStruct(identity);
 
-        PEPStatus status = (PEPStatus) update_identity(_session, ident);
+        PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+            return update_identity(session, ident);
+        }];
 
         if ([NSError setError:error fromPEPStatus:status]) {
             free_identity(ident);
