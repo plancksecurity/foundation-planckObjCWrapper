@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)mySelf:(PEPIdentity *)identity
  errorCallback:(void (^)(NSError *error))errorCallback
-successCallback:(void (^)(void))successCallback;
+successCallback:(void (^)(PEPIdentity *identity))successCallback;
 
 @end
 

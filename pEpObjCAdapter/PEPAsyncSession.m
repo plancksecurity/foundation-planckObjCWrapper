@@ -12,6 +12,7 @@
 #import "PEPEngineTypes.h"
 #import "PEPSession.h"
 #import "NSNumber+PEPRating.h"
+#import "PEPIdentity.h"
 
 static dispatch_queue_t queue;
 
@@ -263,13 +264,15 @@ static dispatch_queue_t queue;
 
 - (void)mySelf:(PEPIdentity *)identity
  errorCallback:(void (^)(NSError *error))errorCallback
-successCallback:(void (^)(void))successCallback
+successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
+    __block PEPIdentity *theIdentity = [[PEPIdentity alloc] initWithIdentity:identity];
+
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSession new] mySelf:identity error:&error];
+        BOOL success = [[PEPSession new] mySelf:theIdentity error:&error];
         if (success) {
-            successCallback();
+            successCallback(theIdentity);
         } else {
             errorCallback(error);
         }
