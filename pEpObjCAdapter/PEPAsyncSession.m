@@ -240,4 +240,25 @@ static dispatch_queue_t queue;
     });
 }
 
+- (void)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
+                      languageID:(NSString * _Nonnull)languageID
+                       shortened:(BOOL)shortened
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(NSArray<NSString *> * _Nullable trustwords))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSArray *trustwords = [[PEPSession new]
+                               trustwordsForFingerprint:fingerprint
+                               languageID:languageID
+                               shortened:shortened
+                               error:&error];
+        if (!error) {
+            successCallback(trustwords);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
