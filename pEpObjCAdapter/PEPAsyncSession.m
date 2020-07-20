@@ -223,4 +223,21 @@ static dispatch_queue_t queue;
     });
 }
 
+- (void)ratingForIdentity:(PEPIdentity *)identity
+                      errorCallback:(void (^)(NSError *error))errorCallback
+                    successCallback:(void (^)(PEPRating rating))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSNumber *ratingNum = [[PEPSession new]
+                               ratingForIdentity:identity
+                               error:&error];
+        if (ratingNum) {
+            successCallback(ratingNum.pEpRating);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
