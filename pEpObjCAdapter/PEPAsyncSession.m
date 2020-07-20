@@ -557,4 +557,22 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)keyReset:(PEPIdentity *)identity
+     fingerprint:(NSString * _Nullable)fingerprint
+   errorCallback:(void (^)(NSError *error))errorCallback
+ successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] keyReset:identity
+                                      fingerprint:fingerprint
+                                            error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
