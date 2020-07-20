@@ -206,4 +206,21 @@ static dispatch_queue_t queue;
     });
 }
 
+- (void)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
+                          errorCallback:(void (^)(NSError *error))errorCallback
+                        successCallback:(void (^)(PEPRating rating))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSNumber *ratingNum = [[PEPSession new]
+                               outgoingRatingPreviewForMessage:theMessage
+                               error:&error];
+        if (ratingNum) {
+            successCallback(ratingNum.pEpRating);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
