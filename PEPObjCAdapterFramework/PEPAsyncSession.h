@@ -94,6 +94,10 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback;
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPIdentity *identity))successCallback;
 
+- (void)trustPersonalKey:(PEPIdentity *)identity
+           errorCallback:(void (^)(NSError *error))errorCallback
+         successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END

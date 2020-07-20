@@ -296,4 +296,19 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
+- (void)trustPersonalKey:(PEPIdentity *)identity
+           errorCallback:(void (^)(NSError *error))errorCallback
+         successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] trustPersonalKey:identity error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
