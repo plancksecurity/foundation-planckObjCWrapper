@@ -484,7 +484,9 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     message *_msg = PEP_messageToStruct(theMessage);
     PEPRating rating = PEPRatingUndefined;
 
-    PEPStatus status = (PEPStatus) outgoing_message_rating_preview(_session, _msg, (PEP_rating *) &rating);
+    PEPStatus status = (PEPStatus) outgoing_message_rating_preview(_session,
+                                                                   _msg,
+                                                                   (PEP_rating *) &rating);
 
     free_message(_msg);
 
