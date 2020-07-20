@@ -261,4 +261,19 @@ static dispatch_queue_t queue;
     });
 }
 
+- (void)mySelf:(PEPIdentity * _Nonnull)identity
+ errorCallback:(void (^)(NSError *error))errorCallback
+successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] mySelf:identity error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

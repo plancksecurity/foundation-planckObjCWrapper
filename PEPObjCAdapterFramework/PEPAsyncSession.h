@@ -86,6 +86,10 @@ NS_ASSUME_NONNULL_BEGIN
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(NSArray<NSString *> * _Nullable trustwords))successCallback;
 
+- (void)mySelf:(PEPIdentity * _Nonnull)identity
+ errorCallback:(void (^)(NSError *error))errorCallback
+successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
