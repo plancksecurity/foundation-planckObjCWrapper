@@ -192,7 +192,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)outgoingRatingForMessage:(PEPMessage *)theMessage
+- (void)outgoingRatingForMessage:(PEPMessage *)theMessage //BUFF: WIP
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPRating rating))successCallback
 {
@@ -207,7 +207,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)outgoingRatingPreviewForMessage:(PEPMessage *)theMessage
+- (void)outgoingRatingPreviewForMessage:(PEPMessage *)theMessage //BUFF: unused
                           errorCallback:(void (^)(NSError *error))errorCallback
                         successCallback:(void (^)(PEPRating rating))successCallback
 {
