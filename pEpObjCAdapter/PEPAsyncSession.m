@@ -387,4 +387,19 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
+- (void)importKey:(NSString *)keydata
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(NSArray<PEPIdentity *> * _Nullable identities))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSArray *identities = [[PEPSession new] importKey:keydata error:&error];
+        if (identities) {
+            successCallback(identities);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

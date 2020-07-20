@@ -118,6 +118,10 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback;
                          errorCallback:(void (^)(NSError *error))errorCallback
                        successCallback:(void (^)(BOOL enabled))successCallback;
 
+- (void)importKey:(NSString *)keydata
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(NSArray<PEPIdentity *> * _Nullable identities))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
