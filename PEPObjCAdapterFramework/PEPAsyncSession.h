@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
                       languageID:(NSString *)languageID
                        shortened:(BOOL)shortened
                    errorCallback:(void (^)(NSError *error))errorCallback
-                 successCallback:(void (^)(NSArray<NSString *> * _Nullable trustwords))successCallback;
+                 successCallback:(void (^)(NSArray<NSString *> *trustwords))successCallback;
 
 - (void)mySelf:(PEPIdentity *)identity
  errorCallback:(void (^)(NSError *error))errorCallback

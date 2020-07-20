@@ -245,7 +245,7 @@ static dispatch_queue_t queue;
                       languageID:(NSString *)languageID
                        shortened:(BOOL)shortened
                    errorCallback:(void (^)(NSError *error))errorCallback
-                 successCallback:(void (^)(NSArray<NSString *> * _Nullable trustwords))successCallback
+                 successCallback:(void (^)(NSArray<NSString *> *trustwords))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
