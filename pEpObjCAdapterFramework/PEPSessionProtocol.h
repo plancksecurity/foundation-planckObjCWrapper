@@ -86,10 +86,10 @@ extern NSString * const _Nonnull PEPObjCAdapterErrorDomain;
                                     error:(NSError * _Nullable * _Nullable)error;
 
 /** Get trustwords for a fingerprint */
-- (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
-                                     languageID:(NSString * _Nonnull)languageID
-                                      shortened:(BOOL)shortened
-                                          error:(NSError * _Nullable * _Nullable)error;
+- (NSArray<NSString *> * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
+                                                 languageID:(NSString * _Nonnull)languageID
+                                                  shortened:(BOOL)shortened
+                                                      error:(NSError * _Nullable * _Nullable)error;
 
 /// Marks an identity as an own identity, not changing its participation in pEp sync.
 ///

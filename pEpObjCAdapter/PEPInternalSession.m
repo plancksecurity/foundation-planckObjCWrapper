@@ -514,10 +514,10 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
     return [NSNumber numberWithPEPRating:rating];
 }
 
-- (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
-                                     languageID:(NSString * _Nonnull)languageID
-                                      shortened:(BOOL)shortened
-                                          error:(NSError * _Nullable * _Nullable)error
+- (NSArray<NSString *> * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
+                                                 languageID:(NSString * _Nonnull)languageID
+                                                  shortened:(BOOL)shortened
+                                                      error:(NSError * _Nullable * _Nullable)error
 {
     NSMutableArray *array = [NSMutableArray array];
 
