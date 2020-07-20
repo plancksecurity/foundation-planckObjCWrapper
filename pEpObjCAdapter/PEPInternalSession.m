@@ -864,7 +864,9 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
     PEPAutoPointer *chLangs = [PEPAutoPointer new];
-    PEPStatus status = (PEPStatus) get_languagelist(_session, chLangs.charPointerPointer);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return get_languagelist(session, chLangs.charPointerPointer);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         return nil;
