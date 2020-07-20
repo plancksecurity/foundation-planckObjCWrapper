@@ -13,6 +13,7 @@
 
 @class PEPMessage;
 @class PEPIdentity;
+@class PEPLanguage;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -138,6 +139,9 @@ successCallback:(void (^)(NSString *log))successCallback;
                      full:(BOOL)full
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(NSString *trustwords))successCallback;
+
+- (void)languageList:(void (^)(NSError *error))errorCallback
+     successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback;
 
 @end
 

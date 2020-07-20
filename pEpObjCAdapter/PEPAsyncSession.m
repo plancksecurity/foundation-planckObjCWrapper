@@ -460,4 +460,19 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)languageList:(void (^)(NSError *error))errorCallback
+     successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback
+
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSArray *languages = [[PEPSession new] languageListWithError:&error];
+        if (languages) {
+            successCallback(languages);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
