@@ -73,12 +73,12 @@ static dispatch_queue_t queue;
 
 - (void)reEvaluateMessage:(PEPMessage *)message //BUFF: done
                  xKeyList:(PEPStringList *_Nullable)xKeyList
-                   rating:(PEPRating)rating
+                   rating:(PEPRating)originalRating
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback
 {
     dispatch_async(queue, ^{
-        PEPRating theRating = rating;
+        PEPRating theRating = originalRating;
         NSError *error = nil;
 
         BOOL result = [[PEPSession new]
