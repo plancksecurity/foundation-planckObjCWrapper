@@ -120,7 +120,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback;
 
 - (void)importKey:(NSString *)keydata
     errorCallback:(void (^)(NSError *error))errorCallback
-  successCallback:(void (^)(NSArray<PEPIdentity *> * _Nullable identities))successCallback;
+  successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback;
 
 @end
 
