@@ -764,15 +764,17 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
          comment:(NSString * _Nullable)comment
            error:(NSError * _Nullable * _Nullable)error
 {
-    PEPStatus status = (PEPStatus) log_event(_session,
-                                             [[title precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[entity precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[description precomposedStringWithCanonicalMapping]
-                                              UTF8String],
-                                             [[comment precomposedStringWithCanonicalMapping]
-                                              UTF8String]);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return log_event(session,
+                         [[title precomposedStringWithCanonicalMapping]
+                          UTF8String],
+                         [[entity precomposedStringWithCanonicalMapping]
+                          UTF8String],
+                         [[description precomposedStringWithCanonicalMapping]
+                          UTF8String],
+                         [[comment precomposedStringWithCanonicalMapping]
+                          UTF8String]);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
