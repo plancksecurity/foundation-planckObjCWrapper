@@ -537,14 +537,16 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         [[NSScanner scannerWithString:str] scanHexInt:&value];
 
         PEPAutoPointer *word = [PEPAutoPointer new];
-        size_t size;
+        __block size_t size;
 
-        PEPStatus status = (PEPStatus) trustword(_session,
-                                                 value,
-                                                 [[languageID precomposedStringWithCanonicalMapping]
-                                                  UTF8String],
-                                                 word.charPointerPointer,
-                                                 &size);
+        PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+            return trustword(session,
+                             value,
+                             [[languageID precomposedStringWithCanonicalMapping]
+                              UTF8String],
+                             word.charPointerPointer,
+                             &size);
+        }];
 
         if ([NSError setError:error fromPEPStatus:status]) {
             return nil;
