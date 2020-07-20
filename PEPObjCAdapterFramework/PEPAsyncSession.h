@@ -147,6 +147,11 @@ successCallback:(void (^)(NSString *log))successCallback;
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(BOOL enabled))successCallback;
 
+- (void)setOwnKey:(PEPIdentity *)identity
+      fingerprint:(NSString *)fingerprint
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END

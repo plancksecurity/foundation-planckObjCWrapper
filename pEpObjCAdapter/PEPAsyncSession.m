@@ -488,7 +488,24 @@ successCallback:(void (^)(NSString *log))successCallback
             errorCallback(error);
         }
     });
+}
 
+- (void)setOwnKey:(PEPIdentity *)identity
+      fingerprint:(NSString *)fingerprint
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] setOwnKey:identity
+                                       fingerprint:fingerprint
+                                             error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
 }
 
 @end
