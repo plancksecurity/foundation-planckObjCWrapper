@@ -505,9 +505,11 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                     error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = PEP_identityToStruct(identity);
-    PEPRating rating = PEPRatingUndefined;
+    __block PEPRating rating = PEPRatingUndefined;
 
-    PEPStatus status = (PEPStatus) identity_rating(_session, ident, (PEP_rating *) &rating);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return identity_rating(session, ident, (PEP_rating *) &rating);
+    }];
 
     free_identity(ident);
 
