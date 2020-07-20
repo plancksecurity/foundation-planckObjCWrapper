@@ -508,4 +508,20 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)setFlags:(PEPIdentityFlags)flags
+     forIdentity:(PEPIdentity *)identity
+   errorCallback:(void (^)(NSError *error))errorCallback
+ successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] setFlags:flags forIdentity:identity error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

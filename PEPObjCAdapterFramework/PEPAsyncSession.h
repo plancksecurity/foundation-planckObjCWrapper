@@ -152,6 +152,11 @@ successCallback:(void (^)(NSString *log))successCallback;
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(void))successCallback;
 
+- (void)setFlags:(PEPIdentityFlags)flags
+     forIdentity:(PEPIdentity *)identity
+   errorCallback:(void (^)(NSError *error))errorCallback
+ successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
