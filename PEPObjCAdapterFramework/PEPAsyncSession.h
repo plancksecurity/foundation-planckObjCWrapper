@@ -143,6 +143,10 @@ successCallback:(void (^)(NSString *log))successCallback;
 - (void)languageList:(void (^)(NSError *error))errorCallback
      successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback;
 
+- (void)isPEPUser:(PEPIdentity *)identity
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(BOOL enabled))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END

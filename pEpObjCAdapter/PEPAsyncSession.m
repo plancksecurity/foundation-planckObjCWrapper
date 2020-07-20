@@ -475,4 +475,20 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)isPEPUser:(PEPIdentity *)identity
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(BOOL enabled))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSNumber *ispEpUserNum = [[PEPSession new] isPEPUser:identity error:&error];
+        if (ispEpUserNum) {
+            successCallback(ispEpUserNum.boolValue);
+        } else {
+            errorCallback(error);
+        }
+    });
+
+}
+
 @end
