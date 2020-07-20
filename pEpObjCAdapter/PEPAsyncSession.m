@@ -402,4 +402,18 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
+- (void)getLog:(void (^)(NSError *error))errorCallback
+successCallback:(void (^)(NSString *log))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSString *log = [[PEPSession new] getLogWithError:&error];
+        if (log) {
+            successCallback(log);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

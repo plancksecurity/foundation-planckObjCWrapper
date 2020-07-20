@@ -122,6 +122,9 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback;
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback;
 
+- (void)getLog:(void (^)(NSError *error))errorCallback
+successCallback:(void (^)(NSString *log))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
