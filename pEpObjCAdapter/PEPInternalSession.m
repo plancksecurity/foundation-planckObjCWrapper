@@ -558,11 +558,13 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     return array;
 }
 
-- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
-         error:(NSError * _Nullable * _Nullable)error {
+- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
+{
     pEp_identity *ident = PEP_identityToStruct(identity);
 
-    PEPStatus status = (PEPStatus) myself(_session, ident);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return myself(session, ident);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         free_identity(ident);
