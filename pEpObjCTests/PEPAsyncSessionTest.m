@@ -46,24 +46,10 @@
 {
     PEPSession *session = [PEPSession new];
 
-    XCTestExpectation *expectationKeyImported = [self
-                                                 expectationWithDescription:@"expectationKeyImported"];
-
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
-
-    // Our test user:
+    // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    [PEPTestUtils asyncImportBundledKey:@"6FF00E97_sec.asc"
-                                session:asyncSession
-                          errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
-        [expectationKeyImported fulfill];
-    } successCallback:^{
-        [expectationKeyImported fulfill];
-    }];
-
-    [self waitForExpectations:@[expectationKeyImported] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
@@ -87,6 +73,8 @@
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
+
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
     XCTestExpectation *expectationEncrypted = [self
                                                expectationWithDescription:@"expectationEncrypted"];
