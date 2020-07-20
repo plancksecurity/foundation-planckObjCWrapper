@@ -73,10 +73,6 @@ NS_ASSUME_NONNULL_BEGIN
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPRating rating))successCallback;
 
-- (void)outgoingRatingPreviewForMessage:(PEPMessage *)theMessage
-                          errorCallback:(void (^)(NSError *error))errorCallback
-                        successCallback:(void (^)(PEPRating rating))successCallback;
-
 - (void)ratingForIdentity:(PEPIdentity *)identity
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback;
