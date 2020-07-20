@@ -463,7 +463,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                            error:(NSError * _Nullable * _Nullable)error
 {
     message *_msg = PEP_messageToStruct(theMessage);
-    PEPRating rating = PEPRatingUndefined;
+    __block PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return outgoing_message_rating(session, _msg, (PEP_rating *) &rating);
