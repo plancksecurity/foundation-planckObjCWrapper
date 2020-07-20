@@ -1030,9 +1030,11 @@ static NSDictionary *stringToRating;
         identitiesSharingData = PEP_identityArrayToList(identitiesSharing);
     }
 
-    PEPStatus status = (PEPStatus) deliverHandshakeResult(self.session,
-                                                          (sync_handshake_result) result,
-                                                          identitiesSharingData);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return deliverHandshakeResult(session,
+                                      (sync_handshake_result) result,
+                                      identitiesSharingData);
+    }];
 
     free(identitiesSharingData);
 
