@@ -438,4 +438,26 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)getTrustwordsFpr1:(NSString *)fpr1
+                     fpr2:(NSString *)fpr2
+                 language:(NSString * _Nullable)language
+                     full:(BOOL)full
+            errorCallback:(void (^)(NSError *error))errorCallback
+          successCallback:(void (^)(NSString *trustwords))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSString *trustwords = [[PEPSession new] getTrustwordsFpr1:fpr1
+                                                              fpr2:fpr2
+                                                          language:language
+                                                              full:full
+                                                             error:&error];
+        if (trustwords) {
+            successCallback(trustwords);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
