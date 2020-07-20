@@ -98,6 +98,10 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback;
            errorCallback:(void (^)(NSError *error))errorCallback
          successCallback:(void (^)(void))successCallback;
 
+- (void)keyMistrusted:(PEPIdentity *)identity
+        errorCallback:(void (^)(NSError *error))errorCallback
+      successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
