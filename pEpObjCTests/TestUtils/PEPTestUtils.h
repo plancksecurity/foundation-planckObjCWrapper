@@ -12,7 +12,6 @@
 @class PEPInternalSession;
 @class PEPMessage;
 @class PEPSession;
-@class PEPAsyncSession;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,11 +29,6 @@ extern const NSInteger PEPTestInternalSyncTimeout;
 + (PEPIdentity *)ownPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;
 
 + (BOOL)importBundledKey:(NSString *)item session:(PEPSession *)session;
-
-+ (void)asyncImportBundledKey:(NSString *)item
-                      session:(PEPAsyncSession *)session
-                errorCallback:(void (^)(NSError *error))errorCallback
-              successCallback:(void (^)(void))successCallback;
 
 + (NSString *)loadResourceByName:(NSString *)name;
 

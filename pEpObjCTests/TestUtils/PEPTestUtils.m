@@ -101,28 +101,6 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     }
 }
 
-+ (void)asyncImportBundledKey:(NSString *)item
-                      session:(PEPAsyncSession *)session
-                errorCallback:(void (^)(NSError *error))errorCallback
-              successCallback:(void (^)(void))successCallback
-{
-    if (!session) {
-        session = [PEPAsyncSession new];
-    }
-
-    NSString *txtFileContents = [self loadStringFromFileName:item];
-    if (!txtFileContents) {
-        errorCallback([NSError errorWithDomain:@"PEPTestUtils" code:0 userInfo:nil]);
-    } else {
-        return [session importKey:txtFileContents
-                    errorCallback:^(NSError * _Nonnull error) {
-            errorCallback(error);
-        } successCallback:^(NSArray<PEPIdentity *> * _Nonnull identities) {
-            successCallback();
-        }];
-    }
-}
-
 + (PEPMessage * _Nonnull) mailFrom:(PEPIdentity * _Nullable) fromIdent
                            toIdent: (PEPIdentity * _Nullable) toIdent
                       shortMessage:(NSString *)shortMessage
