@@ -11,6 +11,7 @@
 #import "PEPMessage.h"
 #import "PEPEngineTypes.h"
 #import "PEPSession.h"
+#import "NSNumber+PEPRating.h"
 
 static dispatch_queue_t queue;
 
@@ -184,6 +185,21 @@ static dispatch_queue_t queue;
                                    error:&error];
         if (destMessage) {
             successCallback(theMessage, destMessage);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(PEPRating rating))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSNumber *ratingNum = [[PEPSession new] outgoingRatingForMessage:theMessage error:&error];
+        if (ratingNum) {
+            successCallback(ratingNum.pEpRating);
         } else {
             errorCallback(error);
         }
