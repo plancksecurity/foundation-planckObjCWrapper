@@ -119,6 +119,13 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback;
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback;
 
+- (void)logTitle:(NSString *)title
+          entity:(NSString *)entity
+     description:(NSString * _Nullable)description
+         comment:(NSString * _Nullable)comment
+   errorCallback:(void (^)(NSError *error))errorCallback
+ successCallback:(void (^)(void))successCallback;
+
 - (void)getLog:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(NSString *log))successCallback;
 

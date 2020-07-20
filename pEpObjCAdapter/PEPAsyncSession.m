@@ -385,6 +385,29 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
+- (void)logTitle:(NSString *)title
+          entity:(NSString *)entity
+     description:(NSString * _Nullable)description
+         comment:(NSString * _Nullable)comment
+   errorCallback:(void (^)(NSError *error))errorCallback
+ successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] logTitle:title
+                                           entity:entity
+                                      description:description
+                                          comment:comment
+                                            error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+
 - (void)getLog:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(NSString *log))successCallback
 {
