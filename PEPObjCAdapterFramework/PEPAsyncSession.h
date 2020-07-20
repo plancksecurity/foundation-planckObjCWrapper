@@ -157,6 +157,11 @@ successCallback:(void (^)(NSString *log))successCallback;
    errorCallback:(void (^)(NSError *error))errorCallback
  successCallback:(void (^)(void))successCallback;
 
+- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result
+             identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END

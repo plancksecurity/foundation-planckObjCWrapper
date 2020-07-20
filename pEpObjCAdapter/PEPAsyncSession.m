@@ -524,4 +524,22 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result
+             identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] deliverHandshakeResult:result
+                                              identitiesSharing:identitiesSharing
+                                                          error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
