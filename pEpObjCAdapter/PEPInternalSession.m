@@ -459,26 +459,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 }
 
-typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, PEP_rating *rating);
-
-- (NSNumber * _Nullable)helperOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
-                                        ratingFunction:(rating_function_type)ratingFunction
-                                                 error:(NSError * _Nullable * _Nullable)error
-{
-    message *_msg = PEP_messageToStruct(theMessage);
-    PEPRating rating = PEPRatingUndefined;
-
-    PEPStatus status = (PEPStatus) ratingFunction(_session, _msg, (PEP_rating *) &rating);
-
-    free_message(_msg);
-
-    if ([NSError setError:error fromPEPStatus:status]) {
-        return nil;
-    }
-
-    return [NSNumber numberWithPEPRating:rating];
-}
-
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error
 {
@@ -501,10 +481,18 @@ typedef PEP_STATUS (* rating_function_type)(PEP_SESSION session, message *msg, P
 - (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
                                                   error:(NSError * _Nullable * _Nullable)error
 {
-    return [self
-            helperOutgoingRatingForMessage:theMessage
-            ratingFunction:&outgoing_message_rating_preview
-            error:error];
+    message *_msg = PEP_messageToStruct(theMessage);
+    PEPRating rating = PEPRatingUndefined;
+
+    PEPStatus status = (PEPStatus) outgoing_message_rating_preview(_session, _msg, (PEP_rating *) &rating);
+
+    free_message(_msg);
+
+    if ([NSError setError:error fromPEPStatus:status]) {
+        return nil;
+    }
+
+    return [NSNumber numberWithPEPRating:rating];
 }
 
 - (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
