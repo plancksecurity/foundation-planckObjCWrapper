@@ -979,7 +979,8 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = PEP_identityToStruct(identity);
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return set_own_key(session, ident,
+        return set_own_key(session,
+                           ident,
                            [[fingerprint precomposedStringWithCanonicalMapping]
                             UTF8String]);
     }];
