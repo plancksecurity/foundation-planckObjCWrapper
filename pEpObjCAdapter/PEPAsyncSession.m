@@ -416,4 +416,26 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1
+                     identity2:(PEPIdentity *)identity2
+                      language:(NSString * _Nullable)language
+                          full:(BOOL)full
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(NSString *trustwords))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSString *trustwords = [[PEPSession new] getTrustwordsIdentity1:identity1
+                                                              identity2:identity2
+                                                               language:language
+                                                                   full:full
+                                                                  error:&error];
+        if (trustwords) {
+            successCallback(trustwords);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

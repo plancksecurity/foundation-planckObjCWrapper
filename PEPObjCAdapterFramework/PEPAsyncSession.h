@@ -125,6 +125,13 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback;
 - (void)getLog:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(NSString *log))successCallback;
 
+- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1
+                     identity2:(PEPIdentity *)identity2
+                      language:(NSString * _Nullable)language
+                          full:(BOOL)full
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(NSString *trustwords))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
