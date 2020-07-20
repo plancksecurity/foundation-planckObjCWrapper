@@ -1091,7 +1091,9 @@ static NSDictionary *stringToRating;
 
 - (BOOL)leaveDeviceGroup:(NSError * _Nullable * _Nullable)error
 {
-    PEPStatus status = (PEPStatus) leave_device_group(self.session);
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return leave_device_group(session);
+    }];
 
     if ([NSError setError:error fromPEPStatus:status]) {
         return NO;
