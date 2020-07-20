@@ -44,8 +44,6 @@
 
 - (void)testMailToMyself
 {
-    PEPSession *session = [PEPSession new];
-
     XCTestExpectation *expectationKeyImported = [self
                                                  expectationWithDescription:@"expectationKeyImported"];
 
@@ -94,7 +92,23 @@
     msg.longMessage = @"This is a text content";
     msg.direction = PEPMsgDirectionOutgoing;
 
-    NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
+    PEPSession *session = [PEPSession new];
+
+    XCTestExpectation *expOutgoingRating = [self expectationWithDescription:@"expOutgoingRating"];
+    __block NSNumber *numRating = nil;
+    [self testOutgoingRatingForMessage:msg
+                               session:session
+                          asyncSession:asyncSession
+                         errorCallback:^(NSError *error) {
+        XCTFail();
+        [expOutgoingRating fulfill];
+    } successCallback:^(PEPRating rating) {
+        numRating = [NSNumber numberWithPEPRating:rating];
+        [expOutgoingRating fulfill];
+    }];
+
+    [self waitForExpectations:@[expOutgoingRating] timeout:PEPTestInternalSyncTimeout];
+
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
@@ -245,14 +259,43 @@
     return encryptedMessage;
 }
 
-- (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
-                                             session:(PEPSession *)session
-                                               error:(NSError * _Nullable * _Nullable)error
+- (void)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
+                             session:(PEPSession *)session
+                        asyncSession:(PEPAsyncSession *)asyncSession
+                       errorCallback:(void (^)(NSError *error))errorCallback
+                     successCallback:(void (^)(PEPRating rating))successCallback;
 {
-    NSNumber *ratingOriginal = [session outgoingRatingForMessage:theMessage error:error];
-    NSNumber *ratingPreview = [session outgoingRatingPreviewForMessage:theMessage error:nil];
-    XCTAssertEqual(ratingOriginal, ratingPreview);
-    return ratingOriginal;
+    XCTestExpectation *expOutgoingRating = [self expectationWithDescription:@"expOutgoingRating"];
+    __block NSNumber *ratingOriginal = nil;
+    __block NSError *error = nil;
+    [asyncSession outgoingRatingForMessage:theMessage
+                             errorCallback:^(NSError * _Nonnull theError) {
+        XCTFail();
+        error = theError;
+        [expOutgoingRating fulfill];
+    } successCallback:^(PEPRating rating) {
+        ratingOriginal = [NSNumber numberWithInt:rating];
+        [expOutgoingRating fulfill];
+    }];
+
+    [self waitForExpectations:@[expOutgoingRating] timeout:PEPTestInternalSyncTimeout];
+
+    if (error) {
+        errorCallback(error);
+    } else {
+        NSError *errorPreview = nil;
+        NSNumber *ratingPreview = [session
+                                   outgoingRatingPreviewForMessage:theMessage
+                                   error:&errorPreview];
+        XCTAssertNil(errorPreview);
+        XCTAssertNotNil(ratingPreview);
+        XCTAssertEqual(ratingOriginal, ratingPreview);
+        if (errorPreview) {
+            errorCallback(errorPreview);
+        } else {
+            successCallback(ratingOriginal.pEpRating);
+        }
+    }
 }
 
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
