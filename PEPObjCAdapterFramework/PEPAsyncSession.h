@@ -90,6 +90,10 @@ NS_ASSUME_NONNULL_BEGIN
  errorCallback:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(PEPIdentity *identity))successCallback;
 
+- (void)updateIdentity:(PEPIdentity *)identity
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPIdentity *identity))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END

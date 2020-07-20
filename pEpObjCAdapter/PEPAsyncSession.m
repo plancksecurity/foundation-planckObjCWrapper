@@ -279,4 +279,21 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
+- (void)updateIdentity:(PEPIdentity *)identity
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPIdentity *identity))successCallback
+{
+    __block PEPIdentity *theIdentity = [[PEPIdentity alloc] initWithIdentity:identity];
+
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSession new] updateIdentity:theIdentity error:&error];
+        if (success) {
+            successCallback(theIdentity);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
