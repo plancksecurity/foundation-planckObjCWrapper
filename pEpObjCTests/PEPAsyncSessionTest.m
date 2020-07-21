@@ -79,10 +79,7 @@
     msg.direction = PEPMsgDirectionOutgoing;
 
     NSError *error = nil;
-    NSNumber *numRating = [self
-                           testOutgoingRatingForMessage:msg
-                           asyncSession:asyncSession
-                           error:&error];
+    NSNumber *numRating = [self testOutgoingRatingForMessage:msg error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
@@ -266,9 +263,10 @@
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
-                                        asyncSession:(PEPAsyncSession *)asyncSession
                                                error:(NSError * _Nullable * _Nullable)error
 {
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+
     __block NSError *theError = nil;
     __block NSNumber *ratingOriginal = nil;
     XCTestExpectation *expOutgoingRating = [self expectationWithDescription:@"expOutgoingRating"];
