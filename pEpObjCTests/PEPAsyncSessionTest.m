@@ -268,24 +268,12 @@
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                                error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    NSError *theError = nil;
+    NSNumber *ratingOriginal = [self outgoingRatingForMessage:theMessage error:&theError];
+    XCTAssertNotNil(ratingOriginal);
+    XCTAssertNil(theError);
 
-    __block NSError *theError = nil;
-    __block NSNumber *ratingOriginal = nil;
-    XCTestExpectation *expOutgoingRating = [self expectationWithDescription:@"expOutgoingRating"];
-    [asyncSession outgoingRatingForMessage:theMessage
-                             errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
-        theError = error;
-        [expOutgoingRating fulfill];
-    } successCallback:^(PEPRating rating) {
-        [expOutgoingRating fulfill];
-        ratingOriginal = [NSNumber numberWithPEPRating:rating];
-    }];
-    [self waitForExpectations:@[expOutgoingRating] timeout:PEPTestInternalSyncTimeout];
-
-    if (theError) {
-        *error = theError;
+    if (ratingOriginal == nil) {
         return nil;
     }
 
