@@ -205,6 +205,22 @@
     XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
 }
 
+- (void)testTrustWords
+{
+    NSError *error = nil;
+    NSArray *trustwords = [self
+                           trustwordsForFingerprint:@"DB47DB47DB47DB47DB47DB47DB47DB47DB47DB47"
+                           languageID:@"en"
+                           shortened:false
+                           error:&error];
+    XCTAssertNil(error);
+    XCTAssertEqual([trustwords count], 10);
+
+    for(id word in trustwords) {
+        XCTAssertEqualObjects(word, @"BAPTISMAL");
+    }
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
