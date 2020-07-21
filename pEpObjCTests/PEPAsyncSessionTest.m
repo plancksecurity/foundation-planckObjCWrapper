@@ -60,8 +60,19 @@
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
     NSError *error = nil;
-    XCTAssertTrue([session mySelf:identAlice error:&error]);
-    XCTAssertNil(error);
+
+    XCTestExpectation *expMyself = [self expectationWithDescription:@"expMyself"];
+    __block PEPIdentity *identAliceMyselfed = nil;
+    [asyncSession mySelf:identAlice
+           errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expMyself fulfill];
+    } successCallback:^(PEPIdentity * _Nonnull identity) {
+        identAliceMyselfed = identity;
+        [expMyself fulfill];
+    }];
+    [self waitForExpectations:@[expMyself] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(identAliceMyselfed);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
