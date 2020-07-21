@@ -249,7 +249,6 @@
     XCTAssertEqual([self ratingForIdentity:alice], PEPRatingHaveNoKey);
 }
 
-/*
 - (void)testQueryKeySyncOnOwnIdentityInALoop
 {
     PEPIdentity *identMe = [[PEPIdentity alloc]
@@ -279,7 +278,6 @@
         }
     }
 }
- */
 
 #pragma mark - Helpers
 
