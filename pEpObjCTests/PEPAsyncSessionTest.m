@@ -147,14 +147,14 @@
 
 - (void)testEncryptAndAttachPrivateKeyIllegalValue
 {
-    PEPSession *session = [PEPSession new];
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
-
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
                             userID:@"me-myself-and-i"
                             userName:@"pEp Me"
                             isOwn:YES];
+
+    PEPSession *session = [PEPSession new];
+
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
@@ -179,6 +179,8 @@
     message.longMessage = longMessage;
 
     XCTestExpectation *expectationEnc = [self expectationWithDescription:@"expectationEnc"];
+
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
     [asyncSession
      encryptMessage:message
@@ -222,11 +224,12 @@
 
 - (PEPMessage *)mailWrittenToMySelf
 {
-    PEPSession *session = [PEPSession new];
-
     // Write a e-mail to yourself ...
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
+
+    PEPSession *session = [PEPSession new];
+
     NSError *error = nil;
     XCTAssertTrue([session mySelf:me error:&error]);
     XCTAssertNil(error);
