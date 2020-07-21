@@ -760,4 +760,26 @@
     return result;
 }
 
+- (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block NSString *result = nil;
+    __block NSError *theError = nil;
+    [asyncSession getLog:^(NSError * _Nonnull error) {
+        XCTFail();
+        result = nil;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^(NSString *theLog) {
+        result = theLog;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
 @end
