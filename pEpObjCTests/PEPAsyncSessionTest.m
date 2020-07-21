@@ -81,7 +81,11 @@
     msg.longMessage = @"This is a text content";
     msg.direction = PEPMsgDirectionOutgoing;
 
-    NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
+    NSNumber *numRating = [self
+                           testOutgoingRatingForMessage:msg
+                           session:session
+                           asyncSession:asyncSession
+                           error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
@@ -229,11 +233,31 @@
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                              session:(PEPSession *)session
+                                        asyncSession:(PEPAsyncSession *)asyncSession
                                                error:(NSError * _Nullable * _Nullable)error
 {
-    NSNumber *ratingOriginal = [session outgoingRatingForMessage:theMessage error:error];
-    NSNumber *ratingPreview = [session outgoingRatingPreviewForMessage:theMessage error:nil];
+    __block NSError *theError = nil;
+    __block NSNumber *ratingOriginal = nil;
+    XCTestExpectation *expOutgoingRating = [self expectationWithDescription:@"expOutgoingRating"];
+    [asyncSession outgoingRatingForMessage:theMessage
+                             errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        theError = error;
+        [expOutgoingRating fulfill];
+    } successCallback:^(PEPRating rating) {
+        [expOutgoingRating fulfill];
+        ratingOriginal = [NSNumber numberWithPEPRating:rating];
+    }];
+    [self waitForExpectations:@[expOutgoingRating] timeout:PEPTestInternalSyncTimeout];
+
+    if (theError) {
+        *error = theError;
+        return nil;
+    }
+
+    NSNumber *ratingPreview = [session outgoingRatingPreviewForMessage:theMessage error:error];
     XCTAssertEqual(ratingOriginal, ratingPreview);
+
     return ratingOriginal;
 }
 
