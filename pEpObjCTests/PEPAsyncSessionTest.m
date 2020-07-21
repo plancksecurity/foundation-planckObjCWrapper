@@ -167,8 +167,7 @@
                                checkImportingKeyFilePath:@"6FF00E97_sec.asc"
                                address:@"pep.test.alice@pep-project.org"
                                userID:@"alice_user_id"
-                               fingerPrint:fprAlice
-                               asyncSession: asyncSession];
+                               fingerPrint:fprAlice];
     XCTAssertNotNil(identAlice);
     XCTAssertEqualObjects(identAlice.fingerPrint, fprAlice);
 
@@ -299,11 +298,8 @@
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
                                     userID:(NSString *)userID
                                fingerPrint:(NSString *)fingerPrint
-                                   asyncSession:(PEPAsyncSession *)asyncSession
 {
-    if (!asyncSession) {
-        asyncSession = [PEPAsyncSession new];
-    }
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
     BOOL success = [self importBundledKey:filePath asyncSession:asyncSession];
     XCTAssertTrue(success);
