@@ -301,8 +301,6 @@
                                     userID:(NSString *)userID
                                fingerPrint:(NSString *)fingerPrint
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
-
     BOOL success = [self importBundledKey:filePath];
     XCTAssertTrue(success);
 
@@ -314,18 +312,10 @@
                                   userName:[NSString stringWithFormat:@"Some User Name %@", userID]
                                   isOwn:NO];
 
-        XCTestExpectation *expUpdateIdent = [self expectationWithDescription:@"expUpdateIdent"];
-        __block PEPIdentity *identTestUpdated = nil;
-        [asyncSession updateIdentity:identTest
-                       errorCallback:^(NSError * _Nonnull error) {
-            XCTFail();
-            [expUpdateIdent fulfill];
-        } successCallback:^(PEPIdentity * _Nonnull identity) {
-            identTestUpdated = identity;
-            [expUpdateIdent fulfill];
-        }];
-        [self waitForExpectations:@[expUpdateIdent] timeout:PEPTestInternalSyncTimeout];
+        NSError *error = nil;
+        PEPIdentity *identTestUpdated = [self updateIdentity:identTest error:&error];
 
+        XCTAssertNil(error);
         XCTAssertNotNil(identTestUpdated);
         XCTAssertNotNil(identTestUpdated.fingerPrint);
         XCTAssertEqualObjects(identTestUpdated.fingerPrint, fingerPrint);
@@ -469,6 +459,24 @@
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
     return result;
+}
+
+- (PEPIdentity * _Nullable)updateIdentity:(PEPIdentity * _Nonnull)identity
+                                    error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *expUpdateIdent = [self expectationWithDescription:@"expUpdateIdent"];
+    __block PEPIdentity *identTestUpdated = nil;
+    [asyncSession updateIdentity:identity
+                   errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expUpdateIdent fulfill];
+    } successCallback:^(PEPIdentity * _Nonnull identity) {
+        identTestUpdated = identity;
+        [expUpdateIdent fulfill];
+    }];
+    [self waitForExpectations:@[expUpdateIdent] timeout:PEPTestInternalSyncTimeout];
+    return identTestUpdated;
 }
 
 @end
