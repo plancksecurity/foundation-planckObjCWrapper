@@ -479,4 +479,22 @@
     return identTestUpdated;
 }
 
+- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
+                                           error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block NSNumber *result = nil;
+    [asyncSession outgoingRatingForMessage:theMessage
+                             errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [exp fulfill];
+    } successCallback:^(PEPRating rating) {
+        result = [NSNumber numberWithPEPRating:rating];
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    return result;
+}
+
 @end
