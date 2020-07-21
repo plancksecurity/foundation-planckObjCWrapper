@@ -44,12 +44,13 @@
 
 - (void)testMailToMyself
 {
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
     PEPSession *session = [PEPSession new];
 
-    // Our test user :
+    // Our test user:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97_sec.asc" session:session]);
+    XCTAssertTrue([self importBundledKey:@"6FF00E97_sec.asc" asyncSession:asyncSession]);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
@@ -73,8 +74,6 @@
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
-
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
     XCTestExpectation *expectationEncrypted = [self
                                                expectationWithDescription:@"expectationEncrypted"];
