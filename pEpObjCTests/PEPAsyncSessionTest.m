@@ -212,6 +212,43 @@
     }
 }
 
+- (void)testIdentityRatingTrustResetMistrustUndo
+{
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:@"me@example.org"
+                       userID:@"me_myself"
+                       userName:@"Me Me"
+                       isOwn:YES];
+
+    NSError *error = nil;
+    me = [self mySelf:me error:&error];
+    XCTAssertNotNil(me);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(me.fingerPrint);
+    XCTAssertEqual([self ratingForIdentity:me], PEPRatingTrustedAndAnonymized);
+
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    XCTAssertNotNil(alice);
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
+
+    XCTAssertTrue([self trustPersonalKey:alice error:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingTrusted);
+
+    XCTAssertTrue([self keyResetTrust:alice error:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
+
+    XCTAssertTrue([self keyMistrusted:alice error:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingHaveNoKey);
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
