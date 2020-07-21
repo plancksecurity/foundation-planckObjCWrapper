@@ -199,6 +199,26 @@
 
 - (void)testRatingForIdentity
 {
+    /*
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+
+    PEPIdentity *me = [self
+                       checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
+                       address:@"pep.test.alice@pep-project.org"
+                       userID:@"Alice_User_ID"
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                       session:session];
+    XCTAssertEqual([self ratingForIdentity:me], PEPRatingTrustedAndAnonymized);
+
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session: session];
+    XCTAssertNotNil(alice);
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
+     */
 }
 
 #pragma mark - Helpers
