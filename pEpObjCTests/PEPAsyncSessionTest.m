@@ -75,23 +75,21 @@
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
 
-    XCTestExpectation *expectationEncrypted = [self
-                                               expectationWithDescription:@"expectationEncrypted"];
+    XCTestExpectation *expectationEnc = [self expectationWithDescription:@"expectationEnc"];
 
     __block PEPMessage *encryptedMessage = [PEPMessage new];
 
     [asyncSession encryptMessage:msg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
         XCTFail();
-        [expectationEncrypted fulfill];
+        [expectationEnc fulfill];
     } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
-        [expectationEncrypted fulfill];
+        [expectationEnc fulfill];
         encryptedMessage = destMessage;
     }];
 
-    [self waitForExpectations:@[expectationEncrypted] timeout:PEPTestInternalSyncTimeout];
+    [self waitForExpectations:@[expectationEnc] timeout:PEPTestInternalSyncTimeout];
 
-    XCTestExpectation *expectationDecrypted = [self
-                                               expectationWithDescription:@"expectationDecrypted"];
+    XCTestExpectation *expectationDec = [self expectationWithDescription:@"expectationDec"];
 
     [asyncSession
      decryptMessage:encryptedMessage
@@ -99,7 +97,7 @@
      extraKeys:nil
      errorCallback:^(NSError *error) {
         XCTFail();
-        [expectationDecrypted fulfill];
+        [expectationDec fulfill];
     }
      successCallback:^(PEPMessage * srcMessage,
                        PEPMessage * dstMessage,
@@ -108,10 +106,10 @@
                        PEPDecryptFlags flags) {
         XCTAssertNotNil(dstMessage);
         XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
-        [expectationDecrypted fulfill];
+        [expectationDec fulfill];
     }];
 
-    [self waitForExpectations:@[expectationDecrypted] timeout:PEPTestInternalSyncTimeout];
+    [self waitForExpectations:@[expectationDec] timeout:PEPTestInternalSyncTimeout];
 }
 
 - (void)testEncryptToSelf
@@ -157,8 +155,7 @@
     message.shortMessage = shortMessage;
     message.longMessage = longMessage;
 
-    XCTestExpectation *expectationEncrypted = [self
-                                               expectationWithDescription:@"expectationEncrypted"];
+    XCTestExpectation *expectationEnc = [self expectationWithDescription:@"expectationEnc"];
 
     [asyncSession
      encryptMessage:message
@@ -166,13 +163,13 @@
      encFormat:PEPEncFormatPEP
      flags:0
      errorCallback:^(NSError * _Nonnull error) {
-        [expectationEncrypted fulfill];
+        [expectationEnc fulfill];
     } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
         XCTFail();
-        [expectationEncrypted fulfill];
+        [expectationEnc fulfill];
     }];
 
-    [self waitForExpectations:@[expectationEncrypted] timeout:PEPTestInternalSyncTimeout];
+    [self waitForExpectations:@[expectationEnc] timeout:PEPTestInternalSyncTimeout];
 }
 
 #pragma mark - Helpers
@@ -198,8 +195,7 @@
 
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
-    XCTestExpectation *expectationEncrypted = [self
-                                               expectationWithDescription:@"expectationEncrypted"];
+    XCTestExpectation *expectationEnc = [self expectationWithDescription:@"expectationEnc"];
 
     __block PEPMessage *encryptedMessage = [PEPMessage new];
 
@@ -209,13 +205,13 @@
      extraKeys:nil
      errorCallback:^(NSError * _Nonnull error) {
         XCTFail();
-        [expectationEncrypted fulfill];
+        [expectationEnc fulfill];
     } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
         encryptedMessage = destMessage;
-        [expectationEncrypted fulfill];
+        [expectationEnc fulfill];
     }];
 
-    [self waitForExpectations:@[expectationEncrypted] timeout:PEPTestInternalSyncTimeout];
+    [self waitForExpectations:@[expectationEnc] timeout:PEPTestInternalSyncTimeout];
 
     return encryptedMessage;
 }
@@ -250,17 +246,17 @@
                                   userName:[NSString stringWithFormat:@"Some User Name %@", userID]
                                   isOwn:NO];
 
-        XCTestExpectation *expUpdateIdentity = [self expectationWithDescription:@"expUpdateIdentity"];
+        XCTestExpectation *expUpdateIdent = [self expectationWithDescription:@"expUpdateIdent"];
         __block PEPIdentity *identTestUpdated = nil;
         [asyncSession updateIdentity:identTest
                        errorCallback:^(NSError * _Nonnull error) {
             XCTFail();
-            [expUpdateIdentity fulfill];
+            [expUpdateIdent fulfill];
         } successCallback:^(PEPIdentity * _Nonnull identity) {
             identTestUpdated = identity;
-            [expUpdateIdentity fulfill];
+            [expUpdateIdent fulfill];
         }];
-        [self waitForExpectations:@[expUpdateIdentity] timeout:PEPTestInternalSyncTimeout];
+        [self waitForExpectations:@[expUpdateIdent] timeout:PEPTestInternalSyncTimeout];
 
         XCTAssertNotNil(identTestUpdated);
         XCTAssertNotNil(identTestUpdated.fingerPrint);
