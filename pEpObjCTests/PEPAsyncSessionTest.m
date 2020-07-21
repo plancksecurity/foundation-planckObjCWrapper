@@ -58,18 +58,10 @@
 
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
-    XCTestExpectation *expMyself = [self expectationWithDescription:@"expMyself"];
-    __block PEPIdentity *identAliceMyselfed = nil;
-    [asyncSession mySelf:identAlice
-           errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
-        [expMyself fulfill];
-    } successCallback:^(PEPIdentity * _Nonnull identity) {
-        identAliceMyselfed = identity;
-        [expMyself fulfill];
-    }];
-    [self waitForExpectations:@[expMyself] timeout:PEPTestInternalSyncTimeout];
+    NSError *error = nil;
+    PEPIdentity *identAliceMyselfed = [self mySelf:identAlice error:&error];
     XCTAssertNotNil(identAliceMyselfed);
+    XCTAssertNil(error);
 
     PEPMessage *msg = [PEPMessage new];
     msg.from = identAlice;
@@ -78,7 +70,7 @@
     msg.longMessage = @"This is a text content";
     msg.direction = PEPMsgDirectionOutgoing;
 
-    NSError *error = nil;
+    error = nil;
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
