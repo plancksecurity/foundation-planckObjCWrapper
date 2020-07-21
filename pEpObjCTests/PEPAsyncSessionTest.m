@@ -369,10 +369,11 @@
 
 - (PEPRating)ratingForIdentity:(PEPIdentity *)identity
 {
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+
     __block PEPRating resultingRating = PEPRatingB0rken;
 
     XCTestExpectation *expRated = [self expectationWithDescription:@"expRated"];
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
     [asyncSession ratingForIdentity:identity
                       errorCallback:^(NSError * _Nonnull error) {
         XCTFail();
