@@ -224,7 +224,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)trustwordsForFingerprint:(NSString *)fingerprint
+- (void)trustwordsForFingerprint:(NSString *)fingerprint //BUFF: WIP
                       languageID:(NSString *)languageID
                        shortened:(BOOL)shortened
                    errorCallback:(void (^)(NSError *error))errorCallback
