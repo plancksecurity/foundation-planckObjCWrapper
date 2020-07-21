@@ -67,8 +67,9 @@
     XCTAssertNil(error);
     XCTAssertEqual([trustwords count], 10);
 
-    for(id word in trustwords)
+    for(id word in trustwords) {
         XCTAssertEqualObjects(word, @"BAPTISMAL");
+    }
 }
 
 - (void)testGenKey
