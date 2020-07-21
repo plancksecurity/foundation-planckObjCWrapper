@@ -288,6 +288,8 @@
         success = YES;
     }];
 
+    [self waitForExpectations:@[expImport] timeout:PEPTestInternalSyncTimeout];
+
     return success;
 }
 
