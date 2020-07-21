@@ -347,4 +347,22 @@
     return success;
 }
 
+- (PEPRating)ratingForIdentity:(PEPIdentity *)identity
+{
+    __block PEPRating resultingRating = PEPRatingB0rken;
+
+    XCTestExpectation *expRated = [self expectationWithDescription:@"expRated"];
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    [asyncSession ratingForIdentity:identity
+                      errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expRated fulfill];
+    } successCallback:^(PEPRating rating) {
+        [expRated fulfill];
+    }];
+    [self waitForExpectations:@[expRated] timeout:PEPTestInternalSyncTimeout];
+
+    return resultingRating;
+}
+
 @end
