@@ -197,6 +197,10 @@
     [self waitForExpectations:@[expectationEnc] timeout:PEPTestInternalSyncTimeout];
 }
 
+- (void)testRatingForIdentity
+{
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
