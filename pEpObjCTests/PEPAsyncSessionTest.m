@@ -150,10 +150,9 @@
                             userName:@"pEp Me"
                             isOwn:YES];
 
-    PEPSession *session = [PEPSession new];
-
     NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
+    identMe = [self mySelf:identMe error:&error];
+    XCTAssertNotNil(identMe);
     XCTAssertNil(error);
 
     XCTAssertNotNil(identMe.fingerPrint);
@@ -222,10 +221,9 @@
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
 
-    PEPSession *session = [PEPSession new];
-
     NSError *error = nil;
-    XCTAssertTrue([session mySelf:me error:&error]);
+    me = [self mySelf:me error:&error];
+    XCTAssertNotNil(me);
     XCTAssertNil(error);
 
     NSString *shortMessage = @"Subject";
@@ -416,6 +414,31 @@
     [self waitForExpectations:@[expRated] timeout:PEPTestInternalSyncTimeout];
 
     return resultingRating;
+}
+
+- (PEPIdentity * _Nullable)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError **)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+
+    XCTestExpectation *expMyself = [self expectationWithDescription:@"expMyself"];
+    __block PEPIdentity *identityMyselfed = nil;
+    __block NSError *errorMyself = nil;
+    [asyncSession mySelf:identity
+           errorCallback:^(NSError * _Nonnull theError) {
+        XCTFail();
+        errorMyself = theError;
+        [expMyself fulfill];
+    } successCallback:^(PEPIdentity * _Nonnull identity) {
+        identityMyselfed = identity;
+        [expMyself fulfill];
+    }];
+    [self waitForExpectations:@[expMyself] timeout:PEPTestInternalSyncTimeout];
+
+    *error = errorMyself;
+
+    XCTAssertNotNil(identityMyselfed);
+
+    return identityMyselfed;
 }
 
 @end
