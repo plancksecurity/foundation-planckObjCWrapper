@@ -485,4 +485,26 @@
     return result;
 }
 
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+                               extraKeys:(PEPStringList * _Nullable)extraKeys
+                               encFormat:(PEPEncFormat)encFormat
+                                  status:(PEPStatus * _Nullable)status
+                                   error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block PEPMessage *result = nil;
+    [asyncSession encryptMessage:message
+                       extraKeys:extraKeys
+                       encFormat:encFormat
+                   errorCallback:^(NSError * _Nonnull error) {
+
+    } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
+        result = destMessage;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    return result;
+}
+
 @end
