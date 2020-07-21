@@ -1878,8 +1878,6 @@
     NSError *error;
     XCTAssertTrue([session setOwnKey:identTest fingerprint:fingerPrint error:&error]);
     XCTAssertNil(error);
-    XCTAssertNotNil(identTest.fingerPrint);
-    XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
 
     return identTest;
 }
