@@ -658,4 +658,28 @@
     return result;
 }
 
+- (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+                        error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block BOOL result = NO;
+    __block NSError *theError = nil;
+    [asyncSession enableSyncForIdentity:identity
+                  errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        result = NO;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
 @end
