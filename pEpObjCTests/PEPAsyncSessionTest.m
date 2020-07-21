@@ -45,7 +45,6 @@
 - (void)testMailToMyself
 {
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
-    PEPSession *session = [PEPSession new];
 
     // Our test user:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
@@ -83,7 +82,6 @@
 
     NSNumber *numRating = [self
                            testOutgoingRatingForMessage:msg
-                           session:session
                            asyncSession:asyncSession
                            error:&error];
     XCTAssertNotNil(numRating);
@@ -232,7 +230,6 @@
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
-                                             session:(PEPSession *)session
                                         asyncSession:(PEPAsyncSession *)asyncSession
                                                error:(NSError * _Nullable * _Nullable)error
 {
@@ -255,7 +252,9 @@
         return nil;
     }
 
-    NSNumber *ratingPreview = [session outgoingRatingPreviewForMessage:theMessage error:error];
+    NSNumber *ratingPreview = [[PEPSession new]
+                               outgoingRatingPreviewForMessage:theMessage
+                               error:error];
     XCTAssertEqual(ratingOriginal, ratingPreview);
 
     return ratingOriginal;
