@@ -44,12 +44,10 @@
 
 - (void)testMailToMyself
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
-
     // Our test user:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    XCTAssertTrue([self importBundledKey:@"6FF00E97_sec.asc" asyncSession:asyncSession]);
+    XCTAssertTrue([self importBundledKey:@"6FF00E97_sec.asc"]);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
                                initWithAddress:@"pep.test.alice@pep-project.org"
@@ -58,7 +56,7 @@
                                isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
-    NSError *error = nil;
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
     XCTestExpectation *expMyself = [self expectationWithDescription:@"expMyself"];
     __block PEPIdentity *identAliceMyselfed = nil;
@@ -80,6 +78,7 @@
     msg.longMessage = @"This is a text content";
     msg.direction = PEPMsgDirectionOutgoing;
 
+    NSError *error = nil;
     NSNumber *numRating = [self
                            testOutgoingRatingForMessage:msg
                            asyncSession:asyncSession
@@ -199,23 +198,22 @@
 - (void)testRatingForIdentity
 {
     /*
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
-
     PEPIdentity *me = [self
                        checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
                        address:@"pep.test.alice@pep-project.org"
                        userID:@"Alice_User_ID"
-                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
-                       session:session];
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+    XCTAssertNotNil(me);
     XCTAssertEqual([self ratingForIdentity:me], PEPRatingTrustedAndAnonymized);
 
     PEPIdentity *alice = [self
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
                           address:@"pep.test.alice@pep-project.org"
                           userID:@"This Is Alice"
-                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
-                          session: session];
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
     XCTAssertNotNil(alice);
+
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
     XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
      */
 }
@@ -301,7 +299,7 @@
 {
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
-    BOOL success = [self importBundledKey:filePath asyncSession:asyncSession];
+    BOOL success = [self importBundledKey:filePath];
     XCTAssertTrue(success);
 
     if (success) {
@@ -334,11 +332,9 @@
     }
 }
 
-- (BOOL)importBundledKey:(NSString *)item asyncSession:(PEPAsyncSession *)asyncSession
+- (BOOL)importBundledKey:(NSString *)item
 {
-    if (!asyncSession) {
-        asyncSession = [PEPAsyncSession new];
-    }
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
     NSString *txtFileContents = [PEPTestUtils loadStringFromFileName:item];
     if (!txtFileContents) {
@@ -389,7 +385,7 @@
 {
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
-    XCTAssertTrue([self importBundledKey:filePath asyncSession:asyncSession]);
+    XCTAssertTrue([self importBundledKey:filePath]);
 
     // Our test user:
     PEPIdentity *identTest = [[PEPIdentity alloc]
