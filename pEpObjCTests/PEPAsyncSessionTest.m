@@ -504,7 +504,6 @@
     __block NSError *errorMyself = nil;
     [asyncSession mySelf:identity
            errorCallback:^(NSError * _Nonnull theError) {
-        XCTFail();
         errorMyself = theError;
         [expMyself fulfill];
     } successCallback:^(PEPIdentity * _Nonnull identity) {
@@ -537,7 +536,6 @@
                                 languageID:languageID
                                  shortened:shortened
                              errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         theError = error;
         [exp fulfill];
     } successCallback:^(NSArray<NSString *> * _Nonnull trustwords) {
@@ -560,7 +558,6 @@
     __block NSError *theError = nil;
     [asyncSession updateIdentity:identity
                    errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         theError = error;
         [expUpdateIdent fulfill];
     } successCallback:^(PEPIdentity * _Nonnull identity) {
@@ -583,7 +580,6 @@
     __block NSError *theError = nil;
     [asyncSession outgoingRatingForMessage:theMessage
                              errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         theError = error;
         [exp fulfill];
     } successCallback:^(PEPRating rating) {
@@ -611,7 +607,6 @@
                        extraKeys:extraKeys
                        encFormat:encFormat
                    errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         theError = error;
         [exp fulfill];
     } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
@@ -637,7 +632,6 @@
     [asyncSession encryptMessage:message
                        extraKeys:extraKeys
                    errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         theError = error;
         [exp fulfill];
     } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
@@ -660,7 +654,6 @@
     __block NSError *theError = nil;
     [asyncSession trustPersonalKey:identity
                      errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         result = NO;
         theError = error;
         [exp fulfill];
@@ -684,7 +677,6 @@
     __block NSError *theError = nil;
     [asyncSession keyResetTrust:identity
                   errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         result = NO;
         theError = error;
         [exp fulfill];
@@ -707,7 +699,6 @@
     __block NSError *theError = nil;
     [asyncSession keyMistrusted:identity
                   errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         result = NO;
         theError = error;
         [exp fulfill];
@@ -731,7 +722,6 @@
     __block NSError *theError = nil;
     [asyncSession enableSyncForIdentity:identity
                   errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         result = NO;
         theError = error;
         [exp fulfill];
@@ -755,7 +745,6 @@
     __block NSError *theError = nil;
     [asyncSession queryKeySyncEnabledForIdentity:identity
                                    errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         result = nil;
         theError = error;
         [exp fulfill];
@@ -779,7 +768,6 @@
     __block NSError *theError = nil;
     [asyncSession disableSyncForIdentity:identity
                            errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         result = NO;
         theError = error;
         [exp fulfill];
@@ -801,7 +789,6 @@
     __block NSString *result = nil;
     __block NSError *theError = nil;
     [asyncSession getLog:^(NSError * _Nonnull error) {
-        XCTFail();
         result = nil;
         theError = error;
         [exp fulfill];
