@@ -279,6 +279,15 @@
     }
 }
 
+- (void)testGetLogWithError
+{
+    NSError *error = nil;
+    NSString *log = [self getLogWithError:&error];
+    XCTAssertGreaterThan(log.length, 0);
+    XCTAssertNotNil(log);
+    XCTAssertNil(error);
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
