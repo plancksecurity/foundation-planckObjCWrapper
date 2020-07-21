@@ -224,7 +224,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)trustwordsForFingerprint:(NSString *)fingerprint //BUFF: WIP
+- (void)trustwordsForFingerprint:(NSString *)fingerprint //BUFF: unused (done)
                       languageID:(NSString *)languageID
                        shortened:(BOOL)shortened
                    errorCallback:(void (^)(NSError *error))errorCallback
@@ -422,7 +422,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1
+- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1 //BUFF: WIP
                      identity2:(PEPIdentity *)identity2
                       language:(NSString * _Nullable)language
                           full:(BOOL)full
