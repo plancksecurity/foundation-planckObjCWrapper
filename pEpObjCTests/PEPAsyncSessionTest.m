@@ -77,30 +77,21 @@
     XCTAssertEqual(numRating.pEpRating, PEPRatingTrustedAndAnonymized);
 
     for (NSNumber *boolNumWithEncFormat in @[@YES, @NO]) {
-        XCTestExpectation *expectationEnc = [self expectationWithDescription:@"expectationEnc"];
-        __block PEPMessage *encryptedMessage = [PEPMessage new];
+        error = nil;
+        PEPMessage *encryptedMessage = [PEPMessage new];
         if (boolNumWithEncFormat.boolValue) {
-            [asyncSession
-             encryptMessage:msg
-             extraKeys:nil
-             encFormat:PEPEncFormatPEP
-             errorCallback:^(NSError * _Nonnull error) {
-                XCTFail();
-                [expectationEnc fulfill];
-            } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
-                [expectationEnc fulfill];
-                encryptedMessage = destMessage;
-            }];
-            [self waitForExpectations:@[expectationEnc] timeout:PEPTestInternalSyncTimeout];
+            encryptedMessage = [self
+                                encryptMessage:msg
+                                extraKeys:nil
+                                encFormat:PEPEncFormatPEP
+                                status:nil
+                                error:&error];
+            XCTAssertNotNil(encryptedMessage);
+            XCTAssertNil(error);
         } else {
-            [asyncSession encryptMessage:msg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
-                XCTFail();
-                [expectationEnc fulfill];
-            } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
-                [expectationEnc fulfill];
-                encryptedMessage = destMessage;
-            }];
-            [self waitForExpectations:@[expectationEnc] timeout:PEPTestInternalSyncTimeout];
+            encryptedMessage = [self encryptMessage:msg extraKeys:nil status:nil error:&error];
+            XCTAssertNotNil(encryptedMessage);
+            XCTAssertNil(error);
         }
 
         XCTestExpectation *expectationDec = [self expectationWithDescription:@"expectationDec"];
