@@ -264,4 +264,31 @@
     }
 }
 
+- (BOOL)importBundledKey:(NSString *)item asyncSession:(PEPAsyncSession *)asyncSession
+{
+    if (!asyncSession) {
+        asyncSession = [PEPAsyncSession new];
+    }
+
+    NSString *txtFileContents = [PEPTestUtils loadStringFromFileName:item];
+    if (!txtFileContents) {
+        XCTFail();
+    }
+
+    __block BOOL success = YES;
+
+    XCTestExpectation *expImport = [self expectationWithDescription:@"expImport"];
+    [asyncSession importKey:txtFileContents
+              errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        success = NO;
+        [expImport fulfill];
+    } successCallback:^(NSArray<PEPIdentity *> * _Nonnull identities) {
+        [expImport fulfill];
+        success = YES;
+    }];
+
+    return success;
+}
+
 @end
