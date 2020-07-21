@@ -540,4 +540,26 @@
     return result;
 }
 
+- (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
+                error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block BOOL result = NO;
+    __block NSError *theError = nil;
+    [asyncSession keyResetTrust:identity
+                  errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        result = NO;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    *error = theError;
+    return result;
+}
+
 @end
