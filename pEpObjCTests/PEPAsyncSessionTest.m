@@ -433,4 +433,26 @@
     return identityMyselfed;
 }
 
+- (NSArray<NSString *> * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
+                                                 languageID:(NSString * _Nonnull)languageID
+                                                  shortened:(BOOL)shortened
+                                                      error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block NSArray<NSString *> *result = nil;
+    [asyncSession trustwordsForFingerprint:fingerprint
+                                languageID:languageID
+                                 shortened:shortened
+                             errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [exp fulfill];
+    } successCallback:^(NSArray<NSString *> * _Nonnull trustwords) {
+        [exp fulfill];
+        result = trustwords;
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    return result;
+}
+
 @end
