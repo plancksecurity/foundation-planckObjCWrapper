@@ -386,10 +386,10 @@
     return resultingRating;
 }
 
-- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
-                                         address:(NSString *)address
-                                          userID:(NSString *)userID
-                                     fingerPrint:(NSString *)fingerPrint
+- (PEPIdentity * _Nullable)checkMySelfImportingKeyFilePath:(NSString *)filePath
+                                                   address:(NSString *)address
+                                                    userID:(NSString *)userID
+                                               fingerPrint:(NSString *)fingerPrint
 {
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
@@ -403,20 +403,24 @@
                               isOwn:YES
                               fingerPrint: fingerPrint];
 
+    __block BOOL success = NO;
     XCTestExpectation *expSetOwnKey = [self expectationWithDescription:@"expSetOwnKey"];
     [asyncSession setOwnKey:identTest
                 fingerprint:fingerPrint
               errorCallback:^(NSError * _Nonnull error) {
         XCTFail();
+        success = NO;
         [expSetOwnKey fulfill];
     } successCallback:^{
+        success = YES;
         [expSetOwnKey fulfill];
     }];
 
-    XCTAssertNotNil(identTest.fingerPrint);
-    XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
-
-    return identTest;
+    if (success) {
+        return identTest;
+    } else {
+        return nil;
+    }
 }
 
 @end
