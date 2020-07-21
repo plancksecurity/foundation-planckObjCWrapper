@@ -21,15 +21,6 @@ static dispatch_queue_t queue;
 
 @implementation PEPAsyncSession
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        //
-    }
-    return self;
-}
-
 + (void)initialize
 {
     if (self == [PEPAsyncSession class]) {
@@ -57,11 +48,11 @@ static dispatch_queue_t queue;
         NSError *error = nil;
 
         PEPMessage *newMessage = [[PEPSession new] decryptMessage:theMessage
-                                                   flags:&theFlags
-                                                  rating:&theRating
-                                               extraKeys:&theExtraKeys
-                                                  status:&status
-                                                   error:&error];
+                                                            flags:&theFlags
+                                                           rating:&theRating
+                                                        extraKeys:&theExtraKeys
+                                                           status:&status
+                                                            error:&error];
 
         if (newMessage) {
             successCallback(theMessage, newMessage, theExtraKeys, theRating, theFlags);
@@ -208,8 +199,8 @@ static dispatch_queue_t queue;
 }
 
 - (void)ratingForIdentity:(PEPIdentity *)identity //BUFF: done
-                      errorCallback:(void (^)(NSError *error))errorCallback
-                    successCallback:(void (^)(PEPRating rating))successCallback
+            errorCallback:(void (^)(NSError *error))errorCallback
+          successCallback:(void (^)(PEPRating rating))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
@@ -224,7 +215,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)trustwordsForFingerprint:(NSString *)fingerprint //BUFF: WIP
+- (void)trustwordsForFingerprint:(NSString *)fingerprint //BUFF: done
                       languageID:(NSString *)languageID
                        shortened:(BOOL)shortened
                    errorCallback:(void (^)(NSError *error))errorCallback
@@ -355,8 +346,8 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
 }
 
 - (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
-                                   errorCallback:(void (^)(NSError *error))errorCallback
-                                 successCallback:(void (^)(BOOL enabled))successCallback
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(BOOL enabled))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
@@ -422,7 +413,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1 //BUFF: WIP
+- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1 //BUFF: done
                      identity2:(PEPIdentity *)identity2
                       language:(NSString * _Nullable)language
                           full:(BOOL)full

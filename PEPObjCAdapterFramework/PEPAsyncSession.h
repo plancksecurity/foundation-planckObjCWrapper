@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPAsyncSession : NSObject
 
-- (instancetype)init;
-
 - (void)decryptMessage:(PEPMessage *)message
                  flags:(PEPDecryptFlags)flags
              extraKeys:(PEPStringList * _Nullable)extraKeys
