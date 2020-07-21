@@ -365,4 +365,37 @@
     return resultingRating;
 }
 
+- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
+                                         address:(NSString *)address
+                                          userID:(NSString *)userID
+                                     fingerPrint:(NSString *)fingerPrint
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+
+    XCTAssertTrue([self importBundledKey:filePath asyncSession:asyncSession]);
+
+    // Our test user:
+    PEPIdentity *identTest = [[PEPIdentity alloc]
+                              initWithAddress:address
+                              userID:userID
+                              userName:[NSString stringWithFormat:@"Some User Name %@", userID]
+                              isOwn:YES
+                              fingerPrint: fingerPrint];
+
+    XCTestExpectation *expSetOwnKey = [self expectationWithDescription:@"expSetOwnKey"];
+    [asyncSession setOwnKey:identTest
+                fingerprint:fingerPrint
+              errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expSetOwnKey fulfill];
+    } successCallback:^{
+        [expSetOwnKey fulfill];
+    }];
+
+    XCTAssertNotNil(identTest.fingerPrint);
+    XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
+
+    return identTest;
+}
+
 @end
