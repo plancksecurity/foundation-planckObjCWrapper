@@ -831,7 +831,6 @@
                                 language:language
                                     full:full
                            errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
         result = nil;
         theError = error;
         [exp fulfill];
