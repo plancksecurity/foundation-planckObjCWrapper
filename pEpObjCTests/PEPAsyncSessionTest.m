@@ -791,4 +791,34 @@
     return result;
 }
 
+- (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
+                                     identity2:(PEPIdentity * _Nonnull)identity2
+                                      language:(NSString * _Nullable)language
+                                          full:(BOOL)full
+                                         error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block NSString *result = nil;
+    __block NSError *theError = nil;
+    [asyncSession getTrustwordsIdentity1:identity1
+                               identity2:identity2
+                                language:language
+                                    full:full
+                           errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        result = nil;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^(NSString * _Nonnull trustwords) {
+        result = trustwords;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
 @end
