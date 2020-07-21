@@ -393,7 +393,8 @@
     return resultingRating;
 }
 
-- (PEPIdentity * _Nullable)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError **)error
+- (PEPIdentity * _Nullable)mySelf:(PEPIdentity * _Nonnull)identity
+                            error:(NSError * _Nullable * _Nullable)error
 {
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
@@ -415,6 +416,10 @@
 
     XCTAssertNotNil(identityMyselfed);
 
+    if (error) {
+        *error = errorMyself;
+    }
+
     return identityMyselfed;
 }
 
@@ -426,17 +431,22 @@
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block NSArray<NSString *> *result = nil;
+    __block NSError *theError = nil;
     [asyncSession trustwordsForFingerprint:fingerprint
                                 languageID:languageID
                                  shortened:shortened
                              errorCallback:^(NSError * _Nonnull error) {
         XCTFail();
+        theError = error;
         [exp fulfill];
     } successCallback:^(NSArray<NSString *> * _Nonnull trustwords) {
         [exp fulfill];
         result = trustwords;
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
     return result;
 }
 
@@ -446,15 +456,20 @@
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
     XCTestExpectation *expUpdateIdent = [self expectationWithDescription:@"expUpdateIdent"];
     __block PEPIdentity *identTestUpdated = nil;
+    __block NSError *theError = nil;
     [asyncSession updateIdentity:identity
                    errorCallback:^(NSError * _Nonnull error) {
         XCTFail();
+        theError = error;
         [expUpdateIdent fulfill];
     } successCallback:^(PEPIdentity * _Nonnull identity) {
         identTestUpdated = identity;
         [expUpdateIdent fulfill];
     }];
     [self waitForExpectations:@[expUpdateIdent] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
     return identTestUpdated;
 }
 
@@ -464,15 +479,20 @@
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block NSNumber *result = nil;
+    __block NSError *theError = nil;
     [asyncSession outgoingRatingForMessage:theMessage
                              errorCallback:^(NSError * _Nonnull error) {
         XCTFail();
+        theError = error;
         [exp fulfill];
     } successCallback:^(PEPRating rating) {
         result = [NSNumber numberWithPEPRating:rating];
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
     return result;
 }
 
@@ -485,16 +505,22 @@
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block PEPMessage *result = nil;
+    __block NSError *theError = nil;
     [asyncSession encryptMessage:message
                        extraKeys:extraKeys
                        encFormat:encFormat
                    errorCallback:^(NSError * _Nonnull error) {
-
+        XCTFail();
+        theError = error;
+        [exp fulfill];
     } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
         result = destMessage;
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
     return result;
 }
 
@@ -506,15 +532,21 @@
     PEPAsyncSession *asyncSession = [PEPAsyncSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block PEPMessage *result = nil;
+    __block NSError *theError = nil;
     [asyncSession encryptMessage:message
                        extraKeys:extraKeys
                    errorCallback:^(NSError * _Nonnull error) {
-
+        XCTFail();
+        theError = error;
+        [exp fulfill];
     } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
         result = destMessage;
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
     return result;
 }
 
@@ -536,7 +568,9 @@
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
-    *error = theError;
+    if (error) {
+        *error = theError;
+    }
     return result;
 }
 
@@ -558,7 +592,9 @@
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
-    *error = theError;
+    if (error) {
+        *error = theError;
+    }
     return result;
 }
 
