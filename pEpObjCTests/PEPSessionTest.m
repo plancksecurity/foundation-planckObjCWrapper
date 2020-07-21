@@ -768,13 +768,6 @@
                            userName:@"me"
                            isOwn:NO fingerPrint:@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"];
 
-    NSString *pubKeyPartner1 = [PEPTestUtils loadResourceByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
-    XCTAssertNotNil(pubKeyPartner1);
-    NSString *pubKeyMe = [PEPTestUtils loadResourceByName:@"meATdontcare_E3BFBCA9248FC681_pub.asc"];
-    XCTAssertNotNil(pubKeyMe);
-    NSString *secKeyMe = [PEPTestUtils loadResourceByName:@"meATdontcare_E3BFBCA9248FC681_sec.asc"];
-    XCTAssertNotNil(secKeyMe);
-
     NSError *error = nil;
     NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
                                                       language:@"en" full:YES error:&error];
