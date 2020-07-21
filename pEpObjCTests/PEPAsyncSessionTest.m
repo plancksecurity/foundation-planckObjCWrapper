@@ -357,26 +357,6 @@
     return success;
 }
 
-- (PEPRating)ratingForIdentity:(PEPIdentity *)identity
-{
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
-
-    __block PEPRating resultingRating = PEPRatingB0rken;
-
-    XCTestExpectation *expRated = [self expectationWithDescription:@"expRated"];
-    [asyncSession ratingForIdentity:identity
-                      errorCallback:^(NSError * _Nonnull error) {
-        XCTFail();
-        [expRated fulfill];
-    } successCallback:^(PEPRating rating) {
-        resultingRating = rating;
-        [expRated fulfill];
-    }];
-    [self waitForExpectations:@[expRated] timeout:PEPTestInternalSyncTimeout];
-
-    return resultingRating;
-}
-
 - (PEPIdentity * _Nullable)checkMySelfImportingKeyFilePath:(NSString *)filePath
                                                    address:(NSString *)address
                                                     userID:(NSString *)userID
@@ -414,6 +394,28 @@
     } else {
         return nil;
     }
+}
+
+#pragma mark - Normal session to async
+
+- (PEPRating)ratingForIdentity:(PEPIdentity *)identity
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+
+    __block PEPRating resultingRating = PEPRatingB0rken;
+
+    XCTestExpectation *expRated = [self expectationWithDescription:@"expRated"];
+    [asyncSession ratingForIdentity:identity
+                      errorCallback:^(NSError * _Nonnull error) {
+        XCTFail();
+        [expRated fulfill];
+    } successCallback:^(PEPRating rating) {
+        resultingRating = rating;
+        [expRated fulfill];
+    }];
+    [self waitForExpectations:@[expRated] timeout:PEPTestInternalSyncTimeout];
+
+    return resultingRating;
 }
 
 @end
