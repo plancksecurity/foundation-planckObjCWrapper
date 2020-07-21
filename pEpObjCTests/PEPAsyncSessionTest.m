@@ -126,6 +126,7 @@
 - (void)testEncryptAndAttachPrivateKeyIllegalValue
 {
     PEPSession *session = [PEPSession new];
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -144,7 +145,7 @@
                                address:@"pep.test.alice@pep-project.org"
                                userID:@"alice_user_id"
                                fingerPrint:fprAlice
-                               session: session];
+                               asyncSession: asyncSession];
     XCTAssertNotNil(identAlice);
     XCTAssertEqualObjects(identAlice.fingerPrint, fprAlice);
 
@@ -155,8 +156,6 @@
     message.to = @[identAlice];
     message.shortMessage = shortMessage;
     message.longMessage = longMessage;
-
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
 
     XCTestExpectation *expectationEncrypted = [self
                                                expectationWithDescription:@"expectationEncrypted"];
@@ -234,13 +233,13 @@
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
                                     userID:(NSString *)userID
                                fingerPrint:(NSString *)fingerPrint
-                                   session:(PEPSession *)session
+                                   asyncSession:(PEPAsyncSession *)asyncSession
 {
-    if (!session) {
-        session = [PEPSession new];
+    if (!asyncSession) {
+        asyncSession = [PEPAsyncSession new];
     }
 
-    BOOL success = [PEPTestUtils importBundledKey:filePath session:session];
+    BOOL success = [self importBundledKey:filePath asyncSession:asyncSession];
     XCTAssertTrue(success);
 
     if (success) {
@@ -251,13 +250,23 @@
                                   userName:[NSString stringWithFormat:@"Some User Name %@", userID]
                                   isOwn:NO];
 
-        NSError *error = nil;
-        XCTAssertTrue([session updateIdentity:identTest error:&error]);
-        XCTAssertNil(error);
-        XCTAssertNotNil(identTest.fingerPrint);
-        XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
+        XCTestExpectation *expUpdateIdentity = [self expectationWithDescription:@"expUpdateIdentity"];
+        __block PEPIdentity *identTestUpdated = nil;
+        [asyncSession updateIdentity:identTest
+                       errorCallback:^(NSError * _Nonnull error) {
+            XCTFail();
+            [expUpdateIdentity fulfill];
+        } successCallback:^(PEPIdentity * _Nonnull identity) {
+            identTestUpdated = identity;
+            [expUpdateIdentity fulfill];
+        }];
+        [self waitForExpectations:@[expUpdateIdentity] timeout:PEPTestInternalSyncTimeout];
 
-        return identTest;
+        XCTAssertNotNil(identTestUpdated);
+        XCTAssertNotNil(identTestUpdated.fingerPrint);
+        XCTAssertEqualObjects(identTestUpdated.fingerPrint, fingerPrint);
+
+        return identTestUpdated;
     } else {
         return nil;
     }
