@@ -207,7 +207,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)ratingForIdentity:(PEPIdentity *)identity //BUFF: WIP
+- (void)ratingForIdentity:(PEPIdentity *)identity //BUFF: done
                       errorCallback:(void (^)(NSError *error))errorCallback
                     successCallback:(void (^)(PEPRating rating))successCallback
 {
