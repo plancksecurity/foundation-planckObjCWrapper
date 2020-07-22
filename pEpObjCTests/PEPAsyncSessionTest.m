@@ -313,6 +313,28 @@
     XCTAssertNil(trustwordsUndefined);
 }
 
+- (void)testGenKey
+{
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"pep.test.iosgenkey@pep-project.org"
+                            userID:@"Me"
+                            userName:@"pEp Test iOS GenKey"
+                            isOwn:YES];
+
+    NSError *error = nil;
+    identMe = [self mySelf:identMe error:&error];
+    XCTAssertNotNil(identMe);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+    XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
+
+    NSNumber *boolNum = [self isPEPUser:identMe error:&error];
+    XCTAssertNil(error);
+    XCTAssertNotNil(boolNum);
+    XCTAssertTrue(boolNum.boolValue);
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
