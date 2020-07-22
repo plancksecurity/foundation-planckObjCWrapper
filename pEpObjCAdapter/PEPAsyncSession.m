@@ -586,7 +586,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
+- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback // DZ:WIP
            successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
