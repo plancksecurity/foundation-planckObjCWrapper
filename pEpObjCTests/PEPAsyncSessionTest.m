@@ -335,6 +335,36 @@
     XCTAssertTrue(boolNum.boolValue);
 }
 
+- (void)testSetIdentityFlags
+{
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+    NSError *error = nil;
+    me = [self mySelf:me error:&error];
+    XCTAssertNotNil(me);
+    XCTAssertNil(error);
+
+    PEPIdentityFlags theFlags[] = {
+        PEPIdentityFlagsNotForSync,
+        PEPIdentityFlagsList,
+        PEPIdentityFlagsDeviceGroup,
+        0
+    };
+
+    for (int i = 0;; ++i) {
+        PEPIdentityFlags aFlag = theFlags[i];
+        if (aFlag == 0) {
+            break;
+        }
+        error = nil;
+        PEPIdentity *meNew = [self setFlags:(PEPIdentityFlags) aFlag forIdentity:me error:&error];
+        XCTAssertNotNil(meNew);
+        XCTAssertNil(error);
+
+        XCTAssertTrue(meNew.flags & theFlags[i]);
+    }
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
