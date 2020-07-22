@@ -365,6 +365,19 @@
     }
 }
 
+- (void)testTrustOwnKey
+{
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+    NSError *error = nil;
+    me = [self mySelf:me error:&error];
+    XCTAssertNotNil(me);
+    XCTAssertNil(error);
+
+    XCTAssertTrue([self trustOwnKeyIdentity:me error:&error]);
+    XCTAssertNil(error);
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
