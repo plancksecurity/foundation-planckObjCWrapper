@@ -572,7 +572,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback
+- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback // DZ: WIP
          successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
