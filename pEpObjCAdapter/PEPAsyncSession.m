@@ -236,7 +236,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)mySelf:(PEPIdentity *)identity
+- (void)mySelf:(PEPIdentity *)identity //BUFF: wip
  errorCallback:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
@@ -435,7 +435,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)getTrustwordsFpr1:(NSString *)fpr1
+- (void)getTrustwordsFpr1:(NSString *)fpr1 //BUFF: done
                      fpr2:(NSString *)fpr2
                  language:(NSString * _Nullable)language
                      full:(BOOL)full
