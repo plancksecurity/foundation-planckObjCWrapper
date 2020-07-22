@@ -877,4 +877,29 @@
     return result;
 }
 
+- (PEPIdentity *_Nullable)setFlags:(PEPIdentityFlags)flags
+                       forIdentity:(PEPIdentity *)identity
+                             error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block PEPIdentity *result = nil;
+    __block NSError *theError = nil;
+    [asyncSession setFlags:flags
+               forIdentity:identity
+             errorCallback:^(NSError * _Nonnull error) {
+        result = nil;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^(PEPIdentity *identity) {
+        result = identity;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
 @end
