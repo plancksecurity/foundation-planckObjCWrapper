@@ -378,7 +378,7 @@
     XCTAssertNil(error);
 }
 
-- (void)testKeyResetIdentity
+- (void)testKeyResetIdentityOnOwnKeyIsIllegal
 {
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
@@ -391,8 +391,9 @@
     NSString *fprOriginal = me.fingerPrint;
     XCTAssertNotNil(fprOriginal);
 
-    XCTAssertTrue([self keyReset:me fingerprint:nil error:&error]);
-    XCTAssertNil(error);
+    // Cannot reset all _own_ keys with this method, as documented
+    XCTAssertFalse([self keyReset:me fingerprint:nil error:&error]);
+    XCTAssertNotNil(error);
 
     me = [self mySelf:me error:&error];
     XCTAssertNotNil(me);
