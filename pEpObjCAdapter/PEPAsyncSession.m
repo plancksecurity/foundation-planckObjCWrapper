@@ -236,7 +236,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)mySelf:(PEPIdentity *)identity //BUFF: wip
+- (void)mySelf:(PEPIdentity *)identity //BUFF: done
  errorCallback:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
