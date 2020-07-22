@@ -1273,7 +1273,7 @@
 
 #pragma mark - key_reset_identity
 
-- (void)testKeyResetIdentity
+- (void)testKeyResetIdentityOnOwnKeyIsIllegal
 {
     PEPSession *session = [PEPSession new];
 
@@ -1287,8 +1287,9 @@
     NSString *fprOriginal = me.fingerPrint;
     XCTAssertNotNil(fprOriginal);
 
-    XCTAssertTrue([session keyReset:me fingerprint:nil error:&error]);
-    XCTAssertNil(error);
+    // Cannot reset all _own_ keys with this method, as documented
+    XCTAssertFalse([session keyReset:me fingerprint:nil error:&error]);
+    XCTAssertNotNil(error);
 
     XCTAssertTrue([session mySelf:me error:&error]);
     XCTAssertNil(error);
