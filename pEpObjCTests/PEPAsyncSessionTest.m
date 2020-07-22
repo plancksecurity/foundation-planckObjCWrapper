@@ -832,4 +832,27 @@
     return result;
 }
 
+- (NSNumber * _Nullable)isPEPUser:(PEPIdentity * _Nonnull)identity
+                            error:(NSError * _Nullable * _Nullable)error
+{
+    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block NSNumber *result = nil;
+    __block NSError *theError = nil;
+    [asyncSession isPEPUser:identity
+              errorCallback:^(NSError * _Nonnull error) {
+        result = nil;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^(BOOL enabled) {
+        result = [NSNumber numberWithBool:enabled];
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
 @end
