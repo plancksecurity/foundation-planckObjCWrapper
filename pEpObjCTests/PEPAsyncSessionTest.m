@@ -378,6 +378,32 @@
     XCTAssertNil(error);
 }
 
+- (void)testKeyResetIdentity
+{
+    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
+                                                     userName:@"userName"];
+
+    NSError *error = nil;
+    me = [self mySelf:me error:&error];
+    XCTAssertNotNil(me);
+    XCTAssertNil(error);
+
+    NSString *fprOriginal = me.fingerPrint;
+    XCTAssertNotNil(fprOriginal);
+
+    XCTAssertTrue([self keyReset:me fingerprint:nil error:&error]);
+    XCTAssertNil(error);
+
+    me = [self mySelf:me error:&error];
+    XCTAssertNotNil(me);
+    XCTAssertNil(error);
+
+    NSString *fprAfterReset = me.fingerPrint;
+    XCTAssertNotNil(fprAfterReset);
+
+    XCTAssertNotEqual(fprOriginal, fprAfterReset);
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
