@@ -554,7 +554,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)keyReset:(PEPIdentity *)identity
+- (void)keyReset:(PEPIdentity *)identity // DZ: WIP
      fingerprint:(NSString * _Nullable)fingerprint
    errorCallback:(void (^)(NSError *error))errorCallback
  successCallback:(void (^)(void))successCallback
@@ -572,7 +572,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback // DZ: WIP
+- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback // DZ: DONE
          successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
