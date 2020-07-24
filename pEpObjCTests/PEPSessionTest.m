@@ -1177,59 +1177,6 @@
     [self shutdownSync];
 }
 
-/// Test creating a new own identity with pEp sync disabled,
-/// and then creating one with sync enabled, ensuring that
-/// the beacon (on the 2nd identity with sync enabled) gets send out.
-- (void)testMyselfSyncDisabledMyselfSyncEnabled
-{
-    PEPSession *session = [PEPSession new];
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
-    XCTAssertNil(self.sendMessageDelegate.lastMessage);
-
-    PEPIdentity *identMeDisabled = [[PEPIdentity alloc]
-                                    initWithAddress:@"me-myself-and-i@pep-project.org"
-                                    userID:@"me-myself-and-i"
-                                    userName:@"pEp Me"
-                                    isOwn:YES];
-    identMeDisabled.flags |= PEPIdentityFlagsNotForSync;
-
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMeDisabled error:&error]);
-    XCTAssertNil(error);
-    XCTAssertTrue([session disableSyncForIdentity:identMeDisabled error:&error]);
-    XCTAssertNil(error);
-
-    [self startSync];
-
-    [NSThread sleepForTimeInterval:1];
-    XCTAssertNil(self.sendMessageDelegate.lastMessage);
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
-
-    PEPIdentity *identMeEnsabled = [[PEPIdentity alloc]
-                                    initWithAddress:@"me-myself-and-i_enabled@pep-project.org"
-                                    userID:@"me-myself-and-i_enabled"
-                                    userName:@"pEp Me_enabled"
-                                    isOwn:YES];
-
-    error = nil;
-    XCTAssertTrue([session mySelf:identMeEnsabled error:&error]);
-    XCTAssertNil(error);
-
-    XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
-                                          initWithKeyPath:@"lastMessage"
-                                          object:self.sendMessageDelegate];
-    [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
-    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-    XCTAssertGreaterThan(self.sendMessageDelegate.messages.count, 0);
-
-    XCTAssertEqualObjects(self.sendMessageDelegate.lastMessage.from.address,
-                          identMeEnsabled.address);
-
-    [self shutdownSync];
-}
-
 /// ENGINE-684
 - (void)testMyselfWithQueryKeySyncEnabledForIdentity
 {
