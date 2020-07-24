@@ -2051,7 +2051,11 @@
     XCTAssertNil(error);
     XCTAssertNotNil(decMsg);
 
-    XCTAssertEqual(pEpRating, expectedRating);
+    if (!toSelf) {
+        // Only check this for outgoing mails. For drafts etc. this rating looks incorrect
+        // and the x-encstatus is the relevant one.
+        XCTAssertEqual(pEpRating, expectedRating);
+    }
 
     NSArray * encStatusField = nil;
     for (NSArray *field in decMsg.optionalFields) {
