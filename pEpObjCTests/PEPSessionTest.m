@@ -1217,6 +1217,8 @@
     XCTAssertTrue([session mySelf:identMeEnsabled error:&error]);
     XCTAssertNil(error);
 
+    [self startSync];
+
     XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
                                           initWithKeyPath:@"lastMessage"
                                           object:self.sendMessageDelegate];
