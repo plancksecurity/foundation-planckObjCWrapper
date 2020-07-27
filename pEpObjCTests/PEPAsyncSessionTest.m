@@ -335,36 +335,6 @@
     XCTAssertTrue(boolNum.boolValue);
 }
 
-- (void)testSetIdentityFlags
-{
-    PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
-                                                     userName:@"userName"];
-    NSError *error = nil;
-    me = [self mySelf:me error:&error];
-    XCTAssertNotNil(me);
-    XCTAssertNil(error);
-
-    PEPIdentityFlags theFlags[] = {
-        PEPIdentityFlagsNotForSync,
-        PEPIdentityFlagsList,
-        PEPIdentityFlagsDeviceGroup,
-        0
-    };
-
-    for (int i = 0;; ++i) {
-        PEPIdentityFlags aFlag = theFlags[i];
-        if (aFlag == 0) {
-            break;
-        }
-        error = nil;
-        PEPIdentity *meNew = [self setFlags:(PEPIdentityFlags) aFlag forIdentity:me error:&error];
-        XCTAssertNotNil(meNew);
-        XCTAssertNil(error);
-
-        XCTAssertTrue(meNew.flags & theFlags[i]);
-    }
-}
-
 - (void)testTrustOwnKey
 {
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
@@ -938,31 +908,6 @@
         [exp fulfill];
     } successCallback:^(BOOL enabled) {
         result = [NSNumber numberWithBool:enabled];
-        [exp fulfill];
-    }];
-    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
-    if (error) {
-        *error = theError;
-    }
-    return result;
-}
-
-- (PEPIdentity *_Nullable)setFlags:(PEPIdentityFlags)flags
-                       forIdentity:(PEPIdentity *)identity
-                             error:(NSError * _Nullable * _Nullable)error
-{
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
-    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
-    __block PEPIdentity *result = nil;
-    __block NSError *theError = nil;
-    [asyncSession setFlags:flags
-               forIdentity:identity
-             errorCallback:^(NSError * _Nonnull error) {
-        result = nil;
-        theError = error;
-        [exp fulfill];
-    } successCallback:^(PEPIdentity *identity) {
-        result = identity;
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
