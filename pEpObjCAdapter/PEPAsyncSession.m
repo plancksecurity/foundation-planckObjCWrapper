@@ -457,7 +457,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)languageList:(void (^)(NSError *error))errorCallback
+- (void)languageList:(void (^)(NSError *error))errorCallback // DZ: WIP
      successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback
 
 {
@@ -472,7 +472,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)isPEPUser:(PEPIdentity *)identity // DZ: WIP
+- (void)isPEPUser:(PEPIdentity *)identity // DZ: DONE
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(BOOL enabled))successCallback
 {
