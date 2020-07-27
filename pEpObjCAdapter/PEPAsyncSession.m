@@ -472,7 +472,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)isPEPUser:(PEPIdentity *)identity
+- (void)isPEPUser:(PEPIdentity *)identity // DZ: WIP
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(BOOL enabled))successCallback
 {
@@ -487,7 +487,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)setOwnKey:(PEPIdentity *)identity // DZ: WIP
+- (void)setOwnKey:(PEPIdentity *)identity // DZ: DONE
       fingerprint:(NSString *)fingerprint
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(void))successCallback
