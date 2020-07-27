@@ -539,7 +539,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)trustOwnKeyIdentity:(PEPIdentity *)identity // DZ: WIP
+- (void)trustOwnKeyIdentity:(PEPIdentity *)identity // DZ: DONE (not used by app/MM)
               errorCallback:(void (^)(NSError *error))errorCallback
             successCallback:(void (^)(void))successCallback
 {
