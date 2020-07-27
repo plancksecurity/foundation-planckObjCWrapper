@@ -539,7 +539,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)trustOwnKeyIdentity:(PEPIdentity *)identity
+- (void)trustOwnKeyIdentity:(PEPIdentity *)identity // DZ: WIP
               errorCallback:(void (^)(NSError *error))errorCallback
             successCallback:(void (^)(void))successCallback
 {
@@ -554,7 +554,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)keyReset:(PEPIdentity *)identity // DZ: WIP
+- (void)keyReset:(PEPIdentity *)identity // DZ: DONE
      fingerprint:(NSString * _Nullable)fingerprint
    errorCallback:(void (^)(NSError *error))errorCallback
  successCallback:(void (^)(void))successCallback
