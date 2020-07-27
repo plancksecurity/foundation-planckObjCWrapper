@@ -487,7 +487,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)setOwnKey:(PEPIdentity *)identity
+- (void)setOwnKey:(PEPIdentity *)identity // DZ: WIP
       fingerprint:(NSString *)fingerprint
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(void))successCallback
