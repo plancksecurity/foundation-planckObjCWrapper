@@ -505,22 +505,6 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)setFlags:(PEPIdentityFlags)flags // DZ: WIP
-     forIdentity:(PEPIdentity *)identity
-   errorCallback:(void (^)(NSError *error))errorCallback
- successCallback:(void (^)(PEPIdentity * _Nonnull))successCallback
-{
-    dispatch_async(queue, ^{
-        NSError *error = nil;
-        BOOL success = [[PEPSession new] setFlags:flags forIdentity:identity error:&error];
-        if (success) {
-            successCallback(identity);
-        } else {
-            errorCallback(error);
-        }
-    });
-}
-
 - (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result // DZ: DONE
              identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
                  errorCallback:(void (^)(NSError *error))errorCallback
