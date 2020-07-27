@@ -521,7 +521,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result
+- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result // DZ: WIP
              identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback
