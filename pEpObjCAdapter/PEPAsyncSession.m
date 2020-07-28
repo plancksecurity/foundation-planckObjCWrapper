@@ -399,7 +399,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
 }
 
 
-- (void)getLog:(void (^)(NSError *error))errorCallback
+- (void)getLog:(void (^)(NSError *error))errorCallback // DZ: WIP
 successCallback:(void (^)(NSString *log))successCallback
 {
     dispatch_async(queue, ^{
@@ -457,7 +457,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)languageList:(void (^)(NSError *error))errorCallback // DZ: WIP
+- (void)languageList:(void (^)(NSError *error))errorCallback // DZ: DONE
      successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback
 
 {
