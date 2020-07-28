@@ -361,7 +361,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)importKey:(NSString *)keydata
+- (void)importKey:(NSString *)keydata // DZ: WIP
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback
 {
@@ -376,7 +376,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)logTitle:(NSString *)title // DZ: WIP
+- (void)logTitle:(NSString *)title // DZ: DONE (not used by app/MM)
           entity:(NSString *)entity
      description:(NSString * _Nullable)description
          comment:(NSString * _Nullable)comment
