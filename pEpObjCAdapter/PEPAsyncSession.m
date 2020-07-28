@@ -376,7 +376,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)logTitle:(NSString *)title
+- (void)logTitle:(NSString *)title // DZ: WIP
           entity:(NSString *)entity
      description:(NSString * _Nullable)description
          comment:(NSString * _Nullable)comment
@@ -399,7 +399,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
 }
 
 
-- (void)getLog:(void (^)(NSError *error))errorCallback // DZ: WIP
+- (void)getLog:(void (^)(NSError *error))errorCallback // DZ: DONE (not used by app/MM)
 successCallback:(void (^)(NSString *log))successCallback
 {
     dispatch_async(queue, ^{
