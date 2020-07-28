@@ -345,7 +345,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
+- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity // DZ: WIP
                          errorCallback:(void (^)(NSError *error))errorCallback
                        successCallback:(void (^)(BOOL enabled))successCallback
 {
@@ -361,7 +361,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)importKey:(NSString *)keydata // DZ: WIP
+- (void)importKey:(NSString *)keydata // DZ: DONE
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback
 {
