@@ -315,7 +315,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)enableSyncForIdentity:(PEPIdentity *)identity
+- (void)enableSyncForIdentity:(PEPIdentity *)identity // DZ: WIP
                 errorCallback:(void (^)(NSError *error))errorCallback
               successCallback:(void (^)(void))successCallback
 {
@@ -330,7 +330,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)disableSyncForIdentity:(PEPIdentity *)identity // DZ: WIP
+- (void)disableSyncForIdentity:(PEPIdentity *)identity // DZ: DONE
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback
 {
