@@ -300,7 +300,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)keyResetTrust:(PEPIdentity *)identity
+- (void)keyResetTrust:(PEPIdentity *)identity // DZ: WIP
         errorCallback:(void (^)(NSError *error))errorCallback
       successCallback:(void (^)(void))successCallback
 {
@@ -315,7 +315,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)enableSyncForIdentity:(PEPIdentity *)identity // DZ: WIP
+- (void)enableSyncForIdentity:(PEPIdentity *)identity // DZ: DONE
                 errorCallback:(void (^)(NSError *error))errorCallback
               successCallback:(void (^)(void))successCallback
 {
