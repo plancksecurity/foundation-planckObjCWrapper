@@ -183,7 +183,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)outgoingRatingForMessage:(PEPMessage *)theMessage //TODO:
+- (void)outgoingRatingForMessage:(PEPMessage *)theMessage //BUFF: WIP
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPRating rating))successCallback
 {
