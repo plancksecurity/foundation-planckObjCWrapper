@@ -253,7 +253,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)updateIdentity:(PEPIdentity *)identity // DZ: WIP
+- (void)updateIdentity:(PEPIdentity *)identity // DZ: DONE
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
