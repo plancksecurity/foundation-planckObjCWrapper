@@ -345,7 +345,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity // BUFF: WIP
+- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity // BUFF: DONE
                          errorCallback:(void (^)(NSError *error))errorCallback
                        successCallback:(void (^)(BOOL enabled))successCallback
 {
