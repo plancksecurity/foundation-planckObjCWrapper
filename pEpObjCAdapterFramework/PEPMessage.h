@@ -41,6 +41,9 @@
 @property (nonatomic, nullable) PEPIdentity *receivedBy;
 @property (nonatomic) PEPMsgDirection direction;
 
+/// A copy constructor.
+- (instancetype _Nonnull)initWithMessage:(PEPMessage *)message;
+
 /**
  For backwards compatiblity.
  */
