@@ -200,14 +200,17 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = PEP_arrayToStringlist(xKeyList);
     }
 
-    __block PEPRating theRating = *rating;
+    PEPRating originalRating = *rating;
+    __block PEPRating resultRating = PEPRatingUndefined;
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return re_evaluate_message_rating(session,
-                                          _src,
-                                          theKeys,
-                                          (PEP_rating) theRating,
-                                          (PEP_rating *) &theRating);
+        PEP_STATUS tmpStatus = re_evaluate_message_rating(session,
+                                                          _src,
+                                                          theKeys,
+                                                          (PEP_rating) originalRating,
+                                                          (PEP_rating *) &resultRating);
+        *rating = resultRating;
+        return tmpStatus;
     }];
 
     free_message(_src);
