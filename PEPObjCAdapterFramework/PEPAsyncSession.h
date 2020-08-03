@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)reEvaluateMessage:(PEPMessage *)message
                  xKeyList:(PEPStringList *_Nullable)xKeyList
+                   rating:(PEPRating)originalRating
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback;
 
