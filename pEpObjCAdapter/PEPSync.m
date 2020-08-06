@@ -144,13 +144,19 @@ static __weak PEPSync *s_pEpSync;
     return s_inject_sync_event;
 }
 
++ (ensure_passphrase_t)ensurePassphraseCallback
+{
+    return s_ensure_passphrase;
+}
+
 + (PEP_SESSION)createSession:(NSError **)error
 {
     PEP_SESSION session = NULL;
 
     PEP_STATUS status = init(&session,
                              [PEPSync messageToSendCallback],
-                             [PEPSync injectSyncCallback]);
+                             [PEPSync injectSyncCallback],
+                             [PEPSync ensurePassphraseCallback]);
 
     if (status != PEP_STATUS_OK) {
         if (error) {
