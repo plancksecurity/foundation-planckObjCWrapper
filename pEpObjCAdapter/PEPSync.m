@@ -56,6 +56,9 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
  */
 + (t_injectSyncCallback)injectSyncCallback;
 
+/// @Return: The callback for ensure_passphrase that should be used on every session init.
++ (ensure_passphrase_t)ensurePassphraseCallback;
+
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg;
 
 - (int)injectSyncEvent:(SYNC_EVENT)event isFromShutdown:(BOOL)isFromShutdown;
