@@ -96,18 +96,12 @@ static int s_inject_sync_event(SYNC_EVENT ev, void *management)
 
 static PEP_STATUS s_ensure_passphrase(PEP_SESSION session, const char *fpr)
 {
-    PEPSync *pEpSync = [PEPSync sharedInstance];
+    PEPInternalSession *internalSession = [[PEPInternalSession alloc] init];
+    PEP_STATUS status = [internalSession runWithPasswords:^PEP_STATUS(PEP_SESSION innerSessionNotToUse) {
+        return probe_encrypt(session, fpr); // Note the use of the engine session
+    }];
 
-    if (pEpSync) {
-        PEPInternalSession *internalSession = [[PEPInternalSession alloc] init];
-        [internalSession runWithPasswords:^PEP_STATUS(PEP_SESSION innerSessionNotToUse) {
-            return probe_encrypt(session, fpr); // Note the use of the engine session
-        }];
-
-        return PEP_STATUS_OK;
-    } else {
-        return PEP_CANNOT_CONFIG;
-    }
+    return status;
 }
 
 // MARK: - Callbacks called by the engine, used in register_sync_callbacks
