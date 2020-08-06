@@ -32,6 +32,9 @@ extern const NSUInteger PEPPassphraseCacheMaxNumberOfPassphrases;
 /// should be reset.
 - (void)resetTimeoutForPassphrase:(NSString *)passphrase;
 
+/// Get the (global) passphrase cache
++ (PEPPassphraseCache * _Nonnull)passphraseCache;
+
 @end
 
 NS_ASSUME_NONNULL_END

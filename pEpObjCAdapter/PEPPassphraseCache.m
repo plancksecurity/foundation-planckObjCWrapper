@@ -17,6 +17,8 @@ const NSUInteger PEPPassphraseCacheMaxNumberOfPassphrases = 20;
 static NSTimeInterval s_defaultTimeoutInSeconds = 10 * 60;
 static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 
+PEPPassphraseCache * _Nullable g_passphraseCache;
+
 /// Extension for internals
 @interface PEPPassphraseCache ()
 
@@ -154,6 +156,16 @@ static NSTimeInterval s_defaultCheckExpiryInterval = 60;
 
     [self.mutablePassphraseEntries removeAllObjects];
     [self.mutablePassphraseEntries addObjectsFromArray:resultingPassphrases];
+}
+
++ (PEPPassphraseCache * _Nonnull)passphraseCache
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        g_passphraseCache = [[PEPPassphraseCache alloc] init];
+    });
+
+    return g_passphraseCache;
 }
 
 #pragma mark - Helpers
