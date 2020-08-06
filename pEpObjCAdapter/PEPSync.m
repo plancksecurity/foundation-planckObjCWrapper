@@ -46,14 +46,10 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 /// The session created and used by the sync loop
 @property (nonatomic, nullable) PEPInternalSession *syncLoopSession;
 
-/**
- @Return: The callback for message sending that should be used on every session init.
- */
+/// @Return: The callback for message sending that should be used on every session init.
 + (t_messageToSendCallback)messageToSendCallback;
 
-/**
- @Return: The callback for injectiong sync messages that should be used on every session init.
- */
+/// @Return: The callback for injectiong sync messages that should be used on every session init.
 + (t_injectSyncCallback)injectSyncCallback;
 
 /// @Return: The callback for ensure_passphrase that should be used on every session init.
