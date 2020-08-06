@@ -97,7 +97,8 @@ static int s_inject_sync_event(SYNC_EVENT ev, void *management)
 static PEP_STATUS s_ensure_passphrase(PEP_SESSION session, const char *fpr)
 {
     PEPInternalSession *internalSession = [[PEPInternalSession alloc] init];
-    PEP_STATUS status = [internalSession runWithPasswords:^PEP_STATUS(PEP_SESSION innerSessionNotToUse) {
+    PEP_STATUS status = (PEP_STATUS) [internalSession
+                                      runWithPasswords:^PEP_STATUS(PEP_SESSION innerSessionNotToUse) {
         return probe_encrypt(session, fpr); // Note the use of the engine session
     }];
 
