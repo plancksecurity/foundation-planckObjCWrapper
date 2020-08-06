@@ -94,6 +94,18 @@ static int s_inject_sync_event(SYNC_EVENT ev, void *management)
     }
 }
 
+static PEP_STATUS s_ensure_passphrase(PEP_SESSION session, const char* fpr)
+{
+    PEPSync *pEpSync = [PEPSync sharedInstance];
+
+    if (pEpSync) {
+        // TODO
+        return PEP_STATUS_OK;
+    } else {
+        return PEP_CANNOT_CONFIG;
+    }
+}
+
 // MARK: - Callbacks called by the engine, used in register_sync_callbacks
 
 static PEP_STATUS s_notifyHandshake(pEp_identity *me,
