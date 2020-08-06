@@ -23,6 +23,7 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"
+#import "PEPInternalSession+PassphraseCache.h"
 
 // MARK: - Internals
 
@@ -98,7 +99,11 @@ static PEP_STATUS s_ensure_passphrase(PEP_SESSION session, const char* fpr)
     PEPSync *pEpSync = [PEPSync sharedInstance];
 
     if (pEpSync) {
-        // TODO
+        PEPInternalSession *internalSession = [[PEPInternalSession alloc] init];
+        [internalSession runWithPasswords:^PEP_STATUS(PEP_SESSION innerSessionNotToUse) {
+            return probe_encrypt(session, fpr); // Note the use of the engine session
+        }];
+
         return PEP_STATUS_OK;
     } else {
         return PEP_CANNOT_CONFIG;
