@@ -70,7 +70,7 @@
 		435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F518F22204A67006EB11F /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4360AA0E2227F22900E62E5A /* PEPObjCAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
-		436C9A3324DC48B600007A3D /* PEPPassphraseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */; };
+		436C9A3E24DC532600007A3D /* PEPPassphraseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */; };
 		436E916E24B65805000296FF /* PEPPassphraseProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
@@ -710,6 +710,7 @@
 				435F517D222046C2006EB11F /* PEPSync.m in Sources */,
 				435F516D222046C2006EB11F /* PEPQueue.m in Sources */,
 				43AD0E3122E99ECE00D46F56 /* PEPInternalConstants.m in Sources */,
+				436C9A3E24DC532600007A3D /* PEPPassphraseUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,7 +722,6 @@
 				4396CECB2187220200FDD398 /* PEPSessionTestSendMessageDelegate.m in Sources */,
 				152D58EF201B6DB200036219 /* PEPMessageUtilTest.m in Sources */,
 				434707F924C30E9700E05485 /* PEPAsyncSessionTest.m in Sources */,
-				436C9A3324DC48B600007A3D /* PEPPassphraseUtil.m in Sources */,
 				152A9C472010F50400F962ED /* PEPSessionTest.m in Sources */,
 				434226811D4F60000083ED79 /* PepTests.m in Sources */,
 				4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */,
