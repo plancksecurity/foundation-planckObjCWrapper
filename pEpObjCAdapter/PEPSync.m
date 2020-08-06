@@ -94,7 +94,7 @@ static int s_inject_sync_event(SYNC_EVENT ev, void *management)
     }
 }
 
-static PEP_STATUS s_ensure_passphrase(PEP_SESSION session, const char* fpr)
+static PEP_STATUS s_ensure_passphrase(PEP_SESSION session, const char *fpr)
 {
     PEPSync *pEpSync = [PEPSync sharedInstance];
 
