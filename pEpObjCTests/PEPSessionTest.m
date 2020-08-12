@@ -1467,7 +1467,7 @@
     [self shutdownSync];
 }
 
-#pragma mark - Passphrase Cache
+#pragma mark - Passphrases
 
 /// Use case: No passphrase provider
 - (void)testPassphraseProviderNone
