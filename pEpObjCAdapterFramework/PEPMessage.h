@@ -14,6 +14,8 @@
 @class PEPIdentity;
 @class PEPAttachment;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PEPMessage : NSObject
 
 @property (nonatomic, nullable) NSString *messageID;
@@ -42,21 +44,23 @@
 @property (nonatomic) PEPMsgDirection direction;
 
 /// A copy constructor.
-- (instancetype _Nonnull)initWithMessage:(PEPMessage *)message;
+- (instancetype)initWithMessage:(PEPMessage *)message;
 
 /**
  For backwards compatiblity.
  */
-- (instancetype _Nonnull)initWithDictionary:(PEPDict * _Nonnull)dict;
+- (instancetype)initWithDictionary:(PEPDict *)dict;
 
 /**
  For backwards compatiblity.
  */
-- (PEPDict * _Nonnull)dictionary;
+- (PEPDict *)dictionary;
 
 /**
  For backwards compatiblity.
  */
-- (PEPMutableDict * _Nonnull)mutableDictionary;
+- (PEPMutableDict *)mutableDictionary;
 
 @end
+
+NS_ASSUME_NONNULL_END
