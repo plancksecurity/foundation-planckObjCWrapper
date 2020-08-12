@@ -916,7 +916,6 @@ static NSDictionary *stringToRating;
       [NSNumber numberWithInteger:PEPRatingCannotDecrypt]: @"cannot_decrypt",
       [NSNumber numberWithInteger:PEPRatingHaveNoKey]: @"have_no_key",
       [NSNumber numberWithInteger:PEPRatingUnencrypted]: @"unencrypted",
-      [NSNumber numberWithInteger:PEPRatingUnencryptedForSome]: @"unencrypted_for_some",
       [NSNumber numberWithInteger:PEPRatingUnreliable]: @"unreliable",
       [NSNumber numberWithInteger:PEPRatingReliable]: @"reliable",
       [NSNumber numberWithInteger:PEPRatingTrusted]: @"trusted",

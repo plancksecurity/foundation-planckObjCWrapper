@@ -787,8 +787,6 @@
     XCTAssertEqual([session ratingFromString:@"cannot_decrypt"], PEPRatingCannotDecrypt);
     XCTAssertEqual([session ratingFromString:@"have_no_key"], PEPRatingHaveNoKey);
     XCTAssertEqual([session ratingFromString:@"unencrypted"], PEPRatingUnencrypted);
-    XCTAssertEqual([session ratingFromString:@"unencrypted_for_some"],
-                   PEPRatingUnencryptedForSome);
     XCTAssertEqual([session ratingFromString:@"unreliable"], PEPRatingUnreliable);
     XCTAssertEqual([session ratingFromString:@"reliable"], PEPRatingReliable);
     XCTAssertEqual([session ratingFromString:@"trusted"], PEPRatingTrusted);
@@ -808,8 +806,6 @@
     XCTAssertEqualObjects([session stringFromRating:PEPRatingCannotDecrypt], @"cannot_decrypt");
     XCTAssertEqualObjects([session stringFromRating:PEPRatingHaveNoKey], @"have_no_key");
     XCTAssertEqualObjects([session stringFromRating:PEPRatingUnencrypted], @"unencrypted");
-    XCTAssertEqualObjects([session stringFromRating:PEPRatingUnencryptedForSome],
-                          @"unencrypted_for_some");
     XCTAssertEqualObjects([session stringFromRating:PEPRatingUnreliable], @"unreliable");
     XCTAssertEqualObjects([session stringFromRating:PEPRatingReliable], @"reliable");
     XCTAssertEqualObjects([session stringFromRating:PEPRatingTrusted], @"trusted");
