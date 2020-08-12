@@ -1162,7 +1162,7 @@ static NSDictionary *stringToRating;
 
 - (PEPPassphraseCache * _Nonnull)passphraseCache
 {
-    return [PEPPassphraseCache passphraseCache];
+    return [PEPPassphraseCache sharedInstance];
 }
 
 @end

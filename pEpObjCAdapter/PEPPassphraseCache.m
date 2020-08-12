@@ -158,7 +158,7 @@ PEPPassphraseCache * _Nullable g_passphraseCache;
     [self.mutablePassphraseEntries addObjectsFromArray:resultingPassphrases];
 }
 
-+ (PEPPassphraseCache * _Nonnull)passphraseCache
++ (PEPPassphraseCache * _Nonnull)sharedInstance
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

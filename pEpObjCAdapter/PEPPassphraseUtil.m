@@ -22,11 +22,11 @@
     PEP_STATUS lastStatus = PEP_UNKNOWN_ERROR;
 
     NSMutableArray *passphrases = [NSMutableArray
-                                   arrayWithArray:[[PEPPassphraseCache passphraseCache] passphrases]];
+                                   arrayWithArray:[[PEPPassphraseCache sharedInstance] passphrases]];
     [passphrases insertObject:@"" atIndex:0];
 
-    if ([[PEPPassphraseCache passphraseCache] storedPassphrase]) {
-        [passphrases insertObject:[[PEPPassphraseCache passphraseCache] storedPassphrase] atIndex:1];
+    if ([[PEPPassphraseCache sharedInstance] storedPassphrase]) {
+        [passphrases insertObject:[[PEPPassphraseCache sharedInstance] storedPassphrase] atIndex:1];
     }
 
     for (NSString *passphrase in passphrases) {
@@ -40,7 +40,7 @@
 
         if (lastStatus != PEP_PASSPHRASE_REQUIRED && lastStatus != PEP_WRONG_PASSPHRASE) {
             // The passphrase worked, so reset its timeout
-            [[PEPPassphraseCache passphraseCache] resetTimeoutForPassphrase:passphrase];
+            [[PEPPassphraseCache sharedInstance] resetTimeoutForPassphrase:passphrase];
 
             return (PEPStatus) lastStatus;
         }
@@ -90,7 +90,7 @@
             NSString *normalizedPassphrase = [lastPassphrase normalizedPassphraseWithError:nil];
 
             //Add the new passphrase to our cache to not having to bother the client again.
-            [[PEPPassphraseCache passphraseCache] addPassphrase:normalizedPassphrase];
+            [[PEPPassphraseCache sharedInstance] addPassphrase:normalizedPassphrase];
 
             if (normalizedPassphrase == nil) {
                 // Assume excessively long passphrase means PEP_WRONG_PASSPHRASE
@@ -113,7 +113,7 @@
             if (lastPassphraseProviderStatus != PEP_PASSPHRASE_REQUIRED &&
                 lastPassphraseProviderStatus != PEP_WRONG_PASSPHRASE) {
                 // The passphrase worked, so reset its timeout
-                [[PEPPassphraseCache passphraseCache] resetTimeoutForPassphrase:lastPassphrase];
+                [[PEPPassphraseCache sharedInstance] resetTimeoutForPassphrase:lastPassphrase];
 
                 return (PEPStatus) lastPassphraseProviderStatus;
             }

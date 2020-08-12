@@ -1647,7 +1647,7 @@
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
 
-    [[PEPPassphraseCache passphraseCache] setStoredPassphrase:nil];
+    [[PEPPassphraseCache sharedInstance] setStoredPassphrase:nil];
 
     PEPPassphraseProviderMock *mock = [[PEPPassphraseProviderMock alloc] initWithPassphrases:@[]];
     [PEPObjCAdapter setPassphraseProvider:mock];
