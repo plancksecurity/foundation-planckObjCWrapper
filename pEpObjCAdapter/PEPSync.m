@@ -23,6 +23,7 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"
+#import "PEPPassphraseUtil.h"
 
 // MARK: - Internals
 
@@ -46,15 +47,14 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 /// The session created and used by the sync loop
 @property (nonatomic, nullable) PEPInternalSession *syncLoopSession;
 
-/**
- @Return: The callback for message sending that should be used on every session init.
- */
+/// @Return: The callback for message sending that should be used on every session init.
 + (t_messageToSendCallback)messageToSendCallback;
 
-/**
- @Return: The callback for injectiong sync messages that should be used on every session init.
- */
+/// @Return: The callback for injectiong sync messages that should be used on every session init.
 + (t_injectSyncCallback)injectSyncCallback;
+
+/// @Return: The callback for ensure_passphrase that should be used on every session init.
++ (ensure_passphrase_t)ensurePassphraseCallback;
 
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg;
 
@@ -92,6 +92,17 @@ static int s_inject_sync_event(SYNC_EVENT ev, void *management)
     } else {
         return 1;
     }
+}
+
+static PEP_STATUS s_ensure_passphrase(PEP_SESSION session, const char *fpr)
+{
+    PEP_STATUS status = (PEP_STATUS) [PEPPassphraseUtil
+                                      runWithPasswordsSession:session
+                                      block:^PEP_STATUS(PEP_SESSION session) {
+        return probe_encrypt(session, fpr);
+    }];
+
+    return status;
 }
 
 // MARK: - Callbacks called by the engine, used in register_sync_callbacks
@@ -133,13 +144,19 @@ static __weak PEPSync *s_pEpSync;
     return s_inject_sync_event;
 }
 
++ (ensure_passphrase_t)ensurePassphraseCallback
+{
+    return s_ensure_passphrase;
+}
+
 + (PEP_SESSION)createSession:(NSError **)error
 {
     PEP_SESSION session = NULL;
 
     PEP_STATUS status = init(&session,
                              [PEPSync messageToSendCallback],
-                             [PEPSync injectSyncCallback]);
+                             [PEPSync injectSyncCallback],
+                             [PEPSync ensurePassphraseCallback]);
 
     if (status != PEP_STATUS_OK) {
         if (error) {

@@ -1467,7 +1467,7 @@
     [self shutdownSync];
 }
 
-#pragma mark - Passphrase Cache
+#pragma mark - Passphrases
 
 /// Use case: No passphrase provider
 - (void)testPassphraseProviderNone
@@ -1619,6 +1619,43 @@
                    status:&status
                    error:&error]);
     XCTAssertNil(error);
+}
+
+/// @Note This test *assumes* that a key reset on an own key (with set passphrase)
+/// will call ensure_passphrase if that passphrase has been "forgotten",
+/// which in turn invokes the currently set passphrase provider.
+/// That the passphrase provider was invoked
+/// by ensure_passphrase (and not by the earlier passphrase handling in
+/// `[PEPInternalSession keyResetAllOwnKeysError]` *cannot be easily proven*.
+- (void)testEnsurePassphrase
+{
+    NSString *passphrase = @"a";
+
+    NSError *error = nil;
+    PEPSession *session = [PEPSession new];
+
+    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:passphrase error:&error]);
+    XCTAssertNil(error);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+
+    error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [[PEPPassphraseCache sharedInstance] setStoredPassphrase:nil];
+
+    PEPPassphraseProviderMock *mock = [[PEPPassphraseProviderMock alloc] initWithPassphrases:@[]];
+    [PEPObjCAdapter setPassphraseProvider:mock];
+
+    error = nil;
+    XCTAssertFalse([session keyResetAllOwnKeysError:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertTrue(mock.passphraseRequiredWasCalled);
 }
 
 #pragma mark - Helpers
