@@ -72,7 +72,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 {
     if (passphrase == nil) {
         s_passphraseForNewKeys = nil;
-        [[PEPInternalSession passphraseCache] setStoredPassphrase:passphrase];
+        [[PEPPassphraseCache sharedInstance] setStoredPassphrase:passphrase];
 
         return YES;
     } else {
@@ -83,7 +83,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
         }
 
         s_passphraseForNewKeys = normalizedPassphrase;
-        [[PEPInternalSession passphraseCache] setStoredPassphrase:passphrase];
+        [[PEPPassphraseCache sharedInstance] setStoredPassphrase:passphrase];
 
         return YES;
     }
