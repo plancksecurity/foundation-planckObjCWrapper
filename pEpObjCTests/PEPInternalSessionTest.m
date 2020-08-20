@@ -17,16 +17,16 @@
 #import "PEPSync.h"
 #import "PEPSendMessageDelegate.h"
 
-#import "PEPSessionTestNotifyHandshakeDelegate.h"
-#import "PEPSessionTestSendMessageDelegate.h"
+#import "PEPInternalSessionTestNotifyHandshakeDelegate.h"
+#import "PEPInternalSessionTestSendMessageDelegate.h"
 #import "PEPPassphraseCache+Reset.h"
 #import "PEPPassphraseProviderMock.h"
 
 @interface PEPInternalSessionTest : XCTestCase
 
 @property (nonatomic) PEPSync *sync;
-@property (nonatomic) PEPSessionTestSendMessageDelegate *sendMessageDelegate;
-@property (nonatomic) PEPSessionTestNotifyHandshakeDelegate *notifyHandshakeDelegate;
+@property (nonatomic) PEPInternalSessionTestSendMessageDelegate *sendMessageDelegate;
+@property (nonatomic) PEPInternalSessionTestNotifyHandshakeDelegate *notifyHandshakeDelegate;
 
 @end
 
@@ -1724,8 +1724,8 @@
 
 - (void)startSync
 {
-    self.sendMessageDelegate = [PEPSessionTestSendMessageDelegate new];
-    self.notifyHandshakeDelegate = [PEPSessionTestNotifyHandshakeDelegate new];
+    self.sendMessageDelegate = [PEPInternalSessionTestSendMessageDelegate new];
+    self.notifyHandshakeDelegate = [PEPInternalSessionTestNotifyHandshakeDelegate new];
 
     self.sync = [[PEPSync alloc]
                  initWithSendMessageDelegate:self.sendMessageDelegate
