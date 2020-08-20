@@ -21,6 +21,8 @@
 #import "PEPInternalSessionTestSendMessageDelegate.h"
 #import "PEPPassphraseCache+Reset.h"
 #import "PEPPassphraseProviderMock.h"
+#import "PEPSessionProvider.h"
+#import "PEPInternalSession.h"
 
 @interface PEPInternalSessionTest : XCTestCase
 
@@ -56,7 +58,7 @@
 
 - (void)testTrustWords
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     NSError *error = nil;
     NSArray *trustwords = [session
@@ -74,7 +76,7 @@
 
 - (void)testGenKey
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"pep.test.iosgenkey@pep-project.org"
@@ -94,7 +96,7 @@
 
 - (void)testMySelfCommType
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"pep.test.iosgenkey@pep-project.org"
@@ -114,7 +116,7 @@
     dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0);
     dispatch_sync(queue, ^{
         NSError *innerError = nil;
-        PEPSession *session2 = [PEPSession new];
+        PEPInternalSession *session2 = [PEPSessionProvider session];
 
         // Now simulate an update from the app, which usually only caches
         // kPepUsername, kPepAddress and optionally kPepUserID.
@@ -150,7 +152,7 @@
 
 - (void)testPartnerWithoutFingerPrint
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identRandom = [[PEPIdentity alloc]
                                 initWithAddress:@"does_not_exist@example.com"
@@ -181,7 +183,7 @@
 
 - (void)testIdentityRating
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *me = [self
                        checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
@@ -204,7 +206,7 @@
 /** ENGINE-409 */
 - (void)testIdentityRatingMistrustReset
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *me = [[PEPIdentity alloc]
                        initWithAddress:@"me@example.org"
@@ -235,7 +237,7 @@
 
 - (void)testIdentityRatingTrustResetMistrustUndo
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *me = [[PEPIdentity alloc]
                        initWithAddress:@"me@example.org"
@@ -275,7 +277,7 @@
 /** ENGINE-384 */
 - (void)testIdentityRatingCrash
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *me = [[PEPIdentity alloc]
                        initWithAddress:@"me@example.org"
@@ -313,7 +315,7 @@
 
 - (void)testOutgoingColors
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
@@ -423,7 +425,7 @@
 
 - (void)testOutgoingBccColors
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
@@ -530,7 +532,7 @@
 
 - (void)testDontEncryptForMistrusted
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
@@ -590,7 +592,7 @@
 
 - (void)testRevoke
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
@@ -625,7 +627,7 @@
 
 - (void)testMailToMyself
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     // Our test user :
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
@@ -677,7 +679,7 @@
 
 - (void)testEncryptedMailFromMuttWithReencryption
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     // This is the public key for test001@peptest.ch
     XCTAssertTrue([PEPTestUtils importBundledKey:@"A3FC7F0A.asc" session:session]);
@@ -739,7 +741,7 @@
 
 - (void)testOutgoingContactColor
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *partner1Orig = [PEPTestUtils foreignPepIdentityWithAddress:@"partner1@dontcare.me"
                                                                    userName:@"Partner 1"];
@@ -756,7 +758,7 @@
 
 - (void)testGetTrustwords
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *partner1Orig = [[PEPIdentity alloc]
                                  initWithAddress:@"partner1@dontcare.me" userID:@"partner1"
@@ -783,7 +785,7 @@
 
 - (void)testStringToRating
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
     XCTAssertEqual([session ratingFromString:@"cannot_decrypt"], PEPRatingCannotDecrypt);
     XCTAssertEqual([session ratingFromString:@"have_no_key"], PEPRatingHaveNoKey);
     XCTAssertEqual([session ratingFromString:@"unencrypted"], PEPRatingUnencrypted);
@@ -804,7 +806,7 @@
 
 - (void)testRatingToString
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
     XCTAssertEqualObjects([session stringFromRating:PEPRatingCannotDecrypt], @"cannot_decrypt");
     XCTAssertEqualObjects([session stringFromRating:PEPRatingHaveNoKey], @"have_no_key");
     XCTAssertEqualObjects([session stringFromRating:PEPRatingUnencrypted], @"unencrypted");
@@ -826,7 +828,7 @@
 
 - (void)testIsPEPUser
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -860,7 +862,7 @@
  */
 - (void)testTrustPersonalKey
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -890,7 +892,7 @@
  */
 - (void)testVolatileIdentityRating
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -914,7 +916,7 @@
     dispatch_group_t identityRatingGroup = dispatch_group_create();
 
     void (^ratingBlock)(void) = ^{
-        PEPSession *innerSession = [PEPSession new];
+        PEPInternalSession *innerSession = [PEPSessionProvider session];
         PEPRating rating = [self ratingForIdentity:identAlice session:innerSession];
         XCTAssertEqual(rating, PEPRatingReliable);
     };
@@ -937,7 +939,7 @@
  */
 - (void)testEncryptAndAttachPrivateKeyIllegalValue
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -982,7 +984,7 @@
 
 - (void)testSetIdentityFlags
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
@@ -1012,7 +1014,7 @@
 
 - (void)testTrustOwnKey
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
@@ -1062,7 +1064,7 @@
 
 - (void)testDecryptionOfUnencryptedMessageWithOdtAttachmentContainingSpace
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
@@ -1114,13 +1116,13 @@
 /// Prove that mySelf triggers a message to be sent.
 - (void)testBasicSendMessage
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [self testSendMessageOnSession:session];
 }
 
 - (void)testDeliverHandshakeResult
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
     [self testSendMessageOnSession:session];
 
     PEPSyncHandshakeResult handshakeResults[] = { PEPSyncHandshakeResultCancel,
@@ -1150,7 +1152,7 @@
 /// Test creating a new own identity with pEp sync disabled.
 - (void)testNoBeaconOnMyself
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
@@ -1180,7 +1182,7 @@
 /// ENGINE-684
 - (void)testMyselfWithQueryKeySyncEnabledForIdentity
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMeEnabled = [[PEPIdentity alloc]
                                    initWithAddress:@"me-myself-and-i-enabled@pep-project.org"
@@ -1222,7 +1224,7 @@
 
 - (void)testKeyResetIdentityOnOwnKeyIsIllegal
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
@@ -1252,7 +1254,7 @@
 /** Leaving a device group is successful even though none exists. */
 - (void)testSuccessfulLeaveDeviceGroup
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1300,7 +1302,7 @@
 
 - (void)testEnableDisableSyncOnOwnIdentityWithQuery
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe1 = [[PEPIdentity alloc]
                              initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1353,7 +1355,7 @@
  */
 - (void)testQueryKeySyncOnOwnIdentityInALoop
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1393,7 +1395,7 @@
     XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:correctPassphrase error:&error]);
     XCTAssertNil(error);
 
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMeWithPassphrase = [[PEPIdentity alloc]
                                           initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1442,7 +1444,7 @@
     XCTAssertNil(error);
     error = nil;
 
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1473,7 +1475,7 @@
 - (void)testPassphraseProviderNone
 {
     PEPMessage *draftMail = nil;
-    PEPSession *session = nil;
+    PEPInternalSession *session = nil;
     PEPIdentity *identMe = nil;
 
     [self setupEncryptWithImportedKeySession:&session
@@ -1499,7 +1501,7 @@
 - (void)testPassphraseProviderEmpty
 {
     PEPMessage *draftMail = nil;
-    PEPSession *session = nil;
+    PEPInternalSession *session = nil;
     PEPIdentity *identMe = nil;
 
     [self setupEncryptWithImportedKeySession:&session
@@ -1528,7 +1530,7 @@
 - (void)testPassphraseProviderWrongPassphrases
 {
     PEPMessage *draftMail = nil;
-    PEPSession *session = nil;
+    PEPInternalSession *session = nil;
     PEPIdentity *identMe = nil;
 
     [self setupEncryptWithImportedKeySession:&session
@@ -1558,7 +1560,7 @@
 - (void)testPassphraseProviderPassphraseTooLong
 {
     PEPMessage *draftMail = nil;
-    PEPSession *session = nil;
+    PEPInternalSession *session = nil;
     PEPIdentity *identMe = nil;
 
     [self setupEncryptWithImportedKeySession:&session
@@ -1597,7 +1599,7 @@
 - (void)testPassphraseProviderCorrectPassphrase
 {
     PEPMessage *draftMail = nil;
-    PEPSession *session = nil;
+    PEPInternalSession *session = nil;
     PEPIdentity *identMe = nil;
 
     [self setupEncryptWithImportedKeySession:&session
@@ -1632,7 +1634,7 @@
     NSString *passphrase = @"a";
 
     NSError *error = nil;
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:passphrase error:&error]);
     XCTAssertNil(error);
@@ -1660,11 +1662,11 @@
 
 #pragma mark - Helpers
 
-- (void)setupEncryptWithImportedKeySession:(PEPSession **)session
+- (void)setupEncryptWithImportedKeySession:(PEPInternalSession **)session
                                ownIdentity:(PEPIdentity **)ownIdentity
                           messageToEncrypt:(PEPMessage **)messageToEncrypt
 {
-    *session = [PEPSession new];
+    *session = [PEPSessionProvider session];
 
     NSString *fingerprint = [@"9DD8 3053 3B93 988A 9777  52CA 4802 9ADE 43F2 70EC"
                              stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -1692,7 +1694,7 @@
                          outgoing:YES];
 }
 
-- (void)testSendMessageOnSession:(PEPSession *)session
+- (void)testSendMessageOnSession:(PEPInternalSession *)session
 {
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
@@ -1739,7 +1741,7 @@
 }
 
 - (NSNumber * _Nullable)testOutgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
-                                             session:(PEPSession *)session
+                                             session:(PEPInternalSession *)session
                                                error:(NSError * _Nullable * _Nullable)error
 {
     NSNumber *ratingOriginal = [session outgoingRatingForMessage:theMessage error:error];
@@ -1751,7 +1753,7 @@
 - (void)testPassiveModeEnabled:(BOOL)passiveModeEnabled
 {
     [PEPObjCAdapter setPassiveModeEnabled:passiveModeEnabled];
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1798,7 +1800,7 @@
  Determines the rating for the given identity.
  @return PEPRatingUndefined on error
  */
-- (PEPRating)ratingForIdentity:(PEPIdentity *)identity session:(PEPSession *)session
+- (PEPRating)ratingForIdentity:(PEPIdentity *)identity session:(PEPInternalSession *)session
 {
     NSError *error;
     NSNumber *numRating = [session ratingForIdentity:identity error:&error];
@@ -1809,10 +1811,10 @@
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
                                     userID:(NSString *)userID
                                fingerPrint:(NSString *)fingerPrint
-                                   session:(PEPSession *)session
+                                   session:(PEPInternalSession *)session
 {
     if (!session) {
-        session = [PEPSession new];
+        session = [PEPSessionProvider session];
     }
 
     BOOL success = [PEPTestUtils importBundledKey:filePath session:session];
@@ -1842,7 +1844,7 @@
                                          address:(NSString *)address
                                           userID:(NSString *)userID
                                      fingerPrint:(NSString *)fingerPrint
-                                         session:(PEPSession *)session
+                                         session:(PEPInternalSession *)session
 {
     XCTAssertTrue([PEPTestUtils importBundledKey:filePath session:session]);
 
@@ -1865,7 +1867,7 @@
  Verifies that a partner ID is really a correct Identity.
  Usually used on identities imported as keys, since the engine has problems with them.
  */
-- (void)updateAndVerifyPartnerIdentity:(PEPIdentity *)partnerIdentity session:(PEPSession *)session
+- (void)updateAndVerifyPartnerIdentity:(PEPIdentity *)partnerIdentity session:(PEPInternalSession *)session
 {
     NSError *error = nil;
 
@@ -1883,7 +1885,7 @@
 
 - (PEPMessage *)mailWrittenToMySelf
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     // Write a e-mail to yourself ...
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
@@ -1913,7 +1915,7 @@
 
 - (PEPMessage *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
     
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
@@ -1966,7 +1968,7 @@
 - (void)helperXEncStatusForOutgoingEncryptdMailToSelf:(BOOL)toSelf
                                        expectedRating:(PEPRating)expectedRating
 {
-    PEPSession *session = [PEPSession new];
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     // Partner pubkey for the test:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
