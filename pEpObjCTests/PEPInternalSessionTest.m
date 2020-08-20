@@ -1,5 +1,5 @@
 //
-//  PEPSessionTest.m
+//  PEPInternalSessionTest.m
 //  pEpObjCAdapterTests
 //
 //  Created by Andreas Buff on 18.01.18.
@@ -22,7 +22,7 @@
 #import "PEPPassphraseCache+Reset.h"
 #import "PEPPassphraseProviderMock.h"
 
-@interface PEPSessionTest : XCTestCase
+@interface PEPInternalSessionTest : XCTestCase
 
 @property (nonatomic) PEPSync *sync;
 @property (nonatomic) PEPSessionTestSendMessageDelegate *sendMessageDelegate;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation PEPSessionTest
+@implementation PEPInternalSessionTest
 
 - (void)setUp
 {
