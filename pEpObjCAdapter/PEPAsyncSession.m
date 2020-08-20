@@ -28,7 +28,7 @@ static dispatch_queue_t queue;
     }
 }
 
-- (void)decryptMessage:(PEPMessage *)message //BUFF: done
+- (void)decryptMessage:(PEPMessage *)message
                  flags:(PEPDecryptFlags)flags
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -62,7 +62,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)reEvaluateMessage:(PEPMessage *)message //BUFF: done
+- (void)reEvaluateMessage:(PEPMessage *)message
                  xKeyList:(PEPStringList *_Nullable)xKeyList
                    originalRating:(PEPRating)originalRating
             errorCallback:(void (^)(NSError *error))errorCallback
@@ -87,7 +87,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message //BUFF: done
+- (void)encryptMessage:(PEPMessage *)message
              extraKeys:(PEPStringList * _Nullable)extraKeys
              encFormat:(PEPEncFormat)encFormat
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -111,7 +111,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message //BUFF: done
+- (void)encryptMessage:(PEPMessage *)message
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPMessage *srcMessage,
@@ -133,7 +133,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message //BUFF: done
+- (void)encryptMessage:(PEPMessage *)message
                forSelf:(PEPIdentity *)ownIdentity
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -157,7 +157,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message //BUFF: unused. (done)
+- (void)encryptMessage:(PEPMessage *)message
                  toFpr:(NSString *)toFpr
              encFormat:(PEPEncFormat)encFormat
                  flags:(PEPDecryptFlags)flags
@@ -183,7 +183,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)outgoingRatingForMessage:(PEPMessage *)theMessage //BUFF: done
+- (void)outgoingRatingForMessage:(PEPMessage *)theMessage
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPRating rating))successCallback
 {
@@ -198,7 +198,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)ratingForIdentity:(PEPIdentity *)identity //BUFF: done
+- (void)ratingForIdentity:(PEPIdentity *)identity
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback
 {
@@ -215,7 +215,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)trustwordsForFingerprint:(NSString *)fingerprint //BUFF: done
+- (void)trustwordsForFingerprint:(NSString *)fingerprint
                       languageID:(NSString *)languageID
                        shortened:(BOOL)shortened
                    errorCallback:(void (^)(NSError *error))errorCallback
@@ -236,7 +236,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)mySelf:(PEPIdentity *)identity //BUFF: done
+- (void)mySelf:(PEPIdentity *)identity
  errorCallback:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
@@ -253,7 +253,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)updateIdentity:(PEPIdentity *)identity // DZ: DONE
+- (void)updateIdentity:(PEPIdentity *)identity
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
@@ -270,7 +270,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)trustPersonalKey:(PEPIdentity *)identity // DZ: DONE
+- (void)trustPersonalKey:(PEPIdentity *)identity
            errorCallback:(void (^)(NSError *error))errorCallback
          successCallback:(void (^)(void))successCallback
 {
@@ -285,7 +285,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)keyMistrusted:(PEPIdentity *)identity // DZ: DONE
+- (void)keyMistrusted:(PEPIdentity *)identity
         errorCallback:(void (^)(NSError *error))errorCallback
       successCallback:(void (^)(void))successCallback
 {
@@ -300,7 +300,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)keyResetTrust:(PEPIdentity *)identity // DZ: DONE
+- (void)keyResetTrust:(PEPIdentity *)identity
         errorCallback:(void (^)(NSError *error))errorCallback
       successCallback:(void (^)(void))successCallback
 {
@@ -315,7 +315,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)enableSyncForIdentity:(PEPIdentity *)identity // DZ: DONE
+- (void)enableSyncForIdentity:(PEPIdentity *)identity
                 errorCallback:(void (^)(NSError *error))errorCallback
               successCallback:(void (^)(void))successCallback
 {
@@ -330,7 +330,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)disableSyncForIdentity:(PEPIdentity *)identity // DZ: DONE
+- (void)disableSyncForIdentity:(PEPIdentity *)identity
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback
 {
@@ -345,7 +345,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity // BUFF: DONE
+- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
                          errorCallback:(void (^)(NSError *error))errorCallback
                        successCallback:(void (^)(BOOL enabled))successCallback
 {
@@ -361,7 +361,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)importKey:(NSString *)keydata // DZ: DONE
+- (void)importKey:(NSString *)keydata
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback
 {
@@ -376,7 +376,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)logTitle:(NSString *)title // DZ: DONE (not used by app/MM)
+- (void)logTitle:(NSString *)title
           entity:(NSString *)entity
      description:(NSString * _Nullable)description
          comment:(NSString * _Nullable)comment
@@ -399,7 +399,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
 }
 
 
-- (void)getLog:(void (^)(NSError *error))errorCallback // DZ: DONE (not used by app/MM)
+- (void)getLog:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(NSString *log))successCallback
 {
     dispatch_async(queue, ^{
@@ -413,7 +413,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1 //BUFF: done
+- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1
                      identity2:(PEPIdentity *)identity2
                       language:(NSString * _Nullable)language
                           full:(BOOL)full
@@ -435,7 +435,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)getTrustwordsFpr1:(NSString *)fpr1 //BUFF: done
+- (void)getTrustwordsFpr1:(NSString *)fpr1
                      fpr2:(NSString *)fpr2
                  language:(NSString * _Nullable)language
                      full:(BOOL)full
@@ -457,7 +457,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)languageList:(void (^)(NSError *error))errorCallback // DZ: DONE
+- (void)languageList:(void (^)(NSError *error))errorCallback
      successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback
 
 {
@@ -472,7 +472,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)isPEPUser:(PEPIdentity *)identity // DZ: DONE
+- (void)isPEPUser:(PEPIdentity *)identity
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(BOOL enabled))successCallback
 {
@@ -487,7 +487,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)setOwnKey:(PEPIdentity *)identity // DZ: DONE
+- (void)setOwnKey:(PEPIdentity *)identity
       fingerprint:(NSString *)fingerprint
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(void))successCallback
@@ -505,7 +505,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result // DZ: DONE
+- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result
              identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback
@@ -523,7 +523,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)trustOwnKeyIdentity:(PEPIdentity *)identity // DZ: DONE (not used by app/MM)
+- (void)trustOwnKeyIdentity:(PEPIdentity *)identity
               errorCallback:(void (^)(NSError *error))errorCallback
             successCallback:(void (^)(void))successCallback
 {
@@ -538,7 +538,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)keyReset:(PEPIdentity *)identity // DZ: DONE
+- (void)keyReset:(PEPIdentity *)identity
      fingerprint:(NSString * _Nullable)fingerprint
    errorCallback:(void (^)(NSError *error))errorCallback
  successCallback:(void (^)(void))successCallback
@@ -556,7 +556,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback // DZ: DONE
+- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback
          successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
@@ -570,7 +570,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback // DZ: DONE
+- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
            successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
