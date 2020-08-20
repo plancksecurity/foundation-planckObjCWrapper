@@ -24,7 +24,9 @@ static dispatch_queue_t queue;
 + (void)initialize
 {
     if (self == [PEPAsyncSession class]) {
-        queue = dispatch_queue_create("PEPAsyncSession.queue", DISPATCH_QUEUE_SERIAL); //DIRK: TODO: please set QOS to userInitiated
+        dispatch_queue_attr_t attr = DISPATCH_QUEUE_SERIAL;
+        attr = dispatch_queue_attr_make_with_qos_class(attr, QOS_CLASS_USER_INITIATED, -1);
+        queue = dispatch_queue_create("PEPAsyncSession.queue", attr);
     }
 }
 
