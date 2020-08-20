@@ -95,15 +95,6 @@
     return (PEPMutableDict *) self;
 }
 
-- (NSNumber * _Nullable)isPEPUser:(PEPSession * _Nullable)session
-                            error:(NSError * _Nullable * _Nullable)error
-{
-    if (!session) {
-        session = [PEPSession new];
-    }
-    return [session isPEPUser:self error:error];
-}
-
 - (BOOL)isConfirmed
 {
     return self.commType & PEP_ct_confirmed;

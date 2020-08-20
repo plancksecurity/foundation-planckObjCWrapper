@@ -23,6 +23,7 @@
 #import "PEPPassphraseProviderMock.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
+#import "PEPIdentity+isPEPUser.h"
 
 @interface PEPInternalSessionTest : XCTestCase
 
