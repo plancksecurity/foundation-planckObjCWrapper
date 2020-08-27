@@ -252,7 +252,7 @@ NSArray<PEPIdentity *> *PEP_arrayFromIdentityList(identity_list *il)
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        [array addObject:PEP_identityFromStruct(il->ident)];
+        [array addObject:PEP_identityFromStruct(_il->ident)];
     }
     
     return array;
