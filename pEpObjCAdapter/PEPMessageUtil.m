@@ -272,6 +272,7 @@ identity_list *PEP_identityArrayToList(NSArray<PEPIdentity *> *array)
     return il;
 }
 
+//!!!: Duplicate to PEP_arrayFromIdentityList
 NSArray *PEP_identityArrayFromList(identity_list *il)
 {
     NSMutableArray *array = [NSMutableArray array];
