@@ -241,7 +241,8 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
                                     bundleName:(NSString *)bundleName
                                       fileName:(NSString *)fileName {
 
-    NSString *systemDir = [NSString stringWithUTF8String:perMachineDirectory];
+    //NSString *systemDir = [NSString stringWithUTF8String:perMachineDirectory];
+    NSString *systemDir = [NSString stringWithUTF8String:per_machine_directory];
     
     if(!(systemDir && bundleName && fileName))
         return;

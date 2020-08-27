@@ -89,6 +89,66 @@
 		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
 		43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847D9824F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */; };
+		4E847D9D24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E847D9C24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m */; };
+		4E847D9F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DA624F7E73800D5A6D8 /* libpEpEngineMacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D6224F7B37200D5A6D8 /* libpEpEngineMacOS.a */; };
+		4E847DB024F7E79400D5A6D8 /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 435C0CAB222930340025C6B5 /* PEPConstants.m */; };
+		4E847DB724F7E79400D5A6D8 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 433DFBBB24A73AD400AB373B /* PEPSessionProtocol.m */; };
+		4E847DBE24F7E8B000D5A6D8 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */; };
+		4E847DBF24F7E8B000D5A6D8 /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
+		4E847DC024F7E8B000D5A6D8 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */; };
+		4E847DC124F7E8B000D5A6D8 /* PEPMessageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B2D1ECC2ACD007E7E2E /* PEPMessageUtil.m */; };
+		4E847DC224F7E8B000D5A6D8 /* PEPObjCAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */; };
+		4E847DC324F7E8B100D5A6D8 /* PEPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B321ECC2ACD007E7E2E /* PEPQueue.m */; };
+		4E847DC424F7E8B100D5A6D8 /* PEPInternalSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */; };
+		4E847DC524F7E8B100D5A6D8 /* NSDictionary+CommType.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D27DE51F5DA7B700795687 /* NSDictionary+CommType.m */; };
+		4E847DC624F7E8B100D5A6D8 /* NSDictionary+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */; };
+		4E847DC724F7E8B100D5A6D8 /* PEPCopyableThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */; };
+		4E847DC824F7E8B100D5A6D8 /* PEPSessionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CA91F8BA183003FF880 /* PEPSessionProvider.m */; };
+		4E847DC924F7E8B100D5A6D8 /* PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CC61F8E078B003FF880 /* PEPSession.m */; };
+		4E847DCA24F7E8B100D5A6D8 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E28901FA741DE00E359B3 /* PEPIdentity.m */; };
+		4E847DCB24F7E8B100D5A6D8 /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 435796E21FB5E51A00395A9E /* PEPMessage.m */; };
+		4E847DCC24F7E8B100D5A6D8 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 439D91A4208479EE003F6AC2 /* PEPAttachment.m */; };
+		4E847DCD24F7E8B100D5A6D8 /* NSError+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DED785203C25E200D45CD6 /* NSError+PEP.m */; };
+		4E847DCE24F7E8B100D5A6D8 /* PEPAutoPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */; };
+		4E847DCF24F7E8B100D5A6D8 /* NSNumber+PEPRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 435665CB2080A6CB00EC5B10 /* NSNumber+PEPRating.m */; };
+		4E847DD024F7E8B100D5A6D8 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 439393E5208F375800EB1DBD /* NSObject+Extension.m */; };
+		4E847DD124F7E8B100D5A6D8 /* NSMutableDictionary+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */; };
+		4E847DD224F7E8B100D5A6D8 /* PEPSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F73BE92166248E00AB4524 /* PEPSync.m */; };
+		4E847DD324F7E8B100D5A6D8 /* PEPInternalConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AD0E2F22E99ECE00D46F56 /* PEPInternalConstants.m */; };
+		4E847DD424F7E8B100D5A6D8 /* PEPPassphraseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 43589EF624A4A3B70079BEA2 /* PEPPassphraseCache.m */; };
+		4E847DD524F7E8B100D5A6D8 /* PEPPassphraseCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 433DFBAB24A5E04000AB373B /* PEPPassphraseCacheEntry.m */; };
+		4E847DD624F7E8B100D5A6D8 /* PEPInternalSession+PassphraseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 433DFBB624A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m */; };
+		4E847DD724F7E8B100D5A6D8 /* NSString+NormalizePassphrase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4349CD6E24AC73FC00A22A13 /* NSString+NormalizePassphrase.m */; };
+		4E847DD824F7E8B100D5A6D8 /* PEPAsyncSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 434707F524C210CA00E05485 /* PEPAsyncSession.m */; };
+		4E847DD924F7E8B100D5A6D8 /* PEPPassphraseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */; };
+		4E847DDD24F7EADD00D5A6D8 /* PEPInternalConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 43AD0E2E22E99ECE00D46F56 /* PEPInternalConstants.h */; };
+		4E847DDE24F7EAE500D5A6D8 /* PEPPassphraseCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 43589EF524A4A3B70079BEA2 /* PEPPassphraseCache.h */; };
+		4E847DDF24F7EAED00D5A6D8 /* PEPPassphraseCacheEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 433DFBAA24A5E04000AB373B /* PEPPassphraseCacheEntry.h */; };
+		4E847DE024F7EAF300D5A6D8 /* PEPInternalSession+PassphraseCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 433DFBB524A61D4B00AB373B /* PEPInternalSession+PassphraseCache.h */; };
+		4E847DE124F7EAFC00D5A6D8 /* NSString+NormalizePassphrase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4349CD6D24AC73FC00A22A13 /* NSString+NormalizePassphrase.h */; };
+		4E847DE224F7EB8A00D5A6D8 /* PEPAsyncSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 434707F424C210CA00E05485 /* PEPAsyncSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DE324F7EB8A00D5A6D8 /* PEPNotifyHandshakeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DE424F7EB8A00D5A6D8 /* PEPSendMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DE524F7EB8A00D5A6D8 /* PEPSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DE624F7EB8B00D5A6D8 /* NSDictionary+CommType.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D27DE41F5DA78700795687 /* NSDictionary+CommType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DE724F7EB8B00D5A6D8 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2A1ECC2ACD007E7E2E /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DE824F7EB8B00D5A6D8 /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 439D91A3208479EE003F6AC2 /* PEPAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DE924F7EB8B00D5A6D8 /* NSNumber+PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DEA24F7EB8B00D5A6D8 /* PEPConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C0CAA222930340025C6B5 /* PEPConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DEB24F7EB8B00D5A6D8 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 435796E11FB5E51A00395A9E /* PEPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DEC24F7EB8C00D5A6D8 /* PEPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 15206CC51F8E078B003FF880 /* PEPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DED24F7EB8C00D5A6D8 /* PEPObjCAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DEE24F7EB8C00D5A6D8 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 435C0CA022292E7C0025C6B5 /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DEF24F7EB8C00D5A6D8 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DF024F7EB8C00D5A6D8 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F518F22204A67006EB11F /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DF124F7EB8C00D5A6D8 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5163222045FB006EB11F /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DF224F7EB8D00D5A6D8 /* PEPPassphraseProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847DF324F7EE5200D5A6D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D6624F7E0BA00D5A6D8 /* libz.dylib */; };
+		4E847E0224F7EFD100D5A6D8 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847DFA24F7EEA400D5A6D8 /* libiconv.2.tbd */; };
+		4E847E0624F7F4B100D5A6D8 /* libgmp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847E0524F7F4B100D5A6D8 /* libgmp.dylib */; };
+		4E847E0724F7F4B100D5A6D8 /* libgmp.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 4E847E0524F7F4B100D5A6D8 /* libgmp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; };
@@ -117,6 +177,41 @@
 			remoteGlobalIDString = 644297BE1BE11C65002BC73B;
 			remoteInfo = pEpTrustWords;
 		};
+		4E847C8024F7A8C700D5A6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4E847C2224F7A49900D5A6D8;
+			remoteInfo = "pEpEngine-macOS";
+		};
+		4E847D6124F7B37200D5A6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4E847C8724F7AC4500D5A6D8;
+			remoteInfo = pEpEngineMacOS;
+		};
+		4E847D9924F7E71F00D5A6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 352988A21AEF964100FA7E2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E847D8E24F7E71F00D5A6D8;
+			remoteInfo = pEpObjCMacOSAdapater;
+		};
+		4E847DBA24F7E7DE00D5A6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E847C8624F7AC4500D5A6D8;
+			remoteInfo = pEpEngineMacOS;
+		};
+		4E847DBC24F7E7E200D5A6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 644297BE1BE11C65002BC73B;
+			remoteInfo = pEpTrustWords;
+		};
 		64289E551B8B70E800FC617B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
@@ -139,6 +234,20 @@
 			remoteInfo = pEpTrustWords;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4E847E0824F7F4B100D5A6D8 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4E847E0724F7F4B100D5A6D8 /* libgmp.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPCopyableThread.h; sourceTree = "<group>"; };
@@ -250,6 +359,19 @@
 		43E3986A221D7EDD008E7983 /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
 		43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPEngineTypes.h; path = PEPObjCAdapterFramework/PEPEngineTypes.h; sourceTree = SOURCE_ROOT; };
+		4E847D6424F7C3C500D5A6D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		4E847D6624F7E0BA00D5A6D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = ../../../../../../../opt/local/lib/libz.dylib; sourceTree = "<group>"; };
+		4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pEpObjCMacOSAdapater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCMacOSAdapater.h; sourceTree = "<group>"; };
+		4E847D9224F7E71F00D5A6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCMacOSAdapaterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E847D9C24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pEpObjCMacOSAdapaterTests.m; sourceTree = "<group>"; };
+		4E847D9E24F7E71F00D5A6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4E847DF624F7EE7400D5A6D8 /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = ../../../../../../../opt/local/lib/libiconv.2.dylib; sourceTree = "<group>"; };
+		4E847DFA24F7EEA400D5A6D8 /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libiconv.2.tbd; sourceTree = DEVELOPER_DIR; };
+		4E847DFC24F7EF5100D5A6D8 /* libiconv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiconv.a; path = ../../../../../../../opt/local/lib/libiconv.a; sourceTree = "<group>"; };
+		4E847E0024F7EFB100D5A6D8 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libiconv.tbd; sourceTree = DEVELOPER_DIR; };
+		4E847E0524F7F4B100D5A6D8 /* libgmp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgmp.dylib; path = ../sequoia4macos/build/lib/libgmp.dylib; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,6 +393,25 @@
 				43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */,
 				155674ED22B82D710097930C /* libz.dylib in Frameworks */,
 				43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E847D8C24F7E71F00D5A6D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E847E0224F7EFD100D5A6D8 /* libiconv.2.tbd in Frameworks */,
+				4E847E0624F7F4B100D5A6D8 /* libgmp.dylib in Frameworks */,
+				4E847DA624F7E73800D5A6D8 /* libpEpEngineMacOS.a in Frameworks */,
+				4E847DF324F7EE5200D5A6D8 /* libz.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E847D9424F7E71F00D5A6D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E847D9824F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +483,8 @@
 				43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */,
 				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
 				43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */,
+				4E847D9024F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */,
+				4E847D9B24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests */,
 				352988AB1AEF964100FA7E2E /* Products */,
 				43447C51221D448500B6323E /* Frameworks */,
 			);
@@ -352,6 +495,8 @@
 			children = (
 				64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */,
 				43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */,
+				4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */,
+				4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -417,6 +562,13 @@
 		43447C51221D448500B6323E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E847E0524F7F4B100D5A6D8 /* libgmp.dylib */,
+				4E847E0024F7EFB100D5A6D8 /* libiconv.tbd */,
+				4E847DFC24F7EF5100D5A6D8 /* libiconv.a */,
+				4E847DFA24F7EEA400D5A6D8 /* libiconv.2.tbd */,
+				4E847DF624F7EE7400D5A6D8 /* libiconv.2.dylib */,
+				4E847D6624F7E0BA00D5A6D8 /* libz.dylib */,
+				4E847D6424F7C3C500D5A6D8 /* libz.tbd */,
 				43E3986A221D7EDD008E7983 /* libiconv.2.tbd */,
 				155674EC22B82D710097930C /* libz.dylib */,
 			);
@@ -451,11 +603,31 @@
 			path = PEPObjCAdapterFramework;
 			sourceTree = "<group>";
 		};
+		4E847D9024F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */ = {
+			isa = PBXGroup;
+			children = (
+				4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h */,
+				4E847D9224F7E71F00D5A6D8 /* Info.plist */,
+			);
+			path = pEpObjCMacOSAdapater;
+			sourceTree = "<group>";
+		};
+		4E847D9B24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests */ = {
+			isa = PBXGroup;
+			children = (
+				4E847D9C24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m */,
+				4E847D9E24F7E71F00D5A6D8 /* Info.plist */,
+			);
+			path = pEpObjCMacOSAdapaterTests;
+			sourceTree = "<group>";
+		};
 		64289E521B8B70E800FC617B /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				64289E561B8B70E800FC617B /* libpEpEngine.a */,
 				64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */,
+				4E847C8124F7A8C700D5A6D8 /* libpEpEngine-macOS.a */,
+				4E847D6224F7B37200D5A6D8 /* libpEpEngineMacOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -510,6 +682,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4E847D8A24F7E71F00D5A6D8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E847DE724F7EB8B00D5A6D8 /* PEPLanguage.h in Headers */,
+				4E847DE924F7EB8B00D5A6D8 /* NSNumber+PEPRating.h in Headers */,
+				4E847DDF24F7EAED00D5A6D8 /* PEPPassphraseCacheEntry.h in Headers */,
+				4E847DEE24F7EB8C00D5A6D8 /* PEPTypes.h in Headers */,
+				4E847DE224F7EB8A00D5A6D8 /* PEPAsyncSession.h in Headers */,
+				4E847DF224F7EB8D00D5A6D8 /* PEPPassphraseProviderProtocol.h in Headers */,
+				4E847DE624F7EB8B00D5A6D8 /* NSDictionary+CommType.h in Headers */,
+				4E847DE324F7EB8A00D5A6D8 /* PEPNotifyHandshakeDelegate.h in Headers */,
+				4E847DEC24F7EB8C00D5A6D8 /* PEPSession.h in Headers */,
+				4E847DF124F7EB8C00D5A6D8 /* PEPIdentity.h in Headers */,
+				4E847DE024F7EAF300D5A6D8 /* PEPInternalSession+PassphraseCache.h in Headers */,
+				4E847DED24F7EB8C00D5A6D8 /* PEPObjCAdapter.h in Headers */,
+				4E847DE124F7EAFC00D5A6D8 /* NSString+NormalizePassphrase.h in Headers */,
+				4E847DE424F7EB8A00D5A6D8 /* PEPSendMessageDelegate.h in Headers */,
+				4E847DEA24F7EB8B00D5A6D8 /* PEPConstants.h in Headers */,
+				4E847DDE24F7EAE500D5A6D8 /* PEPPassphraseCache.h in Headers */,
+				4E847DEF24F7EB8C00D5A6D8 /* PEPEngineTypes.h in Headers */,
+				4E847DF024F7EB8C00D5A6D8 /* PEPSessionProtocol.h in Headers */,
+				4E847D9F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h in Headers */,
+				4E847DEB24F7EB8B00D5A6D8 /* PEPMessage.h in Headers */,
+				4E847DE824F7EB8B00D5A6D8 /* PEPAttachment.h in Headers */,
+				4E847DDD24F7EADD00D5A6D8 /* PEPInternalConstants.h in Headers */,
+				4E847DE524F7EB8A00D5A6D8 /* PEPSync.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -533,6 +735,45 @@
 			productName = PEPObjCAdapterFramework;
 			productReference = 43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E847DA024F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapater" */;
+			buildPhases = (
+				4E847D8A24F7E71F00D5A6D8 /* Headers */,
+				4E847D8B24F7E71F00D5A6D8 /* Sources */,
+				4E847D8C24F7E71F00D5A6D8 /* Frameworks */,
+				4E847D8D24F7E71F00D5A6D8 /* Resources */,
+				4E847E0824F7F4B100D5A6D8 /* Embed Libraries */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E847DBD24F7E7E200D5A6D8 /* PBXTargetDependency */,
+				4E847DBB24F7E7DE00D5A6D8 /* PBXTargetDependency */,
+			);
+			name = pEpObjCMacOSAdapater;
+			productName = pEpObjCMacOSAdapater;
+			productReference = 4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4E847D9624F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E847DA324F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapaterTests" */;
+			buildPhases = (
+				4E847D9324F7E71F00D5A6D8 /* Sources */,
+				4E847D9424F7E71F00D5A6D8 /* Frameworks */,
+				4E847D9524F7E71F00D5A6D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4E847D9A24F7E71F00D5A6D8 /* PBXTargetDependency */,
+			);
+			name = pEpObjCMacOSAdapaterTests;
+			productName = pEpObjCMacOSAdapaterTests;
+			productReference = 4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */ = {
 			isa = PBXNativeTarget;
@@ -567,6 +808,16 @@
 						DevelopmentTeam = NQLYU6MGPN;
 						ProvisioningStyle = Automatic;
 					};
+					4E847D8E24F7E71F00D5A6D8 = {
+						CreatedOnToolsVersion = 11.6;
+						DevelopmentTeam = NQLYU6MGPN;
+						ProvisioningStyle = Automatic;
+					};
+					4E847D9624F7E71F00D5A6D8 = {
+						CreatedOnToolsVersion = 11.6;
+						DevelopmentTeam = NQLYU6MGPN;
+						ProvisioningStyle = Automatic;
+					};
 					64415E161BE94FCB00F6CBB2 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = NQLYU6MGPN;
@@ -594,11 +845,27 @@
 			targets = (
 				64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */,
 				43E3985A221D7E56008E7983 /* PEPObjCAdapterFramework */,
+				4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */,
+				4E847D9624F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4E847C8124F7A8C700D5A6D8 /* libpEpEngine-macOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libpEpEngine-macOS.a";
+			remoteRef = 4E847C8024F7A8C700D5A6D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4E847D6224F7B37200D5A6D8 /* libpEpEngineMacOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libpEpEngineMacOS.a;
+			remoteRef = 4E847D6124F7B37200D5A6D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		64289E561B8B70E800FC617B /* libpEpEngine.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -621,6 +888,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				437BEA9122328E570051E3A1 /* pEpTrustWords.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E847D8D24F7E71F00D5A6D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E847D9524F7E71F00D5A6D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +995,51 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4E847D8B24F7E71F00D5A6D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E847DBE24F7E8B000D5A6D8 /* NSArray+Extension.m in Sources */,
+				4E847DD424F7E8B100D5A6D8 /* PEPPassphraseCache.m in Sources */,
+				4E847DCB24F7E8B100D5A6D8 /* PEPMessage.m in Sources */,
+				4E847DD724F7E8B100D5A6D8 /* NSString+NormalizePassphrase.m in Sources */,
+				4E847DBF24F7E8B000D5A6D8 /* PEPCSVScanner.m in Sources */,
+				4E847DD224F7E8B100D5A6D8 /* PEPSync.m in Sources */,
+				4E847DC224F7E8B000D5A6D8 /* PEPObjCAdapter.m in Sources */,
+				4E847DCA24F7E8B100D5A6D8 /* PEPIdentity.m in Sources */,
+				4E847DD024F7E8B100D5A6D8 /* NSObject+Extension.m in Sources */,
+				4E847DD624F7E8B100D5A6D8 /* PEPInternalSession+PassphraseCache.m in Sources */,
+				4E847DB724F7E79400D5A6D8 /* PEPSessionProtocol.m in Sources */,
+				4E847DD324F7E8B100D5A6D8 /* PEPInternalConstants.m in Sources */,
+				4E847DB024F7E79400D5A6D8 /* PEPConstants.m in Sources */,
+				4E847DC024F7E8B000D5A6D8 /* PEPLanguage.m in Sources */,
+				4E847DCE24F7E8B100D5A6D8 /* PEPAutoPointer.m in Sources */,
+				4E847DC824F7E8B100D5A6D8 /* PEPSessionProvider.m in Sources */,
+				4E847DC724F7E8B100D5A6D8 /* PEPCopyableThread.m in Sources */,
+				4E847DCC24F7E8B100D5A6D8 /* PEPAttachment.m in Sources */,
+				4E847DC924F7E8B100D5A6D8 /* PEPSession.m in Sources */,
+				4E847DC124F7E8B000D5A6D8 /* PEPMessageUtil.m in Sources */,
+				4E847DCF24F7E8B100D5A6D8 /* NSNumber+PEPRating.m in Sources */,
+				4E847DC424F7E8B100D5A6D8 /* PEPInternalSession.m in Sources */,
+				4E847DC624F7E8B100D5A6D8 /* NSDictionary+Debug.m in Sources */,
+				4E847DD824F7E8B100D5A6D8 /* PEPAsyncSession.m in Sources */,
+				4E847DC524F7E8B100D5A6D8 /* NSDictionary+CommType.m in Sources */,
+				4E847DD124F7E8B100D5A6D8 /* NSMutableDictionary+PEP.m in Sources */,
+				4E847DC324F7E8B100D5A6D8 /* PEPQueue.m in Sources */,
+				4E847DCD24F7E8B100D5A6D8 /* NSError+PEP.m in Sources */,
+				4E847DD524F7E8B100D5A6D8 /* PEPPassphraseCacheEntry.m in Sources */,
+				4E847DD924F7E8B100D5A6D8 /* PEPPassphraseUtil.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E847D9324F7E71F00D5A6D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E847D9D24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		64415E131BE94FCB00F6CBB2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -745,6 +1071,21 @@
 			isa = PBXTargetDependency;
 			name = pEpTrustWords;
 			targetProxy = 43E39865221D7E9A008E7983 /* PBXContainerItemProxy */;
+		};
+		4E847D9A24F7E71F00D5A6D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */;
+			targetProxy = 4E847D9924F7E71F00D5A6D8 /* PBXContainerItemProxy */;
+		};
+		4E847DBB24F7E7DE00D5A6D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pEpEngineMacOS;
+			targetProxy = 4E847DBA24F7E7DE00D5A6D8 /* PBXContainerItemProxy */;
+		};
+		4E847DBD24F7E7E200D5A6D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pEpTrustWords;
+			targetProxy = 4E847DBC24F7E7E200D5A6D8 /* PBXContainerItemProxy */;
 		};
 		64415E401BE95B2000F6CBB2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -933,6 +1274,134 @@
 			};
 			name = Release;
 		};
+		4E847DA124F7E71F00D5A6D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/include";
+				INFOPLIST_FILE = pEpObjCMacOSAdapater/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = pEp.foundation.pEpObjCMacOSAdapater;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../pEpEngine/src";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4E847DA224F7E71F00D5A6D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/include";
+				INFOPLIST_FILE = pEpObjCMacOSAdapater/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = pEp.foundation.pEpObjCMacOSAdapater;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../pEpEngine/src";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4E847DA424F7E71F00D5A6D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = pEpObjCMacOSAdapaterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = pEp.foundation.pEpObjCMacOSAdapaterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4E847DA524F7E71F00D5A6D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = pEpObjCMacOSAdapaterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = pEp.foundation.pEpObjCMacOSAdapaterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		64415E1F1BE94FCB00F6CBB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1012,6 +1481,24 @@
 			buildConfigurations = (
 				43E39861221D7E56008E7983 /* Debug */,
 				43E39862221D7E56008E7983 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E847DA024F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E847DA124F7E71F00D5A6D8 /* Debug */,
+				4E847DA224F7E71F00D5A6D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4E847DA324F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapaterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E847DA424F7E71F00D5A6D8 /* Debug */,
+				4E847DA524F7E71F00D5A6D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
