@@ -145,10 +145,9 @@
 		4E847DF024F7EB8C00D5A6D8 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F518F22204A67006EB11F /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E847DF124F7EB8C00D5A6D8 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5163222045FB006EB11F /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E847DF224F7EB8D00D5A6D8 /* PEPPassphraseProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E847DF324F7EE5200D5A6D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D6624F7E0BA00D5A6D8 /* libz.dylib */; };
 		4E847E0224F7EFD100D5A6D8 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847DFA24F7EEA400D5A6D8 /* libiconv.2.tbd */; };
-		4E847E0624F7F4B100D5A6D8 /* libgmp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847E0524F7F4B100D5A6D8 /* libgmp.dylib */; };
-		4E847E0724F7F4B100D5A6D8 /* libgmp.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 4E847E0524F7F4B100D5A6D8 /* libgmp.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		4E847E0E24F8F22200D5A6D8 /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847E0924F8F16600D5A6D8 /* libgmp.a */; };
+		4E847E1024F8F35F00D5A6D8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D6424F7C3C500D5A6D8 /* libz.tbd */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; };
@@ -176,13 +175,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 644297BE1BE11C65002BC73B;
 			remoteInfo = pEpTrustWords;
-		};
-		4E847C8024F7A8C700D5A6D8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E847C2224F7A49900D5A6D8;
-			remoteInfo = "pEpEngine-macOS";
 		};
 		4E847D6124F7B37200D5A6D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -234,20 +226,6 @@
 			remoteInfo = pEpTrustWords;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4E847E0824F7F4B100D5A6D8 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				4E847E0724F7F4B100D5A6D8 /* libgmp.dylib in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPCopyableThread.h; sourceTree = "<group>"; };
@@ -372,6 +350,7 @@
 		4E847DFC24F7EF5100D5A6D8 /* libiconv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiconv.a; path = ../../../../../../../opt/local/lib/libiconv.a; sourceTree = "<group>"; };
 		4E847E0024F7EFB100D5A6D8 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libiconv.tbd; sourceTree = DEVELOPER_DIR; };
 		4E847E0524F7F4B100D5A6D8 /* libgmp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgmp.dylib; path = ../sequoia4macos/build/lib/libgmp.dylib; sourceTree = "<group>"; };
+		4E847E0924F8F16600D5A6D8 /* libgmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgmp.a; path = ../sequoia4macos/build/lib/libgmp.a; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -401,9 +380,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E847E0224F7EFD100D5A6D8 /* libiconv.2.tbd in Frameworks */,
-				4E847E0624F7F4B100D5A6D8 /* libgmp.dylib in Frameworks */,
 				4E847DA624F7E73800D5A6D8 /* libpEpEngineMacOS.a in Frameworks */,
-				4E847DF324F7EE5200D5A6D8 /* libz.dylib in Frameworks */,
+				4E847E0E24F8F22200D5A6D8 /* libgmp.a in Frameworks */,
+				4E847E1024F8F35F00D5A6D8 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +541,7 @@
 		43447C51221D448500B6323E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E847E0924F8F16600D5A6D8 /* libgmp.a */,
 				4E847E0524F7F4B100D5A6D8 /* libgmp.dylib */,
 				4E847E0024F7EFB100D5A6D8 /* libiconv.tbd */,
 				4E847DFC24F7EF5100D5A6D8 /* libiconv.a */,
@@ -626,7 +606,6 @@
 			children = (
 				64289E561B8B70E800FC617B /* libpEpEngine.a */,
 				64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */,
-				4E847C8124F7A8C700D5A6D8 /* libpEpEngine-macOS.a */,
 				4E847D6224F7B37200D5A6D8 /* libpEpEngineMacOS.a */,
 			);
 			name = Products;
@@ -744,7 +723,6 @@
 				4E847D8B24F7E71F00D5A6D8 /* Sources */,
 				4E847D8C24F7E71F00D5A6D8 /* Frameworks */,
 				4E847D8D24F7E71F00D5A6D8 /* Resources */,
-				4E847E0824F7F4B100D5A6D8 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -852,13 +830,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4E847C8124F7A8C700D5A6D8 /* libpEpEngine-macOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libpEpEngine-macOS.a";
-			remoteRef = 4E847C8024F7A8C700D5A6D8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		4E847D6224F7B37200D5A6D8 /* libpEpEngineMacOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
