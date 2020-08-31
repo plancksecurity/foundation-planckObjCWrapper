@@ -89,10 +89,11 @@
 		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
 		43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5EAF7F24FD2DB900DCDBAE /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
 		4E847D9824F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */; };
 		4E847D9D24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E847D9C24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m */; };
 		4E847D9F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E847DA624F7E73800D5A6D8 /* libpEpEngineMacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D6224F7B37200D5A6D8 /* libpEpEngineMacOS.a */; };
+		4E847DA624F7E73800D5A6D8 /* libpEpEngine-macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D6224F7B37200D5A6D8 /* libpEpEngine-macos.a */; };
 		4E847DB024F7E79400D5A6D8 /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 435C0CAB222930340025C6B5 /* PEPConstants.m */; };
 		4E847DB724F7E79400D5A6D8 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 433DFBBB24A73AD400AB373B /* PEPSessionProtocol.m */; };
 		4E847DBE24F7E8B000D5A6D8 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */; };
@@ -146,7 +147,6 @@
 		4E847DF124F7EB8C00D5A6D8 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5163222045FB006EB11F /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E847DF224F7EB8D00D5A6D8 /* PEPPassphraseProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E847E0224F7EFD100D5A6D8 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847DFA24F7EEA400D5A6D8 /* libiconv.2.tbd */; };
-		4E847E0E24F8F22200D5A6D8 /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847E0924F8F16600D5A6D8 /* libgmp.a */; };
 		4E847E1024F8F35F00D5A6D8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D6424F7C3C500D5A6D8 /* libz.tbd */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
@@ -380,8 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E847E0224F7EFD100D5A6D8 /* libiconv.2.tbd in Frameworks */,
-				4E847DA624F7E73800D5A6D8 /* libpEpEngineMacOS.a in Frameworks */,
-				4E847E0E24F8F22200D5A6D8 /* libgmp.a in Frameworks */,
+				4E847DA624F7E73800D5A6D8 /* libpEpEngine-macos.a in Frameworks */,
 				4E847E1024F8F35F00D5A6D8 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,7 +605,7 @@
 			children = (
 				64289E561B8B70E800FC617B /* libpEpEngine.a */,
 				64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */,
-				4E847D6224F7B37200D5A6D8 /* libpEpEngineMacOS.a */,
+				4E847D6224F7B37200D5A6D8 /* libpEpEngine-macos.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -723,6 +722,7 @@
 				4E847D8B24F7E71F00D5A6D8 /* Sources */,
 				4E847D8C24F7E71F00D5A6D8 /* Frameworks */,
 				4E847D8D24F7E71F00D5A6D8 /* Resources */,
+				4E5EAF8224FD31FE00DCDBAE /* Copy to user frameworks folder */,
 			);
 			buildRules = (
 			);
@@ -830,10 +830,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		4E847D6224F7B37200D5A6D8 /* libpEpEngineMacOS.a */ = {
+		4E847D6224F7B37200D5A6D8 /* libpEpEngine-macos.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libpEpEngineMacOS.a;
+			path = "libpEpEngine-macos.a";
 			remoteRef = 4E847D6124F7B37200D5A6D8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -866,6 +866,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E5EAF7F24FD2DB900DCDBAE /* pEpTrustWords.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -925,6 +926,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#mark annotations defined below as warnings\nKEYWORDS=\"TODO|FIXME|BUFF:|\\?\\?\\?:|\\!\\!\\!:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | \\\nxargs -0 egrep --with-filename --line-number --only-matching \"($KEYWORDS).*\\$\" | \\\nperl -p -e \"s/($KEYWORDS)/ warning: \\$1/\"\n";
+		};
+		4E5EAF8224FD31FE00DCDBAE /* Copy to user frameworks folder */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy to user frameworks folder";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"$HOME/Library/Frameworks\"\necho \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\"\nrm -Rf \"$HOME/Library/Frameworks/$FULL_PRODUCT_NAME\" \ncp -Rf \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" \"$HOME/Library/Frameworks/\" \n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1274,7 +1294,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(SOURCE_ROOT)/../sequoia4macos/build/lib/libgmp.a";
 				PRODUCT_BUNDLE_IDENTIFIER = pEp.foundation.pEpObjCMacOSAdapater;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
@@ -1311,7 +1331,7 @@
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/lib";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_FAST_MATH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(SOURCE_ROOT)/../sequoia4macos/build/lib/libgmp.a";
 				PRODUCT_BUNDLE_IDENTIFIER = pEp.foundation.pEpObjCMacOSAdapater;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
