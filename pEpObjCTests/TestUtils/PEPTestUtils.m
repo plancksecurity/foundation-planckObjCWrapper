@@ -119,7 +119,7 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
 
 + (void)cleanUp
 {
-    [PEPSessionProvider cleanup];
+    [PEPSession cleanup];
 
     NSString *homeString = [PEPObjCAdapter perUserDirectoryString];
     NSURL *homeUrl = [NSURL fileURLWithPath:homeString isDirectory:YES];
