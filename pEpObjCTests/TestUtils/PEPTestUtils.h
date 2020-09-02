@@ -28,7 +28,7 @@ extern const NSInteger PEPTestInternalSyncTimeout;
 
 + (PEPIdentity *)ownPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;
 
-+ (BOOL)importBundledKey:(NSString *)item session:(PEPSession *)session;
++ (BOOL)importBundledKey:(NSString *)item session:(PEPInternalSession *)session;
 
 + (NSString *)loadResourceByName:(NSString *)name;
 

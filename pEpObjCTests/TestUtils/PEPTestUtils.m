@@ -16,6 +16,7 @@
 #import "PEPSession.h"
 #import "PEPAttachment.h"
 #import "PEPSessionProvider.h"
+#import "PEPInternalSession.h"
 
 /**
  For now, safer to use that, until the engine copes with our own.
@@ -87,10 +88,10 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     [message setValue:[NSArray arrayWithArray:attachments] forKey:kPepAttachments];
 }
 
-+ (BOOL)importBundledKey:(NSString *)item session:(PEPSession *)session
++ (BOOL)importBundledKey:(NSString *)item session:(PEPInternalSession *)session
 {
     if (!session) {
-        session = [PEPSession new];
+        session = [PEPSessionProvider session];
     }
 
     NSString *txtFileContents = [self loadStringFromFileName:item];
