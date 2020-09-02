@@ -20,7 +20,7 @@
 
 - (void)tearDown
 {
-    [PEPSession cleanup];
+    [PEPSessionProvider cleanup];
 }
 
 - (void)testSeperatedSessionPerThread {
@@ -95,7 +95,7 @@
     XCTAssertNotNil(sessionBackground);
     XCTAssertEqual(sessionMain, sessionMain2, @"The main session stayed the same (was kept \
                    alive, was not recreated)");
-    [PEPSession cleanup];
+    [PEPSessionProvider cleanup];
     PEPInternalSession *sessionMainAfterCleanup = [PEPSessionProvider session];
     XCTAssertNotNil(sessionMainAfterCleanup);
     XCTAssertNotEqual(sessionMainAfterCleanup, sessionMain,

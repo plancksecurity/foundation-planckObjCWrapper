@@ -11,6 +11,7 @@
 #import "PEPObjCAdapter.h"
 #import "PEPSession.h"
 #import "PEPLanguage.h"
+#import "PEPSessionProvider.h"
 
 @interface PepTests : XCTestCase
 @end
@@ -24,7 +25,7 @@
 
 - (void)tearDown
 {
-    [PEPSession cleanup];
+    [PEPSessionProvider cleanup];
 }
 
 - (void)testSessionFinalization {
