@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation PEPIdentity
+@implementation PEPIdentity (isPEPUser)
 
 - (NSNumber * _Nullable)isPEPUser:(PEPInternalSession * _Nullable)session
                             error:(NSError * _Nullable * _Nullable)error
