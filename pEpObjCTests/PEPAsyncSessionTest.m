@@ -11,8 +11,6 @@
 #import "PEPObjCAdapterFramework.h"
 
 #import "PEPTestUtils.h"
-#import "PEPSessionProvider.h"
-#import "PEPInternalSession.h"
 
 @interface PEPAsyncSessionTest : XCTestCase
 
@@ -433,7 +431,7 @@
         return nil;
     }
 
-    NSNumber *ratingPreview = [[PEPSessionProvider session]
+    NSNumber *ratingPreview = [[PEPSession new]
                                outgoingRatingPreviewForMessage:theMessage
                                error:error];
     XCTAssertEqual(ratingOriginal, ratingPreview);
