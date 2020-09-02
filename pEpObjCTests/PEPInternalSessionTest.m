@@ -1635,10 +1635,11 @@
     NSString *passphrase = @"a";
 
     NSError *error = nil;
-    PEPInternalSession *session = [PEPSessionProvider session];
 
     XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:passphrase error:&error]);
     XCTAssertNil(error);
+
+    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
