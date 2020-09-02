@@ -25,6 +25,12 @@
  */
 + (PEPInternalSession * _Nonnull)session;
 
+/**
+You must call this method once before your process gets terminated to be able to gracefully shutdown.
+You must not make any calls to PEPSession in between the last call to `cleanup()` and getting terminated.
+
+Only for performance reasons: call this method only if you have to.
+*/
 + (void)cleanup;
 
 @end
