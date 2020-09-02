@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPSessionProtocol.h"
+#import "PEPTypes.h"
 #import "PEPEngineTypes.h"
 
 @class PEPSession;
