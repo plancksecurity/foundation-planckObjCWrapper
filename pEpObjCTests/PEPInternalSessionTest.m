@@ -1920,7 +1920,7 @@
 - (PEPMessage *)internalEncryptToMySelfKeys:(PEPStringList **)keys
 {
     PEPInternalSession *session = [PEPSessionProvider session];
-    
+
     PEPIdentity *me = [PEPTestUtils ownPepIdentityWithAddress:@"me@peptest.ch"
                                                      userName:@"userName"];
     NSError *error = nil;
