@@ -15,6 +15,7 @@
 #import "PEPIdentity.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalConstants.h"
+#import "NSError+PEP+Internal.h"
 
 static dispatch_queue_t queue;
 
@@ -601,7 +602,22 @@ successCallback:(void (^)(NSString *log))successCallback
 - (void)configurePassiveModeEnabled:(BOOL)enabled
 {
     PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        return;
+    }
     return [session configurePassiveModeEnabled:enabled];
+}
+
+- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error {
+    PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        if (error) {
+            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
+        }
+        return NO;
+    }
+    return [session configurePassphrase:passphrase error:error];
 }
 
 // MARK: - Methods that can be executed syncronously
