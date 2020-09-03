@@ -77,9 +77,7 @@
     });
 }
 
-#pragma mark - DEBUG UTILS
-
-#pragma mark - PEPSessionProtocol
+#pragma mark - API
 
 void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 {
