@@ -1282,6 +1282,8 @@
 
 - (void)testEnableDisableFailForSyncOnPartnerIdentity
 {
+    PEPInternalSession *session = [PEPSessionProvider session];
+
     PEPIdentity *notMe = [[PEPIdentity alloc]
                           initWithAddress:@"notme@pep-project.org"
                           userID:@"notme_ID"
@@ -1289,7 +1291,7 @@
                           isOwn:NO];
 
     NSError *error = nil;
-    XCTAssertFalse([notMe enableKeySync:&error]);
+    XCTAssertFalse([session enableSyncForIdentity:notMe error:&error]);
     XCTAssertNotNil(error);
 
     error = nil;
@@ -1330,10 +1332,10 @@
         BOOL enable = i % 2 == 0; // enable keysync on even numbers (roughly)
         if (enable) {
             XCTAssertTrue([session enableSyncForIdentity:identMe1 error:&error]);
-            XCTAssertTrue([identMe2 enableKeySync:&error]);
+            XCTAssertTrue([session enableSyncForIdentity:identMe2 error:&error]);
         } else {
             XCTAssertTrue([session disableSyncForIdentity:identMe1 error:&error]);
-            XCTAssertTrue([identMe2 disableKeySync:&error]);
+            XCTAssertTrue([session disableSyncForIdentity:identMe2 error:&error]);
         }
         XCTAssertNil(error);
 
