@@ -181,6 +181,8 @@ static NSArray *s_keys;
     self.language = l;
 }
 
+// MARK: - NSDictionary - Reset
+
 - (void)reset
 {
     self.commType = PEP_ct_unknown;
@@ -190,12 +192,6 @@ static NSArray *s_keys;
     self.userName = nil;
     self.isOwn = NO;
     self.flags = 0;
-}
-
-- (NSNumber * _Nullable)queryKeySyncEnabled:(NSError * _Nullable * _Nullable)error
-{
-    PEPSession *session = [PEPSession new];
-    return [session queryKeySyncEnabledForIdentity:self error:error];
 }
 
 // MARK: - NSDictionary - Helpers

@@ -1299,7 +1299,7 @@
     XCTAssertNotNil(error);
 
     error = nil;
-    XCTAssertNil([notMe queryKeySyncEnabled:&error]);
+    XCTAssertNil([session queryKeySyncEnabledForIdentity:notMe error:&error]);
     XCTAssertNotNil(error);
 }
 
@@ -1340,7 +1340,7 @@
         XCTAssertNil(error);
 
         NSNumber *keySyncState1 = [session queryKeySyncEnabledForIdentity:identMe1 error:&error];
-        NSNumber *keySyncState2 = [identMe2 queryKeySyncEnabled:&error];
+        NSNumber *keySyncState2 = [session queryKeySyncEnabledForIdentity:identMe2 error:&error];
         XCTAssertNil(error);
         XCTAssertNotNil(keySyncState1);
         XCTAssertNotNil(keySyncState2);

@@ -104,16 +104,4 @@
  */
 - (void)reset;
 
-/**
- Queries whether this own identity has key sync enabled or not.
-
- Will invoke the needed methods on an own session.
-
- @param error The usual cocoa error handling.
- @return A NSNumber denoting whether this own identity can participate in key sync enabled or not,
-         or nil on error.
-         YES means that key sync is allowed for this identity, otherwise it's NO.
- */
-- (NSNumber * _Nullable)queryKeySyncEnabled:(NSError * _Nullable * _Nullable)error;
-
 @end
