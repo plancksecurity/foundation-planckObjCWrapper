@@ -601,11 +601,7 @@ successCallback:(void (^)(NSString *log))successCallback
 
 - (void)configurePassiveModeEnabled:(BOOL)enabled
 {
-    PEPInternalSession *session = [PEPSessionProvider session];
-    if (session == nil) {
-        return;
-    }
-    return [session configurePassiveModeEnabled:enabled];
+    return [[PEPSessionProvider session] configurePassiveModeEnabled:enabled];
 }
 
 - (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
