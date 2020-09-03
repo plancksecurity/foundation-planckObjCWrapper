@@ -14,6 +14,7 @@
 #import "NSNumber+PEPRating.h"
 #import "PEPIdentity.h"
 #import "PEPSessionProvider.h"
+#import "PEPInternalConstants.h"
 
 static dispatch_queue_t queue;
 
@@ -593,6 +594,26 @@ successCallback:(void (^)(NSString *log))successCallback
             errorCallback(error);
         }
     });
+}
+
+// MARK: - Methods that can be executed syncronously
+
+- (PEPRating)ratingFromString:(NSString * _Nonnull)string
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        return PEPRatingUndefined;
+    }
+    return [session ratingFromString:string];
+}
+
+- (NSString * _Nonnull)stringFromRating:(PEPRating)rating
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        return kUndefined;
+    }
+    return [session stringFromRating:rating];
 }
 
 @end

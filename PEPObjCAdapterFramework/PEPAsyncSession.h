@@ -179,6 +179,15 @@ successCallback:(void (^)(NSString *log))successCallback;
 - (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
            successCallback:(void (^)(void))successCallback;
 
+// MARK: - Methods that can be executed syncronously
+
+/// Converts a string like "cannot_decrypt" into its equivalent PEPRating_cannot_decrypt.
+- (PEPRating)ratingFromString:(NSString * _Nonnull)string;
+
+/// Converts a pEp rating like PEPRating_cannot_decrypt
+/// into its equivalent string "cannot_decrypt".
+- (NSString * _Nonnull)stringFromRating:(PEPRating)rating;
+
 @end
 
 NS_ASSUME_NONNULL_END
