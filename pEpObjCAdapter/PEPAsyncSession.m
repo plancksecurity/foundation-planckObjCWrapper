@@ -616,4 +616,13 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session stringFromRating:rating];
 }
 
+- (PEPColor)colorFromRating:(PEPRating)rating
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        return PEPColorNoColor;
+    }
+    return [session colorFromRating:rating];
+}
+
 @end

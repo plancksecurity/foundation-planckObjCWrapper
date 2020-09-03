@@ -188,6 +188,9 @@ successCallback:(void (^)(NSString *log))successCallback;
 /// into its equivalent string "cannot_decrypt".
 - (NSString * _Nonnull)stringFromRating:(PEPRating)rating;
 
+/// Wraps color_from_rating.
+- (PEPColor)colorFromRating:(PEPRating)rating;
+
 @end
 
 NS_ASSUME_NONNULL_END
