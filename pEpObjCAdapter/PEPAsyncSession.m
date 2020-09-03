@@ -620,6 +620,19 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session configurePassphrase:passphrase error:error];
 }
 
+- (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                               enable:(BOOL)enable
+                                error:(NSError * _Nullable __autoreleasing * _Nullable)error {
+    PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        if (error) {
+            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
+        }
+        return NO;
+    }
+    return [session configurePassphraseForNewKeys:passphrase enable:enable error:error];
+}
+
 // MARK: - Methods that can be executed syncronously
 
 - (PEPRating)ratingFromString:(NSString * _Nonnull)string
