@@ -410,6 +410,7 @@
 				434707F524C210CA00E05485 /* PEPSession.m */,
 				436C9A3124DC48B600007A3D /* PEPPassphraseUtil.h */,
 				436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */,
+				433DFBBB24A73AD400AB373B /* PEPSessionProtocol.m */,
 			);
 			path = pEpObjCAdapter;
 			sourceTree = "<group>";
@@ -441,7 +442,6 @@
 				435C0CA022292E7C0025C6B5 /* PEPTypes.h */,
 				43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */,
 				435F518F22204A67006EB11F /* PEPSessionProtocol.h */,
-				433DFBBB24A73AD400AB373B /* PEPSessionProtocol.m */,
 				435F5163222045FB006EB11F /* PEPIdentity.h */,
 				436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */,
 				43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */,
