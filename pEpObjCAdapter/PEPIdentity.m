@@ -192,12 +192,6 @@ static NSArray *s_keys;
     self.flags = 0;
 }
 
-- (BOOL)disableKeySync:(NSError * _Nullable * _Nullable)error
-{
-    PEPSession *session = [PEPSession new];
-    return [session disableSyncForIdentity:self error:error];
-}
-
 - (NSNumber * _Nullable)queryKeySyncEnabled:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *session = [PEPSession new];

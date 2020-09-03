@@ -105,16 +105,6 @@
 - (void)reset;
 
 /**
- Disables key sync on this identity.
-
- Will invoke the needed methods on an own session.
-
- @param error The usual cocoa error handling.
- @return The usual cocoa error handling.
- */
-- (BOOL)disableKeySync:(NSError * _Nullable * _Nullable)error;
-
-/**
  Queries whether this own identity has key sync enabled or not.
 
  Will invoke the needed methods on an own session.

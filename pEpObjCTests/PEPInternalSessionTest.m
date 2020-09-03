@@ -1295,7 +1295,7 @@
     XCTAssertNotNil(error);
 
     error = nil;
-    XCTAssertFalse([notMe disableKeySync:&error]);
+    XCTAssertFalse([session disableSyncForIdentity:notMe error:&error]);
     XCTAssertNotNil(error);
 
     error = nil;
