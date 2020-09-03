@@ -337,21 +337,4 @@
 - (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
                       error:(NSError * _Nullable * _Nullable)error;
 
-/// Sets a passphrase (with a maximum of 250 code points) for
-/// (own) secret keys generated from now on.
-///
-/// For setting a passphrase, `enable` must be set to `YES`,
-/// in which case the `passphrase` should contain an actual passphrase.
-/// A `nil` `passphrase` with `enable` set to `YES` is undefined.
-/// The passphrase can be unset by setting `enable` to `NO`
-/// (with or without passphrase, this gets (assumedly)
-/// ignored in this case, but has to be verified).
-/// Uses the engine's `config_passphrase_for_new_keys`.
-/// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
-/// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
-/// @deprecated
-- (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
-                               enable:(BOOL)enable error:(NSError * _Nullable * _Nullable)error
-__deprecated;
-
 @end
