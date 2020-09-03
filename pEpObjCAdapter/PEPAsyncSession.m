@@ -596,6 +596,14 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+// MARK: - Configuration
+
+- (void)configurePassiveModeEnabled:(BOOL)enabled
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    return [session configurePassiveModeEnabled:enabled];
+}
+
 // MARK: - Methods that can be executed syncronously
 
 - (PEPRating)ratingFromString:(NSString * _Nonnull)string

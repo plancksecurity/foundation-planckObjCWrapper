@@ -179,6 +179,12 @@ successCallback:(void (^)(NSString *log))successCallback;
 - (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
            successCallback:(void (^)(void))successCallback;
 
+// MARK: - Configuration
+
+/// Wraps the engine's `config_passive_mode`.
+/// @note That there's absolutely no error handling.
+- (void)configurePassiveModeEnabled:(BOOL)enabled;
+
 // MARK: - Methods that can be executed syncronously
 
 /// Converts a string like "cannot_decrypt" into its equivalent PEPRating_cannot_decrypt.
