@@ -25,9 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable) NSArray<PEPIdentity *> *cc;
 @property (nonatomic, nullable) NSArray<PEPIdentity *> *bcc;
 
-/// The own id (account) the message has been received for. MUST be set for incomming messages
-@property (nonatomic, nullable) PEPIdentity *recv_by;
-
 @property (nonatomic, nullable) NSString *shortMessage;
 @property (nonatomic, nullable) NSString *longMessage;
 @property (nonatomic, nullable) NSString *longMessageFormatted;
