@@ -65,7 +65,12 @@ static dispatch_queue_t queue;
         if (newMessage) {
             // See IOS-2414 for details
             BOOL isFormerlyEncryptedReuploadedMessage = (status == PEPStatusUnencrypted) && theRating >= PEPRatingUnreliable;
-            successCallback(theMessage, newMessage, theExtraKeys, theRating, theFlags, isFormerlyEncryptedReuploadedMessage);
+            successCallback(theMessage,
+                            newMessage,
+                            theExtraKeys,
+                            theRating,
+                            theFlags,
+                            isFormerlyEncryptedReuploadedMessage);
         } else {
             errorCallback(error);
         }
