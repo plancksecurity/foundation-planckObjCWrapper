@@ -1,41 +1,34 @@
 //
-//  PEPSession.m
+//  PEPAsyncSession.m
 //  PEPObjCAdapterFramework
 //
 //  Created by Dirk Zimmermann on 17.07.20.
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-#import "PEPSession.h"
+#import "PEPAsyncSession.h"
 
 #import "PEPMessage.h"
 #import "PEPEngineTypes.h"
-#import "PEPInternalSession.h"
+#import "PEPSession.h"
 #import "NSNumber+PEPRating.h"
 #import "PEPIdentity.h"
-#import "PEPSessionProvider.h"
-#import "PEPInternalConstants.h"
-#import "NSError+PEP+Internal.h"
 
 static dispatch_queue_t queue;
 
-@implementation PEPSession
+@interface PEPAsyncSession ()
+@end
+
+@implementation PEPAsyncSession
 
 + (void)initialize
 {
-    if (self == [PEPSession class]) {
-        dispatch_queue_attr_t attr = DISPATCH_QUEUE_SERIAL;
-        attr = dispatch_queue_attr_make_with_qos_class(attr, QOS_CLASS_USER_INITIATED, -1);
-        queue = dispatch_queue_create("PEPAsyncSession.queue", attr);
+    if (self == [PEPAsyncSession class]) {
+        queue = dispatch_queue_create("PEPAsyncSession.queue", DISPATCH_QUEUE_SERIAL); //DIRK: TODO: please set QOS to userInitiated
     }
 }
 
-+ (void)cleanup
-{
-    [PEPSessionProvider cleanup];
-}
-
-- (void)decryptMessage:(PEPMessage *)message
+- (void)decryptMessage:(PEPMessage *)message //BUFF: done
                  flags:(PEPDecryptFlags)flags
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -55,12 +48,12 @@ static dispatch_queue_t queue;
         PEPStatus status;
         NSError *error = nil;
 
-        PEPMessage *newMessage = [[PEPSessionProvider session] decryptMessage:theMessage
-                                                                        flags:&theFlags
-                                                                       rating:&theRating
-                                                                    extraKeys:&theExtraKeys
-                                                                       status:&status
-                                                                        error:&error];
+        PEPMessage *newMessage = [[PEPSession new] decryptMessage:theMessage
+                                                            flags:&theFlags
+                                                           rating:&theRating
+                                                        extraKeys:&theExtraKeys
+                                                           status:&status
+                                                            error:&error];
 
         if (newMessage) {
             // See IOS-2414 for details
@@ -72,7 +65,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)reEvaluateMessage:(PEPMessage *)message
+- (void)reEvaluateMessage:(PEPMessage *)message //BUFF: done
                  xKeyList:(PEPStringList *_Nullable)xKeyList
                    originalRating:(PEPRating)originalRating
             errorCallback:(void (^)(NSError *error))errorCallback
@@ -82,7 +75,7 @@ static dispatch_queue_t queue;
         PEPRating theRating = originalRating;
         NSError *error = nil;
 
-        BOOL result = [[PEPSessionProvider session]
+        BOOL result = [[PEPSession new]
                        reEvaluateMessage:message
                        xKeyList:xKeyList
                        rating:&theRating
@@ -97,7 +90,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message
+- (void)encryptMessage:(PEPMessage *)message //BUFF: done
              extraKeys:(PEPStringList * _Nullable)extraKeys
              encFormat:(PEPEncFormat)encFormat
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -107,7 +100,7 @@ static dispatch_queue_t queue;
     dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
         NSError *error = nil;
-        PEPMessage *destMessage = [[PEPSessionProvider session]
+        PEPMessage *destMessage = [[PEPSession new]
                                    encryptMessage:theMessage
                                    extraKeys:extraKeys
                                    encFormat:encFormat
@@ -121,7 +114,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message
+- (void)encryptMessage:(PEPMessage *)message //BUFF: done
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPMessage *srcMessage,
@@ -130,7 +123,7 @@ static dispatch_queue_t queue;
     dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
         NSError *error = nil;
-        PEPMessage *destMessage = [[PEPSessionProvider session]
+        PEPMessage *destMessage = [[PEPSession new]
                                    encryptMessage:theMessage
                                    extraKeys:extraKeys
                                    status:nil
@@ -143,7 +136,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message
+- (void)encryptMessage:(PEPMessage *)message //BUFF: done
                forSelf:(PEPIdentity *)ownIdentity
              extraKeys:(PEPStringList * _Nullable)extraKeys
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -153,7 +146,7 @@ static dispatch_queue_t queue;
     dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
         NSError *error = nil;
-        PEPMessage *destMessage = [[PEPSessionProvider session]
+        PEPMessage *destMessage = [[PEPSession new]
                                    encryptMessage:theMessage
                                    forSelf:ownIdentity
                                    extraKeys:extraKeys
@@ -167,7 +160,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)encryptMessage:(PEPMessage *)message
+- (void)encryptMessage:(PEPMessage *)message //BUFF: unused. (done)
                  toFpr:(NSString *)toFpr
              encFormat:(PEPEncFormat)encFormat
                  flags:(PEPDecryptFlags)flags
@@ -178,7 +171,7 @@ static dispatch_queue_t queue;
     dispatch_async(queue, ^{
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
         NSError *error = nil;
-        PEPMessage *destMessage = [[PEPSessionProvider session]
+        PEPMessage *destMessage = [[PEPSession new]
                                    encryptMessage:theMessage
                                    toFpr:toFpr
                                    encFormat:encFormat
@@ -193,15 +186,13 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)outgoingRatingForMessage:(PEPMessage *)theMessage
+- (void)outgoingRatingForMessage:(PEPMessage *)theMessage //BUFF: done
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPRating rating))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSNumber *ratingNum = [[PEPSessionProvider session]
-                               outgoingRatingForMessage:theMessage
-                               error:&error];
+        NSNumber *ratingNum = [[PEPSession new] outgoingRatingForMessage:theMessage error:&error];
         if (ratingNum) {
             successCallback(ratingNum.pEpRating);
         } else {
@@ -210,13 +201,13 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)ratingForIdentity:(PEPIdentity *)identity
+- (void)ratingForIdentity:(PEPIdentity *)identity //BUFF: done
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSNumber *ratingNum = [[PEPSessionProvider session]
+        NSNumber *ratingNum = [[PEPSession new]
                                ratingForIdentity:identity
                                error:&error];
         if (ratingNum) {
@@ -227,7 +218,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)trustwordsForFingerprint:(NSString *)fingerprint
+- (void)trustwordsForFingerprint:(NSString *)fingerprint //BUFF: done
                       languageID:(NSString *)languageID
                        shortened:(BOOL)shortened
                    errorCallback:(void (^)(NSError *error))errorCallback
@@ -235,7 +226,7 @@ static dispatch_queue_t queue;
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSArray *trustwords = [[PEPSessionProvider session]
+        NSArray *trustwords = [[PEPSession new]
                                trustwordsForFingerprint:fingerprint
                                languageID:languageID
                                shortened:shortened
@@ -248,7 +239,7 @@ static dispatch_queue_t queue;
     });
 }
 
-- (void)mySelf:(PEPIdentity *)identity
+- (void)mySelf:(PEPIdentity *)identity //BUFF: done
  errorCallback:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
@@ -256,7 +247,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
 
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] mySelf:theIdentity error:&error];
+        BOOL success = [[PEPSession new] mySelf:theIdentity error:&error];
         if (success) {
             successCallback(theIdentity);
         } else {
@@ -265,7 +256,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)updateIdentity:(PEPIdentity *)identity
+- (void)updateIdentity:(PEPIdentity *)identity // DZ: DONE
          errorCallback:(void (^)(NSError *error))errorCallback
        successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
@@ -273,7 +264,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
 
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] updateIdentity:theIdentity error:&error];
+        BOOL success = [[PEPSession new] updateIdentity:theIdentity error:&error];
         if (success) {
             successCallback(theIdentity);
         } else {
@@ -282,13 +273,13 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)trustPersonalKey:(PEPIdentity *)identity
+- (void)trustPersonalKey:(PEPIdentity *)identity // DZ: DONE
            errorCallback:(void (^)(NSError *error))errorCallback
          successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] trustPersonalKey:identity error:&error];
+        BOOL success = [[PEPSession new] trustPersonalKey:identity error:&error];
         if (success) {
             successCallback();
         } else {
@@ -297,13 +288,13 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)keyMistrusted:(PEPIdentity *)identity
+- (void)keyMistrusted:(PEPIdentity *)identity // DZ: DONE
         errorCallback:(void (^)(NSError *error))errorCallback
       successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] keyMistrusted:identity error:&error];
+        BOOL success = [[PEPSession new] keyMistrusted:identity error:&error];
         if (success) {
             successCallback();
         } else {
@@ -312,13 +303,13 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)keyResetTrust:(PEPIdentity *)identity
+- (void)keyResetTrust:(PEPIdentity *)identity // DZ: DONE
         errorCallback:(void (^)(NSError *error))errorCallback
       successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] keyResetTrust:identity error:&error];
+        BOOL success = [[PEPSession new] keyResetTrust:identity error:&error];
         if (success) {
             successCallback();
         } else {
@@ -327,13 +318,13 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)enableSyncForIdentity:(PEPIdentity *)identity
+- (void)enableSyncForIdentity:(PEPIdentity *)identity // DZ: DONE
                 errorCallback:(void (^)(NSError *error))errorCallback
               successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] enableSyncForIdentity:identity error:&error];
+        BOOL success = [[PEPSession new] enableSyncForIdentity:identity error:&error];
         if (success) {
             successCallback();
         } else {
@@ -342,13 +333,13 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)disableSyncForIdentity:(PEPIdentity *)identity
+- (void)disableSyncForIdentity:(PEPIdentity *)identity // DZ: DONE
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] disableSyncForIdentity:identity error:&error];
+        BOOL success = [[PEPSession new] disableSyncForIdentity:identity error:&error];
         if (success) {
             successCallback();
         } else {
@@ -357,15 +348,14 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
+- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity // BUFF: DONE
                          errorCallback:(void (^)(NSError *error))errorCallback
                        successCallback:(void (^)(BOOL enabled))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSNumber *boolNum = [[PEPSessionProvider session]
-                             queryKeySyncEnabledForIdentity:identity
-                             error:&error];
+        NSNumber *boolNum = [[PEPSession new] queryKeySyncEnabledForIdentity:identity
+                                                                       error:&error];
         if (boolNum) {
             successCallback(boolNum.boolValue);
         } else {
@@ -374,13 +364,13 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)importKey:(NSString *)keydata
+- (void)importKey:(NSString *)keydata // DZ: DONE
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSArray *identities = [[PEPSessionProvider session] importKey:keydata error:&error];
+        NSArray *identities = [[PEPSession new] importKey:keydata error:&error];
         if (identities) {
             successCallback(identities);
         } else {
@@ -389,7 +379,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)logTitle:(NSString *)title
+- (void)logTitle:(NSString *)title // DZ: DONE (not used by app/MM)
           entity:(NSString *)entity
      description:(NSString * _Nullable)description
          comment:(NSString * _Nullable)comment
@@ -398,11 +388,11 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] logTitle:title
-                                                       entity:entity
-                                                  description:description
-                                                      comment:comment
-                                                        error:&error];
+        BOOL success = [[PEPSession new] logTitle:title
+                                           entity:entity
+                                      description:description
+                                          comment:comment
+                                            error:&error];
         if (success) {
             successCallback();
         } else {
@@ -412,12 +402,12 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
 }
 
 
-- (void)getLog:(void (^)(NSError *error))errorCallback
+- (void)getLog:(void (^)(NSError *error))errorCallback // DZ: DONE (not used by app/MM)
 successCallback:(void (^)(NSString *log))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSString *log = [[PEPSessionProvider session] getLogWithError:&error];
+        NSString *log = [[PEPSession new] getLogWithError:&error];
         if (log) {
             successCallback(log);
         } else {
@@ -426,7 +416,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1
+- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1 //BUFF: done
                      identity2:(PEPIdentity *)identity2
                       language:(NSString * _Nullable)language
                           full:(BOOL)full
@@ -435,11 +425,11 @@ successCallback:(void (^)(NSString *log))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSString *trustwords = [[PEPSessionProvider session] getTrustwordsIdentity1:identity1
-                                                                          identity2:identity2
-                                                                           language:language
-                                                                               full:full
-                                                                              error:&error];
+        NSString *trustwords = [[PEPSession new] getTrustwordsIdentity1:identity1
+                                                              identity2:identity2
+                                                               language:language
+                                                                   full:full
+                                                                  error:&error];
         if (trustwords) {
             successCallback(trustwords);
         } else {
@@ -448,7 +438,7 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)getTrustwordsFpr1:(NSString *)fpr1
+- (void)getTrustwordsFpr1:(NSString *)fpr1 //BUFF: done
                      fpr2:(NSString *)fpr2
                  language:(NSString * _Nullable)language
                      full:(BOOL)full
@@ -457,11 +447,11 @@ successCallback:(void (^)(NSString *log))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSString *trustwords = [[PEPSessionProvider session] getTrustwordsFpr1:fpr1
-                                                                          fpr2:fpr2
-                                                                      language:language
-                                                                          full:full
-                                                                         error:&error];
+        NSString *trustwords = [[PEPSession new] getTrustwordsFpr1:fpr1
+                                                              fpr2:fpr2
+                                                          language:language
+                                                              full:full
+                                                             error:&error];
         if (trustwords) {
             successCallback(trustwords);
         } else {
@@ -470,13 +460,13 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)languageList:(void (^)(NSError *error))errorCallback
+- (void)languageList:(void (^)(NSError *error))errorCallback // DZ: DONE
      successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback
 
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSArray *languages = [[PEPSessionProvider session] languageListWithError:&error];
+        NSArray *languages = [[PEPSession new] languageListWithError:&error];
         if (languages) {
             successCallback(languages);
         } else {
@@ -485,13 +475,13 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)isPEPUser:(PEPIdentity *)identity
+- (void)isPEPUser:(PEPIdentity *)identity // DZ: DONE
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(BOOL enabled))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        NSNumber *ispEpUserNum = [[PEPSessionProvider session] isPEPUser:identity error:&error];
+        NSNumber *ispEpUserNum = [[PEPSession new] isPEPUser:identity error:&error];
         if (ispEpUserNum) {
             successCallback(ispEpUserNum.boolValue);
         } else {
@@ -500,16 +490,16 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)setOwnKey:(PEPIdentity *)identity
+- (void)setOwnKey:(PEPIdentity *)identity // DZ: DONE
       fingerprint:(NSString *)fingerprint
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] setOwnKey:identity
-                                                   fingerprint:fingerprint
-                                                         error:&error];
+        BOOL success = [[PEPSession new] setOwnKey:identity
+                                       fingerprint:fingerprint
+                                             error:&error];
         if (success) {
             successCallback();
         } else {
@@ -518,16 +508,16 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result
+- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result // DZ: DONE
              identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] deliverHandshakeResult:result
-                                                          identitiesSharing:identitiesSharing
-                                                                      error:&error];
+        BOOL success = [[PEPSession new] deliverHandshakeResult:result
+                                              identitiesSharing:identitiesSharing
+                                                          error:&error];
         if (success) {
             successCallback();
         } else {
@@ -536,13 +526,13 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)trustOwnKeyIdentity:(PEPIdentity *)identity
+- (void)trustOwnKeyIdentity:(PEPIdentity *)identity // DZ: DONE (not used by app/MM)
               errorCallback:(void (^)(NSError *error))errorCallback
             successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] trustOwnKeyIdentity:identity error:&error];
+        BOOL success = [[PEPSession new] trustOwnKeyIdentity:identity error:&error];
         if (success) {
             successCallback();
         } else {
@@ -551,16 +541,16 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)keyReset:(PEPIdentity *)identity
+- (void)keyReset:(PEPIdentity *)identity // DZ: DONE
      fingerprint:(NSString * _Nullable)fingerprint
    errorCallback:(void (^)(NSError *error))errorCallback
  successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] keyReset:identity
-                                                  fingerprint:fingerprint
-                                                        error:&error];
+        BOOL success = [[PEPSession new] keyReset:identity
+                                      fingerprint:fingerprint
+                                            error:&error];
         if (success) {
             successCallback();
         } else {
@@ -569,12 +559,12 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback
+- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback // DZ: DONE
          successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] leaveDeviceGroup:&error];
+        BOOL success = [[PEPSession new] leaveDeviceGroup:&error];
         if (success) {
             successCallback();
         } else {
@@ -583,66 +573,18 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
+- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback // DZ: DONE
            successCallback:(void (^)(void))successCallback
 {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] keyResetAllOwnKeysError:&error];
+        BOOL success = [[PEPSession new] keyResetAllOwnKeysError:&error];
         if (success) {
             successCallback();
         } else {
             errorCallback(error);
         }
     });
-}
-
-// MARK: - Configuration
-
-- (void)configurePassiveModeEnabled:(BOOL)enabled
-{
-    return [[PEPSessionProvider session] configurePassiveModeEnabled:enabled];
-}
-
-- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
-                      error:(NSError * _Nullable __autoreleasing * _Nullable)error {
-    PEPInternalSession *session = [PEPSessionProvider session];
-    if (session == nil) {
-        if (error) {
-            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
-        }
-        return NO;
-    }
-    return [session configurePassphrase:passphrase error:error];
-}
-
-// MARK: - Methods that can be executed syncronously
-
-- (PEPRating)ratingFromString:(NSString * _Nonnull)string
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    if (session == nil) {
-        return PEPRatingUndefined;
-    }
-    return [session ratingFromString:string];
-}
-
-- (NSString * _Nonnull)stringFromRating:(PEPRating)rating
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    if (session == nil) {
-        return kUndefined;
-    }
-    return [session stringFromRating:rating];
-}
-
-- (PEPColor)colorFromRating:(PEPRating)rating
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    if (session == nil) {
-        return PEPColorNoColor;
-    }
-    return [session colorFromRating:rating];
 }
 
 @end

@@ -1,35 +1,23 @@
 //
-//  PEPSessionProtocol.h
-//  pEpObjCAdapter
+//  PEPAsyncSession.h
+//  PEPObjCAdapterFramework
 //
-//  Created by Dirk Zimmermann on 30.10.17.
-//  Copyright © 2017 p≡p. All rights reserved.
+//  Created by Dirk Zimmermann on 17.07.20.
+//  Copyright © 2020 p≡p. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
 #import "PEPEngineTypes.h"
+#import "PEPTypes.h"
 
-@class PEPLanguage;
-@class PEPIdentity;
 @class PEPMessage;
+@class PEPIdentity;
+@class PEPLanguage;
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Domain for errors indicated by the pEp engine.
-extern NSString * const _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
-
-/// Domain for errors indicated by the pEp adapter itself.
-extern NSString * const _Nonnull PEPObjCAdapterErrorDomain;
-
-@protocol PEPSessionProtocol <NSObject>
-
-/// You must call this method once before your process gets terminated to be able to gracefully shutdown.
-/// You must not make any calls to PEPSession in between the last call to `cleanup()` and getting terminated.
-///
-/// Only for performance reasons: call this method only if you have to.
-+ (void)cleanup;
+@interface PEPAsyncSession : NSObject
 
 - (void)decryptMessage:(PEPMessage *)message
                  flags:(PEPDecryptFlags)flags
@@ -185,49 +173,6 @@ successCallback:(void (^)(NSString *log))successCallback;
 
 - (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
            successCallback:(void (^)(void))successCallback;
-
-// MARK: - Configuration
-
-/// Wraps the engine's `config_passive_mode`.
-/// @note That there's absolutely no error handling.
-- (void)configurePassiveModeEnabled:(BOOL)enabled;
-
-/// Add a passphrase for secret keys to the cache.
-///
-/// You can add as many passphrases to the cache as needed by calling this method.
-/// Every passphrase is valid for 10 min (default, compile-time configurable),
-/// after that it gets removed from memory. The maximum count of passphrases is 20.
-/// Setting the 21st replaces the 1st.
-/// On error, `NO` is returned and the (optional) parameter `error`
-/// is set to the error that occurred.
-/// On every engine call that returns PEPStatusPassphraseRequired, or PEPStatusWrongPassphrase,
-/// the adapter will automatically repeat the call after setting the next cached passphrase
-/// (using the engine's `config_passphrase`). The first attempet as always with an empty password.
-/// This will be repeated until the call either succeeds, or until
-/// the adapter runs out of usable passwords.
-/// When the adapter runs out of passwords to try, PEPStatusWrongPassphrase will be thrown.
-/// If the engine indicates PEPStatusPassphraseRequired, and there are no passwords,
-/// the adapter will throw PEPStatusPassphraseRequired.
-/// The passphrase can have a "maximum number of code points of 250", which is
-/// approximated by checking the string length.
-/// If the passphrase exceeds this limit, the adapter throws PEPAdapterErrorPassphraseTooLong
-/// with a domain of PEPObjCAdapterErrorDomain.
-/// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
-/// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
-- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
-                      error:(NSError * _Nullable * _Nullable)error;
-
-// MARK: - Methods that can be executed syncronously
-
-/// Converts a string like "cannot_decrypt" into its equivalent PEPRating_cannot_decrypt.
-- (PEPRating)ratingFromString:(NSString * _Nonnull)string;
-
-/// Converts a pEp rating like PEPRating_cannot_decrypt
-/// into its equivalent string "cannot_decrypt".
-- (NSString * _Nonnull)stringFromRating:(PEPRating)rating;
-
-/// Wraps color_from_rating.
-- (PEPColor)colorFromRating:(PEPRating)rating;
 
 @end
 
