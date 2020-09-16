@@ -107,7 +107,8 @@
                            PEPMessage * dstMessage,
                            PEPStringList * keyList,
                            PEPRating rating,
-                           PEPDecryptFlags flags) {
+                           PEPDecryptFlags flags,
+                           BOOL isFormerlyEncryptedReuploadedMessage) {
             XCTAssertNotNil(dstMessage);
             XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
             [expectationDec fulfill];
