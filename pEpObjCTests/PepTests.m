@@ -9,8 +9,10 @@
 #import <XCTest/XCTest.h>
 
 #import "PEPObjCAdapter.h"
-#import "PEPSession.h"
+#import "PEPInternalSession.h"
+#import "PEPSessionProvider.h"
 #import "PEPLanguage.h"
+#import "PEPSession.h"
 
 @interface PepTests : XCTestCase
 @end
@@ -33,7 +35,7 @@
 }
 
 - (void)testLanguageList {
-    PEPSession *session = [[PEPSession alloc] init];
+    PEPInternalSession *session = [PEPSessionProvider session];
     NSError *error = nil;
     NSArray<PEPLanguage *> *langs = [session languageListWithError:&error];
     XCTAssertNil(error);
