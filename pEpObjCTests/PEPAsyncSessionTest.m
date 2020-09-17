@@ -1,5 +1,5 @@
 //
-//  PEPAsyncSessionTest.m
+//  PEPSessionTest.m
 //  pEpObjCAdapterTests
 //
 //  Created by Dirk Zimmermann on 18.07.20.
@@ -11,12 +11,14 @@
 #import "PEPObjCAdapterFramework.h"
 
 #import "PEPTestUtils.h"
+#import "PEPSessionProvider.h"
+#import "PEPInternalSession.h"
 
-@interface PEPAsyncSessionTest : XCTestCase
+@interface PEPSessionTest : XCTestCase
 
 @end
 
-@implementation PEPAsyncSessionTest
+@implementation PEPSessionTest
 
 - (void)setUp
 {
@@ -56,7 +58,7 @@
                                isOwn:YES
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
 
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
 
     NSError *error = nil;
     PEPIdentity *identAliceMyselfed = [self mySelf:identAlice error:&error];
@@ -160,7 +162,7 @@
 
     XCTestExpectation *expectationEnc = [self expectationWithDescription:@"expectationEnc"];
 
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
 
     [asyncSession
      encryptMessage:message
@@ -397,7 +399,7 @@
                                   longMessage:longMessage
                                      outgoing:YES];
 
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
 
     XCTestExpectation *expectationEnc = [self expectationWithDescription:@"expectationEnc"];
 
@@ -432,7 +434,7 @@
         return nil;
     }
 
-    NSNumber *ratingPreview = [[PEPSession new]
+    NSNumber *ratingPreview = [[PEPSessionProvider session]
                                outgoingRatingPreviewForMessage:theMessage
                                error:error];
     XCTAssertEqual(ratingOriginal, ratingPreview);
@@ -471,7 +473,7 @@
 
 - (BOOL)importBundledKey:(NSString *)item
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
 
     NSString *txtFileContents = [PEPTestUtils loadStringFromFileName:item];
     if (!txtFileContents) {
@@ -501,7 +503,7 @@
                                                     userID:(NSString *)userID
                                                fingerPrint:(NSString *)fingerPrint
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
 
     XCTAssertTrue([self importBundledKey:filePath]);
 
@@ -539,7 +541,7 @@
 
 - (PEPRating)ratingForIdentity:(PEPIdentity *)identity
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
 
     __block PEPRating resultingRating = PEPRatingB0rken;
 
@@ -560,7 +562,7 @@
 - (PEPIdentity * _Nullable)mySelf:(PEPIdentity * _Nonnull)identity
                             error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
 
     XCTestExpectation *expMyself = [self expectationWithDescription:@"expMyself"];
     __block PEPIdentity *identityMyselfed = nil;
@@ -591,7 +593,7 @@
                                                   shortened:(BOOL)shortened
                                                       error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block NSArray<NSString *> *result = nil;
     __block NSError *theError = nil;
@@ -615,7 +617,7 @@
 - (PEPIdentity * _Nullable)updateIdentity:(PEPIdentity * _Nonnull)identity
                                     error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *expUpdateIdent = [self expectationWithDescription:@"expUpdateIdent"];
     __block PEPIdentity *identTestUpdated = nil;
     __block NSError *theError = nil;
@@ -637,7 +639,7 @@
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block NSNumber *result = nil;
     __block NSError *theError = nil;
@@ -662,7 +664,7 @@
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block PEPMessage *result = nil;
     __block NSError *theError = nil;
@@ -688,7 +690,7 @@
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block PEPMessage *result = nil;
     __block NSError *theError = nil;
@@ -711,7 +713,7 @@
 - (BOOL)trustPersonalKey:(PEPIdentity * _Nonnull)identity
                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
@@ -734,7 +736,7 @@
 - (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
@@ -756,7 +758,7 @@
 
 - (BOOL)keyMistrusted:(PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
@@ -779,7 +781,7 @@
 - (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
                         error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
@@ -802,7 +804,7 @@
 - (NSNumber * _Nullable)queryKeySyncEnabledForIdentity:(PEPIdentity * _Nonnull)identity
                                                  error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block NSNumber *result = nil;
     __block NSError *theError = nil;
@@ -825,7 +827,7 @@
 - (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
                          error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
@@ -847,7 +849,7 @@
 
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block NSString *result = nil;
     __block NSError *theError = nil;
@@ -872,7 +874,7 @@
                                           full:(BOOL)full
                                          error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block NSString *result = nil;
     __block NSError *theError = nil;
@@ -898,7 +900,7 @@
 - (NSNumber * _Nullable)isPEPUser:(PEPIdentity * _Nonnull)identity
                             error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block NSNumber *result = nil;
     __block NSError *theError = nil;
@@ -921,7 +923,7 @@
 - (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
                       error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
@@ -945,7 +947,7 @@
      fingerprint:(NSString * _Nullable)fingerprint
            error:(NSError * _Nullable * _Nullable)error
 {
-    PEPAsyncSession *asyncSession = [PEPAsyncSession new];
+    PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
