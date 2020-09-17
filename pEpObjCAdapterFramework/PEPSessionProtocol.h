@@ -211,10 +211,10 @@ extern NSString * const _Nonnull PEPObjCAdapterErrorDomain;
  */
 - (PEPRating)ratingFromString:(NSString * _Nonnull)string;
 
-/**
- Can convert a pEp rating like PEPRating_cannot_decrypt
- into its equivalent string "cannot_decrypt" .
- */
+/// Can convert a pEp rating like PEPRating_cannot_decrypt
+/// into its equivalent string like "cannot_decrypt".
+/// @Note Does not invoke the engine, can be safely used synchronously
+/// on the main thread.
 - (NSString * _Nonnull)stringFromRating:(PEPRating)rating;
 
 /**
