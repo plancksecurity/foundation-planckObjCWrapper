@@ -85,6 +85,8 @@
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
 		43E02A221C71F65B008F05E9 /* account_A3FC7F0A.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */; };
 		43E02A231C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */; };
+		43E1A7A7252B41B300307A7D /* pEpIOSToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */; };
+		43E1A7A8252B41B300307A7D /* pEpIOSToolbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; };
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
@@ -139,6 +141,20 @@
 			remoteInfo = pEpTrustWords;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		43E1A7A9252B41B300307A7D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				43E1A7A8252B41B300307A7D /* pEpIOSToolbox.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPCopyableThread.h; sourceTree = "<group>"; };
@@ -244,6 +260,7 @@
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
 		43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = account_A3FC7F0A.ser; sourceTree = "<group>"; };
 		43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_A3FC7F0A_from_mutt.ser; sourceTree = "<group>"; };
+		43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEpIOSToolbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PEPObjCAdapterFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterFramework.h; sourceTree = "<group>"; };
 		43E3985E221D7E56008E7983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -270,6 +287,7 @@
 			files = (
 				43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */,
 				155674ED22B82D710097930C /* libz.dylib in Frameworks */,
+				43E1A7A7252B41B300307A7D /* pEpIOSToolbox.framework in Frameworks */,
 				43E39867221D7EB1008E7983 /* libpEpEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +435,7 @@
 		43447C51221D448500B6323E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */,
 				43E3986A221D7EDD008E7983 /* libiconv.2.tbd */,
 				155674EC22B82D710097930C /* libz.dylib */,
 			);
@@ -522,6 +541,7 @@
 				43E39858221D7E56008E7983 /* Frameworks */,
 				43E39859221D7E56008E7983 /* Resources */,
 				158A568022BBDFFA00F98905 /* Warnings for TODO++ */,
+				43E1A7A9252B41B300307A7D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
