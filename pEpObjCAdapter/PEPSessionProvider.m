@@ -13,6 +13,7 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
+#import "Logger.h"
 
 @implementation PEPSessionProvider
 

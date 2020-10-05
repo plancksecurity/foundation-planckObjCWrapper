@@ -261,6 +261,7 @@
 		43E02A1E1C71F65B008F05E9 /* account_A3FC7F0A.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = account_A3FC7F0A.ser; sourceTree = "<group>"; };
 		43E02A1F1C71F65B008F05E9 /* msg_to_A3FC7F0A_from_mutt.ser */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = msg_to_A3FC7F0A_from_mutt.ser; sourceTree = "<group>"; };
 		43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEpIOSToolbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43E1A7AB252B421D00307A7D /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PEPObjCAdapterFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterFramework.h; sourceTree = "<group>"; };
 		43E3985E221D7E56008E7983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -428,6 +429,7 @@
 				434707F524C210CA00E05485 /* PEPAsyncSession.m */,
 				436C9A3124DC48B600007A3D /* PEPPassphraseUtil.h */,
 				436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */,
+				43E1A7AB252B421D00307A7D /* Logger.h */,
 			);
 			path = pEpObjCAdapter;
 			sourceTree = "<group>";
