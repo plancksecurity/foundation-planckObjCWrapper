@@ -27,7 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
                                  PEPMessage *dstMessage,
                                  PEPStringList *keyList,
                                  PEPRating rating,
-                                 PEPDecryptFlags flags))successCallback;
+                                 PEPDecryptFlags flags,
+                                 BOOL isFormerlyEncryptedReuploadedMessage))successCallback;
 
 - (void)reEvaluateMessage:(PEPMessage *)message
                  xKeyList:(PEPStringList *_Nullable)xKeyList

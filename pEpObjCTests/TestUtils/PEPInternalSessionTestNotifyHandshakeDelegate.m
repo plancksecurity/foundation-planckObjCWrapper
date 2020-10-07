@@ -1,14 +1,14 @@
 //
-//  PEPSessionTestNotifyHandshakeDelegate.m
+//  PEPInternalSessionTestNotifyHandshakeDelegate.m
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 29.10.18.
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import "PEPSessionTestNotifyHandshakeDelegate.h"
+#import "PEPInternalSessionTestNotifyHandshakeDelegate.h"
 
-@implementation PEPSessionTestNotifyHandshakeDelegate
+@implementation PEPInternalSessionTestNotifyHandshakeDelegate
 
 - (PEPStatus)notifyHandshake:(void * _Nullable)object
                           me:(PEPIdentity * _Nonnull)me

@@ -1,5 +1,5 @@
 //
-//  PEPSessionTestSendMessageDelegate.h
+//  PEPInternalSessionTestSendMessageDelegate.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 29.10.18.
@@ -12,7 +12,7 @@
 
 @class PEPMessage;
 
-@interface PEPSessionTestSendMessageDelegate : NSObject<PEPSendMessageDelegate>
+@interface PEPInternalSessionTestSendMessageDelegate : NSObject<PEPSendMessageDelegate>
 
 /**
  Meant for waiting for changes in `messages`, since `NSMutableArray`

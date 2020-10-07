@@ -30,6 +30,7 @@
 }
 
 - (void)passphraseRequired:(nonnull PEPPassphraseProviderCallback)completion {
+    self.passphraseRequiredWasCalled = YES;
     [self answerWithLatestPassphrase:completion];
 }
 

@@ -6,8 +6,6 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import <os/log.h>
-
 #import "pEpEngine.h"
 
 #import "PEPSync.h"
@@ -23,10 +21,10 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"
+#import "PEPPassphraseUtil.h"
+#import "Logger.h"
 
 // MARK: - Internals
-
-static os_log_t s_logger;
 
 typedef PEP_STATUS (* t_messageToSendCallback)(struct _message * _Nullable msg);
 typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
@@ -46,15 +44,14 @@ typedef int (* t_injectSyncCallback)(SYNC_EVENT ev, void *management);
 /// The session created and used by the sync loop
 @property (nonatomic, nullable) PEPInternalSession *syncLoopSession;
 
-/**
- @Return: The callback for message sending that should be used on every session init.
- */
+/// @Return: The callback for message sending that should be used on every session init.
 + (t_messageToSendCallback)messageToSendCallback;
 
-/**
- @Return: The callback for injectiong sync messages that should be used on every session init.
- */
+/// @Return: The callback for injectiong sync messages that should be used on every session init.
 + (t_injectSyncCallback)injectSyncCallback;
+
+/// @Return: The callback for ensure_passphrase that should be used on every session init.
++ (ensure_passphrase_t)ensurePassphraseCallback;
 
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg;
 
@@ -92,6 +89,17 @@ static int s_inject_sync_event(SYNC_EVENT ev, void *management)
     } else {
         return 1;
     }
+}
+
+static PEP_STATUS s_ensure_passphrase(PEP_SESSION session, const char *fpr)
+{
+    PEP_STATUS status = (PEP_STATUS) [PEPPassphraseUtil
+                                      runWithPasswordsSession:session
+                                      block:^PEP_STATUS(PEP_SESSION session) {
+        return probe_encrypt(session, fpr);
+    }];
+
+    return status;
 }
 
 // MARK: - Callbacks called by the engine, used in register_sync_callbacks
@@ -133,18 +141,24 @@ static __weak PEPSync *s_pEpSync;
     return s_inject_sync_event;
 }
 
++ (ensure_passphrase_t)ensurePassphraseCallback
+{
+    return s_ensure_passphrase;
+}
+
 + (PEP_SESSION)createSession:(NSError **)error
 {
     PEP_SESSION session = NULL;
 
     PEP_STATUS status = init(&session,
                              [PEPSync messageToSendCallback],
-                             [PEPSync injectSyncCallback]);
+                             [PEPSync injectSyncCallback],
+                             [PEPSync ensurePassphraseCallback]);
 
     if (status != PEP_STATUS_OK) {
         if (error) {
             *error = [NSError errorWithPEPStatusInternal:status];
-            os_log(s_logger, "error creating session: %{public}@", *error);
+            LogError(@"error creating session: %@", *error);
         }
         return nil;
     }
@@ -209,11 +223,6 @@ static __weak PEPSync *s_pEpSync;
 
 // MARK: - Private
 
-+ (void)initialize
-{
-    s_logger = os_log_create("security.pEp.adapter", "PEPSync");
-}
-
 + (PEPSync * _Nullable)sharedInstance //!!!: is not private but internal
 {
     return s_pEpSync;
@@ -228,7 +237,7 @@ static __weak PEPSync *s_pEpSync;
 {
     [self.conditionLockForJoiningSyncThread lock];
 
-    os_log(s_logger, "trying to start the sync loop");
+    LogInfo(@"trying to start the sync loop");
 
     self.syncLoopSession = [PEPSessionProvider session];
 
@@ -240,19 +249,19 @@ static __weak PEPSync *s_pEpSync;
         if (status == PEP_STATUS_OK) {
             status = do_sync_protocol(self.syncLoopSession.session, nil);
             if (status != PEP_STATUS_OK) {
-                os_log_error(s_logger, "do_sync_protocol returned PEP_STATUS %d", status);
-                os_log(s_logger, "sync loop is NOT running");
+                LogError(@"do_sync_protocol returned PEP_STATUS %d", status);
+                LogInfo(@"sync loop is NOT running");
             }
             unregister_sync_callbacks(self.syncLoopSession.session);
         } else {
-            os_log_error(s_logger, "register_sync_callbacks returned PEP_STATUS %d", status);
-            os_log(s_logger, "sync loop is NOT running");
+            LogError(@"register_sync_callbacks returned PEP_STATUS %d", status);
+            LogInfo(@"sync loop is NOT running");
         }
     } else {
-        os_log_error(s_logger, "could not create session for starting the sync loop");
+        LogError(@"could not create session for starting the sync loop");
     }
 
-    os_log(s_logger, "sync loop finished");
+    LogInfo(@"sync loop finished")
 
     self.syncLoopSession = nil;
     self.syncThread = nil;
