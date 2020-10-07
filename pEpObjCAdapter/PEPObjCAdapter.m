@@ -160,40 +160,39 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     return dirPath;
 }
 
-///**
-// Looks up the shared directory for pEp apps under iOS and makes sure it exists.
-//
-// @return A URL pointing a pEp directory in the app container.
-//*/
-//+ (NSURL *)createApplicationDirectoryiOS
-//{
-//    NSString *appGroupId = appGroupIdentifier;
-//    NSFileManager *fm = [NSFileManager defaultManager];
-//    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupId];
-//    NSLog(@"containerUrl '%@'", containerUrl);
-//
-//    if (containerUrl == nil) {
-//        // Will happen when running tests, so fall back.
-//        NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
-//                                            inDomains:NSUserDomainMask];
-//        containerUrl = [appSupportDir lastObject];
-//    }
-//
-//    if (containerUrl == nil) {
-//        NSLog(@"ERROR: No app container, no application support directory.");
-//    }
-//
-//    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
-//
-//    // If the directory does not exist, this method creates it.
-//    NSError *theError = nil;
-//    if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
-//                       attributes:nil error:&theError]) {
-//        NSLog(@"ERROR: Could not create pEp home directory, directly writing to app container instead.");
-//    }
-//
-//    return dirPath;
-//}
+/**
+ Looks up the shared directory for pEp apps under iOS and makes sure it exists.
+
+ @return A URL pointing a pEp directory in the app container.
+*/
++ (NSURL *)createApplicationDirectoryiOS
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
+    NSLog(@"containerUrl '%@'", containerUrl);
+
+    if (containerUrl == nil) {
+        // Will happen when running tests, so fall back.
+        NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                            inDomains:NSUserDomainMask];
+        containerUrl = [appSupportDir lastObject];
+    }
+
+    if (containerUrl == nil) {
+        NSLog(@"ERROR: No app container, no application support directory.");
+    }
+
+    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
+
+    // If the directory does not exist, this method creates it.
+    NSError *theError = nil;
+    if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                       attributes:nil error:&theError]) {
+        NSLog(@"ERROR: Could not create pEp home directory, directly writing to app container instead.");
+    }
+
+    return dirPath;
+}
 
 /**
  Looks up the shared directory for pEp apps under iOS and makes sure it exists.
