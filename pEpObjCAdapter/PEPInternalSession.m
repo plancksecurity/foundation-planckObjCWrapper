@@ -77,9 +77,7 @@
     });
 }
 
-#pragma mark - DEBUG UTILS
-
-#pragma mark - PEPSessionProtocol
+#pragma mark - API
 
 void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 {
@@ -914,7 +912,6 @@ static NSDictionary *stringToRating;
       [NSNumber numberWithInteger:PEPRatingCannotDecrypt]: @"cannot_decrypt",
       [NSNumber numberWithInteger:PEPRatingHaveNoKey]: @"have_no_key",
       [NSNumber numberWithInteger:PEPRatingUnencrypted]: @"unencrypted",
-      [NSNumber numberWithInteger:PEPRatingUnencryptedForSome]: @"unencrypted_for_some",
       [NSNumber numberWithInteger:PEPRatingUnreliable]: @"unreliable",
       [NSNumber numberWithInteger:PEPRatingReliable]: @"reliable",
       [NSNumber numberWithInteger:PEPRatingTrusted]: @"trusted",
@@ -1137,25 +1134,6 @@ static NSDictionary *stringToRating;
         return NO;
     }
     [PEPSync.sharedInstance handleNewPassphraseConfigured];
-
-    return YES;
-}
-
-- (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
-                               enable:(BOOL)enable error:(NSError * _Nullable * _Nullable)error
-{
-    if (error) {
-        *error = nil;
-    }
-
-    NSString *normalizedPassphrase = [passphrase precomposedStringWithCanonicalMapping];
-    PEP_STATUS status = config_passphrase_for_new_keys(_session,
-                                                       enable,
-                                                       [normalizedPassphrase UTF8String]);
-
-    if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
-        return NO;
-    }
 
     return YES;
 }

@@ -6,13 +6,12 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
-#import <os/log.h>
-
 #import "PEPSessionProvider.h"
 
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
+#import "Logger.h"
 
 @implementation PEPSessionProvider
 
@@ -71,7 +70,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 {
     s_sessionForThreadLock = [NSLock new];
     s_sessionForThreadDict = [NSMutableDictionary new];
-    s_logger = os_log_create("security.pEp.adapter", "PEPSessionProvider");
 }
 
 #pragma mark - Lock
@@ -119,13 +117,11 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     }
 
     if (status != PEPStatusOK) {
-        os_log_error(s_logger, "could not configure passphrase for new keys: %d", status);
+        LogError(@"could not configure passphrase for new keys: %d", status);
     }
 }
 
 #pragma mark -
-
-static os_log_t s_logger;
 
 /**
  Assures a session for the main thread is set.
