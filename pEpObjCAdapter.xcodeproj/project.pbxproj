@@ -90,9 +90,9 @@
 		43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3986A221D7EDD008E7983 /* libiconv.2.tbd */; };
 		43FF2ED12226AFE9000D9567 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E5EAF7F24FD2DB900DCDBAE /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
-		4E847D9824F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */; };
+		4E847D9824F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.framework */; };
 		4E847D9D24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E847D9C24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m */; };
-		4E847D9F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E847D9F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E847DA624F7E73800D5A6D8 /* libpEpEngine-macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E847D6224F7B37200D5A6D8 /* libpEpEngine-macos.a */; };
 		4E847DB024F7E79400D5A6D8 /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 435C0CAB222930340025C6B5 /* PEPConstants.m */; };
 		4E847DB724F7E79400D5A6D8 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 433DFBBB24A73AD400AB373B /* PEPSessionProtocol.m */; };
@@ -339,10 +339,10 @@
 		43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPEngineTypes.h; path = PEPObjCAdapterFramework/PEPEngineTypes.h; sourceTree = SOURCE_ROOT; };
 		4E847D6424F7C3C500D5A6D8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		4E847D6624F7E0BA00D5A6D8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = ../../../../../../../opt/local/lib/libz.dylib; sourceTree = "<group>"; };
-		4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pEpObjCMacOSAdapater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCMacOSAdapater.h; sourceTree = "<group>"; };
+		4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pEpObjCMacOSAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCMacOSAdapter.h; sourceTree = "<group>"; };
 		4E847D9224F7E71F00D5A6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCMacOSAdapaterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCMacOSAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E847D9C24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pEpObjCMacOSAdapaterTests.m; sourceTree = "<group>"; };
 		4E847D9E24F7E71F00D5A6D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E847DF624F7EE7400D5A6D8 /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = ../../../../../../../opt/local/lib/libiconv.2.dylib; sourceTree = "<group>"; };
@@ -389,7 +389,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E847D9824F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework in Frameworks */,
+				4E847D9824F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +461,7 @@
 				43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */,
 				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
 				43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */,
-				4E847D9024F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */,
+				4E847D9024F7E71F00D5A6D8 /* pEpObjCMacOSAdapter */,
 				4E847D9B24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests */,
 				352988AB1AEF964100FA7E2E /* Products */,
 				43447C51221D448500B6323E /* Frameworks */,
@@ -473,8 +473,8 @@
 			children = (
 				64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */,
 				43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */,
-				4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */,
-				4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.xctest */,
+				4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.framework */,
+				4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -582,13 +582,13 @@
 			path = PEPObjCAdapterFramework;
 			sourceTree = "<group>";
 		};
-		4E847D9024F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */ = {
+		4E847D9024F7E71F00D5A6D8 /* pEpObjCMacOSAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h */,
+				4E847D9124F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.h */,
 				4E847D9224F7E71F00D5A6D8 /* Info.plist */,
 			);
-			path = pEpObjCMacOSAdapater;
+			path = pEpObjCMacOSAdapter;
 			sourceTree = "<group>";
 		};
 		4E847D9B24F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests */ = {
@@ -682,7 +682,7 @@
 				4E847DDE24F7EAE500D5A6D8 /* PEPPassphraseCache.h in Headers */,
 				4E847DEF24F7EB8C00D5A6D8 /* PEPEngineTypes.h in Headers */,
 				4E847DF024F7EB8C00D5A6D8 /* PEPSessionProtocol.h in Headers */,
-				4E847D9F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.h in Headers */,
+				4E847D9F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.h in Headers */,
 				4E847DEB24F7EB8B00D5A6D8 /* PEPMessage.h in Headers */,
 				4E847DE824F7EB8B00D5A6D8 /* PEPAttachment.h in Headers */,
 				4E847DDD24F7EADD00D5A6D8 /* PEPInternalConstants.h in Headers */,
@@ -714,9 +714,9 @@
 			productReference = 43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */ = {
+		4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E847DA024F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapater" */;
+			buildConfigurationList = 4E847DA024F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapter" */;
 			buildPhases = (
 				4E847D8A24F7E71F00D5A6D8 /* Headers */,
 				4E847D8B24F7E71F00D5A6D8 /* Sources */,
@@ -730,14 +730,14 @@
 				4E847DBD24F7E7E200D5A6D8 /* PBXTargetDependency */,
 				4E847DBB24F7E7DE00D5A6D8 /* PBXTargetDependency */,
 			);
-			name = pEpObjCMacOSAdapater;
+			name = pEpObjCMacOSAdapter;
 			productName = pEpObjCMacOSAdapater;
-			productReference = 4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater.framework */;
+			productReference = 4E847D8F24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4E847D9624F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests */ = {
+		4E847D9624F7E71F00D5A6D8 /* pEpObjCMacOSAdapterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E847DA324F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapaterTests" */;
+			buildConfigurationList = 4E847DA324F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapterTests" */;
 			buildPhases = (
 				4E847D9324F7E71F00D5A6D8 /* Sources */,
 				4E847D9424F7E71F00D5A6D8 /* Frameworks */,
@@ -748,9 +748,9 @@
 			dependencies = (
 				4E847D9A24F7E71F00D5A6D8 /* PBXTargetDependency */,
 			);
-			name = pEpObjCMacOSAdapaterTests;
+			name = pEpObjCMacOSAdapterTests;
 			productName = pEpObjCMacOSAdapaterTests;
-			productReference = 4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests.xctest */;
+			productReference = 4E847D9724F7E71F00D5A6D8 /* pEpObjCMacOSAdapterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */ = {
@@ -823,8 +823,8 @@
 			targets = (
 				64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */,
 				43E3985A221D7E56008E7983 /* PEPObjCAdapterFramework */,
-				4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */,
-				4E847D9624F7E71F00D5A6D8 /* pEpObjCMacOSAdapaterTests */,
+				4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter */,
+				4E847D9624F7E71F00D5A6D8 /* pEpObjCMacOSAdapterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -943,7 +943,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"$HOME/Library/Frameworks\"\necho \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\"\nrm -Rf \"$HOME/Library/Frameworks/$FULL_PRODUCT_NAME\" \ncp -Rf \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" \"$HOME/Library/Frameworks/\" \n";
+			shellScript = "echo \"$HOME/Library/Frameworks\"\necho \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\"\nrm -Rf \"$HOME/Library/Frameworks/$FULL_PRODUCT_NAME\" \n#cp -Rf \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" \"$HOME/Library/Frameworks/\" \nrsync -av --progress \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" \"$HOME/Library/Frameworks/\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1065,7 +1065,7 @@
 		};
 		4E847D9A24F7E71F00D5A6D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapater */;
+			target = 4E847D8E24F7E71F00D5A6D8 /* pEpObjCMacOSAdapter */;
 			targetProxy = 4E847D9924F7E71F00D5A6D8 /* PBXContainerItemProxy */;
 		};
 		4E847DBB24F7E7DE00D5A6D8 /* PBXTargetDependency */ = {
@@ -1287,7 +1287,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/include";
-				INFOPLIST_FILE = pEpObjCMacOSAdapater/Info.plist;
+				INFOPLIST_FILE = pEpObjCMacOSAdapter/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/lib";
@@ -1325,7 +1325,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/include";
-				INFOPLIST_FILE = pEpObjCMacOSAdapater/Info.plist;
+				INFOPLIST_FILE = pEpObjCMacOSAdapter/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../sequoia4macos/build/lib";
@@ -1476,7 +1476,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E847DA024F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapater" */ = {
+		4E847DA024F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E847DA124F7E71F00D5A6D8 /* Debug */,
@@ -1485,7 +1485,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E847DA324F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapaterTests" */ = {
+		4E847DA324F7E71F00D5A6D8 /* Build configuration list for PBXNativeTarget "pEpObjCMacOSAdapterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E847DA424F7E71F00D5A6D8 /* Debug */,
