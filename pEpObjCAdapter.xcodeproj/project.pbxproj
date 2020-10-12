@@ -12,7 +12,6 @@
 		155674ED22B82D710097930C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 155674EC22B82D710097930C /* libz.dylib */; };
 		15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
 		3A68CB28252E244900F1B71C /* pEp4iosIntern.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A68CB27252E244900F1B71C /* pEp4iosIntern.framework */; };
-		3A68CB29252E244900F1B71C /* pEp4iosIntern.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A68CB27252E244900F1B71C /* pEp4iosIntern.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43062BAD24EEC83400489258 /* PEPIdentity+isPEPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 43062BAC24EEC83400489258 /* PEPIdentity+isPEPUser.m */; };
 		430CD9B12292AC4900AAC37F /* PEPSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430CD9B62292ADAC00AAC37F /* PEPSendMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -141,20 +140,6 @@
 			remoteInfo = pEpTrustWords;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		3AB50D282500F1F9005E2170 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				3A68CB29252E244900F1B71C /* pEp4iosIntern.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPCopyableThread.h; sourceTree = "<group>"; };
@@ -545,7 +530,6 @@
 				43E39858221D7E56008E7983 /* Frameworks */,
 				43E39859221D7E56008E7983 /* Resources */,
 				158A568022BBDFFA00F98905 /* Warnings for TODO++ */,
-				3AB50D282500F1F9005E2170 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
