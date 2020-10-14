@@ -16,6 +16,8 @@
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"
 
+#import <pEp4iosIntern/pEp4iosIntern.h>
+
 #import "keymanagement.h"
 #import "mime.h"
 #import "message.h"
@@ -165,9 +167,8 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 */
 + (NSURL *)createApplicationDirectoryiOS
 {
-    NSString *appGroupId = @"group.security.pep.pep4ios";
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupId];
+    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
     NSLog(@"containerUrl '%@'", containerUrl);
 
     if (containerUrl == nil) {
