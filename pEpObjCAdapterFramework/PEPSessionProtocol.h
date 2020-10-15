@@ -228,10 +228,6 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 /// Converts a string like "cannot_decrypt" into its equivalent PEPRating_cannot_decrypt.
 - (PEPRating)ratingFromString:(NSString *_Nonnull)string;
 
-/// Converts a pEp rating like PEPRating_cannot_decrypt
-/// into its equivalent string "cannot_decrypt".
-- (NSString *_Nonnull)stringFromRating:(PEPRating)rating;
-
 /// Wraps color_from_rating.
 - (PEPColor)colorFromRating:(PEPRating)rating;
 
