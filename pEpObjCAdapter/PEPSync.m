@@ -201,8 +201,6 @@ static __weak PEPSync *s_pEpSync;
     // Make sure queue is empty when we start.
     [self.queue removeAllObjects];
 
-    [self assureMainSessionExists]; //???: Why do we need that? Afaics syncThreadLoop gets the session from PEPSessionProvider, which should have taken care of main session existance.
-
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
     [theSyncThread start];
 }
