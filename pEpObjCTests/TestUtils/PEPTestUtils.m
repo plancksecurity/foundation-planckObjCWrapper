@@ -64,7 +64,8 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     NSString *filePath = [[[NSBundle bundleForClass:[self class]]
                            resourcePath] stringByAppendingPathComponent:fileName];
     NSMutableData *data = [NSMutableData dataWithContentsOfFile:filePath];
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data
+                                                                                error:nil];
     NSDictionary *dict = [unarchiver decodeObject];
     [unarchiver finishDecoding];
     return dict;
