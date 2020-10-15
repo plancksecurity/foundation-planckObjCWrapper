@@ -219,12 +219,14 @@ static __weak PEPSync *s_pEpSync;
     [self stopWaiting];
 }
 
-// MARK: - Private
+// MARK: - Internal
 
-+ (PEPSync * _Nullable)sharedInstance //!!!: is not private but internal
++ (PEPSync * _Nullable)sharedInstance
 {
     return s_pEpSync;
 }
+
+// MARK: - Private
 
 - (void)assureMainSessionExists
 {
