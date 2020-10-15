@@ -188,7 +188,7 @@ static NSArray *s_keys;
     self.commType = PEP_ct_unknown;
     self.language = nil;
     self.fingerPrint = nil;
-    self.userID = nil;
+    self.userID = @"";
     self.userName = nil;
     self.isOwn = NO;
     self.flags = 0;
