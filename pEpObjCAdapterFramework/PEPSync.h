@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPSendMessageDelegate.h>
-#import <PEPNotifyHandshakeDelegate.h>
+#import "PEPSendMessageDelegate.h"
+#import "PEPNotifyHandshakeDelegate.h"
 
 @class PEPSyncSendMessageDelegate;
 
