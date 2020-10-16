@@ -59,18 +59,6 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     return txtFileContents;
 }
 
-+ (NSDictionary *)unarchiveDictionary:(NSString *)fileName
-{
-    NSString *filePath = [[[NSBundle bundleForClass:[self class]]
-                           resourcePath] stringByAppendingPathComponent:fileName];
-    NSMutableData *data = [NSMutableData dataWithContentsOfFile:filePath];
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data
-                                                                                error:nil];
-    NSDictionary *dict = [unarchiver decodeObject];
-    [unarchiver finishDecoding];
-    return dict;
-}
-
 /**
  Converts a given message dict to a version with correct attachments, using PEPAttachment.
  Using unarchiveDirectory for a message object will yield the old attachment format,

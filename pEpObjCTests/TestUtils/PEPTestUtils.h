@@ -34,8 +34,6 @@ extern const NSInteger PEPTestInternalSyncTimeout;
 
 + (NSString *)loadStringFromFileName:(NSString *)fileName;
 
-+ (NSDictionary *)unarchiveDictionary:(NSString *)fileName;
-
 + (void)migrateUnarchivedMessageDictionary:(NSMutableDictionary *)message;
 
 + (PEPMessage * _Nonnull) mailFrom:(PEPIdentity * _Nullable) fromIdent
