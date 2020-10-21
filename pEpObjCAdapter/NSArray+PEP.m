@@ -23,4 +23,18 @@
     return array;
 }
 
++ (stringlist_t * _Nullable)toStringlist
+{
+    stringlist_t *sl = new_stringlist(NULL);
+    if (!sl)
+        return NULL;
+
+    stringlist_t *_sl = sl;
+    for (NSString *str in self) {
+        _sl = stringlist_add(_sl, [[str precomposedStringWithCanonicalMapping] UTF8String]);
+    }
+
+    return sl;
+}
+
 @end

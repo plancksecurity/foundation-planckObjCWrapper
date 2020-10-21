@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSArray (PEP)
 
 + (NSArray * _Nonnull)arrayFromStringlist:(stringlist_t * _Nonnull)stringList;
++ (stringlist_t * _Nullable)toStringlist;
 
 @end
 
