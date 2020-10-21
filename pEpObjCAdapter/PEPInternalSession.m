@@ -30,6 +30,7 @@
 #import "PEPPassphraseCache.h"
 #import "PEPInternalSession+PassphraseCache.h"
 #import "NSString+NormalizePassphrase.h"
+#import "NSArray+PEP.h"
 
 #import "key_reset.h"
 
@@ -147,7 +148,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     if (extraKeys) {
-        *extraKeys = PEP_arrayFromStringlist(theKeys);
+        *extraKeys = [NSArray arrayFromStringlist:theKeys];
     }
 
     decryptMessageDictFree(_src, _dst, theKeys);

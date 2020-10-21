@@ -11,6 +11,7 @@
 #import "PEPConstants.h"
 
 #import "PEPMessageUtil.h"
+#import "NSArray+PEP.h"
 
 void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *message)
 {
@@ -61,15 +62,15 @@ void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *me
     }
     
     if (message->in_reply_to) {
-        [dict setValue:PEP_arrayFromStringlist(message->in_reply_to) forKey:kPepInReplyTo];
+        [dict setValue:[NSArray arrayFromStringlist:message->in_reply_to] forKey:kPepInReplyTo];
     }
     
     if (message->references && message->references->value) {
-        [dict setValue:PEP_arrayFromStringlist(message->references) forKey:kPepReferences];
+        [dict setValue:[NSArray arrayFromStringlist:message->references] forKey:kPepReferences];
     }
     
     if (message->keywords && message->keywords->value) {
-        [dict setValue:PEP_arrayFromStringlist(message->keywords) forKey:kPepKeywords];
+        [dict setValue:[NSArray arrayFromStringlist:message->keywords] forKey:kPepKeywords];
     }
     
     if (message->opt_fields) {

@@ -17,17 +17,6 @@
 
 #import "pEp_string.h"
 
-NSArray *PEP_arrayFromStringlist(stringlist_t *sl)
-{
-    NSMutableArray *array = [NSMutableArray array];
-    
-    for (stringlist_t *_sl = sl; _sl && _sl->value; _sl = _sl->next) {
-        [array addObject:[NSString stringWithUTF8String:_sl->value]];
-    }
-    
-    return array;
-}
-
 stringlist_t *PEP_arrayToStringlist(NSArray *array)
 {
     stringlist_t *sl = new_stringlist(NULL);
