@@ -76,6 +76,8 @@
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
 		43753CFB222D4911002EE98B /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2A1ECC2ACD007E7E2E /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437BEA9122328E570051E3A1 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
+		438C0ED52540215A00337922 /* NSArray+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 438C0ECB254020F000337922 /* NSArray+PEP.m */; };
+		438C0EDA2540216100337922 /* NSArray+PEP.h in Headers */ = {isa = PBXBuildFile; fileRef = 438C0ECA254020A400337922 /* NSArray+PEP.h */; };
 		4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
 		43AD0E3022E99ECE00D46F56 /* PEPInternalConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 43AD0E2E22E99ECE00D46F56 /* PEPInternalConstants.h */; };
@@ -222,6 +224,8 @@
 		436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Rick Deckard (43F270EC) – Secret.asc"; sourceTree = "<group>"; };
 		436E917524B71E12000296FF /* PEPPassphraseProviderMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderMock.h; sourceTree = "<group>"; };
 		436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseProviderMock.m; sourceTree = "<group>"; };
+		438C0ECA254020A400337922 /* NSArray+PEP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+PEP.h"; sourceTree = "<group>"; };
+		438C0ECB254020F000337922 /* NSArray+PEP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PEP.m"; sourceTree = "<group>"; };
 		439393E4208F375800EB1DBD /* NSObject+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 		439393E5208F375800EB1DBD /* NSObject+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		439393F6208F5B5E00EB1DBD /* NSMutableDictionary+PEP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+PEP.h"; sourceTree = "<group>"; };
@@ -363,6 +367,8 @@
 			children = (
 				43209B261ECC2ACD007E7E2E /* NSArray+Extension.h */,
 				43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */,
+				438C0ECA254020A400337922 /* NSArray+PEP.h */,
+				438C0ECB254020F000337922 /* NSArray+PEP.m */,
 				43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */,
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
 				43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */,
@@ -497,6 +503,7 @@
 				435C0CA222292E7C0025C6B5 /* PEPTypes.h in Headers */,
 				433DFBAC24A5E04000AB373B /* PEPPassphraseCacheEntry.h in Headers */,
 				435F5164222045FB006EB11F /* PEPIdentity.h in Headers */,
+				438C0EDA2540216100337922 /* NSArray+PEP.h in Headers */,
 				43AD0E3022E99ECE00D46F56 /* PEPInternalConstants.h in Headers */,
 				430CD9B62292ADAC00AAC37F /* PEPSendMessageDelegate.h in Headers */,
 				43E3985F221D7E56008E7983 /* PEPObjCAdapterFramework.h in Headers */,
@@ -699,6 +706,7 @@
 				435F5169222046C2006EB11F /* PEPCSVScanner.m in Sources */,
 				433DFBBC24A73AD400AB373B /* PEPSessionProtocol.m in Sources */,
 				435F5179222046C2006EB11F /* NSNumber+PEPRating.m in Sources */,
+				438C0ED52540215A00337922 /* NSArray+PEP.m in Sources */,
 				435F516B222046C2006EB11F /* PEPMessageUtil.m in Sources */,
 				435F5171222046C2006EB11F /* PEPCopyableThread.m in Sources */,
 				43589EF924A4A3B70079BEA2 /* PEPPassphraseCache.m in Sources */,
