@@ -55,7 +55,6 @@
 		435F516D222046C2006EB11F /* PEPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B321ECC2ACD007E7E2E /* PEPQueue.m */; };
 		435F516E222046C2006EB11F /* PEPInternalSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */; };
 		435F516F222046C2006EB11F /* NSDictionary+CommType.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D27DE51F5DA7B700795687 /* NSDictionary+CommType.m */; };
-		435F5170222046C2006EB11F /* NSDictionary+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */; };
 		435F5171222046C2006EB11F /* PEPCopyableThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */; };
 		435F5172222046C2006EB11F /* PEPSessionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CA91F8BA183003FF880 /* PEPSessionProvider.m */; };
 		435F5174222046C2006EB11F /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E28901FA741DE00E359B3 /* PEPIdentity.m */; };
@@ -230,8 +229,6 @@
 		439393E5208F375800EB1DBD /* NSObject+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		439393F6208F5B5E00EB1DBD /* NSMutableDictionary+PEP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+PEP.h"; sourceTree = "<group>"; };
 		439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+PEP.m"; sourceTree = "<group>"; };
-		43953B3320C91E2B001C7DDB /* NSDictionary+Debug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Debug.h"; sourceTree = "<group>"; };
-		43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Debug.m"; sourceTree = "<group>"; };
 		4396CEB52187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPInternalSessionTestNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
 		4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestNotifyHandshakeDelegate.m; sourceTree = "<group>"; };
 		4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestSendMessageDelegate.m; sourceTree = "<group>"; };
@@ -381,8 +378,6 @@
 				43209B341ECC2ACD007E7E2E /* PEPInternalSession.h */,
 				43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */,
 				43D27DE51F5DA7B700795687 /* NSDictionary+CommType.m */,
-				43953B3320C91E2B001C7DDB /* NSDictionary+Debug.h */,
-				43953B3420C91E2B001C7DDB /* NSDictionary+Debug.m */,
 				1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */,
 				1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */,
 				15206CA81F8BA183003FF880 /* PEPSessionProvider.h */,
@@ -689,7 +684,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				433DFBB824A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m in Sources */,
-				435F5170222046C2006EB11F /* NSDictionary+Debug.m in Sources */,
 				435F5176222046C2006EB11F /* PEPAttachment.m in Sources */,
 				4349CD7024AC73FC00A22A13 /* NSString+NormalizePassphrase.m in Sources */,
 				435F5178222046C2006EB11F /* PEPAutoPointer.m in Sources */,
