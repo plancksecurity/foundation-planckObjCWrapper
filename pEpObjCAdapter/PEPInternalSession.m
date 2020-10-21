@@ -752,7 +752,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         return nil;
     }
 
-    NSArray *idents = PEP_arrayFromIdentityList(identList);
+    NSArray *idents = [NSArray arrayFromIdentityList:identList];
     free(identList);
 
     return idents;

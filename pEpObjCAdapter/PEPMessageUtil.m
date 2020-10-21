@@ -166,17 +166,6 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
     return dict;
 }
 
-NSArray<PEPIdentity *> *PEP_arrayFromIdentityList(identity_list *il)
-{
-    NSMutableArray *array = [NSMutableArray array];
-    
-    for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        [array addObject:[PEPIdentity fromStruct:_il->ident]];
-    }
-    
-    return array;
-}
-
 identity_list *PEP_identityArrayToList(NSArray<PEPIdentity *> *array)
 {
     identity_list *il = new_identity_list(NULL);
