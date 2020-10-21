@@ -572,7 +572,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     [identity reset];
-    [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
+    [identity overWriteFromStruct:ident];
     free_identity(ident);
 
     return YES;
@@ -595,7 +595,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         }
 
         [identity reset];
-        [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
+        [identity overWriteFromStruct:ident];
         free_identity(ident);
 
         return YES;
@@ -1013,7 +1013,7 @@ static NSDictionary *stringToRating;
         return NO;
     } else {
         [identity reset];
-        [identity setValuesForKeysWithDictionary:PEP_identityDictFromStruct(ident)];
+        [identity overWriteFromStruct:ident];
         free_identity(ident);
         return YES;
     }
