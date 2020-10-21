@@ -212,13 +212,13 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         msg->recv = new_timestamp([[dict objectForKey:@"recv"] timeIntervalSince1970]);
     
     if ([dict objectForKey:kPepFrom])
-        msg->from = PEP_identityToStruct([dict objectForKey:kPepFrom]);
+        msg->from = [[dict objectForKey:kPepFrom] toStruct];
 
     if ([dict objectForKey:@"to"])
         msg->to = [[dict objectForKey:@"to"] toIdentityList];
 
     if ([dict objectForKey:@"recv_by"])
-        msg->recv_by = PEP_identityToStruct([dict objectForKey:@"recv_by"]);
+        msg->recv_by = [[dict objectForKey:@"recv_by"] toStruct];
 
     if ([dict objectForKey:@"cc"])
         msg->cc = [[dict objectForKey:@"cc"] toIdentityList];
