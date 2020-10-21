@@ -108,7 +108,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     if (extraKeys && [*extraKeys count]) {
-        theKeys = PEP_arrayToStringlist(*extraKeys);
+        theKeys = [*extraKeys toStringList];
     }
 
     __block PEPRating internalRating = PEPRatingUndefined;
@@ -194,7 +194,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     stringlist_t *theKeys = NULL;
     if ([xKeyList count]) {
-        theKeys = PEP_arrayToStringlist(xKeyList);
+        theKeys = [xKeyList toStringList];
     }
 
     PEPRating originalRating = *rating;
@@ -265,7 +265,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 
     __block message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
     __block message *_dst = NULL;
-    __block stringlist_t *_keys = PEP_arrayToStringlist(extraKeys);
+    __block stringlist_t *_keys = [extraKeys toStringList];
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return encrypt_message(session,
@@ -345,7 +345,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     __block pEp_identity *ident = PEP_identityToStruct(ownIdentity);
     __block message *_dst = NULL;
 
-    __block stringlist_t *keysStringList = PEP_arrayToStringlist(extraKeys);
+    __block stringlist_t *keysStringList = [extraKeys toStringList];
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return encrypt_message_for_self(session,
