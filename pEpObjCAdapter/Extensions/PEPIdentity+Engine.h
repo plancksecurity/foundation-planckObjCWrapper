@@ -10,9 +10,13 @@
 
 #import "PEPIdentity.h"
 
+#import "pEpEngine.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPIdentity (Engine)
+
+- (pEp_identity *)toStruct;
 
 @end
 
