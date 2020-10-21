@@ -17,20 +17,6 @@
 
 #import "pEp_string.h"
 
-stringlist_t *PEP_arrayToStringlist(NSArray *array)
-{
-    stringlist_t *sl = new_stringlist(NULL);
-    if (!sl)
-        return NULL;
-    
-    stringlist_t *_sl = sl;
-    for (NSString *str in array) {
-        _sl = stringlist_add(_sl, [[str precomposedStringWithCanonicalMapping] UTF8String]);
-    }
-    
-    return sl;
-}
-
 NSArray *PEP_arrayFromStringPairlist(stringpair_list_t *sl)
 {
     NSMutableArray *array = [NSMutableArray array];

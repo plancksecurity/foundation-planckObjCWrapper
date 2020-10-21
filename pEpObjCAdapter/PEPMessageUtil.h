@@ -13,8 +13,6 @@
 @class PEPIdentity;
 @class PEPMessage;
 
-stringlist_t * _Nullable PEP_arrayToStringlist(NSArray * _Nullable array);
-
 pEp_identity * _Nonnull PEP_identityToStruct(PEPIdentity * _Nonnull identity);
 
 /**
