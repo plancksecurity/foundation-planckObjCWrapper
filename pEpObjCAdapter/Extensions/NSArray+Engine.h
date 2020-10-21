@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (Engine)
 
-+ (NSArray * _Nonnull)arrayFromStringlist:(stringlist_t * _Nonnull)stringList;
++ (NSArray *)arrayFromStringlist:(stringlist_t *)stringList;
 
 - (stringlist_t * _Nullable)toStringList;
 
