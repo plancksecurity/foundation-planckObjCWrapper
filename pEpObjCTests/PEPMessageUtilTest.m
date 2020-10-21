@@ -70,22 +70,6 @@
     [self assertEqualIdentityStructs:testee second:self.pepIdentityMe shouldFail:NO];
 }
 
-#pragma mark - PEP_identityDictFromStruct
-
-- (void)testIdentityDictFromStruct_someone
-{
-    NSDictionary *testee = PEP_identityDictFromStruct(self.pepIdentitySomeOne);
-    [self assertEqualIdentityDicts:testee second:self.dictSomeOne shouldFail:NO];
-}
-
-- (void)testIdentityDictFromStruct_me
-{
-    NSDictionary *testee = PEP_identityDictFromStruct(self.pepIdentityMe);
-    [self assertEqualIdentityDicts:testee second:self.dictMe shouldFail:NO];
-}
-
-
-
 #pragma mark - HELPER
 
 - (void)assertEqualIdentityStructs:(pEp_identity *)first

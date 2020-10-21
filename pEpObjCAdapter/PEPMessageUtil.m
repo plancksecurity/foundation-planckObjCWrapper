@@ -108,34 +108,6 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
     return _bl;
 }
 
-NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
-{
-    NSMutableDictionary *dict = [NSMutableDictionary new];
-
-    if (ident) {
-        if (ident->address && ident->address[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->address] forKey:kPepAddress];
-
-        [dict setObject:[NSNumber numberWithBool: ident->me] forKey:kPepIsOwn];
-        
-        if (ident->fpr && ident->fpr[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->fpr] forKey:kPepFingerprint];
-        
-        if (ident->user_id && ident->user_id[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->user_id] forKey:kPepUserID];
-        
-        if (ident->username && ident->username[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->username] forKey:kPepUsername];
-        
-        if (ident->lang[0])
-            [dict setObject:[NSString stringWithUTF8String:ident->lang] forKey:@"lang"];
-        
-        [dict setObject:[NSNumber numberWithInt: ident->comm_type] forKey:kPepCommType];
-        [dict setObject:[NSNumber numberWithInt: ident->flags] forKey:kPepFlags];
-    }
-    return dict;
-}
-
 NSDictionary *PEP_messageDictFromStruct(message *msg)
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
