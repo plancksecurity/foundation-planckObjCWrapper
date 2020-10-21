@@ -166,20 +166,6 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
     return dict;
 }
 
-identity_list *PEP_identityArrayToList(NSArray<PEPIdentity *> *array)
-{
-    identity_list *il = new_identity_list(NULL);
-    if (!il)
-        return NULL;
-    
-    identity_list *_il = il;
-    for (NSMutableDictionary *address in array) {
-        _il = identity_list_add(_il, PEP_identityDictToStruct(address));
-    }
-    
-    return il;
-}
-
 NSDictionary *PEP_messageDictFromStruct(message *msg)
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
@@ -235,19 +221,19 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         msg->from = PEP_identityDictToStruct([dict objectForKey:kPepFrom]);
 
     if ([dict objectForKey:@"to"])
-        msg->to = PEP_identityArrayToList([dict objectForKey:@"to"]);
+        msg->to = [[dict objectForKey:@"to"] toIdentityList];
 
     if ([dict objectForKey:@"recv_by"])
         msg->recv_by = PEP_identityDictToStruct([dict objectForKey:@"recv_by"]);
 
     if ([dict objectForKey:@"cc"])
-        msg->cc = PEP_identityArrayToList([dict objectForKey:@"cc"]);
+        msg->cc = [[dict objectForKey:@"cc"] toIdentityList];
 
     if ([dict objectForKey:@"bcc"])
-        msg->bcc = PEP_identityArrayToList([dict objectForKey:@"bcc"]);
+        msg->bcc = [[dict objectForKey:@"bcc"] toIdentityList];
     
     if ([dict objectForKey:@"reply_to"])
-        msg->reply_to = PEP_identityArrayToList([dict objectForKey:@"reply_to"]);
+        msg->reply_to = [[dict objectForKey:@"reply_to"] toIdentityList];
     
     if ([dict objectForKey:@"in_reply_to"])
         msg->in_reply_to = [((NSArray *) [dict objectForKey:@"in_reply_to"]) toStringList];

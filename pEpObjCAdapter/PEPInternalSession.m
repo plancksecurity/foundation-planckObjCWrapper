@@ -1026,7 +1026,7 @@ static NSDictionary *stringToRating;
     identity_list *identitiesSharingData = NULL;
 
     if (identitiesSharing) {
-        identitiesSharingData = PEP_identityArrayToList(identitiesSharing);
+        identitiesSharingData = [identitiesSharing toIdentityList];
     }
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
