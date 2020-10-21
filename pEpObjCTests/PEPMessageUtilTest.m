@@ -41,9 +41,9 @@
 
     // "Me" identity as struct and dict.
     self.pepIdentityMe = new_identity("me@me.com",
-                                           "MY-FPR_IS_PRETTY_SHORT",
-                                           "MY-USER-ID",
-                                           "Me 12345");
+                                      "MY-FPR_IS_PRETTY_SHORT",
+                                      "MY-USER-ID",
+                                      "Me 12345");
     self.pepIdentityMe->comm_type = PEP_ct_confirmed;
     self.pepIdentityMe->me = true;
     self.dictMe = @{kPepAddress:@"me@me.com",
