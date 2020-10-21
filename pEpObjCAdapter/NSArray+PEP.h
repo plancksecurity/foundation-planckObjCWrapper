@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray * _Nonnull)arrayFromStringlist:(stringlist_t * _Nonnull)stringList;
 
-- (stringlist_t * _Nullable)toStringlist;
+- (stringlist_t * _Nullable)toStringList;
 
 @end
 
