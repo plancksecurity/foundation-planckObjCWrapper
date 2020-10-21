@@ -23,7 +23,7 @@
     return array;
 }
 
-+ (stringlist_t * _Nullable)toStringlist
+- (stringlist_t * _Nullable)toStringlist
 {
     stringlist_t *sl = new_stringlist(NULL);
     if (!sl)
