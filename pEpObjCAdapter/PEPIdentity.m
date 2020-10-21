@@ -65,7 +65,7 @@
 {
     return [self initWithAddress:dictionary[kPepAddress] userID:dictionary[kPepUserID]
                         userName:dictionary[kPepUsername]
-                           isOwn:[dictionary[kPepIsOwnIdentity] boolValue]
+                           isOwn:[dictionary[kPepIsOwn] boolValue]
                      fingerPrint:dictionary[kPepFingerprint]
                         commType:[dictionary[kPepCommType] intValue]
                         language:dictionary[@"lang"]];
@@ -201,7 +201,7 @@ static NSArray *s_keys;
     NSMutableArray *result = [@[ @[kPepAddress, self.address],
                                  @[kPepCommType,
                                    [NSNumber numberWithInteger:(NSInteger) self.commType]],
-                                 @[kPepIsOwnIdentity, [NSNumber numberWithBool:self.isOwn]],
+                                 @[kPepIsOwn, [NSNumber numberWithBool:self.isOwn]],
                                  @[kPepFlags, [NSNumber numberWithInt:self.flags]]]
                               mutableCopy];
 
