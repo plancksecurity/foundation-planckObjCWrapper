@@ -55,13 +55,13 @@
 
 - (void)testIdentityDictToStruct_someone
 {
-    pEp_identity *testee = PEP_identityDictToStruct(self.dictSomeOne);
+    pEp_identity *testee = PEP_identityToStruct(self.dictSomeOne);
     [self assertEqualIdentityStructs:testee second:self.pepIdentitySomeOne shouldFail:NO];
 }
 
 - (void)testIdentityDictToStruct_me
 {
-    pEp_identity *testee= PEP_identityDictToStruct(self.dictMe);
+    pEp_identity *testee= PEP_identityToStruct(self.dictMe);
     [self assertEqualIdentityStructs:testee second:self.pepIdentityMe shouldFail:NO];
 }
 

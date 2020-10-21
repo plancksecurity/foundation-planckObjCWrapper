@@ -59,8 +59,8 @@
         return NULL;
 
     identity_list *_il = il;
-    for (NSMutableDictionary *address in self) {
-        _il = identity_list_add(_il, PEP_identityDictToStruct(address));
+    for (PEPIdentity *address in self) {
+        _il = identity_list_add(_il, PEP_identityToStruct(address));
     }
 
     return il;

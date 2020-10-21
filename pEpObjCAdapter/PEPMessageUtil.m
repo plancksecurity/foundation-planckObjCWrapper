@@ -108,31 +108,25 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
     return _bl;
 }
 
-pEp_identity *PEP_identityDictToStruct(NSDictionary *dict)
+pEp_identity *PEP_identityToStruct(PEPIdentity *dict)
 {
-    pEp_identity *ident = new_identity([[[dict objectForKey:kPepAddress]
+    pEp_identity *ident = new_identity([[dict.address
                                          precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[[dict objectForKey:kPepFingerprint]
+                                       [[dict.fingerPrint
                                          precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[[dict objectForKey:kPepUserID]
+                                       [[dict.userID
                                          precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[[dict objectForKey:kPepUsername]
+                                       [[dict.userName
                                          precomposedStringWithCanonicalMapping] UTF8String]);
-    if ([dict objectForKey:kPepIsOwn]) {
-        ident->me = ((NSNumber*)[dict objectForKey:kPepIsOwn]).boolValue;
-    }
-
     if (dict && ident) {
-        if ([dict objectForKey:kPepFlags]) {
-            ident->flags = [[dict objectForKey:kPepFlags] intValue];
-        }
+        ident->me = dict.isOwn;
+        ident->flags = dict.flags;
+        ident->comm_type = dict.commType;
 
-        if ([dict objectForKey:@"lang"])
-            strncpy(ident->lang, [[[dict objectForKey:@"lang"]
+        if (dict.language) {
+            strncpy(ident->lang, [[dict.language
                                    precomposedStringWithCanonicalMapping] UTF8String], 2);
-
-        if ([dict objectForKey:kPepCommType])
-            ident->comm_type = [[dict objectForKey:kPepCommType] intValue];
+        }
     }
 
     return ident;
@@ -218,13 +212,13 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         msg->recv = new_timestamp([[dict objectForKey:@"recv"] timeIntervalSince1970]);
     
     if ([dict objectForKey:kPepFrom])
-        msg->from = PEP_identityDictToStruct([dict objectForKey:kPepFrom]);
+        msg->from = PEP_identityToStruct([dict objectForKey:kPepFrom]);
 
     if ([dict objectForKey:@"to"])
         msg->to = [[dict objectForKey:@"to"] toIdentityList];
 
     if ([dict objectForKey:@"recv_by"])
-        msg->recv_by = PEP_identityDictToStruct([dict objectForKey:@"recv_by"]);
+        msg->recv_by = PEP_identityToStruct([dict objectForKey:@"recv_by"]);
 
     if ([dict objectForKey:@"cc"])
         msg->cc = [[dict objectForKey:@"cc"] toIdentityList];
