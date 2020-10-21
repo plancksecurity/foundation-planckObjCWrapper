@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (stringlist_t * _Nullable)toStringList;
 
+/// Converts `NSArray<PEPIdentity *>` to an engine identity list
+- (identity_list * _Nullable)toIdentityList;
+
 @end
 
 NS_ASSUME_NONNULL_END

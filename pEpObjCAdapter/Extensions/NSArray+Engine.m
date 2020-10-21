@@ -12,6 +12,7 @@
 
 #import "PEPIdentity.h"
 #import "PEPIdentity+Engine.h"
+#import "PEPMessageUtil.h"
 
 @implementation NSArray (Engine)
 
@@ -49,6 +50,20 @@
     }
 
     return sl;
+}
+
+- (identity_list * _Nullable)toIdentityList
+{
+    identity_list *il = new_identity_list(NULL);
+    if (!il)
+        return NULL;
+
+    identity_list *_il = il;
+    for (NSMutableDictionary *address in self) {
+        _il = identity_list_add(_il, PEP_identityDictToStruct(address));
+    }
+
+    return il;
 }
 
 @end
