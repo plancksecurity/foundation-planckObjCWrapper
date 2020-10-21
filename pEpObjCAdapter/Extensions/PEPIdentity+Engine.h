@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (PEPIdentity * _Nullable)fromStruct:(pEp_identity * _Nonnull)identityStruct;
 
 - (pEp_identity *)toStruct;
+- (void)overWriteFromStruct:(pEp_identity * _Nonnull)identityStruct;
 
 @end
 

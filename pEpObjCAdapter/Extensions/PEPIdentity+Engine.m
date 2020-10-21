@@ -21,26 +21,7 @@
                     initWithAddress:[NSString stringWithUTF8String:identityStruct->address]];
     }
 
-    if (identityStruct->fpr && identityStruct->fpr[0]) {
-        identity.fingerPrint = [NSString stringWithUTF8String:identityStruct->fpr];
-    }
-
-    if (identityStruct->user_id && identityStruct->user_id[0]) {
-        identity.userID = [NSString stringWithUTF8String:identityStruct->user_id];
-    }
-
-    if (identityStruct->username && identityStruct->username[0]) {
-        identity.userName = [NSString stringWithUTF8String:identityStruct->username];
-    }
-
-    if (identityStruct->lang[0]) {
-        identity.language = [NSString stringWithUTF8String:identityStruct->lang];
-    }
-
-    identity.commType = (PEPCommType) identityStruct->comm_type;
-
-    identity.isOwn = identityStruct->me;
-    identity.flags = identityStruct->flags;
+    [identity overWriteFromStruct:identityStruct];
 
     return identity;
 }
@@ -67,6 +48,34 @@
     ident->comm_type = (PEP_comm_type) self.commType;
 
     return ident;
+}
+
+- (void)overWriteFromStruct:(pEp_identity * _Nonnull)identityStruct
+{
+    if (identityStruct->address && identityStruct->address[0]) {
+        self.address = [NSString stringWithUTF8String:identityStruct->address];
+    }
+
+    if (identityStruct->fpr && identityStruct->fpr[0]) {
+        self.fingerPrint = [NSString stringWithUTF8String:identityStruct->fpr];
+    }
+
+    if (identityStruct->user_id && identityStruct->user_id[0]) {
+        self.userID = [NSString stringWithUTF8String:identityStruct->user_id];
+    }
+
+    if (identityStruct->username && identityStruct->username[0]) {
+        self.userName = [NSString stringWithUTF8String:identityStruct->username];
+    }
+
+    if (identityStruct->lang[0]) {
+        self.language = [NSString stringWithUTF8String:identityStruct->lang];
+    }
+
+    self.commType = (PEPCommType) identityStruct->comm_type;
+
+    self.isOwn = identityStruct->me;
+    self.flags = identityStruct->flags;
 }
 
 @end
