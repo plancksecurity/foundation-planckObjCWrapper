@@ -362,10 +362,7 @@
 		43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				43209B261ECC2ACD007E7E2E /* NSArray+Extension.h */,
-				43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */,
-				438C0ECA254020A400337922 /* NSArray+Engine.h */,
-				438C0ECB254020F000337922 /* NSArray+Engine.m */,
+				438C0EE1254026E200337922 /* Extensions */,
 				43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */,
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
 				43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */,
@@ -385,17 +382,8 @@
 				433E28901FA741DE00E359B3 /* PEPIdentity.m */,
 				435796E21FB5E51A00395A9E /* PEPMessage.m */,
 				439D91A4208479EE003F6AC2 /* PEPAttachment.m */,
-				43DED784203C25E200D45CD6 /* NSError+PEP.h */,
-				4360A9FD2227CFA300E62E5A /* NSError+PEP+Internal.h */,
-				43DED785203C25E200D45CD6 /* NSError+PEP.m */,
 				434ED6D4207E27B8000A7590 /* PEPAutoPointer.h */,
 				434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */,
-				4360A9FE2227EBB200E62E5A /* NSNumber+PEPRating+Internal.h */,
-				435665CB2080A6CB00EC5B10 /* NSNumber+PEPRating.m */,
-				439393E4208F375800EB1DBD /* NSObject+Extension.h */,
-				439393E5208F375800EB1DBD /* NSObject+Extension.m */,
-				439393F6208F5B5E00EB1DBD /* NSMutableDictionary+PEP.h */,
-				439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */,
 				43F73BE92166248E00AB4524 /* PEPSync.m */,
 				430CD9BF2292B1EA00AAC37F /* PEPSync_Internal.h */,
 				43AD0E2E22E99ECE00D46F56 /* PEPInternalConstants.h */,
@@ -405,10 +393,6 @@
 				43589EF624A4A3B70079BEA2 /* PEPPassphraseCache.m */,
 				433DFBAA24A5E04000AB373B /* PEPPassphraseCacheEntry.h */,
 				433DFBAB24A5E04000AB373B /* PEPPassphraseCacheEntry.m */,
-				433DFBB524A61D4B00AB373B /* PEPInternalSession+PassphraseCache.h */,
-				433DFBB624A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m */,
-				4349CD6D24AC73FC00A22A13 /* NSString+NormalizePassphrase.h */,
-				4349CD6E24AC73FC00A22A13 /* NSString+NormalizePassphrase.m */,
 				434707F524C210CA00E05485 /* PEPSession.m */,
 				436C9A3124DC48B600007A3D /* PEPPassphraseUtil.h */,
 				436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */,
@@ -427,6 +411,30 @@
 				155674EC22B82D710097930C /* libz.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		438C0EE1254026E200337922 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				43209B261ECC2ACD007E7E2E /* NSArray+Extension.h */,
+				43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */,
+				438C0ECA254020A400337922 /* NSArray+Engine.h */,
+				438C0ECB254020F000337922 /* NSArray+Engine.m */,
+				43DED784203C25E200D45CD6 /* NSError+PEP.h */,
+				4360A9FD2227CFA300E62E5A /* NSError+PEP+Internal.h */,
+				43DED785203C25E200D45CD6 /* NSError+PEP.m */,
+				4360A9FE2227EBB200E62E5A /* NSNumber+PEPRating+Internal.h */,
+				435665CB2080A6CB00EC5B10 /* NSNumber+PEPRating.m */,
+				439393E4208F375800EB1DBD /* NSObject+Extension.h */,
+				439393E5208F375800EB1DBD /* NSObject+Extension.m */,
+				439393F6208F5B5E00EB1DBD /* NSMutableDictionary+PEP.h */,
+				439393F7208F5B5E00EB1DBD /* NSMutableDictionary+PEP.m */,
+				4349CD6D24AC73FC00A22A13 /* NSString+NormalizePassphrase.h */,
+				4349CD6E24AC73FC00A22A13 /* NSString+NormalizePassphrase.m */,
+				433DFBB524A61D4B00AB373B /* PEPInternalSession+PassphraseCache.h */,
+				433DFBB624A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
