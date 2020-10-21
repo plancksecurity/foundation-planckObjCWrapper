@@ -13,11 +13,6 @@
 @class PEPIdentity;
 @class PEPMessage;
 
-/**
- If the ident does not contain an address, no PEPIdentity can be constructed.
- */
-PEPIdentity * _Nullable PEP_identityFromStruct(pEp_identity * _Nonnull ident);
-
 NSArray<PEPIdentity *> * _Nonnull PEP_arrayFromIdentityList(identity_list * _Nonnull il);
 identity_list * _Nullable PEP_identityArrayToList(NSArray<PEPIdentity *> * _Nullable array);
 

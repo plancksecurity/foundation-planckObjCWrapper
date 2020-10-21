@@ -15,6 +15,7 @@
 #import "PEPAttachment.h"
 #import "NSMutableDictionary+PEP.h"
 #import "NSArray+Engine.h"
+#import "PEPIdentity+Engine.h"
 
 #import "pEp_string.h"
 
@@ -165,44 +166,12 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
     return dict;
 }
 
-PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
-{
-    PEPIdentity *identity = nil;
-    if (ident->address && ident->address[0]) {
-        identity = [[PEPIdentity alloc]
-                    initWithAddress:[NSString stringWithUTF8String:ident->address]];
-    }
-
-    if (ident->fpr && ident->fpr[0]) {
-        identity.fingerPrint = [NSString stringWithUTF8String:ident->fpr];
-    }
-
-    if (ident->user_id && ident->user_id[0]) {
-        identity.userID = [NSString stringWithUTF8String:ident->user_id];
-    }
-
-    if (ident->username && ident->username[0]) {
-        identity.userName = [NSString stringWithUTF8String:ident->username];
-    }
-
-    if (ident->lang[0]) {
-        identity.language = [NSString stringWithUTF8String:ident->lang];
-    }
-
-    identity.commType = (PEPCommType) ident->comm_type;
-
-    identity.isOwn = ident->me;
-    identity.flags = ident->flags;
-
-    return identity;
-}
-
 NSArray<PEPIdentity *> *PEP_arrayFromIdentityList(identity_list *il)
 {
     NSMutableArray *array = [NSMutableArray array];
     
     for (identity_list *_il = il; _il && _il->ident; _il = _il->next) {
-        [array addObject:PEP_identityFromStruct(_il->ident)];
+        [array addObject:[PEPIdentity fromStruct:_il->ident]];
     }
     
     return array;

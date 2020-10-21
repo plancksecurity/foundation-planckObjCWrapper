@@ -12,6 +12,7 @@
 
 #import "PEPMessageUtil.h"
 #import "NSArray+Engine.h"
+#import "PEPIdentity+Engine.h"
 
 void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *message)
 {
@@ -38,7 +39,7 @@ void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *me
     }
     
     if (message->from) {
-        [dict setValue:PEP_identityFromStruct(message->from) forKey:kPepFrom];
+        [dict setValue:[PEPIdentity fromStruct:message->from] forKey:kPepFrom];
     }
     
     if (message->to && message->to->ident) {
@@ -46,7 +47,7 @@ void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *me
     }
     
     if (message->recv_by) {
-        [dict setValue:PEP_identityFromStruct(message->recv_by) forKey:kPepReceivedBy];
+        [dict setValue:[PEPIdentity fromStruct:message->recv_by] forKey:kPepReceivedBy];
     }
     
     if (message->cc && message->cc->ident) {

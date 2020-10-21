@@ -23,6 +23,7 @@
 #import "PEPPassphraseCache.h"
 #import "PEPPassphraseUtil.h"
 #import "Logger.h"
+#import "PEPIdentity+Engine.h"
 
 // MARK: - Internals
 
@@ -359,8 +360,8 @@ static __weak PEPSync *s_pEpSync;
                        signal:(sync_handshake_signal)signal
 {
     if (self.notifyHandshakeDelegate) {
-        PEPIdentity *meIdentity = PEP_identityFromStruct(me);
-        PEPIdentity *partnerIdentity = partner != nil ? PEP_identityFromStruct(partner) : nil;
+        PEPIdentity *meIdentity = [PEPIdentity fromStruct:me];
+        PEPIdentity *partnerIdentity = partner != nil ? [PEPIdentity fromStruct:partner] : nil;
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity
