@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "message_api.h"
+#import "stringlist.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
