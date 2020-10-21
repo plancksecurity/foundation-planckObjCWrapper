@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPIdentity (Engine)
 
++ (PEPIdentity * _Nullable)fromStruct:(pEp_identity * _Nonnull)identityStruct;
+
 - (pEp_identity *)toStruct;
 
 @end
