@@ -14,8 +14,10 @@
 @interface PEPMessageUtilTest : XCTestCase
 @property pEp_identity *pepIdentitySomeOne;
 @property NSDictionary *dictSomeOne;
+@property PEPIdentity *idSomeOne;
 @property pEp_identity *pepIdentityMe;
 @property NSDictionary *dictMe;
+@property PEPIdentity *idMe;
 @end
 
 @implementation PEPMessageUtilTest
@@ -35,6 +37,7 @@
                          kPepUsername:@"Bob 12345",
                          kPepCommType:[NSNumber numberWithInt: PEP_ct_to_be_checked_confirmed],
                          kPepIsOwn:[NSNumber numberWithBool: NO]};
+    self.idSomeOne = [[PEPIdentity alloc] initWithDictionary:self.dictSomeOne];
 
     // "Me" identity as struct and dict.
     self.pepIdentityMe = new_identity("me@me.com",
@@ -49,19 +52,20 @@
                          kPepUsername:@ "Me 12345",
                          kPepCommType:[NSNumber numberWithInt: PEP_ct_confirmed],
                          kPepIsOwn:[NSNumber numberWithBool: YES]};
+    self.idMe = [[PEPIdentity alloc] initWithDictionary:self.dictMe];
 }
 
 #pragma mark - PEP_identityDictToStruct
 
 - (void)testIdentityDictToStruct_someone
 {
-    pEp_identity *testee = PEP_identityToStruct(self.dictSomeOne);
+    pEp_identity *testee = PEP_identityToStruct(self.idSomeOne);
     [self assertEqualIdentityStructs:testee second:self.pepIdentitySomeOne shouldFail:NO];
 }
 
 - (void)testIdentityDictToStruct_me
 {
-    pEp_identity *testee= PEP_identityToStruct(self.dictMe);
+    pEp_identity *testee= PEP_identityToStruct(self.idMe);
     [self assertEqualIdentityStructs:testee second:self.pepIdentityMe shouldFail:NO];
 }
 
