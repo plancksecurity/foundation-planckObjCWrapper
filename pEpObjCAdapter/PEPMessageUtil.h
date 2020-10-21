@@ -13,8 +13,6 @@
 @class PEPIdentity;
 @class PEPMessage;
 
-pEp_identity * _Nonnull PEP_identityToStruct(PEPIdentity * _Nonnull identity);
-
 /**
  If the ident does not contain an address, no PEPIdentity can be constructed.
  */

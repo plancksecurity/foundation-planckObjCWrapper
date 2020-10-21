@@ -165,32 +165,6 @@ NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
     return dict;
 }
 
-//!!!: move. PEP_identityToStruct is not PEPMessage(Util) related. Should be an internal method on PEPIdentity. Somthing like .toStruct()
-//!!!: also check for other methods here. 
-pEp_identity *PEP_identityToStruct(PEPIdentity *identity)
-{
-    pEp_identity *ident = new_identity([[identity.address
-                                         precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[identity.fingerPrint
-                                         precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[identity.userID
-                                         precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[identity.userName
-                                         precomposedStringWithCanonicalMapping] UTF8String]);
-
-    ident->me = identity.isOwn;
-    ident->flags = identity.flags;
-
-    if (identity.language) {
-        strncpy(ident->lang, [[identity.language
-                               precomposedStringWithCanonicalMapping] UTF8String], 2);
-    }
-
-    ident->comm_type = (PEP_comm_type) identity.commType;
-
-    return ident;
-}
-
 PEPIdentity *PEP_identityFromStruct(pEp_identity *ident)
 {
     PEPIdentity *identity = nil;
