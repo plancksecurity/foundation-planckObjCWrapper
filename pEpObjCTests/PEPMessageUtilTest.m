@@ -47,11 +47,11 @@
     self.pepIdentityMe->comm_type = PEP_ct_confirmed;
     self.pepIdentityMe->me = true;
     self.dictMe = @{kPepAddress:@"me@me.com",
-                         kPepFingerprint:@"MY-FPR_IS_PRETTY_SHORT",
-                         kPepUserID:@"MY-USER-ID",
-                         kPepUsername:@ "Me 12345",
-                         kPepCommType:[NSNumber numberWithInt: PEP_ct_confirmed],
-                         kPepIsOwn:[NSNumber numberWithBool: YES]};
+                    kPepFingerprint:@"MY-FPR_IS_PRETTY_SHORT",
+                    kPepUserID:@"MY-USER-ID",
+                    kPepUsername:@ "Me 12345",
+                    kPepCommType:[NSNumber numberWithInt: PEP_ct_confirmed],
+                    kPepIsOwn:[NSNumber numberWithBool: YES]};
     self.idMe = [[PEPIdentity alloc] initWithDictionary:self.dictMe];
 }
 
