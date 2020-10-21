@@ -30,7 +30,7 @@
 #import "PEPPassphraseCache.h"
 #import "PEPInternalSession+PassphraseCache.h"
 #import "NSString+NormalizePassphrase.h"
-#import "NSArray+PEP.h"
+#import "NSArray+Engine.h"
 
 #import "key_reset.h"
 

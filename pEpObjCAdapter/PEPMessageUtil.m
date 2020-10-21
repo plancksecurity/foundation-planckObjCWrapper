@@ -14,7 +14,7 @@
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "NSMutableDictionary+PEP.h"
-#import "NSArray+PEP.h"
+#import "NSArray+Engine.h"
 
 #import "pEp_string.h"
 

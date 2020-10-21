@@ -11,7 +11,7 @@
 #import "PEPConstants.h"
 
 #import "PEPMessageUtil.h"
-#import "NSArray+PEP.h"
+#import "NSArray+Engine.h"
 
 void replaceDictionaryContentsWithMessage(NSMutableDictionary *dict, message *message)
 {

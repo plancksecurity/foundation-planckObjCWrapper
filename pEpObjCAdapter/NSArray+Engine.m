@@ -1,5 +1,5 @@
 //
-//  NSArray+PEP.m
+//  NSArray+Engine.m
 //  pEpiOSAdapter
 //
 //  Created by Dirk Zimmermann on 21.10.20.
@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NSArray+PEP.h"
+#import "NSArray+Engine.h"
 
-@implementation NSArray (PEP)
+@implementation NSArray (Engine)
 
 + (NSArray * _Nonnull)arrayFromStringlist:(stringlist_t * _Nonnull)stringList
 {

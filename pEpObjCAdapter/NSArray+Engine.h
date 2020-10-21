@@ -1,5 +1,5 @@
 //
-//  NSArray+PEP.h
+//  NSArray+Engine.h
 //  pEpiOSAdapter
 //
 //  Created by Dirk Zimmermann on 21.10.20.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray (PEP)
+@interface NSArray (Engine)
 
 + (NSArray * _Nonnull)arrayFromStringlist:(stringlist_t * _Nonnull)stringList;
 
