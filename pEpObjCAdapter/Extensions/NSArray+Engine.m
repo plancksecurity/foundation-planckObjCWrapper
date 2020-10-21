@@ -10,6 +10,9 @@
 
 #import "NSArray+Engine.h"
 
+#import "PEPIdentity.h"
+#import "PEPIdentity+Engine.h"
+
 @implementation NSArray (Engine)
 
 + (NSArray * _Nonnull)arrayFromStringlist:(stringlist_t * _Nonnull)stringList
@@ -18,6 +21,17 @@
 
     for (stringlist_t *_sl = stringList; _sl && _sl->value; _sl = _sl->next) {
         [array addObject:[NSString stringWithUTF8String:_sl->value]];
+    }
+
+    return array;
+}
+
++ (NSArray<PEPIdentity *> *)arrayFromIdentityList:(identity_list *)identityList
+{
+    NSMutableArray *array = [NSMutableArray array];
+
+    for (identity_list *_il = identityList; _il && _il->ident; _il = _il->next) {
+        [array addObject:[PEPIdentity fromStruct:_il->ident]];
     }
 
     return array;

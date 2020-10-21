@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #import "stringlist.h"
+#import "identity_list.h"
+
+@class PEPIdentity;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (Engine)
 
 + (NSArray *)arrayFromStringlist:(stringlist_t *)stringList;
++ (NSArray<PEPIdentity *> *)arrayFromIdentityList:(identity_list *)identityList;
 
 - (stringlist_t * _Nullable)toStringList;
 
