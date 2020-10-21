@@ -14,6 +14,7 @@
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "NSMutableDictionary+PEP.h"
+#import "NSArray+PEP.h"
 
 #import "pEp_string.h"
 
@@ -317,13 +318,13 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         msg->reply_to = PEP_identityArrayToList([dict objectForKey:@"reply_to"]);
     
     if ([dict objectForKey:@"in_reply_to"])
-        msg->in_reply_to = PEP_arrayToStringlist([dict objectForKey:@"in_reply_to"]);
+        msg->in_reply_to = [((NSArray *) [dict objectForKey:@"in_reply_to"]) toStringList];
     
     if ([dict objectForKey:@"references"])
-        msg->references = PEP_arrayToStringlist([dict objectForKey:@"references"]);
+        msg->references = [((NSArray *) [dict objectForKey:@"references"]) toStringList];
     
     if ([dict objectForKey:kPepKeywords])
-        msg->keywords = PEP_arrayToStringlist([dict objectForKey:kPepKeywords]);
+        msg->keywords = [((NSArray *) [dict objectForKey:kPepKeywords]) toStringList];
 
     if ([dict objectForKey:@"opt_fields"])
         msg->opt_fields = PEP_arrayToStringPairlist([dict objectForKey:@"opt_fields"]);
