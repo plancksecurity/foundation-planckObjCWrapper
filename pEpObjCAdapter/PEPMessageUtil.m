@@ -236,13 +236,13 @@ message *PEP_messageDictToStruct(NSDictionary *dict)
         msg->reply_to = [[dict objectForKey:@"reply_to"] toIdentityList];
     
     if ([dict objectForKey:@"in_reply_to"])
-        msg->in_reply_to = [((NSArray *) [dict objectForKey:@"in_reply_to"]) toStringList];
+        msg->in_reply_to = [[dict objectForKey:@"in_reply_to"] toStringList];
     
     if ([dict objectForKey:@"references"])
-        msg->references = [((NSArray *) [dict objectForKey:@"references"]) toStringList];
+        msg->references = [[dict objectForKey:@"references"] toStringList];
     
     if ([dict objectForKey:kPepKeywords])
-        msg->keywords = [((NSArray *) [dict objectForKey:kPepKeywords]) toStringList];
+        msg->keywords = [[dict objectForKey:kPepKeywords] toStringList];
 
     if ([dict objectForKey:@"opt_fields"])
         msg->opt_fields = PEP_arrayToStringPairlist([dict objectForKey:@"opt_fields"]);
