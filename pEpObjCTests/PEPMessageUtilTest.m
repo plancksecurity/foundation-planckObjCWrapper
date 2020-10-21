@@ -60,7 +60,7 @@
 
 - (void)testIdentityDictToStruct_someone
 {
-    pEp_identity *testee = PEP_identityToStruct(self.idSomeOne);
+    pEp_identity *testee = [self.idSomeOne toStruct];
     [self assertEqualIdentityStructs:testee second:self.pepIdentitySomeOne shouldFail:NO];
 }
 

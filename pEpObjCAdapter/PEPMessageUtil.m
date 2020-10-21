@@ -108,30 +108,6 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
     return _bl;
 }
 
-pEp_identity *PEP_identityToStruct(PEPIdentity *dict)
-{
-    pEp_identity *ident = new_identity([[dict.address
-                                         precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[dict.fingerPrint
-                                         precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[dict.userID
-                                         precomposedStringWithCanonicalMapping] UTF8String],
-                                       [[dict.userName
-                                         precomposedStringWithCanonicalMapping] UTF8String]);
-    if (dict && ident) {
-        ident->me = dict.isOwn;
-        ident->flags = dict.flags;
-        ident->comm_type = dict.commType;
-
-        if (dict.language) {
-            strncpy(ident->lang, [[dict.language
-                                   precomposedStringWithCanonicalMapping] UTF8String], 2);
-        }
-    }
-
-    return ident;
-}
-
 NSDictionary *PEP_identityDictFromStruct(pEp_identity *ident)
 {
     NSMutableDictionary *dict = [NSMutableDictionary new];
