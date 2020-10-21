@@ -10,6 +10,7 @@
 
 #import "PEPMessageUtil.h"
 #import "PEPObjCAdapterFramework.h"
+#import "PEPIdentity+Engine.h"
 
 @interface PEPMessageUtilTest : XCTestCase
 @property pEp_identity *pepIdentitySomeOne;
@@ -65,7 +66,7 @@
 
 - (void)testIdentityDictToStruct_me
 {
-    pEp_identity *testee= PEP_identityToStruct(self.idMe);
+    pEp_identity *testee= [self.idMe toStruct];
     [self assertEqualIdentityStructs:testee second:self.pepIdentityMe shouldFail:NO];
 }
 

@@ -60,7 +60,7 @@
 
     identity_list *_il = il;
     for (PEPIdentity *address in self) {
-        _il = identity_list_add(_il, PEP_identityToStruct(address));
+        _il = identity_list_add(_il, [address toStruct]);
     }
 
     return il;
