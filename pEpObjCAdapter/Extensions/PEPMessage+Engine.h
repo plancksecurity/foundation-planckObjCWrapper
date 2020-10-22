@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Sets recipients with 0 member to nil
 - (PEPMessage *)removeEmptyRecipients;
 
+- (void)overWriteFromStruct:(message * _Nonnull)message;
+
 @end
 
 NS_ASSUME_NONNULL_END

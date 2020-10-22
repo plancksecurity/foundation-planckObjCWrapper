@@ -12,6 +12,8 @@
 
 #import "PEPMessage.h"
 #import "PEPMessageUtil.h"
+#import "PEPIdentity+Engine.h"
+#import "NSArray+Engine.h"
 
 @implementation PEPMessage (Engine)
 
@@ -46,6 +48,85 @@
     }
 
     return self;
+}
+
+- (void)overWriteFromStruct:(message * _Nonnull)message
+{
+    [self reset];
+
+    self.direction = message->dir == PEP_dir_outgoing ? PEPMsgDirectionOutgoing : PEPMsgDirectionIncoming;
+
+    if (message->id) {
+        self.messageID = [NSString stringWithUTF8String:message->id];
+    }
+
+    if (message->shortmsg) {
+        self.shortMessage = [NSString stringWithUTF8String:message->shortmsg];
+    }
+
+    if (message->sent) {
+        self.sentDate = [NSDate dateWithTimeIntervalSince1970:timegm(message->sent)];
+    }
+
+    if (message->recv) {
+        self.receivedDate = [NSDate dateWithTimeIntervalSince1970:mktime(message->recv)];
+    }
+
+    if (message->from) {
+        self.from = [PEPIdentity fromStruct:message->from];
+    }
+
+    if (message->to && message->to->ident) {
+        self.to = [NSArray arrayFromIdentityList:message->to];
+    }
+
+    if (message->recv_by) {
+        self.receivedBy = [PEPIdentity fromStruct:message->recv_by];
+    }
+
+    if (message->cc && message->cc->ident) {
+        self.cc = [NSArray arrayFromIdentityList:message->cc];
+    }
+
+    if (message->bcc && message->bcc->ident) {
+        self.bcc = [NSArray arrayFromIdentityList:message->bcc];
+    }
+
+    if (message->reply_to && message->reply_to->ident) {
+        self.replyTo = [NSArray arrayFromIdentityList:message->reply_to];
+    }
+
+    if (message->in_reply_to) {
+        self.inReplyTo = [NSArray arrayFromStringlist:message->in_reply_to];
+    }
+
+    if (message->references && message->references->value) {
+        self.references = [NSArray arrayFromStringlist:message->references];
+    }
+
+    if (message->keywords && message->keywords->value) {
+        self.keywords = [NSArray arrayFromStringlist:message->keywords];
+    }
+
+    if (message->opt_fields) {
+        self.optionalFields = PEP_arrayFromStringPairlist(message->opt_fields);
+    }
+
+    if (message->longmsg_formatted) {
+        self.longMessageFormatted = [NSString stringWithUTF8String:message->longmsg_formatted];
+    }
+
+    if (message->longmsg) {
+        self.longMessage = [NSString stringWithUTF8String:message->longmsg];
+    }
+
+    if (message->attachments && message->attachments->value) {
+        self.attachments = PEP_arrayFromBloblist(message->attachments);
+    }
+
+    if (message->rawmsg_size > 0 && *message->rawmsg_ref) {
+        // TODO
+    }
 }
 
 // MARK: - Private
