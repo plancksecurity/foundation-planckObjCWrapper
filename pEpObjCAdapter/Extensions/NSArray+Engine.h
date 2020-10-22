@@ -28,8 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Converts `NSArray<PEPIdentity *>` to an engine identity list
 - (identity_list * _Nullable)toIdentityList;
 
-- (stringpair_list_t *)toStringPairlist;
-- (bloblist_t *)toBloblist;
+- (stringpair_list_t * _Nullable)toStringPairlist;
+- (bloblist_t * _Nullable)toBloblist;
 
 @end
 
