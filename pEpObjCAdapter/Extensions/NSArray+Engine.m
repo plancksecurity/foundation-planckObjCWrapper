@@ -105,7 +105,7 @@
     return il;
 }
 
-- (stringpair_list_t *)toStringPairlist
+- (stringpair_list_t * _Nullable)toStringPairlist
 {
     stringpair_list_t *sl = new_stringpair_list(NULL);
     if (!sl)
@@ -122,7 +122,7 @@
     return sl;
 }
 
-- (bloblist_t *)toBloblist
+- (bloblist_t * _Nullable)toBloblist
 {
     if (self.count == 0) {
         return nil;
