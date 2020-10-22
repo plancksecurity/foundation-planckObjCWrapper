@@ -199,13 +199,6 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 }
 
-- (void)removeEmptyArrayKey:(NSString *)key inDict:(PEPMutableDict *)dict
-{
-    if ([[dict objectForKey:key] count] == 0) {
-        [dict removeObjectForKey:key];
-    }
-}
-
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)theMessage
                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                encFormat:(PEPEncFormat)encFormat
