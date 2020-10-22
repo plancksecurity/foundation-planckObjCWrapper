@@ -161,46 +161,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     return dst_;
 }
 
-- (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
-                     xKeyList:(PEPStringList * _Nullable)xKeyList
-                       rating:(PEPRating * _Nonnull)rating
-                       status:(PEPStatus * _Nullable)status
-                        error:(NSError * _Nullable * _Nullable)error
-{
-    message *_src = PEP_messageDictToStruct(messageDict);
-
-    stringlist_t *theKeys = NULL;
-    if ([xKeyList count]) {
-        theKeys = [xKeyList toStringList];
-    }
-
-    PEPRating originalRating = *rating;
-    __block PEPRating resultRating = PEPRatingUndefined;
-
-    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        PEP_STATUS tmpStatus = re_evaluate_message_rating(session,
-                                                          _src,
-                                                          theKeys,
-                                                          (PEP_rating) originalRating,
-                                                          (PEP_rating *) &resultRating);
-        *rating = resultRating;
-        return tmpStatus;
-    }];
-
-    free_message(_src);
-    free_stringlist(theKeys);
-
-    if (status) {
-        *status = theStatus;
-    }
-
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)theMessage
                  xKeyList:(PEPStringList * _Nullable)xKeyList
                    rating:(PEPRating * _Nonnull)rating
