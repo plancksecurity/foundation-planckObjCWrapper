@@ -405,41 +405,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 }
 
-
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                    toFpr:(NSString * _Nonnull)toFpr
-                                encFormat:(PEPEncFormat)encFormat
-                                    flags:(PEPDecryptFlags)flags
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated
-{
-    message *src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    __block message *dst = NULL;
-
-    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return encrypt_message_and_add_priv_key(session,
-                                                src,
-                                                &dst,
-                                                [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
-                                                (PEP_enc_format) encFormat,
-                                                flags);
-    }];
-
-    if (status) {
-        *status = theStatus;
-    }
-
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
-        return nil;
-    }
-
-    if (dst) {
-        return PEP_messageDictFromStruct(dst);
-    }
-
-    return nil;
-}
-
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)theMessage
                                    toFpr:(NSString * _Nonnull)toFpr
                                encFormat:(PEPEncFormat)encFormat
