@@ -10,7 +10,6 @@
 #import "PEPConstants.h"
 
 #import "pEpEngine.h"
-#import "PEPMessageUtil.h"
 #import "PEPSession.h"
 
 #import "NSObject+Extension.h"

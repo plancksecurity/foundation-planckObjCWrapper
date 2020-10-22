@@ -12,7 +12,8 @@
 #import "PEPConstants.h"
 
 #import "NSObject+Extension.h"
-#import "PEPMessageUtil.h"
+
+#import "message_api.h"
 
 @implementation PEPMessage
 

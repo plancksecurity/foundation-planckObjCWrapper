@@ -10,7 +10,6 @@
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
@@ -21,6 +20,7 @@
 #import "keymanagement.h"
 #import "mime.h"
 #import "message.h"
+#import "message_api.h"
 
 const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 

@@ -11,9 +11,10 @@
 #import "PEPSync.h"
 #import "PEPSync_Internal.h"
 
+#import "message_api.h"
+
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
-#import "PEPMessageUtil.h"
 #import "PEPMessage.h"
 #import "PEPQueue.h"
 #import "PEPObjCAdapter.h"

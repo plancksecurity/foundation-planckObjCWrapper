@@ -50,7 +50,6 @@
 		435F5168222046C2006EB11F /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Extension.m */; };
 		435F5169222046C2006EB11F /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
 		435F516A222046C2006EB11F /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */; };
-		435F516B222046C2006EB11F /* PEPMessageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B2D1ECC2ACD007E7E2E /* PEPMessageUtil.m */; };
 		435F516C222046C2006EB11F /* PEPObjCAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */; };
 		435F516D222046C2006EB11F /* PEPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B321ECC2ACD007E7E2E /* PEPQueue.m */; };
 		435F516E222046C2006EB11F /* PEPInternalSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */; };
@@ -169,8 +168,6 @@
 		43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPCSVScanner.m; sourceTree = "<group>"; };
 		43209B2A1ECC2ACD007E7E2E /* PEPLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPLanguage.h; sourceTree = "<group>"; };
 		43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
-		43209B2C1ECC2ACD007E7E2E /* PEPMessageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPMessageUtil.h; sourceTree = "<group>"; };
-		43209B2D1ECC2ACD007E7E2E /* PEPMessageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMessageUtil.m; sourceTree = "<group>"; };
 		43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPObjCAdapter+Internal.h"; sourceTree = "<group>"; };
 		43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter.h; sourceTree = "<group>"; };
 		43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter.m; sourceTree = "<group>"; };
@@ -371,8 +368,6 @@
 				43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */,
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
 				43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */,
-				43209B2C1ECC2ACD007E7E2E /* PEPMessageUtil.h */,
-				43209B2D1ECC2ACD007E7E2E /* PEPMessageUtil.m */,
 				43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+Internal.h */,
 				43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */,
 				43209B311ECC2ACD007E7E2E /* PEPQueue.h */,
@@ -718,7 +713,6 @@
 				433DFBBC24A73AD400AB373B /* PEPSessionProtocol.m in Sources */,
 				435F5179222046C2006EB11F /* NSNumber+PEPRating.m in Sources */,
 				438C0ED52540215A00337922 /* NSArray+Engine.m in Sources */,
-				435F516B222046C2006EB11F /* PEPMessageUtil.m in Sources */,
 				435F5171222046C2006EB11F /* PEPCopyableThread.m in Sources */,
 				43589EF924A4A3B70079BEA2 /* PEPPassphraseCache.m in Sources */,
 				435F5175222046C2006EB11F /* PEPMessage.m in Sources */,

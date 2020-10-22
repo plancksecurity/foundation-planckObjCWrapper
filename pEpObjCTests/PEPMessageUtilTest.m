@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPMessageUtil.h"
 #import "PEPObjCAdapterFramework.h"
 #import "PEPIdentity+Engine.h"
 

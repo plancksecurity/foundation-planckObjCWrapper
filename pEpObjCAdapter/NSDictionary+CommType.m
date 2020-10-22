@@ -12,8 +12,6 @@
 
 #import "PEPConstants.h"
 
-#import "PEPMessageUtil.h"
-
 @implementation NSDictionary (CommType)
 
 - (PEPCommType)commType

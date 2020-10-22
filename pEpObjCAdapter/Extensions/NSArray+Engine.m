@@ -12,7 +12,6 @@
 
 #import "PEPIdentity.h"
 #import "PEPIdentity+Engine.h"
-#import "PEPMessageUtil.h"
 #import "PEPAttachment.h"
 
 @implementation NSArray (Engine)

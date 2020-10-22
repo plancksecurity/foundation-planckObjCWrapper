@@ -12,7 +12,6 @@
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "PEPMessageUtil.h"
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Extension.h"
