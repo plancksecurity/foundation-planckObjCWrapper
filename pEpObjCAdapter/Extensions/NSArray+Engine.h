@@ -10,6 +10,7 @@
 
 #import "stringlist.h"
 #import "identity_list.h"
+#import "bloblist.h"
 
 @class PEPIdentity;
 
@@ -20,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)arrayFromStringlist:(stringlist_t *)stringList;
 + (NSArray<PEPIdentity *> *)arrayFromIdentityList:(identity_list *)identityList;
 + (NSArray * _Nonnull)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList;
++ (NSArray * _Nonnull)arrayFromBloblist:(bloblist_t * _Nonnull)blobList;
 
 - (stringlist_t * _Nullable)toStringList;
 

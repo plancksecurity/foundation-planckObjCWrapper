@@ -13,6 +13,7 @@
 #import "PEPIdentity.h"
 #import "PEPIdentity+Engine.h"
 #import "PEPMessageUtil.h"
+#import "PEPAttachment.h"
 
 @implementation NSArray (Engine)
 
@@ -49,6 +50,30 @@
                 nil]];
     }
 
+    return array;
+}
+
++ (NSArray * _Nonnull)arrayFromBloblist:(bloblist_t * _Nonnull)blobList
+{
+    NSMutableArray *array = [NSMutableArray array];
+
+    for (bloblist_t *_bl = blobList; _bl && _bl->value; _bl = _bl->next) {
+        PEPAttachment* theAttachment = [[PEPAttachment alloc]
+                                        initWithData:[NSData
+                                                      dataWithBytes:_bl->value length:_bl->size]];
+
+        if(_bl->filename && _bl->filename[0]) {
+            theAttachment.filename = [NSString stringWithUTF8String:_bl->filename];
+        }
+
+        if(_bl->mime_type && _bl->mime_type[0]) {
+            theAttachment.mimeType = [NSString stringWithUTF8String:_bl->mime_type];
+        }
+
+        theAttachment.contentDisposition = (PEPContentDisposition) _bl->disposition;
+
+        [array addObject:theAttachment];
+    }
     return array;
 }
 
