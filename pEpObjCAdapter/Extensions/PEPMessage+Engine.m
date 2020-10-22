@@ -25,4 +25,9 @@
     return theMessage;
 }
 
+- (message * _Nullable)toStruct
+{
+    return PEP_messageDictToStruct((NSDictionary *) self);
+}
+
 @end

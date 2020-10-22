@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (PEPMessage * _Nullable)fromStruct:(message * _Nullable)msg;
 
+- (message * _Nullable)toStruct;
+
 @end
 
 NS_ASSUME_NONNULL_END
