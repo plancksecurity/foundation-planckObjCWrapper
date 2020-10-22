@@ -59,24 +59,6 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     return txtFileContents;
 }
 
-/**
- Converts a given message dict to a version with correct attachments, using PEPAttachment.
- Using unarchiveDirectory for a message object will yield the old attachment format,
- which was just an array of dictionaries. Now the correct way is to use PEPAttachments.
- */
-+ (void)migrateUnarchivedMessageDictionary:(NSMutableDictionary *)message
-{
-    NSMutableArray *attachments = [NSMutableArray new];
-    for (NSDictionary *attachmentDict in [message objectForKey:kPepAttachments]) {
-        PEPAttachment *attachment = [[PEPAttachment alloc]
-                                     initWithData:[attachmentDict objectForKey:@"data"]];
-        attachment.filename = [attachmentDict objectForKey:@"filename"];
-        attachment.mimeType = [attachmentDict objectForKey:@"mimeType"];
-        [attachments addObject:attachment];
-    }
-    [message setValue:[NSArray arrayWithArray:attachments] forKey:kPepAttachments];
-}
-
 + (BOOL)importBundledKey:(NSString *)item session:(PEPInternalSession *)session
 {
     if (!session) {
