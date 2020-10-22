@@ -440,28 +440,40 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     return nil;
 }
 
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)theMessage
                                    toFpr:(NSString * _Nonnull)toFpr
                                encFormat:(PEPEncFormat)encFormat
                                    flags:(PEPDecryptFlags)flags
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *target = [self
-                       encryptMessageDict:message.dictionary
-                       toFpr:toFpr
-                       encFormat:encFormat
-                       flags:flags
-                       status:status
-                       error:error];
+    message *src = [[theMessage removeEmptyRecipients] toStruct];
+    __block message *dst = NULL;
 
-    if (target) {
-        PEPMessage *encrypted = [PEPMessage new];
-        [encrypted setValuesForKeysWithDictionary:target];
-        return encrypted;
-    } else {
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return encrypt_message_and_add_priv_key(session,
+                                                src,
+                                                &dst,
+                                                [[toFpr precomposedStringWithCanonicalMapping] UTF8String],
+                                                (PEP_enc_format) encFormat,
+                                                flags);
+    }];
+
+    if (status) {
+        *status = theStatus;
+    }
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return nil;
     }
+
+    if (dst) {
+        // As long as dst is non-nil, the result is also non-nil
+        PEPMessage *result = [PEPMessage fromStruct:dst];
+        return result;
+    }
+
+    return nil;
 }
 
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
