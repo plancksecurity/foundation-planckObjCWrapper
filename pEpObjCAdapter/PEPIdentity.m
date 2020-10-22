@@ -60,16 +60,6 @@
                         commType:PEPCommTypeUnknown language:nil];
 }
 
-- (nonnull instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
-    return [self initWithAddress:dictionary[kPepAddress] userID:dictionary[kPepUserID]
-                        userName:dictionary[kPepUsername]
-                           isOwn:[dictionary[kPepIsOwn] boolValue]
-                     fingerPrint:dictionary[kPepFingerprint]
-                        commType:[dictionary[kPepCommType] intValue]
-                        language:dictionary[@"lang"]];
-}
-
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity
 {
     return [self initWithAddress:identity.address userID:identity.userID
@@ -78,20 +68,6 @@
                      fingerPrint:identity.fingerPrint
                         commType:identity.commType
                         language:identity.language];
-}
-
-// MARK: Faking directory
-
-- (PEPDict * _Nonnull)dictionary
-{
-    // most adapter use should be ok.
-    return (PEPDict *) self;
-}
-
-- (PEPMutableDict * _Nonnull)mutableDictionary
-{
-    // most adapter use should be ok.
-    return (PEPMutableDict *) self;
 }
 
 - (BOOL)isConfirmed
