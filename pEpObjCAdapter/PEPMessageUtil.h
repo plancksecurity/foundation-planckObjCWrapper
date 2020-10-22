@@ -13,5 +13,5 @@
 @class PEPIdentity;
 @class PEPMessage;
 
-NSArray * _Nonnull PEP_arrayFromStringPairlist(stringpair_list_t * _Nonnull sl);
-NSArray * _Nonnull PEP_arrayFromBloblist(bloblist_t * _Nonnull bl);
+//NSArray * _Nonnull PEP_arrayFromStringPairlist(stringpair_list_t * _Nonnull sl);
+//NSArray * _Nonnull PEP_arrayFromBloblist(bloblist_t * _Nonnull bl);
