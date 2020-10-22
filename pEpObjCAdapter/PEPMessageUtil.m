@@ -117,17 +117,6 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
     return dict;
 }
 
-PEPMessage * _Nullable pEpMessageFromStruct(message * _Nullable msg)
-{
-    if (!msg) {
-        return nil;
-    }
-    NSDictionary *dict = PEP_messageDictFromStruct(msg);
-    PEPMessage *theMessage = [PEPMessage new];
-    [theMessage setValuesForKeysWithDictionary:dict];
-    return theMessage;
-}
-
 message *PEP_messageToStruct(PEPMessage *message) {
     return PEP_messageDictToStruct((NSDictionary *) message);
 }

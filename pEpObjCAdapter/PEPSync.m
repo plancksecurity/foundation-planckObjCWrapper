@@ -24,6 +24,7 @@
 #import "PEPPassphraseUtil.h"
 #import "Logger.h"
 #import "PEPIdentity+Engine.h"
+#import "PEPMessage+Engine.h"
 
 // MARK: - Internals
 
@@ -315,7 +316,7 @@ static __weak PEPSync *s_pEpSync;
         }
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
-            PEPMessage *theMessage = pEpMessageFromStruct(msg);
+            PEPMessage *theMessage = [PEPMessage fromStruct:msg];
             return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
         } else {
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
