@@ -206,17 +206,6 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 }
 
-- (NSDictionary *)removeEmptyRecipients:(PEPDict *)src
-{
-    NSMutableDictionary *dest = src.mutableCopy;
-
-    [self removeEmptyArrayKey:kPepTo inDict:dest];
-    [self removeEmptyArrayKey:kPepCC inDict:dest];
-    [self removeEmptyArrayKey:kPepBCC inDict:dest];
-
-    return dest;
-}
-
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)theMessage
                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                encFormat:(PEPEncFormat)encFormat
