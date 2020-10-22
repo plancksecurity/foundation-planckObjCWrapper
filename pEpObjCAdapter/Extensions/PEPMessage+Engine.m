@@ -186,7 +186,7 @@
     }
 
     if (message->attachments && message->attachments->value) {
-        self.attachments = PEP_arrayFromBloblist(message->attachments);
+        self.attachments = [NSArray arrayFromBloblist:message->attachments];
     }
 }
 
