@@ -117,10 +117,6 @@ NSDictionary *PEP_messageDictFromStruct(message *msg)
     return dict;
 }
 
-message *PEP_messageToStruct(PEPMessage *message) {
-    return PEP_messageDictToStruct((NSDictionary *) message);
-}
-
 message *PEP_messageDictToStruct(NSDictionary *dict)
 {
     // Direction default to incoming

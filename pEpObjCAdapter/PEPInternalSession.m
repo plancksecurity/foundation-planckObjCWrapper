@@ -31,6 +31,7 @@
 #import "NSString+NormalizePassphrase.h"
 #import "NSArray+Engine.h"
 #import "PEPIdentity+Engine.h"
+#import "PEPMessage+Engine.h"
 
 #import "key_reset.h"
 
@@ -466,7 +467,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error
 {
-    message *_msg = PEP_messageToStruct(theMessage);
+    message *_msg = [theMessage toStruct];
     __block PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
@@ -485,7 +486,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
 - (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
                                                   error:(NSError * _Nullable * _Nullable)error
 {
-    message *_msg = PEP_messageToStruct(theMessage);
+    message *_msg = [theMessage toStruct];
     PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = (PEPStatus) outgoing_message_rating_preview(_session,
