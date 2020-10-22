@@ -30,7 +30,7 @@
     return PEP_messageDictToStruct((NSDictionary *) self);
 }
 
-- (void)removeEmptyRecipients
+- (PEPMessage *)removeEmptyRecipients
 {
     if (self.to.count == 0) {
         self.to = nil;
@@ -43,6 +43,8 @@
     if (self.bcc.count == 0) {
         self.bcc = nil;
     }
+
+    return self;
 }
 
 @end
