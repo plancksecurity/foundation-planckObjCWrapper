@@ -10,6 +10,19 @@
 
 #import "PEPMessage+Engine.h"
 
+#import "PEPMessageUtil.h"
+
 @implementation PEPMessage (Engine)
+
++ (PEPMessage * _Nullable)fromStruct:(message * _Nullable)msg
+{
+    if (!msg) {
+        return nil;
+    }
+    NSDictionary *dict = PEP_messageDictFromStruct(msg);
+    PEPMessage *theMessage = [PEPMessage new];
+    [theMessage setValuesForKeysWithDictionary:dict];
+    return theMessage;
+}
 
 @end
