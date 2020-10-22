@@ -340,9 +340,12 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
+    // Don't change the original
+    PEPMessage *messageCopy = [[PEPMessage alloc] initWithMessage:theMessage];
+
     __block PEP_encrypt_flags_t flags = 0;
 
-    __block message *_src = [[theMessage removeEmptyRecipients] toStruct];
+    __block message *_src = [[messageCopy removeEmptyRecipients] toStruct];
     __block pEp_identity *ident = [ownIdentity toStruct];
     __block message *_dst = NULL;
 
@@ -391,7 +394,10 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    message *src = [[theMessage removeEmptyRecipients] toStruct];
+    // Don't change the original
+    PEPMessage *messageCopy = [[PEPMessage alloc] initWithMessage:theMessage];
+
+    message *src = [[messageCopy removeEmptyRecipients] toStruct];
     __block message *dst = NULL;
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
