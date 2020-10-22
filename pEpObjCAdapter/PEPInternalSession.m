@@ -334,56 +334,6 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
             error:error];
 }
 
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
-                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error
-{
-    __block PEP_encrypt_flags_t flags = 0;
-
-    __block message *_src = PEP_messageDictToStruct([self removeEmptyRecipients:messageDict]);
-    __block pEp_identity *ident = [ownIdentity toStruct];
-    __block message *_dst = NULL;
-
-    __block stringlist_t *keysStringList = [extraKeys toStringList];
-
-    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return encrypt_message_for_self(session,
-                                        ident,
-                                        _src,
-                                        keysStringList,
-                                        &_dst,
-                                        PEP_enc_PGP_MIME,
-                                        flags);
-    }];
-
-    free_stringlist(keysStringList);
-
-    if (status) {
-        *status = theStatus;
-    }
-
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
-        return nil;
-    }
-
-    NSDictionary *dst_;
-
-    if (_dst) {
-        dst_ = PEP_messageDictFromStruct(_dst);
-    }
-    else {
-        dst_ = PEP_messageDictFromStruct(_src);
-    }
-
-    free_message(_src);
-    free_message(_dst);
-    free_identity(ident);
-
-    return dst_;
-}
-
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)theMessage
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
