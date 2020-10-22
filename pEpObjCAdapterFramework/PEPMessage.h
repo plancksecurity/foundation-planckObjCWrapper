@@ -46,16 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// A copy constructor.
 - (instancetype)initWithMessage:(PEPMessage *)message;
 
-/**
- For backwards compatiblity.
- */
-- (PEPDict *)dictionary;
-
-/**
- For backwards compatiblity.
- */
-- (PEPMutableDict *)mutableDictionary;
-
 @end
 
 NS_ASSUME_NONNULL_END
