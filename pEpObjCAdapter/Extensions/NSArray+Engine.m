@@ -38,6 +38,20 @@
     return array;
 }
 
++ (NSArray * _Nonnull)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList
+{
+    NSMutableArray *array = [NSMutableArray array];
+
+    for (stringpair_list_t *_sl = stringPairList; _sl && _sl->value; _sl = _sl->next) {
+        [array addObject:[[NSMutableArray alloc ]initWithObjects:
+                [NSString stringWithUTF8String:_sl->value->key],
+                [NSString stringWithUTF8String:_sl->value->value],
+                nil]];
+    }
+
+    return array;
+}
+
 - (stringlist_t * _Nullable)toStringList
 {
     stringlist_t *sl = new_stringlist(NULL);
