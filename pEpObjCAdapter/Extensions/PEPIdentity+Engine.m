@@ -12,7 +12,7 @@
 
 @implementation PEPIdentity (Engine)
 
-+ (PEPIdentity * _Nullable)fromStruct:(pEp_identity * _Nonnull)identityStruct
++ (instancetype _Nullable)fromStruct:(pEp_identity * _Nonnull)identityStruct
 {
     PEPIdentity *identity = nil;
 

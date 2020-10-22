@@ -16,12 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPMessage (Engine)
 
-+ (PEPMessage * _Nullable)fromStruct:(message * _Nullable)msg;
++ (instancetype _Nullable)fromStruct:(message * _Nullable)msg;
 
 - (message * _Nullable)toStruct;
 
 /// Sets recipients with 0 member to nil
-- (PEPMessage *)removeEmptyRecipients;
+- (instancetype)removeEmptyRecipients;
 
 - (void)overWriteFromStruct:(message * _Nonnull)message;
 

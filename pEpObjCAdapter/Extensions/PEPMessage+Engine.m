@@ -18,7 +18,7 @@
 
 @implementation PEPMessage (Engine)
 
-+ (PEPMessage * _Nullable)fromStruct:(message * _Nullable)msg
++ (instancetype _Nullable)fromStruct:(message * _Nullable)msg
 {
     if (!msg) {
         return nil;
@@ -97,7 +97,7 @@
     return msg;
 }
 
-- (PEPMessage *)removeEmptyRecipients
+- (instancetype)removeEmptyRecipients
 {
     if (self.to.count == 0) {
         self.to = nil;

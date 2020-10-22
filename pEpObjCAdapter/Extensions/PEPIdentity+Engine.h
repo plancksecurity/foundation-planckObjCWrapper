@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PEPIdentity (Engine)
 
 /// @Note: If the ident does not contain an address, no PEPIdentity can be constructed.
-+ (PEPIdentity * _Nullable)fromStruct:(pEp_identity * _Nonnull)identityStruct;
++ (instancetype _Nullable)fromStruct:(pEp_identity * _Nonnull)identityStruct;
 
 - (pEp_identity *)toStruct;
 - (void)overWriteFromStruct:(pEp_identity * _Nonnull)identityStruct;
