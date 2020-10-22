@@ -174,7 +174,7 @@
     }
 
     if (message->opt_fields) {
-        self.optionalFields = PEP_arrayFromStringPairlist(message->opt_fields);
+        self.optionalFields = [NSArray arrayFromStringPairlist:message->opt_fields];
     }
 
     if (message->longmsg_formatted) {
