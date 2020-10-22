@@ -80,7 +80,7 @@
 
 #pragma mark - API
 
-void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
+void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     free_message(src);
     free_message(dst);
@@ -127,7 +127,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
-        decryptMessageDictFree(_src, _dst, theKeys);
+        decryptMessageFree(_src, _dst, theKeys);
         return nil;
     }
 
@@ -151,7 +151,7 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
         *extraKeys = [NSArray arrayFromStringlist:theKeys];
     }
 
-    decryptMessageDictFree(_src, _dst, theKeys);
+    decryptMessageFree(_src, _dst, theKeys);
 
     if (rating) {
         *rating = internalRating;
