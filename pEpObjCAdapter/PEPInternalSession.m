@@ -22,7 +22,6 @@
 #import "NSError+PEP+Internal.h"
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
-#import "NSMutableDictionary+PEP.h"
 #import <PEPSync.h>
 #import "PEPSync_Internal.h" // for [PEPSync createSession:]
 #import "PEPInternalConstants.h"

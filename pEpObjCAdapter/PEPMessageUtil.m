@@ -13,7 +13,6 @@
 
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
-#import "NSMutableDictionary+PEP.h"
 #import "NSArray+Engine.h"
 #import "PEPIdentity+Engine.h"
 
