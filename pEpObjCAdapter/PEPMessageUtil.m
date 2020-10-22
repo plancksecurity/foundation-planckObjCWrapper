@@ -107,12 +107,3 @@ bloblist_t *PEP_arrayToBloblist(NSArray *array)
     }
     return _bl;
 }
-
-NSDictionary *PEP_messageDictFromStruct(message *msg)
-{
-    NSMutableDictionary *dict = [NSMutableDictionary new];
-    if (msg && dict) {
-        [dict replaceWithMessage:msg];
-    }
-    return dict;
-}
