@@ -39,7 +39,7 @@
     return array;
 }
 
-+ (NSArray * _Nonnull)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList
++ (NSArray *)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList
 {
     NSMutableArray *array = [NSMutableArray array];
 
@@ -53,7 +53,7 @@
     return array;
 }
 
-+ (NSArray * _Nonnull)arrayFromBloblist:(bloblist_t * _Nonnull)blobList
++ (NSArray *)arrayFromBloblist:(bloblist_t * _Nonnull)blobList
 {
     NSMutableArray *array = [NSMutableArray array];
 

@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray *)arrayFromStringlist:(stringlist_t *)stringList;
 + (NSArray<PEPIdentity *> *)arrayFromIdentityList:(identity_list *)identityList;
-+ (NSArray * _Nonnull)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList;
-+ (NSArray * _Nonnull)arrayFromBloblist:(bloblist_t * _Nonnull)blobList;
++ (NSArray *)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList;
++ (NSArray *)arrayFromBloblist:(bloblist_t * _Nonnull)blobList;
 
 - (stringlist_t * _Nullable)toStringList;
 
