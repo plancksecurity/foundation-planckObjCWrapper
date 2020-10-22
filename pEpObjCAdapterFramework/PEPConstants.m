@@ -10,14 +10,6 @@
 
 #pragma mark - Constants
 
-NSString *const kXpEpVersion = @"X-pEp-Version";
-
-NSString *const kXEncStatus = @"X-EncStatus";
-
-NSString *const kXKeylist = @"X-KeyList";
-
-NSString *const _Nonnull kPepIsOwnIdentity = @"kPepIsOwnIdentity";
-
 NSString *const _Nonnull kPepHeaderAutoConsume = @"pEp-auto-consume";
 
 NSString *const _Nonnull kPepValueAutoConsumeYes = @"yes";
