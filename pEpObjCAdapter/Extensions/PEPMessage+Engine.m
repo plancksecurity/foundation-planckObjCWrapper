@@ -24,9 +24,8 @@
     if (!msg) {
         return nil;
     }
-    NSDictionary *dict = PEP_messageDictFromStruct(msg);
     PEPMessage *theMessage = [PEPMessage new];
-    [theMessage setValuesForKeysWithDictionary:dict];
+    [theMessage overWriteFromStruct:msg];
     return theMessage;
 }
 
