@@ -10,6 +10,7 @@
 
 #import "PEPMessage+Engine.h"
 
+#import "PEPMessage.h"
 #import "PEPMessageUtil.h"
 
 @implementation PEPMessage (Engine)
@@ -45,6 +46,30 @@
     }
 
     return self;
+}
+
+// MARK: - Private
+
+- (void)reset
+{
+    self.messageID = nil;
+    self.from = nil;
+    self.to = nil;
+    self.cc = nil;
+    self.bcc = nil;
+    self.shortMessage = nil;
+    self.longMessage = nil;
+    self.longMessageFormatted = nil;
+    self.replyTo = nil;
+    self.inReplyTo = nil;
+    self.references = nil;
+    self.sentDate = nil;
+    self.receivedDate = nil;
+    self.attachments = nil;
+    self.optionalFields = nil;
+    self.keywords = nil;
+    self.receivedBy = nil;
+    self.direction = PEPMsgDirectionIncoming;
 }
 
 @end
