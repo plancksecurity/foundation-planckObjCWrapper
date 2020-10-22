@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (message * _Nullable)toStruct;
 
+/// Sets recipients with 0 member to nil
+- (void)removeEmptyRecipients;
+
 @end
 
 NS_ASSUME_NONNULL_END

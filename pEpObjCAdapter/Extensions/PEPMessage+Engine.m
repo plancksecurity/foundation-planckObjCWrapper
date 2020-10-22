@@ -30,4 +30,19 @@
     return PEP_messageDictToStruct((NSDictionary *) self);
 }
 
+- (void)removeEmptyRecipients
+{
+    if (self.to.count == 0) {
+        self.to = nil;
+    }
+
+    if (self.cc.count == 0) {
+        self.cc = nil;
+    }
+
+    if (self.bcc.count == 0) {
+        self.bcc = nil;
+    }
+}
+
 @end
