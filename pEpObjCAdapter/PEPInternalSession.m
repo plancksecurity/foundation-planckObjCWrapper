@@ -384,25 +384,54 @@ void decryptMessageDictFree(message *src, message *dst, stringlist_t *extraKeys)
     return dst_;
 }
 
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)theMessage
                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    PEPDict *target = [self
-                       encryptMessageDict:message.dictionary
-                       forSelf:ownIdentity
-                       extraKeys:extraKeys
-                       status:status
-                       error:error];
-    if (target) {
-        PEPMessage *encrypted = [PEPMessage new];
-        [encrypted setValuesForKeysWithDictionary:target];
-        return encrypted;
-    } else {
+    __block PEP_encrypt_flags_t flags = 0;
+
+    __block message *_src = [[theMessage removeEmptyRecipients] toStruct];
+    __block pEp_identity *ident = [ownIdentity toStruct];
+    __block message *_dst = NULL;
+
+    __block stringlist_t *keysStringList = [extraKeys toStringList];
+
+    PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return encrypt_message_for_self(session,
+                                        ident,
+                                        _src,
+                                        keysStringList,
+                                        &_dst,
+                                        PEP_enc_PGP_MIME,
+                                        flags);
+    }];
+
+    free_stringlist(keysStringList);
+
+    if (status) {
+        *status = theStatus;
+    }
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
         return nil;
     }
+
+    PEPMessage *dst_;
+
+    if (_dst) {
+        dst_ = [PEPMessage fromStruct:_dst];
+    }
+    else {
+        dst_ = [PEPMessage fromStruct:_src];
+    }
+
+    free_message(_src);
+    free_message(_dst);
+    free_identity(ident);
+
+    return dst_;
 }
 
 - (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)theMessage
