@@ -13,7 +13,6 @@
 #import "pEp_string.h"
 
 #import "PEPMessage.h"
-#import "PEPMessageUtil.h"
 #import "PEPIdentity+Engine.h"
 #import "NSArray+Engine.h"
 
