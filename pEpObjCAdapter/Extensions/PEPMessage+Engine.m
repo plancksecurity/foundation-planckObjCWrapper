@@ -123,10 +123,6 @@
     if (message->attachments && message->attachments->value) {
         self.attachments = PEP_arrayFromBloblist(message->attachments);
     }
-
-    if (message->rawmsg_size > 0 && *message->rawmsg_ref) {
-        // TODO
-    }
 }
 
 // MARK: - Private
