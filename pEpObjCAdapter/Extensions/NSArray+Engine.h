@@ -18,10 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray (Engine)
 
-+ (NSArray *)arrayFromStringlist:(stringlist_t *)stringList;
++ (instancetype)arrayFromStringlist:(stringlist_t *)stringList;
 + (NSArray<PEPIdentity *> *)arrayFromIdentityList:(identity_list *)identityList;
-+ (NSArray *)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList;
-+ (NSArray *)arrayFromBloblist:(bloblist_t * _Nonnull)blobList;
++ (instancetype)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList;
++ (instancetype)arrayFromBloblist:(bloblist_t * _Nonnull)blobList;
 
 - (stringlist_t * _Nullable)toStringList;
 

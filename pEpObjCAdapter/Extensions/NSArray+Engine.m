@@ -16,7 +16,7 @@
 
 @implementation NSArray (Engine)
 
-+ (NSArray * _Nonnull)arrayFromStringlist:(stringlist_t * _Nonnull)stringList
++ (instancetype)arrayFromStringlist:(stringlist_t * _Nonnull)stringList
 {
     NSMutableArray *array = [NSMutableArray array];
 
@@ -38,7 +38,7 @@
     return array;
 }
 
-+ (NSArray *)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList
++ (instancetype)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList
 {
     NSMutableArray *array = [NSMutableArray array];
 
@@ -52,7 +52,7 @@
     return array;
 }
 
-+ (NSArray *)arrayFromBloblist:(bloblist_t * _Nonnull)blobList
++ (instancetype)arrayFromBloblist:(bloblist_t * _Nonnull)blobList
 {
     NSMutableArray *array = [NSMutableArray array];
 
