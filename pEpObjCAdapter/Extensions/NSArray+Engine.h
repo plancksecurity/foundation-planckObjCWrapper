@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (identity_list * _Nullable)toIdentityList;
 
 - (stringpair_list_t *)toStringPairlist;
+- (bloblist_t *)toBloblist;
 
 @end
 
