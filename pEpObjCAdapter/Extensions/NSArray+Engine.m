@@ -105,4 +105,21 @@
     return il;
 }
 
+- (stringpair_list_t *)toStringPairlist
+{
+    stringpair_list_t *sl = new_stringpair_list(NULL);
+    if (!sl)
+        return NULL;
+
+    stringpair_list_t *_sl = sl;
+    for (NSArray *pair in self) {
+        stringpair_t *_sp = new_stringpair(
+               [[pair[0] precomposedStringWithCanonicalMapping] UTF8String],
+               [[pair[1] precomposedStringWithCanonicalMapping] UTF8String]);
+        _sl = stringpair_list_add(_sl, _sp);
+    }
+
+    return sl;
+}
+
 @end
