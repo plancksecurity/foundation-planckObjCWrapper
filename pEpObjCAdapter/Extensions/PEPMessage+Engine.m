@@ -10,6 +10,8 @@
 
 #import "PEPMessage+Engine.h"
 
+#import "pEp_string.h"
+
 #import "PEPMessage.h"
 #import "PEPMessageUtil.h"
 #import "PEPIdentity+Engine.h"
@@ -30,7 +32,71 @@
 
 - (message * _Nullable)toStruct
 {
-    return PEP_messageDictToStruct((NSDictionary *) self);
+    PEP_msg_direction dir = self.direction == PEPMsgDirectionIncoming ? PEP_dir_incoming : PEP_dir_outgoing;
+
+    message *msg = new_message(dir);
+
+    if (!msg) {
+        return NULL;
+    }
+
+    if (self.messageID)
+        msg->id = new_string([[self.messageID precomposedStringWithCanonicalMapping]
+                              UTF8String], 0);
+
+    if (self.shortMessage)
+        msg->shortmsg = new_string([[self.shortMessage
+                                     precomposedStringWithCanonicalMapping] UTF8String], 0);
+
+    if (self.sentDate)
+        msg->sent = new_timestamp([self.sentDate timeIntervalSince1970]);
+
+    if (self.receivedDate)
+        msg->recv = new_timestamp([self.receivedDate timeIntervalSince1970]);
+
+    if (self.from)
+        msg->from = [self.from toStruct];
+
+    if (self.to)
+        msg->to = [self.to toIdentityList];
+
+    if (self.receivedBy)
+        msg->recv_by = [self.receivedBy toStruct];
+
+    if (self.cc)
+        msg->cc = [self.cc toIdentityList];
+
+    if (self.bcc)
+        msg->bcc = [self.bcc toIdentityList];
+
+    if (self.replyTo)
+        msg->reply_to = [self.replyTo toIdentityList];
+
+    if (self.inReplyTo)
+        msg->in_reply_to = [self.inReplyTo toStringList];
+
+    if (self.references)
+        msg->references = [self.references toStringList];
+
+    if (self.keywords)
+        msg->keywords = [self.keywords toStringList];
+
+    if (self.optionalFields)
+        msg->opt_fields = [self.optionalFields toStringPairlist];
+
+    if (self.longMessage)
+        msg->longmsg = new_string([[self.longMessage
+                                    precomposedStringWithCanonicalMapping] UTF8String], 0);
+
+    if (self.longMessageFormatted)
+        msg->longmsg_formatted = new_string([[self.longMessageFormatted
+                                              precomposedStringWithCanonicalMapping]
+                                             UTF8String], 0);
+
+    if (self.attachments)
+        msg->attachments = [self.attachments toBloblist];
+
+    return msg;
 }
 
 - (PEPMessage *)removeEmptyRecipients
