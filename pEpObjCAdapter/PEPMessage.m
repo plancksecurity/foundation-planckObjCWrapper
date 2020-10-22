@@ -223,13 +223,6 @@
     self.direction = PEP_dir_incoming; // basically, 0
 }
 
-// MARK: - Faking the pEp directory extension
-
-- (void)replaceWithMessage:(message *)message
-{
-    replaceDictionaryContentsWithMessage(self.mutableDictionary, message);
-}
-
 // MARK: - NSDictionary - Helpers
 
 - (NSArray<NSArray<NSString *> *> *)keyValuePairs
