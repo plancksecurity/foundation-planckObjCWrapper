@@ -15,7 +15,6 @@
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Extension.h"
-#import "NSDictionary+CommType.h"
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
 #import "NSError+PEP+Internal.h"
