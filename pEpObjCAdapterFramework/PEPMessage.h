@@ -49,11 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  For backwards compatiblity.
  */
-- (instancetype)initWithDictionary:(PEPDict *)dict;
-
-/**
- For backwards compatiblity.
- */
 - (PEPDict *)dictionary;
 
 /**
