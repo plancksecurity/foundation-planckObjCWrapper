@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPPassphraseProviderProtocol.h"
+#import <PEPObjCAdapterFramework/PEPPassphraseProviderProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -10,8 +10,6 @@
 
 #pragma mark - Type definitions
 
-typedef NSDictionary<NSString *, id> PEPDict;
-typedef NSMutableDictionary<NSString *, id> PEPMutableDict;
 typedef NSArray<NSString *> PEPStringList;
 
 #pragma mark - Errors

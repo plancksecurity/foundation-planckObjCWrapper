@@ -11,9 +11,10 @@
 #import "PEPSync.h"
 #import "PEPSync_Internal.h"
 
+#import "message_api.h"
+
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
-#import "PEPMessageUtil.h"
 #import "PEPMessage.h"
 #import "PEPQueue.h"
 #import "PEPObjCAdapter.h"
@@ -23,6 +24,8 @@
 #import "PEPPassphraseCache.h"
 #import "PEPPassphraseUtil.h"
 #import "Logger.h"
+#import "PEPIdentity+Engine.h"
+#import "PEPMessage+Engine.h"
 
 // MARK: - Internals
 
@@ -201,8 +204,6 @@ static __weak PEPSync *s_pEpSync;
     // Make sure queue is empty when we start.
     [self.queue removeAllObjects];
 
-    [self assureMainSessionExists]; //???: Why do we need that? Afaics syncThreadLoop gets the session from PEPSessionProvider, which should have taken care of main session existance.
-
     self.conditionLockForJoiningSyncThread = [[NSConditionLock alloc] initWithCondition:NO];
     [theSyncThread start];
 }
@@ -221,12 +222,14 @@ static __weak PEPSync *s_pEpSync;
     [self stopWaiting];
 }
 
-// MARK: - Private
+// MARK: - Internal
 
-+ (PEPSync * _Nullable)sharedInstance //!!!: is not private but internal
++ (PEPSync * _Nullable)sharedInstance
 {
     return s_pEpSync;
 }
+
+// MARK: - Private
 
 - (void)assureMainSessionExists
 {
@@ -314,7 +317,7 @@ static __weak PEPSync *s_pEpSync;
         }
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
-            PEPMessage *theMessage = pEpMessageFromStruct(msg);
+            PEPMessage *theMessage = [PEPMessage fromStruct:msg];
             return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
         } else {
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
@@ -359,8 +362,8 @@ static __weak PEPSync *s_pEpSync;
                        signal:(sync_handshake_signal)signal
 {
     if (self.notifyHandshakeDelegate) {
-        PEPIdentity *meIdentity = PEP_identityFromStruct(me);
-        PEPIdentity *partnerIdentity = partner != nil ? PEP_identityFromStruct(partner) : nil;
+        PEPIdentity *meIdentity = [PEPIdentity fromStruct:me];
+        PEPIdentity *partnerIdentity = partner != nil ? [PEPIdentity fromStruct:partner] : nil;
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity
