@@ -17,6 +17,8 @@
 {
     if (partner == nil && signal == PEPSyncHandshakeSignalPassphraseRequired) {
         self.notifyHandshakePassphraseRequired = YES;
+    } else if (signal == PEPSyncHandshakeSignalStop) {
+        self.engineDidShutdownKeySync = YES;
     }
 
     return PEPStatusOK;
