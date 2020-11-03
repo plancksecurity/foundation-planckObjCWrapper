@@ -11,7 +11,7 @@
 @implementation PEPInternalSessionTestNotifyHandshakeDelegate
 
 - (PEPStatus)notifyHandshake:(void * _Nullable)object
-                          me:(PEPIdentity * _Nonnull)me
+                          me:(PEPIdentity * _Nullable)me
                      partner:(PEPIdentity * _Nullable)partner
                       signal:(PEPSyncHandshakeSignal)signal
 {

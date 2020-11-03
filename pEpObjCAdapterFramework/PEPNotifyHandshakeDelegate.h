@@ -35,7 +35,7 @@
 ///   The (delayed) response from the user are communicated to the engine
 ///   via separate method calls, as noted in the discussion.
 - (PEPStatus)notifyHandshake:(void * _Nullable)object
-                          me:(PEPIdentity * _Nonnull)me
+                          me:(PEPIdentity * _Nullable)me
                      partner:(PEPIdentity * _Nullable)partner
                       signal:(PEPSyncHandshakeSignal)signal;
 
