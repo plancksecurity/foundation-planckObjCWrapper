@@ -10,6 +10,19 @@
 
 #import "PEPIdentity+Internal.h"
 
+#import "pEpEngine.h"
+
 @implementation PEPIdentity (Internal)
+
+- (void)reset
+{
+    self.commType = PEP_ct_unknown;
+    self.language = nil;
+    self.fingerPrint = nil;
+    self.userID = @"";
+    self.userName = nil;
+    self.isOwn = NO;
+    self.flags = 0;
+}
 
 @end

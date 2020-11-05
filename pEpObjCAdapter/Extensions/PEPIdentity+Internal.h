@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPIdentity (Internal)
 
+/// Puts all properties into a default/nil state.
+- (void)reset;
+
 @end
 
 NS_ASSUME_NONNULL_END
