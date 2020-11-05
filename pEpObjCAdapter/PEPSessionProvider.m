@@ -116,7 +116,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         status = config_passphrase_for_new_keys(session.session, NO, NULL);
     }
 
-    if (status != PEPStatusOK) {
+    if (status != PEPStatusOKe) {
         LogError(@"could not configure passphrase for new keys: %d", status);
     }
 }

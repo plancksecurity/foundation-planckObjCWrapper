@@ -32,7 +32,7 @@
     for (NSString *passphrase in passphrases) {
         PEP_STATUS status = config_passphrase(session, [passphrase UTF8String]);
 
-        if (status != PEPStatusOK) {
+        if (status != PEPStatusOKe) {
             return (PEPStatus) status;
         }
 
@@ -104,7 +104,7 @@
 
             lastPassphraseProviderStatus = config_passphrase(session,
                                                              [lastPassphrase UTF8String]);
-            if (lastPassphraseProviderStatus != PEPStatusOK) {
+            if (lastPassphraseProviderStatus != PEPStatusOKe) {
                 return (PEPStatus) lastPassphraseProviderStatus;
             }
 

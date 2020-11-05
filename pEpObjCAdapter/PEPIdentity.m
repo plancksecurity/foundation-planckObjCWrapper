@@ -42,7 +42,7 @@
                             fingerPrint:(NSString * _Nullable)fingerPrint
 {
     return [self initWithAddress:address userID:userID userName:userName isOwn:isOwn
-                     fingerPrint:fingerPrint commType:PEPCommTypeUnknown language:nil];
+                     fingerPrint:fingerPrint commType:PEPCommTypeUnknowne language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -51,13 +51,13 @@
                                   isOwn:(BOOL)isOwn
 {
     return [self initWithAddress:address userID:userID userName:userName
-                           isOwn:isOwn fingerPrint:nil commType:PEPCommTypeUnknown language:nil];
+                           isOwn:isOwn fingerPrint:nil commType:PEPCommTypeUnknowne language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
 {
     return [self initWithAddress:address userID:nil userName:nil isOwn:NO fingerPrint:nil
-                        commType:PEPCommTypeUnknown language:nil];
+                        commType:PEPCommTypeUnknowne language:nil];
 }
 
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity

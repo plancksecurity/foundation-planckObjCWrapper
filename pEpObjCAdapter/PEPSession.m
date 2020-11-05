@@ -64,7 +64,7 @@ static dispatch_queue_t queue;
 
         if (newMessage) {
             // See IOS-2414 for details
-            BOOL isFormerlyEncryptedReuploadedMessage = (status == PEPStatusUnencrypted) && theRating >= PEPRatingUnreliable;
+            BOOL isFormerlyEncryptedReuploadedMessage = (status == PEPStatusUnencryptede) && theRating >= PEPRatingUnreliablee;
             successCallback(theMessage,
                             newMessage,
                             theExtraKeys,
@@ -627,7 +627,7 @@ successCallback:(void (^)(NSString *log))successCallback
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     if (session == nil) {
-        return PEPRatingUndefined;
+        return PEPRatingUndefinede;
     }
     return [session ratingFromString:string];
 }
@@ -645,7 +645,7 @@ successCallback:(void (^)(NSString *log))successCallback
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     if (session == nil) {
-        return PEPColorNoColor;
+        return PEPColorNoColore;
     }
     return [session colorFromRating:rating];
 }

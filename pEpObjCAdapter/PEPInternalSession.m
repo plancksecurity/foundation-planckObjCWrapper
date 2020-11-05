@@ -93,7 +93,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                    error:(NSError * _Nullable * _Nullable)error
 {
     if (rating) {
-        *rating = PEPRatingUndefined;
+        *rating = PEPRatingUndefinede;
     }
 
     message *_src = [theMessage toStruct];
@@ -109,7 +109,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = [*extraKeys toStringList];
     }
 
-    __block PEPRating internalRating = PEPRatingUndefined;
+    __block PEPRating internalRating = PEPRatingUndefinede;
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return decrypt_message(session,
@@ -172,7 +172,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     PEPRating originalRating = *rating;
-    __block PEPRating resultRating = PEPRatingUndefined;
+    __block PEPRating resultRating = PEPRatingUndefinede;
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         PEP_STATUS tmpStatus = re_evaluate_message_rating(session,
@@ -254,7 +254,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     return [self
             encryptMessage:message
             extraKeys:extraKeys
-            encFormat:PEPEncFormatPEP
+            encFormat:PEPEncFormatPEPe
             status:status
             error:error];
 }
@@ -355,7 +355,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                            error:(NSError * _Nullable * _Nullable)error
 {
     message *_msg = [theMessage toStruct];
-    __block PEPRating rating = PEPRatingUndefined;
+    __block PEPRating rating = PEPRatingUndefinede;
 
     PEPStatus status = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return outgoing_message_rating(session, _msg, (PEP_rating *) &rating);
@@ -374,7 +374,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                                   error:(NSError * _Nullable * _Nullable)error
 {
     message *_msg = [theMessage toStruct];
-    PEPRating rating = PEPRatingUndefined;
+    PEPRating rating = PEPRatingUndefinede;
 
     PEPStatus status = (PEPStatus) outgoing_message_rating_preview(_session,
                                                                    _msg,
@@ -393,7 +393,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                     error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *ident = [identity toStruct];
-    __block PEPRating rating = PEPRatingUndefined;
+    __block PEPRating rating = PEPRatingUndefinede;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return identity_rating(session, ident, (PEP_rating *) &rating);
@@ -550,7 +550,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                         error:(NSError * _Nullable * _Nullable)error
 {
     if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValuee];
         return NO;
     }
 
@@ -574,7 +574,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                          error:(NSError * _Nullable * _Nullable)error
 {
     if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValuee];
         return NO;
     }
 
@@ -600,7 +600,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     pEp_identity *ident = [identity toStruct];
 
     if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        [NSError setError:error fromPEPStatus:PEPStatusIllegalValuee];
         return nil;
     }
 
@@ -798,18 +798,18 @@ static NSDictionary *stringToRating;
 {
     NSDictionary *ratingToStringIntern =
     @{
-      [NSNumber numberWithInteger:PEPRatingCannotDecrypt]: @"cannot_decrypt",
-      [NSNumber numberWithInteger:PEPRatingHaveNoKey]: @"have_no_key",
-      [NSNumber numberWithInteger:PEPRatingUnencrypted]: @"unencrypted",
-      [NSNumber numberWithInteger:PEPRatingUnreliable]: @"unreliable",
-      [NSNumber numberWithInteger:PEPRatingReliable]: @"reliable",
-      [NSNumber numberWithInteger:PEPRatingTrusted]: @"trusted",
-      [NSNumber numberWithInteger:PEPRatingTrustedAndAnonymized]: @"trusted_and_anonymized",
-      [NSNumber numberWithInteger:PEPRatingFullyAnonymous]: @"fully_anonymous",
-      [NSNumber numberWithInteger:PEPRatingMistrust]: @"mistrust",
-      [NSNumber numberWithInteger:PEPRatingB0rken]: @"b0rken",
-      [NSNumber numberWithInteger:PEPRatingUnderAttack]: @"under_attack",
-      [NSNumber numberWithInteger:PEPRatingUndefined]: kUndefined,
+      [NSNumber numberWithInteger:PEPRatingCannotDecrypte]: @"cannot_decrypt",
+      [NSNumber numberWithInteger:PEPRatingHaveNoKeye]: @"have_no_key",
+      [NSNumber numberWithInteger:PEPRatingUnencryptede]: @"unencrypted",
+      [NSNumber numberWithInteger:PEPRatingUnreliablee]: @"unreliable",
+      [NSNumber numberWithInteger:PEPRatingReliablee]: @"reliable",
+      [NSNumber numberWithInteger:PEPRatingTrustede]: @"trusted",
+      [NSNumber numberWithInteger:PEPRatingTrustedAndAnonymizede]: @"trusted_and_anonymized",
+      [NSNumber numberWithInteger:PEPRatingFullyAnonymouse]: @"fully_anonymous",
+      [NSNumber numberWithInteger:PEPRatingMistruste]: @"mistrust",
+      [NSNumber numberWithInteger:PEPRatingB0rkene]: @"b0rken",
+      [NSNumber numberWithInteger:PEPRatingUnderAttacke]: @"under_attack",
+      [NSNumber numberWithInteger:PEPRatingUndefinede]: kUndefined,
       };
     NSMutableDictionary *stringToRatingMutable = [NSMutableDictionary
                                                   dictionaryWithCapacity:
@@ -828,7 +828,7 @@ static NSDictionary *stringToRating;
     if (num) {
         return (PEPRating) [num integerValue];
     } else {
-        return PEPRatingUndefined;
+        return PEPRatingUndefinede;
     }
 }
 
