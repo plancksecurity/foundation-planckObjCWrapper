@@ -1,5 +1,5 @@
 //
-//  PEPIdentity+Internal.m
+//  PEPIdentity+Reset.m
 //  pEpiOSAdapter
 //
 //  Created by Dirk Zimmermann on 05.11.20.
@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPIdentity+Internal.h"
+#import "PEPIdentity+Reset.h"
 
 #import "pEpEngine.h"
 
-@implementation PEPIdentity (Internal)
+@implementation PEPIdentity (Reset)
 
 - (void)reset
 {

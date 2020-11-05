@@ -29,7 +29,7 @@
 #import "NSArray+Engine.h"
 #import "PEPIdentity+Engine.h"
 #import "PEPMessage+Engine.h"
-#import "PEPIdentity+Internal.h"
+#import "PEPIdentity+Reset.h"
 
 #import "key_reset.h"
 
