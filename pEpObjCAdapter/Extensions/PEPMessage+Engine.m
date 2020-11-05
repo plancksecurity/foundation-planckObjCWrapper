@@ -30,7 +30,7 @@
 
 - (message * _Nullable)toStruct
 {
-    PEP_msg_direction dir = self.direction == PEPMsgDirectionIncominge ? PEP_dir_incoming : PEP_dir_outgoing;
+    PEP_msg_direction dir = self.direction == PEPMsgDirectionIncoming ? PEP_dir_incoming : PEP_dir_outgoing;
 
     message *msg = new_message(dir);
 
@@ -118,7 +118,7 @@
 {
     [self reset];
 
-    self.direction = message->dir == PEP_dir_outgoing ? PEPMsgDirectionOutgoinge : PEPMsgDirectionIncominge;
+    self.direction = message->dir == PEP_dir_outgoing ? PEPMsgDirectionOutgoing : PEPMsgDirectionIncoming;
 
     if (message->id) {
         self.messageID = [NSString stringWithUTF8String:message->id];
