@@ -86,6 +86,7 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     message.shortMessage = shortMessage;
     message.longMessage = longMessage;
     message.attachments = @[];
+    message.optionalFields = @[];
     return message;
 }
 
