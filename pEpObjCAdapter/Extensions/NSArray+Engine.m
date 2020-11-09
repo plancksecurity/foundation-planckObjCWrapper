@@ -106,6 +106,10 @@
 
 - (stringpair_list_t * _Nullable)toStringPairlist
 {
+    if (self.count == 0) {
+        return NULL;
+    }
+
     stringpair_list_t *sl = new_stringpair_list(NULL);
     if (!sl)
         return NULL;
