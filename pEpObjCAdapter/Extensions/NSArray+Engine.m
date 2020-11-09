@@ -78,6 +78,10 @@
 
 - (stringlist_t * _Nullable)toStringList
 {
+    if (self.count == 0) {
+        return NULL;
+    }
+
     stringlist_t *sl = new_stringlist(NULL);
     if (!sl)
         return NULL;
@@ -92,6 +96,10 @@
 
 - (identity_list * _Nullable)toIdentityList
 {
+    if (self.count == 0) {
+        return NULL;
+    }
+
     identity_list *il = new_identity_list(NULL);
     if (!il)
         return NULL;
@@ -106,6 +114,10 @@
 
 - (stringpair_list_t * _Nullable)toStringPairlist
 {
+    if (self.count == 0) {
+        return NULL;
+    }
+
     stringpair_list_t *sl = new_stringpair_list(NULL);
     if (!sl)
         return NULL;
@@ -124,7 +136,7 @@
 - (bloblist_t * _Nullable)toBloblist
 {
     if (self.count == 0) {
-        return nil;
+        return NULL;
     }
 
     bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL);
