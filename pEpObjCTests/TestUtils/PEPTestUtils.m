@@ -85,6 +85,7 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     message.direction = outgoing ? PEPMsgDirectionOutgoing : PEPMsgDirectionIncoming;
     message.shortMessage = shortMessage;
     message.longMessage = longMessage;
+    message.attachments = @[];
     return message;
 }
 

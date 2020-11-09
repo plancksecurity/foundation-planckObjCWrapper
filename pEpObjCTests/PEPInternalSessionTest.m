@@ -652,6 +652,7 @@
     msg.shortMessage = @"Mail to Myself";
     msg.longMessage = @"This is a text content";
     msg.direction = PEPMsgDirectionOutgoing;
+    msg.attachments = @[];
 
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
