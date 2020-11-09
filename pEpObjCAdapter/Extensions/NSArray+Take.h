@@ -1,5 +1,5 @@
 //
-//  NSArray+Extension.h
+//  NSArray+Take.h
 //  pEpiOSAdapter
 //
 //  Created by Dirk Zimmermann on 03.05.17.
@@ -15,7 +15,7 @@
 
 @end
 
-@interface NSArray (Extension)
+@interface NSArray (Take)
 
 /**
  @Return The next count elements or nil, if less than that amount available.

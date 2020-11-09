@@ -8,276 +8,229 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
+#import <PEPObjCAdapterFramework/PEPTypes.h>
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 
 @class PEPLanguage;
 @class PEPIdentity;
 @class PEPMessage;
 
+NS_ASSUME_NONNULL_BEGIN
+
+/// Domain for errors indicated by the pEp engine.
+extern NSString *const _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
+
+/// Domain for errors indicated by the pEp adapter itself.
+extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
+
 @protocol PEPSessionProtocol <NSObject>
 
-/** Decrypt a message */
-- (PEPDict * _Nullable)decryptMessageDict:(PEPMutableDict * _Nonnull)messageDict
-                                    flags:(PEPDecryptFlags * _Nullable)flags
-                                   rating:(PEPRating * _Nullable)rating
-                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
+/// You must call this method once before your process gets terminated to be able to gracefully shutdown.
+/// You must not make any calls to PEPSession in between the last call to `cleanup()` and getting terminated.
+///
+/// Only for performance reasons: call this method only if you have to.
++ (void)cleanup;
 
-/** Decrypt a message */
-- (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
-                                   flags:(PEPDecryptFlags * _Nullable)flags
-                                  rating:(PEPRating * _Nullable)rating
-                               extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
-                                  status:(PEPStatus * _Nullable)status
-                                   error:(NSError * _Nullable * _Nullable)error;
+- (void)decryptMessage:(PEPMessage *)message
+                 flags:(PEPDecryptFlags)flags
+             extraKeys:(PEPStringList *_Nullable)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *dstMessage,
+                                 PEPStringList *keyList,
+                                 PEPRating rating,
+                                 PEPDecryptFlags flags,
+                                 BOOL isFormerlyEncryptedReuploadedMessage))successCallback;
 
-/** Re-evaluate rating of decrypted message */
-- (BOOL)reEvaluateMessageDict:(PEPDict * _Nonnull)messageDict
-                     xKeyList:(PEPStringList *_Nullable)xKeyList
-                       rating:(PEPRating * _Nonnull)rating
-                       status:(PEPStatus * _Nullable)status
-                        error:(NSError * _Nullable * _Nullable)error __deprecated;
-
-/** Re-evaluate rating of decrypted message */
-- (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
+- (void)reEvaluateMessage:(PEPMessage *)message
                  xKeyList:(PEPStringList *_Nullable)xKeyList
-                   rating:(PEPRating * _Nonnull)rating
-                   status:(PEPStatus * _Nullable)status
-                    error:(NSError * _Nullable * _Nullable)error;
+           originalRating:(PEPRating)originalRating
+            errorCallback:(void (^)(NSError *error))errorCallback
+          successCallback:(void (^)(PEPRating rating))successCallback;
 
-/**
- Encrypt a message dictionary, indicating the encoding format.
- @note The resulting message dict could be the input one.
- */
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                encFormat:(PEPEncFormat)encFormat
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
+/// Encrypt a message with explicit encryption format.
+- (void)encryptMessage:(PEPMessage *)message
+             extraKeys:(PEPStringList *_Nullable)extraKeys
+             encFormat:(PEPEncFormat)encFormat
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback;
 
-/**
- Encrypt a message, indicating the encoding format
- @note The resulting message dict could be the input one.
- */
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                               extraKeys:(PEPStringList * _Nullable)extraKeys
-                               encFormat:(PEPEncFormat)encFormat
-                                  status:(PEPStatus * _Nullable)status
-                                   error:(NSError * _Nullable * _Nullable)error;
+/// Encrypt a message with the default encryption format.
+- (void)encryptMessage:(PEPMessage *)message
+             extraKeys:(PEPStringList *_Nullable)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback;
 
-/** Encrypt a message with default encryption format (PEP_enc_PEP) */
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                               extraKeys:(PEPStringList * _Nullable)extraKeys
-                                  status:(PEPStatus * _Nullable)status
-                                   error:(NSError * _Nullable * _Nullable)error;
+/// Encrypt a message to an own identity.
+- (void)encryptMessage:(PEPMessage *)message
+               forSelf:(PEPIdentity *)ownIdentity
+             extraKeys:(PEPStringList *_Nullable)extraKeys
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback;
 
-/** Encrypt a message dict for the given own identity */
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                  forSelf:(PEPIdentity * _Nonnull)ownIdentity
-                                extraKeys:(PEPStringList * _Nullable)extraKeys
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
+/// Encrypt a message to a fingerprint.
+- (void)encryptMessage:(PEPMessage *)message
+                 toFpr:(NSString *)toFpr
+             encFormat:(PEPEncFormat)encFormat
+                 flags:(PEPDecryptFlags)flags
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPMessage *srcMessage,
+                                 PEPMessage *destMessage))successCallback;
 
-/** Encrypt a message for the given own identity */
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                                 forSelf:(PEPIdentity * _Nonnull)ownIdentity
-                               extraKeys:(PEPStringList * _Nullable)extraKeys
-                                  status:(PEPStatus * _Nullable)status
-                                   error:(NSError * _Nullable * _Nullable)error;
+- (void)outgoingRatingForMessage:(PEPMessage *)theMessage
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(PEPRating rating))successCallback;
 
-/** Encrypt a message dict to the given recipient FPR, attaching the private key */
-- (PEPDict * _Nullable)encryptMessageDict:(PEPDict * _Nonnull)messageDict
-                                    toFpr:(NSString * _Nonnull)toFpr
-                                encFormat:(PEPEncFormat)encFormat
-                                    flags:(PEPDecryptFlags)flags
-                                   status:(PEPStatus * _Nullable)status
-                                    error:(NSError * _Nullable * _Nullable)error __deprecated;
+- (void)ratingForIdentity:(PEPIdentity *)identity
+            errorCallback:(void (^)(NSError *error))errorCallback
+          successCallback:(void (^)(PEPRating rating))successCallback;
 
-/** Encrypt a message dict to the given recipient FPR, attaching the private key */
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                                   toFpr:(NSString * _Nonnull)toFpr
-                               encFormat:(PEPEncFormat)encFormat
-                                   flags:(PEPDecryptFlags)flags
-                                  status:(PEPStatus * _Nullable)status
-                                   error:(NSError * _Nullable * _Nullable)error;
+- (void)trustwordsForFingerprint:(NSString *)fingerprint
+                      languageID:(NSString *)languageID
+                       shortened:(BOOL)shortened
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(NSArray<NSString *> *trustwords))successCallback;
 
-/** Determine the status color of a message to be sent */
-- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
-                                           error:(NSError * _Nullable * _Nullable)error;
+- (void)mySelf:(PEPIdentity *)identity
+      errorCallback:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(PEPIdentity *identity))successCallback;
 
-/** Determine the preview status color of a message to be sent */
-- (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
-                                                  error:(NSError * _Nullable * _Nullable)error;
+- (void)updateIdentity:(PEPIdentity *)identity
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(PEPIdentity *identity))successCallback;
 
-/**
- Determine the rating of an identity.
- The rating is the rating a _message_ would have, if it is sent to this (and only this) identity.
- It is *not* a rating of the identity. In fact, there is no rating for identities.
- */
-- (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
-                                    error:(NSError * _Nullable * _Nullable)error;
+- (void)trustPersonalKey:(PEPIdentity *)identity
+           errorCallback:(void (^)(NSError *error))errorCallback
+         successCallback:(void (^)(void))successCallback;
 
-/** Get trustwords for a fingerprint */
-- (NSArray * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
-                                     languageID:(NSString * _Nonnull)languageID
-                                      shortened:(BOOL)shortened
-                                          error:(NSError * _Nullable * _Nullable)error;
+- (void)keyMistrusted:(PEPIdentity *)identity
+        errorCallback:(void (^)(NSError *error))errorCallback
+      successCallback:(void (^)(void))successCallback;
 
-/**
- Supply an account used by our user himself. The identity is supplemented with the missing parts
+- (void)keyResetTrust:(PEPIdentity *)identity
+        errorCallback:(void (^)(NSError *error))errorCallback
+      successCallback:(void (^)(void))successCallback;
 
- An identity is a `NSDictionary` mapping a field name as `NSString` to different values.
- An identity can have the following fields (all other keys are ignored).
- It is not necessary to supply all fields; missing fields are supplemented by p≡p engine.
+- (void)enableSyncForIdentity:(PEPIdentity *)identity
+                errorCallback:(void (^)(NSError *error))errorCallback
+              successCallback:(void (^)(void))successCallback;
 
- @"username": real name or nick name (if pseudonymous) of identity
- @"address": URI or SMTP address
- @"user_id": persistent unique ID for the *user* that belongs to the identity.
-                A user can have multiple identities which all of them MUST use the same user_id.
- @"lang": preferred languageID for communication with this ID (default: @"en")
- @"fpr": fingerprint of key to use for communication with this ID
- @"comm_type": communication type code (usually not needed)
+- (void)disableSyncForIdentity:(PEPIdentity *)identity
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(void))successCallback;
 
- As an example:
+- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(BOOL enabled))successCallback;
 
- User has a mailbox. The mail address is "Dipul Khatri <dipul@inboxcube.com>". Then this would be:
+- (void)importKey:(NSString *)keydata
+      errorCallback:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback;
 
- NSDictionary *ident = [NSDictionary dictionaryWithObjectsAndKeys:
- @"Dipul Khatri", @"username", @"dipul@inboxcube.com", @"address",
- @"23", @"user_id", nil];
+- (void)logTitle:(NSString *)title
+             entity:(NSString *)entity
+        description:(NSString *_Nullable)description
+            comment:(NSString *_Nullable)comment
+      errorCallback:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(void))successCallback;
 
- */
-- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error;
+- (void)getLog:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(NSString *log))successCallback;
 
-/**
- Supplement missing information for an arbitrary identity (used for communication partners).
- Will call the engine's myself() or update_identity() internally, depending on the given
- identity.
- */
-- (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity
-                 error:(NSError * _Nullable * _Nullable)error;
+- (void)getTrustwordsIdentity1:(PEPIdentity *)identity1
+                     identity2:(PEPIdentity *)identity2
+                      language:(NSString *_Nullable)language
+                          full:(BOOL)full
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(NSString *trustwords))successCallback;
 
-/**
- Mark a key as trusted with a person.
- See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
- */
-- (BOOL)trustPersonalKey:(PEPIdentity * _Nonnull)identity
-                   error:(NSError * _Nullable * _Nullable)error;
+- (void)getTrustwordsFpr1:(NSString *)fpr1
+                     fpr2:(NSString *)fpr2
+                 language:(NSString *_Nullable)language
+                     full:(BOOL)full
+            errorCallback:(void (^)(NSError *error))errorCallback
+          successCallback:(void (^)(NSString *trustwords))successCallback;
 
-/**
- if a key is not trusted by the user tell this using this message
- See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
- */
-- (BOOL)keyMistrusted:(PEPIdentity * _Nonnull)identity
-                error:(NSError * _Nullable * _Nullable)error;
+- (void)languageList:(void (^)(NSError *error))errorCallback
+     successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback;
 
-/**
- Use this to undo keyCompromized or trustPersonalKey
- See `mySelf:(NSMutableDictionary *)identity` for an explanation of identities.
- */
-- (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
-                error:(NSError * _Nullable * _Nullable)error;
+- (void)isPEPUser:(PEPIdentity *)identity
+      errorCallback:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(BOOL enabled))successCallback;
 
-#pragma mark -- Internal API (testing etc.)
+- (void)setOwnKey:(PEPIdentity *)identity
+        fingerprint:(NSString *)fingerprint
+      errorCallback:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(void))successCallback;
 
-/** For testing purpose, manual key import */
-- (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
-                                          error:(NSError * _Nullable * _Nullable)error;
+- (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result
+             identitiesSharing:(NSArray<PEPIdentity *> *_Nullable)identitiesSharing
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(void))successCallback;
 
-- (BOOL)logTitle:(NSString * _Nonnull)title
-          entity:(NSString * _Nonnull)entity
-     description:(NSString * _Nullable)description
-         comment:(NSString * _Nullable)comment
-           error:(NSError * _Nullable * _Nullable)error;
+- (void)trustOwnKeyIdentity:(PEPIdentity *)identity
+              errorCallback:(void (^)(NSError *error))errorCallback
+            successCallback:(void (^)(void))successCallback;
 
-/**
- Retrieves the log from the engine, or nil, if there is nothing yet.
- */
-- (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error;
+/// Can convert a pEp rating like PEPRating_cannot_decrypt
+/// into its equivalent string like "cannot_decrypt".
+/// @Note Does not invoke the engine, can be safely used synchronously
+/// on the main thread.
+- (NSString *_Nonnull)stringFromRating:(PEPRating)rating;
 
-/** Determine trustwords for two identities */
-- (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
-                                     identity2:(PEPIdentity * _Nonnull)identity2
-                                      language:(NSString * _Nullable)language
-                                          full:(BOOL)full
-                                         error:(NSError * _Nullable * _Nullable)error;
+- (void)keyReset:(PEPIdentity *)identity
+        fingerprint:(NSString *_Nullable)fingerprint
+      errorCallback:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(void))successCallback;
 
-/** Determine trustwords for two fprs */
-- (NSString * _Nullable)getTrustwordsFpr1:(NSString * _Nonnull)fpr1
-                                     fpr2:(NSString * _Nonnull)fpr2
-                                 language:(NSString * _Nullable)language
-                                     full:(BOOL)full
-                                    error:(NSError * _Nullable * _Nullable)error;
+- (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback
+         successCallback:(void (^)(void))successCallback;
 
-/**
- @returns The list of supported languages for trustwords.
- */
-- (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error;
+- (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
+           successCallback:(void (^)(void))successCallback;
 
-/**
- Can convert a string like "cannot_decrypt" into its equivalent PEPRating_cannot_decrypt.
- */
-- (PEPRating)ratingFromString:(NSString * _Nonnull)string;
+// MARK: - Configuration
 
-/**
- Can convert a pEp rating like PEPRating_cannot_decrypt
- into its equivalent string "cannot_decrypt" .
- */
-- (NSString * _Nonnull)stringFromRating:(PEPRating)rating;
-
-/**
- Is the given identity really a pEp user?
- If the engine indicates an error, or the identity is not a pEp user, returns false.
- */
-- (NSNumber * _Nullable)isPEPUser:(PEPIdentity * _Nonnull)identity
-                            error:(NSError * _Nullable * _Nullable)error;
-
-/**
- When (manually) importing (secret) keys, associate them with the given own identity.
- */
-- (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
-            error:(NSError * _Nullable * _Nullable)error;
-
-/**
- Wraps the engine's `config_passive_mode`.
- */
+/// Wraps the engine's `config_passive_mode`.
+/// @note That there's absolutely no error handling.
 - (void)configurePassiveModeEnabled:(BOOL)enabled;
 
-/**
- Wraps set_identity_flags.
- */
-- (BOOL)setFlags:(PEPIdentityFlags)flags
-     forIdentity:(PEPIdentity * _Nonnull)identity
-           error:(NSError * _Nullable * _Nullable)error;
+/// Add a passphrase for secret keys to the cache.
+///
+/// You can add as many passphrases to the cache as needed by calling this method.
+/// Every passphrase is valid for 10 min (default, compile-time configurable),
+/// after that it gets removed from memory. The maximum count of passphrases is 20.
+/// Setting the 21st replaces the 1st.
+/// On error, `NO` is returned and the (optional) parameter `error`
+/// is set to the error that occurred.
+/// On every engine call that returns PEPStatusPassphraseRequired, or PEPStatusWrongPassphrase,
+/// the adapter will automatically repeat the call after setting the next cached passphrase
+/// (using the engine's `config_passphrase`). The first attempet as always with an empty password.
+/// This will be repeated until the call either succeeds, or until
+/// the adapter runs out of usable passwords.
+/// When the adapter runs out of passwords to try, PEPStatusWrongPassphrase will be thrown.
+/// If the engine indicates PEPStatusPassphraseRequired, and there are no passwords,
+/// the adapter will throw PEPStatusPassphraseRequired.
+/// The passphrase can have a "maximum number of code points of 250", which is
+/// approximated by checking the string length.
+/// If the passphrase exceeds this limit, the adapter throws PEPAdapterErrorPassphraseTooLong
+/// with a domain of PEPObjCAdapterErrorDomain.
+/// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
+/// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
+- (BOOL)configurePassphrase:(NSString *_Nonnull)passphrase
+                      error:(NSError *_Nullable *_Nullable)error;
 
-/**
- Wraps the engine's deliverHandshakeResult.
- */
-- (BOOL)deliverHandshakeResult:(PEPSyncHandshakeResult)result
-             identitiesSharing:(NSArray<PEPIdentity *> * _Nullable)identitiesSharing
-                         error:(NSError * _Nullable * _Nullable)error;
+// MARK: - Methods that can be executed syncronously
 
-/**
- Wraps trust_own_key.
- */
-- (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
-                      error:(NSError * _Nullable * _Nullable)error;
+/// Converts a string like "cannot_decrypt" into its equivalent PEPRating_cannot_decrypt.
+- (PEPRating)ratingFromString:(NSString *_Nonnull)string;
 
-/**
- Wraps color_from_rating.
- */
+/// Wraps color_from_rating.
 - (PEPColor)colorFromRating:(PEPRating)rating;
 
-/**
- Wraps key_reset_identity.
- */
-- (BOOL)keyReset:(PEPIdentity * _Nonnull)identity
-     fingerprint:(NSString * _Nullable)fingerprint
-           error:(NSError * _Nullable * _Nullable)error;
-
-/** Wraps leave_device_group. */
-- (BOOL)leaveDeviceGroupError:(NSError * _Nullable * _Nullable)error;
-
 @end
+
+NS_ASSUME_NONNULL_END

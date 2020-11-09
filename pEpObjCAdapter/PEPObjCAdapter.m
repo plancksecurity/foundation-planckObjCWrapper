@@ -10,20 +10,36 @@
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
+#import "NSString+NormalizePassphrase.h"
+#import "PEPInternalSession.h"
+#import "PEPPassphraseCache.h"
+
+#import <pEp4iosIntern/pEp4iosIntern.h>
 
 #import "keymanagement.h"
 #import "mime.h"
 #import "message.h"
+#import "message_api.h"
 
 const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 
-const char* _Nullable SystemDB = NULL;
+/**
+ The pEp part of the home directory (where pEp is supposed to store data).
+ */
+static NSString * const s_pEpHomeComponent = @"pEp_home";
+
+#if TARGET_OS_IPHONE
+// marked for iOS to think about what we want on macOS
+const char* _Nullable perMachineDirectory = NULL;
+#endif
+
 NSURL *s_homeURL;
 
 static BOOL s_unEncryptedSubjectEnabled = NO;
 static BOOL s_passiveModeEnabled = NO;
+static NSString *s_passphraseForNewKeys = nil;
+static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
 @implementation PEPObjCAdapter
 
@@ -51,12 +67,58 @@ static BOOL s_passiveModeEnabled = NO;
     s_passiveModeEnabled = enabled;
 }
 
+#pragma mark - Passphrase for own keys
+
++ (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
+                                error:(NSError * _Nullable * _Nullable)error
+{
+    if (passphrase == nil) {
+        s_passphraseForNewKeys = nil;
+        [[PEPPassphraseCache sharedInstance] setStoredPassphrase:passphrase];
+
+        return YES;
+    } else {
+        NSString *normalizedPassphrase = [passphrase normalizedPassphraseWithError:error];
+
+        if (normalizedPassphrase == nil) {
+            return NO;
+        }
+
+        s_passphraseForNewKeys = normalizedPassphrase;
+        [[PEPPassphraseCache sharedInstance] setStoredPassphrase:passphrase];
+
+        return YES;
+    }
+}
+
++ (NSString * _Nullable)passphraseForNewKeys
+{
+    return s_passphraseForNewKeys;
+}
+
+#pragma mark - Passphrase Provider
+
++ (void)setPassphraseProvider:(id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider
+{
+    s_passphraseProvider = passphraseProvider;
+}
+
++ (id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider
+{
+    return s_passphraseProvider;
+}
+
 #pragma mark - DB PATHS
 
 + (void)initialize
 {
     s_homeURL = [self createApplicationDirectory];
-    [self setHomeDirectory:s_homeURL]; // Important, defines $HOME and $TEMP for the engine
+
+    // The engine will put its per_user_directory under this directory.
+    setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+
+    // This sets the engine's per_machine_directory under iOS.
+    [self setPerMachineDirectory:s_homeURL];
 }
 
 + (NSURL *)homeURL
@@ -64,16 +126,16 @@ static BOOL s_passiveModeEnabled = NO;
     return s_homeURL;
 }
 
-+ (NSURL *)createApplicationDirectory
+/**
+ Looks up (and creates if necessary) a pEp directory under "Application Support".
+
+ @return A URL pointing a pEp directory under "Application Support".
+ */
++ (NSURL *)createApplicationDirectoryOSX
 {
-    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
-    if (!bundleID) {
-        // This can happen in unit tests
-        bundleID = @"test";
-    }
     NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *dirPath = nil;
-    
+
     // Find the application support directory in the home directory.
     NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
                                         inDomains:NSUserDomainMask];
@@ -82,8 +144,8 @@ static BOOL s_passiveModeEnabled = NO;
         // Append the bundle ID to the URL for the
         // Application Support directory.
         // Mainly needed for OS X, but doesn't do any harm on iOS
-        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:bundleID];
-        
+        dirPath = [[appSupportDir objectAtIndex:0] URLByAppendingPathComponent:s_pEpHomeComponent];
+
         // If the directory does not exist, this method creates it.
         // This method is only available in OS X v10.7 and iOS 5.0 or later.
         NSError *theError = nil;
@@ -94,18 +156,81 @@ static BOOL s_passiveModeEnabled = NO;
             return nil;
         }
     }
-    
+
     return dirPath;
 }
 
-+ (void)setHomeDirectory:(NSURL *)homeDir
+/**
+ Looks up the shared directory for pEp apps under iOS and makes sure it exists.
+
+ @return A URL pointing a pEp directory in the app container.
+*/
++ (NSURL *)createApplicationDirectoryiOS
 {
-    // create and set home directory
-    setenv("HOME", [[homeDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-    
-    // create and set temp directory
-    NSURL *tmpDirUrl = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
-    setenv("TEMP", [[tmpDirUrl path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
+    NSLog(@"containerUrl '%@'", containerUrl);
+
+    if (containerUrl == nil) {
+        // Will happen when running tests, so fall back.
+        NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                            inDomains:NSUserDomainMask];
+        containerUrl = [appSupportDir lastObject];
+    }
+
+    if (containerUrl == nil) {
+        NSLog(@"ERROR: No app container, no application support directory.");
+    }
+
+    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
+
+    // If the directory does not exist, this method creates it.
+    NSError *theError = nil;
+    if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                       attributes:nil error:&theError]) {
+        NSLog(@"ERROR: Could not create pEp home directory, directly writing to app container instead.");
+    }
+
+    return dirPath;
+}
+
+/**
+ Looks up the shared directory for pEp apps under iOS and makes sure it exists.
+
+ Derived settings:
+
+ * $HOME (the engine uses that).
+ * The engine's per_user_directory (which is placed under $HOME).
+ * The engine's per_machine_directory (see [PEPObjCAdapter setPerMachineDirectory:]).
+
+ @return A URL pointing to as app-specific directory under the OS defined
+ application support directory for the current user.
+ */
++ (NSURL *)createApplicationDirectory
+{
+#if TARGET_OS_IPHONE
+    return [self createApplicationDirectoryiOS];
+#else
+    return [self createApplicationDirectoryOSX];
+#endif
+}
+
+/**
+ Sets the directory that will be fed into the engine's per_machine_directory.
+
+ Does not handle macOS. For macOS, either PER_MACHINE_DIRECTORY has to be defined
+ (if constant), or this method has to be extended to handle it.
+
+ @param perMachineDir The url to use as the per_machine_directory directory.
+ */
++ (void)setPerMachineDirectory:(NSURL *)perMachineDir
+{
+#if TARGET_OS_IPHONE
+    if (perMachineDirectory) {
+        free((void *) perMachineDirectory);
+    }
+    perMachineDirectory = strdup([perMachineDir path].UTF8String);
+#endif
 }
 
 + (NSString *)getBundlePathFor: (NSString *) filename
@@ -113,25 +238,24 @@ static BOOL s_passiveModeEnabled = NO;
     return nil;
 }
 
-+ (NSString *)copyAssetsIntoDocumentsDirectory:(NSBundle *)rootBundle
++ (void)copyAssetsIntoDocumentsDirectory:(NSBundle *)rootBundle
                                     bundleName:(NSString *)bundleName
                                       fileName:(NSString *)fileName {
+
+    NSString *systemDir = [NSString stringWithUTF8String:perMachineDirectory];
     
-    NSURL *homeUrl = s_homeURL;
-    NSString *documentsDirectory = [homeUrl path];
-    
-    if(!(documentsDirectory && bundleName && fileName))
-        return nil;
+    if(!(systemDir && bundleName && fileName))
+        return;
     
     // Check if the database file exists in the documents directory.
-    NSString *destinationPath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    NSString *destinationPath = [systemDir stringByAppendingPathComponent:fileName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
         // The file does not exist in the documents directory, so copy it from bundle now.
         NSBundle *bundleObj = [NSBundle bundleWithPath:
                                [[rootBundle resourcePath]
                                 stringByAppendingPathComponent: bundleName]];
         if (!bundleObj)
-            return nil;
+            return;
         
         NSString *sourcePath =[[bundleObj resourcePath] stringByAppendingPathComponent: fileName];
         
@@ -142,26 +266,34 @@ static BOOL s_passiveModeEnabled = NO;
         // Check if any error occurred during copying and display it.
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
-            return nil;
         }
     }
-    return destinationPath;
 }
 
-+ (void)setupTrustWordsDB:(NSBundle *)rootBundle{
-    NSString *systemDBPath = [PEPObjCAdapter
-                              copyAssetsIntoDocumentsDirectory:rootBundle
-                              bundleName:@"pEpTrustWords.bundle"
-                              fileName:@"system.db"];
-    if (SystemDB) {
-        free((void *) SystemDB);
-    }
-    SystemDB = strdup(systemDBPath.UTF8String);
++ (void)setupTrustWordsDB:(NSBundle *)rootBundle {
+// iOS to force us to think about macOS
+#if TARGET_OS_IPHONE
+    [PEPObjCAdapter copyAssetsIntoDocumentsDirectory:rootBundle
+                                          bundleName:@"pEpTrustWords.bundle"
+                                            fileName:@"system.db"];
+
+#endif
 }
 
 + (void)setupTrustWordsDB
 {
     [PEPObjCAdapter setupTrustWordsDB:[NSBundle mainBundle]];
+}
+
+
++ (NSString * _Nonnull)perUserDirectoryString
+{
+    return [NSString stringWithCString:per_user_directory() encoding:NSUTF8StringEncoding];
+}
+
++ (NSString * _Nonnull)perMachineDirectoryString
+{
+    return [NSString stringWithCString:per_machine_directory() encoding:NSUTF8StringEncoding];
 }
 
 @end

@@ -9,14 +9,29 @@
 #ifndef PEPSync_Internal_h
 #define PEPSync_Internal_h
 
+#import "PEPSync.h"
+
 /**
  Internal methods of PEPSync.
  */
-@interface PEPSync : NSObject
+@interface PEPSync (Internal)
+
 /**
- Creates an engine session.
+ Creates an engine session (PEP_SESSION).
+
+ PEPSync is responsible for engine session creation because the engine
+ has mandatory callback parameters on its init, which PEPSync is managing.
+
+ @param error The usual cocoa error handling.
+ @return A valid engine PEP_SESSION or NULL if there was an error.
  */
 + (PEP_SESSION _Nullable)createSession:(NSError * _Nullable * _Nullable)error;
+
+/// The one and only sync instance, or nil, if none exists.
++ (PEPSync * _Nullable)sharedInstance;
+
+/// MUST be called whenever a passphrase is configured
+- (void)handleNewPassphraseConfigured;
 
 @end
 

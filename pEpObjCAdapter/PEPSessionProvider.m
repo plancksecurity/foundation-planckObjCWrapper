@@ -11,6 +11,7 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
+#import "Logger.h"
 
 @implementation PEPSessionProvider
 
@@ -89,6 +90,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 {
     [self setConfigUnEncryptedSubjectOnSession:session];
     [self setPassiveModeOnSession:session];
+    [self setPassphraseForNewKeysOnSession:session];
 }
 
 + (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
@@ -101,6 +103,22 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 {
     BOOL passiveModeEnabled = [PEPObjCAdapter passiveModeEnabled];
     [session configurePassiveModeEnabled:passiveModeEnabled];
+}
+
++ (void)setPassphraseForNewKeysOnSession:(PEPInternalSession *)session
+{
+    NSString *passphrase = [PEPObjCAdapter passphraseForNewKeys];
+
+    PEP_STATUS status = PEP_ILLEGAL_VALUE;
+    if (passphrase) {
+        status = config_passphrase_for_new_keys(session.session, YES, [passphrase UTF8String]);
+    } else {
+        status = config_passphrase_for_new_keys(session.session, NO, NULL);
+    }
+
+    if (status != PEPStatusOK) {
+        LogError(@"could not configure passphrase for new keys: %d", status);
+    }
 }
 
 #pragma mark -

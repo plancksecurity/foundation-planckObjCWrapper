@@ -1,16 +1,16 @@
 //
-//  PEPSessionTestSendMessageDelegate.m
+//  PEPInternalSessionTestSendMessageDelegate.m
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 29.10.18.
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import "PEPSessionTestSendMessageDelegate.h"
+#import "PEPInternalSessionTestSendMessageDelegate.h"
 
 #import "PEPMessage.h"
 
-@implementation PEPSessionTestSendMessageDelegate
+@implementation PEPInternalSessionTestSendMessageDelegate
 
 - (instancetype)init
 {

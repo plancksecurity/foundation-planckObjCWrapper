@@ -1,33 +1,25 @@
 //
 //  PEPSession.h
-//  pEpObjCAdapter
+//  PEPObjCAdapterFramework
 //
-//  Created by Andreas Buff on 11.10.17.
-//  Copyright © 2017 p≡p. All rights reserved.
+//  Created by Dirk Zimmermann on 17.07.20.
+//  Copyright © 2020 p≡p. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "PEPSessionProtocol.h"
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
+#import <PEPObjCAdapterFramework/PEPTypes.h>
+#import <PEPObjCAdapterFramework/PEPSessionProtocol.h>
 
-/**
- Fake session to handle to the client.
+@class PEPMessage;
+@class PEPIdentity;
+@class PEPLanguage;
 
- Assures all calls are handled on the correct internal session for the thread it is called on.
- You can instantiate and use this session how often and wherever you want. Also over multiple threads.
+NS_ASSUME_NONNULL_BEGIN
 
- Note: You must call `cleanup()` once before your process gets terminated to be able to gracefully shutdown.
- It is the clients responsibility not to make any calls to PEPSession in between the last call
- to `cleanup()` and getting terminated.
- */
 @interface PEPSession : NSObject <PEPSessionProtocol>
 
-/**
- You must call this method once before your process gets terminated to be able to gracefully shutdown.
- You must not make any calls to PEPSession in between the last call to `cleanup()` and getting terminated.
-
- Only for performance reasons: call this method only if you have to.
- */
-+ (void)cleanup;
-
 @end
+
+NS_ASSUME_NONNULL_END

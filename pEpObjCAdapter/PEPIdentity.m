@@ -10,7 +10,6 @@
 #import "PEPConstants.h"
 
 #import "pEpEngine.h"
-#import "PEPMessageUtil.h"
 #import "PEPSession.h"
 
 #import "NSObject+Extension.h"
@@ -61,16 +60,6 @@
                         commType:PEPCommTypeUnknown language:nil];
 }
 
-- (nonnull instancetype)initWithDictionary:(NSDictionary *)dictionary
-{
-    return [self initWithAddress:dictionary[kPepAddress] userID:dictionary[kPepUserID]
-                        userName:dictionary[kPepUsername]
-                           isOwn:[dictionary[kPepIsOwnIdentity] boolValue]
-                     fingerPrint:dictionary[kPepFingerprint]
-                        commType:[dictionary[kPepCommType] intValue]
-                        language:dictionary[@"lang"]];
-}
-
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity
 {
     return [self initWithAddress:identity.address userID:identity.userID
@@ -79,29 +68,6 @@
                      fingerPrint:identity.fingerPrint
                         commType:identity.commType
                         language:identity.language];
-}
-
-// MARK: Faking directory
-
-- (PEPDict * _Nonnull)dictionary
-{
-    // most adapter use should be ok.
-    return (PEPDict *) self;
-}
-
-- (PEPMutableDict * _Nonnull)mutableDictionary
-{
-    // most adapter use should be ok.
-    return (PEPMutableDict *) self;
-}
-
-- (NSNumber * _Nullable)isPEPUser:(PEPSession * _Nullable)session
-                            error:(NSError * _Nullable * _Nullable)error
-{
-    if (!session) {
-        session = [PEPSession new];
-    }
-    return [session isPEPUser:self error:error];
 }
 
 - (BOOL)isConfirmed
@@ -138,119 +104,15 @@ static NSArray *s_keys;
     return [self isEqualToPEPIdentity:object];
 }
 
-// MARK: - NSKeyValueCoding
-
-- (NSUInteger)comm_type
-{
-    return self.commType;
-}
-
-- (void)setComm_type:(PEPCommType)ct
-{
-    self.commType = ct;
-}
-
-- (NSString *)fpr
-{
-    return self.fingerPrint;
-}
-
-- (void)setFpr:(NSString *)fpr
-{
-    self.fingerPrint = fpr;
-}
-
-- (NSString *)user_id
-{
-    return self.userID;
-}
-
-- (void)setUser_id:(NSString *)uid
-{
-    self.userID = uid;
-}
-
-- (NSString *)username
-{
-    return self.userName;
-}
-
-- (void)setUsername:(NSString *)userName
-{
-    self.userName = userName;
-}
-
-- (NSString *)lang
-{
-    return self.language;
-}
-
-- (void)setLang:(NSString *)l
-{
-    self.language = l;
-}
-
 - (void)reset
 {
     self.commType = PEP_ct_unknown;
     self.language = nil;
     self.fingerPrint = nil;
-    self.userID = nil;
+    self.userID = @"";
     self.userName = nil;
     self.isOwn = NO;
-}
-
-// MARK: - NSDictionary - Helpers
-
-- (NSArray<NSArray<NSString *> *> *)keyValuePairs
-{
-    NSMutableArray *result = [@[ @[kPepAddress, self.address],
-                                 @[kPepCommType,
-                                   [NSNumber numberWithInteger:(NSInteger) self.commType]],
-                                 @[kPepIsOwnIdentity, [NSNumber numberWithBool:self.isOwn]]]
-                              mutableCopy];
-
-    if (self.fingerPrint) {
-        [result addObject:@[kPepFingerprint, self.fingerPrint]];
-    }
-
-    if (self.userID) {
-        [result addObject:@[kPepUserID, self.userID]];
-    }
-
-    if (self.userName) {
-        [result addObject:@[kPepUsername, self.userName]];
-    }
-
-    if (self.language) {
-        [result addObject:@[@"lang", self.language]];
-    }
-
-    return result;
-}
-
-// MARK: - NSDictionary
-
-- (nullable id)objectForKey:(NSString *)key
-{
-    return [self valueForKey:key];
-}
-
-- (NSInteger)count
-{
-    return [[self keyValuePairs] count];
-}
-
-- (void)enumerateKeysAndObjectsUsingBlock:(void (^)(id key, id obj, BOOL *stop))block
-{
-    BOOL stop = NO;
-    NSArray *pairs = [self keyValuePairs];
-    for (NSArray *pair in pairs) {
-        block(pair[0], pair[1], &stop);
-        if (stop) {
-            break;
-        }
-    }
+    self.flags = 0;
 }
 
 // MARK: - NSMutableCopying

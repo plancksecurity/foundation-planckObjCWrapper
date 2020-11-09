@@ -8,12 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPEngineTypes.h"
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 
 @class PEPMessage;
 
+/**
+ Delegate that receives notifications when the engine needs to send out messages on its behalf.
+ */
 @protocol PEPSendMessageDelegate <NSObject>
 
+/**
+ Called when the engine wants to send out a message, which is generally invisible to the user.
+
+ @param message The message to be sent out.
+ @return A status value that can indicate failure if it's already obvious at call-time (sync)
+         that there is something wrong with the message. Can only cover immediate problems.
+         Issues that can occur while sending the message (later) cannot (and should not)
+         be communicated back to the engine. The app should simply retry.
+ */
 - (PEPStatus)sendMessage:(PEPMessage * _Nonnull)message;
 
 @end

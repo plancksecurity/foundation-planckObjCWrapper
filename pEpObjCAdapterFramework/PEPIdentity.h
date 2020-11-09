@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPSessionProtocol.h"
+#import <PEPObjCAdapterFramework/PEPTypes.h>
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 
 @class PEPSession;
 
@@ -20,9 +21,9 @@
 @property (nonatomic, nonnull) NSString *address;
 
 /**
- The (optional) user ID.
+ The user ID.
  */
-@property (nonatomic, nullable) NSString *userID;
+@property (nonatomic, nonnull) NSString *userID;
 
 /**
  The (optional) user name.
@@ -48,6 +49,10 @@
  Is this one of our own identities?
  */
 @property BOOL isOwn;
+
+/// Flags controlling pEp sync behaviour, consisting of PEPIdentityFlags enums
+/// ORed together.
+@property int flags;
 
 /**
  Comm type contains the PEP_ct_confirmed flag?
@@ -75,30 +80,10 @@
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
 
-- (nonnull instancetype)initWithDictionary:(NSDictionary * _Nonnull)dictionary;
-
 /**
  Copy constructor.
  */
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
-
-/**
- This method should be removed once the adapter fully supports objects for identity
- and message types insead of dictionaries.
- */
-- (PEPDict * _Nonnull)dictionary;
-
-/**
- This method should be removed once the adapter fully supports objects for identity
- and message types insead of dictionaries.
- */
-- (PEPMutableDict * _Nonnull)mutableDictionary;
-
-/**
- Is the given identity a pEp user, from the engine's point of view?
- */
-- (NSNumber * _Nullable)isPEPUser:(PEPSession * _Nullable)session
-                            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Puts all properties into a default/nil state.

@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
+#import <PEPObjCAdapterFramework/PEPTypes.h>
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 
 @class PEPIdentity;
 @class PEPAttachment;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPMessage : NSObject
 
@@ -41,19 +43,9 @@
 @property (nonatomic, nullable) PEPIdentity *receivedBy;
 @property (nonatomic) PEPMsgDirection direction;
 
-/**
- For backwards compatiblity.
- */
-- (instancetype _Nonnull)initWithDictionary:(PEPDict * _Nonnull)dict;
-
-/**
- For backwards compatiblity.
- */
-- (PEPDict * _Nonnull)dictionary;
-
-/**
- For backwards compatiblity.
- */
-- (PEPMutableDict * _Nonnull)mutableDictionary;
+/// A copy constructor.
+- (instancetype)initWithMessage:(PEPMessage *)message;
 
 @end
+
+NS_ASSUME_NONNULL_END
