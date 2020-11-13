@@ -283,6 +283,7 @@ static __weak PEPSync *s_pEpSync;
     }
 
     if (msg == NULL && [NSThread currentThread] == self.syncThread) {
+        free_message(msg);
         static NSMutableArray *passphrasesCopy = nil;
         static BOOL makeNewCopy = YES;
 
@@ -318,11 +319,14 @@ static __weak PEPSync *s_pEpSync;
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
             PEPMessage *theMessage = [PEPMessage fromStruct:msg];
+            free_message(msg);
             return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
         } else {
+            free_message(msg);
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
         }
     } else {
+        free_message(msg);
         return PEP_SYNC_ILLEGAL_MESSAGE;
     }
 }
