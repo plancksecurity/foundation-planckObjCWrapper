@@ -350,7 +350,11 @@ static __weak PEPSync *s_pEpSync;
         }
         if (!isFromShutdown) {
             // Only inform the delegate if the shutdown came from the engine
-            [self.notifyHandshakeDelegate engineShutdownKeySync];
+            [self.notifyHandshakeDelegate
+             notifyHandshake:NULL
+             me:nil
+             partner:nil
+             signal:PEPSyncHandshakeSignalStop];
         }
     }
 

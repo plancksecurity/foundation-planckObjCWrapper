@@ -175,6 +175,8 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
 
     PEPSyncHandshakeSignalAcceptedDeviceAccepted = 8, // SYNC_NOTIFY_ACCEPTED_DEVICE_ACCEPTED
 
+    PEPSyncHandshakeSignalStop = 127, // SYNC_NOTIFY_STOP
+
     PEPSyncHandshakeSignalPassphraseRequired = 128, // SYNC_PASSPHRASE_REQUIRED
 
     PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE
