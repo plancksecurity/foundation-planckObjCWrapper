@@ -10,6 +10,7 @@
 
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
+#import <PEPObjCAdapterFramework/PEPDecryptFlags.h>
 
 #import "sync_api.h"
 

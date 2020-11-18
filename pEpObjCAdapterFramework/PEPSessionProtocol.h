@@ -10,6 +10,7 @@
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
+#import <PEPObjCAdapterFramework/PEPDecryptFlags.h>
 
 @class PEPLanguage;
 @class PEPIdentity;
