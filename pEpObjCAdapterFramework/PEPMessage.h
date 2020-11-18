@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_CLOSED_ENUM(int, PEPMsgDirection) {
-    PEPMsgDirectionIncoming = 0, // PEP_dir_incoming
-    PEPMsgDirectionOutgoing // PEP_dir_outgoing
-};
+#import <PEPObjCAdapterFramework/PEPMsgDirection.h>
 
 @class PEPIdentity;
 @class PEPAttachment;
