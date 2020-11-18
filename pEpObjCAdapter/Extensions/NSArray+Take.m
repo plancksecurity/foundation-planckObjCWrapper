@@ -1,12 +1,12 @@
 //
-//  NSArray+Extension.m
+//  NSArray+Take.m
 //  pEpiOSAdapter
 //
 //  Created by Dirk Zimmermann on 03.05.17.
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
-#import "NSArray+Extension.h"
+#import "NSArray+Take.h"
 
 @implementation ArrayTake
 
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation NSArray (Extension)
+@implementation NSArray (Take)
 
 - (ArrayTake * _Nullable)takeOrNil:(NSInteger)count
 {

@@ -1,5 +1,5 @@
 //
-//  PEPSessionTestNotifyHandshakeDelegate.h
+//  PEPInternalSessionTestNotifyHandshakeDelegate.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 29.10.18.
@@ -10,7 +10,7 @@
 
 #import "PEPNotifyHandshakeDelegate.h"
 
-@interface PEPSessionTestNotifyHandshakeDelegate : NSObject<PEPNotifyHandshakeDelegate>
+@interface PEPInternalSessionTestNotifyHandshakeDelegate : NSObject<PEPNotifyHandshakeDelegate>
 
 /// This is set to YES if the _engine_ shut the sync loop down.
 @property (nonatomic) BOOL engineDidShutdownKeySync;

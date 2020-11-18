@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
+#import <PEPObjCAdapterFramework/PEPTypes.h>
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 
 @class PEPIdentity;
 @class PEPAttachment;
@@ -45,21 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// A copy constructor.
 - (instancetype)initWithMessage:(PEPMessage *)message;
-
-/**
- For backwards compatiblity.
- */
-- (instancetype)initWithDictionary:(PEPDict *)dict;
-
-/**
- For backwards compatiblity.
- */
-- (PEPDict *)dictionary;
-
-/**
- For backwards compatiblity.
- */
-- (PEPMutableDict *)mutableDictionary;
 
 @end
 

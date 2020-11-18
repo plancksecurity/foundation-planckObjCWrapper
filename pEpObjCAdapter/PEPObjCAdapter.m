@@ -10,15 +10,17 @@
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "PEPMessageUtil.h"
 #import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"
 
+#import <pEp4iosIntern/pEp4iosIntern.h>
+
 #import "keymanagement.h"
 #import "mime.h"
 #import "message.h"
+#import "message_api.h"
 
 const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 
@@ -165,9 +167,8 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 */
 + (NSURL *)createApplicationDirectoryiOS
 {
-    NSString *appGroupId = @"group.security.pep.pep4ios";
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupId];
+    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
     NSLog(@"containerUrl '%@'", containerUrl);
 
     if (containerUrl == nil) {

@@ -28,15 +28,11 @@ extern const NSInteger PEPTestInternalSyncTimeout;
 
 + (PEPIdentity *)ownPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;
 
-+ (BOOL)importBundledKey:(NSString *)item session:(PEPSession *)session;
++ (BOOL)importBundledKey:(NSString *)item session:(PEPInternalSession *)session;
 
 + (NSString *)loadResourceByName:(NSString *)name;
 
 + (NSString *)loadStringFromFileName:(NSString *)fileName;
-
-+ (NSDictionary *)unarchiveDictionary:(NSString *)fileName;
-
-+ (void)migrateUnarchivedMessageDictionary:(NSMutableDictionary *)message;
 
 + (PEPMessage * _Nonnull) mailFrom:(PEPIdentity * _Nullable) fromIdent
                            toIdent: (PEPIdentity * _Nullable) toIdent

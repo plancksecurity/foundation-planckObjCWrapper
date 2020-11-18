@@ -16,6 +16,7 @@
 #import "PEPSession.h"
 #import "PEPAttachment.h"
 #import "PEPSessionProvider.h"
+#import "PEPInternalSession.h"
 
 /**
  For now, safer to use that, until the engine copes with our own.
@@ -58,39 +59,10 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     return txtFileContents;
 }
 
-+ (NSDictionary *)unarchiveDictionary:(NSString *)fileName
-{
-    NSString *filePath = [[[NSBundle bundleForClass:[self class]]
-                           resourcePath] stringByAppendingPathComponent:fileName];
-    NSMutableData *data = [NSMutableData dataWithContentsOfFile:filePath];
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    NSDictionary *dict = [unarchiver decodeObject];
-    [unarchiver finishDecoding];
-    return dict;
-}
-
-/**
- Converts a given message dict to a version with correct attachments, using PEPAttachment.
- Using unarchiveDirectory for a message object will yield the old attachment format,
- which was just an array of dictionaries. Now the correct way is to use PEPAttachments.
- */
-+ (void)migrateUnarchivedMessageDictionary:(NSMutableDictionary *)message
-{
-    NSMutableArray *attachments = [NSMutableArray new];
-    for (NSDictionary *attachmentDict in [message objectForKey:kPepAttachments]) {
-        PEPAttachment *attachment = [[PEPAttachment alloc]
-                                     initWithData:[attachmentDict objectForKey:@"data"]];
-        attachment.filename = [attachmentDict objectForKey:@"filename"];
-        attachment.mimeType = [attachmentDict objectForKey:@"mimeType"];
-        [attachments addObject:attachment];
-    }
-    [message setValue:[NSArray arrayWithArray:attachments] forKey:kPepAttachments];
-}
-
-+ (BOOL)importBundledKey:(NSString *)item session:(PEPSession *)session
++ (BOOL)importBundledKey:(NSString *)item session:(PEPInternalSession *)session
 {
     if (!session) {
-        session = [PEPSession new];
+        session = [PEPSessionProvider session];
     }
 
     NSString *txtFileContents = [self loadStringFromFileName:item];
