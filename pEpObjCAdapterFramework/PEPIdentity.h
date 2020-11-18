@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPCommType.h>
 
 @class PEPSession;
