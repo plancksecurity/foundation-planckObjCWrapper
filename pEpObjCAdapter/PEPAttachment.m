@@ -6,7 +6,7 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import <PEPObjCAdapterFramework/PEPAttachment.h>
+#import "PEPAttachment.h"
 
 #import "bloblist.h"
 
