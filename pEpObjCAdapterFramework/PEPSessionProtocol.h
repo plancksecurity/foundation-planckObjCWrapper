@@ -14,6 +14,7 @@
 #import <PEPObjCAdapterFramework/PEPStringList.h>
 #import <PEPObjCAdapterFramework/PEPRating.h>
 #import <PEPObjCAdapterFramework/PEPEncFormat.h>
+#import <PEPObjCAdapterFramework/PEPSyncHandshakeResult.h>
 
 @class PEPLanguage;
 @class PEPIdentity;

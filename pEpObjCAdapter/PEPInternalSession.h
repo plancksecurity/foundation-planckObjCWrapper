@@ -14,6 +14,7 @@
 #import "PEPStringList.h"
 #import "PEPRating.h"
 #import "PEPEncFormat.h"
+#import "PEPSyncHandshakeResult.h"
 
 #import "sync_api.h"
 
