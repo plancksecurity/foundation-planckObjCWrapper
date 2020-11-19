@@ -52,8 +52,24 @@
 		4377490D2566614E000CBB08 /* pEpObjCAdapterTypes */ = {
 			isa = PBXGroup;
 			children = (
+				437749E325667A4D000CBB08 /* Internal */,
+				437749E225667A47000CBB08 /* Public */,
 			);
 			path = pEpObjCAdapterTypes;
+			sourceTree = "<group>";
+		};
+		437749E225667A47000CBB08 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		437749E325667A4D000CBB08 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
