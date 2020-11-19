@@ -11,6 +11,7 @@
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 #import <PEPObjCAdapterFramework/PEPDecryptFlags.h>
+#import <PEPObjCAdapterFramework/PEPStringList.h>
 
 @class PEPLanguage;
 @class PEPIdentity;
