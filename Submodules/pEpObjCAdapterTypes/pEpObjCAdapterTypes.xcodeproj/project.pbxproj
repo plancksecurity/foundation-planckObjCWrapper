@@ -6,6 +6,11 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		437749102566614E000CBB08 /* pEpObjCAdapterTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4377490F2566614E000CBB08 /* pEpObjCAdapterTypes.m */; };
+		437749112566614E000CBB08 /* pEpObjCAdapterTypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4377490E2566614E000CBB08 /* pEpObjCAdapterTypes.h */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		437749092566614E000CBB08 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -13,6 +18,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				437749112566614E000CBB08 /* pEpObjCAdapterTypes.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -20,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		4377490B2566614E000CBB08 /* libpEpObjCAdapterTypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapterTypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4377490E2566614E000CBB08 /* pEpObjCAdapterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCAdapterTypes.h; sourceTree = "<group>"; };
+		4377490F2566614E000CBB08 /* pEpObjCAdapterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pEpObjCAdapterTypes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,8 @@
 			children = (
 				437749E325667A4D000CBB08 /* Internal */,
 				437749E225667A47000CBB08 /* Public */,
+				4377490E2566614E000CBB08 /* pEpObjCAdapterTypes.h */,
+				4377490F2566614E000CBB08 /* pEpObjCAdapterTypes.m */,
 			);
 			path = pEpObjCAdapterTypes;
 			sourceTree = "<group>";
@@ -128,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437749102566614E000CBB08 /* pEpObjCAdapterTypes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
