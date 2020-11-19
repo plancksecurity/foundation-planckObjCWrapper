@@ -7,12 +7,12 @@
 //
 
 #import "PEPIdentity.h"
+
 #import "PEPConstants.h"
+#import "PEPSession.h"
+#import "NSObject+Extension.h"
 
 #import "pEpEngine.h"
-#import "PEPSession.h"
-
-#import "NSObject+Extension.h"
 
 @implementation PEPIdentity
 
