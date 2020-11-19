@@ -112,6 +112,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4377494725666426000CBB08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4377494325666426000CBB08 /* pEpObjCAdapterTypes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4377490B2566614E000CBB08;
+			remoteInfo = pEpObjCAdapterTypes;
+		};
 		43E39863221D7E9A008E7983 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
@@ -239,6 +246,7 @@
 		437748EA25665A8A000CBB08 /* PEPEncFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPEncFormat.h; sourceTree = "<group>"; };
 		437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSyncHandshakeResult.h; sourceTree = "<group>"; };
 		437748FA25665C58000CBB08 /* PEPColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
+		4377494325666426000CBB08 /* pEpObjCAdapterTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpObjCAdapterTypes.xcodeproj; path = Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes.xcodeproj; sourceTree = "<group>"; };
 		438C0ECA254020A400337922 /* NSArray+Engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Engine.h"; sourceTree = "<group>"; };
 		438C0ECB254020F000337922 /* NSArray+Engine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Engine.m"; sourceTree = "<group>"; };
 		438C0F1125402D6400337922 /* PEPIdentity+Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Engine.h"; sourceTree = "<group>"; };
@@ -355,6 +363,7 @@
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
+				4377494325666426000CBB08 /* pEpObjCAdapterTypes.xcodeproj */,
 				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
@@ -424,6 +433,14 @@
 				155674EC22B82D710097930C /* libz.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4377494425666426000CBB08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4377494825666426000CBB08 /* libpEpObjCAdapterTypes.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		438C0EE1254026E200337922 /* Extensions */ = {
@@ -634,6 +651,10 @@
 					ProductGroup = 64289E521B8B70E800FC617B /* Products */;
 					ProjectRef = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
 				},
+				{
+					ProductGroup = 4377494425666426000CBB08 /* Products */;
+					ProjectRef = 4377494325666426000CBB08 /* pEpObjCAdapterTypes.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -644,6 +665,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		4377494825666426000CBB08 /* libpEpObjCAdapterTypes.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libpEpObjCAdapterTypes.a;
+			remoteRef = 4377494725666426000CBB08 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		64289E561B8B70E800FC617B /* libpEpEngine.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
