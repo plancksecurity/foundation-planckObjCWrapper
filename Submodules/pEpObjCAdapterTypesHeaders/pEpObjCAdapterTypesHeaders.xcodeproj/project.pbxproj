@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4383E35B2566C3B900B6F128 /* PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3512566C3B800B6F128 /* PEPRating.h */; };
-		4383E35C2566C3B900B6F128 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3522566C3B800B6F128 /* PEPLanguage.h */; };
-		4383E35D2566C3B900B6F128 /* PEPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3532566C3B800B6F128 /* PEPColor.h */; };
-		4383E35E2566C3B900B6F128 /* PEPDecryptFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3542566C3B800B6F128 /* PEPDecryptFlags.h */; };
-		4383E35F2566C3B900B6F128 /* PEPEncFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3552566C3B800B6F128 /* PEPEncFormat.h */; };
-		4383E3602566C3B900B6F128 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3562566C3B800B6F128 /* PEPIdentity.h */; };
-		4383E3612566C3B900B6F128 /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3572566C3B800B6F128 /* PEPAttachment.h */; };
-		4383E3622566C3B900B6F128 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3582566C3B900B6F128 /* PEPMessage.h */; };
-		4383E3632566C3B900B6F128 /* PEPStringList.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3592566C3B900B6F128 /* PEPStringList.h */; };
-		4383E3642566C3B900B6F128 /* PEPSyncHandshakeResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E35A2566C3B900B6F128 /* PEPSyncHandshakeResult.h */; };
+		4383E35B2566C3B900B6F128 /* PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3512566C3B800B6F128 /* PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E35C2566C3B900B6F128 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3522566C3B800B6F128 /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E35D2566C3B900B6F128 /* PEPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3532566C3B800B6F128 /* PEPColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E35E2566C3B900B6F128 /* PEPDecryptFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3542566C3B800B6F128 /* PEPDecryptFlags.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E35F2566C3B900B6F128 /* PEPEncFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3552566C3B800B6F128 /* PEPEncFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E3602566C3B900B6F128 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3562566C3B800B6F128 /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E3612566C3B900B6F128 /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3572566C3B800B6F128 /* PEPAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E3622566C3B900B6F128 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3582566C3B900B6F128 /* PEPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E3632566C3B900B6F128 /* PEPStringList.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3592566C3B900B6F128 /* PEPStringList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4383E3642566C3B900B6F128 /* PEPSyncHandshakeResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E35A2566C3B900B6F128 /* PEPSyncHandshakeResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43F1870A2566C0B900953119 /* pEpObjCAdapterTypesHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F187082566C0B900953119 /* pEpObjCAdapterTypesHeaders.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
