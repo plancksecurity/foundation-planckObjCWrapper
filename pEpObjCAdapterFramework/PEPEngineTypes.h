@@ -148,13 +148,6 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
     PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP
 };
 
-typedef NS_CLOSED_ENUM(int, PEPColor) {
-    PEPColorNoColor = 0, // PEP_color_no_color
-    PEPColorYellow, // PEP_color_yellow
-    PEPColorGreen, // PEP_color_green
-    PEPColorRed = -1, // PEP_color_red
-};
-
 typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
     PEPContentDispositionAttachment = 0, // PEP_CONTENT_DISP_ATTACHMENT
     PEPContentDispositionInline = 1, // PEP_CONTENT_DISP_INLINE

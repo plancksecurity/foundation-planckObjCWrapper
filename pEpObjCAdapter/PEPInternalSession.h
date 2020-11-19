@@ -15,10 +15,10 @@
 #import "PEPRating.h"
 #import "PEPEncFormat.h"
 #import "PEPSyncHandshakeResult.h"
+#import "PEPColor.h"
+#import "PEPObjCAdapter.h"
 
 #import "sync_api.h"
-
-#import "PEPObjCAdapter.h"
 
 @class PEPLanguage;
 @class PEPIdentity;
