@@ -27,3 +27,4 @@ FOUNDATION_EXPORT const unsigned char pEpObjCAdapterTypesHeadersVersionString[];
 #import <pEpObjCAdapterTypesHeaders/PEPSyncHandshakeResult.h>
 #import <pEpObjCAdapterTypesHeaders/PEPContentDisposition.h>
 #import <pEpObjCAdapterTypesHeaders/PEPCommType.h>
+#import <pEpObjCAdapterTypesHeaders/PEPMsgDirection.h>
