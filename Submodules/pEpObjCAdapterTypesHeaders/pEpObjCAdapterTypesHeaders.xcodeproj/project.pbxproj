@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		431D3DB42566CD6700D76C92 /* PEPContentDisposition.h in Headers */ = {isa = PBXBuildFile; fileRef = 431D3DB32566CD6700D76C92 /* PEPContentDisposition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		431D3DE62566D11A00D76C92 /* PEPCommType.h in Headers */ = {isa = PBXBuildFile; fileRef = 431D3DE52566D11900D76C92 /* PEPCommType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4383E35B2566C3B900B6F128 /* PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3512566C3B800B6F128 /* PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4383E35C2566C3B900B6F128 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3522566C3B800B6F128 /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4383E35D2566C3B900B6F128 /* PEPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3532566C3B800B6F128 /* PEPColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		431D3DB32566CD6700D76C92 /* PEPContentDisposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPContentDisposition.h; sourceTree = "<group>"; };
+		431D3DE52566D11900D76C92 /* PEPCommType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPCommType.h; sourceTree = "<group>"; };
 		4383E3512566C3B800B6F128 /* PEPRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPRating.h; sourceTree = "<group>"; };
 		4383E3522566C3B800B6F128 /* PEPLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPLanguage.h; sourceTree = "<group>"; };
 		4383E3532566C3B800B6F128 /* PEPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
@@ -68,7 +70,6 @@
 		43F187072566C0B900953119 /* pEpObjCAdapterTypesHeaders */ = {
 			isa = PBXGroup;
 			children = (
-				431D3DB32566CD6700D76C92 /* PEPContentDisposition.h */,
 				4383E3572566C3B800B6F128 /* PEPAttachment.h */,
 				4383E3532566C3B800B6F128 /* PEPColor.h */,
 				4383E3542566C3B800B6F128 /* PEPDecryptFlags.h */,
@@ -79,6 +80,8 @@
 				4383E3512566C3B800B6F128 /* PEPRating.h */,
 				4383E3592566C3B900B6F128 /* PEPStringList.h */,
 				4383E35A2566C3B900B6F128 /* PEPSyncHandshakeResult.h */,
+				431D3DB32566CD6700D76C92 /* PEPContentDisposition.h */,
+				431D3DE52566D11900D76C92 /* PEPCommType.h */,
 				43F187082566C0B900953119 /* pEpObjCAdapterTypesHeaders.h */,
 				43F187092566C0B900953119 /* Info.plist */,
 			);
@@ -100,6 +103,7 @@
 				4383E3622566C3B900B6F128 /* PEPMessage.h in Headers */,
 				4383E3632566C3B900B6F128 /* PEPStringList.h in Headers */,
 				43F1870A2566C0B900953119 /* pEpObjCAdapterTypesHeaders.h in Headers */,
+				431D3DE62566D11A00D76C92 /* PEPCommType.h in Headers */,
 				4383E35E2566C3B900B6F128 /* PEPDecryptFlags.h in Headers */,
 				4383E35F2566C3B900B6F128 /* PEPEncFormat.h in Headers */,
 				4383E3642566C3B900B6F128 /* PEPSyncHandshakeResult.h in Headers */,
