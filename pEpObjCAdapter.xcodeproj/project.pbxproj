@@ -80,6 +80,7 @@
 		437748EB25665A8A000CBB08 /* PEPEncFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748EA25665A8A000CBB08 /* PEPEncFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437748F325665BA2000CBB08 /* PEPSyncHandshakeResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437748FB25665C58000CBB08 /* PEPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748FA25665C58000CBB08 /* PEPColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		437749EC25667EF7000CBB08 /* libpEpObjCAdapterTypes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 437749EB25667EF7000CBB08 /* libpEpObjCAdapterTypes.a */; };
 		437BEA9122328E570051E3A1 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
 		438C0ED52540215A00337922 /* NSArray+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 438C0ECB254020F000337922 /* NSArray+Engine.m */; };
 		438C0EDA2540216100337922 /* NSArray+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 438C0ECA254020A400337922 /* NSArray+Engine.h */; };
@@ -239,6 +240,7 @@
 		437748EA25665A8A000CBB08 /* PEPEncFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPEncFormat.h; sourceTree = "<group>"; };
 		437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSyncHandshakeResult.h; sourceTree = "<group>"; };
 		437748FA25665C58000CBB08 /* PEPColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
+		437749EB25667EF7000CBB08 /* libpEpObjCAdapterTypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libpEpObjCAdapterTypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		438C0ECA254020A400337922 /* NSArray+Engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Engine.h"; sourceTree = "<group>"; };
 		438C0ECB254020F000337922 /* NSArray+Engine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Engine.m"; sourceTree = "<group>"; };
 		438C0F1125402D6400337922 /* PEPIdentity+Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Engine.h"; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				437749EC25667EF7000CBB08 /* libpEpObjCAdapterTypes.a in Frameworks */,
 				3A68CB28252E244900F1B71C /* pEp4iosIntern.framework in Frameworks */,
 				43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */,
 				155674ED22B82D710097930C /* libz.dylib in Frameworks */,
@@ -418,6 +421,7 @@
 		43447C51221D448500B6323E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				437749EB25667EF7000CBB08 /* libpEpObjCAdapterTypes.a */,
 				3A68CB27252E244900F1B71C /* pEp4iosIntern.framework */,
 				43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */,
 				43E3986A221D7EDD008E7983 /* libiconv.2.tbd */,
