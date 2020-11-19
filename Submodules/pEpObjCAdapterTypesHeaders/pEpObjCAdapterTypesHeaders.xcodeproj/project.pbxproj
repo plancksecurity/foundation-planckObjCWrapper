@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		431D3DB42566CD6700D76C92 /* PEPContentDisposition.h in Headers */ = {isa = PBXBuildFile; fileRef = 431D3DB32566CD6700D76C92 /* PEPContentDisposition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4383E35B2566C3B900B6F128 /* PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3512566C3B800B6F128 /* PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4383E35C2566C3B900B6F128 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3522566C3B800B6F128 /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4383E35D2566C3B900B6F128 /* PEPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4383E3532566C3B800B6F128 /* PEPColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		431D3DB32566CD6700D76C92 /* PEPContentDisposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPContentDisposition.h; sourceTree = "<group>"; };
 		4383E3512566C3B800B6F128 /* PEPRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPRating.h; sourceTree = "<group>"; };
 		4383E3522566C3B800B6F128 /* PEPLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPLanguage.h; sourceTree = "<group>"; };
 		4383E3532566C3B800B6F128 /* PEPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 		43F187072566C0B900953119 /* pEpObjCAdapterTypesHeaders */ = {
 			isa = PBXGroup;
 			children = (
+				431D3DB32566CD6700D76C92 /* PEPContentDisposition.h */,
 				4383E3572566C3B800B6F128 /* PEPAttachment.h */,
 				4383E3532566C3B800B6F128 /* PEPColor.h */,
 				4383E3542566C3B800B6F128 /* PEPDecryptFlags.h */,
@@ -91,6 +94,7 @@
 			files = (
 				4383E35D2566C3B900B6F128 /* PEPColor.h in Headers */,
 				4383E3602566C3B900B6F128 /* PEPIdentity.h in Headers */,
+				431D3DB42566CD6700D76C92 /* PEPContentDisposition.h in Headers */,
 				4383E35C2566C3B900B6F128 /* PEPLanguage.h in Headers */,
 				4383E3612566C3B900B6F128 /* PEPAttachment.h in Headers */,
 				4383E3622566C3B900B6F128 /* PEPMessage.h in Headers */,
