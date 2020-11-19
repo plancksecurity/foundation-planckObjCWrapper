@@ -9,8 +9,6 @@
 #import "PEPMessage.h"
 
 #import "PEPIdentity.h"
-#import "PEPConstants.h"
-
 #import "NSObject+Extension.h"
 
 @implementation PEPMessage
