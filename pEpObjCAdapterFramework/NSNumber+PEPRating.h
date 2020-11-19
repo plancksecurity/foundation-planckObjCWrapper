@@ -10,6 +10,7 @@
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
+#import <PEPObjCAdapterFramework/PEPRating.h>
 
 /**
  Extension for wrapping the engine's PEP_rating inside a NSNumber.

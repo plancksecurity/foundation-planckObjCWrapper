@@ -12,6 +12,7 @@
 #import "PEPEngineTypes.h"
 #import "PEPDecryptFlags.h"
 #import "PEPStringList.h"
+#import "PEPRating.h"
 
 #import "sync_api.h"
 
