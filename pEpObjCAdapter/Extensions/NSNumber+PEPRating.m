@@ -6,9 +6,9 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import "NSNumber+PEPRating.h"
+#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
 
-#import "PEPRating.h"
+#import "NSNumber+PEPRating.h"
 
 #import "message_api.h"
 

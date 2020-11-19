@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
+
 #import "PEPMessage+Engine.h"
 
 #import "pEp_string.h"
 
-#import "PEPMessage.h"
 #import "PEPIdentity+Engine.h"
 #import "NSArray+Engine.h"
 

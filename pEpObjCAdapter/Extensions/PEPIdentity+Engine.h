@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPIdentity.h"
+#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
 
 #import "pEpEngine.h"
 

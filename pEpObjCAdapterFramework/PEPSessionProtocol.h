@@ -8,14 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
+
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
-#import <PEPObjCAdapterFramework/PEPDecryptFlags.h>
-#import <PEPObjCAdapterFramework/PEPStringList.h>
-#import <PEPObjCAdapterFramework/PEPRating.h>
-#import <PEPObjCAdapterFramework/PEPEncFormat.h>
-#import <PEPObjCAdapterFramework/PEPSyncHandshakeResult.h>
-#import <PEPObjCAdapterFramework/PEPColor.h>
 
 @class PEPLanguage;
 @class PEPIdentity;

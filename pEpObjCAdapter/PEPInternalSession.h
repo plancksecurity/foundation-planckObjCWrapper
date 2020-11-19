@@ -8,14 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
+
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
-#import "PEPDecryptFlags.h"
-#import "PEPStringList.h"
-#import "PEPRating.h"
-#import "PEPEncFormat.h"
-#import "PEPSyncHandshakeResult.h"
-#import "PEPColor.h"
 #import "PEPObjCAdapter.h"
 
 #import "sync_api.h"

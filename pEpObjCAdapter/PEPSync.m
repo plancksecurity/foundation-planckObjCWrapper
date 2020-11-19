@@ -6,6 +6,8 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
+
 #import "pEpEngine.h"
 
 #import "PEPSync.h"
@@ -15,7 +17,6 @@
 
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
-#import "PEPMessage.h"
 #import "PEPQueue.h"
 #import "PEPObjCAdapter.h"
 #import "NSError+PEP+Internal.h"
