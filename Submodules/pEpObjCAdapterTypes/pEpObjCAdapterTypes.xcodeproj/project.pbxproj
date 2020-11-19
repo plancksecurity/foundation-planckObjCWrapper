@@ -28,6 +28,16 @@
 		4377490B2566614E000CBB08 /* libpEpObjCAdapterTypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapterTypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4377490E2566614E000CBB08 /* pEpObjCAdapterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCAdapterTypes.h; sourceTree = "<group>"; };
 		4377490F2566614E000CBB08 /* pEpObjCAdapterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pEpObjCAdapterTypes.m; sourceTree = "<group>"; };
+		43F18598256688BE00953119 /* PEPAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPAttachment.h; sourceTree = "<group>"; };
+		43F18599256688BE00953119 /* PEPMsgDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPMsgDirection.h; sourceTree = "<group>"; };
+		43F1859A256688BE00953119 /* PEPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
+		43F1859B256688BF00953119 /* PEPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPMessage.h; sourceTree = "<group>"; };
+		43F1859C256688BF00953119 /* PEPStringList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPStringList.h; sourceTree = "<group>"; };
+		43F1859D256688BF00953119 /* PEPLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPLanguage.h; sourceTree = "<group>"; };
+		43F1859E256688BF00953119 /* PEPDecryptFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPDecryptFlags.h; sourceTree = "<group>"; };
+		43F1859F256688BF00953119 /* PEPCommType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPCommType.h; sourceTree = "<group>"; };
+		43F185A0256688BF00953119 /* PEPRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPRating.h; sourceTree = "<group>"; };
+		43F185A1256688BF00953119 /* PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +81,16 @@
 		437749E225667A47000CBB08 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				43F18598256688BE00953119 /* PEPAttachment.h */,
+				43F1859A256688BE00953119 /* PEPColor.h */,
+				43F1859F256688BF00953119 /* PEPCommType.h */,
+				43F1859E256688BF00953119 /* PEPDecryptFlags.h */,
+				43F185A1256688BF00953119 /* PEPIdentity.h */,
+				43F1859D256688BF00953119 /* PEPLanguage.h */,
+				43F1859B256688BF00953119 /* PEPMessage.h */,
+				43F18599256688BE00953119 /* PEPMsgDirection.h */,
+				43F185A0256688BF00953119 /* PEPRating.h */,
+				43F1859C256688BF00953119 /* PEPStringList.h */,
 			);
 			path = Public;
 			sourceTree = "<group>";
