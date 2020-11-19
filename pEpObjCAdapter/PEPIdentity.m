@@ -12,8 +12,6 @@
 #import "PEPSession.h"
 #import "NSObject+Extension.h"
 
-#import "pEpEngine.h"
-
 @implementation PEPIdentity
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -72,7 +70,7 @@
 
 - (BOOL)isConfirmed
 {
-    return self.commType & PEP_ct_confirmed;
+    return self.commType & PEPCommTypeConfirmed;
 }
 
 // MARK: - Equality
