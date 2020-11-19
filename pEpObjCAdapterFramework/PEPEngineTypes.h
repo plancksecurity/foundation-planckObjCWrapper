@@ -11,15 +11,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_CLOSED_ENUM(int, PEPEncFormat) {
-    PEPEncFormatNone = 0, // PEP_enc_none
-    PEPEncFormatPieces, // PEP_enc_pieces, PEP_enc_inline
-    PEPEncFormatSMIME, // PEP_enc_S_MIME
-    PEPEncFormatPGPMIME, // PEP_enc_PGP_MIME
-    PEPEncFormatPEP, // PEP_enc_PEP
-    PEPEncFormatPGPMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1
-};
-
 typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusOK = 0, // PEP_STATUS_OK
 
