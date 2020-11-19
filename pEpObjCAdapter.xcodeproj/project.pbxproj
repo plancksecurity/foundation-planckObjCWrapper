@@ -815,6 +815,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public";
 				VALID_ARCHS = "arm64 x86_64";
 			};
 			name = Debug;
@@ -869,6 +870,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 x86_64";
 			};

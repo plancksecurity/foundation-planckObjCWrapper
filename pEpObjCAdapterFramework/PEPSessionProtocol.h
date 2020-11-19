@@ -10,12 +10,13 @@
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
-#import <PEPObjCAdapterFramework/PEPDecryptFlags.h>
-#import <PEPObjCAdapterFramework/PEPStringList.h>
-#import <PEPObjCAdapterFramework/PEPRating.h>
-#import <PEPObjCAdapterFramework/PEPEncFormat.h>
 #import <PEPObjCAdapterFramework/PEPSyncHandshakeResult.h>
-#import <PEPObjCAdapterFramework/PEPColor.h>
+
+#import <PEPDecryptFlags.h>
+#import <PEPStringList.h>
+#import <PEPRating.h>
+#import <PEPEncFormat.h>
+#import <PEPColor.h>
 
 @class PEPLanguage;
 @class PEPIdentity;
