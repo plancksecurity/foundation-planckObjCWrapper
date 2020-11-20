@@ -8,7 +8,7 @@
 
 #import "PEPInternalSessionTestSendMessageDelegate.h"
 
-#import "PEPObjCAdapter.h"
+#import "PEPMessage.h"
 
 @implementation PEPInternalSessionTestSendMessageDelegate
 

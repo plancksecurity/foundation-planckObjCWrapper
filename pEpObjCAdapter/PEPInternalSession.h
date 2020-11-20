@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
-
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
-#import "PEPObjCAdapter.h"
 
 #import "sync_api.h"
+
+#import "PEPObjCAdapter.h"
 
 @class PEPLanguage;
 @class PEPIdentity;

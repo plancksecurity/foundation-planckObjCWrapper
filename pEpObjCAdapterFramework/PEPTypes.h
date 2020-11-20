@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - Type definitions
+
+typedef NSArray<NSString *> PEPStringList;
+
 #pragma mark - Errors
 
 /// Possible errors from adapter without involvement from the engine.

@@ -6,7 +6,7 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
-#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
+#import "PEPLanguage.h"
 
 @implementation PEPLanguage
 

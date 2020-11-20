@@ -6,7 +6,11 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
-#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
+#import "PEPIdentity.h"
+#import "PEPConstants.h"
+
+#import "pEpEngine.h"
+#import "PEPSession.h"
 
 #import "NSObject+Extension.h"
 
@@ -68,7 +72,7 @@
 
 - (BOOL)isConfirmed
 {
-    return self.commType & PEPCommTypeConfirmed;
+    return self.commType & PEP_ct_confirmed;
 }
 
 // MARK: - Equality

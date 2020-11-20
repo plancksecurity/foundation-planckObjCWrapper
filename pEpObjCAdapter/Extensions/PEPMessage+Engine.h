@@ -10,7 +10,7 @@
 
 #import "message.h"
 
-#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
+#import "PEPMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

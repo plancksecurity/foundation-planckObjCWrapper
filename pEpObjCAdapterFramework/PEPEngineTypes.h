@@ -11,6 +11,41 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
+    PEPDecryptFlagsNone = 0x0, // not actually defined in the engine
+    PEPDecryptFlagsOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key
+    PEPDecryptFlagsConsume = 0x2, //PEP_decrypt_flag_consume
+    PEPDecryptFlagsIgnore = 0x4, // PEP_decrypt_flag_ignore
+    PEPDecryptFlagsSourceModified = 0x8, // PEP_decrypt_flag_src_modified
+    PEPDecryptFlagsUntrustedServer = 0x100, // PEP_decrypt_flag_untrusted_server
+    PEPDecryptFlagsDontTriggerSync = 0x200, // PEP_decrypt_flag_dont_trigger_sync
+};
+
+typedef NS_CLOSED_ENUM(int, PEPEncFormat) {
+    PEPEncFormatNone = 0, // PEP_enc_none
+    PEPEncFormatPieces, // PEP_enc_pieces, PEP_enc_inline
+    PEPEncFormatSMIME, // PEP_enc_S_MIME
+    PEPEncFormatPGPMIME, // PEP_enc_PGP_MIME
+    PEPEncFormatPEP, // PEP_enc_PEP
+    PEPEncFormatPGPMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1
+};
+
+typedef NS_CLOSED_ENUM(int, PEPRating) {
+    PEPRatingUndefined = 0, // PEP_rating_undefined
+    PEPRatingCannotDecrypt = 1, // PEP_rating_cannot_decrypt
+    PEPRatingHaveNoKey = 2, // PEP_rating_have_no_key
+    PEPRatingUnencrypted = 3, // PEP_rating_unencrypted
+    PEPRatingUnreliable = 5, // PEP_rating_unreliable
+    PEPRatingReliable = 6, // PEP_rating_reliable
+    PEPRatingTrusted = 7, // PEP_rating_trusted
+    PEPRatingTrustedAndAnonymized = 8, // PEP_rating_trusted_and_anonymized
+    PEPRatingFullyAnonymous = 9, // PEP_rating_fully_anonymous
+
+    PEPRatingMistrust = -1, // PEP_rating_mistrust
+    PEPRatingB0rken = -2, // PEP_rating_b0rken
+    PEPRatingUnderAttack = -3 // PEP_rating_under_attack
+};
+
 typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusOK = 0, // PEP_STATUS_OK
 
@@ -146,6 +181,79 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
 
     PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE
     PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP
+};
+
+typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeResult) {
+    PEPSyncHandshakeResultCancel = -1, // SYNC_HANDSHAKE_CANCEL
+    PEPSyncHandshakeResultAccepted = 0, // SYNC_HANDSHAKE_ACCEPTED
+    PEPSyncHandshakeResultRejected = 1 // SYNC_HANDSHAKE_REJECTED
+};
+
+typedef NS_CLOSED_ENUM(int, PEPCommType) {
+    PEPCommTypeUnknown = 0, // PEP_ct_unknown
+    PEPCommTypeNoEncryption = 0x01, // PEP_ct_no_encryption
+    PEPCommTypeNoEncrypted_channel = 0x02, // PEP_ct_no_encrypted_channel
+    PEPCommTypeKeyNotFound = 0x03, // PEP_ct_key_not_found
+    PEPCommTypeKeyExpired = 0x04, // PEP_ct_key_expired
+    PEPCommTypeKeyRevoked = 0x05, // PEP_ct_key_revoked
+    PEPCommTypeKeyB0rken = 0x06, // PEP_ct_key_b0rken
+    PEPCommTypeKeyExpiredButConfirmed = 0x07, // PEP_ct_key_expired_but_confirmed renewal.
+    PEPCommTypeMyKeyNotIncluded = 0x09, // PEP_ct_my_key_not_included
+
+    PEPCommTypeSecurityByObscurity = 0x0a, // PEP_ct_security_by_obscurity
+    PEPCommTypeB0rkenCrypto = 0x0b, // PEP_ct_b0rken_crypto
+    PEPCommTypeKeyTooShort = 0x0c, // PEP_ct_key_too_short
+
+    PEPCommTypeCompromised = 0x0e, // PEP_ct_compromized
+    PEPCommTypeMistrusted = 0x0f, // PEP_ct_mistrusted
+
+    PEPCommTypeUnconfirmedEncryption = 0x10, // PEP_ct_unconfirmed_encryption
+    PEPCommTypeOpenPGPWeakUnconfirmed = 0x11, // PEP_ct_OpenPGP_weak_unconfirmed
+
+    PEPCommTypeToBeChecked = 0x20, // PEP_ct_to_be_checked
+    PEPCommTypeSMIMEUnconfirmed = 0x21, // PEP_ct_SMIME_unconfirmed
+    PEPCommTypeCMSUnconfirmed = 0x22, // PEP_ct_CMS_unconfirmed
+
+    PEPCommTypeStongButUnconfirmed = 0x30, // PEP_ct_strong_but_unconfirmed
+    PEPCommTypeOpenPGPUnconfirmed = 0x38, // PEP_ct_OpenPGP_unconfirmed
+    PEPCommTypeOTRUnconfirmed = 0x3a, // PEP_ct_OTR_unconfirmed
+
+    PEPCommTypeUnconfirmedEncAnon = 0x40, // PEP_ct_unconfirmed_enc_anon
+    PEPCommTypePEPUnconfirmed = 0x7f, // PEP_ct_pEp_unconfirmed
+
+    PEPCommTypeConfirmed = 0x80, // PEP_ct_confirmed
+
+    PEPCommTypeConfirmedEncryption = 0x90, // PEP_ct_confirmed_encryption
+    PEPCommTypeOpenPGPWeak = 0x91, // PEP_ct_OpenPGP_weak
+
+    PEPCommTypeToBeCheckedConfirmed = 0xa0, // PEP_ct_to_be_checked_confirmed
+    PEPCommTypeSMIME = 0xa1, // PEP_ct_SMIME
+    PEPCommTypeCMS = 0xa2, // PEP_ct_CMS
+
+    PEPCommTypeStongEncryption = 0xb0, // PEP_ct_strong_encryption
+    PEPCommTypeOpenPGP = 0xb8, // PEP_ct_OpenPGP
+    PEPCommTypeOTR = 0xba, // PEP_ct_OTR
+
+    PEPCommTypeConfirmedEncAnon = 0xc0, // PEP_ct_confirmed_enc_anon
+    PEPCommTypePEP = 0xff // PEP_ct_pEp
+};
+
+typedef NS_CLOSED_ENUM(int, PEPMsgDirection) {
+    PEPMsgDirectionIncoming = 0, // PEP_dir_incoming
+    PEPMsgDirectionOutgoing // PEP_dir_outgoing
+};
+
+typedef NS_CLOSED_ENUM(int, PEPColor) {
+    PEPColorNoColor = 0, // PEP_color_no_color
+    PEPColorYellow, // PEP_color_yellow
+    PEPColorGreen, // PEP_color_green
+    PEPColorRed = -1, // PEP_color_red
+};
+
+typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
+    PEPContentDispositionAttachment = 0, // PEP_CONTENT_DISP_ATTACHMENT
+    PEPContentDispositionInline = 1, // PEP_CONTENT_DISP_INLINE
+    PEPContentDispositionOther = -1 // PEP_CONTENT_DISP_OTHER
 };
 
 #endif /* PEPTypes_h */

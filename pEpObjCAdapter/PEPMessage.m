@@ -6,9 +6,14 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
-#import <pEpObjCAdapterTypesHeaders/pEpObjCAdapterTypesHeaders.h>
+#import "PEPMessage.h"
+
+#import "PEPIdentity.h"
+#import "PEPConstants.h"
 
 #import "NSObject+Extension.h"
+
+#import "message_api.h"
 
 @implementation PEPMessage
 
