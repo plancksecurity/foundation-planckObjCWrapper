@@ -10,6 +10,10 @@
 		431D40102567C1F300D76C92 /* pEpObjCAdapterTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 431D400F2567C1F300D76C92 /* pEpObjCAdapterTypes.m */; };
 		431D40112567C1F300D76C92 /* pEpObjCAdapterTypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 431D400E2567C1F300D76C92 /* pEpObjCAdapterTypes.h */; };
 		43ACF9072567D60E00004288 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF9052567D60E00004288 /* NSObject+Extension.m */; };
+		43ACF90F2567D69800004288 /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90B2567D69700004288 /* PEPMessage.m */; };
+		43ACF9102567D69800004288 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90C2567D69700004288 /* PEPAttachment.m */; };
+		43ACF9112567D69800004288 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90D2567D69700004288 /* PEPLanguage.m */; };
+		43ACF9122567D69800004288 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90E2567D69700004288 /* PEPIdentity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +45,10 @@
 		43ACF8A22567C32D00004288 /* PEPRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPRating.h; sourceTree = "<group>"; };
 		43ACF9052567D60E00004288 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
 		43ACF9062567D60E00004288 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
+		43ACF90B2567D69700004288 /* PEPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
+		43ACF90C2567D69700004288 /* PEPAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment.m; sourceTree = "<group>"; };
+		43ACF90D2567D69700004288 /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
+		43ACF90E2567D69700004288 /* PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,10 @@
 		43ACF9042567CF3F00004288 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				43ACF90C2567D69700004288 /* PEPAttachment.m */,
+				43ACF90E2567D69700004288 /* PEPIdentity.m */,
+				43ACF90D2567D69700004288 /* PEPLanguage.m */,
+				43ACF90B2567D69700004288 /* PEPMessage.m */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -171,8 +183,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43ACF9102567D69800004288 /* PEPAttachment.m in Sources */,
 				431D40102567C1F300D76C92 /* pEpObjCAdapterTypes.m in Sources */,
 				43ACF9072567D60E00004288 /* NSObject+Extension.m in Sources */,
+				43ACF9122567D69800004288 /* PEPIdentity.m in Sources */,
+				43ACF90F2567D69800004288 /* PEPMessage.m in Sources */,
+				43ACF9112567D69800004288 /* PEPLanguage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
