@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		431D40102567C1F300D76C92 /* pEpObjCAdapterTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 431D400F2567C1F300D76C92 /* pEpObjCAdapterTypes.m */; };
-		431D40112567C1F300D76C92 /* pEpObjCAdapterTypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 431D400E2567C1F300D76C92 /* pEpObjCAdapterTypes.h */; };
 		43ACF9072567D60E00004288 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF9052567D60E00004288 /* NSObject+Extension.m */; };
 		43ACF90F2567D69800004288 /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90B2567D69700004288 /* PEPMessage.m */; };
 		43ACF9102567D69800004288 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90C2567D69700004288 /* PEPAttachment.m */; };
@@ -23,7 +21,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				431D40112567C1F300D76C92 /* pEpObjCAdapterTypes.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -31,8 +28,6 @@
 
 /* Begin PBXFileReference section */
 		431D400B2567C1F300D76C92 /* libpEpObjCAdapterTypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapterTypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		431D400E2567C1F300D76C92 /* pEpObjCAdapterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCAdapterTypes.h; sourceTree = "<group>"; };
-		431D400F2567C1F300D76C92 /* pEpObjCAdapterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pEpObjCAdapterTypes.m; sourceTree = "<group>"; };
 		43ACF8962567C32D00004288 /* PEPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
 		43ACF8972567C32D00004288 /* PEPDecryptFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPDecryptFlags.h; sourceTree = "<group>"; };
 		43ACF8992567C32D00004288 /* PEPSyncHandshakeResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSyncHandshakeResult.h; sourceTree = "<group>"; };
@@ -84,8 +79,6 @@
 				43ACF9032567CF3300004288 /* Util */,
 				43ACF9042567CF3F00004288 /* Implementation */,
 				43ACF8952567C32D00004288 /* Public */,
-				431D400E2567C1F300D76C92 /* pEpObjCAdapterTypes.h */,
-				431D400F2567C1F300D76C92 /* pEpObjCAdapterTypes.m */,
 			);
 			path = pEpObjCAdapterTypes;
 			sourceTree = "<group>";
@@ -184,7 +177,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				43ACF9102567D69800004288 /* PEPAttachment.m in Sources */,
-				431D40102567C1F300D76C92 /* pEpObjCAdapterTypes.m in Sources */,
 				43ACF9072567D60E00004288 /* NSObject+Extension.m in Sources */,
 				43ACF9122567D69800004288 /* PEPIdentity.m in Sources */,
 				43ACF90F2567D69800004288 /* PEPMessage.m in Sources */,
