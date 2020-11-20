@@ -12,9 +12,7 @@
 
 #import "PEPObjCAdapterFramework.h"
 #import "PEPInternalSession.h"
-#import "PEPMessage.h"
 #import "PEPSession.h"
-#import "PEPAttachment.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 
