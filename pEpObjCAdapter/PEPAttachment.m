@@ -8,8 +8,6 @@
 
 #import "PEPAttachment.h"
 
-#import "bloblist.h"
-
 @implementation PEPAttachment
 
 - (instancetype)initWithData:(NSData *)data
