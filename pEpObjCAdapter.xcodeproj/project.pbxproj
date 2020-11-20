@@ -50,13 +50,11 @@
 		435F5164222045FB006EB11F /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5163222045FB006EB11F /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F5168222046C2006EB11F /* NSArray+Take.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Take.m */; };
 		435F5169222046C2006EB11F /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
-		435F516A222046C2006EB11F /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */; };
 		435F516C222046C2006EB11F /* PEPObjCAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */; };
 		435F516D222046C2006EB11F /* PEPQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B321ECC2ACD007E7E2E /* PEPQueue.m */; };
 		435F516E222046C2006EB11F /* PEPInternalSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */; };
 		435F5171222046C2006EB11F /* PEPCopyableThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */; };
 		435F5172222046C2006EB11F /* PEPSessionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CA91F8BA183003FF880 /* PEPSessionProvider.m */; };
-		435F5175222046C2006EB11F /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 435796E21FB5E51A00395A9E /* PEPMessage.m */; };
 		435F5177222046C2006EB11F /* NSError+PEP.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DED785203C25E200D45CD6 /* NSError+PEP.m */; };
 		435F5178222046C2006EB11F /* PEPAutoPointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */; };
 		435F5179222046C2006EB11F /* NSNumber+PEPRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 435665CB2080A6CB00EC5B10 /* NSNumber+PEPRating.m */; };
@@ -169,7 +167,6 @@
 		43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPCSVScanner.h; sourceTree = "<group>"; };
 		43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPCSVScanner.m; sourceTree = "<group>"; };
 		43209B2A1ECC2ACD007E7E2E /* PEPLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEPLanguage.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPLanguage.h; sourceTree = "<group>"; };
-		43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
 		43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPObjCAdapter+Internal.h"; sourceTree = "<group>"; };
 		43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter.h; sourceTree = "<group>"; };
 		43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter.m; sourceTree = "<group>"; };
@@ -207,7 +204,6 @@
 		435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+PEPRating.h"; sourceTree = "<group>"; };
 		435665CB2080A6CB00EC5B10 /* NSNumber+PEPRating.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+PEPRating.m"; sourceTree = "<group>"; };
 		435796E11FB5E51A00395A9E /* PEPMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPMessage.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPMessage.h; sourceTree = "<group>"; };
-		435796E21FB5E51A00395A9E /* PEPMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
 		43589EF524A4A3B70079BEA2 /* PEPPassphraseCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseCache.h; sourceTree = "<group>"; };
 		43589EF624A4A3B70079BEA2 /* PEPPassphraseCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseCache.m; sourceTree = "<group>"; };
 		43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseCacheTest.m; sourceTree = "<group>"; };
@@ -373,7 +369,6 @@
 				438C0EE1254026E200337922 /* Extensions */,
 				43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */,
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
-				43209B2B1ECC2ACD007E7E2E /* PEPLanguage.m */,
 				43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+Internal.h */,
 				43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */,
 				43209B311ECC2ACD007E7E2E /* PEPQueue.h */,
@@ -384,7 +379,6 @@
 				1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */,
 				15206CA81F8BA183003FF880 /* PEPSessionProvider.h */,
 				15206CA91F8BA183003FF880 /* PEPSessionProvider.m */,
-				435796E21FB5E51A00395A9E /* PEPMessage.m */,
 				434ED6D4207E27B8000A7590 /* PEPAutoPointer.h */,
 				434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */,
 				43F73BE92166248E00AB4524 /* PEPSync.m */,
@@ -715,7 +709,6 @@
 				435F516C222046C2006EB11F /* PEPObjCAdapter.m in Sources */,
 				435F5177222046C2006EB11F /* NSError+PEP.m in Sources */,
 				4326A0AE2553F882001E18C6 /* PEPIdentity+Reset.m in Sources */,
-				435F516A222046C2006EB11F /* PEPLanguage.m in Sources */,
 				435F5168222046C2006EB11F /* NSArray+Take.m in Sources */,
 				435F516E222046C2006EB11F /* PEPInternalSession.m in Sources */,
 				43ECE9C925407FF3005F1925 /* PEPMessage+Engine.m in Sources */,
@@ -728,7 +721,6 @@
 				438C0ED52540215A00337922 /* NSArray+Engine.m in Sources */,
 				435F5171222046C2006EB11F /* PEPCopyableThread.m in Sources */,
 				43589EF924A4A3B70079BEA2 /* PEPPassphraseCache.m in Sources */,
-				435F5175222046C2006EB11F /* PEPMessage.m in Sources */,
 				434707F724C210CA00E05485 /* PEPSession.m in Sources */,
 				438C0F1425402D6400337922 /* PEPIdentity+Engine.m in Sources */,
 				435F517D222046C2006EB11F /* PEPSync.m in Sources */,
