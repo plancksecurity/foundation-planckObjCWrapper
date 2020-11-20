@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		431D40102567C1F300D76C92 /* pEpObjCAdapterTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 431D400F2567C1F300D76C92 /* pEpObjCAdapterTypes.m */; };
 		431D40112567C1F300D76C92 /* pEpObjCAdapterTypes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 431D400E2567C1F300D76C92 /* pEpObjCAdapterTypes.h */; };
+		43ACF9072567D60E00004288 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF9052567D60E00004288 /* NSObject+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +39,8 @@
 		43ACF89F2567C32D00004288 /* PEPStringList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPStringList.h; sourceTree = "<group>"; };
 		43ACF8A12567C32D00004288 /* PEPEncFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPEncFormat.h; sourceTree = "<group>"; };
 		43ACF8A22567C32D00004288 /* PEPRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPRating.h; sourceTree = "<group>"; };
+		43ACF9052567D60E00004288 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		43ACF9062567D60E00004288 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,8 @@
 		43ACF9032567CF3300004288 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				43ACF9062567D60E00004288 /* NSObject+Extension.h */,
+				43ACF9052567D60E00004288 /* NSObject+Extension.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				431D40102567C1F300D76C92 /* pEpObjCAdapterTypes.m in Sources */,
+				43ACF9072567D60E00004288 /* NSObject+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
