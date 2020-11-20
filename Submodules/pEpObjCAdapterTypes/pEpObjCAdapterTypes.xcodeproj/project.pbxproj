@@ -30,15 +30,12 @@
 		431D400F2567C1F300D76C92 /* pEpObjCAdapterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pEpObjCAdapterTypes.m; sourceTree = "<group>"; };
 		43ACF8962567C32D00004288 /* PEPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
 		43ACF8972567C32D00004288 /* PEPDecryptFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPDecryptFlags.h; sourceTree = "<group>"; };
-		43ACF8982567C32D00004288 /* PEPContentDisposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPContentDisposition.h; sourceTree = "<group>"; };
 		43ACF8992567C32D00004288 /* PEPSyncHandshakeResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSyncHandshakeResult.h; sourceTree = "<group>"; };
 		43ACF89A2567C32D00004288 /* PEPLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPLanguage.h; sourceTree = "<group>"; };
 		43ACF89B2567C32D00004288 /* PEPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPMessage.h; sourceTree = "<group>"; };
-		43ACF89C2567C32D00004288 /* PEPMsgDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPMsgDirection.h; sourceTree = "<group>"; };
 		43ACF89D2567C32D00004288 /* PEPAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPAttachment.h; sourceTree = "<group>"; };
 		43ACF89E2567C32D00004288 /* PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
 		43ACF89F2567C32D00004288 /* PEPStringList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPStringList.h; sourceTree = "<group>"; };
-		43ACF8A02567C32D00004288 /* PEPCommType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPCommType.h; sourceTree = "<group>"; };
 		43ACF8A12567C32D00004288 /* PEPEncFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPEncFormat.h; sourceTree = "<group>"; };
 		43ACF8A22567C32D00004288 /* PEPRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPRating.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,15 +82,12 @@
 			children = (
 				43ACF8962567C32D00004288 /* PEPColor.h */,
 				43ACF8972567C32D00004288 /* PEPDecryptFlags.h */,
-				43ACF8982567C32D00004288 /* PEPContentDisposition.h */,
 				43ACF8992567C32D00004288 /* PEPSyncHandshakeResult.h */,
 				43ACF89A2567C32D00004288 /* PEPLanguage.h */,
 				43ACF89B2567C32D00004288 /* PEPMessage.h */,
-				43ACF89C2567C32D00004288 /* PEPMsgDirection.h */,
 				43ACF89D2567C32D00004288 /* PEPAttachment.h */,
 				43ACF89E2567C32D00004288 /* PEPIdentity.h */,
 				43ACF89F2567C32D00004288 /* PEPStringList.h */,
-				43ACF8A02567C32D00004288 /* PEPCommType.h */,
 				43ACF8A12567C32D00004288 /* PEPEncFormat.h */,
 				43ACF8A22567C32D00004288 /* PEPRating.h */,
 			);
