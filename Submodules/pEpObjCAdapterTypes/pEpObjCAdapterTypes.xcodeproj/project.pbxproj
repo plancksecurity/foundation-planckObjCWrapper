@@ -70,6 +70,8 @@
 		431D400D2567C1F300D76C92 /* pEpObjCAdapterTypes */ = {
 			isa = PBXGroup;
 			children = (
+				43ACF9032567CF3300004288 /* Util */,
+				43ACF9042567CF3F00004288 /* Implementation */,
 				43ACF8952567C32D00004288 /* Public */,
 				431D400E2567C1F300D76C92 /* pEpObjCAdapterTypes.h */,
 				431D400F2567C1F300D76C92 /* pEpObjCAdapterTypes.m */,
@@ -92,6 +94,20 @@
 				43ACF8A22567C32D00004288 /* PEPRating.h */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		43ACF9032567CF3300004288 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		43ACF9042567CF3F00004288 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
