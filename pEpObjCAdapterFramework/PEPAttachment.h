@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <pEpObjCAdapterTypesHeaders/PEPContentDisposition.h>
+#import <PEPObjCAdapterFramework/PEPContentDisposition.h>
 
 @interface PEPAttachment : NSObject
 

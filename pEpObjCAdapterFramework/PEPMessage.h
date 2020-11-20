@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <pEpObjCAdapterTypesHeaders/PEPMsgDirection.h>
+#import <PEPObjCAdapterFramework/PEPMsgDirection.h>
 
 @class PEPIdentity;
 @class PEPAttachment;
