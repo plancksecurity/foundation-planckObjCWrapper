@@ -7,10 +7,6 @@
 //
 
 #import "PEPIdentity.h"
-#import "PEPConstants.h"
-
-#import "pEpEngine.h"
-#import "PEPSession.h"
 
 #import "NSObject+Extension.h"
 
@@ -72,7 +68,7 @@
 
 - (BOOL)isConfirmed
 {
-    return self.commType & PEP_ct_confirmed;
+    return self.commType & PEPCommTypeConfirmed;
 }
 
 // MARK: - Equality
