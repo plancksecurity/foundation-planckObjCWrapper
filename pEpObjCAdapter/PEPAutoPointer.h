@@ -16,6 +16,9 @@
  */
 @interface PEPAutoPointer : NSObject
 
+/// The function that will be used to free the pointer, `free` by default.
+@property (nonatomic) void (* freeFn)(void *);
+
 /**
  Provide this to a C-function that expects a `void **` pointer to allocate and fill.
  */

@@ -16,6 +16,15 @@
 
 @implementation PEPAutoPointer
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.freeFn = free;
+    }
+    return self;
+}
+
 - (void **)voidPointerPointer
 {
     return &_thePointer;
@@ -38,7 +47,7 @@
 
 - (void)dealloc
 {
-    free(_thePointer);
+    self.freeFn(_thePointer);
 }
 
 @end
