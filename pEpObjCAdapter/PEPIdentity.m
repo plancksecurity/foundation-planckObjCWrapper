@@ -104,17 +104,6 @@ static NSArray *s_keys;
     return [self isEqualToPEPIdentity:object];
 }
 
-- (void)reset
-{
-    self.commType = PEP_ct_unknown;
-    self.language = nil;
-    self.fingerPrint = nil;
-    self.userID = @"";
-    self.userName = nil;
-    self.isOwn = NO;
-    self.flags = 0;
-}
-
 // MARK: - NSMutableCopying
 
 - (id)mutableCopyWithZone:(nullable NSZone *)zone
