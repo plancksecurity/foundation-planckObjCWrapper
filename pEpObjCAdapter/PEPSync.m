@@ -287,7 +287,6 @@ static __weak PEPSync *s_pEpSync;
     }
 
     if (msg == NULL && [NSThread currentThread] == self.syncThread) {
-        free_message(msg);
         static NSMutableArray *passphrasesCopy = nil;
         static BOOL makeNewCopy = YES;
 
