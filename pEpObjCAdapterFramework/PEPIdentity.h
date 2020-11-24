@@ -85,9 +85,4 @@
  */
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
 
-/**
- Puts all properties into a default/nil state.
- */
-- (void)reset;
-
 @end
