@@ -26,6 +26,7 @@
 #import "Logger.h"
 #import "PEPIdentity+Engine.h"
 #import "PEPMessage+Engine.h"
+#import "PEPAutoPointer.h"
 
 // MARK: - Internals
 
@@ -274,6 +275,9 @@ static __weak PEPSync *s_pEpSync;
 
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
+    // auto destruct
+    PEPAutoPointer *msgPtr = [PEPAutoPointer autoPointerWithMessage:msg];
+
     [self blockUntilPassphraseIsEnteredIfRequired];
     if (self.shutdownRequested) {
         // The client has signalled that she was unable to provide a passphrase by calling
@@ -319,16 +323,15 @@ static __weak PEPSync *s_pEpSync;
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
             PEPMessage *theMessage = [PEPMessage fromStruct:msg];
-            free_message(msg);
             return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
         } else {
-            free_message(msg);
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
         }
     } else {
-        free_message(msg);
         return PEP_SYNC_ILLEGAL_MESSAGE;
     }
+
+    msgPtr = nil; // please the compiler
 }
 
 /// Injects the given event into the queue.
