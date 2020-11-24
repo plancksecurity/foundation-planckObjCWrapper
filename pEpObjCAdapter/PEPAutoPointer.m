@@ -30,6 +30,7 @@
     self = [self init];
     if (self) {
         _thePointer = message;
+        _freeFn = (void (*)(void *)) free_message;
     }
     return self;
 }
