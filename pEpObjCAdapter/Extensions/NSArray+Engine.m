@@ -123,10 +123,6 @@
 
 - (bloblist_t * _Nullable)toBloblist
 {
-    if (self.count == 0) {
-        return nil;
-    }
-
     bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL);
     bloblist_t *bl =_bl;
 
