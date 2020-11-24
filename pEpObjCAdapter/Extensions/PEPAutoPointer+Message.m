@@ -1,0 +1,13 @@
+//
+//  PEPAutoPointer+Message.m
+//  PEPObjCAdapterFramework
+//
+//  Created by Dirk Zimmermann on 24.11.20.
+//  Copyright © 2020 p≡p. All rights reserved.
+//
+
+#import "PEPAutoPointer+Message.h"
+
+@implementation PEPAutoPointer (Message)
+
+@end
