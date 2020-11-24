@@ -10,13 +10,4 @@
 
 @implementation PEPAutoPointer (Message)
 
-- (instancetype)initWithMessage:(message *)message
-{
-    self = [super init];
-    if (self) {
-        _thePointer = message;
-    }
-    return self;
-}
-
 @end

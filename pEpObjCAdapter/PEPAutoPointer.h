@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "message.h"
+
 /**
  Implements a very basic method to enable use of ARC (or manual cocoa memory management)
  for malloc-created pointers.
@@ -18,6 +20,9 @@
 
 /// The function that will be used to free the pointer, `free` by default.
 @property (nonatomic) void (* freeFn)(void *);
+
+/// Specialized version that can deal with the engine's message struct.
+- (instancetype)initWithMessage:(message *)message;
 
 /**
  Provide this to a C-function that expects a `void **` pointer to allocate and fill.

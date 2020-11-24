@@ -25,6 +25,15 @@
     return self;
 }
 
+- (instancetype)initWithMessage:(message *)message
+{
+    self = [self init];
+    if (self) {
+        _thePointer = message;
+    }
+    return self;
+}
+
 - (void **)voidPointerPointer
 {
     return &_thePointer;
