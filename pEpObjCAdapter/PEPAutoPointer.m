@@ -62,7 +62,9 @@
 
 - (void)dealloc
 {
-    self.freeFn(_thePointer);
+    if (_thePointer) {
+        self.freeFn(_thePointer);
+    }
 }
 
 @end
