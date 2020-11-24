@@ -16,6 +16,11 @@
 
 @implementation PEPAutoPointer
 
++ (instancetype)autoPointerWithMessage:(message *)message
+{
+    return [[self alloc] initWithMessage:message];
+}
+
 - (instancetype)init
 {
     self = [super init];

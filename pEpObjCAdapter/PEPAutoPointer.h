@@ -22,6 +22,9 @@
 @property (nonatomic) void (* freeFn)(void *);
 
 /// Specialized version that can deal with the engine's message struct.
++ (instancetype)autoPointerWithMessage:(message *)message;
+
+/// Specialized version that can deal with the engine's message struct.
 - (instancetype)initWithMessage:(message *)message;
 
 /**
