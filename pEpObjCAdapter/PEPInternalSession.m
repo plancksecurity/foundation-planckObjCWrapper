@@ -826,7 +826,7 @@ static NSDictionary *stringToRating;
 - (PEPRating)ratingFromString:(NSString * _Nonnull)string
 {
     NSNumber *num = [stringToRating objectForKey:string];
-    if (num) {
+    if (num != nil) {
         return (PEPRating) [num integerValue];
     } else {
         return PEPRatingUndefined;
