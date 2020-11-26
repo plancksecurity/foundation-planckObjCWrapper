@@ -8,6 +8,8 @@
 #ifndef PEPObjCAdapterTypes_h
 #define PEPObjCAdapterTypes_h
 
+@import Foundation;
+
 #import "PEPColor.h"
 #import "PEPDecryptFlags.h"
 #import "PEPSyncHandshakeResult.h"

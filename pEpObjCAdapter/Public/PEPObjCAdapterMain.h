@@ -9,6 +9,8 @@
 #ifndef PEPObjCAdapterMain_h
 #define PEPObjCAdapterMain_h
 
+@import Foundation;
+
 #import "NSNumber+PEPRating.h"
 #import "PEPConstants.h"
 #import "PEPEngineTypes.h"
