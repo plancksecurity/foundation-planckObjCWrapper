@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
-#import <PEPObjCAdapterFramework/PEPTypes.h>
-#import <PEPObjCAdapterFramework/PEPSessionProtocol.h>
+#import "PEPEngineTypes.h"
+#import "PEPTypes.h"
+#import "PEPSessionProtocol.h"
 
 @class PEPMessage;
 @class PEPIdentity;
