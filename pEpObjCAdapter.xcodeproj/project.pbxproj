@@ -177,6 +177,7 @@
 		43247A9E256F93D500A94E8E /* PEPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPConstants.h; sourceTree = "<group>"; };
 		43247A9F256F93D500A94E8E /* PEPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTypes.h; sourceTree = "<group>"; };
 		43247AA0256F93D500A94E8E /* PEPPassphraseProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderProtocol.h; sourceTree = "<group>"; };
+		43247D1D256FE4D100A94E8E /* PEPObjCAdapterMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterMain.h; sourceTree = "<group>"; };
 		4326A0AC2553F882001E18C6 /* PEPIdentity+Reset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+Reset.m"; sourceTree = "<group>"; };
 		4326A0AD2553F882001E18C6 /* PEPIdentity+Reset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Reset.h"; sourceTree = "<group>"; };
 		432EF6091C58B77900B6782A /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
@@ -391,6 +392,7 @@
 				43247A95256F93D400A94E8E /* PEPSessionProtocol.h */,
 				43247A9A256F93D500A94E8E /* PEPSync.h */,
 				43247A9F256F93D500A94E8E /* PEPTypes.h */,
+				43247D1D256FE4D100A94E8E /* PEPObjCAdapterMain.h */,
 			);
 			path = Public;
 			sourceTree = "<group>";
