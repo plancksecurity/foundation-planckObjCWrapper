@@ -1,0 +1,3 @@
+module PEPObjCAdapterTypes {
+    umbrella header "PEPObjCAdapterTypes"
+}
