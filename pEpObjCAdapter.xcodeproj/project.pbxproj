@@ -57,7 +57,6 @@
 		43247A8D256F8FE400A94E8E /* PEPPassphraseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */; };
 		43247A8E256F8FE400A94E8E /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 433DFBBB24A73AD400AB373B /* PEPSessionProtocol.m */; };
 		43247A8F256F8FE400A94E8E /* Logger.h in Sources */ = {isa = PBXBuildFile; fileRef = 43E1A7AB252B421D00307A7D /* Logger.h */; };
-		43247AA1256F93D500A94E8E /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 43247A9C256F93D500A94E8E /* PEPConstants.m */; };
 		43247AA5256F941600A94E8E /* NSNumber+PEPRating.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A94256F93D400A94E8E /* NSNumber+PEPRating.h */; };
 		43247AA6256F941600A94E8E /* PEPConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A9E256F93D500A94E8E /* PEPConstants.h */; };
 		43247AA7256F941600A94E8E /* PEPEngineTypes.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A97256F93D400A94E8E /* PEPEngineTypes.h */; };
@@ -69,6 +68,7 @@
 		43247AAE256F941600A94E8E /* PEPSessionProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A95256F93D400A94E8E /* PEPSessionProtocol.h */; };
 		43247AAF256F941600A94E8E /* PEPSync.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A9A256F93D500A94E8E /* PEPSync.h */; };
 		43247AB0256F941600A94E8E /* PEPTypes.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A9F256F93D500A94E8E /* PEPTypes.h */; };
+		43247D26256FE5EB00A94E8E /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 43247D25256FE5EB00A94E8E /* PEPConstants.m */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
 		432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
@@ -172,13 +172,13 @@
 		43247A98256F93D500A94E8E /* PEPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSession.h; sourceTree = "<group>"; };
 		43247A99256F93D500A94E8E /* PEPObjCAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter.h; sourceTree = "<group>"; };
 		43247A9A256F93D500A94E8E /* PEPSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSync.h; sourceTree = "<group>"; };
-		43247A9C256F93D500A94E8E /* PEPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPConstants.m; sourceTree = "<group>"; };
 		43247A9D256F93D500A94E8E /* PEPNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
 		43247A9E256F93D500A94E8E /* PEPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPConstants.h; sourceTree = "<group>"; };
 		43247A9F256F93D500A94E8E /* PEPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTypes.h; sourceTree = "<group>"; };
 		43247AA0256F93D500A94E8E /* PEPPassphraseProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderProtocol.h; sourceTree = "<group>"; };
 		43247D1D256FE4D100A94E8E /* PEPObjCAdapterMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterMain.h; sourceTree = "<group>"; };
 		43247D20256FE55E00A94E8E /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		43247D25256FE5EB00A94E8E /* PEPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPConstants.m; sourceTree = "<group>"; };
 		4326A0AC2553F882001E18C6 /* PEPIdentity+Reset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+Reset.m"; sourceTree = "<group>"; };
 		4326A0AD2553F882001E18C6 /* PEPIdentity+Reset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Reset.h"; sourceTree = "<group>"; };
 		432EF6091C58B77900B6782A /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
@@ -346,6 +346,7 @@
 			children = (
 				43247A93256F938A00A94E8E /* Public */,
 				438C0EE1254026E200337922 /* Extensions */,
+				43247D25256FE5EB00A94E8E /* PEPConstants.m */,
 				43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */,
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
 				43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+Internal.h */,
@@ -383,7 +384,6 @@
 			children = (
 				43247A94256F93D400A94E8E /* NSNumber+PEPRating.h */,
 				43247A9E256F93D500A94E8E /* PEPConstants.h */,
-				43247A9C256F93D500A94E8E /* PEPConstants.m */,
 				43247A97256F93D400A94E8E /* PEPEngineTypes.h */,
 				43247A9D256F93D500A94E8E /* PEPNotifyHandshakeDelegate.h */,
 				43247A99256F93D500A94E8E /* PEPObjCAdapter.h */,
@@ -616,7 +616,6 @@
 				43247A65256F8FE400A94E8E /* PEPIdentity+Engine.h in Sources */,
 				43247A66256F8FE400A94E8E /* PEPIdentity+Engine.m in Sources */,
 				43247A67256F8FE400A94E8E /* PEPIdentity+Reset.h in Sources */,
-				43247AA1256F93D500A94E8E /* PEPConstants.m in Sources */,
 				43247A68256F8FE400A94E8E /* PEPIdentity+Reset.m in Sources */,
 				43247A69256F8FE400A94E8E /* PEPMessage+Engine.h in Sources */,
 				43247A6A256F8FE400A94E8E /* PEPMessage+Engine.m in Sources */,
@@ -649,6 +648,7 @@
 				43247A85256F8FE400A94E8E /* PEPInternalConstants.m in Sources */,
 				43247A86256F8FE400A94E8E /* PEPPassphraseCache.h in Sources */,
 				43247A87256F8FE400A94E8E /* PEPPassphraseCacheInternal.h in Sources */,
+				43247D26256FE5EB00A94E8E /* PEPConstants.m in Sources */,
 				43247A88256F8FE400A94E8E /* PEPPassphraseCache.m in Sources */,
 				43247A89256F8FE400A94E8E /* PEPPassphraseCacheEntry.h in Sources */,
 				43247A8A256F8FE400A94E8E /* PEPPassphraseCacheEntry.m in Sources */,
