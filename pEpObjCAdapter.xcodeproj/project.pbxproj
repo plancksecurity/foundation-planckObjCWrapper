@@ -69,6 +69,7 @@
 		43247AAF256F941600A94E8E /* PEPSync.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A9A256F93D500A94E8E /* PEPSync.h */; };
 		43247AB0256F941600A94E8E /* PEPTypes.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A9F256F93D500A94E8E /* PEPTypes.h */; };
 		43247D26256FE5EB00A94E8E /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 43247D25256FE5EB00A94E8E /* PEPConstants.m */; };
+		43247D6A256FE8E200A94E8E /* libpEpObjCAdapterTypes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43247D69256FE8E200A94E8E /* libpEpObjCAdapterTypes.a */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
 		432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
@@ -179,6 +180,7 @@
 		43247D1D256FE4D100A94E8E /* PEPObjCAdapterMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterMain.h; sourceTree = "<group>"; };
 		43247D20256FE55E00A94E8E /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		43247D25256FE5EB00A94E8E /* PEPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPConstants.m; sourceTree = "<group>"; };
+		43247D69256FE8E200A94E8E /* libpEpObjCAdapterTypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libpEpObjCAdapterTypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4326A0AC2553F882001E18C6 /* PEPIdentity+Reset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+Reset.m"; sourceTree = "<group>"; };
 		4326A0AD2553F882001E18C6 /* PEPIdentity+Reset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Reset.h"; sourceTree = "<group>"; };
 		432EF6091C58B77900B6782A /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43247D6A256FE8E200A94E8E /* libpEpObjCAdapterTypes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +405,7 @@
 		43447C51221D448500B6323E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43247D69256FE8E200A94E8E /* libpEpObjCAdapterTypes.a */,
 				43ACF9162567D6E100004288 /* libpEpObjCAdapterTypes.a */,
 				3A68CB27252E244900F1B71C /* pEp4iosIntern.framework */,
 				43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */,
