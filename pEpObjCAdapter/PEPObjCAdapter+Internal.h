@@ -1,6 +1,6 @@
 //
-//  PEPIOSAdapter+Internal.h
-//  pEpiOSAdapter
+//  PEPObjCAdapter+Internal.h
+//  PEPObjCAdapter
 //
 //  Created by Edouard Tisserant on 11/11/15.
 //  Copyright © 2015 p≡p. All rights reserved.
