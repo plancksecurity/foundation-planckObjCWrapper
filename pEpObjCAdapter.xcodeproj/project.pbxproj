@@ -826,10 +826,7 @@
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../Sequoia4iOS/build/include",
-					"$(PROJECT_DIR)/Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public",
-				);
+				HEADER_SEARCH_PATHS = "$(INHERITED)";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MODULEMAP_FILE = "$(SRCROOT)/pEpObjCAdapter/Public/module.modulemap";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -855,10 +852,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../Sequoia4iOS/build/include",
-					"$(PROJECT_DIR)/Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public",
-				);
+				HEADER_SEARCH_PATHS = "$(INHERITED)";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MODULEMAP_FILE = "$(SRCROOT)/pEpObjCAdapter/Public/module.modulemap";
 				MTL_FAST_MATH = YES;
