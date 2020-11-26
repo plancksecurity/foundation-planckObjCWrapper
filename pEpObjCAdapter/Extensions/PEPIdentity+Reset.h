@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPIdentity.h"
+@import PEPObjCAdapterTypes;
 
 NS_ASSUME_NONNULL_BEGIN
 
