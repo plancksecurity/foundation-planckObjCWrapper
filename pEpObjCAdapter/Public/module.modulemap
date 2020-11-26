@@ -1,3 +1,5 @@
+requires objc
+
 module PEPObjCAdapterMain {
     umbrella header "PEPObjCAdapterMain.h"
 }
