@@ -1,13 +1,13 @@
 //
-//  pEpObjCAdapter.m
+//  pEpObjCAdapter.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 26.11.20.
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-#import "pEpObjCAdapter.h"
+#import <Foundation/Foundation.h>
 
-@implementation pEpObjCAdapter
+@interface pEpObjCAdapter : NSObject
 
 @end

@@ -15,6 +15,8 @@
 		430CD9B12292AC4900AAC37F /* PEPSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430CD9B62292ADAC00AAC37F /* PEPSendMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		430CD9BB2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43247A59256F8F9D00A94E8E /* pEpObjCAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43247A58256F8F9D00A94E8E /* pEpObjCAdapter.m */; };
+		43247A5A256F8F9D00A94E8E /* pEpObjCAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43247A57256F8F9D00A94E8E /* pEpObjCAdapter.h */; };
 		4326A0AE2553F882001E18C6 /* PEPIdentity+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4326A0AC2553F882001E18C6 /* PEPIdentity+Reset.m */; };
 		4326A0AF2553F882001E18C6 /* PEPIdentity+Reset.h in Headers */ = {isa = PBXBuildFile; fileRef = 4326A0AD2553F882001E18C6 /* PEPIdentity+Reset.h */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
@@ -143,6 +145,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		43247A53256F8F9D00A94E8E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				43247A5A256F8F9D00A94E8E /* pEpObjCAdapter.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPCopyableThread.h; sourceTree = "<group>"; };
 		1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPCopyableThread.m; sourceTree = "<group>"; };
@@ -174,6 +189,9 @@
 		43209B321ECC2ACD007E7E2E /* PEPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPQueue.m; sourceTree = "<group>"; };
 		43209B341ECC2ACD007E7E2E /* PEPInternalSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPInternalSession.h; sourceTree = "<group>"; };
 		43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSession.m; sourceTree = "<group>"; };
+		43247A55256F8F9D00A94E8E /* libpEpObjCAdapter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		43247A57256F8F9D00A94E8E /* pEpObjCAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCAdapter.h; sourceTree = "<group>"; };
+		43247A58256F8F9D00A94E8E /* pEpObjCAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pEpObjCAdapter.m; sourceTree = "<group>"; };
 		4326A0AC2553F882001E18C6 /* PEPIdentity+Reset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+Reset.m"; sourceTree = "<group>"; };
 		4326A0AD2553F882001E18C6 /* PEPIdentity+Reset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Reset.h"; sourceTree = "<group>"; };
 		432EF6091C58B77900B6782A /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
@@ -268,6 +286,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		43247A52256F8F9D00A94E8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43E39858221D7E56008E7983 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,6 +374,7 @@
 				43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */,
 				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
 				43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */,
+				43247A56256F8F9D00A94E8E /* pEpObjCAdapter */,
 				352988AB1AEF964100FA7E2E /* Products */,
 				43447C51221D448500B6323E /* Frameworks */,
 			);
@@ -359,6 +385,7 @@
 			children = (
 				64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */,
 				43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */,
+				43247A55256F8F9D00A94E8E /* libpEpObjCAdapter.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -395,6 +422,15 @@
 				436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */,
 				433DFBBB24A73AD400AB373B /* PEPSessionProtocol.m */,
 				43E1A7AB252B421D00307A7D /* Logger.h */,
+			);
+			path = pEpObjCAdapter;
+			sourceTree = "<group>";
+		};
+		43247A56256F8F9D00A94E8E /* pEpObjCAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				43247A57256F8F9D00A94E8E /* pEpObjCAdapter.h */,
+				43247A58256F8F9D00A94E8E /* pEpObjCAdapter.m */,
 			);
 			path = pEpObjCAdapter;
 			sourceTree = "<group>";
@@ -537,6 +573,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		43247A54256F8F9D00A94E8E /* pEpObjCAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43247A5D256F8F9D00A94E8E /* Build configuration list for PBXNativeTarget "pEpObjCAdapter" */;
+			buildPhases = (
+				43247A51256F8F9D00A94E8E /* Sources */,
+				43247A52256F8F9D00A94E8E /* Frameworks */,
+				43247A53256F8F9D00A94E8E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pEpObjCAdapter;
+			productName = pEpObjCAdapter;
+			productReference = 43247A55256F8F9D00A94E8E /* libpEpObjCAdapter.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		43E3985A221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43E39860221D7E56008E7983 /* Build configuration list for PBXNativeTarget "PEPObjCAdapterFramework" */;
@@ -586,6 +639,11 @@
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "p≡p";
 				TargetAttributes = {
+					43247A54256F8F9D00A94E8E = {
+						CreatedOnToolsVersion = 12.0;
+						DevelopmentTeam = NQLYU6MGPN;
+						ProvisioningStyle = Automatic;
+					};
 					43E3985A221D7E56008E7983 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = NQLYU6MGPN;
@@ -618,6 +676,7 @@
 			targets = (
 				64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */,
 				43E3985A221D7E56008E7983 /* PEPObjCAdapterFramework */,
+				43247A54256F8F9D00A94E8E /* pEpObjCAdapter */,
 			);
 		};
 /* End PBXProject section */
@@ -699,6 +758,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		43247A51256F8F9D00A94E8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43247A59256F8F9D00A94E8E /* pEpObjCAdapter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		43E39857221D7E56008E7983 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -878,6 +945,53 @@
 			};
 			name = Release;
 		};
+		43247A5B256F8F9D00A94E8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43247A5C256F8F9D00A94E8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		43E39861221D7E56008E7983 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1021,6 +1135,15 @@
 			buildConfigurations = (
 				352988BC1AEF964100FA7E2E /* Debug */,
 				352988BD1AEF964100FA7E2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43247A5D256F8F9D00A94E8E /* Build configuration list for PBXNativeTarget "pEpObjCAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43247A5B256F8F9D00A94E8E /* Debug */,
+				43247A5C256F8F9D00A94E8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
