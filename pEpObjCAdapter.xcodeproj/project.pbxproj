@@ -69,7 +69,7 @@
 		43247AA6256F941600A94E8E /* PEPConstants.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A9E256F93D500A94E8E /* PEPConstants.h */; };
 		43247AA7256F941600A94E8E /* PEPEngineTypes.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A97256F93D400A94E8E /* PEPEngineTypes.h */; };
 		43247AA8256F941600A94E8E /* PEPNotifyHandshakeDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A9D256F93D500A94E8E /* PEPNotifyHandshakeDelegate.h */; };
-		43247AA9256F941600A94E8E /* PEPObjCAdapter.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A99256F93D500A94E8E /* PEPObjCAdapter.h */; };
+		43247AA9256F941600A94E8E /* PEPObjCAdapterr.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A99256F93D500A94E8E /* PEPObjCAdapterr.h */; };
 		43247AAB256F941600A94E8E /* PEPPassphraseProviderProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247AA0256F93D500A94E8E /* PEPPassphraseProviderProtocol.h */; };
 		43247AAC256F941600A94E8E /* PEPSendMessageDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A96256F93D400A94E8E /* PEPSendMessageDelegate.h */; };
 		43247AAD256F941600A94E8E /* PEPSession.h in Sources */ = {isa = PBXBuildFile; fileRef = 43247A98256F93D500A94E8E /* PEPSession.h */; };
@@ -256,7 +256,7 @@
 		43247A96256F93D400A94E8E /* PEPSendMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSendMessageDelegate.h; sourceTree = "<group>"; };
 		43247A97256F93D400A94E8E /* PEPEngineTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPEngineTypes.h; sourceTree = "<group>"; };
 		43247A98256F93D500A94E8E /* PEPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSession.h; sourceTree = "<group>"; };
-		43247A99256F93D500A94E8E /* PEPObjCAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter.h; sourceTree = "<group>"; };
+		43247A99256F93D500A94E8E /* PEPObjCAdapterr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterr.h; sourceTree = "<group>"; };
 		43247A9A256F93D500A94E8E /* PEPSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSync.h; sourceTree = "<group>"; };
 		43247A9C256F93D500A94E8E /* PEPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPConstants.m; sourceTree = "<group>"; };
 		43247A9D256F93D500A94E8E /* PEPNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
@@ -515,7 +515,7 @@
 				43247A9C256F93D500A94E8E /* PEPConstants.m */,
 				43247A97256F93D400A94E8E /* PEPEngineTypes.h */,
 				43247A9D256F93D500A94E8E /* PEPNotifyHandshakeDelegate.h */,
-				43247A99256F93D500A94E8E /* PEPObjCAdapter.h */,
+				43247A99256F93D500A94E8E /* PEPObjCAdapterr.h */,
 				43247AA0256F93D500A94E8E /* PEPPassphraseProviderProtocol.h */,
 				43247A96256F93D400A94E8E /* PEPSendMessageDelegate.h */,
 				43247A98256F93D500A94E8E /* PEPSession.h */,
@@ -857,7 +857,7 @@
 				43247AA6256F941600A94E8E /* PEPConstants.h in Sources */,
 				43247AA7256F941600A94E8E /* PEPEngineTypes.h in Sources */,
 				43247AA8256F941600A94E8E /* PEPNotifyHandshakeDelegate.h in Sources */,
-				43247AA9256F941600A94E8E /* PEPObjCAdapter.h in Sources */,
+				43247AA9256F941600A94E8E /* PEPObjCAdapterr.h in Sources */,
 				43247AAB256F941600A94E8E /* PEPPassphraseProviderProtocol.h in Sources */,
 				43247AAC256F941600A94E8E /* PEPSendMessageDelegate.h in Sources */,
 				43247AAD256F941600A94E8E /* PEPSession.h in Sources */,
