@@ -13,7 +13,6 @@
 #import "PEPObjCAdapterFramework.h"
 
 #import "PEPObjCAdapter.h"
-#import "PEPMessage.h"
 #import "PEPTestUtils.h"
 #import "PEPSync.h"
 #import "PEPSendMessageDelegate.h"

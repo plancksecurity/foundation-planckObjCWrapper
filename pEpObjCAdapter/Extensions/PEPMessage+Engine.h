@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "message.h"
+@import PEPObjCAdapterTypes;
 
-#import "PEPMessage.h"
+#import "message.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

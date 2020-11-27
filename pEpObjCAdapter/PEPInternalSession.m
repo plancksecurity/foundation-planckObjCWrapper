@@ -16,7 +16,6 @@
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Take.h"
-#import "PEPMessage.h"
 #import "NSError+PEP+Internal.h"
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"

@@ -10,7 +10,6 @@
 
 #import "PEPSession.h"
 
-#import "PEPMessage.h"
 #import "PEPEngineTypes.h"
 #import "PEPInternalSession.h"
 #import "NSNumber+PEPRating.h"
