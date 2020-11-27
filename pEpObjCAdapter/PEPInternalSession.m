@@ -8,11 +8,12 @@
 
 #import "PEPInternalSession.h"
 
+@import PEPObjCAdapterTypes;
+
 #import "PEPConstants.h"
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Take.h"
 #import "PEPIdentity.h"

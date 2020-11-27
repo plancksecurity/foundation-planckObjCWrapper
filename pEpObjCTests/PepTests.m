@@ -8,10 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
+@import PEPObjCAdapterTypes;
+
 #import "PEPObjCAdapter.h"
 #import "PEPInternalSession.h"
 #import "PEPSessionProvider.h"
-#import "PEPLanguage.h"
 #import "PEPSession.h"
 
 @interface PepTests : XCTestCase
