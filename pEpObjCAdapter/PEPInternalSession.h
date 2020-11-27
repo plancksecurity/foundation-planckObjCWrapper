@@ -12,7 +12,6 @@
 
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
-#import "PEPStringList.h"
 #import "PEPRating.h"
 #import "PEPEncFormat.h"
 #import "PEPObjCAdapter.h"
