@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-#import "PEPInternalSession.h"
-
 @import PEPObjCAdapterTypes;
+
+#import "PEPInternalSession.h"
 
 #import "PEPConstants.h"
 
