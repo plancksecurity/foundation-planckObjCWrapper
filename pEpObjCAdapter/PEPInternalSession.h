@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@import PEPObjCAdapterTypes;
+
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
 #import "PEPDecryptFlags.h"
@@ -15,7 +17,6 @@
 #import "PEPRating.h"
 #import "PEPEncFormat.h"
 #import "PEPSyncHandshakeResult.h"
-#import "PEPColor.h"
 #import "PEPObjCAdapter.h"
 
 #import "sync_api.h"
