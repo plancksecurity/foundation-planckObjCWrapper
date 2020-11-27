@@ -1,4 +1,0 @@
-module PEPObjCAdapterTypes {
-    requires objc, objc_arc
-    umbrella header "PEPObjCAdapterTypes.h"
-}

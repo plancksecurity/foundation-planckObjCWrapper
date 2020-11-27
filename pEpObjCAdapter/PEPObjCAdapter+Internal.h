@@ -1,6 +1,6 @@
 //
-//  PEPObjCAdapter+Internal.h
-//  PEPObjCAdapter
+//  PEPIOSAdapter+Internal.h
+//  pEpiOSAdapter
 //
 //  Created by Edouard Tisserant on 11/11/15.
 //  Copyright © 2015 p≡p. All rights reserved.
@@ -8,8 +8,6 @@
 
 #ifndef PEPIOSAdapter_Internal_h
 #define PEPIOSAdapter_Internal_h
-
-#import "PEPObjCAdapter.h"
 
 #import "PEPQueue.h"
 #import "PEPInternalSession.h"

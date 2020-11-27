@@ -28,8 +28,6 @@
 
 /* Begin PBXFileReference section */
 		431D400B2567C1F300D76C92 /* libpEpObjCAdapterTypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapterTypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		43247D19256FE2DC00A94E8E /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		43247D1A256FE33C00A94E8E /* PEPObjCAdapterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypes.h; sourceTree = "<group>"; };
 		43ACF8962567C32D00004288 /* PEPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
 		43ACF8972567C32D00004288 /* PEPDecryptFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPDecryptFlags.h; sourceTree = "<group>"; };
 		43ACF8992567C32D00004288 /* PEPSyncHandshakeResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSyncHandshakeResult.h; sourceTree = "<group>"; };
@@ -98,8 +96,6 @@
 				43ACF89F2567C32D00004288 /* PEPStringList.h */,
 				43ACF8A12567C32D00004288 /* PEPEncFormat.h */,
 				43ACF8A22567C32D00004288 /* PEPRating.h */,
-				43247D1A256FE33C00A94E8E /* PEPObjCAdapterTypes.h */,
-				43247D19256FE2DC00A94E8E /* module.modulemap */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -307,9 +303,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
-				MODULEMAP_FILE = "$(SRCROOT)/pEpObjCAdapterTypes/Public/module.modulemap";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -321,9 +315,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
-				MODULEMAP_FILE = "$(SRCROOT)/pEpObjCAdapterTypes/Public/module.modulemap";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
