@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@import PEPObjCAdapterTypes;
+
 #import "NSArray+Engine.h"
 
 #import "PEPIdentity.h"
 #import "PEPIdentity+Engine.h"
-#import "PEPAttachment.h"
 
 @implementation NSArray (Engine)
 
