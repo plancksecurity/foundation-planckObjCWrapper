@@ -6,13 +6,14 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
+@import PEPObjCAdapterTypes;
+
 #import "PEPSession.h"
 
 #import "PEPMessage.h"
 #import "PEPEngineTypes.h"
 #import "PEPInternalSession.h"
 #import "NSNumber+PEPRating.h"
-#import "PEPIdentity.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalConstants.h"
 #import "NSError+PEP+Internal.h"
