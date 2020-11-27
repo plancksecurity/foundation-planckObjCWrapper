@@ -12,7 +12,6 @@
 
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
-#import "PEPRating.h"
 #import "PEPObjCAdapter.h"
 
 #import "sync_api.h"
