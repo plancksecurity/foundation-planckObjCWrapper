@@ -6,6 +6,9 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
+#ifndef PEPLanguage_h
+#define PEPLanguage_h
+
 #import <Foundation/Foundation.h>
 
 @interface PEPLanguage : NSObject
@@ -31,3 +34,5 @@
 @property (nonatomic, nonnull) NSString *sentence;
 
 @end
+
+#endif

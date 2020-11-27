@@ -6,6 +6,9 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#ifndef PEPAttachment_h
+#define PEPAttachment_h
+
 #import <Foundation/Foundation.h>
 
 typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
@@ -25,3 +28,5 @@ typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
 - (_Nonnull instancetype)initWithData:(NSData * _Nonnull)data;
 
 @end
+
+#endif

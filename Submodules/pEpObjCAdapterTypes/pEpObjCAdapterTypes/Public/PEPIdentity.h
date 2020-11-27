@@ -6,6 +6,9 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
+#ifndef PEPIdentity_h
+#define PEPIdentity_h
+
 #import <Foundation/Foundation.h>
 
 typedef NS_CLOSED_ENUM(int, PEPCommType) {
@@ -132,3 +135,5 @@ typedef NS_CLOSED_ENUM(int, PEPCommType) {
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
 
 @end
+
+#endif

@@ -1,13 +1,13 @@
 //
-//  PEPTypes.h
+//  PEPEngineTypes.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 27.02.19.
 //  Copyright © 2019 p≡p. All rights reserved.
 //
 
-#ifndef PEPTypes_h
-#define PEPTypes_h
+#ifndef PEPEngineTypes_h
+#define PEPEngineTypes_h
 
 #import <Foundation/Foundation.h>
 
@@ -148,4 +148,4 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
     PEPSyncHandshakeSignalInGroup = 255 // SYNC_NOTIFY_IN_GROUP
 };
 
-#endif /* PEPTypes_h */
+#endif /* PEPEngineTypes_h */

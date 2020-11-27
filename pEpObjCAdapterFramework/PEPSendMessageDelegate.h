@@ -6,6 +6,9 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#ifndef PEPSendMessageDelegate_h
+#define PEPSendMessageDelegate_h
+
 #import <Foundation/Foundation.h>
 
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
@@ -29,3 +32,5 @@
 - (PEPStatus)sendMessage:(PEPMessage * _Nonnull)message;
 
 @end
+
+#endif

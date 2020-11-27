@@ -6,6 +6,9 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
+#ifndef PEPSessionProtocol_h
+#define PEPSessionProtocol_h
+
 #import <Foundation/Foundation.h>
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
@@ -240,3 +243,5 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

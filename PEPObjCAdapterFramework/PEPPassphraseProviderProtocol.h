@@ -6,6 +6,9 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
+#ifndef PEPPassphraseProviderProtocol_h
+#define PEPPassphraseProviderProtocol_h
+
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -56,3 +59,5 @@ typedef void (^PEPPassphraseProviderCallback)(NSString * _Nullable passphrase);
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

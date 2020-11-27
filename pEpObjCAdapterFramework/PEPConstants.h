@@ -6,6 +6,9 @@
 //  Copyright © 2019 p≡p. All rights reserved.
 //
 
+#ifndef PEPConstants_h
+#define PEPConstants_h
+
 #import <Foundation/Foundation.h>
 
 #pragma mark - Constants
@@ -15,3 +18,5 @@ extern NSString *const _Nonnull kPepHeaderAutoConsume;
 
 /** The positive value of the header for "pEp-auto-consume". */
 extern NSString *const _Nonnull kPepValueAutoConsumeYes;
+
+#endif

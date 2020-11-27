@@ -6,6 +6,9 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#ifndef PEPNotifyHandshakeDelegate_h
+#define PEPNotifyHandshakeDelegate_h
+
 #import <Foundation/Foundation.h>
 
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
@@ -40,3 +43,5 @@
                       signal:(PEPSyncHandshakeSignal)signal;
 
 @end
+
+#endif

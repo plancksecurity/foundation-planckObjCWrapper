@@ -6,6 +6,9 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
+#ifndef PEPMessage_h
+#define PEPMessage_h
+
 #import <Foundation/Foundation.h>
 
 typedef NS_CLOSED_ENUM(int, PEPMsgDirection) {
@@ -51,3 +54,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

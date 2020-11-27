@@ -6,6 +6,9 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
+#ifndef PEPSession_h
+#define PEPSession_h
+
 #import <Foundation/Foundation.h>
 
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
@@ -23,3 +26,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

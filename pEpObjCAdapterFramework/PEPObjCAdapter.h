@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
+#ifndef PEPObjCAdapter_h
+#define PEPObjCAdapter_h
+
 #import <Foundation/Foundation.h>
 
 #import <PEPObjCAdapterFramework/PEPPassphraseProviderProtocol.h>
@@ -78,3 +81,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

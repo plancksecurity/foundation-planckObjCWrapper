@@ -6,6 +6,9 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#ifndef PEPSync_h
+#define PEPSync_h
+
 #import <Foundation/Foundation.h>
 
 #import <PEPObjCAdapterFramework/PEPSendMessageDelegate.h>
@@ -49,3 +52,5 @@
 - (void)shutdown;
 
 @end
+
+#endif

@@ -6,6 +6,9 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#ifndef NSNumber_PEPRating_h
+#define NSNumber_PEPRating_h
+
 #import <Foundation/Foundation.h>
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
@@ -24,3 +27,5 @@
 + (NSNumber *)numberWithPEPRating:(PEPRating)pEpRating;
 
 @end
+
+#endif
