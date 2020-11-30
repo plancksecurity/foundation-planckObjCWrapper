@@ -31,4 +31,3 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterFrameworkVersionString[];
 #import <PEPObjCAdapterFramework/PEPStringList.h>
 #import <PEPObjCAdapterFramework/PEPRating.h>
 #import <PEPObjCAdapterFramework/PEPEncFormat.h>
-#import <PEPObjCAdapterFramework/PEPColor.h>

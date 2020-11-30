@@ -69,7 +69,6 @@
 		437748E12566598F000CBB08 /* PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748E02566598F000CBB08 /* PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437748EB25665A8A000CBB08 /* PEPEncFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748EA25665A8A000CBB08 /* PEPEncFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437748F325665BA2000CBB08 /* PEPSyncHandshakeResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		437748FB25665C58000CBB08 /* PEPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748FA25665C58000CBB08 /* PEPColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437BEA9122328E570051E3A1 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
 		438C0ED52540215A00337922 /* NSArray+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 438C0ECB254020F000337922 /* NSArray+Engine.m */; };
 		438C0EDA2540216100337922 /* NSArray+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 438C0ECA254020A400337922 /* NSArray+Engine.h */; };
@@ -221,7 +220,6 @@
 		437748E02566598F000CBB08 /* PEPRating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPRating.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPRating.h; sourceTree = "<group>"; };
 		437748EA25665A8A000CBB08 /* PEPEncFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPEncFormat.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPEncFormat.h; sourceTree = "<group>"; };
 		437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPSyncHandshakeResult.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPSyncHandshakeResult.h; sourceTree = "<group>"; };
-		437748FA25665C58000CBB08 /* PEPColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPColor.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPColor.h; sourceTree = "<group>"; };
 		438C0ECA254020A400337922 /* NSArray+Engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Engine.h"; sourceTree = "<group>"; };
 		438C0ECB254020F000337922 /* NSArray+Engine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Engine.m"; sourceTree = "<group>"; };
 		438C0F1125402D6400337922 /* PEPIdentity+Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Engine.h"; sourceTree = "<group>"; };
@@ -452,7 +450,6 @@
 				437748E02566598F000CBB08 /* PEPRating.h */,
 				437748EA25665A8A000CBB08 /* PEPEncFormat.h */,
 				437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */,
-				437748FA25665C58000CBB08 /* PEPColor.h */,
 				43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */,
 				43E3985E221D7E56008E7983 /* Info.plist */,
 			);
@@ -515,7 +512,6 @@
 				437748E12566598F000CBB08 /* PEPRating.h in Headers */,
 				438C0F1325402D6400337922 /* PEPIdentity+Engine.h in Headers */,
 				430CD9B12292AC4900AAC37F /* PEPSync.h in Headers */,
-				437748FB25665C58000CBB08 /* PEPColor.h in Headers */,
 				435F519022204A67006EB11F /* PEPSessionProtocol.h in Headers */,
 				435C0CD922296B660025C6B5 /* PEPAttachment.h in Headers */,
 				435C0CBB2229380E0025C6B5 /* NSNumber+PEPRating.h in Headers */,
