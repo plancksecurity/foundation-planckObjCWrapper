@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1200"
+   LastUpgradeVersion = "1220"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      parallelizeBuildables = "NO"
+      buildImplicitDependencies = "NO">
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43E3985A221D7E56008E7983"
-               BuildableName = "PEPObjCAdapterFramework.framework"
-               BlueprintName = "PEPObjCAdapterFramework"
-               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -42,16 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64415E161BE94FCB00F6CBB2"
-               BuildableName = "pEpObjCAdapterTests.xctest"
-               BlueprintName = "pEpObjCAdapterTests"
-               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -64,15 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43E3985A221D7E56008E7983"
-            BuildableName = "PEPObjCAdapterFramework.framework"
-            BlueprintName = "PEPObjCAdapterFramework"
-            ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -83,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43E3985A221D7E56008E7983"
-            BuildableName = "PEPObjCAdapterFramework.framework"
-            BlueprintName = "PEPObjCAdapterFramework"
+            BlueprintIdentifier = "15B10796257520B200D06C34"
+            BuildableName = "liblibpepobjcadaptertypes_ios.a"
+            BlueprintName = "libpepobjcadaptertypes_ios"
             ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

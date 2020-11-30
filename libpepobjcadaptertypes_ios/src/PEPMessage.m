@@ -13,8 +13,6 @@
 
 #import "NSObject+Extension.h"
 
-#import "message_api.h"
-
 @implementation PEPMessage
 
 - (instancetype _Nonnull)initWithMessage:(PEPMessage *)message
