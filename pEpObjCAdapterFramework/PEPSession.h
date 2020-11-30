@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
+#import "libpepobjcadaptertypes_ios.h"
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPSessionProtocol.h>
 
