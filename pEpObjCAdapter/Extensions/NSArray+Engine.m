@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@import PEPObjCAdapterTypes;
-
 #import "NSArray+Engine.h"
 
 #import "PEPIdentity+Engine.h"
