@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPIdentity (Reset)
