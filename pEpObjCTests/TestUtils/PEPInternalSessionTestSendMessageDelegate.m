@@ -6,9 +6,9 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import "PEPInternalSessionTestSendMessageDelegate.h"
+#import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
 
-#import "PEPMessage.h"
+#import "PEPInternalSessionTestSendMessageDelegate.h"
 
 @implementation PEPInternalSessionTestSendMessageDelegate
 
