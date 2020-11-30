@@ -13,6 +13,22 @@
 		43ACF9112567D69800004288 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90D2567D69700004288 /* PEPLanguage.m */; };
 		43ACF9122567D69800004288 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90E2567D69700004288 /* PEPIdentity.m */; };
 		43F7C97625751829003681B5 /* PEPObjCAdapterTypesFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7C97425751829003681B5 /* PEPObjCAdapterTypesFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43F7C97C257518AB003681B5 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF9052567D60E00004288 /* NSObject+Extension.m */; };
+		43F7C97D257518AB003681B5 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90C2567D69700004288 /* PEPAttachment.m */; };
+		43F7C97E257518AB003681B5 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90E2567D69700004288 /* PEPIdentity.m */; };
+		43F7C97F257518AB003681B5 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90D2567D69700004288 /* PEPLanguage.m */; };
+		43F7C980257518AB003681B5 /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90B2567D69700004288 /* PEPMessage.m */; };
+		43F7C983257518B5003681B5 /* PEPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF8962567C32D00004288 /* PEPColor.h */; };
+		43F7C984257518B5003681B5 /* PEPDecryptFlags.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF8972567C32D00004288 /* PEPDecryptFlags.h */; };
+		43F7C985257518B5003681B5 /* PEPSyncHandshakeResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF8992567C32D00004288 /* PEPSyncHandshakeResult.h */; };
+		43F7C986257518B5003681B5 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF89A2567C32D00004288 /* PEPLanguage.h */; };
+		43F7C987257518B5003681B5 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF89B2567C32D00004288 /* PEPMessage.h */; };
+		43F7C988257518B5003681B5 /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF89D2567C32D00004288 /* PEPAttachment.h */; };
+		43F7C989257518B5003681B5 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF89E2567C32D00004288 /* PEPIdentity.h */; };
+		43F7C98A257518B5003681B5 /* PEPStringList.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF89F2567C32D00004288 /* PEPStringList.h */; };
+		43F7C98B257518B5003681B5 /* PEPEncFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF8A12567C32D00004288 /* PEPEncFormat.h */; };
+		43F7C98C257518B5003681B5 /* PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF8A22567C32D00004288 /* PEPRating.h */; };
+		43F7C98D257518B5003681B5 /* PEPMsgDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -156,6 +172,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				43F7C97625751829003681B5 /* PEPObjCAdapterTypesFramework.h in Headers */,
+				43F7C983257518B5003681B5 /* PEPColor.h in Headers */,
+				43F7C984257518B5003681B5 /* PEPDecryptFlags.h in Headers */,
+				43F7C985257518B5003681B5 /* PEPSyncHandshakeResult.h in Headers */,
+				43F7C986257518B5003681B5 /* PEPLanguage.h in Headers */,
+				43F7C987257518B5003681B5 /* PEPMessage.h in Headers */,
+				43F7C988257518B5003681B5 /* PEPAttachment.h in Headers */,
+				43F7C989257518B5003681B5 /* PEPIdentity.h in Headers */,
+				43F7C98A257518B5003681B5 /* PEPStringList.h in Headers */,
+				43F7C98B257518B5003681B5 /* PEPEncFormat.h in Headers */,
+				43F7C98C257518B5003681B5 /* PEPRating.h in Headers */,
+				43F7C98D257518B5003681B5 /* PEPMsgDirection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +286,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43F7C97C257518AB003681B5 /* NSObject+Extension.m in Sources */,
+				43F7C97D257518AB003681B5 /* PEPAttachment.m in Sources */,
+				43F7C97E257518AB003681B5 /* PEPIdentity.m in Sources */,
+				43F7C97F257518AB003681B5 /* PEPLanguage.m in Sources */,
+				43F7C980257518AB003681B5 /* PEPMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
