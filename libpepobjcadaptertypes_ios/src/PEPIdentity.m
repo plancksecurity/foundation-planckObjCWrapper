@@ -7,10 +7,8 @@
 //
 
 #import "PEPIdentity.h"
-#import "PEPConstants.h"
 
 #import "pEpEngine.h"
-#import "PEPSession.h"
 
 #import "NSObject+Extension.h"
 
