@@ -45,7 +45,6 @@
 
 /* Begin PBXFileReference section */
 		431D400B2567C1F300D76C92 /* libpEpObjCAdapterTypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpEpObjCAdapterTypes.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4374DCB82570F4EA00F69E0E /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4374DCB92570F4EA00F69E0E /* PEPObjCAdapterTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypes.h; sourceTree = "<group>"; };
 		43ACF8962567C32D00004288 /* PEPColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPColor.h; sourceTree = "<group>"; };
 		43ACF8972567C32D00004288 /* PEPDecryptFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPDecryptFlags.h; sourceTree = "<group>"; };
@@ -130,7 +129,6 @@
 				43ACF8A22567C32D00004288 /* PEPRating.h */,
 				43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */,
 				4374DCB92570F4EA00F69E0E /* PEPObjCAdapterTypes.h */,
-				4374DCB82570F4EA00F69E0E /* module.modulemap */,
 			);
 			path = Public;
 			sourceTree = "<group>";
