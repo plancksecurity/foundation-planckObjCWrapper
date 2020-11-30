@@ -11,11 +11,11 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
-    PEPContentDispositionAttachment = 0, // PEP_CONTENT_DISP_ATTACHMENT
-    PEPContentDispositionInline = 1, // PEP_CONTENT_DISP_INLINE
-    PEPContentDispositionOther = -1 // PEP_CONTENT_DISP_OTHER
-};
+#ifdef FRAMEWORK_BUILD
+#import <PEPObjCAdapterTypesFramework/PEPContentDisposition.h>
+#else
+#import "PEPContentDisposition.h"
+#endif
 
 @interface PEPAttachment : NSObject
 

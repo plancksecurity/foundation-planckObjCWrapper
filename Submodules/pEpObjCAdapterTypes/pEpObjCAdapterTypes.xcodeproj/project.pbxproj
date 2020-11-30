@@ -29,6 +29,7 @@
 		43F7C98B257518B5003681B5 /* PEPEncFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF8A12567C32D00004288 /* PEPEncFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43F7C98C257518B5003681B5 /* PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ACF8A22567C32D00004288 /* PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43F7C98D257518B5003681B5 /* PEPMsgDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43F7CB0025752E0A003681B5 /* PEPContentDisposition.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7CAFF25752E0A003681B5 /* PEPContentDisposition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +67,7 @@
 		43F7C97225751829003681B5 /* PEPObjCAdapterTypesFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PEPObjCAdapterTypesFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F7C97425751829003681B5 /* PEPObjCAdapterTypesFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypesFramework.h; sourceTree = "<group>"; };
 		43F7C97525751829003681B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43F7CAFF25752E0A003681B5 /* PEPContentDisposition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPContentDisposition.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				43ACF8A12567C32D00004288 /* PEPEncFormat.h */,
 				43ACF8A22567C32D00004288 /* PEPRating.h */,
 				43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */,
+				43F7CAFF25752E0A003681B5 /* PEPContentDisposition.h */,
 				4374DCB92570F4EA00F69E0E /* PEPObjCAdapterTypes.h */,
 			);
 			path = Public;
@@ -170,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43F7C97625751829003681B5 /* PEPObjCAdapterTypesFramework.h in Headers */,
+				43F7CB0025752E0A003681B5 /* PEPContentDisposition.h in Headers */,
 				43F7C983257518B5003681B5 /* PEPColor.h in Headers */,
 				43F7C984257518B5003681B5 /* PEPDecryptFlags.h in Headers */,
 				43F7C985257518B5003681B5 /* PEPSyncHandshakeResult.h in Headers */,

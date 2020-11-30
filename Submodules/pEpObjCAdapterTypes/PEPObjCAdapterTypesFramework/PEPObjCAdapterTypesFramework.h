@@ -26,3 +26,4 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterTypesFrameworkVersionString[
 #import <PEPObjCAdapterTypesFramework/PEPEncFormat.h>
 #import <PEPObjCAdapterTypesFramework/PEPRating.h>
 #import <PEPObjCAdapterTypesFramework/PEPMsgDirection.h>
+#import <PEPObjCAdapterTypesFramework/PEPContentDisposition.h>

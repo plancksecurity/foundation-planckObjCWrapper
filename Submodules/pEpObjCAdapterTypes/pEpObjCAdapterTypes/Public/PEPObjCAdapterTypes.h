@@ -21,5 +21,6 @@
 #import "PEPEncFormat.h"
 #import "PEPRating.h"
 #import "PEPMsgDirection.h"
+#import "PEPContentDisposition.h"
 
 #endif /* PEPObjCAdapterTypes_h */
