@@ -64,7 +64,6 @@
 		436E916E24B65805000296FF /* PEPPassphraseProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
-		437748D92566577A000CBB08 /* PEPStringList.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748D82566577A000CBB08 /* PEPStringList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437748E12566598F000CBB08 /* PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748E02566598F000CBB08 /* PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437748EB25665A8A000CBB08 /* PEPEncFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748EA25665A8A000CBB08 /* PEPEncFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		437748F325665BA2000CBB08 /* PEPSyncHandshakeResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -215,7 +214,6 @@
 		436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Rick Deckard (43F270EC) – Secret.asc"; sourceTree = "<group>"; };
 		436E917524B71E12000296FF /* PEPPassphraseProviderMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderMock.h; sourceTree = "<group>"; };
 		436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseProviderMock.m; sourceTree = "<group>"; };
-		437748D82566577A000CBB08 /* PEPStringList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPStringList.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPStringList.h; sourceTree = "<group>"; };
 		437748E02566598F000CBB08 /* PEPRating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPRating.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPRating.h; sourceTree = "<group>"; };
 		437748EA25665A8A000CBB08 /* PEPEncFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPEncFormat.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPEncFormat.h; sourceTree = "<group>"; };
 		437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPSyncHandshakeResult.h; path = ../Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPSyncHandshakeResult.h; sourceTree = "<group>"; };
@@ -443,7 +441,6 @@
 				43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */,
 				436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */,
 				4361F02625657DEE0059F720 /* PEPDecryptFlags.h */,
-				437748D82566577A000CBB08 /* PEPStringList.h */,
 				437748E02566598F000CBB08 /* PEPRating.h */,
 				437748EA25665A8A000CBB08 /* PEPEncFormat.h */,
 				437748F225665BA2000CBB08 /* PEPSyncHandshakeResult.h */,
@@ -501,7 +498,6 @@
 				435C0CAC222930340025C6B5 /* PEPConstants.h in Headers */,
 				4349CD6F24AC73FC00A22A13 /* NSString+NormalizePassphrase.h in Headers */,
 				434707F624C210CA00E05485 /* PEPSession.h in Headers */,
-				437748D92566577A000CBB08 /* PEPStringList.h in Headers */,
 				4326A0AF2553F882001E18C6 /* PEPIdentity+Reset.h in Headers */,
 				437748F325665BA2000CBB08 /* PEPSyncHandshakeResult.h in Headers */,
 				4361F02725657E020059F720 /* PEPDecryptFlags.h in Headers */,
