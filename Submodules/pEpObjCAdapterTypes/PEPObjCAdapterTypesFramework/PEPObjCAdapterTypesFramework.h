@@ -18,12 +18,12 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterTypesFrameworkVersionString[
 #import <PEPObjCAdapterTypesFramework/PEPColor.h>
 #import <PEPObjCAdapterTypesFramework/PEPDecryptFlags.h>
 #import <PEPObjCAdapterTypesFramework/PEPSyncHandshakeResult.h>
-#import <PEPObjCAdapterTypesFramework/PEPLanguage.h>
-#import <PEPObjCAdapterTypesFramework/PEPMessage.h>
-#import <PEPObjCAdapterTypesFramework/PEPAttachment.h>
-#import <PEPObjCAdapterTypesFramework/PEPIdentity.h>
 #import <PEPObjCAdapterTypesFramework/PEPStringList.h>
 #import <PEPObjCAdapterTypesFramework/PEPEncFormat.h>
 #import <PEPObjCAdapterTypesFramework/PEPRating.h>
 #import <PEPObjCAdapterTypesFramework/PEPMsgDirection.h>
 #import <PEPObjCAdapterTypesFramework/PEPContentDisposition.h>
+#import <PEPObjCAdapterTypesFramework/PEPLanguage.h>
+#import <PEPObjCAdapterTypesFramework/PEPMessage.h>
+#import <PEPObjCAdapterTypesFramework/PEPAttachment.h>
+#import <PEPObjCAdapterTypesFramework/PEPIdentity.h>
