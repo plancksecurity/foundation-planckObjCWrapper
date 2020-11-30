@@ -1,28 +1,28 @@
 //
-//  pEpObjCAdapterTypesFramework.h
-//  pEpObjCAdapterTypesFramework
+//  PEPObjCAdapterTypesFramework.h
+//  PEPObjCAdapterTypesFramework
 //
 //  Created by Dirk Zimmermann on 30.11.20.
 //
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for pEpObjCAdapterTypesFramework.
-FOUNDATION_EXPORT double pEpObjCAdapterTypesFrameworkVersionNumber;
+//! Project version number for PEPObjCAdapterTypesFramework.
+FOUNDATION_EXPORT double PEPObjCAdapterTypesFrameworkVersionNumber;
 
 //! Project version string for pEpObjCAdapterTypesFramework.
-FOUNDATION_EXPORT const unsigned char pEpObjCAdapterTypesFrameworkVersionString[];
+FOUNDATION_EXPORT const unsigned char PEPObjCAdapterTypesFrameworkVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <pEpObjCAdapterTypesFramework/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <PEPObjCAdapterTypesFramework/PublicHeader.h>
 
-#import <pEpObjCAdapterTypesFramework/PEPColor.h>
-#import <pEpObjCAdapterTypesFramework/PEPDecryptFlags.h>
-#import <pEpObjCAdapterTypesFramework/PEPSyncHandshakeResult.h>
-#import <pEpObjCAdapterTypesFramework/PEPLanguage.h>
-#import <pEpObjCAdapterTypesFramework/PEPMessage.h>
-#import <pEpObjCAdapterTypesFramework/PEPAttachment.h>
-#import <pEpObjCAdapterTypesFramework/PEPIdentity.h>
-#import <pEpObjCAdapterTypesFramework/PEPStringList.h>
-#import <pEpObjCAdapterTypesFramework/PEPEncFormat.h>
-#import <pEpObjCAdapterTypesFramework/PEPRating.h>
-#import <pEpObjCAdapterTypesFramework/PEPMsgDirection.h>
+#import <PEPObjCAdapterTypesFramework/PEPColor.h>
+#import <PEPObjCAdapterTypesFramework/PEPDecryptFlags.h>
+#import <PEPObjCAdapterTypesFramework/PEPSyncHandshakeResult.h>
+#import <PEPObjCAdapterTypesFramework/PEPLanguage.h>
+#import <PEPObjCAdapterTypesFramework/PEPMessage.h>
+#import <PEPObjCAdapterTypesFramework/PEPAttachment.h>
+#import <PEPObjCAdapterTypesFramework/PEPIdentity.h>
+#import <PEPObjCAdapterTypesFramework/PEPStringList.h>
+#import <PEPObjCAdapterTypesFramework/PEPEncFormat.h>
+#import <PEPObjCAdapterTypesFramework/PEPRating.h>
+#import <PEPObjCAdapterTypesFramework/PEPMsgDirection.h>
