@@ -6,8 +6,6 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-@import PEPObjCAdapterTypes;
-
 #import "NSNumber+PEPRating.h"
 
 #import "message_api.h"
