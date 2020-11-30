@@ -10,6 +10,7 @@
 #define PEPSessionProtocol_h
 
 #import <Foundation/Foundation.h>
+
 #import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
