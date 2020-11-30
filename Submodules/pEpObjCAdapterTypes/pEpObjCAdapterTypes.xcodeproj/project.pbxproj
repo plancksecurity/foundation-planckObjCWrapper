@@ -12,6 +12,7 @@
 		43ACF9102567D69800004288 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90C2567D69700004288 /* PEPAttachment.m */; };
 		43ACF9112567D69800004288 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90D2567D69700004288 /* PEPLanguage.m */; };
 		43ACF9122567D69800004288 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90E2567D69700004288 /* PEPIdentity.m */; };
+		43F7C97625751829003681B5 /* pEpObjCAdapterTypesFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7C97425751829003681B5 /* pEpObjCAdapterTypesFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,10 +48,20 @@
 		43ACF90D2567D69700004288 /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
 		43ACF90E2567D69700004288 /* PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 		43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMsgDirection.h; sourceTree = "<group>"; };
+		43F7C97225751829003681B5 /* pEpObjCAdapterTypesFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pEpObjCAdapterTypesFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F7C97425751829003681B5 /* pEpObjCAdapterTypesFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pEpObjCAdapterTypesFramework.h; sourceTree = "<group>"; };
+		43F7C97525751829003681B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		431D40082567C1F300D76C92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43F7C96F25751829003681B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -64,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				431D400D2567C1F300D76C92 /* pEpObjCAdapterTypes */,
+				43F7C97325751829003681B5 /* pEpObjCAdapterTypesFramework */,
 				431D400C2567C1F300D76C92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				431D400B2567C1F300D76C92 /* libpEpObjCAdapterTypes.a */,
+				43F7C97225751829003681B5 /* pEpObjCAdapterTypesFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,7 +139,27 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		43F7C97325751829003681B5 /* pEpObjCAdapterTypesFramework */ = {
+			isa = PBXGroup;
+			children = (
+				43F7C97425751829003681B5 /* pEpObjCAdapterTypesFramework.h */,
+				43F7C97525751829003681B5 /* Info.plist */,
+			);
+			path = pEpObjCAdapterTypesFramework;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		43F7C96D25751829003681B5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43F7C97625751829003681B5 /* pEpObjCAdapterTypesFramework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		431D400A2567C1F300D76C92 /* pEpObjCAdapterTypes */ = {
@@ -146,6 +179,24 @@
 			productReference = 431D400B2567C1F300D76C92 /* libpEpObjCAdapterTypes.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		43F7C97125751829003681B5 /* pEpObjCAdapterTypesFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43F7C97925751829003681B5 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTypesFramework" */;
+			buildPhases = (
+				43F7C96D25751829003681B5 /* Headers */,
+				43F7C96E25751829003681B5 /* Sources */,
+				43F7C96F25751829003681B5 /* Frameworks */,
+				43F7C97025751829003681B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = pEpObjCAdapterTypesFramework;
+			productName = pEpObjCAdapterTypesFramework;
+			productReference = 43F7C97225751829003681B5 /* pEpObjCAdapterTypesFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -155,6 +206,9 @@
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					431D400A2567C1F300D76C92 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					43F7C97125751829003681B5 = {
 						CreatedOnToolsVersion = 12.0;
 					};
 				};
@@ -173,9 +227,20 @@
 			projectRoot = "";
 			targets = (
 				431D400A2567C1F300D76C92 /* pEpObjCAdapterTypes */,
+				43F7C97125751829003681B5 /* pEpObjCAdapterTypesFramework */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		43F7C97025751829003681B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		431D40072567C1F300D76C92 /* Sources */ = {
@@ -187,6 +252,13 @@
 				43ACF9122567D69800004288 /* PEPIdentity.m in Sources */,
 				43ACF90F2567D69800004288 /* PEPMessage.m in Sources */,
 				43ACF9112567D69800004288 /* PEPLanguage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43F7C96E25751829003681B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +403,58 @@
 			};
 			name = Release;
 		};
+		43F7C97725751829003681B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = pEpObjCAdapterTypesFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = security.pEp.app.adapter.pEpObjCAdapterTypesFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		43F7C97825751829003681B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = pEpObjCAdapterTypesFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = security.pEp.app.adapter.pEpObjCAdapterTypesFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -348,6 +472,15 @@
 			buildConfigurations = (
 				431D40152567C1F300D76C92 /* Debug */,
 				431D40162567C1F300D76C92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43F7C97925751829003681B5 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTypesFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43F7C97725751829003681B5 /* Debug */,
+				43F7C97825751829003681B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
