@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@import PEPObjCAdapterTypes;
-
 #import "pEpEngine.h"
 
 NS_ASSUME_NONNULL_BEGIN
