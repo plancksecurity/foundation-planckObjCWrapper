@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
+
 #import "PEPMessage+Engine.h"
 
 #import "pEp_string.h"
