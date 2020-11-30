@@ -16,7 +16,7 @@
 		15B107AF257520DE00D06C34 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107AB257520DE00D06C34 /* PEPLanguage.m */; };
 		15B107B0257520DE00D06C34 /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107AC257520DE00D06C34 /* PEPMessage.m */; };
 		15B107B4257521DD00D06C34 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; platformFilter = ios; };
-		15B108CD25752A3B00D06C34 /* liblibpepobjcadaptertypes_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B10797257520B200D06C34 /* liblibpepobjcadaptertypes_ios.a */; };
+		15B108CD25752A3B00D06C34 /* libpepobjcadaptertypes_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B10797257520B200D06C34 /* libpepobjcadaptertypes_ios.a */; };
 		15B108F6257547E800D06C34 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107AA257520DE00D06C34 /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15B108F7257547E800D06C34 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A4257520DE00D06C34 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15B108F8257547E800D06C34 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A7257520DE00D06C34 /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -165,7 +165,7 @@
 		15206CA91F8BA183003FF880 /* PEPSessionProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProvider.m; sourceTree = "<group>"; };
 		152A9C462010F50400F962ED /* PEPInternalSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTest.m; sourceTree = "<group>"; };
 		155674EC22B82D710097930C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		15B10797257520B200D06C34 /* liblibpepobjcadaptertypes_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibpepobjcadaptertypes_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		15B10797257520B200D06C34 /* libpepobjcadaptertypes_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libpepobjcadaptertypes_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B10799257520B200D06C34 /* libpepobjcadaptertypes_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libpepobjcadaptertypes_ios.h; sourceTree = "<group>"; };
 		15B1079A257520B200D06C34 /* libpepobjcadaptertypes_ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libpepobjcadaptertypes_ios.m; sourceTree = "<group>"; };
 		15B107A4257520DE00D06C34 /* PEPEngineTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPEngineTypes.h; sourceTree = "<group>"; };
@@ -297,7 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15B108CD25752A3B00D06C34 /* liblibpepobjcadaptertypes_ios.a in Frameworks */,
+				15B108CD25752A3B00D06C34 /* libpepobjcadaptertypes_ios.a in Frameworks */,
 				3A68CB28252E244900F1B71C /* pEp4iosIntern.framework in Frameworks */,
 				43E3986B221D7EDD008E7983 /* libiconv.2.tbd in Frameworks */,
 				155674ED22B82D710097930C /* libz.dylib in Frameworks */,
@@ -424,7 +424,7 @@
 			children = (
 				64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */,
 				43E3985B221D7E56008E7983 /* PEPObjCAdapterFramework.framework */,
-				15B10797257520B200D06C34 /* liblibpepobjcadaptertypes_ios.a */,
+				15B10797257520B200D06C34 /* libpepobjcadaptertypes_ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -582,9 +582,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		15B10796257520B200D06C34 /* libpepobjcadaptertypes_ios */ = {
+		15B10796257520B200D06C34 /* pepobjcadaptertypes_ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15B1079D257520B200D06C34 /* Build configuration list for PBXNativeTarget "libpepobjcadaptertypes_ios" */;
+			buildConfigurationList = 15B1079D257520B200D06C34 /* Build configuration list for PBXNativeTarget "pepobjcadaptertypes_ios" */;
 			buildPhases = (
 				15B10793257520B200D06C34 /* Sources */,
 				15B10794257520B200D06C34 /* Frameworks */,
@@ -594,9 +594,9 @@
 			);
 			dependencies = (
 			);
-			name = libpepobjcadaptertypes_ios;
+			name = pepobjcadaptertypes_ios;
 			productName = libpepobjcadaptertypes_ios;
-			productReference = 15B10797257520B200D06C34 /* liblibpepobjcadaptertypes_ios.a */;
+			productReference = 15B10797257520B200D06C34 /* libpepobjcadaptertypes_ios.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		43E3985A221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
@@ -683,7 +683,7 @@
 			targets = (
 				64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */,
 				43E3985A221D7E56008E7983 /* PEPObjCAdapterFramework */,
-				15B10796257520B200D06C34 /* libpepobjcadaptertypes_ios */,
+				15B10796257520B200D06C34 /* pepobjcadaptertypes_ios */,
 			);
 		};
 /* End PBXProject section */
@@ -1168,7 +1168,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		15B1079D257520B200D06C34 /* Build configuration list for PBXNativeTarget "libpepobjcadaptertypes_ios" */ = {
+		15B1079D257520B200D06C34 /* Build configuration list for PBXNativeTarget "pepobjcadaptertypes_ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15B1079E257520B200D06C34 /* Debug */,

@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "15B10796257520B200D06C34"
-               BuildableName = "liblibpepobjcadaptertypes_ios.a"
-               BlueprintName = "libpepobjcadaptertypes_ios"
+               BuildableName = "libpepobjcadaptertypes_ios.a"
+               BlueprintName = "pepobjcadaptertypes_ios"
                ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
