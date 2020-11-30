@@ -46,6 +46,7 @@
 		43ACF90C2567D69700004288 /* PEPAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment.m; sourceTree = "<group>"; };
 		43ACF90D2567D69700004288 /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
 		43ACF90E2567D69700004288 /* PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
+		43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMsgDirection.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +99,7 @@
 				43ACF89F2567C32D00004288 /* PEPStringList.h */,
 				43ACF8A12567C32D00004288 /* PEPEncFormat.h */,
 				43ACF8A22567C32D00004288 /* PEPRating.h */,
+				43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */,
 				4374DCB92570F4EA00F69E0E /* PEPObjCAdapterTypes.h */,
 				4374DCB82570F4EA00F69E0E /* module.modulemap */,
 			);

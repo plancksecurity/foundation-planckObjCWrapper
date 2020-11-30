@@ -20,5 +20,6 @@
 #import "PEPStringList.h"
 #import "PEPEncFormat.h"
 #import "PEPRating.h"
+#import "PEPMsgDirection.h"
 
 #endif /* PEPObjCAdapterTypes_h */
