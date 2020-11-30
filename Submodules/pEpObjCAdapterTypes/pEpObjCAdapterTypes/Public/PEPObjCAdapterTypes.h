@@ -18,6 +18,7 @@
 #import "PEPRating.h"
 #import "PEPMsgDirection.h"
 #import "PEPContentDisposition.h"
+#import "PEPCommType.h"
 #import "PEPLanguage.h"
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
