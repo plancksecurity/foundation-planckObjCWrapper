@@ -6,8 +6,6 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-@import PEPObjCAdapterTypes;
-
 #import "PEPSession.h"
 
 #import "PEPEngineTypes.h"
