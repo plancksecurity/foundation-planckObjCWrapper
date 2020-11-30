@@ -6,8 +6,6 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-@import PEPObjCAdapterTypes;
-
 #import "pEpEngine.h"
 
 #import "PEPSync.h"
