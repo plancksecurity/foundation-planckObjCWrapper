@@ -775,10 +775,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../Sequoia4iOS/build/include",
-					"$(PROJECT_DIR)/Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public",
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -829,10 +826,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../Sequoia4iOS/build/include",
-					"$(PROJECT_DIR)/Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public",
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/include";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
 				MTL_ENABLE_DEBUG_INFO = NO;
