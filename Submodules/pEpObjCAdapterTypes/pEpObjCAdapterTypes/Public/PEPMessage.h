@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPMsgDirection.h"
+#import <PEPObjCAdapterTypesFramework/PEPMsgDirection.h>
 
 @class PEPIdentity;
 @class PEPAttachment;
