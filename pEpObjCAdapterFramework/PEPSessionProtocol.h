@@ -13,8 +13,6 @@
 
 #import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
 
-#import <PEPObjCAdapterFramework/PEPTypes.h>
-
 @class PEPLanguage;
 @class PEPIdentity;
 @class PEPMessage;

@@ -9,6 +9,7 @@
 #import "NSString+NormalizePassphrase.h"
 
 #import "PEPSessionProtocol.h"
+#import "PEPTypes.h"
 
 /// The maximum number of code points allowed in a passphrase
 static NSUInteger s_passphraseMaxNumberOfCodePoints = 250;
