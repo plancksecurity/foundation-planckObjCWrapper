@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@import PEPObjCAdapterTypes;
-
 #import "message.h"
 
 NS_ASSUME_NONNULL_BEGIN
