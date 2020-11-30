@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
+
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
 #import "PEPObjCAdapter.h"
