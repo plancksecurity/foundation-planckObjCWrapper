@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef TYPE_FRAMEWORK
+#ifdef FRAMEWORK_BUILD
 #import <PEPObjCAdapterTypesFramework/PEPMsgDirection.h>
 #else
 #import "PEPMsgDirection.h"
