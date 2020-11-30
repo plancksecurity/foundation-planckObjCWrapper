@@ -12,7 +12,7 @@
 		43ACF9102567D69800004288 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90C2567D69700004288 /* PEPAttachment.m */; };
 		43ACF9112567D69800004288 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90D2567D69700004288 /* PEPLanguage.m */; };
 		43ACF9122567D69800004288 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 43ACF90E2567D69700004288 /* PEPIdentity.m */; };
-		43F7C97625751829003681B5 /* PEPObjCAdapterTypesFrameworka.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7C97425751829003681B5 /* PEPObjCAdapterTypesFrameworka.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43F7C97625751829003681B5 /* PEPObjCAdapterTypesFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7C97425751829003681B5 /* PEPObjCAdapterTypesFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,7 +49,7 @@
 		43ACF90E2567D69700004288 /* PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 		43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMsgDirection.h; sourceTree = "<group>"; };
 		43F7C97225751829003681B5 /* pEpObjCAdapterTypesFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pEpObjCAdapterTypesFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43F7C97425751829003681B5 /* PEPObjCAdapterTypesFrameworka.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypesFrameworka.h; sourceTree = "<group>"; };
+		43F7C97425751829003681B5 /* PEPObjCAdapterTypesFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypesFramework.h; sourceTree = "<group>"; };
 		43F7C97525751829003681B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,7 +142,7 @@
 		43F7C97325751829003681B5 /* pEpObjCAdapterTypesFramework */ = {
 			isa = PBXGroup;
 			children = (
-				43F7C97425751829003681B5 /* PEPObjCAdapterTypesFrameworka.h */,
+				43F7C97425751829003681B5 /* PEPObjCAdapterTypesFramework.h */,
 				43F7C97525751829003681B5 /* Info.plist */,
 			);
 			path = pEpObjCAdapterTypesFramework;
@@ -155,7 +155,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F7C97625751829003681B5 /* PEPObjCAdapterTypesFrameworka.h in Headers */,
+				43F7C97625751829003681B5 /* PEPObjCAdapterTypesFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
