@@ -10,10 +10,10 @@
 #define PEPSessionProtocol_h
 
 #import <Foundation/Foundation.h>
+#import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
-#import <PEPObjCAdapterFramework/PEPDecryptFlags.h>
 #import <PEPObjCAdapterFramework/PEPStringList.h>
 #import <PEPObjCAdapterFramework/PEPRating.h>
 #import <PEPObjCAdapterFramework/PEPEncFormat.h>
