@@ -14,7 +14,6 @@
 
 #import <PEPObjCAdapterFramework/PEPTypes.h>
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
-#import <PEPObjCAdapterFramework/PEPSyncHandshakeResult.h>
 #import <PEPObjCAdapterFramework/PEPColor.h>
 
 @class PEPLanguage;
