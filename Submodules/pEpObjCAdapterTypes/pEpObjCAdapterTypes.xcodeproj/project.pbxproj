@@ -63,7 +63,7 @@
 		43ACF90D2567D69700004288 /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
 		43ACF90E2567D69700004288 /* PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 		43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMsgDirection.h; sourceTree = "<group>"; };
-		43F7C97225751829003681B5 /* pEpObjCAdapterTypesFramework1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pEpObjCAdapterTypesFramework1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F7C97225751829003681B5 /* PEPObjCAdapterTypesFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PEPObjCAdapterTypesFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F7C97425751829003681B5 /* PEPObjCAdapterTypesFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypesFramework.h; sourceTree = "<group>"; };
 		43F7C97525751829003681B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				431D400D2567C1F300D76C92 /* pEpObjCAdapterTypes */,
-				43F7C97325751829003681B5 /* pEpObjCAdapterTypesFramework1 */,
+				43F7C97325751829003681B5 /* PEPObjCAdapterTypesFramework */,
 				431D400C2567C1F300D76C92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				431D400B2567C1F300D76C92 /* libpEpObjCAdapterTypes.a */,
-				43F7C97225751829003681B5 /* pEpObjCAdapterTypesFramework1.framework */,
+				43F7C97225751829003681B5 /* PEPObjCAdapterTypesFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,13 +153,13 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
-		43F7C97325751829003681B5 /* pEpObjCAdapterTypesFramework1 */ = {
+		43F7C97325751829003681B5 /* PEPObjCAdapterTypesFramework */ = {
 			isa = PBXGroup;
 			children = (
 				43F7C97425751829003681B5 /* PEPObjCAdapterTypesFramework.h */,
 				43F7C97525751829003681B5 /* Info.plist */,
 			);
-			path = pEpObjCAdapterTypesFramework1;
+			path = PEPObjCAdapterTypesFramework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,9 +204,9 @@
 			productReference = 431D400B2567C1F300D76C92 /* libpEpObjCAdapterTypes.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		43F7C97125751829003681B5 /* pEpObjCAdapterTypesFramework1 */ = {
+		43F7C97125751829003681B5 /* PEPObjCAdapterTypesFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43F7C97925751829003681B5 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTypesFramework1" */;
+			buildConfigurationList = 43F7C97925751829003681B5 /* Build configuration list for PBXNativeTarget "PEPObjCAdapterTypesFramework" */;
 			buildPhases = (
 				43F7C96D25751829003681B5 /* Headers */,
 				43F7C96E25751829003681B5 /* Sources */,
@@ -217,9 +217,9 @@
 			);
 			dependencies = (
 			);
-			name = pEpObjCAdapterTypesFramework1;
+			name = PEPObjCAdapterTypesFramework;
 			productName = pEpObjCAdapterTypesFramework;
-			productReference = 43F7C97225751829003681B5 /* pEpObjCAdapterTypesFramework1.framework */;
+			productReference = 43F7C97225751829003681B5 /* PEPObjCAdapterTypesFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -252,7 +252,7 @@
 			projectRoot = "";
 			targets = (
 				431D400A2567C1F300D76C92 /* pEpObjCAdapterTypes */,
-				43F7C97125751829003681B5 /* pEpObjCAdapterTypesFramework1 */,
+				43F7C97125751829003681B5 /* PEPObjCAdapterTypesFramework */,
 			);
 		};
 /* End PBXProject section */
@@ -506,7 +506,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43F7C97925751829003681B5 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTypesFramework1" */ = {
+		43F7C97925751829003681B5 /* Build configuration list for PBXNativeTarget "PEPObjCAdapterTypesFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43F7C97725751829003681B5 /* Debug */,
