@@ -31,6 +31,7 @@
 		43F7C98D257518B5003681B5 /* PEPMsgDirection.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7C7D62574DD60003681B5 /* PEPMsgDirection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43F7CB0025752E0A003681B5 /* PEPContentDisposition.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7CAFF25752E0A003681B5 /* PEPContentDisposition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43F7CB5E25753013003681B5 /* PEPCommType.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7CB5D25753013003681B5 /* PEPCommType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43F7CBBC257533ED003681B5 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7CBBB257533ED003681B5 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,6 +71,7 @@
 		43F7C97525751829003681B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43F7CAFF25752E0A003681B5 /* PEPContentDisposition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPContentDisposition.h; sourceTree = "<group>"; };
 		43F7CB5D25753013003681B5 /* PEPCommType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPCommType.h; sourceTree = "<group>"; };
+		43F7CBBB257533ED003681B5 /* PEPSessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				43ACF89D2567C32D00004288 /* PEPAttachment.h */,
 				43ACF89B2567C32D00004288 /* PEPMessage.h */,
 				43ACF89E2567C32D00004288 /* PEPIdentity.h */,
+				43F7CBBB257533ED003681B5 /* PEPSessionProtocol.h */,
 				4374DCB92570F4EA00F69E0E /* PEPObjCAdapterTypes.h */,
 			);
 			path = Public;
@@ -184,6 +187,7 @@
 				43F7C986257518B5003681B5 /* PEPLanguage.h in Headers */,
 				43F7C987257518B5003681B5 /* PEPMessage.h in Headers */,
 				43F7C988257518B5003681B5 /* PEPAttachment.h in Headers */,
+				43F7CBBC257533ED003681B5 /* PEPSessionProtocol.h in Headers */,
 				43F7C989257518B5003681B5 /* PEPIdentity.h in Headers */,
 				43F7C98A257518B5003681B5 /* PEPStringList.h in Headers */,
 				43F7C98B257518B5003681B5 /* PEPEncFormat.h in Headers */,

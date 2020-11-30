@@ -11,9 +11,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
+
 #import <PEPObjCAdapterFramework/PEPEngineTypes.h>
 #import <PEPObjCAdapterFramework/PEPTypes.h>
-#import <PEPObjCAdapterFramework/PEPSessionProtocol.h>
 
 @class PEPMessage;
 @class PEPIdentity;

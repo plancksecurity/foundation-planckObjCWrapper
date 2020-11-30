@@ -6,9 +6,10 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
+#import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
+
 #import "NSString+NormalizePassphrase.h"
 
-#import "PEPSessionProtocol.h"
 #import "PEPTypes.h"
 
 /// The maximum number of code points allowed in a passphrase

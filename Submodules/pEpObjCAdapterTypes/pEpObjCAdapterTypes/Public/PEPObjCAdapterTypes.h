@@ -23,5 +23,6 @@
 #import "PEPAttachment.h"
 #import "PEPMessage.h"
 #import "PEPIdentity.h"
+#import "PEPSessionProtocol.h"
 
 #endif /* PEPObjCAdapterTypes_h */

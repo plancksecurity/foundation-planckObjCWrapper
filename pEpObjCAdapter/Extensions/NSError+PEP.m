@@ -6,14 +6,14 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+#import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
+
 #import "PEPTypes.h"
 
 #import "NSError+PEP.h"
 #import "NSError+PEP+Internal.h"
 
 #import "status_to_string.h"
-
-#import "PEPSessionProtocol.h"
 
 @implementation NSError (Extension)
 

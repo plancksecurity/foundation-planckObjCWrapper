@@ -28,3 +28,4 @@ FOUNDATION_EXPORT const unsigned char PEPObjCAdapterTypesFrameworkVersionString[
 #import <PEPObjCAdapterTypesFramework/PEPMessage.h>
 #import <PEPObjCAdapterTypesFramework/PEPAttachment.h>
 #import <PEPObjCAdapterTypesFramework/PEPIdentity.h>
+#import <PEPObjCAdapterTypesFramework/PEPSessionProtocol.h>
