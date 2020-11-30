@@ -47,7 +47,6 @@
 		435C0CAD222930340025C6B5 /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 435C0CAB222930340025C6B5 /* PEPConstants.m */; };
 		435C0CBB2229380E0025C6B5 /* NSNumber+PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435C0CD922296B660025C6B5 /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 439D91A3208479EE003F6AC2 /* PEPAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		435F5164222045FB006EB11F /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 435F5163222045FB006EB11F /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		435F5168222046C2006EB11F /* NSArray+Take.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Take.m */; };
 		435F5169222046C2006EB11F /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
 		435F516C222046C2006EB11F /* PEPObjCAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */; };
@@ -208,7 +207,6 @@
 		435C0CA022292E7C0025C6B5 /* PEPTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PEPTypes.h; path = PEPObjCAdapterFramework/PEPTypes.h; sourceTree = SOURCE_ROOT; };
 		435C0CAA222930340025C6B5 /* PEPConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPConstants.h; sourceTree = "<group>"; };
 		435C0CAB222930340025C6B5 /* PEPConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPConstants.m; sourceTree = "<group>"; };
-		435F5163222045FB006EB11F /* PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEPIdentity.h; path = Submodules/pEpObjCAdapterTypes/pEpObjCAdapterTypes/Public/PEPIdentity.h; sourceTree = SOURCE_ROOT; };
 		435F518F22204A67006EB11F /* PEPSessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEPSessionProtocol.h; path = PEPObjCAdapterFramework/PEPSessionProtocol.h; sourceTree = SOURCE_ROOT; };
 		4360A9FD2227CFA300E62E5A /* NSError+PEP+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+PEP+Internal.h"; sourceTree = "<group>"; };
 		4360A9FE2227EBB200E62E5A /* NSNumber+PEPRating+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+PEPRating+Internal.h"; sourceTree = "<group>"; };
@@ -451,7 +449,6 @@
 				43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */,
 				435C0CA022292E7C0025C6B5 /* PEPTypes.h */,
 				43FF2ECC2226AE7E000D9567 /* PEPEngineTypes.h */,
-				435F5163222045FB006EB11F /* PEPIdentity.h */,
 				436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */,
 				4361F02625657DEE0059F720 /* PEPDecryptFlags.h */,
 				437748D82566577A000CBB08 /* PEPStringList.h */,
@@ -506,7 +503,6 @@
 				43589EF724A4A3B70079BEA2 /* PEPPassphraseCache.h in Headers */,
 				435C0CA222292E7C0025C6B5 /* PEPTypes.h in Headers */,
 				433DFBAC24A5E04000AB373B /* PEPPassphraseCacheEntry.h in Headers */,
-				435F5164222045FB006EB11F /* PEPIdentity.h in Headers */,
 				43ECE9CA25407FF3005F1925 /* PEPMessage+Engine.h in Headers */,
 				438C0EDA2540216100337922 /* NSArray+Engine.h in Headers */,
 				43AD0E3022E99ECE00D46F56 /* PEPInternalConstants.h in Headers */,
