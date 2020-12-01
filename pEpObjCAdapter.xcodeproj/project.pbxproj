@@ -16,6 +16,14 @@
 		150E8FC325755B7200AE2198 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107AB257520DE00D06C34 /* PEPLanguage.m */; };
 		150E8FC425755B7200AE2198 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107A6257520DE00D06C34 /* PEPAttachment.m */; };
 		152A9C472010F50400F962ED /* PEPInternalSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPInternalSessionTest.m */; };
+		1552D92325765EC900A92F71 /* NSObject+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109FA2575510300D06C34 /* NSObject+Extension.h */; };
+		1552D92825765EDC00A92F71 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A7257520DE00D06C34 /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1552D92925765EDC00A92F71 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109E525754F8100D06C34 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1552D92A25765EDC00A92F71 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A4257520DE00D06C34 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1552D92B25765EDC00A92F71 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107AA257520DE00D06C34 /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1552D92C25765EDC00A92F71 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109EB25754FCF00D06C34 /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1552D92D25765EDC00A92F71 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A8257520DE00D06C34 /* PEPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1552D92E25765EDC00A92F71 /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A9257520DE00D06C34 /* PEPAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		155674ED22B82D710097930C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 155674EC22B82D710097930C /* libz.dylib */; };
 		15B1079B257520B200D06C34 /* libpepobjcadaptertypes_ios.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B1079A257520B200D06C34 /* libpepobjcadaptertypes_ios.m */; };
 		15B1079C257520B200D06C34 /* libpepobjcadaptertypes_ios.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15B10799257520B200D06C34 /* libpepobjcadaptertypes_ios.h */; };
@@ -580,7 +588,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1552D92B25765EDC00A92F71 /* PEPIdentity.h in Headers */,
+				1552D92C25765EDC00A92F71 /* PEPTypes.h in Headers */,
+				1552D92825765EDC00A92F71 /* PEPLanguage.h in Headers */,
+				1552D92925765EDC00A92F71 /* PEPSessionProtocol.h in Headers */,
+				1552D92D25765EDC00A92F71 /* PEPMessage.h in Headers */,
+				1552D92325765EC900A92F71 /* NSObject+Extension.h in Headers */,
 				150E8FB525755B6900AE2198 /* PEPObjCAdapterTypes_macOS.h in Headers */,
+				1552D92E25765EDC00A92F71 /* PEPAttachment.h in Headers */,
+				1552D92A25765EDC00A92F71 /* PEPEngineTypes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,7 +999,7 @@
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1006,7 +1022,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1063,7 +1079,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../Sequoia4iOS/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/src",
-					"$(PROJECT_DIR)/libpepobjcadaptertypes_ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
@@ -1118,7 +1133,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../Sequoia4iOS/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/src",
-					"$(PROJECT_DIR)/libpepobjcadaptertypes_ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
