@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
-#import "PEPMessage.h"
+#import <PEPObjCAdapterFramework/PEPTypes.h>
+#import <PEPObjCAdapterFramework/PEPEngineTypes.h>
+#import <PEPObjCAdapterFramework/PEPMessage.h>
 
 @class PEPLanguage;
 @class PEPIdentity;
-@class PEPMessage;
+@class PEPMessage; //DIRK: has @class and import. Makes sense?
 
 NS_ASSUME_NONNULL_BEGIN
 
