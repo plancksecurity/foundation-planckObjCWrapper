@@ -17,7 +17,7 @@ Drag the project file `pEpObjCAdapterTypes.xcodeproj` into your workspace. If yo
 * In your project, in your target, under "Build Phases", add `PEPObjCAdapterTypesFramework.framework`. Done.
 * In a Swift source files, reference it with `import PEPObjCAdapterTypesFramework`.
 * In Objective-C project sources, import it like this:
-  
+
   ```objc
   #import <PEPObjCAdapterTypesFramework/PEPObjCAdapterTypesFramework.h>
   ```
