@@ -799,6 +799,7 @@
 				1552D9372576602D00A92F71 /* Headers */,
 				1552D9382576602D00A92F71 /* Sources */,
 				1552D9392576602D00A92F71 /* Frameworks */,
+				1543D9262577E3920041EFB5 /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -986,6 +987,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1543D9262577E3920041EFB5 /* Copy artefacts to custom build dir */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy artefacts to custom build dir";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\necho \"{BUILD_DIR}: ${BUILD_DIR}\"\ncp -R \"${BUILD_DIR}/${CONFIGURATION}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILD_DIR}/${CONFIGURATION}/libPEPObjCAdapter_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+		};
 		158A568022BBDFFA00F98905 /* Warnings for TODO++ */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
