@@ -116,8 +116,11 @@ pushd libetpan
 ./autogen.sh --prefix=$(pwd)/../local/
 make install
 popd
+
+#BAD, required due to ios libetpan sub project. RM after moving out of project
 rm -rf libetpan
 
+#BAD, required due to ios libetpan sub project. RM after moving out of project
 git clone https://pep-security.lu/gitlab/misc/libetpan.git
 
 git clone https://pep-security.lu/gitlab/misc/sqlite.git
