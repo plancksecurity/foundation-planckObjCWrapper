@@ -135,12 +135,10 @@ Build scheme "All" of pEpObjCAdapter.xcworkspace
 
 ### Using terminal
 
-`xcodebuild -workspace "pEpObjCAdapter.xcworkspace" -scheme "All" -configuration RELEASE`
+`xcodebuild -workspace "pEpObjCAdapter.xcworkspace" -scheme "PEPObjCAdapter_macOS" -configuration RELEASE`
 
 (or DEBUG)
 
 ### Build Dir & Build Artefacts
 
-You can find the build artefacts in the `build` folder odf the project or the used submodules:
-
-src_pEpMacOSAdapter/pEpMacOSAdapter/build/pEpObjCAdapter.a 											//BUFF: ????????????
+You can find the build artefacts in the `pEpMacOSAdapter/build` folder
