@@ -10,12 +10,10 @@
 
 #import "message.h"
 
-/**
- Implements a very basic method to enable use of ARC (or manual cocoa memory management)
- for malloc-created pointers.
-
- When this object goes out of scope (is freed), it calls free() on the contained pointer.
- */
+/// Implements a basic method to enable automated reference counting (ARC)
+/// for pointers that are not aware of it, e.g. allocatey by malloc.
+///
+/// When this object goes out of scope (is freed), it calls free() on the contained pointer.
 @interface PEPAutoPointer : NSObject
 
 /// The function that will be used to free the pointer, `free` by default.
@@ -27,26 +25,16 @@
 /// Specialized version that can deal with the engine's message struct.
 - (instancetype)initWithMessage:(message *)message;
 
-/**
- Provide this to a C-function that expects a `void **` pointer to allocate and fill.
- */
+/// Provide this to a function that expects a `void **` pointer to allocate and fill.
 - (void **)voidPointerPointer;
 
-/**
- Provide this to a C-function that expects a `char **` pointer to allocate and fill.
- */
+/// Provide this to a function that expects a `char **` pointer to allocate and fill.
 - (char **)charPointerPointer;
 
-/**
- When you have used some C-function to receive content,
- use this to access it as a `void *` pointer.
- */
+/// Access the internal pointer as a void pointer.
 - (void *)voidPointer;
 
-/**
- When you have used some C-function to receive content,
- use this to access it as a `char *` pointer.
- */
+/// Access the internal pointer as a char pointer.
 - (char *)charPointer;
 
 @end
