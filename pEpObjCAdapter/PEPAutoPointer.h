@@ -19,10 +19,10 @@
 /// The function that will be used to free the pointer, `free` by default.
 @property (nonatomic) void (* freeFn)(void *);
 
-/// Specialized version that can deal with the engine's message struct.
+/// Specialized version that will auto-release/free the engine's message struct.
 + (instancetype)autoPointerWithMessage:(message *)message;
 
-/// Specialized version that can deal with the engine's message struct.
+/// Specialized version that will auto-release/free the engine's message struct.
 - (instancetype)initWithMessage:(message *)message;
 
 /// Provide this to a function that expects a `void **` pointer to allocate and fill.

@@ -25,6 +25,7 @@
 {
     self = [super init];
     if (self) {
+        // By default, use free() for releasing the internal pointer
         self.freeFn = free;
     }
     return self;
@@ -35,6 +36,7 @@
     self = [self init];
     if (self) {
         _thePointer = message;
+        // For freeing a message, free_message() is needed
         _freeFn = (void (*)(void *)) free_message;
     }
     return self;
