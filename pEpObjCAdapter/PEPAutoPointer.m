@@ -21,25 +21,24 @@
     return [[self alloc] initWithMessage:message];
 }
 
-- (instancetype)init
+- (instancetype)initWithPointer:(void *)pointer freeFn:(void (*)(void *))freeFn
 {
     self = [super init];
     if (self) {
-        // By default, use free() for releasing the internal pointer
-        self.freeFn = free;
+        _thePointer = pointer;
+        _freeFn = freeFn;
     }
     return self;
 }
 
 - (instancetype)initWithMessage:(message *)message
 {
-    self = [self init];
-    if (self) {
-        _thePointer = message;
-        // For freeing a message, free_message() is needed
-        _freeFn = (void (*)(void *)) free_message;
-    }
-    return self;
+    return [self initWithPointer:message freeFn:(void (*)(void *)) free_message];
+}
+
+- (instancetype)init
+{
+    return [self initWithPointer:nil freeFn:free];
 }
 
 - (void **)voidPointerPointer
