@@ -9,22 +9,30 @@
 #ifndef Logger_h
 #define Logger_h
 
-#import <pEpIOSToolbox/pEpIOSToolbox-Swift.h>
+//BUFF: !!! //!!!:
 
-#define LogInfo(...) [[Log shared] \
- logInfoWithMessage:[NSString stringWithFormat:__VA_ARGS__] \
- function:[NSString stringWithUTF8String:__FUNCTION__] \
- filePath:[NSString stringWithUTF8String:__FILE__] \
- fileLine:__LINE__];
-#define LogWarn(...) [[Log shared] \
-logWarnWithMessage:[NSString stringWithFormat:__VA_ARGS__] \
-function:[NSString stringWithUTF8String:__FUNCTION__] \
-filePath:[NSString stringWithUTF8String:__FILE__] \
-fileLine:__LINE__];
-#define LogError(...) [[Log shared] \
-logErrorWithMessage:[NSString stringWithFormat:__VA_ARGS__] \
-function:[NSString stringWithUTF8String:__FUNCTION__] \
-filePath:[NSString stringWithUTF8String:__FILE__] \
-fileLine:__LINE__];
+//#import <pEpIOSToolbox/pEpIOSToolbox-Swift.h>
+
+#define LogInfo(...) NSLog(__VA_ARGS__);
+#define LogWarn(...)  NSLog(__VA_ARGS__);
+#define LogError(...)  NSLog(__VA_ARGS__);
+
+//#import <pEpIOSToolbox/pEpIOSToolbox-Swift.h>
+//
+//#define LogInfo(...) [[Log shared] \
+// logInfoWithMessage:[NSString stringWithFormat:__VA_ARGS__] \
+// function:[NSString stringWithUTF8String:__FUNCTION__] \
+// filePath:[NSString stringWithUTF8String:__FILE__] \
+// fileLine:__LINE__];
+//#define LogWarn(...) [[Log shared] \
+//logWarnWithMessage:[NSString stringWithFormat:__VA_ARGS__] \
+//function:[NSString stringWithUTF8String:__FUNCTION__] \
+//filePath:[NSString stringWithUTF8String:__FILE__] \
+//fileLine:__LINE__];
+//#define LogError(...) [[Log shared] \
+//logErrorWithMessage:[NSString stringWithFormat:__VA_ARGS__] \
+//function:[NSString stringWithUTF8String:__FUNCTION__] \
+//filePath:[NSString stringWithUTF8String:__FILE__] \
+//fileLine:__LINE__];
 
 #endif /* Logger_h */
