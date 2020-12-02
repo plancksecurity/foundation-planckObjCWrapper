@@ -207,7 +207,7 @@ static dispatch_queue_t queue;
         NSNumber *ratingNum = [[PEPSessionProvider session]
                                outgoingRatingForMessage:theMessage
                                error:&error];
-        if (ratingNum) {
+        if (ratingNum != nil) {
             successCallback(ratingNum.pEpRating);
         } else {
             errorCallback(error);
@@ -224,7 +224,7 @@ static dispatch_queue_t queue;
         NSNumber *ratingNum = [[PEPSessionProvider session]
                                ratingForIdentity:identity
                                error:&error];
-        if (ratingNum) {
+        if (ratingNum != nil) {
             successCallback(ratingNum.pEpRating);
         } else {
             errorCallback(error);
@@ -371,7 +371,7 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
         NSNumber *boolNum = [[PEPSessionProvider session]
                              queryKeySyncEnabledForIdentity:identity
                              error:&error];
-        if (boolNum) {
+        if (boolNum != nil) {
             successCallback(boolNum.boolValue);
         } else {
             errorCallback(error);
@@ -497,7 +497,7 @@ successCallback:(void (^)(NSString *log))successCallback
     dispatch_async(queue, ^{
         NSError *error = nil;
         NSNumber *ispEpUserNum = [[PEPSessionProvider session] isPEPUser:identity error:&error];
-        if (ispEpUserNum) {
+        if (ispEpUserNum != nil) {
             successCallback(ispEpUserNum.boolValue);
         } else {
             errorCallback(error);
