@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "message.h"
-
 /// Implements a basic method to enable automated reference counting (ARC)
 /// for pointers that are not aware of it, e.g. allocated by malloc.
 ///
@@ -18,9 +16,6 @@
 
 /// The function that will be used to free the managed pointer, `free` by default.
 @property (nonatomic) void (* freeFn)(void *);
-
-/// Specialized version that will auto-release/free the given message struct when it goes out of scope.
-+ (instancetype)autoPointerWithMessage:(message *)message;
 
 /// Construct an object containing a pointer, and invoke the freeing function when the object,
 /// and therefore the pointer, goes out of scope.
@@ -31,9 +26,6 @@
 /// Constructs an object containing nil as a pointer, and using `free()` as the method to free it.
 /// In order to be useful, the pointer needs to be filled after that. See `voidPointerPointer` or `charPointerPointer`.
 - (instancetype)init;
-
-/// Specialized version that will auto-release/free the given message struct when it goes out of scope.
-- (instancetype)initWithMessage:(message *)message;
 
 /// Provide this to a function that expects a `void **` pointer to allocate and fill.
 - (void **)voidPointerPointer;

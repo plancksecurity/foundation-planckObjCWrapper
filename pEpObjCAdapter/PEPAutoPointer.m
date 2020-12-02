@@ -16,11 +16,6 @@
 
 @implementation PEPAutoPointer
 
-+ (instancetype)autoPointerWithMessage:(message *)message
-{
-    return [[self alloc] initWithMessage:message];
-}
-
 - (instancetype)initWithPointer:(void *)pointer freeFn:(void (*)(void *))freeFn
 {
     self = [super init];
@@ -29,11 +24,6 @@
         _freeFn = freeFn;
     }
     return self;
-}
-
-- (instancetype)initWithMessage:(message *)message
-{
-    return [self initWithPointer:message freeFn:(void (*)(void *)) free_message];
 }
 
 - (instancetype)init
