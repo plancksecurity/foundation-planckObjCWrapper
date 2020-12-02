@@ -12,8 +12,6 @@
 		1552D9BE2576660400A92F71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1552D9BD2576660400A92F71 /* Assets.xcassets */; };
 		1552D9C12576660400A92F71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1552D9BF2576660400A92F71 /* Main.storyboard */; };
 		1552D9C42576660400A92F71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1552D9C32576660400A92F71 /* main.m */; };
-		1552D9D0257666D300A92F71 /* libPEPObjCAdapter_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552D9CF257666D300A92F71 /* libPEPObjCAdapter_macOS.a */; };
-		1552DA112576687000A92F71 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552DA102576687000A92F71 /* libPEPObjCAdapterTypes_macOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +36,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1552D9D0257666D300A92F71 /* libPEPObjCAdapter_macOS.a in Frameworks */,
-				1552DA112576687000A92F71 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
