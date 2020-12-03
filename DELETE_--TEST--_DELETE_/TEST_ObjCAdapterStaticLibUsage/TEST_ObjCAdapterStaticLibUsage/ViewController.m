@@ -16,7 +16,7 @@
 
     // Do any additional setup after loading the view.
     NSLog(@"Started up");
-    PEPRating rating = [[PEPSession init] ratingFromString:@"reliable"];
+    PEPRating rating = [[PEPSession new] ratingFromString:@"reliable"];
     NSLog(@"PEPRating rating = [[PEPSession init] ratingFromString:@\"reliable\"];: %d", rating);
 }
 
