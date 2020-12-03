@@ -111,16 +111,30 @@ autoreconf -iv
 make install
 popd
 
-git clone https://github.com/fdik/libetpan
-pushd libetpan
-./autogen.sh --prefix=$(pwd)/../local/
+ICONV_VERSION="1.16"
+ICONV_DIR="libiconv-${ICONV_VERSION}"
+TARBALL="libiconv-${ICONV_VERSION}.tar.gz"
+wget -nc https://ftp.gnu.org/pub/gnu/libiconv/${TARBALL}
+tar xvf "${TARBALL}"
+pushd ${ICONV_DIR}
+./configure --prefix=$(pwd)/../local/ --enable-static
+make -j 4
 make install
 popd
 
-#BAD, required due to ios libetpan sub project. RM after moving out of project
-rm -rf libetpan
+# //BUFF: weget and build libz too and link it to libetpan. Rm linking dynamic lib in client afterwards.
 
-#BAD, required due to ios libetpan sub project. RM after moving out of project
+git clone https://github.com/fdik/libetpan
+pushd libetpan
+# //BUFF: This is not working (afaics). libetpan is still using the systems dynamic iconv lib. I was unable yet to force libetpan to use libiconv.a
+unset CFLAGS
+unset LDFLAGS
+export LDFLAGS="-Wl/Users/buff/workspace/pEp/src_pEpObjCAdapter_macOS/local/libiconv.a" 
+./autogen.sh --prefix=$(pwd)/../local/ --enable-shared=no
+make install
+popd
+#BAD, required due to ios libetpan sub project. RM after moving out of project or even better being able to build macOS libetpan with the Xcode project
+rm -rf libetpan
 git clone https://pep-security.lu/gitlab/misc/libetpan.git
 
 git clone https://pep-security.lu/gitlab/misc/sqlite.git
