@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1543DB2E257902EF0041EFB5 /* libPEPObjCAdapter_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DB2D257902EF0041EFB5 /* libPEPObjCAdapter_macOS.a */; };
+		1543DBA9257912750041EFB5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DB30257902FB0041EFB5 /* libz.tbd */; };
+		1543DBD6257935C00041EFB5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DB33257903030041EFB5 /* libiconv.tbd */; };
 		1552D9B92576660300A92F71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1552D9B82576660300A92F71 /* AppDelegate.m */; };
 		1552D9BC2576660300A92F71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1552D9BB2576660300A92F71 /* ViewController.m */; };
 		1552D9BE2576660400A92F71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1552D9BD2576660400A92F71 /* Assets.xcassets */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1543DB2D257902EF0041EFB5 /* libPEPObjCAdapter_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCAdapter_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1543DB30257902FB0041EFB5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		1543DB33257903030041EFB5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		1552D9B42576660300A92F71 /* TEST_ObjCAdapterStaticLibUsage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TEST_ObjCAdapterStaticLibUsage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1552D9B72576660300A92F71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1552D9B82576660300A92F71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -25,10 +31,6 @@
 		1552D9C22576660400A92F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1552D9C32576660400A92F71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1552D9C52576660400A92F71 /* TEST_ObjCAdapterStaticLibUsage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TEST_ObjCAdapterStaticLibUsage.entitlements; sourceTree = "<group>"; };
-		1552D9CF257666D300A92F71 /* libPEPObjCAdapter_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCAdapter_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		1552DA102576687000A92F71 /* libPEPObjCAdapterTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCAdapterTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		1552DA1925766A5700A92F71 /* libpEpEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libpEpEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		1552DA2E25766C1900A92F71 /* libpEpEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpEpEngine.a; path = ../../../../src_pEp4ThunderbirdMacInstaller/pep4thunderbird_macos_installer_buildscript/local/lib/libpEpEngine.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +38,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1543DBD6257935C00041EFB5 /* libiconv.tbd in Frameworks */,
+				1543DBA9257912750041EFB5 /* libz.tbd in Frameworks */,
+				1543DB2E257902EF0041EFB5 /* libPEPObjCAdapter_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,10 +83,9 @@
 		1552D9CE257666D300A92F71 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1552DA2E25766C1900A92F71 /* libpEpEngine.a */,
-				1552D9CF257666D300A92F71 /* libPEPObjCAdapter_macOS.a */,
-				1552DA102576687000A92F71 /* libPEPObjCAdapterTypes_macOS.a */,
-				1552DA1925766A5700A92F71 /* libpEpEngine.a */,
+				1543DB33257903030041EFB5 /* libiconv.tbd */,
+				1543DB30257902FB0041EFB5 /* libz.tbd */,
+				1543DB2D257902EF0041EFB5 /* libPEPObjCAdapter_macOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -310,6 +314,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "security.pep.TEST-ObjCAdapterStaticLibUsage";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -332,6 +337,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "security.pep.TEST-ObjCAdapterStaticLibUsage";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

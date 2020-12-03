@@ -16,6 +16,8 @@
 		150E8FC325755B7200AE2198 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107AB257520DE00D06C34 /* PEPLanguage.m */; };
 		150E8FC425755B7200AE2198 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107A6257520DE00D06C34 /* PEPAttachment.m */; };
 		152A9C472010F50400F962ED /* PEPInternalSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPInternalSessionTest.m */; };
+		1543D9E02577EF260041EFB5 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552DCBD2577E0B600A92F71 /* libpEpEngine_macOS.a */; };
+		1543DA892577FE230041EFB5 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 150E8FB225755B6900AE2198 /* libPEPObjCAdapterTypes_macOS.a */; };
 		1552D92325765EC900A92F71 /* NSObject+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109FA2575510300D06C34 /* NSObject+Extension.h */; };
 		1552D92825765EDC00A92F71 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A7257520DE00D06C34 /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1552D92925765EDC00A92F71 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109E525754F8100D06C34 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,7 +37,6 @@
 		1552D9502576607900A92F71 /* PEPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 434707F424C210CA00E05485 /* PEPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1552D9512576607900A92F71 /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 435C0CAB222930340025C6B5 /* PEPConstants.m */; };
 		1552D9522576607900A92F71 /* PEPObjCAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1552D95D257660A800A92F71 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 150E8FB225755B6900AE2198 /* libPEPObjCAdapterTypes_macOS.a */; };
 		1552D963257660C900A92F71 /* NSString+NormalizePassphrase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4349CD6D24AC73FC00A22A13 /* NSString+NormalizePassphrase.h */; };
 		1552D964257660C900A92F71 /* PEPQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B311ECC2ACD007E7E2E /* PEPQueue.h */; };
 		1552D965257660C900A92F71 /* NSArray+Take.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Take.m */; };
@@ -386,7 +387,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1552D95D257660A800A92F71 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */,
+				1543D9E02577EF260041EFB5 /* libpEpEngine_macOS.a in Frameworks */,
+				1543DA892577FE230041EFB5 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1174,6 +1176,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1196,6 +1199,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_FAST_MATH = YES;
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1222,7 +1226,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "${PROJECT_DIR}/../../src_pEp4ThunderbirdMacInstaller/pep4thunderbird_macos_installer_buildscript/local/lib/libpEpEngine.a ${PROJECT_DIR}/../../src_pEp4ThunderbirdMacInstaller/pep4thunderbird_macos_installer_buildscript/local/lib/libasn1.a";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1246,7 +1250,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "${PROJECT_DIR}/../../src_pEp4ThunderbirdMacInstaller/pep4thunderbird_macos_installer_buildscript/local/lib/libpEpEngine.a ${PROJECT_DIR}/../../src_pEp4ThunderbirdMacInstaller/pep4thunderbird_macos_installer_buildscript/local/lib/libasn1.a";
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1346,8 +1350,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../Sequoia4iOS/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/src",
+					"$(PROJECT_DIR)/../local/include/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
@@ -1400,8 +1404,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../Sequoia4iOS/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/src",
+					"$(PROJECT_DIR)/../local/include/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
