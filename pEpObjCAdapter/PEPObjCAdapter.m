@@ -8,6 +8,10 @@
 
 @import Foundation;
 
+#ifdef IS_IOS_BUILD
+#import <pEp4iosIntern/pEp4iosIntern.h> //DIRK: //BUFF: !!!
+#endif
+
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
 #import "NSError+PEP.h"
@@ -15,7 +19,6 @@
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"
 
-//#import <pEp4iosIntern/pEp4iosIntern.h> //DIRK: //BUFF: !!!
 #import "keymanagement.h"
 #import "mime.h"
 #import "message.h"
@@ -166,32 +169,35 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 */
 + (NSURL *)createApplicationDirectoryiOS
 {
-//    NSFileManager *fm = [NSFileManager defaultManager];
-//    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
-//    NSLog(@"containerUrl '%@'", containerUrl);
-//
-//    if (containerUrl == nil) {
-//        // Will happen when running tests, so fall back.
-//        NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
-//                                            inDomains:NSUserDomainMask];
-//        containerUrl = [appSupportDir lastObject];
-//    }
-//
-//    if (containerUrl == nil) {
-//        NSLog(@"ERROR: No app container, no application support directory.");
-//    }
-//
-//    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
-//
-//    // If the directory does not exist, this method creates it.
-//    NSError *theError = nil;
-//    if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
-//                       attributes:nil error:&theError]) {
-//        NSLog(@"ERROR: Could not create pEp home directory, directly writing to app container instead.");
-//    }
-//
-//    return dirPath;
+#ifdef IS_IOS_BUILD //BUFF: DIRK: //!!!:
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
+    NSLog(@"containerUrl '%@'", containerUrl);
+
+    if (containerUrl == nil) {
+        // Will happen when running tests, so fall back.
+        NSArray *appSupportDir = [fm URLsForDirectory:NSApplicationSupportDirectory
+                                            inDomains:NSUserDomainMask];
+        containerUrl = [appSupportDir lastObject];
+    }
+
+    if (containerUrl == nil) {
+        NSLog(@"ERROR: No app container, no application support directory.");
+    }
+
+    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
+
+    // If the directory does not exist, this method creates it.
+    NSError *theError = nil;
+    if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                       attributes:nil error:&theError]) {
+        NSLog(@"ERROR: Could not create pEp home directory, directly writing to app container instead.");
+    }
+
+    return dirPath;
+#else
     return [NSURL URLWithString:@"//BUFF:!!!!"];
+#endif
 }
 
 /**
@@ -241,33 +247,34 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 + (void)copyAssetsIntoDocumentsDirectory:(NSBundle *)rootBundle
                                     bundleName:(NSString *)bundleName
                                       fileName:(NSString *)fileName {
+#ifdef IS_IOS_BUILD //BUFF: DIRK: //!!!:
+    NSString *systemDir = [NSString stringWithUTF8String:perMachineDirectory];
 
-//    NSString *systemDir = [NSString stringWithUTF8String:perMachineDirectory];
-//
-//    if(!(systemDir && bundleName && fileName))
-//        return;
-//
-//    // Check if the database file exists in the documents directory.
-//    NSString *destinationPath = [systemDir stringByAppendingPathComponent:fileName];
-//    if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
-//        // The file does not exist in the documents directory, so copy it from bundle now.
-//        NSBundle *bundleObj = [NSBundle bundleWithPath:
-//                               [[rootBundle resourcePath]
-//                                stringByAppendingPathComponent: bundleName]];
-//        if (!bundleObj)
-//            return;
-//
-//        NSString *sourcePath =[[bundleObj resourcePath] stringByAppendingPathComponent: fileName];
-//
-//        NSError *error;
-//        [[NSFileManager defaultManager]
-//         copyItemAtPath:sourcePath toPath:destinationPath error:&error];
-//
-//        // Check if any error occurred during copying and display it.
-//        if (error != nil) {
-//            NSLog(@"%@", [error localizedDescription]);
-//        }
-//    }
+    if(!(systemDir && bundleName && fileName))
+        return;
+
+    // Check if the database file exists in the documents directory.
+    NSString *destinationPath = [systemDir stringByAppendingPathComponent:fileName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
+        // The file does not exist in the documents directory, so copy it from bundle now.
+        NSBundle *bundleObj = [NSBundle bundleWithPath:
+                               [[rootBundle resourcePath]
+                                stringByAppendingPathComponent: bundleName]];
+        if (!bundleObj)
+            return;
+
+        NSString *sourcePath =[[bundleObj resourcePath] stringByAppendingPathComponent: fileName];
+
+        NSError *error;
+        [[NSFileManager defaultManager]
+         copyItemAtPath:sourcePath toPath:destinationPath error:&error];
+
+        // Check if any error occurred during copying and display it.
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }
+#endif
 }
 
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle {
