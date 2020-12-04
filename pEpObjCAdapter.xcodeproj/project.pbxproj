@@ -15,7 +15,7 @@
 		150E8FC225755B7200AE2198 /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107A5257520DE00D06C34 /* PEPIdentity.m */; };
 		150E8FC325755B7200AE2198 /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107AB257520DE00D06C34 /* PEPLanguage.m */; };
 		150E8FC425755B7200AE2198 /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B107A6257520DE00D06C34 /* PEPAttachment.m */; };
-		15160690257A3E1900DD42E0 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* module.modulemap */; };
+		15160690257A3E1900DD42E0 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* module.modulemap */; platformFilter = ios; };
 		15160701257A401000DD42E0 /* PEPObjCAdapterTypes_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 15160700257A401000DD42E0 /* PEPObjCAdapterTypes_iOS.m */; };
 		15160702257A401000DD42E0 /* PEPObjCAdapterTypes_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 151606FF257A401000DD42E0 /* PEPObjCAdapterTypes_iOS.h */; };
 		1516070C257A405A00DD42E0 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A4257520DE00D06C34 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +35,7 @@
 		1516075C257A467F00DD42E0 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15160756257A40C300DD42E0 /* module.modulemap */; };
 		1516087B257A4F0A00DD42E0 /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 151606FD257A401000DD42E0 /* libPEPObjCAdapterTypes_iOS.a */; platformFilter = ios; };
 		15160AF1257A58A000DD42E0 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; platformFilter = ios; };
+		15160D2D257A920F00DD42E0 /* libPEPObjCAdapter_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DC66257943CE0041EFB5 /* libPEPObjCAdapter_iOS.a */; platformFilter = ios; };
 		152A9C472010F50400F962ED /* PEPInternalSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPInternalSessionTest.m */; };
 		1543D9E02577EF260041EFB5 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552DCBD2577E0B600A92F71 /* libpEpEngine_macOS.a */; };
 		1543DA892577FE230041EFB5 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 150E8FB225755B6900AE2198 /* libPEPObjCAdapterTypes_macOS.a */; };
@@ -353,8 +354,6 @@
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
 		43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEpIOSToolbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E1A7AB252B421D00307A7D /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
-		43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterFramework.h; sourceTree = "<group>"; };
-		43E3985E221D7E56008E7983 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43E3986A221D7EDD008E7983 /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
 		43ECE9C725407FF2005F1925 /* PEPMessage+Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+Engine.m"; sourceTree = "<group>"; };
 		43ECE9C825407FF3005F1925 /* PEPMessage+Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+Engine.h"; sourceTree = "<group>"; };
@@ -410,6 +409,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15160D2D257A920F00DD42E0 /* libPEPObjCAdapter_iOS.a in Frameworks */,
 				64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */,
 				64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */,
 			);
@@ -564,7 +564,6 @@
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
 				43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */,
 				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
-				43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */,
 				15B10798257520B200D06C34 /* PEPObjCAdapterTypes */,
 				150E8FB325755B6900AE2198 /* PEPObjCAdapterTypes_macOS */,
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
@@ -661,15 +660,6 @@
 				433DFBB624A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		43E3985C221D7E56008E7983 /* PEPObjCAdapterFramework */ = {
-			isa = PBXGroup;
-			children = (
-				43E3985D221D7E56008E7983 /* PEPObjCAdapterFramework.h */,
-				43E3985E221D7E56008E7983 /* Info.plist */,
-			);
-			path = PEPObjCAdapterFramework;
 			sourceTree = "<group>";
 		};
 		64289E521B8B70E800FC617B /* Products */ = {

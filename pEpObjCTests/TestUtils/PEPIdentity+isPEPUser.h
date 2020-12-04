@@ -6,7 +6,8 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-#import <PEPObjCAdapterFramework/PEPObjCAdapterFramework.h>
+#import "PEPObjCAdapter.h"
+#import "PEPObjCAdapterTypes_iOS.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
