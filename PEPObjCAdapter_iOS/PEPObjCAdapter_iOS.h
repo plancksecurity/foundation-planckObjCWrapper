@@ -8,6 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPObjCAdapter.h"
+#import "PEPSession.h"
+#import "PEPConstants.h"
+#import "PEPSync.h"
+
+// BUFF: TYPES:
+
+#import "PEPIdentity.h"
+//#import "PEPSessionProtocol.h"
+//#import "PEPTypes.h"
+
+//#import "PEPMessage.h"
+
+//#import "NSNumber+PEPRating.h"
+//#import "PEPAttachment.h"
+//#import "PEPLanguage.h"
+
+
 @interface PEPObjCAdapter_iOS : NSObject
 
 @end
