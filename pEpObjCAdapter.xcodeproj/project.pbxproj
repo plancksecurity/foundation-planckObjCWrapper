@@ -36,6 +36,8 @@
 		1516087B257A4F0A00DD42E0 /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 151606FD257A401000DD42E0 /* libPEPObjCAdapterTypes_iOS.a */; platformFilter = ios; };
 		15160AF1257A58A000DD42E0 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; platformFilter = ios; };
 		15160D2D257A920F00DD42E0 /* libPEPObjCAdapter_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DC66257943CE0041EFB5 /* libPEPObjCAdapter_iOS.a */; platformFilter = ios; };
+		15160D93257A99D900DD42E0 /* pEpIOSToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15160D92257A99D900DD42E0 /* pEpIOSToolbox.framework */; platformFilter = ios; };
+		15160E80257AA06500DD42E0 /* pEp4iosIntern.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15160E7F257AA06500DD42E0 /* pEp4iosIntern.framework */; platformFilter = ios; };
 		152A9C472010F50400F962ED /* PEPInternalSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPInternalSessionTest.m */; };
 		1543D9E02577EF260041EFB5 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552DCBD2577E0B600A92F71 /* libpEpEngine_macOS.a */; };
 		1543DA892577FE230041EFB5 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 150E8FB225755B6900AE2198 /* libPEPObjCAdapterTypes_macOS.a */; };
@@ -246,6 +248,10 @@
 		15160756257A40C300DD42E0 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		15160B29257A594F00DD42E0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		15160B30257A595800DD42E0 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/usr/lib/libiconv.tbd; sourceTree = DEVELOPER_DIR; };
+		15160D7F257A99BF00DD42E0 /* pEpIOSToolbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEpIOSToolbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15160D8B257A99CC00DD42E0 /* pEpIOSToolbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEpIOSToolbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15160D92257A99D900DD42E0 /* pEpIOSToolbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEpIOSToolbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15160E7F257AA06500DD42E0 /* pEp4iosIntern.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEp4iosIntern.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15206CA81F8BA183003FF880 /* PEPSessionProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProvider.h; sourceTree = "<group>"; };
 		15206CA91F8BA183003FF880 /* PEPSessionProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProvider.m; sourceTree = "<group>"; };
 		152A9C462010F50400F962ED /* PEPInternalSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTest.m; sourceTree = "<group>"; };
@@ -392,7 +398,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				15160AF1257A58A000DD42E0 /* libpEpEngine.a in Frameworks */,
+				15160D93257A99D900DD42E0 /* pEpIOSToolbox.framework in Frameworks */,
 				1516087B257A4F0A00DD42E0 /* libPEPObjCAdapterTypes_iOS.a in Frameworks */,
+				15160E80257AA06500DD42E0 /* pEp4iosIntern.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,8 +633,12 @@
 		43447C51221D448500B6323E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15160E7F257AA06500DD42E0 /* pEp4iosIntern.framework */,
 				15160B30257A595800DD42E0 /* libiconv.tbd */,
 				15160B29257A594F00DD42E0 /* libz.tbd */,
+				15160D92257A99D900DD42E0 /* pEpIOSToolbox.framework */,
+				15160D8B257A99CC00DD42E0 /* pEpIOSToolbox.framework */,
+				15160D7F257A99BF00DD42E0 /* pEpIOSToolbox.framework */,
 				1552DA2125766AC700A92F71 /* libpEpEngine.a */,
 				3A68CB27252E244900F1B71C /* pEp4iosIntern.framework */,
 				43E1A7A6252B41B300307A7D /* pEpIOSToolbox.framework */,
@@ -1256,6 +1268,10 @@
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"IS_IOS_BUILD=1",
+					"$(inherited)",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
