@@ -15,7 +15,7 @@
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"
 
-//#import <pEp4iosIntern/pEp4iosIntern.h> //DIRK: needs //BUFF: !!!
+//#import <pEp4iosIntern/pEp4iosIntern.h> //DIRK: //BUFF: !!!
 #import "keymanagement.h"
 #import "mime.h"
 #import "message.h"
