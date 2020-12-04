@@ -8,7 +8,8 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPObjCAdapterFramework.h"
+#import "PEPObjCAdapterTypes_iOS.h"
+#import "PEPObjCAdapter_iOS.h"
 
 #import "pEpEngine.h"
 #import "message_api.h"
