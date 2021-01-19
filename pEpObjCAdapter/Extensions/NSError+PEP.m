@@ -27,6 +27,7 @@
         case PEP_KEY_IMPORTED:
         case PEP_KEY_IMPORT_STATUS_UNKNOWN:
         case PEP_VERIFY_SIGNER_KEY_REVOKED:
+        case PEP_DECRYPT_SIGNATURE_DOES_NOT_MATCH:
             return nil;
             break;
 
