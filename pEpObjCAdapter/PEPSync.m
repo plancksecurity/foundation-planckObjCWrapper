@@ -26,7 +26,6 @@
 #import "Logger.h"
 #import "PEPIdentity+Engine.h"
 #import "PEPMessage+Engine.h"
-#import "PEPAutoPointer+Message.h"
 
 // MARK: - Internals
 
