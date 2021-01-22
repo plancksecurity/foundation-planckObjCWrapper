@@ -273,7 +273,8 @@ static __weak PEPSync *s_pEpSync;
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
 }
 
-- (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
+/// Handles the sending of an engine provided message without caring about freeing it.
+- (PEP_STATUS)messageToSendHelper:(struct _message * _Nullable)msg
 {
     [self blockUntilPassphraseIsEnteredIfRequired];
 
@@ -315,23 +316,29 @@ static __weak PEPSync *s_pEpSync;
             NSString *password = [passphrasesCopy firstObject];
             [passphrasesCopy removeObjectAtIndex:0];
             [self.syncLoopSession configurePassphrase:password error:nil];
-            free(msg);
             return PEP_STATUS_OK;
         }
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
             PEPMessage *theMessage = [PEPMessage fromStruct:msg];
-            PEPStatus status = [self.sendMessageDelegate sendMessage:theMessage];
-            if (status == PEPStatusOK) {
-                free(msg);
-            }
-            return (PEP_STATUS) status;
+            return (PEP_STATUS)  [self.sendMessageDelegate sendMessage:theMessage];
         } else {
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
         }
     } else {
         return PEP_SYNC_ILLEGAL_MESSAGE;
     }
+}
+
+/// Uses `messageToSendHelper` to send the message and conditionally frees
+/// the engine provided message.
+- (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
+{
+    PEP_STATUS status = [self messageToSendHelper:msg];
+    if (status == PEP_STATUS_OK) {
+        free(msg);
+    }
+    return status;
 }
 
 /// Injects the given event into the queue.
