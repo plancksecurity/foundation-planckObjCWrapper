@@ -275,16 +275,20 @@ static __weak PEPSync *s_pEpSync;
 
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
-    // auto destruct
-    PEPAutoPointer *msgPtr = [PEPAutoPointer autoPointerWithMessage:msg];
-
     [self blockUntilPassphraseIsEnteredIfRequired];
+
     if (self.shutdownRequested) {
         // The client has signalled that she was unable to provide a passphrase by calling
         // `shutdown()`.
         // We signal the same to the Engine.
         return PEP_SYNC_NO_CHANNEL;
     }
+
+    // Auto destruct the message pointer, but only after the error case
+    // is handled (see PEP_SYNC_NO_CHANNEL above).
+    // Because the engine will free it itself when anything but
+    // PEP_STATUS_OK is returned.
+    PEPAutoPointer *msgPtr = [PEPAutoPointer autoPointerWithMessage:msg];
 
     if (msg == NULL && [NSThread currentThread] == self.syncThread) {
         static NSMutableArray *passphrasesCopy = nil;
