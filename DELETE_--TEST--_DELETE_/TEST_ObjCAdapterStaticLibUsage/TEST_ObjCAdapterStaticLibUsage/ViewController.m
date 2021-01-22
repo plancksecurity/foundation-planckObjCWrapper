@@ -8,16 +8,32 @@
 #import "ViewController.h"
 
 #import "PEPSession.h"
+#import "PEPObjCAdapter.h"
+#import "PEPIdentity.h"
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    PEPSession *pEpSession = [[PEPSession alloc] init];
 
     // Do any additional setup after loading the view.
     NSLog(@"Started up");
-    PEPRating rating = [[PEPSession new] ratingFromString:@"reliable"];
-    NSLog(@"PEPRating rating = [[PEPSession init] ratingFromString:@\"reliable\"];: %d", rating);
+    PEPRating rating = [pEpSession ratingFromString:@"reliable"];
+    NSLog(@"PEPRating rating = [pEpSession ratingFromString:@\"reliable\"];: %d", rating);
+
+    PEPIdentity * testee = [[PEPIdentity alloc] init];
+    testee.address = @"lkjasdf@kjahsdf.de";
+    testee.userID = @"lskjdgf";
+    [pEpSession mySelf:testee errorCallback:^(NSError * _Nonnull error) {
+        NSLog(@"!");
+    } successCallback:^(PEPIdentity * _Nonnull identity) {
+        NSLog(@"success");
+    }];
+
+    testee.tostru
+
+
 }
 
 
