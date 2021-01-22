@@ -284,12 +284,6 @@ static __weak PEPSync *s_pEpSync;
         return PEP_SYNC_NO_CHANNEL;
     }
 
-    // Auto destruct the message pointer, but only after the error case
-    // is handled (see PEP_SYNC_NO_CHANNEL above).
-    // Because the engine will free it itself when anything but
-    // PEP_STATUS_OK is returned.
-    PEPAutoPointer *msgPtr = [PEPAutoPointer autoPointerWithMessage:msg];
-
     if (msg == NULL && [NSThread currentThread] == self.syncThread) {
         static NSMutableArray *passphrasesCopy = nil;
         static BOOL makeNewCopy = YES;
@@ -321,20 +315,23 @@ static __weak PEPSync *s_pEpSync;
             NSString *password = [passphrasesCopy firstObject];
             [passphrasesCopy removeObjectAtIndex:0];
             [self.syncLoopSession configurePassphrase:password error:nil];
+            free(msg);
             return PEP_STATUS_OK;
         }
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
             PEPMessage *theMessage = [PEPMessage fromStruct:msg];
-            return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
+            PEPStatus status = [self.sendMessageDelegate sendMessage:theMessage];
+            if (status == PEPStatusOK) {
+                free(msg);
+            }
+            return (PEP_STATUS) status;
         } else {
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
         }
     } else {
         return PEP_SYNC_ILLEGAL_MESSAGE;
     }
-
-    msgPtr = nil; // please the compiler
 }
 
 /// Injects the given event into the queue.
