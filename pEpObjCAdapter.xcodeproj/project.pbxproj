@@ -178,10 +178,6 @@
 		4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
-		4EA9B43F25BEE0990048427E /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4EA9B44125BEE0990048427E /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */; };
-		4EA9B45425BEE3C20048427E /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */; };
-		4EA9B45A25BEE3C80048427E /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; platformFilter = ios; };
@@ -739,7 +735,6 @@
 				150E8FB525755B6900AE2198 /* PEPObjCAdapterTypes_macOS.h in Headers */,
 				1552D92E25765EDC00A92F71 /* PEPAttachment.h in Headers */,
 				1552D92A25765EDC00A92F71 /* PEPEngineTypes.h in Headers */,
-				4EA9B43F25BEE0990048427E /* PEPIdentity+SecureCoding.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,7 +789,6 @@
 				1552D981257660C900A92F71 /* PEPInternalSession.h in Headers */,
 				1552D974257660C900A92F71 /* Logger.h in Headers */,
 				1552D98A257660C900A92F71 /* NSError+PEP.h in Headers */,
-				4EA9B45A25BEE3C80048427E /* PEPIdentity+SecureCoding.h in Headers */,
 				1552D987257660C900A92F71 /* NSArray+Engine.h in Headers */,
 				1552D9522576607900A92F71 /* PEPObjCAdapter.h in Headers */,
 				1552D9502576607900A92F71 /* PEPSession.h in Headers */,
@@ -1077,7 +1071,6 @@
 			files = (
 				150E8FB725755B6900AE2198 /* PEPObjCAdapterTypes_macOS.m in Sources */,
 				150E8FBF25755B7200AE2198 /* PEPMessage.m in Sources */,
-				4EA9B44125BEE0990048427E /* PEPIdentity+SecureCoding.m in Sources */,
 				150E8FC425755B7200AE2198 /* PEPAttachment.m in Sources */,
 				150E8FC125755B7200AE2198 /* PEPSessionProtocol.m in Sources */,
 				150E8FC325755B7200AE2198 /* PEPLanguage.m in Sources */,
@@ -1152,7 +1145,6 @@
 				1552D98D257660C900A92F71 /* PEPPassphraseCacheEntry.m in Sources */,
 				1552D97E257660C900A92F71 /* NSString+NormalizePassphrase.m in Sources */,
 				1552D97F257660C900A92F71 /* NSNumber+PEPRating.m in Sources */,
-				4EA9B45425BEE3C20048427E /* PEPIdentity+SecureCoding.m in Sources */,
 				1552D984257660C900A92F71 /* PEPInternalSession+PassphraseCache.m in Sources */,
 				1552D96E257660C900A92F71 /* PEPAutoPointer.m in Sources */,
 				1552D96C257660C900A92F71 /* PEPSync.m in Sources */,
