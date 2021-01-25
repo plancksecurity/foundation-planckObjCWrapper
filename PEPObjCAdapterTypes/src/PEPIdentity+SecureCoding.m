@@ -23,14 +23,14 @@
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     if (self = [self init]) {
-        self.address = [decoder decodeObjectOfClass:[NSString class] forKey:@"address"];
-        self.userID = [decoder decodeObjectOfClass:[NSString class] forKey:@"userID"];
-        self.userName = [decoder decodeObjectOfClass:[NSString class] forKey:@"userName"];
-        self.fingerPrint = [decoder decodeObjectOfClass:[NSString class] forKey:@"fingerPrint"];
-        self.language = [decoder decodeObjectOfClass:[NSString class] forKey:@"language"];
-        self.commType = [decoder decodeIntForKey:@"commType"];
-        self.isOwn = [decoder decodeBoolForKey:@"isOwn"];
-        self.flags = [decoder decodeIntForKey:@"flags"];
+        self.address =      [decoder decodeObjectOfClass:[NSString class] forKey:@"address"];
+        self.userID =       [decoder decodeObjectOfClass:[NSString class] forKey:@"userID"];
+        self.userName =     [decoder decodeObjectOfClass:[NSString class] forKey:@"userName"];
+        self.fingerPrint =  [decoder decodeObjectOfClass:[NSString class] forKey:@"fingerPrint"];
+        self.language =     [decoder decodeObjectOfClass:[NSString class] forKey:@"language"];
+        self.commType =     [decoder decodeIntForKey:@"commType"];
+        self.isOwn =        [decoder decodeBoolForKey:@"isOwn"];
+        self.flags =        [decoder decodeIntForKey:@"flags"];
     }
 
     return self;
