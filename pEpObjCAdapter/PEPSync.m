@@ -26,7 +26,6 @@
 #import "Logger.h"
 #import "PEPIdentity+Engine.h"
 #import "PEPMessage+Engine.h"
-#import "PEPAutoPointer+Message.h"
 
 // MARK: - Internals
 
@@ -273,12 +272,11 @@ static __weak PEPSync *s_pEpSync;
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
 }
 
-- (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
+/// Handles the sending of an engine provided message without caring about freeing it.
+- (PEP_STATUS)messageToSendHelper:(struct _message * _Nullable)msg
 {
-    // auto destruct
-    PEPAutoPointer *msgPtr = [PEPAutoPointer autoPointerWithMessage:msg];
-
     [self blockUntilPassphraseIsEnteredIfRequired];
+
     if (self.shutdownRequested) {
         // The client has signalled that she was unable to provide a passphrase by calling
         // `shutdown()`.
@@ -322,15 +320,24 @@ static __weak PEPSync *s_pEpSync;
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
             PEPMessage *theMessage = [PEPMessage fromStruct:msg];
-            return (PEP_STATUS) [self.sendMessageDelegate sendMessage:theMessage];
+            return (PEP_STATUS)  [self.sendMessageDelegate sendMessage:theMessage];
         } else {
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
         }
     } else {
         return PEP_SYNC_ILLEGAL_MESSAGE;
     }
+}
 
-    msgPtr = nil; // please the compiler
+/// Uses `messageToSendHelper` to send the message and conditionally frees
+/// the engine provided message.
+- (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
+{
+    PEP_STATUS status = [self messageToSendHelper:msg];
+    if (status == PEP_STATUS_OK) {
+        free(msg);
+    }
+    return status;
 }
 
 /// Injects the given event into the queue.
