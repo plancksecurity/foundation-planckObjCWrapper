@@ -53,11 +53,6 @@
 /// ORed together.
 @property int flags;
 
-/**
- Comm type contains the PEP_ct_confirmed flag?
- */
-@property (readonly) BOOL isConfirmed;
-
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
