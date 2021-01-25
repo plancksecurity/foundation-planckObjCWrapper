@@ -23,17 +23,14 @@
     NSLog(@"PEPRating rating = [pEpSession ratingFromString:@\"reliable\"];: %d", rating);
 
     PEPIdentity * testee = [[PEPIdentity alloc] init];
-    testee.address = @"lkjasdf@kjahsdf.de";
-    testee.userID = @"lskjdgf";
+    testee.address = @"dummy@data.de";
+    testee.userID = @"DUMMY_ID";
     [pEpSession mySelf:testee errorCallback:^(NSError * _Nonnull error) {
         NSLog(@"!");
+        assert(false);
     } successCallback:^(PEPIdentity * _Nonnull identity) {
         NSLog(@"success");
     }];
-
-    testee.tostru
-
-
 }
 
 
