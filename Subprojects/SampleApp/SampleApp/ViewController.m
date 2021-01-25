@@ -8,7 +8,6 @@
 #import "ViewController.h"
 
 #import "PEPSession.h"
-#import "PEPObjCAdapter.h"
 #import "PEPIdentity.h"
 
 @implementation ViewController
