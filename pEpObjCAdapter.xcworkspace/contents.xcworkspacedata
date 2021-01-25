@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Subprojects/SampleApp/SampleApp.xcodeproj">
+      location = "group:DELETE_--TEST--_DELETE_/TEST_ObjCAdapterStaticLibUsage/TEST_ObjCAdapterStaticLibUsage.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:pEpObjCAdapter.xcodeproj">
