@@ -10,11 +10,10 @@
 
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
-#import "PEPMessage.h"
 
 @class PEPLanguage;
 @class PEPIdentity;
-@class PEPMessage; //DIRK: has @class and import. Makes sense?
+@class PEPMessage;
 
 NS_ASSUME_NONNULL_BEGIN
 
