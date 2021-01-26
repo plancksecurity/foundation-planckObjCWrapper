@@ -244,26 +244,21 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     return nil;
 }
 
-+ (void)copyAssetsIntoDocumentsDirectory:(NSBundle *)rootBundle
-                                    bundleName:(NSString *)bundleName
-                                      fileName:(NSString *)fileName {
++ (void)copyAssetsIntoDocumentsDirectory:(NSBundle *)srcBundle
+                                fileName:(NSString *)fileName {
 #ifdef IS_IOS_BUILD //BUFF: DIRK: //!!!:
     NSString *systemDir = [NSString stringWithUTF8String:perMachineDirectory];
 
-    if(!(systemDir && bundleName && fileName))
+    if(!(srcBundle && systemDir && fileName)) {
         return;
+    }
 
     // Check if the database file exists in the documents directory.
     NSString *destinationPath = [systemDir stringByAppendingPathComponent:fileName];
     if (![[NSFileManager defaultManager] fileExistsAtPath:destinationPath]) {
         // The file does not exist in the documents directory, so copy it from bundle now.
-        NSBundle *bundleObj = [NSBundle bundleWithPath:
-                               [[rootBundle resourcePath]
-                                stringByAppendingPathComponent: bundleName]];
-        if (!bundleObj)
-            return;
 
-        NSString *sourcePath =[[bundleObj resourcePath] stringByAppendingPathComponent: fileName];
+        NSString *sourcePath =[[srcBundle resourcePath] stringByAppendingPathComponent: fileName];
 
         NSError *error;
         [[NSFileManager defaultManager]
@@ -281,7 +276,6 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 // iOS to force us to think about macOS
 #if TARGET_OS_IPHONE
     [PEPObjCAdapter copyAssetsIntoDocumentsDirectory:rootBundle
-                                          bundleName:@"pEpTrustWords.bundle"
                                             fileName:@"system.db"];
 
 #endif
