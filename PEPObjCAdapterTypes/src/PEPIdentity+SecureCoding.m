@@ -10,17 +10,6 @@
 
 @implementation PEPIdentity (SecureCoding)
 
-- (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeObject:self.address        forKey:@"address"];
-    [coder encodeObject:self.userID         forKey:@"userID"];
-    [coder encodeObject:self.userName       forKey:@"userName"];
-    [coder encodeObject:self.fingerPrint    forKey:@"fingerPrint"];
-    [coder encodeObject:self.language       forKey:@"language"];
-    [coder encodeInt:self.commType          forKey:@"commType"];
-    [coder encodeBool:self.isOwn            forKey:@"isOwn"];
-    [coder encodeInt:self.flags             forKey:@"flags"];
-}
-
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     if (self = [self init]) {
         self.address =      [decoder decodeObjectOfClass:[NSString class] forKey:@"address"];
@@ -34,6 +23,17 @@
     }
 
     return self;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeObject:self.address        forKey:@"address"];
+    [coder encodeObject:self.userID         forKey:@"userID"];
+    [coder encodeObject:self.userName       forKey:@"userName"];
+    [coder encodeObject:self.fingerPrint    forKey:@"fingerPrint"];
+    [coder encodeObject:self.language       forKey:@"language"];
+    [coder encodeInt:self.commType          forKey:@"commType"];
+    [coder encodeBool:self.isOwn            forKey:@"isOwn"];
+    [coder encodeInt:self.flags             forKey:@"flags"];
 }
 
 + (BOOL)supportsSecureCoding {
