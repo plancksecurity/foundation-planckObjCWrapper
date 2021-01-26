@@ -156,6 +156,18 @@
 		159C00AA25BB140F00F13E2B /* PEPAutoPointer+Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4366177C25778F0D00AB8ECA /* PEPAutoPointer+Message.m */; };
 		159C00AB25BB140F00F13E2B /* PEPInternalSession+PassphraseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 433DFBB624A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m */; };
 		159C00B125BB141000F13E2B /* PEPAutoPointer+Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 4366177C25778F0D00AB8ECA /* PEPAutoPointer+Message.m */; };
+		15A922E425BF2D6000D33EAB /* NSArray+Take.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B261ECC2ACD007E7E2E /* NSArray+Take.h */; };
+		15A922EC25BF2D7300D33EAB /* NSArray+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 438C0ECA254020A400337922 /* NSArray+Engine.h */; };
+		15A922F225BF2D7700D33EAB /* PEPIdentity+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 438C0F1125402D6400337922 /* PEPIdentity+Engine.h */; };
+		15A922F825BF2D8000D33EAB /* PEPInternalSession+PassphraseCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 433DFBB524A61D4B00AB373B /* PEPInternalSession+PassphraseCache.h */; };
+		15A922F925BF2D8000D33EAB /* PEPIdentity+Reset.h in Headers */ = {isa = PBXBuildFile; fileRef = 4326A0AD2553F882001E18C6 /* PEPIdentity+Reset.h */; };
+		15A922FA25BF2D8000D33EAB /* NSString+NormalizePassphrase.h in Headers */ = {isa = PBXBuildFile; fileRef = 4349CD6D24AC73FC00A22A13 /* NSString+NormalizePassphrase.h */; };
+		15A922FB25BF2D8000D33EAB /* NSError+PEP.h in Headers */ = {isa = PBXBuildFile; fileRef = 43DED784203C25E200D45CD6 /* NSError+PEP.h */; };
+		15A922FC25BF2D8000D33EAB /* NSError+PEP+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4360A9FD2227CFA300E62E5A /* NSError+PEP+Internal.h */; };
+		15A922FD25BF2D8000D33EAB /* NSNumber+PEPRating+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 4360A9FE2227EBB200E62E5A /* NSNumber+PEPRating+Internal.h */; };
+		15A922FE25BF2D8000D33EAB /* PEPMessage+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 43ECE9C825407FF3005F1925 /* PEPMessage+Engine.h */; };
+		15A9230425BF2D9600D33EAB /* PEPAutoPointer+Message.h in Headers */ = {isa = PBXBuildFile; fileRef = 4366177B25778F0D00AB8ECA /* PEPAutoPointer+Message.h */; };
+		15A9230525BF2D9700D33EAB /* PEPAutoPointer+Message.h in Headers */ = {isa = PBXBuildFile; fileRef = 4366177B25778F0D00AB8ECA /* PEPAutoPointer+Message.h */; };
 		15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
 		43062BAD24EEC83400489258 /* PEPIdentity+isPEPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 43062BAC24EEC83400489258 /* PEPIdentity+isPEPUser.m */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
@@ -753,6 +765,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15A922E425BF2D6000D33EAB /* NSArray+Take.h in Headers */,
 				1543DD3E257A3B710041EFB5 /* PEPObjCAdapter.h in Headers */,
 				1543DD6A257A3BA90041EFB5 /* PEPCSVScanner.h in Headers */,
 				1543DD7B257A3BCF0041EFB5 /* PEPPassphraseCacheInternal.h in Headers */,
@@ -762,19 +775,29 @@
 				1543DD80257A3BCF0041EFB5 /* PEPInternalSession.h in Headers */,
 				1543DD41257A3B710041EFB5 /* PEPSync.h in Headers */,
 				1543DD44257A3B710041EFB5 /* PEPSession.h in Headers */,
+				15A922F225BF2D7700D33EAB /* PEPIdentity+Engine.h in Headers */,
 				1543DD79257A3BCF0041EFB5 /* PEPPassphraseCache.h in Headers */,
 				1543DD3F257A3B710041EFB5 /* PEPPassphraseProviderProtocol.h in Headers */,
 				1543DD78257A3BCF0041EFB5 /* PEPInternalConstants.h in Headers */,
+				15A9230525BF2D9700D33EAB /* PEPAutoPointer+Message.h in Headers */,
+				15A922FA25BF2D8000D33EAB /* NSString+NormalizePassphrase.h in Headers */,
 				1543DD40257A3B710041EFB5 /* NSNumber+PEPRating.h in Headers */,
 				1543DD76257A3BCF0041EFB5 /* PEPAutoPointer.h in Headers */,
+				15A922FD25BF2D8000D33EAB /* NSNumber+PEPRating+Internal.h in Headers */,
 				1543DD70257A3BAE0041EFB5 /* PEPObjCAdapter+Internal.h in Headers */,
 				1543DD7F257A3BCF0041EFB5 /* PEPQueue.h in Headers */,
+				15A922FE25BF2D8000D33EAB /* PEPMessage+Engine.h in Headers */,
 				1543DD77257A3BCF0041EFB5 /* PEPCopyableThread.h in Headers */,
+				15A922F825BF2D8000D33EAB /* PEPInternalSession+PassphraseCache.h in Headers */,
+				15A922FB25BF2D8000D33EAB /* NSError+PEP.h in Headers */,
 				1543DD46257A3B710041EFB5 /* PEPConstants.h in Headers */,
+				15A922FC25BF2D8000D33EAB /* NSError+PEP+Internal.h in Headers */,
 				1543DD81257A3BCF0041EFB5 /* PEPSessionProvider.h in Headers */,
 				1543DD7E257A3BCF0041EFB5 /* Logger.h in Headers */,
 				1543DD45257A3B710041EFB5 /* PEPSendMessageDelegate.h in Headers */,
 				1543DD7C257A3BCF0041EFB5 /* PEPPassphraseUtil.h in Headers */,
+				15A922F925BF2D8000D33EAB /* PEPIdentity+Reset.h in Headers */,
+				15A922EC25BF2D7300D33EAB /* NSArray+Engine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +828,7 @@
 				1552D963257660C900A92F71 /* NSString+NormalizePassphrase.h in Headers */,
 				1552D982257660C900A92F71 /* PEPPassphraseUtil.h in Headers */,
 				1552D98E257660C900A92F71 /* PEPMessage+Engine.h in Headers */,
+				15A9230425BF2D9600D33EAB /* PEPAutoPointer+Message.h in Headers */,
 				1552D97C257660C900A92F71 /* PEPPassphraseCacheEntry.h in Headers */,
 				1552D968257660C900A92F71 /* PEPInternalSession+PassphraseCache.h in Headers */,
 				1552D989257660C900A92F71 /* PEPObjCAdapter+Internal.h in Headers */,
