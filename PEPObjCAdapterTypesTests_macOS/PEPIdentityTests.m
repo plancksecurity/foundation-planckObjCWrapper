@@ -8,10 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPIdentity+SecureCoding.h"
+#import "PEPIdentityMock.h"
 
 @interface PEPIdentityTests : XCTestCase
-@property (nonatomic, strong) PEPIdentity *identity;
+@property (nonatomic, strong) PEPIdentityMock  *identity;
+@property (nonatomic, strong) PEPIdentityMock *unarchivedIdentity;
 @end
 
 @implementation PEPIdentityTests
@@ -19,7 +20,22 @@
 - (void)setUp {
     [super setUp];
 
-    self.identity = [[PEPIdentity alloc] initWithAddress:@"test@host.com"];
+    self.identity = [PEPIdentityMock new];
+
+    XCTAssertNotNil(self.identity, "PEPIdentity should not be nil.");
+
+    NSError *error;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.identity
+                                         requiringSecureCoding:YES
+                                                         error:&error];
+
+    XCTAssertNil(error, "Error archiving pEp Identity.");
+
+    self.unarchivedIdentity = [NSKeyedUnarchiver unarchivedObjectOfClass:[PEPIdentity class]
+                                                                fromData:data
+                                                                   error:&error];
+
+    XCTAssertNil(error, "Error unarchiving pEp Identity.");
 }
 
 - (void)tearDown {
@@ -33,6 +49,10 @@
 
 - (void)testSupportsSecureCodingProtocol {
     XCTAssertTrue([PEPIdentity supportsSecureCoding]);
+}
+
+- (void)testIdentityAddress {
+    XCTAssertEqualObjects(self.identity.address, self.unarchivedIdentity.address);
 }
 
 @end
