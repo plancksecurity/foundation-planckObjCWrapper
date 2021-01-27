@@ -677,6 +677,9 @@
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
     XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+
+    // There shouldn't be any attachments
+    XCTAssertEqual(decmsg.attachments.count, 0);
 }
 
 - (void)testOutgoingContactColor
