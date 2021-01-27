@@ -188,10 +188,14 @@
 		4E81CDD525C1A98D009F140D /* PEPLanguageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD1325C15FD0009F140D /* PEPLanguageTest.m */; };
 		4E81CDEC25C1AAAE009F140D /* PEPAttachmentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD2425C168DC009F140D /* PEPAttachmentTest.m */; };
 		4E81CE0325C1ABA7009F140D /* PEPMessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD3525C16F6B009F140D /* PEPMessageTest.m */; };
-		4E81CE1B25C1AC6C009F140D /* PEPLanguageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD1B25C160CE009F140D /* PEPLanguageTests.m */; };
-		4E81CE1C25C1AC6C009F140D /* PEPIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB86FD25C067DC00FA045D /* PEPIdentityTests.m */; };
-		4E81CE1D25C1AC6C009F140D /* PEPAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */; };
-		4E81CE1E25C1AC6C009F140D /* PEPMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD3D25C17CBD009F140D /* PEPMessageTests.m */; };
+		4E81CE3B25C1B15D009F140D /* PEPIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB86FD25C067DC00FA045D /* PEPIdentityTests.m */; };
+		4E81CE3C25C1B15E009F140D /* PEPIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB86FD25C067DC00FA045D /* PEPIdentityTests.m */; };
+		4E81CE4B25C1B162009F140D /* PEPLanguageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD1B25C160CE009F140D /* PEPLanguageTests.m */; };
+		4E81CE4C25C1B163009F140D /* PEPLanguageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD1B25C160CE009F140D /* PEPLanguageTests.m */; };
+		4E81CE5425C1B166009F140D /* PEPAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */; };
+		4E81CE5C25C1B166009F140D /* PEPAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */; };
+		4E81CE6B25C1B16B009F140D /* PEPMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD3D25C17CBD009F140D /* PEPMessageTests.m */; };
+		4E81CE6C25C1B16B009F140D /* PEPMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD3D25C17CBD009F140D /* PEPMessageTests.m */; };
 		4EA9B51F25BF20EA0048427E /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EA9B54D25BF20FD0048427E /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */; };
 		4EA9B58425BF278B0048427E /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1371,10 +1375,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E81CE5C25C1B166009F140D /* PEPAttachmentTests.m in Sources */,
+				4E81CE6C25C1B16B009F140D /* PEPMessageTests.m in Sources */,
 				4E81CDEC25C1AAAE009F140D /* PEPAttachmentTest.m in Sources */,
+				4E81CE4C25C1B163009F140D /* PEPLanguageTests.m in Sources */,
 				4E81CDD525C1A98D009F140D /* PEPLanguageTest.m in Sources */,
 				4E81CE0325C1ABA7009F140D /* PEPMessageTest.m in Sources */,
 				4E81CDB725C1A6A9009F140D /* PEPIdentityTest.m in Sources */,
+				4E81CE3C25C1B15E009F140D /* PEPIdentityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1382,10 +1390,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E81CE5425C1B166009F140D /* PEPAttachmentTests.m in Sources */,
+				4E81CE6B25C1B16B009F140D /* PEPMessageTests.m in Sources */,
 				4E81CD2525C168DC009F140D /* PEPAttachmentTest.m in Sources */,
+				4E81CE4B25C1B162009F140D /* PEPLanguageTests.m in Sources */,
 				4E81CD3625C16F6B009F140D /* PEPMessageTest.m in Sources */,
 				4E81CD1425C15FD0009F140D /* PEPLanguageTest.m in Sources */,
 				4EDB875525C075F200FA045D /* PEPIdentityTest.m in Sources */,
+				4E81CE3B25C1B15D009F140D /* PEPIdentityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1394,15 +1406,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4331CE94229C2AAF00DDDC65 /* PEPSizeTest.m in Sources */,
-				4E81CE1D25C1AC6C009F140D /* PEPAttachmentTests.m in Sources */,
-				4E81CE1C25C1AC6C009F140D /* PEPIdentityTests.m in Sources */,
 				4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */,
 				434707F924C30E9700E05485 /* PEPSessionTest.m in Sources */,
-				4E81CE1B25C1AC6C009F140D /* PEPLanguageTests.m in Sources */,
 				152A9C472010F50400F962ED /* PEPInternalSessionTest.m in Sources */,
 				434226811D4F60000083ED79 /* PepTests.m in Sources */,
 				4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */,
-				4E81CE1E25C1AC6C009F140D /* PEPMessageTests.m in Sources */,
 				4349CD7924ADDB8800A22A13 /* PEPPassphraseCache+Reset.m in Sources */,
 				43062BAD24EEC83400489258 /* PEPIdentity+isPEPUser.m in Sources */,
 				4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */,

@@ -11,7 +11,7 @@
 #import "PEPLanguageTest.h"
 
 @interface PEPLanguageTests : XCTestCase
-@property (nonatomic, strong) PEPLanguageTest  *language;
+@property (nonatomic, strong) PEPLanguageTest *language;
 @property (nonatomic, strong) PEPLanguageTest *unarchivedLanguage;
 @end
 
@@ -22,24 +22,18 @@
 
     self.language = [PEPLanguageTest new];
 
-
     NSError *error;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.language
                                          requiringSecureCoding:YES
                                                          error:&error];
 
-    XCTAssertNil(error, "Error archiving pEp Language.");
+    XCTAssertNil(error, "Error archiving pEp language.");
 
     self.unarchivedLanguage = [NSKeyedUnarchiver unarchivedObjectOfClass:[PEPLanguage class]
                                                                 fromData:data
                                                                    error:&error];
 
-    XCTAssertNil(error, "Error unarchiving pEp Language.");
-}
-
-- (void)tearDown {
-
-    [super tearDown];
+    XCTAssertNil(error, "Error unarchiving pEp language.");
 }
 
 - (void)testConformsSecureCodingProtocol {

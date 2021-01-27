@@ -22,7 +22,6 @@
 
     self.attachment = [PEPAttachmentTest new];
 
-
     NSError *error;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.attachment
                                          requiringSecureCoding:YES
@@ -35,11 +34,6 @@
                                                                      error:&error];
 
     XCTAssertNil(error, "Error unarchiving pEp attachment.");
-}
-
-- (void)tearDown {
-
-    [super tearDown];
 }
 
 - (void)testConformsSecureCodingProtocol {

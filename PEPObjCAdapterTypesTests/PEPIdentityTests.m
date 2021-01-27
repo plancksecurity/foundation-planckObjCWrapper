@@ -11,7 +11,7 @@
 #import "PEPIdentityTest.h"
 
 @interface PEPIdentityTests : XCTestCase
-@property (nonatomic, strong) PEPIdentityTest  *identity;
+@property (nonatomic, strong) PEPIdentityTest *identity;
 @property (nonatomic, strong) PEPIdentityTest *unarchivedIdentity;
 @end
 
@@ -22,25 +22,18 @@
 
     self.identity = [PEPIdentityTest new];
 
-    XCTAssertNotNil(self.identity, "PEPIdentity should not be nil.");
-
     NSError *error;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.identity
                                          requiringSecureCoding:YES
                                                          error:&error];
 
-    XCTAssertNil(error, "Error archiving pEp Identity.");
+    XCTAssertNil(error, "Error archiving pEp identity.");
 
     self.unarchivedIdentity = [NSKeyedUnarchiver unarchivedObjectOfClass:[PEPIdentity class]
                                                                 fromData:data
                                                                    error:&error];
 
-    XCTAssertNil(error, "Error unarchiving pEp Identity.");
-}
-
-- (void)tearDown {
-
-    [super tearDown];
+    XCTAssertNil(error, "Error unarchiving pEp identity.");
 }
 
 - (void)testConformsSecureCodingProtocol {

@@ -23,7 +23,6 @@
 
     self.message = [PEPMessageTest new];
 
-
     NSError *error;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.message
                                          requiringSecureCoding:YES
@@ -36,11 +35,6 @@
                                                                   error:&error];
 
     XCTAssertNil(error, "Error unarchiving pEp message.");
-}
-
-- (void)tearDown {
-
-    [super tearDown];
 }
 
 - (void)testConformsSecureCodingProtocol {

@@ -28,22 +28,19 @@
 // MARK: - Equality
 
 /**
- The keys that should be used to decide `isEqual` and compute the `hash`.
+ The keys that should be used to decide `isEqual`.
  */
 static NSArray *s_keys;
 
-- (BOOL)isEqualToPEPAttachment:(PEPAttachment * _Nonnull)attachment
-{
+- (BOOL)isEqualToPEPAttachment:(PEPAttachment * _Nonnull)attachment {
     return [self isEqualToObject:attachment basedOnKeys:s_keys];
 }
 
-- (NSUInteger)hash
-{
+- (NSUInteger)hash {
     return [self hashBasedOnKeys:s_keys];
 }
 
-- (BOOL)isEqual:(id)object
-{
+- (BOOL)isEqual:(id)object {
     if (object == self) {
         return YES;
     }
