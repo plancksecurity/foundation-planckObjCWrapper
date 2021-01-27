@@ -155,7 +155,6 @@ hg clone https://pep.foundation/dev/repos/pEpObjCAdapter
 
 ## Build
 
-<<<<<<< HEAD
 =======
 ### iOS Only: Copy System DB 
 
@@ -163,7 +162,6 @@ The `system.db` from the pEpEngine repository must be copied in the bundle that 
 
 Backround: Has been introduces to use Apple Shared App Directory of the client App.
 
->>>>>>> 1.1.250
 ### Using Xcode UI
 
 `open pEpMacOSAdapter/pEpObjCAdapter.xcworkspace/`
