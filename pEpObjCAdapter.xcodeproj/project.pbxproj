@@ -184,7 +184,8 @@
 		4E81CE8825C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CE8625C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m */; };
 		4E81CE9625C1CE21009F140D /* PEPTypesTestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CE9525C1CE21009F140D /* PEPTypesTestUtil.m */; };
 		4E81CEC225C1D751009F140D /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */; };
-		4E81CF1825C1E710009F140D /* PEPAttachment_SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CF1725C1E710009F140D /* PEPAttachment_SecureCodingTest.m */; };
+		4E81CF1825C1E710009F140D /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CF1725C1E710009F140D /* PEPAttachment+SecureCodingTest.m */; };
+		4E81CF2825C1F48E009F140D /* PEPMessage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CF2725C1F48E009F140D /* PEPMessage+SecureCodingTest.m */; };
 		4EA9B51F25BF20EA0048427E /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EA9B54D25BF20FD0048427E /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */; };
 		4EA9B58425BF278B0048427E /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -415,17 +416,14 @@
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
 		4E58698125BF2FA900779EAD /* PEPMessage+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+SecureCoding.h"; sourceTree = "<group>"; };
 		4E58698225BF2FA900779EAD /* PEPMessage+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+SecureCoding.m"; sourceTree = "<group>"; };
-		4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachmentTests.m; sourceTree = "<group>"; };
-		4E81CD3425C16F6B009F140D /* PEPMessageTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMessageTest.h; sourceTree = "<group>"; };
-		4E81CD3525C16F6B009F140D /* PEPMessageTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessageTest.m; sourceTree = "<group>"; };
-		4E81CD3D25C17CBD009F140D /* PEPMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessageTests.m; sourceTree = "<group>"; };
 		4E81CD4925C19DD4009F140D /* PEPObjCAdapterTypesTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCAdapterTypesTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E81CD4D25C19DD4009F140D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E81CE8625C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+SecureCodingTest.m"; sourceTree = "<group>"; };
 		4E81CE9425C1CE21009F140D /* PEPTypesTestUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPTypesTestUtil.h; sourceTree = "<group>"; };
 		4E81CE9525C1CE21009F140D /* PEPTypesTestUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPTypesTestUtil.m; sourceTree = "<group>"; };
 		4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPLanguage+SecureCodingTest.m"; sourceTree = "<group>"; };
-		4E81CF1725C1E710009F140D /* PEPAttachment_SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment_SecureCodingTest.m; sourceTree = "<group>"; };
+		4E81CF1725C1E710009F140D /* PEPAttachment+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPAttachment+SecureCodingTest.m"; sourceTree = "<group>"; };
+		4E81CF2725C1F48E009F140D /* PEPMessage+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+SecureCodingTest.m"; sourceTree = "<group>"; };
 		4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+SecureCoding.h"; sourceTree = "<group>"; };
 		4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+SecureCoding.m"; sourceTree = "<group>"; };
 		4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPLanguage+SecureCoding.h"; sourceTree = "<group>"; };
@@ -671,7 +669,6 @@
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
 				1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */,
 				151606FE257A401000DD42E0 /* PEPObjCAdapterTypes_iOS */,
-				4E81CE1325C1AC21009F140D /* PEPObjCAdapterTypesTests */,
 				4EDB86EB25C0674900FA045D /* PEPObjCAdapterTypesTests_macOS */,
 				4E81CD4A25C19DD4009F140D /* PEPObjCAdapterTypesTests_iOS */,
 				352988AB1AEF964100FA7E2E /* Products */,
@@ -781,20 +778,11 @@
 				4E81CE9325C1CDF9009F140D /* TestUtils */,
 				4E81CE8625C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m */,
 				4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */,
-				4E81CF1725C1E710009F140D /* PEPAttachment_SecureCodingTest.m */,
+				4E81CF1725C1E710009F140D /* PEPAttachment+SecureCodingTest.m */,
+				4E81CF2725C1F48E009F140D /* PEPMessage+SecureCodingTest.m */,
 				4E81CD4D25C19DD4009F140D /* Info.plist */,
 			);
 			path = PEPObjCAdapterTypesTests_iOS;
-			sourceTree = "<group>";
-		};
-		4E81CE1325C1AC21009F140D /* PEPObjCAdapterTypesTests */ = {
-			isa = PBXGroup;
-			children = (
-				4EDB875225C075D800FA045D /* Mocks */,
-				4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */,
-				4E81CD3D25C17CBD009F140D /* PEPMessageTests.m */,
-			);
-			path = PEPObjCAdapterTypesTests;
 			sourceTree = "<group>";
 		};
 		4E81CE9325C1CDF9009F140D /* TestUtils */ = {
@@ -812,15 +800,6 @@
 				4EDB86EE25C0674900FA045D /* Info.plist */,
 			);
 			path = PEPObjCAdapterTypesTests_macOS;
-			sourceTree = "<group>";
-		};
-		4EDB875225C075D800FA045D /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				4E81CD3425C16F6B009F140D /* PEPMessageTest.h */,
-				4E81CD3525C16F6B009F140D /* PEPMessageTest.m */,
-			);
-			path = Mocks;
 			sourceTree = "<group>";
 		};
 		64289E521B8B70E800FC617B /* Products */ = {
@@ -1365,9 +1344,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E81CF2825C1F48E009F140D /* PEPMessage+SecureCodingTest.m in Sources */,
 				4E81CE9625C1CE21009F140D /* PEPTypesTestUtil.m in Sources */,
 				4E81CEC225C1D751009F140D /* PEPLanguage+SecureCodingTest.m in Sources */,
-				4E81CF1825C1E710009F140D /* PEPAttachment_SecureCodingTest.m in Sources */,
+				4E81CF1825C1E710009F140D /* PEPAttachment+SecureCodingTest.m in Sources */,
 				4E81CE8825C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

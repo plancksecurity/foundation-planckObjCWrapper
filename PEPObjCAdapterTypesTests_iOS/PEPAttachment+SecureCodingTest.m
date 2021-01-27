@@ -10,7 +10,6 @@
 
 #import "PEPTypesTestUtil.h"
 #import "PEPAttachment+SecureCoding.h"
-#import "NSObject+Extension.h"
 
 @interface PEPAttachment_SecureCodingTest : XCTestCase
 @end
@@ -76,30 +75,6 @@
     XCTAssertNotNil(unarchivedAttachment, "Error unarchiving pEp attachment.");
 
     return unarchivedAttachment;
-}
-
-@end
-
-@implementation PEPAttachment (Equalable)
-
-/**
- The keys that should be used to decide `isEqual`.
- */
-static NSArray *s_keys;
-
-- (BOOL)isEqualToPEPAttachment:(PEPAttachment * _Nonnull)attachment {
-    return [self isEqualToObject:attachment basedOnKeys:s_keys];
-}
-
-- (BOOL)isEqual:(id)object {
-    if (object == self) {
-        return YES;
-    }
-    if (!object || ![object isKindOfClass:[self class]]) {
-        return NO;
-    }
-
-    return [self isEqualToPEPAttachment:object];
 }
 
 @end
