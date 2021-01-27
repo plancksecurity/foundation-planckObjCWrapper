@@ -12,8 +12,8 @@
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     if (self = [self init]) {
-        self.code =     [decoder decodeObjectOfClass:[NSString class] forKey:@"code"];
-        self.name =     [decoder decodeObjectOfClass:[NSString class] forKey:@"name"];
+        self.code = [decoder decodeObjectOfClass:[NSString class] forKey:@"code"];
+        self.name = [decoder decodeObjectOfClass:[NSString class] forKey:@"name"];
         self.sentence = [decoder decodeObjectOfClass:[NSString class] forKey:@"sentence"];
     }
 
@@ -21,13 +21,13 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeObject:self.code       forKey:@"code"];
-    [coder encodeObject:self.name       forKey:@"name"];
-    [coder encodeObject:self.sentence   forKey:@"sentence"];
+    [coder encodeObject:self.code forKey:@"code"];
+    [coder encodeObject:self.name forKey:@"name"];
+    [coder encodeObject:self.sentence forKey:@"sentence"];
 }
 
 + (BOOL)supportsSecureCoding {
-    return  YES;
+    return YES;
 }
 
 @end

@@ -51,34 +51,34 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeObject:self.messageID              forKey:@"messageID"];
+    [coder encodeObject:self.messageID forKey:@"messageID"];
 
-    [coder encodeObject:self.from                   forKey:@"from"];
-    [coder encodeObject:self.to                     forKey:@"to"];
-    [coder encodeObject:self.cc                     forKey:@"cc"];
-    [coder encodeObject:self.bcc                    forKey:@"bcc"];
+    [coder encodeObject:self.from forKey:@"from"];
+    [coder encodeObject:self.to forKey:@"to"];
+    [coder encodeObject:self.cc forKey:@"cc"];
+    [coder encodeObject:self.bcc forKey:@"bcc"];
 
-    [coder encodeObject:self.shortMessage           forKey:@"shortMessage"];
-    [coder encodeObject:self.longMessage            forKey:@"longMessage"];
-    [coder encodeObject:self.longMessageFormatted   forKey:@"longMessageFormatted"];
+    [coder encodeObject:self.shortMessage forKey:@"shortMessage"];
+    [coder encodeObject:self.longMessage forKey:@"longMessage"];
+    [coder encodeObject:self.longMessageFormatted forKey:@"longMessageFormatted"];
 
-    [coder encodeObject:self.replyTo                forKey:@"replyTo"];
-    [coder encodeObject:self.inReplyTo              forKey:@"inReplyTo"];
-    [coder encodeObject:self.references             forKey:@"references"];
+    [coder encodeObject:self.replyTo forKey:@"replyTo"];
+    [coder encodeObject:self.inReplyTo forKey:@"inReplyTo"];
+    [coder encodeObject:self.references forKey:@"references"];
 
-    [coder encodeObject:self.sentDate               forKey:@"sentDate"];
-    [coder encodeObject:self.receivedDate           forKey:@"receivedDate"];
+    [coder encodeObject:self.sentDate forKey:@"sentDate"];
+    [coder encodeObject:self.receivedDate forKey:@"receivedDate"];
 
-    [coder encodeObject:self.attachments            forKey:@"attachments"];
+    [coder encodeObject:self.attachments forKey:@"attachments"];
 
-    [coder encodeObject:self.optionalFields         forKey:@"optionalFields"];
-    [coder encodeObject:self.keywords               forKey:@"keywords"];
-    [coder encodeObject:self.receivedBy             forKey:@"receivedBy"];
-    [coder encodeInt:self.direction                 forKey:@"direction"];
+    [coder encodeObject:self.optionalFields forKey:@"optionalFields"];
+    [coder encodeObject:self.keywords forKey:@"keywords"];
+    [coder encodeObject:self.receivedBy forKey:@"receivedBy"];
+    [coder encodeInt:self.direction forKey:@"direction"];
 }
 
 + (BOOL)supportsSecureCoding {
-    return  YES;
+    return YES;
 }
 
 @end
