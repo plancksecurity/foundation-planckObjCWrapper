@@ -415,8 +415,6 @@
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
 		4E58698125BF2FA900779EAD /* PEPMessage+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+SecureCoding.h"; sourceTree = "<group>"; };
 		4E58698225BF2FA900779EAD /* PEPMessage+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+SecureCoding.m"; sourceTree = "<group>"; };
-		4E81CD2325C168DC009F140D /* PEPAttachmentTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPAttachmentTest.h; sourceTree = "<group>"; };
-		4E81CD2425C168DC009F140D /* PEPAttachmentTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachmentTest.m; sourceTree = "<group>"; };
 		4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachmentTests.m; sourceTree = "<group>"; };
 		4E81CD3425C16F6B009F140D /* PEPMessageTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMessageTest.h; sourceTree = "<group>"; };
 		4E81CD3525C16F6B009F140D /* PEPMessageTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMessageTest.m; sourceTree = "<group>"; };
@@ -819,8 +817,6 @@
 		4EDB875225C075D800FA045D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				4E81CD2325C168DC009F140D /* PEPAttachmentTest.h */,
-				4E81CD2425C168DC009F140D /* PEPAttachmentTest.m */,
 				4E81CD3425C16F6B009F140D /* PEPMessageTest.h */,
 				4E81CD3525C16F6B009F140D /* PEPMessageTest.m */,
 			);
