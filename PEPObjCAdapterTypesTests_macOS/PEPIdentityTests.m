@@ -55,4 +55,28 @@
     XCTAssertEqualObjects(self.identity.address, self.unarchivedIdentity.address);
 }
 
+- (void)testIdentityUserID {
+    XCTAssertEqualObjects(self.identity.userID, self.unarchivedIdentity.userID);
+}
+
+- (void)testIdentityFingerprint {
+    XCTAssertEqualObjects(self.identity.fingerPrint, self.unarchivedIdentity.fingerPrint);
+}
+
+- (void)testIdentityLanguage {
+    XCTAssertEqualObjects(self.identity.language, self.unarchivedIdentity.language);
+}
+
+- (void)testIdentityCommType {
+    XCTAssertEqual(self.identity.commType, self.unarchivedIdentity.commType);
+}
+
+- (void)testIdentityIsOwn {
+    XCTAssertEqual(self.identity.isOwn, self.unarchivedIdentity.isOwn);
+}
+
+- (void)testIdentityFlags {
+    XCTAssertEqual(self.identity.flags, self.unarchivedIdentity.flags);
+}
+
 @end
