@@ -91,8 +91,9 @@
                                               precomposedStringWithCanonicalMapping]
                                              UTF8String], 0);
 
-    if (self.attachments)
+    if (self.attachments && self.attachments.count > 0) {
         msg->attachments = [self.attachments toBloblist];
+    }
 
     return msg;
 }
