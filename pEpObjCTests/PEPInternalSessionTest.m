@@ -680,11 +680,6 @@
 
     // There shouldn't be any attachments
     XCTAssertEqual(decmsg.attachments.count, 0);
-
-    // And if there is, 0-length looks wrong
-    for (PEPAttachment *att in decmsg.attachments) {
-        XCTAssertGreaterThan(att.data.length, 0);
-    }
 }
 
 - (void)testOutgoingContactColor
