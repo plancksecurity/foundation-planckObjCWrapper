@@ -65,12 +65,15 @@ make
 make install
 popd
 
+<<<<<<< HEAD
 						git clone https://github.com/fdik/libetpan
 						pushd libetpan
 						./autogen.sh --prefix=$(pwd)/../local/
 						make install
 						popd
 
+=======
+>>>>>>> 1.1.250
 GMP_VERSION="6.1.2"
 GMP_DIR="gmp-${GMP_VERSION}"
 TARBALL="gmp-${GMP_VERSION}.tar.bz2"
@@ -122,11 +125,19 @@ make -j 4
 make install
 popd
 
+<<<<<<< HEAD
 # //BUFF: weget and build libz too and link it to libetpan. Rm linking dynamic lib in client afterwards.
 
 git clone https://github.com/fdik/libetpan
 pushd libetpan
 # //BUFF: This is not working (afaics). libetpan is still using the systems dynamic iconv lib. I was unable yet to force libetpan to use libiconv.a
+=======
+#TODO: weget and build libz too and link it to libetpan. Rm linking dynamic lib in client afterwards.
+
+git clone https://github.com/fdik/libetpan
+pushd libetpan
+#ToDo: This is not working (afaics). libetpan is still using the systems dynamic iconv lib. I was unable yet to force libetpan to use libiconv.a
+>>>>>>> 1.1.250
 unset CFLAGS
 unset LDFLAGS
 export LDFLAGS="-Wl/Users/buff/workspace/pEp/src_pEpObjCAdapter_macOS/local/libiconv.a" 
@@ -144,6 +155,15 @@ hg clone https://pep.foundation/dev/repos/pEpObjCAdapter
 
 ## Build
 
+<<<<<<< HEAD
+=======
+### iOS Only: Copy System DB 
+
+The `system.db` from the pEpEngine repository must be copied in the bundle that uses the pEpObjCAdapter.a static lib. The ObjCAdapter copies it at runtime in the desired directory.
+
+Backround: Has been introduces to use Apple Shared App Directory of the client App.
+
+>>>>>>> 1.1.250
 ### Using Xcode UI
 
 `open pEpMacOSAdapter/pEpObjCAdapter.xcworkspace/`
