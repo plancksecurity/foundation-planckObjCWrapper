@@ -182,6 +182,8 @@
 		4E58698425BF2FA900779EAD /* PEPMessage+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E58698225BF2FA900779EAD /* PEPMessage+SecureCoding.m */; };
 		4E81CD1425C15FD0009F140D /* PEPLanguageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD1325C15FD0009F140D /* PEPLanguageTest.m */; };
 		4E81CD1C25C160CE009F140D /* PEPLanguageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD1B25C160CE009F140D /* PEPLanguageTests.m */; };
+		4E81CD2525C168DC009F140D /* PEPAttachmentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD2425C168DC009F140D /* PEPAttachmentTest.m */; };
+		4E81CD2D25C16AEE009F140D /* PEPAttachmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */; };
 		4EA9B51F25BF20EA0048427E /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EA9B54D25BF20FD0048427E /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */; };
 		4EA9B58425BF278B0048427E /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -410,6 +412,9 @@
 		4E81CD1225C15FD0009F140D /* PEPLanguageTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPLanguageTest.h; sourceTree = "<group>"; };
 		4E81CD1325C15FD0009F140D /* PEPLanguageTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPLanguageTest.m; sourceTree = "<group>"; };
 		4E81CD1B25C160CE009F140D /* PEPLanguageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPLanguageTests.m; sourceTree = "<group>"; };
+		4E81CD2325C168DC009F140D /* PEPAttachmentTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPAttachmentTest.h; sourceTree = "<group>"; };
+		4E81CD2425C168DC009F140D /* PEPAttachmentTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachmentTest.m; sourceTree = "<group>"; };
+		4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachmentTests.m; sourceTree = "<group>"; };
 		4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+SecureCoding.h"; sourceTree = "<group>"; };
 		4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+SecureCoding.m"; sourceTree = "<group>"; };
 		4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPLanguage+SecureCoding.h"; sourceTree = "<group>"; };
@@ -758,6 +763,7 @@
 				4EDB86EE25C0674900FA045D /* Info.plist */,
 				4EDB86FD25C067DC00FA045D /* PEPIdentityTests.m */,
 				4E81CD1B25C160CE009F140D /* PEPLanguageTests.m */,
+				4E81CD2C25C16AEE009F140D /* PEPAttachmentTests.m */,
 			);
 			path = PEPObjCAdapterTypesTests_macOS;
 			sourceTree = "<group>";
@@ -769,6 +775,8 @@
 				4EDB875425C075F200FA045D /* PEPIdentityTest.m */,
 				4E81CD1225C15FD0009F140D /* PEPLanguageTest.h */,
 				4E81CD1325C15FD0009F140D /* PEPLanguageTest.m */,
+				4E81CD2325C168DC009F140D /* PEPAttachmentTest.h */,
+				4E81CD2425C168DC009F140D /* PEPAttachmentTest.m */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1286,9 +1294,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E81CD2525C168DC009F140D /* PEPAttachmentTest.m in Sources */,
 				4EDB86FE25C067DC00FA045D /* PEPIdentityTests.m in Sources */,
 				4E81CD1C25C160CE009F140D /* PEPLanguageTests.m in Sources */,
 				4E81CD1425C15FD0009F140D /* PEPLanguageTest.m in Sources */,
+				4E81CD2D25C16AEE009F140D /* PEPAttachmentTests.m in Sources */,
 				4EDB875525C075F200FA045D /* PEPIdentityTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
