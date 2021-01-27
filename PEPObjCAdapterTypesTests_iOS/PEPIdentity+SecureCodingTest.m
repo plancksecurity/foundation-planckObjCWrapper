@@ -1,20 +1,20 @@
 //
-//  PEPIdentityTests.m
-//  PEPObjCAdapterTypesTests_macOS
+//  PEPIdentity+SecureCodingTest.m
+//  pEpObjCAdapter
 //
-//  Created by David Alarcon on 26/1/21.
+//  Created by David Alarcon on 27/1/21.
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
+#import "PEPTypesTestUtil.h"
 #import "PEPIdentity+SecureCoding.h"
 
-@interface PEPIdentityTests : XCTestCase
-
+@interface PEPIdentity_SecureCodingTest : XCTestCase
 @end
 
-@implementation PEPIdentityTests
+@implementation PEPIdentity_SecureCodingTest
 
 - (void)testConformsSecureCodingProtocol {
     PEPIdentity *testee = [PEPIdentity new];
@@ -26,49 +26,49 @@
 }
 
 - (void)testIdentityAddress {
-    PEPIdentity *testee = [self identityWithAllFieldsFilled];
+    PEPIdentity *testee = [PEPTypesTestUtil pEpIdentityWithAllFieldsFilled];
     PEPIdentity *unarchivedTestee = [self archiveAndUnarchiveIdentity:testee];
 
     XCTAssertEqualObjects(testee.address, unarchivedTestee.address);
 }
 
 - (void)testIdentityUserID {
-    PEPIdentity *testee = [self identityWithAllFieldsFilled];
+    PEPIdentity *testee = [PEPTypesTestUtil pEpIdentityWithAllFieldsFilled];
     PEPIdentity *unarchivedTestee = [self archiveAndUnarchiveIdentity:testee];
 
     XCTAssertEqualObjects(testee.userID, unarchivedTestee.userID);
 }
 
 - (void)testIdentityFingerprint {
-    PEPIdentity *testee = [self identityWithAllFieldsFilled];
+    PEPIdentity *testee = [PEPTypesTestUtil pEpIdentityWithAllFieldsFilled];
     PEPIdentity *unarchivedTestee = [self archiveAndUnarchiveIdentity:testee];
 
     XCTAssertEqualObjects(testee.fingerPrint, unarchivedTestee.fingerPrint);
 }
 
 - (void)testIdentityLanguage {
-    PEPIdentity *testee = [self identityWithAllFieldsFilled];
+    PEPIdentity *testee = [PEPTypesTestUtil pEpIdentityWithAllFieldsFilled];
     PEPIdentity *unarchivedTestee = [self archiveAndUnarchiveIdentity:testee];
 
     XCTAssertEqualObjects(testee.language, unarchivedTestee.language);
 }
 
 - (void)testIdentityCommType {
-    PEPIdentity *testee = [self identityWithAllFieldsFilled];
+    PEPIdentity *testee = [PEPTypesTestUtil pEpIdentityWithAllFieldsFilled];
     PEPIdentity *unarchivedTestee = [self archiveAndUnarchiveIdentity:testee];
 
     XCTAssertEqual(testee.commType, unarchivedTestee.commType);
 }
 
 - (void)testIdentityIsOwn {
-    PEPIdentity *testee = [self identityWithAllFieldsFilled];
+    PEPIdentity *testee = [PEPTypesTestUtil pEpIdentityWithAllFieldsFilled];
     PEPIdentity *unarchivedTestee = [self archiveAndUnarchiveIdentity:testee];
 
     XCTAssertEqual(testee.isOwn, unarchivedTestee.isOwn);
 }
 
 - (void)testIdentityFlags {
-    PEPIdentity *testee = [self identityWithAllFieldsFilled];
+    PEPIdentity *testee = [PEPTypesTestUtil pEpIdentityWithAllFieldsFilled];
     PEPIdentity *unarchivedTestee = [self archiveAndUnarchiveIdentity:testee];
 
     XCTAssertEqual(testee.flags, unarchivedTestee.flags);
@@ -89,20 +89,6 @@
     XCTAssertNotNil(unarchivedIdentity, "Error unarchiving pEp identity.");
 
     return unarchivedIdentity;
-}
-
-- (PEPIdentity *)identityWithAllFieldsFilled {
-    PEPIdentity *identity = [PEPIdentity new];
-
-    identity.address = @"test@host.com";
-    identity.userID = @"pEp_own_userId";
-    identity.fingerPrint = @"184C1DE2D4AB98A2A8BB7F23B0EC5F483B62E19D";
-    identity.language = @"cat";
-    identity.commType = PEPCommTypePEP;
-    identity.isOwn = YES;
-    identity.flags = PEPIdentityFlagsNotForSync;
-
-    return identity;
 }
 
 @end
