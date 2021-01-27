@@ -1,5 +1,5 @@
 //
-//  PEPIdentityMock.h
+//  PEPIdentityTest.h
 //  PEPObjCAdapterTypesTests_macOS
 //
 //  Created by David Alarcon on 26/1/21.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPIdentityMock : PEPIdentity
+@interface PEPIdentityTest : PEPIdentity
 
 @end
 

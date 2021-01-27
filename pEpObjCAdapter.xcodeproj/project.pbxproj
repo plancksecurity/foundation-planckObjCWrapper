@@ -196,7 +196,7 @@
 		4EDB863C25C062F800FA045D /* PEPMessage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E58698125BF2FA900779EAD /* PEPMessage+SecureCoding.h */; };
 		4EDB86EF25C0674900FA045D /* libPEPObjCAdapterTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 150E8FB225755B6900AE2198 /* libPEPObjCAdapterTypes_macOS.a */; };
 		4EDB86FE25C067DC00FA045D /* PEPIdentityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB86FD25C067DC00FA045D /* PEPIdentityTests.m */; };
-		4EDB875525C075F200FA045D /* PEPIdentityMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB875425C075F200FA045D /* PEPIdentityMock.m */; };
+		4EDB875525C075F200FA045D /* PEPIdentityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB875425C075F200FA045D /* PEPIdentityTest.m */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; platformFilter = ios; };
@@ -414,8 +414,8 @@
 		4EDB86EA25C0674900FA045D /* PEPObjCAdapterTypesTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCAdapterTypesTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EDB86EE25C0674900FA045D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EDB86FD25C067DC00FA045D /* PEPIdentityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentityTests.m; sourceTree = "<group>"; };
-		4EDB875325C075F200FA045D /* PEPIdentityMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPIdentityMock.h; sourceTree = "<group>"; };
-		4EDB875425C075F200FA045D /* PEPIdentityMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentityMock.m; sourceTree = "<group>"; };
+		4EDB875325C075F200FA045D /* PEPIdentityTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPIdentityTest.h; sourceTree = "<group>"; };
+		4EDB875425C075F200FA045D /* PEPIdentityTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentityTest.m; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -759,8 +759,8 @@
 		4EDB875225C075D800FA045D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				4EDB875325C075F200FA045D /* PEPIdentityMock.h */,
-				4EDB875425C075F200FA045D /* PEPIdentityMock.m */,
+				4EDB875325C075F200FA045D /* PEPIdentityTest.h */,
+				4EDB875425C075F200FA045D /* PEPIdentityTest.m */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1279,7 +1279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EDB86FE25C067DC00FA045D /* PEPIdentityTests.m in Sources */,
-				4EDB875525C075F200FA045D /* PEPIdentityMock.m in Sources */,
+				4EDB875525C075F200FA045D /* PEPIdentityTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

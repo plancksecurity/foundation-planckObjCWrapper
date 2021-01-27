@@ -1,14 +1,14 @@
 //
-//  PEPIdentityMock.m
+//  PEPIdentityTest.m
 //  PEPObjCAdapterTypesTests_macOS
 //
 //  Created by David Alarcon on 26/1/21.
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
-#import "PEPIdentityMock.h"
+#import "PEPIdentityTest.h"
 
-@implementation PEPIdentityMock
+@implementation PEPIdentityTest
 
 - (instancetype)init {
     if (self = [super init]) {

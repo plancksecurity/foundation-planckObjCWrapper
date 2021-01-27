@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPIdentityMock.h"
+#import "PEPIdentityTest.h"
 
 @interface PEPIdentityTests : XCTestCase
-@property (nonatomic, strong) PEPIdentityMock  *identity;
-@property (nonatomic, strong) PEPIdentityMock *unarchivedIdentity;
+@property (nonatomic, strong) PEPIdentityTest  *identity;
+@property (nonatomic, strong) PEPIdentityTest *unarchivedIdentity;
 @end
 
 @implementation PEPIdentityTests
@@ -20,7 +20,7 @@
 - (void)setUp {
     [super setUp];
 
-    self.identity = [PEPIdentityMock new];
+    self.identity = [PEPIdentityTest new];
 
     XCTAssertNotNil(self.identity, "PEPIdentity should not be nil.");
 
