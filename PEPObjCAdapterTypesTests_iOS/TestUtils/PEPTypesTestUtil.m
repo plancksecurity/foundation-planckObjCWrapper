@@ -9,6 +9,7 @@
 #import "PEPTypesTestUtil.h"
 
 #import "PEPIdentity.h"
+#import "PEPAttachment.h"
 
 @implementation PEPTypesTestUtil
 
@@ -24,6 +25,18 @@
     identity.flags = PEPIdentityFlagsNotForSync;
 
     return identity;
+}
+
++ (PEPAttachment *)pEpAttachmentWithAllFieldsFilled {
+    PEPAttachment *attachment = [PEPAttachment new];
+
+    attachment.data = [@"attachment" dataUsingEncoding:NSUTF8StringEncoding];
+    attachment.size = attachment.data.length;
+    attachment.mimeType = @"text/plain";
+    attachment.filename = @"attachment.txt";
+    attachment.contentDisposition = PEPContentDispositionAttachment;
+
+    return attachment;
 }
 
 @end

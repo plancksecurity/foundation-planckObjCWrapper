@@ -12,7 +12,6 @@
 #import "PEPLanguage+SecureCoding.h"
 
 @interface PEPLanguage_SecureCodingTest : XCTestCase
-
 @end
 
 @implementation PEPLanguage_SecureCodingTest
@@ -54,12 +53,12 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:language
                                          requiringSecureCoding:YES
                                                          error:&error];
-    XCTAssertNotNil(data, "Error archiving pEp identity.");
+    XCTAssertNotNil(data, "Error archiving pEp language.");
 
     PEPLanguage *unarchivedLanguage = [NSKeyedUnarchiver unarchivedObjectOfClass:[PEPLanguage class]
                                                                         fromData:data
                                                                            error:&error];
-    XCTAssertNotNil(unarchivedLanguage, "Error unarchiving pEp identity.");
+    XCTAssertNotNil(unarchivedLanguage, "Error unarchiving pEp language.");
 
     return unarchivedLanguage;
 }

@@ -184,6 +184,7 @@
 		4E81CE8825C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CE8625C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m */; };
 		4E81CE9625C1CE21009F140D /* PEPTypesTestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CE9525C1CE21009F140D /* PEPTypesTestUtil.m */; };
 		4E81CEC225C1D751009F140D /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */; };
+		4E81CF1825C1E710009F140D /* PEPAttachment_SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CF1725C1E710009F140D /* PEPAttachment_SecureCodingTest.m */; };
 		4EA9B51F25BF20EA0048427E /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EA9B54D25BF20FD0048427E /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */; };
 		4EA9B58425BF278B0048427E /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -426,6 +427,7 @@
 		4E81CE9425C1CE21009F140D /* PEPTypesTestUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPTypesTestUtil.h; sourceTree = "<group>"; };
 		4E81CE9525C1CE21009F140D /* PEPTypesTestUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPTypesTestUtil.m; sourceTree = "<group>"; };
 		4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPLanguage+SecureCodingTest.m"; sourceTree = "<group>"; };
+		4E81CF1725C1E710009F140D /* PEPAttachment_SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment_SecureCodingTest.m; sourceTree = "<group>"; };
 		4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+SecureCoding.h"; sourceTree = "<group>"; };
 		4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+SecureCoding.m"; sourceTree = "<group>"; };
 		4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPLanguage+SecureCoding.h"; sourceTree = "<group>"; };
@@ -781,6 +783,7 @@
 				4E81CE9325C1CDF9009F140D /* TestUtils */,
 				4E81CE8625C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m */,
 				4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */,
+				4E81CF1725C1E710009F140D /* PEPAttachment_SecureCodingTest.m */,
 				4E81CD4D25C19DD4009F140D /* Info.plist */,
 			);
 			path = PEPObjCAdapterTypesTests_iOS;
@@ -1368,6 +1371,7 @@
 			files = (
 				4E81CE9625C1CE21009F140D /* PEPTypesTestUtil.m in Sources */,
 				4E81CEC225C1D751009F140D /* PEPLanguage+SecureCodingTest.m in Sources */,
+				4E81CF1825C1E710009F140D /* PEPAttachment_SecureCodingTest.m in Sources */,
 				4E81CE8825C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
