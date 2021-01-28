@@ -27,21 +27,21 @@
 }
 
 - (void)testLanguageCode {
-    PEPLanguage *testee = [self languageWithAllFieldsFilled];
+    PEPLanguage *testee = [PEPTypesTestUtil pEpLanguageWithAllFieldsFilled];
     PEPLanguage *unarchivedTestee = [self archiveAndUnarchiveLanguage:testee];
 
     XCTAssertEqualObjects(testee.code, unarchivedTestee.code);
 }
 
 - (void)testLanguageName {
-    PEPLanguage *testee = [self languageWithAllFieldsFilled];
+    PEPLanguage *testee = [PEPTypesTestUtil pEpLanguageWithAllFieldsFilled];
     PEPLanguage *unarchivedTestee = [self archiveAndUnarchiveLanguage:testee];
 
     XCTAssertEqualObjects(testee.name, unarchivedTestee.name);
 }
 
 - (void)testLanguageSentence {
-    PEPLanguage *testee = [self languageWithAllFieldsFilled];
+    PEPLanguage *testee = [PEPTypesTestUtil pEpLanguageWithAllFieldsFilled];
     PEPLanguage *unarchivedTestee = [self archiveAndUnarchiveLanguage:testee];
 
     XCTAssertEqualObjects(testee.sentence, unarchivedTestee.sentence);
@@ -62,16 +62,6 @@
     XCTAssertNotNil(unarchivedLanguage, "Error unarchiving pEp language.");
 
     return unarchivedLanguage;
-}
-
-- (PEPLanguage *)languageWithAllFieldsFilled {
-    PEPLanguage *language = [PEPLanguage new];
-
-    language.code = @"cat";
-    language.name = @"Català";
-    language.sentence = @"Bon profit";
-
-    return language;
 }
 
 @end

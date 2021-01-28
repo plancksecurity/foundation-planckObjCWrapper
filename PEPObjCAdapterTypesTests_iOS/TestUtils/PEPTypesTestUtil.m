@@ -10,6 +10,7 @@
 
 #import "PEPIdentity.h"
 #import "PEPAttachment.h"
+#import "PEPLanguage.h"
 
 @implementation PEPTypesTestUtil
 
@@ -37,6 +38,16 @@
     attachment.contentDisposition = PEPContentDispositionAttachment;
 
     return attachment;
+}
+
++ (PEPLanguage *)pEpLanguageWithAllFieldsFilled {
+    PEPLanguage *language = [PEPLanguage new];
+
+    language.code = @"cat";
+    language.name = @"Català";
+    language.sentence = @"Bon profit";
+
+    return language;
 }
 
 @end
