@@ -8,8 +8,6 @@
 
 #import "PEPIdentity+isPEPUser.h"
 
-#import <PEPObjCAdapterFramework/PEPObjCAdapterFramework.h>
-
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 
