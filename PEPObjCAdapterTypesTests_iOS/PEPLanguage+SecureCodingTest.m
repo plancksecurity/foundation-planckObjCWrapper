@@ -18,6 +18,7 @@
 
 - (void)testConformsSecureCodingProtocol {
     PEPLanguage *testee = [PEPLanguage new];
+
     XCTAssertTrue([testee conformsToProtocol:@protocol(NSSecureCoding)]);
 }
 

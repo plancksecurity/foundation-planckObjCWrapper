@@ -16,13 +16,13 @@
 #import "NSObject+Extension.h"
 
 @interface PEPMessage_SecureCodingTest : XCTestCase
-
 @end
 
 @implementation PEPMessage_SecureCodingTest
 
 - (void)testConformsSecureCodingProtocol {
     PEPMessage *testee = [PEPMessage new];
+
     XCTAssertTrue([testee conformsToProtocol:@protocol(NSSecureCoding)]);
 }
 
@@ -83,8 +83,7 @@
     PEPMessage *testee = [self messageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
-    XCTAssertEqualObjects(testee.longMessageFormatted,
-                          unarchivedTestee.longMessageFormatted);
+    XCTAssertEqualObjects(testee.longMessageFormatted, unarchivedTestee.longMessageFormatted);
 }
 
 - (void)testMessageReplyTo {
@@ -192,7 +191,9 @@
 
     message.replyTo = @[identity];
     message.inReplyTo = @[[NSString stringWithFormat: @"19980507220459.5655.%@", identity.address]];
-    message.references = @[[NSString stringWithFormat: @"19980509035615.40087.%@", identity.address]];
+    message.references = @[[NSString stringWithFormat:
+                            @"19980509035615.40087.%@",
+                            identity.address]];
 
     NSDate *yesterday = [NSCalendar.currentCalendar dateByAddingUnit:NSCalendarUnitDay
                                                                value:-1 toDate:[NSDate now]

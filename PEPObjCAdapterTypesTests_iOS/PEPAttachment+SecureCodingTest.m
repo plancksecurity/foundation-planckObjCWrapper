@@ -18,6 +18,7 @@
 
 - (void)testConformsSecureCodingProtocol {
     PEPAttachment *testee = [PEPAttachment new];
+
     XCTAssertTrue([testee conformsToProtocol:@protocol(NSSecureCoding)]);
 }
 

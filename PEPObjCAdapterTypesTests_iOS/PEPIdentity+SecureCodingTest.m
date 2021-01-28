@@ -18,6 +18,7 @@
 
 - (void)testConformsSecureCodingProtocol {
     PEPIdentity *testee = [PEPIdentity new];
+
     XCTAssertTrue([testee conformsToProtocol:@protocol(NSSecureCoding)]);
 }
 
