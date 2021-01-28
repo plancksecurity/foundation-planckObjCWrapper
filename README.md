@@ -149,7 +149,7 @@ rm -rf libetpan
 git clone https://pep-security.lu/gitlab/misc/libetpan.git
 
 git clone https://pep-security.lu/gitlab/misc/sqlite.git
-hg clone https://pep.foundation/dev/repos/pEpEngine
+git clone https://gitea.pep.foundation/pEp.foundation/pEpEngine
 hg clone https://pep.foundation/dev/repos/pEpObjCAdapter
 ```
 
