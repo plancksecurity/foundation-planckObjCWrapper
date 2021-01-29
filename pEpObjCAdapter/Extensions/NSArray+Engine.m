@@ -123,7 +123,16 @@
 
 - (bloblist_t * _Nullable)toBloblist
 {
+    if (self.count == 0) {
+        return NULL;
+    }
+
     bloblist_t *_bl = new_bloblist(NULL, 0, NULL, NULL);
+
+    if (!_bl) {
+        return NULL;
+    }
+
     bloblist_t *bl =_bl;
 
     // free() might be the default, but let's be explicit
