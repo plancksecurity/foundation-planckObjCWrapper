@@ -68,11 +68,6 @@
                         language:identity.language];
 }
 
-- (BOOL)isConfirmed
-{
-    return self.commType & PEP_ct_confirmed;
-}
-
 // MARK: - Equality
 
 /**
