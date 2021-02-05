@@ -22,9 +22,11 @@ sudo port install libtool
 sudo port install automake
 sudo port install wget
 sudo port install capnproto
+
 pushd ~
-hg clone https://pep.foundation/dev/repos/yml2/
+git clone https://gitea.pep.foundation/fdik/yml2
 popd
+
 curl https://sh.rustup.rs -sSf | sh
 ```
 
