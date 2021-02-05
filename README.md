@@ -15,16 +15,17 @@ For building the engine, you need a working python3 environment and all dependen
 
 ```
 sudo port install git
-sudo port install mercurial
 sudo port install gmake
 sudo port install autoconf
 sudo port install libtool
 sudo port install automake
 sudo port install wget
 sudo port install capnproto
+
 pushd ~
-hg clone https://pep.foundation/dev/repos/yml2/
+git clone https://gitea.pep.foundation/fdik/yml2
 popd
+
 curl https://sh.rustup.rs -sSf | sh
 ```
 
@@ -133,7 +134,7 @@ git clone https://pep-security.lu/gitlab/misc/libetpan.git
 
 git clone https://pep-security.lu/gitlab/misc/sqlite.git
 git clone https://gitea.pep.foundation/pEp.foundation/pEpEngine
-hg clone https://pep.foundation/dev/repos/pEpObjCAdapter
+git clone https://gitea.pep.foundation/pep.foundation/pEpObjCAdapter.git
 ```
 
 ## Build
