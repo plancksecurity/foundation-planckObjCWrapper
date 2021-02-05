@@ -135,7 +135,7 @@ git clone https://pep-security.lu/gitlab/misc/libetpan.git
 
 git clone https://pep-security.lu/gitlab/misc/sqlite.git
 git clone https://gitea.pep.foundation/pEp.foundation/pEpEngine
-hg clone https://pep.foundation/dev/repos/pEpObjCAdapter
+git clone https://gitea.pep.foundation/pep.foundation/pEpObjCAdapter.git
 ```
 
 ## Build
