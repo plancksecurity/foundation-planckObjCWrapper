@@ -1161,7 +1161,7 @@
     }
 }
 
-#pragma mark - key_reset_identity
+#pragma mark - key_reset_user
 
 - (void)testKeyResetIdentityOnOwnKeyIsIllegal
 {
