@@ -210,15 +210,10 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 {
 #if TARGET_OS_IPHONE
     if (perMachineDirectory) {
-        free((void *) perMachineDirectory);
+        free((void *) perMachineDirectory); //BUFF: DIRK??
     }
     perMachineDirectory = strdup([perMachineDir path].UTF8String);
 #endif
-}
-
-+ (NSString *)getBundlePathFor: (NSString *) filename
-{
-    return nil;
 }
 
 + (void)copyAssetsIntoDocumentsDirectory:(NSBundle *)srcBundle
