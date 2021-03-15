@@ -138,8 +138,8 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 #if TARGET_OS_IPHONE
     [self setPerMachineDirectory:[self homeURL]];
 #else
-    NSURL *perMachineDirMac = [[NSURL alloc] initWithString:"/Library/Application Support/pEp"]
-    [self setPerMachineDirectory:];
+    NSURL *perMachineDirMac = [[NSURL alloc] initWithString:@"/Library/Application Support/pEp"];
+    [self setPerMachineDirectory:perMachineDirMac];
 #endif
 }
 
