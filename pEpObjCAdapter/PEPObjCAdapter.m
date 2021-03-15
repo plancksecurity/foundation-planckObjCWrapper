@@ -148,9 +148,9 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
  @return A URL pointing a pEp directory in the app container.
 */
+#ifdef IS_IOS_BUILD
 + (NSURL *)createApplicationDirectoryiOS
 {
-#ifdef IS_IOS_BUILD
     NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
     NSLog(@"containerUrl '%@'", containerUrl);
@@ -176,8 +176,8 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     }
 
     return dirPath;
-#endif
 }
+#endif
 
 /**
  Looks up the shared directory for pEp apps under iOS and makes sure it exists.
@@ -191,10 +191,12 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
  @return A URL pointing to as app-specific directory under the OS defined
  application support directory for the current user.
  */
+#ifdef IS_IOS_BUILD
 + (NSURL *)createApplicationDirectory
 {
     return [self createApplicationDirectoryiOS];
 }
+#endif
 
 /**
  Sets the directory that will be fed into the engine's per_machine_directory.
