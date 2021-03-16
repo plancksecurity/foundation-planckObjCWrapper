@@ -32,7 +32,6 @@ const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
 static NSString * const s_pEpHomeComponent = @"pEp_home";
 
 #if TARGET_OS_IPHONE
-// marked for iOS to think about what we want on macOS
 const char* _Nullable perMachineDirectory = NULL;
 #endif
 
@@ -138,8 +137,8 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 #if TARGET_OS_IPHONE
     [self setPerMachineDirectory:[self homeURL]];
 #else
-    NSURL *perMachineDirMac = [[NSURL alloc] initWithString:@"/Library/Application Support/pEp"];
-    [self setPerMachineDirectory:perMachineDirMac];
+    NSURL *macPerMachineDir = [[NSURL alloc] initWithString:[@"/Library/Application Support/pEp" stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLPathAllowedCharacterSet]];
+    [self setPerMachineDirectory:macPerMachineDir];
 #endif
 }
 
@@ -147,7 +146,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
  Looks up the shared directory for pEp apps under iOS and makes sure it exists.
 
  @return A URL pointing a pEp directory in the app container.
-*/
+ */
 #ifdef IS_IOS_BUILD
 + (NSURL *)createApplicationDirectoryiOS
 {
@@ -210,7 +209,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 {
 #if TARGET_OS_IPHONE
     if (perMachineDirectory) {
-        free((void *) perMachineDirectory); //BUFF: DIRK??
+        free((void *) perMachineDirectory);
     }
     perMachineDirectory = strdup([perMachineDir path].UTF8String);
 #endif
@@ -245,7 +244,6 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 }
 
 + (void)setupTrustWordsDB:(NSBundle *)rootBundle {
-// iOS to force us to think about macOS
 #if TARGET_OS_IPHONE
     [PEPObjCAdapter copyAssetsIntoDocumentsDirectory:rootBundle
                                             fileName:@"system.db"];
