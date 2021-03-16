@@ -31,9 +31,7 @@ const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
  */
 static NSString * const s_pEpHomeComponent = @"pEp_home";
 
-#if TARGET_OS_IPHONE
 const char* _Nullable perMachineDirectory = NULL;
-#endif
 
 NSURL *s_homeURL;
 
@@ -207,12 +205,10 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
  */
 + (void)setPerMachineDirectory:(NSURL *)perMachineDir
 {
-#if TARGET_OS_IPHONE
     if (perMachineDirectory) {
         free((void *) perMachineDirectory); //BUFF: DIRK??
     }
     perMachineDirectory = strdup([perMachineDir path].UTF8String);
-#endif
 }
 
 + (void)copyAssetsIntoDocumentsDirectory:(NSBundle *)srcBundle
