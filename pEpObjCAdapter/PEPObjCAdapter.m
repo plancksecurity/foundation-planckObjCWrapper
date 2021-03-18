@@ -127,7 +127,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     // The engine will put its per_user_directory under this directory.
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
 #else
-    // For macOS there is nothing toDo.
+    // For macOS there is nothing toDo. The defaults in Engine platform_unix.h should do.
 #endif
 }
 
@@ -135,8 +135,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 #if TARGET_OS_IPHONE
     [self setPerMachineDirectory:[self homeURL]];
 #else
-    NSURL *macPerMachineDir = [[NSURL alloc] initWithString:[@"/Library/Application Support/pEp" stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLPathAllowedCharacterSet]];
-    [self setPerMachineDirectory:macPerMachineDir];
+    // For macOS there is nothing toDo. The defaults in Engine platform_unix.h should do.
 #endif
 }
 
