@@ -380,6 +380,51 @@
     XCTAssertNotEqual(fprOriginal, fprAfterReset);
 }
 
+- (void)testDisableAllSyncChannels
+{
+    PEPSession *asyncSession = [PEPSession new];
+
+    PEPIdentity *ident1 = [[PEPIdentity alloc]
+                           initWithAddress:@"me-myself-and-i-1@pep-project.org"
+                           userID:@"me-myself-and-i-1"
+                           userName:@"me-myself-and-i-1"
+                           isOwn:YES];
+
+    PEPIdentity *ident2 = [[PEPIdentity alloc]
+                           initWithAddress:@"me-myself-and-i-2@pep-project.org"
+                           userID:@"me-myself-and-i-2"
+                           userName:@"me-myself-and-i-2"
+                           isOwn:YES];
+
+    for (PEPIdentity *ident in @[ident1, ident2]) {
+        NSError *error = nil;
+        XCTAssertNotNil([self mySelf:ident error:&error]);
+        XCTAssertNil(error);
+
+        NSNumber *enabledNum = [self queryKeySyncEnabledForIdentity:ident error:&error];
+        XCTAssertNotNil(enabledNum);
+        XCTAssertNil(error);
+
+        XCTAssertEqual([enabledNum boolValue], YES);
+    }
+
+    NSError *error = nil;
+    XCTAssertTrue([asyncSession disableAllSyncChannels:&error]);
+    XCTAssertNil(error);
+
+    for (PEPIdentity *ident in @[ident1, ident2]) {
+        NSError *error = nil;
+        XCTAssertTrue([self mySelf:ident error:&error]);
+        XCTAssertNil(error);
+
+        NSNumber *enabledNum = [self queryKeySyncEnabledForIdentity:ident error:&error];
+        XCTAssertNotNil(enabledNum);
+        XCTAssertNil(error);
+
+        XCTAssertEqual([enabledNum boolValue], NO);
+    }
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf
