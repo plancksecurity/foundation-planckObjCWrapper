@@ -337,4 +337,7 @@
 - (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
                       error:(NSError * _Nullable * _Nullable)error;
 
+/// Wraps `disable_all_sync_channels` (`sync_api.h`).
+- (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
+
 @end
