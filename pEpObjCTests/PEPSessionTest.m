@@ -382,8 +382,6 @@
 
 - (void)testDisableAllSyncChannels
 {
-    PEPSession *asyncSession = [PEPSession new];
-
     PEPIdentity *ident1 = [[PEPIdentity alloc]
                            initWithAddress:@"me-myself-and-i-1@pep-project.org"
                            userID:@"me-myself-and-i-1"
@@ -406,6 +404,7 @@
         XCTAssertEqual([enabledNum boolValue], YES);
     }
 
+    PEPSession *asyncSession = [PEPSession new];
     NSError *error = nil;
     XCTAssertTrue([asyncSession disableAllSyncChannels:&error]);
     XCTAssertNil(error);
