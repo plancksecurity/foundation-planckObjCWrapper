@@ -1194,6 +1194,8 @@
     XCTAssertNil(error);
 
     for (PEPIdentity *ident in @[ident1, ident2]) {
+        error = nil;
+
         NSNumber *enabledNum = [session queryKeySyncEnabledForIdentity:ident error:&error];
         XCTAssertNotNil(enabledNum);
         XCTAssertNil(error);
