@@ -650,4 +650,16 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session colorFromRating:rating];
 }
 
+- (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        if (error) {
+            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
+        }
+        return NO;
+    }
+    return [session disableAllSyncChannels:error];
+}
+
 @end
