@@ -1033,4 +1033,17 @@ static NSDictionary *stringToRating;
     return [PEPPassphraseCache sharedInstance];
 }
 
+- (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error
+{
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return disable_all_sync_channels(self.session);
+    }];
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 @end
