@@ -398,8 +398,6 @@
 
     for (PEPIdentity *ident in @[ident1, ident2]) {
         NSError *error = nil;
-        XCTAssertNotNil([self mySelf:ident error:&error]);
-        XCTAssertNil(error);
 
         NSNumber *enabledNum = [self queryKeySyncEnabledForIdentity:ident error:&error];
         XCTAssertNotNil(enabledNum);
