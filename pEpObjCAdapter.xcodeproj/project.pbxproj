@@ -1523,7 +1523,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
-					"$(PROJECT_DIR)/../pep-toolbox/xcodeGenerated",
+					"$(PROJECT_DIR)/../pep-toolbox/build/include",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1562,7 +1562,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
-					"$(PROJECT_DIR)/../pep-toolbox/xcodeGenerated",
+					"$(PROJECT_DIR)/../pep-toolbox/build/include",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
