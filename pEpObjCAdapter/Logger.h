@@ -10,8 +10,10 @@
 #define Logger_h
 
 #ifdef IS_IOS_BUILD
-
 #import <pEpIOSToolbox/pEpIOSToolbox-Swift.h>
+#else
+#import "PEPToolbox_macOS-Swift.h"
+#endif
 
 #define LogInfo(...) [[Log shared] \
  logInfoWithMessage:[NSString stringWithFormat:__VA_ARGS__] \
@@ -28,13 +30,5 @@ logErrorWithMessage:[NSString stringWithFormat:__VA_ARGS__] \
 function:[NSString stringWithUTF8String:__FUNCTION__] \
 filePath:[NSString stringWithUTF8String:__FILE__] \
 fileLine:__LINE__];
-
-#else
-//BUFF: //DIRK: //!!!: Mac version loggingneeds to be defined and implemented. Remeber to only use static libs. Ideally we find a nice way without #ifdef IS_IOS_BUILD.
-#define LogInfo(...) NSLog(__VA_ARGS__);
-#define LogWarn(...)  NSLog(__VA_ARGS__);
-#define LogError(...)  NSLog(__VA_ARGS__);
-
-#endif
 
 #endif /* Logger_h */
