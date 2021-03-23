@@ -59,7 +59,7 @@
                BlueprintIdentifier = "B7911EB321F7358500D7F66F"
                BuildableName = "pEpIOSToolbox.framework"
                BlueprintName = "pEpIOSToolbox"
-               ReferencedContainer = "container:../pep4ios/SubProjects/pEpIOSToolbox/pEpIOSToolbox.xcodeproj">
+               ReferencedContainer = "container:../pep-toolbox/pEpIOSToolbox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
