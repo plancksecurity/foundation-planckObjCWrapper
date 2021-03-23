@@ -274,13 +274,6 @@
             XCTAssertTrue([self disableSyncForIdentity:identMe error:&error]);
         }
         XCTAssertNil(error);
-
-        for (int i = 0; i < 10; ++i) {
-            NSNumber *numQuery = [self queryKeySyncEnabledForIdentity:identMe error:&error];
-            XCTAssertNotNil(numQuery);
-            XCTAssertEqualObjects(numBool, numQuery);
-            XCTAssertNil(error);
-        }
     }
 }
 
@@ -378,48 +371,6 @@
     XCTAssertNotNil(fprAfterReset);
 
     XCTAssertNotEqual(fprOriginal, fprAfterReset);
-}
-
-- (void)testDisableAllSyncChannels
-{
-    PEPIdentity *ident1 = [[PEPIdentity alloc]
-                           initWithAddress:@"me-myself-and-i-1@pep-project.org"
-                           userID:@"me-myself-and-i-1"
-                           userName:@"me-myself-and-i-1"
-                           isOwn:YES];
-
-    PEPIdentity *ident2 = [[PEPIdentity alloc]
-                           initWithAddress:@"me-myself-and-i-2@pep-project.org"
-                           userID:@"me-myself-and-i-2"
-                           userName:@"me-myself-and-i-2"
-                           isOwn:YES];
-
-    for (PEPIdentity *ident in @[ident1, ident2]) {
-        NSError *error = nil;
-
-        NSNumber *enabledNum = [self queryKeySyncEnabledForIdentity:ident error:&error];
-        XCTAssertNotNil(enabledNum);
-        XCTAssertNil(error);
-
-        XCTAssertEqual([enabledNum boolValue], YES);
-    }
-
-    PEPSession *asyncSession = [PEPSession new];
-    NSError *error = nil;
-    XCTAssertTrue([asyncSession disableAllSyncChannels:&error]);
-    XCTAssertNil(error);
-
-    for (PEPIdentity *ident in @[ident1, ident2]) {
-        NSError *error = nil;
-        XCTAssertTrue([self mySelf:ident error:&error]);
-        XCTAssertNil(error);
-
-        NSNumber *enabledNum = [self queryKeySyncEnabledForIdentity:ident error:&error];
-        XCTAssertNotNil(enabledNum);
-        XCTAssertNil(error);
-
-        XCTAssertEqual([enabledNum boolValue], NO);
-    }
 }
 
 #pragma mark - Helpers
@@ -836,29 +787,6 @@
         [exp fulfill];
     } successCallback:^{
         result = YES;
-        [exp fulfill];
-    }];
-    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
-    if (error) {
-        *error = theError;
-    }
-    return result;
-}
-
-- (NSNumber * _Nullable)queryKeySyncEnabledForIdentity:(PEPIdentity * _Nonnull)identity
-                                                 error:(NSError * _Nullable * _Nullable)error
-{
-    PEPSession *asyncSession = [PEPSession new];
-    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
-    __block NSNumber *result = nil;
-    __block NSError *theError = nil;
-    [asyncSession queryKeySyncEnabledForIdentity:identity
-                                   errorCallback:^(NSError * _Nonnull error) {
-        result = nil;
-        theError = error;
-        [exp fulfill];
-    } successCallback:^(BOOL enabled) {
-        result = [NSNumber numberWithBool:enabled];
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];

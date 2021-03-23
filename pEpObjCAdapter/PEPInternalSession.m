@@ -595,36 +595,6 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     return YES;
 }
 
-- (NSNumber * _Nullable)queryKeySyncEnabledForIdentity:(PEPIdentity * _Nonnull)identity
-                                                 error:(NSError * _Nullable * _Nullable)error
-{
-    pEp_identity *ident = [identity toStruct];
-
-    if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
-        return nil;
-    }
-
-    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return myself(session, ident);
-    }];
-
-    if ([NSError setError:error fromPEPStatus:status]) {
-        free_identity(ident);
-        return nil;
-    }
-
-    identity_flags_t flags = ident->flags;
-
-    free_identity(ident);
-
-    if (flags & PEP_idf_not_for_sync) {
-        return [NSNumber numberWithBool:NO];
-    } else {
-        return [NSNumber numberWithBool:YES];
-    }
-}
-
 - (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
                                           error:(NSError * _Nullable * _Nullable)error
 {
