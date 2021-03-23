@@ -17,7 +17,8 @@
 #import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
-#import "PEPPassphraseCache.h"
+#import "PEPPassphraseCache.h"  
+#import "Logger.h"
 
 #import "keymanagement.h"
 #import "mime.h"
@@ -149,7 +150,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 {
     NSFileManager *fm = [NSFileManager defaultManager];
     NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
-    NSLog(@"containerUrl '%@'", containerUrl);
+    LogInfo(@"containerUrl '%@'", containerUrl);
 
     if (containerUrl == nil) {
         // Will happen when running tests, so fall back.
@@ -159,7 +160,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     }
 
     if (containerUrl == nil) {
-        NSLog(@"ERROR: No app container, no application support directory.");
+        LogErrorAndCrash(@"No app container, no application support directory.");
     }
 
     NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
@@ -168,7 +169,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     NSError *theError = nil;
     if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
                        attributes:nil error:&theError]) {
-        NSLog(@"ERROR: Could not create pEp home directory, directly writing to app container instead.");
+        LogErrorAndCrash(@"Could not create pEp home directory, directly writing to app container instead.");
     }
 
     return dirPath;
@@ -232,7 +233,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
         // Check if any error occurred during copying and display it.
         if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
+            LogInfo(@"%@", [error localizedDescription]);
         }
     }
 #endif
