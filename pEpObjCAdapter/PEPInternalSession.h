@@ -181,17 +181,6 @@
 - (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
                          error:(NSError * _Nullable * _Nullable)error;
 
-/**
- Queries the given own identity on whether it has key sync disabled or not.
-
- @param identity The (own) identity to query.
- @param error The usual cocoa error handling.
- @return An NSNumber containing a boolean denoting whether key sync is enabled or not, or
-         nil on error. YES means that key sync is allowed for this identity, otherwise it's NO.
- */
-- (NSNumber * _Nullable)queryKeySyncEnabledForIdentity:(PEPIdentity * _Nonnull)identity
-                                                 error:(NSError * _Nullable * _Nullable)error;
-
 #pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
