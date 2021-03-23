@@ -14,6 +14,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "18F3BFD61A81E06E00692297"
+               BuildableName = "libCocoaLumberjack.a"
+               BlueprintName = "CocoaLumberjack-Static"
+               ReferencedContainer = "container:../../src_pEp4iOS/CocoaLumberjack/Lumberjack.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "15B220002603B04E0097927A"
+               BuildableName = "libPEPToolbox_macOS.a"
+               BlueprintName = "PEPToolbox_macOS"
+               ReferencedContainer = "container:../pep-toolbox/pEpIOSToolbox.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "1552DB102577D4F100A92F71"
                BuildableName = "libpEpEngine_macOS.a"
                BlueprintName = "pEpEngine_macOS"
