@@ -122,10 +122,6 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback;
 
-- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
-                         errorCallback:(void (^)(NSError *error))errorCallback
-                       successCallback:(void (^)(BOOL enabled))successCallback;
-
 - (void)importKey:(NSString *)keydata
       errorCallback:(void (^)(NSError *error))errorCallback
     successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback;
