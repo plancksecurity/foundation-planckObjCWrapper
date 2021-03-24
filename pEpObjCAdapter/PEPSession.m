@@ -362,23 +362,6 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
-- (void)queryKeySyncEnabledForIdentity:(PEPIdentity *)identity
-                         errorCallback:(void (^)(NSError *error))errorCallback
-                       successCallback:(void (^)(BOOL enabled))successCallback
-{
-    dispatch_async(queue, ^{
-        NSError *error = nil;
-        NSNumber *boolNum = [[PEPSessionProvider session]
-                             queryKeySyncEnabledForIdentity:identity
-                             error:&error];
-        if (boolNum != nil) {
-            successCallback(boolNum.boolValue);
-        } else {
-            errorCallback(error);
-        }
-    });
-}
-
 - (void)importKey:(NSString *)keydata
     errorCallback:(void (^)(NSError *error))errorCallback
   successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback
