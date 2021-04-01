@@ -191,8 +191,8 @@
 		4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
-		43FD41A42615D07C0032F809 /* PEPMember.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FD41A22615D07C0032F809 /* PEPMember.h */; };
-		43FD41A52615D07C0032F809 /* PEPMember.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FD41A22615D07C0032F809 /* PEPMember.h */; };
+		43FD41A42615D07C0032F809 /* PEPMember.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FD41A22615D07C0032F809 /* PEPMember.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43FD41A52615D07C0032F809 /* PEPMember.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FD41A22615D07C0032F809 /* PEPMember.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43FD41A62615D07C0032F809 /* PEPMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FD41A32615D07C0032F809 /* PEPMember.m */; };
 		43FD41A72615D07C0032F809 /* PEPMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FD41A32615D07C0032F809 /* PEPMember.m */; };
 		43FD41B72615D4810032F809 /* PEPMember+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FD41B52615D4810032F809 /* PEPMember+Engine.h */; };
