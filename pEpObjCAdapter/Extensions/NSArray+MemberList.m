@@ -19,11 +19,12 @@
     }
 
     NSMutableArray *array = [NSMutableArray array];
-    member_list *theMemberList = memberList;
-    while (theMemberList) {
+
+    for (member_list *theMemberList = memberList;
+         theMemberList;
+         theMemberList = theMemberList->next) {
         PEPMember *member = [PEPMember fromStruct:theMemberList->member];
         [array addObject:member];
-        theMemberList = theMemberList->next;
     }
 
     return [NSArray arrayWithArray:array];
