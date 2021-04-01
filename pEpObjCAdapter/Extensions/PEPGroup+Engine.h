@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPGroup (Engine)
 
++ (instancetype)fromStruct:(pEp_group * _Nonnull)groupStruct;
+
 /// Convert into an engine struct.
 /// The caller is responsible for freeing, via `free_group`.
 - (pEp_group *)toStruct;

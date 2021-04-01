@@ -13,6 +13,19 @@
 
 @implementation PEPGroup (Engine)
 
++ (instancetype)fromStruct:(pEp_group * _Nonnull)groupStruct
+{
+    PEPIdentity *groupIdentity = [PEPIdentity fromStruct:groupStruct->group_identity];
+    PEPIdentity *managerIdentity = [PEPIdentity fromStruct:groupStruct->manager];
+    NSArray<PEPMember *> *members = [NSArray fromMemberList:groupStruct->members];
+    BOOL active = groupStruct->active;
+
+    return [[PEPGroup alloc] initWithIdentity:groupIdentity
+                                      manager:managerIdentity
+                                      members:members
+                                       active:active];
+}
+
 - (pEp_group *)toStruct
 {
     pEp_identity *identityStruct = [self.identity toStruct];
