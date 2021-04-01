@@ -14,6 +14,13 @@
 
 @implementation PEPMember (Engine)
 
++ (instancetype)fromStruct:(pEp_member * _Nonnull)memberStruct
+{
+    PEPIdentity *ident = [PEPIdentity fromStruct:memberStruct->ident];
+    BOOL joined = memberStruct->joined;
+    return [[PEPMember alloc] initWithIdentity:ident joined:joined];
+}
+
 - (pEp_member *)toStruct
 {
     pEp_identity *ident = [self.identity toStruct];

@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPMember (Engine)
 
++ (instancetype)fromStruct:(pEp_member * _Nonnull)memberStruct;
+
 /// Convert into an engine struct.
 /// The caller is responsible for freeing, via `free_member`.
 - (pEp_member *)toStruct;
