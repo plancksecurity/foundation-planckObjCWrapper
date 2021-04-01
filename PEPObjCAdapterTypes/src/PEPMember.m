@@ -8,6 +8,18 @@
 
 #import "PEPMember.h"
 
+@class PEPIdentity;
+
 @implementation PEPMember
+
+- (instancetype)initWithIdentity:(PEPIdentity *)identity joined:(BOOL)joined
+{
+    self = [super init];
+    if (self) {
+        _identity = identity;
+        _joined = joined;
+    }
+    return self;
+}
 
 @end
