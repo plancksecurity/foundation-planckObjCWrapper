@@ -14,12 +14,10 @@
 
 @implementation PEPMember (Engine)
 
-/*
 - (pEp_member *)toStruct
 {
     pEp_identity *ident = [self.identity toStruct];
-    return new_member(pEp_identity *ident);
+    return new_member(ident);
 }
- */
 
 @end
