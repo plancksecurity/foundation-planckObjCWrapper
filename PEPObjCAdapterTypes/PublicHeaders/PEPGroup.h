@@ -10,7 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PEPIdentity;
+@class PEPMember;
+
 @interface PEPGroup : NSObject
+
+@property (nonatomic, readonly) PEPIdentity *identity;
+@property (nonatomic, readonly) PEPIdentity *manager;
+@property (nonatomic, readonly) NSArray<PEPMember *> *members;
+@property (nonatomic) BOOL active;
+
+- (instancetype)initWithIdentity:(PEPIdentity *)identity
+                         manager:(PEPIdentity *)manager
+                         members:(NSArray<PEPMember *> *)members
+                          active:(BOOL)active;
 
 @end
 

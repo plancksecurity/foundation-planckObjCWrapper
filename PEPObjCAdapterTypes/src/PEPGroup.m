@@ -10,4 +10,19 @@
 
 @implementation PEPGroup
 
+- (instancetype)initWithIdentity:(PEPIdentity *)identity
+                         manager:(PEPIdentity *)manager
+                         members:(NSArray<PEPMember *> *)members
+                          active:(BOOL)active
+{
+    self = [super init];
+    if (self) {
+        _identity = identity;
+        _manager = manager;
+        _members = members;
+        _active = active;
+    }
+    return self;
+}
+
 @end
