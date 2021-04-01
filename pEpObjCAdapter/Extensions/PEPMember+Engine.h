@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-//#import "group.h"
+#import "group.h"
 
 #import "PEPMember.h"
 
