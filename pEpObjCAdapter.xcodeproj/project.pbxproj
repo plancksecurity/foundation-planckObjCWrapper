@@ -199,6 +199,10 @@
 		43FD41B82615D4810032F809 /* PEPMember+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FD41B52615D4810032F809 /* PEPMember+Engine.h */; };
 		43FD41B92615D4810032F809 /* PEPMember+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FD41B62615D4810032F809 /* PEPMember+Engine.m */; };
 		43FD41BA2615D4810032F809 /* PEPMember+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FD41B62615D4810032F809 /* PEPMember+Engine.m */; };
+		43FD429F2615EABD0032F809 /* NSArray+MemberList.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FD429D2615EABD0032F809 /* NSArray+MemberList.h */; };
+		43FD42A02615EABD0032F809 /* NSArray+MemberList.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FD429D2615EABD0032F809 /* NSArray+MemberList.h */; };
+		43FD42A12615EABD0032F809 /* NSArray+MemberList.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FD429E2615EABD0032F809 /* NSArray+MemberList.m */; };
+		43FD42A22615EABD0032F809 /* NSArray+MemberList.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FD429E2615EABD0032F809 /* NSArray+MemberList.m */; };
 		4E58698325BF2FA900779EAD /* PEPMessage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E58698125BF2FA900779EAD /* PEPMessage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E58698425BF2FA900779EAD /* PEPMessage+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E58698225BF2FA900779EAD /* PEPMessage+SecureCoding.m */; };
 		4E81CDA125C1A2F4009F140D /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 151606FD257A401000DD42E0 /* libPEPObjCAdapterTypes_iOS.a */; };
@@ -458,6 +462,8 @@
 		43FD41A32615D07C0032F809 /* PEPMember.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMember.m; sourceTree = "<group>"; };
 		43FD41B52615D4810032F809 /* PEPMember+Engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMember+Engine.h"; sourceTree = "<group>"; };
 		43FD41B62615D4810032F809 /* PEPMember+Engine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMember+Engine.m"; sourceTree = "<group>"; };
+		43FD429D2615EABD0032F809 /* NSArray+MemberList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+MemberList.h"; sourceTree = "<group>"; };
+		43FD429E2615EABD0032F809 /* NSArray+MemberList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MemberList.m"; sourceTree = "<group>"; };
 		4E58698125BF2FA900779EAD /* PEPMessage+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+SecureCoding.h"; sourceTree = "<group>"; };
 		4E58698225BF2FA900779EAD /* PEPMessage+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+SecureCoding.m"; sourceTree = "<group>"; };
 		4E81CD4925C19DD4009F140D /* PEPObjCAdapterTypesTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCAdapterTypesTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -804,6 +810,8 @@
 				433DFBB624A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m */,
 				43FD41B52615D4810032F809 /* PEPMember+Engine.h */,
 				43FD41B62615D4810032F809 /* PEPMember+Engine.m */,
+				43FD429D2615EABD0032F809 /* NSArray+MemberList.h */,
+				43FD429E2615EABD0032F809 /* NSArray+MemberList.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -919,6 +927,7 @@
 				1543DD3F257A3B710041EFB5 /* PEPPassphraseProviderProtocol.h in Headers */,
 				1543DD78257A3BCF0041EFB5 /* PEPInternalConstants.h in Headers */,
 				15A9230525BF2D9700D33EAB /* (null) in Headers */,
+				43FD429F2615EABD0032F809 /* NSArray+MemberList.h in Headers */,
 				15A922FA25BF2D8000D33EAB /* NSString+NormalizePassphrase.h in Headers */,
 				1543DD40257A3B710041EFB5 /* NSNumber+PEPRating.h in Headers */,
 				1543DD76257A3BCF0041EFB5 /* PEPAutoPointer.h in Headers */,
@@ -954,6 +963,7 @@
 				1552D98C257660C900A92F71 /* PEPSync_Internal.h in Headers */,
 				1552D96F257660C900A92F71 /* PEPPassphraseCacheInternal.h in Headers */,
 				1552D93E2576602D00A92F71 /* PEPObjCAdapter_macOS.h in Headers */,
+				43FD42A02615EABD0032F809 /* NSArray+MemberList.h in Headers */,
 				1552D98F257660C900A92F71 /* PEPAutoPointer.h in Headers */,
 				1552D94B2576607900A92F71 /* PEPPassphraseProviderProtocol.h in Headers */,
 				1552D988257660C900A92F71 /* NSArray+Take.h in Headers */,
@@ -1318,6 +1328,7 @@
 				43FD41B92615D4810032F809 /* PEPMember+Engine.m in Sources */,
 				1543DCAD257944CE0041EFB5 /* PEPAutoPointer.m in Sources */,
 				1543DC6A257943CF0041EFB5 /* PEPObjCAdapter_iOS.m in Sources */,
+				43FD42A12615EABD0032F809 /* NSArray+MemberList.m in Sources */,
 				159C00A725BB140F00F13E2B /* PEPIdentity+Reset.m in Sources */,
 				1543DC89257944660041EFB5 /* PEPCSVScanner.m in Sources */,
 				1543DCB5257944DC0041EFB5 /* PEPInternalConstants.m in Sources */,
@@ -1351,6 +1362,7 @@
 				43FD41BA2615D4810032F809 /* PEPMember+Engine.m in Sources */,
 				1552D98D257660C900A92F71 /* PEPPassphraseCacheEntry.m in Sources */,
 				1552D97E257660C900A92F71 /* NSString+NormalizePassphrase.m in Sources */,
+				43FD42A22615EABD0032F809 /* NSArray+MemberList.m in Sources */,
 				1552D97F257660C900A92F71 /* NSNumber+PEPRating.m in Sources */,
 				1552D984257660C900A92F71 /* PEPInternalSession+PassphraseCache.m in Sources */,
 				1552D96E257660C900A92F71 /* PEPAutoPointer.m in Sources */,
