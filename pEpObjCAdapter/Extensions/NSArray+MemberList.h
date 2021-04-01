@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)fromMemberList:(member_list *)memberList;
 
+/// Converts into a `member_list *`, which may be NULL if empty.
+/// @Note: The caller is responsible to free this with `free_memberlist`.
+- (member_list * _Nullable)toMemberList;
+
 @end
 
 NS_ASSUME_NONNULL_END
