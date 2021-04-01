@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+//#import "group.h"
+
 #import "PEPMember.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPMember (Engine)
+
+//- (pEp_member *)toStruct;
 
 @end
 

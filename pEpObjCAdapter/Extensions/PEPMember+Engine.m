@@ -6,8 +6,20 @@
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
+#import "pEpEngine.h"
+
+#import "PEPIdentity+Engine.h"
+
 #import "PEPMember+Engine.h"
 
 @implementation PEPMember (Engine)
+
+/*
+- (pEp_member *)toStruct
+{
+    pEp_identity *ident = [self.identity toStruct];
+    return new_member(pEp_identity *ident);
+}
+ */
 
 @end
