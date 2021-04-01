@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "group.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
+@class PEPMember;
+
 @interface NSArray (MemberList)
+
++ (instancetype)fromMemberList:(member_list *)memberList;
 
 @end
 

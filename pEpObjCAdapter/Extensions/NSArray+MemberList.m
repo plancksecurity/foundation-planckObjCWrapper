@@ -10,4 +10,9 @@
 
 @implementation NSArray (MemberList)
 
++ (instancetype)fromMemberList:(member_list *)memberList
+{
+    return @[];
+}
+
 @end
