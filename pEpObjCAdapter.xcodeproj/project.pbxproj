@@ -616,6 +616,7 @@
 				15B107A6257520DE00D06C34 /* PEPAttachment.m */,
 				15B107AB257520DE00D06C34 /* PEPLanguage.m */,
 				15B107AC257520DE00D06C34 /* PEPMessage.m */,
+				43FD41A32615D07C0032F809 /* PEPMember.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -635,7 +636,6 @@
 				4EA9B5A525BF2A9A0048427E /* PEPAttachment+SecureCoding.h */,
 				4E58698125BF2FA900779EAD /* PEPMessage+SecureCoding.h */,
 				43FD41A22615D07C0032F809 /* PEPMember.h */,
-				43FD41A32615D07C0032F809 /* PEPMember.m */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
