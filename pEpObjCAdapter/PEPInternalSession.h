@@ -19,6 +19,8 @@
 @class PEPIdentity;
 @class PEPMessage;
 @class PEPPassphraseCache;
+@class PEPGroup;
+@class PEPMember;
 
 /**
  Represents a real pEp session (in contrast to PEPSession, which is a fake session to handle to the client).
@@ -328,5 +330,9 @@
 
 /// Wraps `disable_all_sync_channels` (`sync_api.h`).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
+
+- (PEPGroup * _Nullable)groupCreate:(PEPIdentity * _Nonnull)groupIdentity
+                            manager:(PEPIdentity * _Nonnull)manager
+                         memberList:(NSArray<PEPMember *> * _Nonnull)memberList;
 
 @end
