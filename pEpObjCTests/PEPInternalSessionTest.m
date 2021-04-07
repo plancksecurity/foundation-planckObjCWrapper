@@ -1488,7 +1488,7 @@
                                initWithAddress:@"group@pep.security"
                                userID:@"group"
                                userName:@"group"
-                               isOwn:NO];
+                               isOwn:YES];
 
     PEPIdentity *identManager = [[PEPIdentity alloc]
                                  initWithAddress:@"manager@pep.security"
@@ -1504,7 +1504,13 @@
 
     NSError *error = nil;
 
-    for (PEPIdentity *ident in @[identGroup, identManager, memberIdentity1]) {
+    for (PEPIdentity *ident in @[identGroup]) {
+        error = nil;
+        XCTAssertTrue([session mySelf:ident error:&error]);
+        XCTAssertNil(error);
+    }
+
+    for (PEPIdentity *ident in @[identManager, memberIdentity1]) {
         error = nil;
         XCTAssertTrue([session updateIdentity:ident error:&error]);
         XCTAssertNil(error);
