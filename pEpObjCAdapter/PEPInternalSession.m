@@ -1038,7 +1038,7 @@ static NSDictionary *stringToRating;
                             groupIdent,
                             managerIdent,
                             memberIdentList,
-                            &createdGroup);
+                            (pEp_group **) &createdGroup);
     }];
 
     free_identity(groupIdent);
