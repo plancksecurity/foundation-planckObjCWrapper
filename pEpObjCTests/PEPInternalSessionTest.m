@@ -27,6 +27,9 @@
 #import "PEPInternalSession.h"
 #import "PEPIdentity+isPEPUser.h"
 
+#import "PEPMember.h"
+#import "PEPGroup.h"
+
 @interface PEPInternalSessionTest : XCTestCase
 
 @property (nonatomic) PEPSync *sync;
@@ -1492,6 +1495,19 @@
                                  userID:@"manager"
                                  userName:@"manager"
                                  isOwn:NO];
+
+    PEPIdentity *memberIdentity1 = [[PEPIdentity alloc]
+                                    initWithAddress:@"member1@pep.security"
+                                    userID:@"member1"
+                                    userName:@"member1"
+                                    isOwn:NO];
+
+    PEPMember *member1 = [[PEPMember alloc] initWithIdentity:memberIdentity1 joined:NO];
+
+    PEPGroup *group = [session groupCreate:identGroup
+                                   manager:identManager
+                                memberList:@[member1]];
+    XCTAssertNotNil(group);
 }
 
 #pragma mark - Helpers
