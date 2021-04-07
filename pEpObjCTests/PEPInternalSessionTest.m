@@ -1504,6 +1504,12 @@
 
     NSError *error = nil;
 
+    for (PEPIdentity *ident in @[identGroup, identManager, memberIdentity1]) {
+        error = nil;
+        XCTAssertTrue([session updateIdentity:ident error:&error]);
+        XCTAssertNil(error);
+    }
+
     PEPGroup *group = [session groupCreate:identGroup
                                    manager:identManager
                                    members:@[memberIdentity1]
