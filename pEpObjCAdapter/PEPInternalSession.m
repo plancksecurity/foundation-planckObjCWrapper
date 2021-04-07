@@ -1024,12 +1024,12 @@ static NSDictionary *stringToRating;
 
 - (PEPGroup * _Nullable)groupCreate:(PEPIdentity * _Nonnull)groupIdentity
                             manager:(PEPIdentity * _Nonnull)managerIdentity
-                         members:(NSArray<PEPMember *> * _Nonnull)members
+                            members:(NSArray<PEPIdentity *> * _Nonnull)memberIdentities
                               error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *groupIdent = [groupIdentity toStruct];
     pEp_identity *managerIdent = [managerIdentity toStruct];
-    member_list *memberList = [members toMemberList];
+    identity_list *memberIdentList = [memberIdentities toIdentityList];
 
     pEp_group *createdGroup = NULL;
 
@@ -1037,13 +1037,13 @@ static NSDictionary *stringToRating;
         return group_create(self.session,
                             groupIdent,
                             managerIdent,
-                            memberList,
+                            memberIdentList,
                             &createdGroup);
     }];
 
     free_identity(groupIdent);
     free_identity(managerIdent);
-    free_memberlist(memberList);
+    free_identity_list(memberIdentList);
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
         return nil;
