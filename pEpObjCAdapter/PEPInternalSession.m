@@ -1054,9 +1054,9 @@ static NSDictionary *stringToRating;
             free_group(createdGroup);
             group = [PEPGroup fromStruct:createdGroup];
             return group;
+        } else {
+            return nil;
         }
-
-        return nil;
     }
 }
 
