@@ -1504,10 +1504,15 @@
 
     PEPMember *member1 = [[PEPMember alloc] initWithIdentity:memberIdentity1 joined:NO];
 
+    NSError *error = nil;
+
     PEPGroup *group = [session groupCreate:identGroup
                                    manager:identManager
-                                memberList:@[member1]];
+                                memberList:@[member1]
+                                     error:&error];
+
     XCTAssertNotNil(group);
+    XCTAssertNil(error);
 }
 
 #pragma mark - Helpers

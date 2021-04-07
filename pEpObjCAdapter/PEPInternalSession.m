@@ -1019,6 +1019,7 @@ static NSDictionary *stringToRating;
 - (PEPGroup * _Nullable)groupCreate:(PEPIdentity * _Nonnull)groupIdentity
                             manager:(PEPIdentity * _Nonnull)manager
                          memberList:(NSArray<PEPMember *> * _Nonnull)memberList
+                              error:(NSError * _Nullable * _Nullable)error
 {
     return nil;
 }
