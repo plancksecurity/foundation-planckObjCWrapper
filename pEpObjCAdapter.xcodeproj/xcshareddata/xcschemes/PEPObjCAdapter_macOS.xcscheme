@@ -17,7 +17,7 @@
                BlueprintIdentifier = "18F3BFD61A81E06E00692297"
                BuildableName = "libCocoaLumberjack.a"
                BlueprintName = "CocoaLumberjack-Static"
-               ReferencedContainer = "container:../../src_pEp4iOS/CocoaLumberjack/Lumberjack.xcodeproj">
+               ReferencedContainer = "container:../CocoaLumberjack/Lumberjack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
