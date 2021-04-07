@@ -146,6 +146,7 @@
 		1552D990257660C900A92F71 /* PEPPassphraseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 43589EF624A4A3B70079BEA2 /* PEPPassphraseCache.m */; };
 		1552DCBE2577E0B600A92F71 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552DCBD2577E0B600A92F71 /* libpEpEngine_macOS.a */; };
 		155A03512608B7DE00FF2754 /* libPEPToolbox_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 155A03502608B7DE00FF2754 /* libPEPToolbox_macOS.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		15921D89261CB474003346B7 /* system.db in Resources */ = {isa = PBXBuildFile; fileRef = 15921D87261CB474003346B7 /* system.db */; };
 		159C009125BB13E200F13E2B /* PEPIdentity+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 438C0F1225402D6400337922 /* PEPIdentity+Engine.m */; };
 		159C009925BB13F700F13E2B /* NSArray+Take.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B271ECC2ACD007E7E2E /* NSArray+Take.m */; };
 		159C009F25BB140000F13E2B /* NSArray+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 438C0ECB254020F000337922 /* NSArray+Engine.m */; };
@@ -346,6 +347,7 @@
 		1552DA2125766AC700A92F71 /* libpEpEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpEpEngine.a; path = ../../src_pEp4ThunderbirdMacInstaller/pep4thunderbird_macos_installer_buildscript/local/lib/libpEpEngine.a; sourceTree = "<group>"; };
 		155674EC22B82D710097930C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		155A03502608B7DE00FF2754 /* libPEPToolbox_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPToolbox_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		15921D87261CB474003346B7 /* system.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = system.db; path = ../../../pEpEngine/db/system.db; sourceTree = "<group>"; };
 		15B107A4257520DE00D06C34 /* PEPEngineTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPEngineTypes.h; sourceTree = "<group>"; };
 		15B107A5257520DE00D06C34 /* PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 		15B107A6257520DE00D06C34 /* PEPAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment.m; sourceTree = "<group>"; };
@@ -654,6 +656,7 @@
 		15DE372B200F5F93007FBD94 /* Recources */ = {
 			isa = PBXGroup;
 			children = (
+				15921D87261CB474003346B7 /* system.db */,
 				436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */,
 				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
 				640F79221C9B517C00DBEC4E /* 5CB2C182.asc */,
@@ -818,8 +821,8 @@
 			isa = PBXGroup;
 			children = (
 				64289E561B8B70E800FC617B /* libpEpEngine.a */,
-				64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */,
 				1552DCBD2577E0B600A92F71 /* libpEpEngine_macOS.a */,
+				64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1176,6 +1179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				432FA2D41C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc in Resources */,
+				15921D89261CB474003346B7 /* system.db in Resources */,
 				640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */,
 				432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */,
 				64415E4C1BEA523300F6CBB2 /* 0xC9C2EE39.asc in Resources */,
