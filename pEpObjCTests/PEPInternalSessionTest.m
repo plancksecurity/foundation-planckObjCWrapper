@@ -1502,13 +1502,11 @@
                                     userName:@"member1"
                                     isOwn:NO];
 
-    PEPMember *member1 = [[PEPMember alloc] initWithIdentity:memberIdentity1 joined:NO];
-
     NSError *error = nil;
 
     PEPGroup *group = [session groupCreate:identGroup
                                    manager:identManager
-                                   members:@[member1]
+                                   members:@[memberIdentity1]
                                      error:&error];
 
     XCTAssertNotNil(group);

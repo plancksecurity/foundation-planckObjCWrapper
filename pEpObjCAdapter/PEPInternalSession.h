@@ -334,7 +334,7 @@
 /// Wraps `group_create`.
 - (PEPGroup * _Nullable)groupCreate:(PEPIdentity * _Nonnull)groupIdentity
                             manager:(PEPIdentity * _Nonnull)managerIdentity
-                            members:(NSArray<PEPMember *> * _Nonnull)members
+                            members:(NSArray<PEPIdentity *> * _Nonnull)members
                               error:(NSError * _Nullable * _Nullable)error;
 
 @end
