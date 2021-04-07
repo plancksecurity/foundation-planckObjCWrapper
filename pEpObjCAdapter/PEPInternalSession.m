@@ -1031,14 +1031,14 @@ static NSDictionary *stringToRating;
     pEp_identity *managerIdent = [managerIdentity toStruct];
     identity_list *memberIdentList = [memberIdentities toIdentityList];
 
-    pEp_group *createdGroup = NULL;
+    __block pEp_group *createdGroup = NULL;
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return group_create(self.session,
                             groupIdent,
                             managerIdent,
                             memberIdentList,
-                            (pEp_group **) &createdGroup);
+                            &createdGroup);
     }];
 
     free_identity(groupIdent);
