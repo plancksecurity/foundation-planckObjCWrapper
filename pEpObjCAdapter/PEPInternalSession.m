@@ -1041,10 +1041,6 @@ static NSDictionary *stringToRating;
                             &createdGroup);
     }];
 
-    free_identity(groupIdent);
-    free_identity(managerIdent);
-    free_identity_list(memberIdentList);
-
     if ([NSError setError:error fromPEPStatus:theStatus]) {
         return nil;
     } else {
@@ -1052,9 +1048,17 @@ static NSDictionary *stringToRating;
 
         if (createdGroup) {
             group = [PEPGroup fromStruct:createdGroup];
+
+            // frees all identities used in its creation
             free_group(createdGroup);
+
             return group;
         } else {
+            // if the group was not created, we have to free its parts
+            free_identity(groupIdent);
+            free_identity(managerIdent);
+            free_identity_list(memberIdentList);
+
             return nil;
         }
     }
