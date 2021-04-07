@@ -1016,6 +1016,8 @@ static NSDictionary *stringToRating;
     }
 }
 
+#pragma mark - Group API
+
 - (PEPGroup * _Nullable)groupCreate:(PEPIdentity * _Nonnull)groupIdentity
                             manager:(PEPIdentity * _Nonnull)manager
                          memberList:(NSArray<PEPMember *> * _Nonnull)memberList
