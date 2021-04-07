@@ -1475,6 +1475,25 @@
     XCTAssertTrue(mock.passphraseRequiredWasCalled);
 }
 
+#pragma mark - Group API
+
+- (void)testGroupCreate
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *identGroup = [[PEPIdentity alloc]
+                               initWithAddress:@"group@pep.security"
+                               userID:@"group"
+                               userName:@"group"
+                               isOwn:NO];
+
+    PEPIdentity *identManager = [[PEPIdentity alloc]
+                                 initWithAddress:@"manager@pep.security"
+                                 userID:@"manager"
+                                 userName:@"manager"
+                                 isOwn:NO];
+}
+
 #pragma mark - Helpers
 
 - (void)setupEncryptWithImportedKeySession:(PEPInternalSession **)session
