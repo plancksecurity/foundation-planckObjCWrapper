@@ -1048,19 +1048,19 @@ static NSDictionary *stringToRating;
                             &createdGroup);
     }];
 
-    // frees all input values we own
-    freeInputValuesBlock();
-
     if ([NSError setError:error fromPEPStatus:theStatus]) {
+        freeInputValuesBlock();
         return nil;
     } else {
         PEPGroup *group = nil;
 
         if (createdGroup) {
             group = [PEPGroup fromStruct:createdGroup];
+            freeInputValuesBlock();
             free_group(createdGroup);
             return group;
         } else {
+            freeInputValuesBlock();
             return nil;
         }
     }
