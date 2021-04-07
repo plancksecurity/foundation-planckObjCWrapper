@@ -1033,6 +1033,13 @@ static NSDictionary *stringToRating;
 
     __block pEp_group *createdGroup = NULL;
 
+    // block for freeing all input values we own
+    void (^freeInputValuesBlock)(void) = ^{
+        free_identity(groupIdent);
+        free_identity(managerIdent);
+        free_identity_list(memberIdentList);
+    };
+
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return group_create(self.session,
                             groupIdent,
@@ -1041,6 +1048,9 @@ static NSDictionary *stringToRating;
                             &createdGroup);
     }];
 
+    // frees all input values we own
+    freeInputValuesBlock();
+
     if ([NSError setError:error fromPEPStatus:theStatus]) {
         return nil;
     } else {
@@ -1048,17 +1058,9 @@ static NSDictionary *stringToRating;
 
         if (createdGroup) {
             group = [PEPGroup fromStruct:createdGroup];
-
-            // frees all identities used in its creation
             free_group(createdGroup);
-
             return group;
         } else {
-            // if the group was not created, we have to free its parts
-            free_identity(groupIdent);
-            free_identity(managerIdent);
-            free_identity_list(memberIdentList);
-
             return nil;
         }
     }
