@@ -1508,7 +1508,7 @@
 
     PEPGroup *group = [session groupCreate:identGroup
                                    manager:identManager
-                                memberList:@[member1]
+                                   members:@[member1]
                                      error:&error];
 
     XCTAssertNotNil(group);

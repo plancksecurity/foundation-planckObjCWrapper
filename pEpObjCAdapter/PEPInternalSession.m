@@ -31,6 +31,10 @@
 #import "PEPMessage+Engine.h"
 #import "PEPIdentity+Reset.h"
 
+#import "NSArray+MemberList.h"
+
+#import "PEPGroup+Engine.h"
+
 #import "key_reset.h"
 
 @implementation PEPInternalSession
@@ -1019,11 +1023,41 @@ static NSDictionary *stringToRating;
 #pragma mark - Group API
 
 - (PEPGroup * _Nullable)groupCreate:(PEPIdentity * _Nonnull)groupIdentity
-                            manager:(PEPIdentity * _Nonnull)manager
-                         memberList:(NSArray<PEPMember *> * _Nonnull)memberList
+                            manager:(PEPIdentity * _Nonnull)managerIdentity
+                         members:(NSArray<PEPMember *> * _Nonnull)members
                               error:(NSError * _Nullable * _Nullable)error
 {
-    return nil;
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *managerIdent = [managerIdentity toStruct];
+    member_list *memberList = [members toMemberList];
+
+    pEp_group *createdGroup = NULL;
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_create(self.session,
+                            groupIdent,
+                            managerIdent,
+                            memberList,
+                            &createdGroup);
+    }];
+
+    free_identity(groupIdent);
+    free_identity(managerIdent);
+    free_memberlist(memberList);
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        return nil;
+    } else {
+        PEPGroup *group = nil;
+
+        if (createdGroup) {
+            free_group(createdGroup);
+            group = [PEPGroup fromStruct:createdGroup];
+            return group;
+        }
+
+        return nil;
+    }
 }
 
 @end
