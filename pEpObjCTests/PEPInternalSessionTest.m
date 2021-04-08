@@ -1516,13 +1516,11 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [session groupCreate:identyGroup
-                                   manager:identyManager
-                                   members:@[identityMember1]
-                                     error:&error];
+    PEPGroup *group = [self createGroupWithIdentity:identyGroup
+                                      identyManager:identyManager
+                                            members:@[identityMember1]];
 
     XCTAssertNotNil(group);
-    XCTAssertNil(error);
 }
 
 #pragma mark - Helpers
