@@ -1087,4 +1087,25 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (BOOL)groupDissolve:(PEPIdentity * _Nonnull)groupIdentity
+      managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
+                error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *managerIdent = [managerIdentity toStruct];
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_dissolve(self.session, groupIdent, managerIdent);
+    }];
+
+    free_identity(groupIdent);
+    free_identity(managerIdent);
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
 @end

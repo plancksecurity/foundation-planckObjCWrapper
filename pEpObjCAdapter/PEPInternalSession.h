@@ -342,4 +342,9 @@
  asMemberIdentity:(PEPIdentity * _Nonnull)asMemberIdentity
             error:(NSError * _Nullable * _Nullable)error;
 
+/// Wraps `group_dissolve`.
+- (BOOL)groupDissolve:(PEPIdentity * _Nonnull)groupIdentity
+      managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
+                error:(NSError * _Nullable * _Nullable)error;
+
 @end
