@@ -1490,13 +1490,13 @@
                                 userName:@"group"
                                 isOwn:YES];
 
-    PEPIdentity *identManager = [[PEPIdentity alloc]
-                                 initWithAddress:@"manager@pep.security"
-                                 userID:@"manager"
-                                 userName:@"manager"
-                                 isOwn:NO];
+    PEPIdentity *identyManager = [[PEPIdentity alloc]
+                                  initWithAddress:@"manager@pep.security"
+                                  userID:@"manager"
+                                  userName:@"manager"
+                                  isOwn:NO];
 
-    PEPIdentity *memberIdentity1 = [[PEPIdentity alloc]
+    PEPIdentity *identityMember1 = [[PEPIdentity alloc]
                                     initWithAddress:@"member1@pep.security"
                                     userID:@"member1"
                                     userName:@"member1"
@@ -1510,15 +1510,15 @@
         XCTAssertNil(error);
     }
 
-    for (PEPIdentity *ident in @[identManager, memberIdentity1]) {
+    for (PEPIdentity *ident in @[identyManager, identityMember1]) {
         error = nil;
         XCTAssertTrue([session updateIdentity:ident error:&error]);
         XCTAssertNil(error);
     }
 
     PEPGroup *group = [session groupCreate:identyGroup
-                                   manager:identManager
-                                   members:@[memberIdentity1]
+                                   manager:identyManager
+                                   members:@[identityMember1]
                                      error:&error];
 
     XCTAssertNotNil(group);
