@@ -13,12 +13,31 @@
 
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
+#import "PEPTestUtils.h"
 
 @interface PEPInternalSessionGroupTest : XCTestCase
 
 @end
 
 @implementation PEPInternalSessionGroupTest
+
+- (void)setUp
+{
+    [super setUp];
+
+    [self pEpCleanUp];
+}
+
+- (void)tearDown
+{
+    [self pEpCleanUp];
+    [super tearDown];
+}
+
+- (void)pEpCleanUp
+{
+    [PEPTestUtils cleanUp];
+}
 
 #pragma mark - Group API
 
