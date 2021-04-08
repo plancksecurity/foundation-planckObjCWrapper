@@ -337,4 +337,9 @@
                             members:(NSArray<PEPIdentity *> * _Nonnull)members
                               error:(NSError * _Nullable * _Nullable)error;
 
+/// Wraps `group_join`.
+- (BOOL)groupJoin:(PEPIdentity * _Nonnull)groupIdentity
+ asMemberIdentity:(PEPIdentity * _Nonnull)asMemberIdentity
+            error:(NSError * _Nullable * _Nullable)error;
+
 @end
