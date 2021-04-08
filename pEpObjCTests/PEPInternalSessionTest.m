@@ -1527,6 +1527,46 @@
 
 #pragma mark - Helpers
 
+- (PEPGroup *)createGroupWithIdentity:(PEPIdentity *)identyGroup
+                        identyManager:(PEPIdentity *)identyManager
+                              members:(NSArray<PEPIdentity *> *)members
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *identityMember1 = [[PEPIdentity alloc]
+                                    initWithAddress:@"member1@pep.security"
+                                    userID:@"member1"
+                                    userName:@"member1"
+                                    isOwn:NO];
+
+    NSError *error = nil;
+
+    for (PEPIdentity *ident in @[identyGroup]) {
+        error = nil;
+        XCTAssertTrue([session mySelf:ident error:&error]);
+        XCTAssertNil(error);
+    }
+
+    NSMutableArray<PEPIdentity *> *identitiesToUpdate = [NSMutableArray arrayWithArray:members];
+    [identitiesToUpdate addObject:identyManager];
+
+    for (PEPIdentity *ident in identitiesToUpdate) {
+        error = nil;
+        XCTAssertTrue([session updateIdentity:ident error:&error]);
+        XCTAssertNil(error);
+    }
+
+    PEPGroup *group = [session groupCreate:identyGroup
+                                   manager:identyManager
+                                   members:@[identityMember1]
+                                     error:&error];
+
+    XCTAssertNotNil(group);
+    XCTAssertNil(error);
+
+    return group;
+}
+
 - (void)setupEncryptWithImportedKeySession:(PEPInternalSession **)session
                                ownIdentity:(PEPIdentity **)ownIdentity
                           messageToEncrypt:(PEPMessage **)messageToEncrypt
