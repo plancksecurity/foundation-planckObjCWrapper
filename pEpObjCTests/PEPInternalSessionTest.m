@@ -1484,11 +1484,11 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *identGroup = [[PEPIdentity alloc]
-                               initWithAddress:@"group@pep.security"
-                               userID:@"group"
-                               userName:@"group"
-                               isOwn:YES];
+    PEPIdentity *identyGroup = [[PEPIdentity alloc]
+                                initWithAddress:@"group@pep.security"
+                                userID:@"group"
+                                userName:@"group"
+                                isOwn:YES];
 
     PEPIdentity *identManager = [[PEPIdentity alloc]
                                  initWithAddress:@"manager@pep.security"
@@ -1504,7 +1504,7 @@
 
     NSError *error = nil;
 
-    for (PEPIdentity *ident in @[identGroup]) {
+    for (PEPIdentity *ident in @[identyGroup]) {
         error = nil;
         XCTAssertTrue([session mySelf:ident error:&error]);
         XCTAssertNil(error);
@@ -1516,7 +1516,7 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [session groupCreate:identGroup
+    PEPGroup *group = [session groupCreate:identyGroup
                                    manager:identManager
                                    members:@[memberIdentity1]
                                      error:&error];
