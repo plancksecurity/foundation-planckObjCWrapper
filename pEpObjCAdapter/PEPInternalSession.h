@@ -347,4 +347,9 @@
       managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
                 error:(NSError * _Nullable * _Nullable)error;
 
+/// Wraps `group_invite_member`.
+- (BOOL)groupInviteMember:(PEPIdentity * _Nonnull)groupIdentity
+           memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                    error:(NSError * _Nullable * _Nullable)error;
+
 @end
