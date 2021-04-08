@@ -191,6 +191,64 @@
     XCTAssertNil(error);
 }
 
+- (void)testGroupInviteMemberNoTrust
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *identyGroup = [[PEPIdentity alloc]
+                                initWithAddress:@"group@pep.security"
+                                userID:@"group"
+                                userName:@"group"
+                                isOwn:YES];
+
+    PEPIdentity *identyManager = [[PEPIdentity alloc]
+                                  initWithAddress:@"manager@pep.security"
+                                  userID:@"manager"
+                                  userName:@"manager"
+                                  isOwn:NO];
+
+    PEPIdentity *identityMember1 = [[PEPIdentity alloc]
+                                    initWithAddress:@"member1@pep.security"
+                                    userID:@"member1"
+                                    userName:@"member1"
+                                    isOwn:NO];
+
+    NSError *error = nil;
+
+    for (PEPIdentity *ident in @[identyGroup]) {
+        error = nil;
+        XCTAssertTrue([session mySelf:ident error:&error]);
+        XCTAssertNil(error);
+    }
+
+    for (PEPIdentity *ident in @[identyManager, identityMember1]) {
+        error = nil;
+        XCTAssertTrue([session updateIdentity:ident error:&error]);
+        XCTAssertNil(error);
+    }
+
+    PEPGroup *group = [self createGroupWithIdentity:identyGroup
+                                      identyManager:identyManager
+                                            members:@[identityMember1]];
+
+    XCTAssertNotNil(group);
+
+    PEPIdentity *identityMember2 = [[PEPIdentity alloc]
+                                    initWithAddress:@"member2@pep.security"
+                                    userID:@"member2"
+                                    userName:@"member2"
+                                    isOwn:YES];
+
+
+    error = nil;
+    XCTAssertTrue([session mySelf:identityMember2 error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertFalse([session groupInviteMember:identyGroup memberIdentity:identityMember2 error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, PEP_NO_TRUST);
+}
+
 #pragma mark - Helpers
 
 - (PEPGroup *)createGroupWithIdentity:(PEPIdentity *)identyGroup
