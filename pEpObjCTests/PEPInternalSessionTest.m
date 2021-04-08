@@ -1523,7 +1523,7 @@
     XCTAssertNotNil(group);
 }
 
-- (void)testGroupJoin
+- (void)testGroupJoinNoMember
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
@@ -1576,8 +1576,9 @@
     XCTAssertTrue([session mySelf:identityMember2 error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertTrue([session groupJoin:identyGroup asMemberIdentity:identityMember2 error:&error]);
-    XCTAssertNil(error);
+    XCTAssertFalse([session groupJoin:identyGroup asMemberIdentity:identityMember2 error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, PEP_NO_MEMBERSHIP_STATUS_FOUND);
 }
 
 #pragma mark - Helpers
