@@ -1056,8 +1056,8 @@ static NSDictionary *stringToRating;
 
         if (createdGroup) {
             group = [PEPGroup fromStruct:createdGroup];
-            freeInputValuesBlock();
             free_group(createdGroup);
+            freeInputValuesBlock();
             return group;
         } else {
             freeInputValuesBlock();
