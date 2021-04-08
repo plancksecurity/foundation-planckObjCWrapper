@@ -1541,21 +1541,6 @@
 
     NSError *error = nil;
 
-    for (PEPIdentity *ident in @[identyGroup]) {
-        error = nil;
-        XCTAssertTrue([session mySelf:ident error:&error]);
-        XCTAssertNil(error);
-    }
-
-    NSMutableArray<PEPIdentity *> *identitiesToUpdate = [NSMutableArray arrayWithArray:members];
-    [identitiesToUpdate addObject:identyManager];
-
-    for (PEPIdentity *ident in identitiesToUpdate) {
-        error = nil;
-        XCTAssertTrue([session updateIdentity:ident error:&error]);
-        XCTAssertNil(error);
-    }
-
     PEPGroup *group = [session groupCreate:identyGroup
                                    manager:identyManager
                                    members:@[identityMember1]
