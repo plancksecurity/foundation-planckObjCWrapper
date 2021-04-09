@@ -16,6 +16,7 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalConstants.h"
 #import "NSError+PEP+Internal.h"
+#import "PEPGroup.h"
 
 static dispatch_queue_t queue;
 
@@ -643,6 +644,27 @@ successCallback:(void (^)(NSString *log))successCallback
         return NO;
     }
     return [session disableAllSyncChannels:error];
+}
+
+- (void)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
+                         manager:(PEPIdentity *)managerIdentity
+                         members:(NSArray<PEPIdentity *> *)members
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(PEPGroup *))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        PEPGroup *group = [[PEPSessionProvider session]
+                           groupCreateGroupIdentity:groupIdentity
+                           manager:managerIdentity
+                           members:members
+                           error:&error];
+        if (group) {
+            successCallback(group);
+        } else {
+            errorCallback(error);
+        }
+    });
 }
 
 @end

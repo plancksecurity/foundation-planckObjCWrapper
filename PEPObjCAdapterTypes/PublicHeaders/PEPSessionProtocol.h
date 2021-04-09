@@ -14,6 +14,7 @@
 @class PEPLanguage;
 @class PEPIdentity;
 @class PEPMessage;
+@class PEPGroup;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -229,6 +230,14 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 
 /// Wraps `disable_all_sync_channels` (`sync_api.h`).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
+
+#pragma mark - Group API
+
+- (void)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
+                         manager:(PEPIdentity *)managerIdentity
+                         members:(NSArray<PEPIdentity *> *)members
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(PEPGroup *))successCallback;
 
 @end
 
