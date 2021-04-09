@@ -15,6 +15,7 @@
 #import "PEPTestUtils.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
+#import "XCTestCase+PEPSession.h"
 
 @interface PEPSessionTest : XCTestCase
 

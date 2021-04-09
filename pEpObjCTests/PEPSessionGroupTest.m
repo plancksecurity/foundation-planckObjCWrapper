@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
+#import "XCTestCase+PEPSession.h"
 #import "PEPTestUtils.h"
 
 @interface PEPSessionGroupTest : XCTestCase
