@@ -427,7 +427,7 @@
 - (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
                                          manager:(PEPIdentity *)managerIdentity
                                          members:(NSArray<PEPIdentity *> *)memberIdentities
-                                           error:(NSError **)error
+                                           error:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
