@@ -438,9 +438,11 @@
                                    members:memberIdentities
                              errorCallback:^(NSError *error) {
         theError = error;
+        [exp fulfill];
     }
                            successCallback:^(PEPGroup *group) {
         result = group;
+        [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
     if (error) {
