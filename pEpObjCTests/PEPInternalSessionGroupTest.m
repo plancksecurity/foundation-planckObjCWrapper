@@ -76,9 +76,15 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [self createGroupWithIdentity:identyGroup
-                                      identyManager:identyManager
-                                            members:@[identityMember1]];
+    error = nil;
+
+    PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
+                                        managerIdentity:identyManager
+                                       memberIdentities:@[identityMember1]
+                                                  error:&error];
+
+    XCTAssertNotNil(group);
+    XCTAssertNil(error);
 
     XCTAssertNotNil(group);
 }
@@ -119,9 +125,15 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [self createGroupWithIdentity:identyGroup
-                                      identyManager:identyManager
-                                            members:@[identityMember1]];
+    error = nil;
+
+    PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
+                                        managerIdentity:identyManager
+                                       memberIdentities:@[identityMember1]
+                                                  error:&error];
+
+    XCTAssertNotNil(group);
+    XCTAssertNil(error);
 
     XCTAssertNotNil(group);
 
@@ -179,9 +191,15 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [self createGroupWithIdentity:identyGroup
-                                      identyManager:identyManager
-                                            members:@[identityMember1]];
+    error = nil;
+
+    PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
+                                        managerIdentity:identyManager
+                                       memberIdentities:@[identityMember1]
+                                                  error:&error];
+
+    XCTAssertNotNil(group);
+    XCTAssertNil(error);
 
     XCTAssertNotNil(group);
 
@@ -229,9 +247,15 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [self createGroupWithIdentity:identyGroup
-                                      identyManager:identyManager
-                                            members:@[identityMember1]];
+    error = nil;
+
+    PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
+                                        managerIdentity:identyManager
+                                       memberIdentities:@[identityMember1]
+                                                  error:&error];
+
+    XCTAssertNotNil(group);
+    XCTAssertNil(error);
 
     XCTAssertNotNil(group);
 
@@ -289,9 +313,15 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [self createGroupWithIdentity:identyGroup
-                                      identyManager:identyManager
-                                            members:@[identityMember1]];
+    error = nil;
+
+    PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
+                                        managerIdentity:identyManager
+                                       memberIdentities:@[identityMember1]
+                                                  error:&error];
+
+    XCTAssertNotNil(group);
+    XCTAssertNil(error);
 
     XCTAssertNotNil(group);
 
@@ -338,35 +368,7 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [self createGroupWithIdentity:identyGroup
-                                      identyManager:identyManager
-                                            members:@[identityMember1]];
-
-    XCTAssertNotNil(group);
-
     error = nil;
-    NSNumber *ratingNumber = [session groupRatingGroupIdentity:identyGroup
-                                               managerIdentity:identyManager
-                                                         error:&error];
-    XCTAssertNotNil(ratingNumber);
-    XCTAssertNil(error);
-}
-
-#pragma mark - Helpers
-
-- (PEPGroup *)createGroupWithIdentity:(PEPIdentity *)identyGroup
-                        identyManager:(PEPIdentity *)identyManager
-                              members:(NSArray<PEPIdentity *> *)members
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-
-    PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@pep.security"
-                                    userID:@"member1"
-                                    userName:@"member1"
-                                    isOwn:NO];
-
-    NSError *error = nil;
 
     PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
                                         managerIdentity:identyManager
@@ -376,7 +378,14 @@
     XCTAssertNotNil(group);
     XCTAssertNil(error);
 
-    return group;
+    XCTAssertNotNil(group);
+
+    error = nil;
+    NSNumber *ratingNumber = [session groupRatingGroupIdentity:identyGroup
+                                               managerIdentity:identyManager
+                                                         error:&error];
+    XCTAssertNotNil(ratingNumber);
+    XCTAssertNil(error);
 }
 
 @end
