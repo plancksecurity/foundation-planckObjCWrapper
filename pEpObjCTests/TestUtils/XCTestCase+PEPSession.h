@@ -76,6 +76,13 @@ NS_ASSUME_NONNULL_BEGIN
      fingerprint:(NSString * _Nullable)fingerprint
            error:(NSError * _Nullable * _Nullable)error;
 
+#pragma mark - Group API
+
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
+                                         manager:(PEPIdentity *)managerIdentity
+                                         members:(NSArray<PEPIdentity *> *)memberIdentities
+                                           error:(NSError **)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

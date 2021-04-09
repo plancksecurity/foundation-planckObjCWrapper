@@ -422,4 +422,31 @@
     return result;
 }
 
+#pragma mark - Group API
+
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
+                                         manager:(PEPIdentity *)managerIdentity
+                                         members:(NSArray<PEPIdentity *> *)memberIdentities
+                                           error:(NSError **)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block PEPGroup *result = nil;
+    __block NSError *theError = nil;
+    [asyncSession groupCreateGroupIdentity:groupIdentity
+                                   manager:managerIdentity
+                                   members:memberIdentities
+                             errorCallback:^(NSError *error) {
+        theError = error;
+    }
+                           successCallback:^(PEPGroup *group) {
+        result = group;
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
 @end
