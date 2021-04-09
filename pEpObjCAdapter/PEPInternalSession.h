@@ -331,6 +331,8 @@
 /// Wraps `disable_all_sync_channels` (`sync_api.h`).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
 
+#pragma mark - Group API
+
 /// Wraps `group_create`.
 - (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
                                          manager:(PEPIdentity * _Nonnull)managerIdentity
