@@ -1067,11 +1067,11 @@ static NSDictionary *stringToRating;
 }
 
 - (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-              asMemberIdentity:(PEPIdentity * _Nonnull)asMemberIdentity
+                memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
                          error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *groupIdent = [groupIdentity toStruct];
-    pEp_identity *asMemberIdent = [asMemberIdentity toStruct];
+    pEp_identity *asMemberIdent = [memberIdentity toStruct];
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return group_join(self.session, groupIdent, asMemberIdent);

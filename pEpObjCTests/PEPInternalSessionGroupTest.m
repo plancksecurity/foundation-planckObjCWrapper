@@ -149,7 +149,7 @@
     XCTAssertNil(error);
 
     XCTAssertFalse([session groupJoinGroupIdentity:identyGroup
-                                  asMemberIdentity:identityMember2
+                                    memberIdentity:identityMember2
                                              error:&error]);
     XCTAssertNotNil(error);
     XCTAssertEqual(error.code, PEP_NO_MEMBERSHIP_STATUS_FOUND);

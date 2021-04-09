@@ -341,7 +341,7 @@
 
 /// Wraps `group_join`.
 - (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-              asMemberIdentity:(PEPIdentity * _Nonnull)asMemberIdentity
+                memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
                          error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_dissolve`.

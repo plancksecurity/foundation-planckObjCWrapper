@@ -668,7 +668,7 @@ successCallback:(void (^)(NSString *log))successCallback
 }
 
 - (void)groupJoinGroupIdentity:(PEPIdentity *)groupIdentity
-              asMemberIdentity:(PEPIdentity *)asMemberIdentity
+                memberIdentity:(PEPIdentity *)memberIdentity
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback
 {
@@ -676,7 +676,7 @@ successCallback:(void (^)(NSString *log))successCallback
         NSError *error = nil;
         BOOL success = [[PEPSessionProvider session]
                         groupJoinGroupIdentity:groupIdentity
-                        asMemberIdentity:asMemberIdentity
+                        memberIdentity:memberIdentity
                         error:&error];
         if (success) {
             successCallback();
