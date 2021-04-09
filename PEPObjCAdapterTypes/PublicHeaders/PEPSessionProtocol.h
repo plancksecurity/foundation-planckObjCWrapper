@@ -240,6 +240,12 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPGroup *))successCallback;
 
+/// Wraps `group_join`.
+- (void)groupJoinGroupIdentity:(PEPIdentity *)groupIdentity
+              asMemberIdentity:(PEPIdentity *)asMemberIdentity
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
