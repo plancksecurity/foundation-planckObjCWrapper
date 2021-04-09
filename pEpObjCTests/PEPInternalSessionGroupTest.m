@@ -369,8 +369,8 @@
     NSError *error = nil;
 
     PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
-                                                manager:identyManager
-                                                members:@[identityMember1]
+                                        managerIdentity:identyManager
+                                       memberIdentities:@[identityMember1]
                                                   error:&error];
 
     XCTAssertNotNil(group);

@@ -647,8 +647,8 @@ successCallback:(void (^)(NSString *log))successCallback
 }
 
 - (void)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
-                         manager:(PEPIdentity *)managerIdentity
-                         members:(NSArray<PEPIdentity *> *)members
+                 managerIdentity:(PEPIdentity *)managerIdentity
+                memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPGroup *))successCallback
 {
@@ -656,8 +656,8 @@ successCallback:(void (^)(NSString *log))successCallback
         NSError *error = nil;
         PEPGroup *group = [[PEPSessionProvider session]
                            groupCreateGroupIdentity:groupIdentity
-                           manager:managerIdentity
-                           members:members
+                           managerIdentity:managerIdentity
+                           memberIdentities:memberIdentities
                            error:&error];
         if (group) {
             successCallback(group);
