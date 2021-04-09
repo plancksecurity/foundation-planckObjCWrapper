@@ -352,4 +352,9 @@
            memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
                     error:(NSError * _Nullable * _Nullable)error;
 
+/// Wraps `group_remove_member`.
+- (BOOL)groupRemoveMember:(PEPIdentity * _Nonnull)groupIdentity
+           memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                    error:(NSError * _Nullable * _Nullable)error;
+
 @end
