@@ -71,26 +71,7 @@
         XCTAssertNil(error);
     }
 
-    PEPGroup *group = [self createGroupWithIdentity:identyGroup
-                                      identyManager:identyManager
-                                            members:@[identityMember1]];
-
-    XCTAssertNotNil(group);
-}
-
-#pragma mark - Helpers
-
-- (PEPGroup *)createGroupWithIdentity:(PEPIdentity *)identyGroup
-                        identyManager:(PEPIdentity *)identyManager
-                              members:(NSArray<PEPIdentity *> *)members
-{
-    PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@pep.security"
-                                    userID:@"member1"
-                                    userName:@"member1"
-                                    isOwn:NO];
-
-    NSError *error = nil;
+    error = nil;
 
     PEPGroup *group = [self groupCreateGroupIdentity:identyGroup
                                              manager:identyManager
@@ -100,7 +81,7 @@
     XCTAssertNotNil(group);
     XCTAssertNil(error);
 
-    return group;
+    XCTAssertNotNil(group);
 }
 
 @end
