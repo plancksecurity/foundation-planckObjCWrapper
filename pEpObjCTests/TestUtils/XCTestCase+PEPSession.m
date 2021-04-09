@@ -434,8 +434,8 @@
     __block PEPGroup *result = nil;
     __block NSError *theError = nil;
     [asyncSession groupCreateGroupIdentity:groupIdentity
-                                   manager:managerIdentity
-                                   members:memberIdentities
+                           managerIdentity:managerIdentity
+                          memberIdentities:memberIdentities
                              errorCallback:^(NSError *error) {
         theError = error;
         [exp fulfill];
