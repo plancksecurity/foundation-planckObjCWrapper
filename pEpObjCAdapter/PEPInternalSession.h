@@ -22,6 +22,8 @@
 @class PEPGroup;
 @class PEPMember;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Represents a real pEp session (in contrast to PEPSession, which is a fake session to handle to the client).
  Never expose this class to the client.
@@ -45,10 +47,10 @@
 - (void)configUnEncryptedSubjectEnabled:(BOOL)enabled;
 
 /// Get the (global) passphrase cache, convenience method.
-- (PEPPassphraseCache * _Nonnull)passphraseCache;
+- (PEPPassphraseCache *)passphraseCache;
 
 /** Decrypt a message */
-- (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)message
+- (PEPMessage * _Nullable)decryptMessage:(PEPMessage *)message
                                    flags:(PEPDecryptFlags * _Nullable)flags
                                   rating:(PEPRating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
@@ -56,9 +58,9 @@
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Re-evaluate rating of decrypted message */
-- (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)message
+- (BOOL)reEvaluateMessage:(PEPMessage *)message
                  xKeyList:(PEPStringList *_Nullable)xKeyList
-                   rating:(PEPRating * _Nonnull)rating
+                   rating:(PEPRating *)rating
                    status:(PEPStatus * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error;
 
@@ -66,39 +68,39 @@
  Encrypt a message, indicating the encoding format
  @note The resulting message dict could be the input one.
  */
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage *)message
                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                encFormat:(PEPEncFormat)encFormat
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message with default encryption format (PEP_enc_PEP) */
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage *)message
                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message for the given own identity */
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                                 forSelf:(PEPIdentity * _Nonnull)ownIdentity
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage *)message
+                                 forSelf:(PEPIdentity *)ownIdentity
                                extraKeys:(PEPStringList * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Encrypt a message to the given recipient FPR, attaching the private key */
-- (PEPMessage * _Nullable)encryptMessage:(PEPMessage * _Nonnull)message
-                                   toFpr:(NSString * _Nonnull)toFpr
+- (PEPMessage * _Nullable)encryptMessage:(PEPMessage *)message
+                                   toFpr:(NSString *)toFpr
                                encFormat:(PEPEncFormat)encFormat
                                    flags:(PEPDecryptFlags)flags
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
 
 /** Determine the status color of a message to be sent */
-- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
+- (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage *)theMessage
                                            error:(NSError * _Nullable * _Nullable)error;
 
 /** Determine the preview status color of a message to be sent */
-- (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
+- (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage *)theMessage
                                                   error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -106,12 +108,12 @@
  The rating is the rating a _message_ would have, if it is sent to this (and only this) identity.
  It is *not* a rating of the identity. In fact, there is no rating for identities.
  */
-- (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
+- (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity *)identity
                                     error:(NSError * _Nullable * _Nullable)error;
 
 /** Get trustwords for a fingerprint */
-- (NSArray<NSString *> * _Nullable)trustwordsForFingerprint:(NSString * _Nonnull)fingerprint
-                                                 languageID:(NSString * _Nonnull)languageID
+- (NSArray<NSString *> * _Nullable)trustwordsForFingerprint:(NSString *)fingerprint
+                                                 languageID:(NSString *)languageID
                                                   shortened:(BOOL)shortened
                                                       error:(NSError * _Nullable * _Nullable)error;
 
@@ -124,7 +126,7 @@
 /// @param identity The identity to mark as own.
 ///
 /// @param error Standard cocoa error handling.
-- (BOOL)mySelf:(PEPIdentity * _Nonnull)identity
+- (BOOL)mySelf:(PEPIdentity *)identity
          error:(NSError * _Nullable * _Nullable)error;
 
 /// Calls the engine's update_identity on the given identity.
@@ -138,25 +140,25 @@
 /// @param identity The identity for which to call update_identity.
 ///
 /// @param error Standart cocoa error handling.
-- (BOOL)updateIdentity:(PEPIdentity * _Nonnull)identity
+- (BOOL)updateIdentity:(PEPIdentity *)identity
                  error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Mark a key as trusted with a person.
  */
-- (BOOL)trustPersonalKey:(PEPIdentity * _Nonnull)identity
+- (BOOL)trustPersonalKey:(PEPIdentity *)identity
                    error:(NSError * _Nullable * _Nullable)error;
 
 /**
  if a key is not trusted by the user tell this using this message
  */
-- (BOOL)keyMistrusted:(PEPIdentity * _Nonnull)identity
+- (BOOL)keyMistrusted:(PEPIdentity *)identity
                 error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Use this to undo keyCompromized or trustPersonalKey
  */
-- (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
+- (BOOL)keyResetTrust:(PEPIdentity *)identity
                 error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -168,7 +170,7 @@
  @param error The usual cocoa error handling.
  @return The usual cocoa error handling.
  */
-- (BOOL)enableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+- (BOOL)enableSyncForIdentity:(PEPIdentity *)identity
                         error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -180,17 +182,17 @@
  @param error The usual cocoa error handling.
  @return The usual cocoa error handling.
  */
-- (BOOL)disableSyncForIdentity:(PEPIdentity * _Nonnull)identity
+- (BOOL)disableSyncForIdentity:(PEPIdentity *)identity
                          error:(NSError * _Nullable * _Nullable)error;
 
 #pragma mark -- Internal API (testing etc.)
 
 /** For testing purpose, manual key import */
-- (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString * _Nonnull)keydata
+- (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString *)keydata
                                           error:(NSError * _Nullable * _Nullable)error;
 
-- (BOOL)logTitle:(NSString * _Nonnull)title
-          entity:(NSString * _Nonnull)entity
+- (BOOL)logTitle:(NSString *)title
+          entity:(NSString *)entity
      description:(NSString * _Nullable)description
          comment:(NSString * _Nullable)comment
            error:(NSError * _Nullable * _Nullable)error;
@@ -201,15 +203,15 @@
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error;
 
 /** Determine trustwords for two identities */
-- (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity * _Nonnull)identity1
-                                     identity2:(PEPIdentity * _Nonnull)identity2
+- (NSString * _Nullable)getTrustwordsIdentity1:(PEPIdentity *)identity1
+                                     identity2:(PEPIdentity *)identity2
                                       language:(NSString * _Nullable)language
                                           full:(BOOL)full
                                          error:(NSError * _Nullable * _Nullable)error;
 
 /** Determine trustwords for two fprs */
-- (NSString * _Nullable)getTrustwordsFpr1:(NSString * _Nonnull)fpr1
-                                     fpr2:(NSString * _Nonnull)fpr2
+- (NSString * _Nullable)getTrustwordsFpr1:(NSString *)fpr1
+                                     fpr2:(NSString *)fpr2
                                  language:(NSString * _Nullable)language
                                      full:(BOOL)full
                                     error:(NSError * _Nullable * _Nullable)error;
@@ -222,25 +224,25 @@
 /**
  Can convert a string like "cannot_decrypt" into its equivalent PEPRating_cannot_decrypt.
  */
-- (PEPRating)ratingFromString:(NSString * _Nonnull)string;
+- (PEPRating)ratingFromString:(NSString *)string;
 
 /**
  Can convert a pEp rating like PEPRating_cannot_decrypt
  into its equivalent string "cannot_decrypt" .
  */
-- (NSString * _Nonnull)stringFromRating:(PEPRating)rating;
+- (NSString *)stringFromRating:(PEPRating)rating;
 
 /**
  Is the given identity really a pEp user?
  If the engine indicates an error, or the identity is not a pEp user, returns false.
  */
-- (NSNumber * _Nullable)isPEPUser:(PEPIdentity * _Nonnull)identity
+- (NSNumber * _Nullable)isPEPUser:(PEPIdentity *)identity
                             error:(NSError * _Nullable * _Nullable)error;
 
 /**
  When (manually) importing (secret) keys, associate them with the given own identity.
  */
-- (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
+- (BOOL)setOwnKey:(PEPIdentity *)identity fingerprint:(NSString *)fingerprint
             error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -253,7 +255,7 @@
  Wraps set_identity_flags.
  */
 - (BOOL)setFlags:(PEPIdentityFlags)flags
-     forIdentity:(PEPIdentity * _Nonnull)identity
+     forIdentity:(PEPIdentity *)identity
            error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -277,7 +279,7 @@
 /**
  Wraps trust_own_key.
  */
-- (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
+- (BOOL)trustOwnKeyIdentity:(PEPIdentity *)identity
                       error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -288,7 +290,7 @@
 /**
  Wraps key_reset_user.
  */
-- (BOOL)keyReset:(PEPIdentity * _Nonnull)identity
+- (BOOL)keyReset:(PEPIdentity *)identity
      fingerprint:(NSString * _Nullable)fingerprint
            error:(NSError * _Nullable * _Nullable)error;
 
@@ -325,7 +327,7 @@
 /// with a domain of PEPObjCAdapterErrorDomain.
 /// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
 /// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
-- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
+- (BOOL)configurePassphrase:(NSString *)passphrase
                       error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `disable_all_sync_channels` (`sync_api.h`).
@@ -334,34 +336,36 @@
 #pragma mark - Group API
 
 /// Wraps `group_create`.
-- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                                 managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
-                                memberIdentities:(NSArray<PEPIdentity *> * _Nonnull)memberIdentities
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
+                                 managerIdentity:(PEPIdentity *)managerIdentity
+                                memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_join`.
-- (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity *)groupIdentity
+                memberIdentity:(PEPIdentity *)memberIdentity
                          error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_dissolve`.
-- (BOOL)groupDissolveGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                   managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity
+                   managerIdentity:(PEPIdentity *)managerIdentity
                              error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_invite_member`.
-- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                        memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
                                  error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_remove_member`.
-- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                        memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
                                  error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_rating`.
-- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                                 managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity *)groupIdentity
+                                 managerIdentity:(PEPIdentity *)managerIdentity
                                            error:(NSError * _Nullable * _Nullable)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
