@@ -136,7 +136,9 @@
     XCTAssertTrue([session mySelf:identityMember2 error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertFalse([session groupJoin:identyGroup asMemberIdentity:identityMember2 error:&error]);
+    XCTAssertFalse([session groupJoinGroupIdentity:identyGroup
+                                  asMemberIdentity:identityMember2
+                                             error:&error]);
     XCTAssertNotNil(error);
     XCTAssertEqual(error.code, PEP_NO_MEMBERSHIP_STATUS_FOUND);
 }
@@ -185,9 +187,9 @@
 
     error = nil;
 
-    XCTAssertTrue([session groupDissolve:identyGroup
-                         managerIdentity:identyManager
-                                   error:&error]);
+    XCTAssertTrue([session groupDissolveGroupIdentity:identyGroup
+                                      managerIdentity:identyManager
+                                                error:&error]);
     XCTAssertNil(error);
 }
 
@@ -244,7 +246,9 @@
     XCTAssertTrue([session mySelf:identityMember2 error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertFalse([session groupInviteMember:identyGroup memberIdentity:identityMember2 error:&error]);
+    XCTAssertFalse([session groupInviteMemberGroupIdentity:identyGroup
+                                            memberIdentity:identityMember2
+                                                     error:&error]);
     XCTAssertNotNil(error);
     XCTAssertEqual(error.code, PEP_NO_TRUST);
 }
@@ -292,9 +296,9 @@
     XCTAssertNotNil(group);
 
     error = nil;
-    XCTAssertTrue([session groupRemoveMember:identyGroup
-                              memberIdentity:identityMember1
-                                       error:&error]);
+    XCTAssertTrue([session groupRemoveMemberGroupIdentity:identyGroup
+                                           memberIdentity:identityMember1
+                                                    error:&error]);
     XCTAssertNil(error);
 }
 
@@ -314,10 +318,10 @@
 
     NSError *error = nil;
 
-    PEPGroup *group = [session groupCreate:identyGroup
-                                   manager:identyManager
-                                   members:@[identityMember1]
-                                     error:&error];
+    PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
+                                                manager:identyManager
+                                                members:@[identityMember1]
+                                                  error:&error];
 
     XCTAssertNotNil(group);
     XCTAssertNil(error);

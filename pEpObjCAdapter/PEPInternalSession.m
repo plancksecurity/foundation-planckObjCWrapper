@@ -1022,10 +1022,10 @@ static NSDictionary *stringToRating;
 
 #pragma mark - Group API
 
-- (PEPGroup * _Nullable)groupCreate:(PEPIdentity * _Nonnull)groupIdentity
-                            manager:(PEPIdentity * _Nonnull)managerIdentity
-                            members:(NSArray<PEPIdentity *> * _Nonnull)memberIdentities
-                              error:(NSError * _Nullable * _Nullable)error
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                                         manager:(PEPIdentity * _Nonnull)managerIdentity
+                                         members:(NSArray<PEPIdentity *> * _Nonnull)memberIdentities
+                                           error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *groupIdent = [groupIdentity toStruct];
     pEp_identity *managerIdent = [managerIdentity toStruct];
@@ -1066,9 +1066,9 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)groupJoin:(PEPIdentity * _Nonnull)groupIdentity
- asMemberIdentity:(PEPIdentity * _Nonnull)asMemberIdentity
-            error:(NSError * _Nullable * _Nullable)error
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+              asMemberIdentity:(PEPIdentity * _Nonnull)asMemberIdentity
+                         error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *groupIdent = [groupIdentity toStruct];
     pEp_identity *asMemberIdent = [asMemberIdentity toStruct];
@@ -1087,9 +1087,9 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)groupDissolve:(PEPIdentity * _Nonnull)groupIdentity
-      managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
-                error:(NSError * _Nullable * _Nullable)error
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                   managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
+                             error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *groupIdent = [groupIdentity toStruct];
     pEp_identity *managerIdent = [managerIdentity toStruct];
@@ -1108,9 +1108,9 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)groupInviteMember:(PEPIdentity * _Nonnull)groupIdentity
-           memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
-                    error:(NSError * _Nullable * _Nullable)error
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                        memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *groupIdent = [groupIdentity toStruct];
     pEp_identity *memberIdent = [memberIdentity toStruct];
@@ -1129,9 +1129,9 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)groupRemoveMember:(PEPIdentity * _Nonnull)groupIdentity
-           memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
-                    error:(NSError * _Nullable * _Nullable)error
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                        memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *groupIdent = [groupIdentity toStruct];
     pEp_identity *memberIdent = [memberIdentity toStruct];

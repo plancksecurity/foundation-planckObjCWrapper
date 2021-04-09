@@ -332,29 +332,29 @@
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_create`.
-- (PEPGroup * _Nullable)groupCreate:(PEPIdentity * _Nonnull)groupIdentity
-                            manager:(PEPIdentity * _Nonnull)managerIdentity
-                            members:(NSArray<PEPIdentity *> * _Nonnull)members
-                              error:(NSError * _Nullable * _Nullable)error;
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                                         manager:(PEPIdentity * _Nonnull)managerIdentity
+                                         members:(NSArray<PEPIdentity *> * _Nonnull)members
+                                           error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_join`.
-- (BOOL)groupJoin:(PEPIdentity * _Nonnull)groupIdentity
- asMemberIdentity:(PEPIdentity * _Nonnull)asMemberIdentity
-            error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+              asMemberIdentity:(PEPIdentity * _Nonnull)asMemberIdentity
+                         error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_dissolve`.
-- (BOOL)groupDissolve:(PEPIdentity * _Nonnull)groupIdentity
-      managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
-                error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                   managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
+                             error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_invite_member`.
-- (BOOL)groupInviteMember:(PEPIdentity * _Nonnull)groupIdentity
-           memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
-                    error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                        memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_remove_member`.
-- (BOOL)groupRemoveMember:(PEPIdentity * _Nonnull)groupIdentity
-           memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
-                    error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                        memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error;
 
 @end
