@@ -357,4 +357,9 @@
                         memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
                                  error:(NSError * _Nullable * _Nullable)error;
 
+/// Wraps `group_rating`.
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                                 managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
+                                           error:(NSError * _Nullable * _Nullable)error;
+
 @end

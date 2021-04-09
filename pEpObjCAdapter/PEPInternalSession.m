@@ -1150,4 +1150,27 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                                 managerIdentity:(PEPIdentity * _Nonnull)managerIdentity
+                                           error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *managerIdent = [managerIdentity toStruct];
+
+    __block PEPRating rating;
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_rating(self.session, groupIdent, managerIdent, (PEP_rating *) &rating);
+    }];
+
+    free_identity(groupIdent);
+    free_identity(managerIdent);
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        return nil;
+    } else {
+        return [NSNumber numberWithPEPRating:rating];
+    }
+}
+
 @end
