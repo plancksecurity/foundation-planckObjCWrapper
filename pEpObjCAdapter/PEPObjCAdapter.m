@@ -149,7 +149,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 + (NSURL *)createApplicationDirectoryiOS
 {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:appGroupIdentifier];
+    NSURL *containerUrl = [fm containerURLForSecurityApplicationGroupIdentifier:kAppGroupIdentifier];
     LogInfo(@"containerUrl '%@'", containerUrl);
 
     if (containerUrl == nil) {
