@@ -478,14 +478,15 @@
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
     XCTAssertNil(error);
 
-    // Should be yellow, since no handshake happened.
+    // No key election, outgoing messages are unencrypted
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
+    // No key election, there is no key
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEPRatingReliable);
+    XCTAssertEqual(rating, PEPRatingHaveNoKey);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
