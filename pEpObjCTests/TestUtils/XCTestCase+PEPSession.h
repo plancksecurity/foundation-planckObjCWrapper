@@ -83,6 +83,10 @@ NS_ASSUME_NONNULL_BEGIN
                                          members:(NSArray<PEPIdentity *> *)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error;
 
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                         error:(NSError * _Nullable * _Nullable)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

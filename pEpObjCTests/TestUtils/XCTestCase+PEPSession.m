@@ -451,4 +451,31 @@
     return result;
 }
 
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block BOOL result = NO;
+    __block NSError *theError = nil;
+
+    [asyncSession groupJoinGroupIdentity:groupIdentity
+                          memberIdentity:memberIdentity
+                           errorCallback:^(NSError * _Nonnull error) {
+        result = NO;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        result = group;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
 @end
