@@ -87,6 +87,22 @@ NS_ASSUME_NONNULL_BEGIN
                 memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
                          error:(NSError * _Nullable * _Nullable)error;
 
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity
+                   managerIdentity:(PEPIdentity *)managerIdentity
+                             error:(NSError * _Nullable * _Nullable)error;
+
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error;
+
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error;
+
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity *)groupIdentity
+                                 managerIdentity:(PEPIdentity *)managerIdentity
+                                           error:(NSError * _Nullable * _Nullable)error;
+
 @end
 
 NS_ASSUME_NONNULL_END
