@@ -468,7 +468,6 @@
         [exp fulfill];
     } successCallback:^{
         result = YES;
-        result = group;
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
