@@ -12,6 +12,7 @@
 #import "PEPInternalSession+SetIdentity.h"
 #import "PEPEngineTypes.h"
 #import "PEPIdentity.h"
+#import "PEPSession+Internal.h"
 
 @implementation PEPSession (SetIdentity)
 
@@ -21,7 +22,7 @@
 {
     __block PEPIdentity *theIdentity = [[PEPIdentity alloc] initWithIdentity:identity];
 
-    dispatch_async(queue, ^{
+    dispatch_async([self queue], ^{
         NSError *error = nil;
         BOOL success = [[PEPSessionProvider session] setIdentity:theIdentity error:&error];
         if (success) {
