@@ -113,28 +113,6 @@
     return identTestUpdated;
 }
 
-- (PEPIdentity * _Nullable)setIdentity:(PEPIdentity *)identity
-                                 error:(NSError * _Nullable * _Nullable)error
-{
-    PEPSession *asyncSession = [PEPSession new];
-    XCTestExpectation *expUpdateIdent = [self expectationWithDescription:@"expUpdateIdent"];
-    __block PEPIdentity *identTestUpdated = nil;
-    __block NSError *theError = nil;
-    [asyncSession updateIdentity:identity
-                   errorCallback:^(NSError * _Nonnull error) {
-        theError = error;
-        [expUpdateIdent fulfill];
-    } successCallback:^(PEPIdentity * _Nonnull identity) {
-        identTestUpdated = identity;
-        [expUpdateIdent fulfill];
-    }];
-    [self waitForExpectations:@[expUpdateIdent] timeout:PEPTestInternalSyncTimeout];
-    if (error) {
-        *error = theError;
-    }
-    return identTestUpdated;
-}
-
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error
 {

@@ -30,9 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (PEPIdentity * _Nullable)updateIdentity:(PEPIdentity *)identity
                                     error:(NSError * _Nullable * _Nullable)error;
 
-- (PEPIdentity * _Nullable)setIdentity:(PEPIdentity *)identity
-                                 error:(NSError * _Nullable * _Nullable)error;
-
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage *)theMessage
                                            error:(NSError * _Nullable * _Nullable)error;
 
