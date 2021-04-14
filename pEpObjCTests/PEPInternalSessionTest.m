@@ -478,13 +478,13 @@
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
     XCTAssertNil(error);
 
-    // No key election, outgoing messages are unencrypted
+    // No key election, outgoing messages are unencrypted (after setIdentity)
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
     XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
-    // No key election, there is no key
+    // No key election, there is no key (after setIdentity)
     rating = [self ratingForIdentity:identBob session:session];
     XCTAssertEqual(rating, PEPRatingHaveNoKey);
 
