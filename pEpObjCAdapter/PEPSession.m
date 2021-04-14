@@ -745,4 +745,23 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)groupRatingGroupIdentity:(PEPIdentity *)groupIdentity
+                 managerIdentity:(PEPIdentity *)managerIdentity
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(NSNumber *))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSNumber *numRating = [[PEPSessionProvider session]
+                               groupRatingGroupIdentity:groupIdentity
+                               managerIdentity:managerIdentity
+                               error:&error];
+        if (numRating) {
+            successCallback(numRating);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
