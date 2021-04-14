@@ -477,4 +477,32 @@
     return result;
 }
 
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity
+                   managerIdentity:(PEPIdentity *)managerIdentity
+                             error:(NSError * _Nullable * _Nullable)error
+{
+    return NO;
+}
+
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error
+{
+    return NO;
+}
+
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error
+{
+    return NO;
+}
+
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity *)groupIdentity
+                                 managerIdentity:(PEPIdentity *)managerIdentity
+                                           error:(NSError * _Nullable * _Nullable)error
+{
+    return nil;
+}
+
 @end
