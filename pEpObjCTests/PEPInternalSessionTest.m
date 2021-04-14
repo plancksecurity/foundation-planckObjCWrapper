@@ -1657,6 +1657,9 @@
         XCTAssertTrue([session setIdentity:identTest error:&error]);
         XCTAssertNil(error);
 
+        // forget the fingerprint
+        identTest.fingerPrint = nil;
+
         error = nil;
         XCTAssertTrue([session updateIdentity:identTest error:&error]);
         XCTAssertNil(error);
