@@ -726,4 +726,23 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)groupRemoveMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session]
+                        groupRemoveMemberGroupIdentity:groupIdentity
+                        memberIdentity:memberIdentity
+                        error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

@@ -258,6 +258,12 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                          errorCallback:(void (^)(NSError *error))errorCallback
                        successCallback:(void (^)(void))successCallback;
 
+/// Wraps `group_remove_member`.
+- (void)groupRemoveMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
