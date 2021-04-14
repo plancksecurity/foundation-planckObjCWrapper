@@ -555,7 +555,25 @@
                                  managerIdentity:(PEPIdentity *)managerIdentity
                                            error:(NSError * _Nullable * _Nullable)error
 {
-    return nil;
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block NSNumber *result = nil;
+    __block NSError *theError = nil;
+    [asyncSession groupRatingGroupIdentity:groupIdentity
+                           managerIdentity:managerIdentity
+                             errorCallback:^(NSError * _Nonnull error) {
+        result = nil;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^(NSNumber *numRating) {
+        result = numRating;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
 }
 
 @end
