@@ -15,6 +15,7 @@
 #import "PEPTestUtils.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
+#import "PEPInternalSession+SetIdentity.h"
 
 @interface PEPSessionTest : XCTestCase
 
@@ -454,7 +455,17 @@
 
         NSError *error = nil;
         PEPIdentity *identTestUpdated = [self updateIdentity:identTest error:&error];
+        XCTAssertNil(identTestUpdated.fingerPrint); // key election, no key is chosen yet
 
+        PEPInternalSession *session = [PEPInternalSession new];
+        error = nil;
+        identTest.fingerPrint = fingerPrint;
+        [session setIdentity:identTest error:&error];
+        XCTAssertNil(error);
+
+        identTest.fingerPrint = fingerPrint;
+
+        identTestUpdated = [self updateIdentity:identTest error:&error];
         XCTAssertNil(error);
         XCTAssertNotNil(identTestUpdated);
         XCTAssertNotNil(identTestUpdated.fingerPrint);
