@@ -10,4 +10,9 @@
 
 @implementation PEPInternalSession (SetIdentity)
 
+- (BOOL)setIdentity:(PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
+{
+    return NO;
+}
+
 @end

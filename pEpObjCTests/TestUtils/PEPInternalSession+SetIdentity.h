@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPInternalSession (SetIdentity)
 
+/// Wraps the (internal) set_identity.
+- (BOOL)setIdentity:(PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error;
+
 @end
 
 NS_ASSUME_NONNULL_END
