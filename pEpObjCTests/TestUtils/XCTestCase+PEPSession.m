@@ -481,7 +481,27 @@
                    managerIdentity:(PEPIdentity *)managerIdentity
                              error:(NSError * _Nullable * _Nullable)error
 {
-    return NO;
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block BOOL result = NO;
+    __block NSError *theError = nil;
+
+    [asyncSession groupDissolveGroupIdentity:groupIdentity
+                             managerIdentity:managerIdentity
+                               errorCallback:^(NSError * _Nonnull error) {
+        result = NO;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
 }
 
 - (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity *)groupIdentity
