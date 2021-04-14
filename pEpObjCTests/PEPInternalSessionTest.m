@@ -26,6 +26,7 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 #import "PEPIdentity+isPEPUser.h"
+#import "PEPInternalSession+SetIdentity.h"
 
 #import "PEPMember.h"
 #import "PEPGroup.h"
@@ -1647,6 +1648,16 @@
                                   isOwn:NO];
 
         NSError *error = nil;
+        XCTAssertTrue([session updateIdentity:identTest error:&error]);
+        XCTAssertNil(error);
+        XCTAssertNil(identTest.fingerPrint); // should be nil before setIdentity
+
+        error = nil;
+        identTest.fingerPrint = fingerPrint;
+        XCTAssertTrue([session setIdentity:identTest error:&error]);
+        XCTAssertNil(error);
+
+        error = nil;
         XCTAssertTrue([session updateIdentity:identTest error:&error]);
         XCTAssertNil(error);
         XCTAssertNotNil(identTest.fingerPrint);
