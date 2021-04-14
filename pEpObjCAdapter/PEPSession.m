@@ -707,4 +707,23 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+- (void)groupInviteMemberGroupIdentity:(PEPIdentity *)groupIdentity
+                        memberIdentity:(PEPIdentity *)memberIdentity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session]
+                        groupInviteMemberGroupIdentity:groupIdentity
+                        memberIdentity:memberIdentity
+                        error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
