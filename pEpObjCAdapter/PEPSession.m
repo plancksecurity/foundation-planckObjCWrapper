@@ -646,6 +646,8 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session disableAllSyncChannels:error];
 }
 
+#pragma mark - Group API
+
 - (void)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
                  managerIdentity:(PEPIdentity *)managerIdentity
                 memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
@@ -677,6 +679,25 @@ successCallback:(void (^)(NSString *log))successCallback
         BOOL success = [[PEPSessionProvider session]
                         groupJoinGroupIdentity:groupIdentity
                         memberIdentity:memberIdentity
+                        error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity
+                   managerIdentity:(PEPIdentity *)managerIdentity
+                     errorCallback:(void (^)(NSError *error))errorCallback
+                   successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session]
+                        groupDissolveGroupIdentity:groupIdentity
+                        managerIdentity:managerIdentity
                         error:&error];
         if (success) {
             successCallback();
