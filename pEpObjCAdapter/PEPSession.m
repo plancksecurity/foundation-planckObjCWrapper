@@ -36,11 +36,6 @@ static dispatch_queue_t queue;
     [PEPSessionProvider cleanup];
 }
 
-+ (dispatch_queue_t)queue
-{
-    return queue;
-}
-
 - (void)decryptMessage:(PEPMessage *)message
                  flags:(PEPDecryptFlags)flags
              extraKeys:(PEPStringList * _Nullable)extraKeys

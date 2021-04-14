@@ -192,8 +192,6 @@
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
 		4375BA3A2626CEE80049A0C0 /* PEPInternalSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4375BA392626CEE80049A0C0 /* PEPInternalSession+SetIdentity.m */; };
-		4375BA442626F1550049A0C0 /* PEPSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4375BA432626F1550049A0C0 /* PEPSession+SetIdentity.m */; };
-		4375BA4D2626F4950049A0C0 /* PEPSession+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4375BA4C2626F4950049A0C0 /* PEPSession+Internal.m */; };
 		4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
@@ -460,10 +458,6 @@
 		436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseProviderMock.m; sourceTree = "<group>"; };
 		4375BA382626CEE80049A0C0 /* PEPInternalSession+SetIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPInternalSession+SetIdentity.h"; sourceTree = "<group>"; };
 		4375BA392626CEE80049A0C0 /* PEPInternalSession+SetIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPInternalSession+SetIdentity.m"; sourceTree = "<group>"; };
-		4375BA422626F1550049A0C0 /* PEPSession+SetIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPSession+SetIdentity.h"; sourceTree = "<group>"; };
-		4375BA432626F1550049A0C0 /* PEPSession+SetIdentity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPSession+SetIdentity.m"; sourceTree = "<group>"; };
-		4375BA4B2626F4950049A0C0 /* PEPSession+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPSession+Internal.h"; sourceTree = "<group>"; };
-		4375BA4C2626F4950049A0C0 /* PEPSession+Internal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPSession+Internal.m"; sourceTree = "<group>"; };
 		438C0ECA254020A400337922 /* NSArray+Engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Engine.h"; sourceTree = "<group>"; };
 		438C0ECB254020F000337922 /* NSArray+Engine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Engine.m"; sourceTree = "<group>"; };
 		438C0F1125402D6400337922 /* PEPIdentity+Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Engine.h"; sourceTree = "<group>"; };
@@ -703,10 +697,6 @@
 				43119FE526203CFE005CF839 /* XCTestCase+PEPSession.m */,
 				4375BA382626CEE80049A0C0 /* PEPInternalSession+SetIdentity.h */,
 				4375BA392626CEE80049A0C0 /* PEPInternalSession+SetIdentity.m */,
-				4375BA422626F1550049A0C0 /* PEPSession+SetIdentity.h */,
-				4375BA432626F1550049A0C0 /* PEPSession+SetIdentity.m */,
-				4375BA4B2626F4950049A0C0 /* PEPSession+Internal.h */,
-				4375BA4C2626F4950049A0C0 /* PEPSession+Internal.m */,
 			);
 			path = TestUtils;
 			sourceTree = "<group>";
@@ -1449,7 +1439,6 @@
 				43684316261F413700BE088A /* PEPInternalSessionGroupTest.m in Sources */,
 				4331CE94229C2AAF00DDDC65 /* PEPSizeTest.m in Sources */,
 				43119FE626203CFE005CF839 /* XCTestCase+PEPSession.m in Sources */,
-				4375BA442626F1550049A0C0 /* PEPSession+SetIdentity.m in Sources */,
 				4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */,
 				4375BA3A2626CEE80049A0C0 /* PEPInternalSession+SetIdentity.m in Sources */,
 				434707F924C30E9700E05485 /* PEPSessionTest.m in Sources */,
@@ -1463,7 +1452,6 @@
 				15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */,
 				43589EFB24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m in Sources */,
 				436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */,
-				4375BA4D2626F4950049A0C0 /* PEPSession+Internal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
