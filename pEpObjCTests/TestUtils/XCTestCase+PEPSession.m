@@ -459,7 +459,6 @@
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
-
     [asyncSession groupJoinGroupIdentity:groupIdentity
                           memberIdentity:memberIdentity
                            errorCallback:^(NSError * _Nonnull error) {
@@ -485,7 +484,6 @@
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
     __block BOOL result = NO;
     __block NSError *theError = nil;
-
     [asyncSession groupDissolveGroupIdentity:groupIdentity
                              managerIdentity:managerIdentity
                                errorCallback:^(NSError * _Nonnull error) {
@@ -496,7 +494,6 @@
         result = YES;
         [exp fulfill];
     }];
-
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
     if (error) {
         *error = theError;
