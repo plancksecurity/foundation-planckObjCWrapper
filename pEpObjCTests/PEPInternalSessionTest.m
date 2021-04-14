@@ -418,8 +418,9 @@
     XCTAssertNil(error);
 
     identBob.fingerPrint = nil;
-    XCTAssertTrue([session updateIdentity:identBob error:&error]);
-    XCTAssertNil(error);
+    XCTAssertFalse([session updateIdentity:identBob error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, PEP_KEY_UNSUITABLE);
     XCTAssertNil(identBob.fingerPrint);
 
     // Gray == PEPRatingUnencrypted
