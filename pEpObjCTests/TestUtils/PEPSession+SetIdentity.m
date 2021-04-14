@@ -8,6 +8,28 @@
 
 #import "PEPSession+SetIdentity.h"
 
+#import "PEPSessionProvider.h"
+#import "PEPInternalSession+SetIdentity.h"
+#import "PEPEngineTypes.h"
+#import "PEPIdentity.h"
+
 @implementation PEPSession (SetIdentity)
+
+- (void)setIdentity:(PEPIdentity *)identity
+      errorCallback:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(void))successCallback
+{
+    __block PEPIdentity *theIdentity = [[PEPIdentity alloc] initWithIdentity:identity];
+
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session] setIdentity:theIdentity error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
 
 @end

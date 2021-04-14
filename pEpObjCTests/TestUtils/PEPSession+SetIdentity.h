@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPSession (SetIdentity)
 
+- (void)setIdentity:(PEPIdentity *)identity
+      errorCallback:(void (^)(NSError *error))errorCallback
+    successCallback:(void (^)(void))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
