@@ -272,11 +272,11 @@
 
 - (void)testGroupRemoveMember
 {
-    PEPIdentity *identyGroup = [[PEPIdentity alloc]
-                                initWithAddress:@"group@pep.security"
-                                userID:@"group"
-                                userName:@"group"
-                                isOwn:YES];
+    PEPIdentity *identityGroup = [[PEPIdentity alloc]
+                                  initWithAddress:@"group@pep.security"
+                                  userID:@"group"
+                                  userName:@"group"
+                                  isOwn:YES];
 
     PEPIdentity *identyManager = [[PEPIdentity alloc]
                                   initWithAddress:@"manager@pep.security"
@@ -292,8 +292,8 @@
 
     NSError *error = nil;
 
-    identyGroup = [self mySelf:identyGroup error:&error];
-    XCTAssertNotNil(identyGroup);
+    identityGroup = [self mySelf:identityGroup error:&error];
+    XCTAssertNotNil(identityGroup);
     XCTAssertNil(error);
 
     for (PEPIdentity *ident in @[identyManager, identityMember1]) {
@@ -304,7 +304,7 @@
 
     error = nil;
 
-    PEPGroup *group = [self groupCreateGroupIdentity:identyGroup
+    PEPGroup *group = [self groupCreateGroupIdentity:identityGroup
                                      managerIdentity:identyManager
                                     memberIdentities:@[identityMember1]
                                                error:&error];
@@ -315,7 +315,7 @@
     XCTAssertNotNil(group);
 
     error = nil;
-    XCTAssertTrue([self groupRemoveMemberGroupIdentity:identyGroup
+    XCTAssertTrue([self groupRemoveMemberGroupIdentity:identityGroup
                                         memberIdentity:identityMember1
                                                  error:&error]);
     XCTAssertNil(error);
