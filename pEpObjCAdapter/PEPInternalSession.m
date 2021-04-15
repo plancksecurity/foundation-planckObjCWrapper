@@ -1022,8 +1022,8 @@ static NSDictionary *stringToRating;
 
 #pragma mark - Group API
 
-- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
-                                 managerIdentity:(PEPIdentity *)managerIdentity
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
                                 memberIdentities:(NSArray<PEPIdentity *> * _Nonnull)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error
 {
