@@ -292,11 +292,9 @@
 
     NSError *error = nil;
 
-    for (PEPIdentity *ident in @[identyGroup]) {
-        error = nil;
-        XCTAssertTrue([self mySelf:ident error:&error]);
-        XCTAssertNil(error);
-    }
+    identyGroup = [self mySelf:identyGroup error:&error];
+    XCTAssertNotNil(identyGroup);
+    XCTAssertNil(error);
 
     for (PEPIdentity *ident in @[identyManager, identityMember1]) {
         error = nil;
