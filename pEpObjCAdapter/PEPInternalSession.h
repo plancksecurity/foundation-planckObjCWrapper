@@ -336,8 +336,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Group API
 
 /// Wraps `group_create`.
-- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
-                                 managerIdentity:(PEPIdentity const *)managerIdentity
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
+                                 managerIdentity:(PEPIdentity *)managerIdentity
                                 memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error;
 

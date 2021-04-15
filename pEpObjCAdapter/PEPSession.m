@@ -648,8 +648,8 @@ successCallback:(void (^)(NSString *log))successCallback
 
 #pragma mark - Group API
 
-- (void)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
-                 managerIdentity:(PEPIdentity const *)managerIdentity
+- (void)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
+                 managerIdentity:(PEPIdentity *)managerIdentity
                 memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPGroup *))successCallback
