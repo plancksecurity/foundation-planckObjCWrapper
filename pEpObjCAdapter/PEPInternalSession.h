@@ -343,8 +343,8 @@ NS_ASSUME_NONNULL_BEGIN
                                            error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_join`.
-- (BOOL)groupJoinGroupIdentity:(PEPIdentity *)groupIdentity
-                memberIdentity:(PEPIdentity *)memberIdentity
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
                          error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_dissolve`.
