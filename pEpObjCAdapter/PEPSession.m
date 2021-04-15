@@ -688,8 +688,8 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity
-                   managerIdentity:(PEPIdentity *)managerIdentity
+- (void)groupDissolveGroupIdentity:(PEPIdentity const *)groupIdentity
+                   managerIdentity:(PEPIdentity const *)managerIdentity
                      errorCallback:(void (^)(NSError *error))errorCallback
                    successCallback:(void (^)(void))successCallback
 {
