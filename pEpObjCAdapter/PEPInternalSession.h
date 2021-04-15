@@ -348,8 +348,8 @@ NS_ASSUME_NONNULL_BEGIN
                          error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_dissolve`.
-- (BOOL)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity
-                   managerIdentity:(PEPIdentity *)managerIdentity
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity const *)groupIdentity
+                   managerIdentity:(PEPIdentity const *)managerIdentity
                              error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_invite_member`.
