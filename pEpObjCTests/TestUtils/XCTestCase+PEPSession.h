@@ -83,9 +83,9 @@ NS_ASSUME_NONNULL_BEGIN
                                 memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error;
 
-- (NSArray * _Nullable)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                               memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
-                                        error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                         error:(NSError * _Nullable * _Nullable)error;
 
 - (BOOL)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity
                    managerIdentity:(PEPIdentity *)managerIdentity
