@@ -1077,19 +1077,12 @@ static NSDictionary *stringToRating;
         return group_join(self.session, groupIdent, asMemberIdent);
     }];
 
-    // block for freeing all input values we own
-    void (^freeInputValuesBlock)(void) = ^{
-        free_identity(groupIdent);
-        free_identity(asMemberIdent);
-    };
+    free_identity(groupIdent);
+    free_identity(asMemberIdent);
 
     if ([NSError setError:error fromPEPStatus:theStatus]) {
-        freeInputValuesBlock();
         return NO;
     } else {
-        [groupIdentity overWriteFromStruct:groupIdent];
-        [memberIdentity overWriteFromStruct:asMemberIdent];
-        freeInputValuesBlock();
         return YES;
     }
 }
