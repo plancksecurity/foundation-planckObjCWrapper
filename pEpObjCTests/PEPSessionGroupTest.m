@@ -278,11 +278,11 @@
                                   userName:@"group"
                                   isOwn:YES];
 
-    PEPIdentity *identyManager = [[PEPIdentity alloc]
-                                  initWithAddress:@"manager@pep.security"
-                                  userID:@"manager"
-                                  userName:@"manager"
-                                  isOwn:NO];
+    PEPIdentity *identityManager = [[PEPIdentity alloc]
+                                    initWithAddress:@"manager@pep.security"
+                                    userID:@"manager"
+                                    userName:@"manager"
+                                    isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
                                     initWithAddress:@"member1@pep.security"
@@ -297,8 +297,8 @@
     XCTAssertNil(error);
 
     error = nil;
-    identyManager = [self updateIdentity:identyManager error:&error];
-    XCTAssertNotNil(identyManager);
+    identityManager = [self updateIdentity:identityManager error:&error];
+    XCTAssertNotNil(identityManager);
     XCTAssertNil(error);
 
     for (PEPIdentity *ident in @[identityMember1]) {
@@ -310,7 +310,7 @@
     error = nil;
 
     PEPGroup *group = [self groupCreateGroupIdentity:identityGroup
-                                     managerIdentity:identyManager
+                                     managerIdentity:identityManager
                                     memberIdentities:@[identityMember1]
                                                error:&error];
 
