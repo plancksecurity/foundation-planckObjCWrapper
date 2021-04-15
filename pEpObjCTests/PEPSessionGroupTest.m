@@ -259,7 +259,8 @@
 
 
     error = nil;
-    XCTAssertTrue([self mySelf:identityMember2 error:&error]);
+    identityMember2 = [self mySelf:identityMember2 error:&error];
+    XCTAssertNotNil(identityMember2);
     XCTAssertNil(error);
 
     XCTAssertFalse([self groupInviteMemberGroupIdentity:identyGroup
