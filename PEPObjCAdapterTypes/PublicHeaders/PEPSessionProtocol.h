@@ -234,6 +234,7 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 #pragma mark - Group API
 
 /// Wraps `group_create`.
+/// - Note: As indicated, all input values are `const`. You can get updated versions out of the resulting `PEPGroup`.
 - (void)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
                  managerIdentity:(PEPIdentity const *)managerIdentity
                 memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
