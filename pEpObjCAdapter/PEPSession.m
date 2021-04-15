@@ -726,8 +726,8 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)groupRemoveMemberGroupIdentity:(PEPIdentity *)groupIdentity
-                        memberIdentity:(PEPIdentity *)memberIdentity
+- (void)groupRemoveMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
                          errorCallback:(void (^)(NSError *error))errorCallback
                        successCallback:(void (^)(void))successCallback
 {
