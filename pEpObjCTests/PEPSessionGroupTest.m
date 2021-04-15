@@ -351,7 +351,11 @@
     XCTAssertNotNil(identityGroup);
     XCTAssertNil(error);
 
-    for (PEPIdentity *ident in @[identityManager, identityMember1]) {
+    identityManager = [self updateIdentity:identityManager error:&error];
+    XCTAssertNotNil(identityManager);
+    XCTAssertNil(error);
+
+    for (PEPIdentity *ident in @[identityMember1]) {
         error = nil;
         XCTAssertTrue([self updateIdentity:ident error:&error]);
         XCTAssertNil(error);
