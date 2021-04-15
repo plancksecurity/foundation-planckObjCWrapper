@@ -58,7 +58,7 @@
                         commType:PEPCommTypeUnknown language:nil];
 }
 
-- (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity
+- (nonnull instancetype)initWithIdentity:(PEPIdentity const * _Nonnull)identity
 {
     return [self initWithAddress:identity.address userID:identity.userID
                         userName:identity.userName

@@ -77,6 +77,6 @@
 /**
  Copy constructor.
  */
-- (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
+- (nonnull instancetype)initWithIdentity:(PEPIdentity const * _Nonnull)identity;
 
 @end
