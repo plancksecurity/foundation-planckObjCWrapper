@@ -241,10 +241,10 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                  successCallback:(void (^)(PEPGroup *))successCallback;
 
 /// Wraps `group_join`.
-- (void)groupJoinGroupIdentity:(PEPIdentity *)groupIdentity
-                memberIdentity:(PEPIdentity *)memberIdentity
+- (void)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
                  errorCallback:(void (^)(NSError *error))errorCallback
-               successCallback:(void (^)(void))successCallback;
+               successCallback:(void (^)(PEPIdentity *, PEPIdentity *))successCallback;
 
 /// Wraps `group_dissolve`.
 - (void)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity

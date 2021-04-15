@@ -669,19 +669,22 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)groupJoinGroupIdentity:(PEPIdentity *)groupIdentity
-                memberIdentity:(PEPIdentity *)memberIdentity
+- (void)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
                  errorCallback:(void (^)(NSError *error))errorCallback
-               successCallback:(void (^)(void))successCallback
+               successCallback:(void (^)(PEPIdentity *, PEPIdentity *))successCallback
 {
     dispatch_async(queue, ^{
+        PEPIdentity *copyGroupIdentity = [[PEPIdentity alloc] initWithIdentity:groupIdentity];
+        PEPIdentity *copyMemberIdentity = [[PEPIdentity alloc] initWithIdentity:memberIdentity];
+
         NSError *error = nil;
         BOOL success = [[PEPSessionProvider session]
-                        groupJoinGroupIdentity:groupIdentity
-                        memberIdentity:memberIdentity
+                        groupJoinGroupIdentity:copyGroupIdentity
+                        memberIdentity:copyMemberIdentity
                         error:&error];
         if (success) {
-            successCallback();
+            successCallback(copyGroupIdentity, copyMemberIdentity);
         } else {
             errorCallback(error);
         }

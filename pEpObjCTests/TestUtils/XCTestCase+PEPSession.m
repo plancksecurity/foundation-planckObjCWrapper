@@ -451,22 +451,22 @@
     return result;
 }
 
-- (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
-                         error:(NSError * _Nullable * _Nullable)error
+- (NSArray * _Nullable)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
+                               memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+                                        error:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *asyncSession = [PEPSession new];
     XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
-    __block BOOL result = NO;
+    __block NSArray *result = nil;
     __block NSError *theError = nil;
     [asyncSession groupJoinGroupIdentity:groupIdentity
                           memberIdentity:memberIdentity
                            errorCallback:^(NSError * _Nonnull error) {
-        result = NO;
+        result = nil;
         theError = error;
         [exp fulfill];
-    } successCallback:^{
-        result = YES;
+    } successCallback:^(PEPIdentity *changedGroupId, PEPIdentity *changedMemberId) {
+        result = @[changedGroupId, changedMemberId];
         [exp fulfill];
     }];
     [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
