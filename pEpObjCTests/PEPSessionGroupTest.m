@@ -207,11 +207,11 @@
 
 - (void)testGroupInviteMemberNoTrust
 {
-    PEPIdentity *identyGroup = [[PEPIdentity alloc]
-                                initWithAddress:@"group@pep.security"
-                                userID:@"group"
-                                userName:@"group"
-                                isOwn:YES];
+    PEPIdentity *identityGroup = [[PEPIdentity alloc]
+                                  initWithAddress:@"group@pep.security"
+                                  userID:@"group"
+                                  userName:@"group"
+                                  isOwn:YES];
 
     PEPIdentity *identyManager = [[PEPIdentity alloc]
                                   initWithAddress:@"manager@pep.security"
@@ -227,7 +227,7 @@
 
     NSError *error = nil;
 
-    for (PEPIdentity *ident in @[identyGroup]) {
+    for (PEPIdentity *ident in @[identityGroup]) {
         error = nil;
         XCTAssertTrue([self mySelf:ident error:&error]);
         XCTAssertNil(error);
@@ -241,7 +241,7 @@
 
     error = nil;
 
-    PEPGroup *group = [self groupCreateGroupIdentity:identyGroup
+    PEPGroup *group = [self groupCreateGroupIdentity:identityGroup
                                      managerIdentity:identyManager
                                     memberIdentities:@[identityMember1]
                                                error:&error];
@@ -263,7 +263,7 @@
     XCTAssertNotNil(identityMember2);
     XCTAssertNil(error);
 
-    XCTAssertFalse([self groupInviteMemberGroupIdentity:identyGroup
+    XCTAssertFalse([self groupInviteMemberGroupIdentity:identityGroup
                                          memberIdentity:identityMember2
                                                   error:&error]);
     XCTAssertNotNil(error);
