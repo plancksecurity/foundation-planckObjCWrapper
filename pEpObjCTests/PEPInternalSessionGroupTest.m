@@ -342,11 +342,11 @@
                                   userName:@"group"
                                   isOwn:YES];
 
-    PEPIdentity *identyManager = [[PEPIdentity alloc]
-                                  initWithAddress:@"manager@pep.security"
-                                  userID:@"manager"
-                                  userName:@"manager"
-                                  isOwn:NO];
+    PEPIdentity *identityManager = [[PEPIdentity alloc]
+                                    initWithAddress:@"manager@pep.security"
+                                    userID:@"manager"
+                                    userName:@"manager"
+                                    isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
                                     initWithAddress:@"member1@pep.security"
@@ -362,7 +362,7 @@
         XCTAssertNil(error);
     }
 
-    for (PEPIdentity *ident in @[identyManager, identityMember1]) {
+    for (PEPIdentity *ident in @[identityManager, identityMember1]) {
         error = nil;
         XCTAssertTrue([session updateIdentity:ident error:&error]);
         XCTAssertNil(error);
@@ -371,7 +371,7 @@
     error = nil;
 
     PEPGroup *group = [session groupCreateGroupIdentity:identityGroup
-                                        managerIdentity:identyManager
+                                        managerIdentity:identityManager
                                        memberIdentities:@[identityMember1]
                                                   error:&error];
 
@@ -382,7 +382,7 @@
 
     error = nil;
     NSNumber *ratingNumber = [session groupRatingGroupIdentity:identityGroup
-                                               managerIdentity:identyManager
+                                               managerIdentity:identityManager
                                                          error:&error];
     XCTAssertNotNil(ratingNumber);
     XCTAssertNil(error);
