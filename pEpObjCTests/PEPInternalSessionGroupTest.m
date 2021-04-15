@@ -281,11 +281,11 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *identyGroup = [[PEPIdentity alloc]
-                                initWithAddress:@"group@pep.security"
-                                userID:@"group"
-                                userName:@"group"
-                                isOwn:YES];
+    PEPIdentity *identityGroup = [[PEPIdentity alloc]
+                                  initWithAddress:@"group@pep.security"
+                                  userID:@"group"
+                                  userName:@"group"
+                                  isOwn:YES];
 
     PEPIdentity *identyManager = [[PEPIdentity alloc]
                                   initWithAddress:@"manager@pep.security"
@@ -301,7 +301,7 @@
 
     NSError *error = nil;
 
-    for (PEPIdentity *ident in @[identyGroup]) {
+    for (PEPIdentity *ident in @[identityGroup]) {
         error = nil;
         XCTAssertTrue([session mySelf:ident error:&error]);
         XCTAssertNil(error);
@@ -315,7 +315,7 @@
 
     error = nil;
 
-    PEPGroup *group = [session groupCreateGroupIdentity:identyGroup
+    PEPGroup *group = [session groupCreateGroupIdentity:identityGroup
                                         managerIdentity:identyManager
                                        memberIdentities:@[identityMember1]
                                                   error:&error];
@@ -326,7 +326,7 @@
     XCTAssertNotNil(group);
 
     error = nil;
-    XCTAssertTrue([session groupRemoveMemberGroupIdentity:identyGroup
+    XCTAssertTrue([session groupRemoveMemberGroupIdentity:identityGroup
                                            memberIdentity:identityMember1
                                                     error:&error]);
     XCTAssertNil(error);
