@@ -424,9 +424,9 @@
 
 #pragma mark - Group API
 
-- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
-                                 managerIdentity:(PEPIdentity *)managerIdentity
-                                memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
+                                memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *asyncSession = [PEPSession new];
@@ -451,8 +451,8 @@
     return result;
 }
 
-- (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
                          error:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *asyncSession = [PEPSession new];
@@ -476,8 +476,8 @@
     return result;
 }
 
-- (BOOL)groupDissolveGroupIdentity:(PEPIdentity *)groupIdentity
-                   managerIdentity:(PEPIdentity *)managerIdentity
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity const *)groupIdentity
+                   managerIdentity:(PEPIdentity const *)managerIdentity
                              error:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *asyncSession = [PEPSession new];
@@ -501,8 +501,8 @@
     return result;
 }
 
-- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity *)groupIdentity
-                        memberIdentity:(PEPIdentity *)memberIdentity
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
                                  error:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *asyncSession = [PEPSession new];
@@ -526,8 +526,8 @@
     return result;
 }
 
-- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity *)groupIdentity
-                        memberIdentity:(PEPIdentity *)memberIdentity
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
                                  error:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *asyncSession = [PEPSession new];
@@ -551,8 +551,8 @@
     return result;
 }
 
-- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity *)groupIdentity
-                                 managerIdentity:(PEPIdentity *)managerIdentity
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
                                            error:(NSError * _Nullable * _Nullable)error
 {
     PEPSession *asyncSession = [PEPSession new];
