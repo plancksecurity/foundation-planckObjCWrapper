@@ -669,8 +669,8 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)groupJoinGroupIdentity:(PEPIdentity *)groupIdentity
-                memberIdentity:(PEPIdentity *)memberIdentity
+- (void)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(void))successCallback
 {
