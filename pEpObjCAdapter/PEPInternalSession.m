@@ -1108,8 +1108,8 @@ static NSDictionary *stringToRating;
     }
 }
 
-- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
-                        memberIdentity:(PEPIdentity * _Nonnull)memberIdentity
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity const * _Nonnull)groupIdentity
+                        memberIdentity:(PEPIdentity const * _Nonnull)memberIdentity
                                  error:(NSError * _Nullable * _Nullable)error
 {
     pEp_identity *groupIdent = [groupIdentity toStruct];
