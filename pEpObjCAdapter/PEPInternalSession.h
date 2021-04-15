@@ -358,8 +358,8 @@ NS_ASSUME_NONNULL_BEGIN
                                  error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_remove_member`.
-- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity *)groupIdentity
-                        memberIdentity:(PEPIdentity *)memberIdentity
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
                                  error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_rating`.
