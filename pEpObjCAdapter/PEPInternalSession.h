@@ -336,9 +336,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Group API
 
 /// Wraps `group_create`.
+/// - Note: As indicated, all input values are `const`. You can get updated versions out of the resulting `PEPGroup`.
 - (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
                                  managerIdentity:(PEPIdentity const *)managerIdentity
-                                memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
+                                memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_join`.

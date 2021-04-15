@@ -236,7 +236,7 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 /// Wraps `group_create`.
 - (void)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
                  managerIdentity:(PEPIdentity const *)managerIdentity
-                memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
+                memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPGroup *))successCallback;
 
