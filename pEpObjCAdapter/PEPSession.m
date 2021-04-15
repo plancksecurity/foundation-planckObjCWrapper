@@ -707,8 +707,8 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)groupInviteMemberGroupIdentity:(PEPIdentity *)groupIdentity
-                        memberIdentity:(PEPIdentity *)memberIdentity
+- (void)groupInviteMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
                          errorCallback:(void (^)(NSError *error))errorCallback
                        successCallback:(void (^)(void))successCallback
 {
