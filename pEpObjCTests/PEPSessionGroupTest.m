@@ -11,6 +11,7 @@
 #import "XCTestCase+PEPSession.h"
 #import "PEPTestUtils.h"
 #import "PEPObjCAdapter_iOS.h"
+#import "XCTestCase+PEPSession.h"
 
 @interface PEPSessionGroupTest : XCTestCase
 
@@ -39,17 +40,17 @@
 
 - (void)testGroupCreate
 {
-    PEPIdentity *identyGroup = [[PEPIdentity alloc]
-                                initWithAddress:@"group@pep.security"
-                                userID:@"group"
-                                userName:@"group"
-                                isOwn:YES];
+    PEPIdentity *identityGroup = [[PEPIdentity alloc]
+                                  initWithAddress:@"group@pep.security"
+                                  userID:@"group"
+                                  userName:@"group"
+                                  isOwn:YES];
 
-    PEPIdentity *identyManager = [[PEPIdentity alloc]
-                                  initWithAddress:@"manager@pep.security"
-                                  userID:@"manager"
-                                  userName:@"manager"
-                                  isOwn:NO];
+    PEPIdentity *identityManager = [[PEPIdentity alloc]
+                                    initWithAddress:@"manager@pep.security"
+                                    userID:@"manager"
+                                    userName:@"manager"
+                                    isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
                                     initWithAddress:@"member1@pep.security"
@@ -59,13 +60,13 @@
 
     NSError *error = nil;
 
-    for (PEPIdentity *ident in @[identyGroup]) {
+    for (PEPIdentity *ident in @[identityGroup]) {
         error = nil;
         XCTAssertTrue([self mySelf:ident error:&error]);
         XCTAssertNil(error);
     }
 
-    for (PEPIdentity *ident in @[identyManager, identityMember1]) {
+    for (PEPIdentity *ident in @[identityManager, identityMember1]) {
         error = nil;
         XCTAssertTrue([self updateIdentity:ident error:&error]);
         XCTAssertNil(error);
@@ -73,9 +74,9 @@
 
     error = nil;
 
-    PEPGroup *group = [self groupCreateGroupIdentity:identyGroup
-                                             manager:identyManager
-                                             members:@[identityMember1]
+    PEPGroup *group = [self groupCreateGroupIdentity:identityGroup
+                                     managerIdentity:identityManager
+                                    memberIdentities:@[identityMember1]
                                                error:&error];
 
     XCTAssertNotNil(group);

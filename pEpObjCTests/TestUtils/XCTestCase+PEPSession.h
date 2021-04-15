@@ -79,8 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Group API
 
 - (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
-                                         manager:(PEPIdentity *)managerIdentity
-                                         members:(NSArray<PEPIdentity *> *)memberIdentities
+                                 managerIdentity:(PEPIdentity *)managerIdentity
+                                memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error;
 
 - (BOOL)groupJoinGroupIdentity:(PEPIdentity * _Nonnull)groupIdentity
