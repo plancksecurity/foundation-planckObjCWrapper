@@ -745,8 +745,8 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)groupRatingGroupIdentity:(PEPIdentity *)groupIdentity
-                 managerIdentity:(PEPIdentity *)managerIdentity
+- (void)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                 managerIdentity:(PEPIdentity const *)managerIdentity
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(NSNumber *))successCallback
 {

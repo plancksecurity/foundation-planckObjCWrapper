@@ -265,8 +265,8 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                        successCallback:(void (^)(void))successCallback;
 
 /// Wraps `group_rating`.
-- (void)groupRatingGroupIdentity:(PEPIdentity *)groupIdentity
-                 managerIdentity:(PEPIdentity *)managerIdentity
+- (void)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                 managerIdentity:(PEPIdentity const *)managerIdentity
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(NSNumber *))successCallback;
 

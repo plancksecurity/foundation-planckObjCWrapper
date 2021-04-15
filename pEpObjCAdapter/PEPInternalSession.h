@@ -363,8 +363,8 @@ NS_ASSUME_NONNULL_BEGIN
                                  error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `group_rating`.
-- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity *)groupIdentity
-                                 managerIdentity:(PEPIdentity *)managerIdentity
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
                                            error:(NSError * _Nullable * _Nullable)error;
 
 @end
