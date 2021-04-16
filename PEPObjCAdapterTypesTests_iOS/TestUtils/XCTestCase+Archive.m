@@ -10,7 +10,7 @@
 
 @implementation XCTestCase (Archive)
 
-+ (NSObject *)archiveAndUnarchiveObject:(NSObject *)object ofClass:(Class)ofClass
+- (NSObject *)archiveAndUnarchiveObject:(NSObject *)object ofClass:(Class)ofClass
 {
     NSError *error;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object

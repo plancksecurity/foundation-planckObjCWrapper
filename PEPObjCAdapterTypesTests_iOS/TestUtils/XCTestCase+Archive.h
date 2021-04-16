@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XCTestCase (Archive)
 
-+ (NSObject *)archiveAndUnarchiveObject:(NSObject *)object ofClass:(Class)ofClass;
+- (NSObject *)archiveAndUnarchiveObject:(NSObject *)object ofClass:(Class)ofClass;
 
 @end
 
