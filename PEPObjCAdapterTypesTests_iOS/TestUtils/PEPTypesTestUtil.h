@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class PEPIdentity, PEPAttachment, PEPLanguage, PEPMessage, PEPMember;
+@class PEPIdentity, PEPAttachment, PEPLanguage, PEPMessage;
+@class PEPMember, PEPGroup;
 
 @interface PEPTypesTestUtil : NSObject
 
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (PEPLanguage *)pEpLanguageWithAllFieldsFilled;
 + (PEPMessage *)pEpMessageWithAllFieldsFilled;
 + (PEPMember *)pEpMemberWithAllFieldsFilled;
++ (PEPGroup *)pEpGroupWithAllFieldsFilled;
 
 @end
 

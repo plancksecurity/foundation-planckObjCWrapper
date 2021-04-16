@@ -13,6 +13,7 @@
 #import "PEPLanguage.h"
 #import "PEPMessage.h"
 #import "PEPMember.h"
+#import "PEPGroup.h"
 
 @implementation PEPTypesTestUtil
 
@@ -95,6 +96,20 @@
     PEPIdentity *identity = [self pEpIdentityWithAllFieldsFilled];
     PEPMember *member = [[PEPMember alloc] initWithIdentity:identity joined:NO];
     return member;
+}
+
++ (PEPGroup *)pEpGroupWithAllFieldsFilled
+{
+    PEPIdentity *identityGroup = [self pEpIdentityWithAllFieldsFilled];
+    PEPIdentity *identityManager = [self pEpIdentityWithAllFieldsFilled];
+    PEPIdentity *identityMember1 = [self pEpIdentityWithAllFieldsFilled];
+    PEPIdentity *identityMember2 = [self pEpIdentityWithAllFieldsFilled];
+    NSArray *members = @[identityMember1, identityMember2];
+    PEPGroup *group = [[PEPGroup alloc] initWithIdentity:identityGroup
+                                                 manager:identityManager
+                                                 members:members
+                                                  active:YES];
+    return group;
 }
 
 @end
