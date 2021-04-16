@@ -15,4 +15,13 @@
     return YES;
 }
 
+- (void)encodeWithCoder:(nonnull NSCoder *)coder
+{
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
+{
+    return nil;
+}
+
 @end
