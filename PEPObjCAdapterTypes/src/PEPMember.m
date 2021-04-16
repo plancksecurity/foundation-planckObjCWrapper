@@ -8,7 +8,7 @@
 
 #import "PEPMember.h"
 
-@class PEPIdentity;
+#import "PEPIdentity.h"
 
 @implementation PEPMember
 
@@ -20,6 +20,29 @@
         _joined = joined;
     }
     return self;
+}
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else {
+        PEPMember *member = other;
+        return [self.identity isEqual:member.identity] && self.joined == member.joined;
+    }
+}
+
+- (NSUInteger)hash
+{
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+
+    result = prime * result + [self.identity hash];
+    result = prime * result + ((self.joined) ? 1231 : 1237);
+
+    return result;
 }
 
 @end
