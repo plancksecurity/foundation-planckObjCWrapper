@@ -26,8 +26,6 @@
 {
     if (other == self) {
         return YES;
-    } else if (![super isEqual:other]) {
-        return NO;
     } else {
         PEPMember *member = other;
         return [self.identity isEqual:member.identity] && self.joined == member.joined;
