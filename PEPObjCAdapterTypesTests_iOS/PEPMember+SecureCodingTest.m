@@ -10,6 +10,7 @@
 
 #import "PEPTypesTestUtil.h"
 #import "PEPMember.h"
+#import "PEPMember+SecureCoding.h"
 #import "XCTestCase+Archive.h"
 
 @interface PEPMember_SecureCodingTest : XCTestCase
