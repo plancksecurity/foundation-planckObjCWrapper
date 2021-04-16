@@ -6,8 +6,6 @@
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-
 #import "XCTestCase+Archive.h"
 
 @implementation XCTestCase (Archive)
