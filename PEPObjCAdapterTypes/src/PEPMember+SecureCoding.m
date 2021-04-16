@@ -8,6 +8,8 @@
 
 #import "PEPMember+SecureCoding.h"
 
+#import "PEPIdentity.h"
+
 @implementation PEPMember (SecureCoding)
 
 + (BOOL)supportsSecureCoding
@@ -17,11 +19,16 @@
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder
 {
+    [coder encodeObject:self.identity forKey:@"identity"];
+    [coder encodeBool:self.joined forKey:@"joined"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
-    return nil;
+    PEPIdentity *identity = [coder decodeObjectOfClass:[PEPIdentity class] forKey:@"identity"];
+    BOOL joined = [coder decodeBoolForKey:@"joined"];
+
+    return [self initWithIdentity:identity joined:joined];
 }
 
 @end
