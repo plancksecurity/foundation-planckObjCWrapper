@@ -31,7 +31,7 @@
     XCTAssertTrue([PEPMember supportsSecureCoding]);
 }
 
-- (void)testMessageMessageID
+- (void)testArchiveUnarchive
 {
     PEPMember *testee = [PEPTypesTestUtil pEpMemberWithAllFieldsFilled];
     PEPMember *unarchivedTestee = (PEPMember *) [self archiveAndUnarchiveObject:testee
