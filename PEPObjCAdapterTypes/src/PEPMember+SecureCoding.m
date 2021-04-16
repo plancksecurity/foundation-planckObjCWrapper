@@ -10,6 +10,9 @@
 
 #import "PEPIdentity.h"
 
+static NSString * const kKeyIdentity = @"identity";
+static NSString * const kKeyJoined = @"joined";
+
 @implementation PEPMember (SecureCoding)
 
 + (BOOL)supportsSecureCoding
@@ -19,14 +22,14 @@
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder
 {
-    [coder encodeObject:self.identity forKey:@"identity"];
-    [coder encodeBool:self.joined forKey:@"joined"];
+    [coder encodeObject:self.identity forKey:kKeyIdentity];
+    [coder encodeBool:self.joined forKey:kKeyJoined];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
-    PEPIdentity *identity = [coder decodeObjectOfClass:[PEPIdentity class] forKey:@"identity"];
-    BOOL joined = [coder decodeBoolForKey:@"joined"];
+    PEPIdentity *identity = [coder decodeObjectOfClass:[PEPIdentity class] forKey:kKeyIdentity];
+    BOOL joined = [coder decodeBoolForKey:kKeyJoined];
 
     return [self initWithIdentity:identity joined:joined];
 }
