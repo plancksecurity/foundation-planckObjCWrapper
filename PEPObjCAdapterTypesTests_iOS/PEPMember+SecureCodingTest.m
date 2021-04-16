@@ -25,12 +25,10 @@
     XCTAssertTrue([testee conformsToProtocol:@protocol(NSSecureCoding)]);
 }
 
-/*
 - (void)testSupportsSecureCodingProtocol
 {
     XCTAssertTrue([PEPMember supportsSecureCoding]);
 }
- */
 
 - (void)testMessageMessageID
 {

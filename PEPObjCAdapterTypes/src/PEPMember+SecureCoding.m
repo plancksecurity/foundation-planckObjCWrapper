@@ -10,4 +10,9 @@
 
 @implementation PEPMember (SecureCoding)
 
++ (BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
 @end
