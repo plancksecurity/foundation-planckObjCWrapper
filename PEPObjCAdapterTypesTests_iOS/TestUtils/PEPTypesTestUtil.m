@@ -12,6 +12,7 @@
 #import "PEPAttachment.h"
 #import "PEPLanguage.h"
 #import "PEPMessage.h"
+#import "PEPMember.h"
 
 @implementation PEPTypesTestUtil
 
@@ -87,6 +88,13 @@
     message.direction = PEPMsgDirectionIncoming;
 
     return message;
+}
+
++ (PEPMember *)pEpMemberWithAllFieldsFilled
+{
+    PEPIdentity *identity = [self pEpIdentityWithAllFieldsFilled];
+    PEPMember *member = [[PEPMember alloc] initWithIdentity:identity joined:NO];
+    return member;
 }
 
 @end
