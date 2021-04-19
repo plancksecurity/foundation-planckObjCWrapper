@@ -30,18 +30,4 @@
     return [NSArray arrayWithArray:array];
 }
 
-- (member_list *)toMemberList
-{
-    member_list *resultMemberList = NULL;
-
-    for (PEPMember *member in self) {
-        if (resultMemberList) {
-            memberlist_add(resultMemberList, [member toStruct]);
-        } else {
-            resultMemberList = new_memberlist([member toStruct]);
-        }
-    }
-    return resultMemberList;
-}
-
 @end
