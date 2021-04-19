@@ -25,12 +25,14 @@ static NSString * const kKeyActive = @"active";
 - (void)encodeWithCoder:(nonnull NSCoder *)coder
 {
     [coder encodeObject:self.identity forKey:kKeyIdentity];
+    [coder encodeObject:self.manager forKey:kKeyManager];
     [coder encodeBool:self.active forKey:kKeyActive];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
     PEPIdentity *identity = [coder decodeObjectOfClass:[PEPIdentity class] forKey:kKeyIdentity];
+    PEPIdentity *manager = [coder decodeObjectOfClass:[PEPIdentity class] forKey:kKeyManager];
     BOOL joined = [coder decodeBoolForKey:kKeyActive];
 
     return nil;
