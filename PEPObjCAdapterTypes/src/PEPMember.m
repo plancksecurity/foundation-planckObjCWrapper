@@ -26,10 +26,14 @@
 {
     if (other == self) {
         return YES;
-    } else {
-        PEPMember *member = other;
-        return [self.identity isEqual:member.identity] && self.joined == member.joined;
     }
+
+    if (!other || ![other isKindOfClass:[self class]]) {
+        return NO;
+    }
+
+    PEPMember *member = other;
+    return [self.identity isEqual:member.identity] && self.joined == member.joined;
 }
 
 - (NSUInteger)hash
