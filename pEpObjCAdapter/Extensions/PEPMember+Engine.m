@@ -21,10 +21,4 @@
     return [[PEPMember alloc] initWithIdentity:ident joined:joined];
 }
 
-- (pEp_member *)toStruct
-{
-    pEp_identity *ident = [self.identity toStruct];
-    return new_member(ident);
-}
-
 @end
