@@ -20,10 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)fromStruct:(pEp_group * _Nonnull)groupStruct;
 
-/// Convert into an engine struct.
-/// The caller is responsible for freeing, via `free_group`.
-- (pEp_group *)toStruct;
-
 @end
 
 NS_ASSUME_NONNULL_END
