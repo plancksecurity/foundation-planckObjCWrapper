@@ -34,9 +34,16 @@ static NSString * const kKeyActive = @"active";
 {
     PEPIdentity *identity = [coder decodeObjectOfClass:[PEPIdentity class] forKey:kKeyIdentity];
     PEPIdentity *manager = [coder decodeObjectOfClass:[PEPIdentity class] forKey:kKeyManager];
-    BOOL joined = [coder decodeBoolForKey:kKeyActive];
 
-    return nil;
+    NSSet *identityArraySet = [NSSet setWithArray:@[[NSArray class], [PEPIdentity class]]];
+    NSArray *members = [coder decodeObjectOfClasses:identityArraySet forKey:kKeyMembers];
+
+    BOOL active = [coder decodeBoolForKey:kKeyActive];
+
+    return [[PEPGroup alloc] initWithIdentity:identity
+                                      manager:manager
+                                      members:members
+                                       active:active];
 }
 
 @end
