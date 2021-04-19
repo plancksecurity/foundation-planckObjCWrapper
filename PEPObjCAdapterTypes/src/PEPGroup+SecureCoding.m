@@ -26,6 +26,7 @@ static NSString * const kKeyActive = @"active";
 {
     [coder encodeObject:self.identity forKey:kKeyIdentity];
     [coder encodeObject:self.manager forKey:kKeyManager];
+    [coder encodeObject:self.members forKey:kKeyMembers];
     [coder encodeBool:self.active forKey:kKeyActive];
 }
 
