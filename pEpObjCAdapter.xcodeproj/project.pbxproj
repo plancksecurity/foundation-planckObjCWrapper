@@ -185,6 +185,7 @@
 		43318C42262D7F0B00F6385E /* PEPGroup+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 43318C3F262D7F0B00F6385E /* PEPGroup+SecureCoding.h */; };
 		43318C43262D7F0B00F6385E /* PEPGroup+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43318C40262D7F0B00F6385E /* PEPGroup+SecureCoding.m */; };
 		43318C44262D7F0B00F6385E /* PEPGroup+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43318C40262D7F0B00F6385E /* PEPGroup+SecureCoding.m */; };
+		43318C53262D883200F6385E /* PEPGroup+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43318C52262D883200F6385E /* PEPGroup+SecureCodingTest.m */; };
 		4331CE94229C2AAF00DDDC65 /* PEPSizeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		433A03FA2627268700758B57 /* PEPInternalSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433A03F92627268700758B57 /* PEPInternalSession+SetIdentity.m */; };
@@ -434,6 +435,7 @@
 		432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_sec.asc; sourceTree = "<group>"; };
 		43318C3F262D7F0B00F6385E /* PEPGroup+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPGroup+SecureCoding.h"; sourceTree = "<group>"; };
 		43318C40262D7F0B00F6385E /* PEPGroup+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPGroup+SecureCoding.m"; sourceTree = "<group>"; };
+		43318C52262D883200F6385E /* PEPGroup+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPGroup+SecureCodingTest.m"; sourceTree = "<group>"; };
 		4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSizeTest.m; sourceTree = "<group>"; };
 		433A03F72627268600758B57 /* PEPInternalSession+SetIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPInternalSession+SetIdentity.h"; sourceTree = "<group>"; };
 		433A03F92627268700758B57 /* PEPInternalSession+SetIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPInternalSession+SetIdentity.m"; sourceTree = "<group>"; };
@@ -879,6 +881,7 @@
 				4E81CF1725C1E710009F140D /* PEPAttachment+SecureCodingTest.m */,
 				4E81CF2725C1F48E009F140D /* PEPMessage+SecureCodingTest.m */,
 				43A353A62629A77C004491F1 /* PEPMember+SecureCodingTest.m */,
+				43318C52262D883200F6385E /* PEPGroup+SecureCodingTest.m */,
 				4E81CD4D25C19DD4009F140D /* Info.plist */,
 			);
 			path = PEPObjCAdapterTypesTests_iOS;
@@ -1462,6 +1465,7 @@
 				43A3539E262969E7004491F1 /* XCTestCase+Archive.m in Sources */,
 				43A353A72629A77C004491F1 /* PEPMember+SecureCodingTest.m in Sources */,
 				4E81CF1825C1E710009F140D /* PEPAttachment+SecureCodingTest.m in Sources */,
+				43318C53262D883200F6385E /* PEPGroup+SecureCodingTest.m in Sources */,
 				4E81CE8825C1CCCB009F140D /* PEPIdentity+SecureCodingTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
