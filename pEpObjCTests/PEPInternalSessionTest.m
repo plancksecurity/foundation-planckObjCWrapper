@@ -28,9 +28,6 @@
 #import "PEPIdentity+isPEPUser.h"
 #import "PEPInternalSession+SetIdentity.h"
 
-#import "PEPMember.h"
-#import "PEPGroup.h"
-
 @interface PEPInternalSessionTest : XCTestCase
 
 @property (nonatomic) PEPSync *sync;
