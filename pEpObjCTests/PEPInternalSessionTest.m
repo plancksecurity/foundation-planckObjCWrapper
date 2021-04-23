@@ -26,6 +26,10 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 #import "PEPIdentity+isPEPUser.h"
+#import "PEPInternalSession+SetIdentity.h"
+
+#import "PEPMember.h"
+#import "PEPGroup.h"
 
 @interface PEPInternalSessionTest : XCTestCase
 
@@ -414,8 +418,9 @@
     XCTAssertNil(error);
 
     identBob.fingerPrint = nil;
-    XCTAssertTrue([session updateIdentity:identBob error:&error]);
-    XCTAssertNil(error);
+    XCTAssertFalse([session updateIdentity:identBob error:&error]);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, PEP_KEY_UNSUITABLE);
     XCTAssertNil(identBob.fingerPrint);
 
     // Gray == PEPRatingUnencrypted
@@ -464,25 +469,25 @@
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"0xC9C2EE39.asc" session:session]);
-
-    PEPIdentity *identBob = [[PEPIdentity alloc]
-                             initWithAddress:@"pep.test.bob@pep-project.org"
-                             userID:@"42" userName:@"pEp Test Bob"
-                             isOwn:NO
-                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
+    PEPIdentity *identBob = [self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                                                    address:@"pep.test.bob@pep-project.org"
+                                                     userID:@"42"
+                                                fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                                                    session:session];
+    XCTAssertNotNil(identBob);
 
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
     XCTAssertNil(error);
 
-    // Should be yellow, since no handshake happened.
+    // No key election, outgoing messages are unencrypted (after setIdentity)
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
+    // No key election, there is no key (after setIdentity)
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEPRatingReliable);
+    XCTAssertEqual(rating, PEPRatingHaveNoKey);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
@@ -1644,6 +1649,19 @@
                                   isOwn:NO];
 
         NSError *error = nil;
+        XCTAssertTrue([session updateIdentity:identTest error:&error]);
+        XCTAssertNil(error);
+        XCTAssertNil(identTest.fingerPrint); // should be nil before setIdentity
+
+        error = nil;
+        identTest.fingerPrint = fingerPrint;
+        XCTAssertTrue([session setIdentity:identTest error:&error]);
+        XCTAssertNil(error);
+
+        // forget the fingerprint
+        identTest.fingerPrint = nil;
+
+        error = nil;
         XCTAssertTrue([session updateIdentity:identTest error:&error]);
         XCTAssertNil(error);
         XCTAssertNotNil(identTest.fingerPrint);
