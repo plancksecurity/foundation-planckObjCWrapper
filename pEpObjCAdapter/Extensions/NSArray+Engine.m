@@ -92,6 +92,10 @@
 
 - (identity_list * _Nullable)toIdentityList
 {
+    if (self.count == 0) {
+        return NULL;
+    }
+
     identity_list *il = new_identity_list(NULL);
     if (!il)
         return NULL;
