@@ -36,7 +36,6 @@
 		1516087B257A4F0A00DD42E0 /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 151606FD257A401000DD42E0 /* libPEPObjCAdapterTypes_iOS.a */; platformFilter = ios; };
 		15160AF1257A58A000DD42E0 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; platformFilter = ios; };
 		15160D2D257A920F00DD42E0 /* libPEPObjCAdapter_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DC66257943CE0041EFB5 /* libPEPObjCAdapter_iOS.a */; platformFilter = ios; };
-		15160D93257A99D900DD42E0 /* pEpIOSToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15160D92257A99D900DD42E0 /* pEpIOSToolbox.framework */; platformFilter = ios; };
 		15160E80257AA06500DD42E0 /* pEp4iosIntern.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15160E7F257AA06500DD42E0 /* pEp4iosIntern.framework */; platformFilter = ios; };
 		152A9C472010F50400F962ED /* PEPInternalSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPInternalSessionTest.m */; };
 		1543D9E02577EF260041EFB5 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552DCBD2577E0B600A92F71 /* libpEpEngine_macOS.a */; };
@@ -187,11 +186,11 @@
 		4349CD7924ADDB8800A22A13 /* PEPPassphraseCache+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4349CD7824ADDB8800A22A13 /* PEPPassphraseCache+Reset.m */; };
 		43589EFB24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
+		436DDE162640210800B88D66 /* pEpIOSToolboxForExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436DDE152640210800B88D66 /* pEpIOSToolboxForExtensions.framework */; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
 		4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
-		43D2D5D72632A73D00088BDC /* PEPInternalSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2D5D62632A73D00088BDC /* PEPInternalSession+SetIdentity.m */; };
 		43D2D5F12632B0FA00088BDC /* XCTestCase+PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
@@ -429,6 +428,7 @@
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
 		436C9A3124DC48B600007A3D /* PEPPassphraseUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseUtil.h; sourceTree = "<group>"; };
 		436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseUtil.m; sourceTree = "<group>"; };
+		436DDE152640210800B88D66 /* pEpIOSToolboxForExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEpIOSToolboxForExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderProtocol.h; sourceTree = "<group>"; };
 		436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Rick Deckard (43F270EC) – Secret.asc"; sourceTree = "<group>"; };
 		436E917524B71E12000296FF /* PEPPassphraseProviderMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderMock.h; sourceTree = "<group>"; };
@@ -443,8 +443,6 @@
 		4396CEC9218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPInternalSessionTestSendMessageDelegate.h; sourceTree = "<group>"; };
 		43AD0E2E22E99ECE00D46F56 /* PEPInternalConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPInternalConstants.h; sourceTree = "<group>"; };
 		43AD0E2F22E99ECE00D46F56 /* PEPInternalConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalConstants.m; sourceTree = "<group>"; };
-		43D2D5D42632A73D00088BDC /* PEPInternalSession+SetIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPInternalSession+SetIdentity.h"; sourceTree = "<group>"; };
-		43D2D5D62632A73D00088BDC /* PEPInternalSession+SetIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPInternalSession+SetIdentity.m"; sourceTree = "<group>"; };
 		43D2D5EE2632B0FA00088BDC /* XCTestCase+PEPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+PEPSession.h"; sourceTree = "<group>"; };
 		43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+PEPSession.m"; sourceTree = "<group>"; };
 		43DED784203C25E200D45CD6 /* NSError+PEP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+PEP.h"; sourceTree = "<group>"; };
@@ -506,8 +504,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				436DDE162640210800B88D66 /* pEpIOSToolboxForExtensions.framework in Frameworks */,
 				15160AF1257A58A000DD42E0 /* libpEpEngine.a in Frameworks */,
-				15160D93257A99D900DD42E0 /* pEpIOSToolbox.framework in Frameworks */,
 				1516087B257A4F0A00DD42E0 /* libPEPObjCAdapterTypes_iOS.a in Frameworks */,
 				15160E80257AA06500DD42E0 /* pEp4iosIntern.framework in Frameworks */,
 			);
@@ -766,6 +764,7 @@
 		43447C51221D448500B6323E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				436DDE152640210800B88D66 /* pEpIOSToolboxForExtensions.framework */,
 				155A03502608B7DE00FF2754 /* libPEPToolbox_macOS.a */,
 				15160E7F257AA06500DD42E0 /* pEp4iosIntern.framework */,
 				15160B30257A595800DD42E0 /* libiconv.tbd */,
