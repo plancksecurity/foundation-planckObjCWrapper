@@ -11,7 +11,7 @@
 
 #ifdef IS_IOS_BUILD
 #import <pEpIOSToolboxForExtensions/pEpIOSToolboxForExtensions-Swift.h>
-#import <pEpIOSToolbox/PEPLogger.h>
+#import <pEpIOSToolboxForExtensions/PEPLogger.h>
 #else
 #import "PEPToolbox_macOS-Swift.h"
 #import "PEPLogger.h"
