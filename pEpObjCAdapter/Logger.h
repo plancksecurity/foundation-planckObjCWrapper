@@ -10,8 +10,8 @@
 #define Logger_h
 
 #ifdef IS_IOS_BUILD
-#import <pEpIOSToolbox/pEpIOSToolbox-Swift.h>
-#import <pEpIOSToolbox/PEPLogger.h>
+#import <pEpIOSToolboxForExtensions/pEpIOSToolboxForExtensions-Swift.h>
+#import <pEpIOSToolboxForExtensions/PEPLogger.h>
 #else
 #import "PEPToolbox_macOS-Swift.h"
 #import "PEPLogger.h"
