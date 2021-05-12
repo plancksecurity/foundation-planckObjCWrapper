@@ -7,4 +7,10 @@
    <FileRef
       location = "group:pEpObjCAdapter.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:../pep-toolbox/pEpIOSToolbox.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../CocoaLumberjack/Lumberjack.xcodeproj">
+   </FileRef>
 </Workspace>
