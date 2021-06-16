@@ -19,33 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Configuration
 
-///**
-// Sets Engine config for unecryptedSubjectEnabled to the given value on all Sessions created by
-// this adapter.
-//
-// @param enabled Whether or not mail subjects should be encrypted
-// */
-//+ (void)setUnEncryptedSubjectEnabled:(BOOL)enabled;
-//
-///**
-// Enable or disable passive mode for all sessions.
-// */
-//+ (void)setPassiveModeEnabled:(BOOL)enabled;
-//
-///// Sets a passphrase (with a maximum of 250 code points) for
-///// (own) secret keys generated from now on.
-/////
-///// A `nil` password means disable own passwords for future keys,
-///// which is the default.
-/////
-///// The password will be kept in memory until overwritten by another,
-///// which includes `nil`. It will be set or unset to _each_ session,
-///// similar to other configurable options in the adapter.
-/////
-///// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
-//+ (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
-//                                error:(NSError * _Nullable * _Nullable)error;
-
 /// Sets a passphrase provider.
 ///
 /// @note The reference is strong, so the caller can relinquish ownership if needed.
