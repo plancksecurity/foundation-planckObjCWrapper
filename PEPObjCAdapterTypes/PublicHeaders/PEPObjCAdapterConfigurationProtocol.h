@@ -12,15 +12,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PEPObjCAdapterConfigurationProtocol <NSObject>
 
+/**
+ Sets Engine config for unecryptedSubjectEnabled to the given value on all Sessions created by
+ this adapter.
+
+ @param enabled Whether or not mail subjects should be encrypted
+ */
 + (void)setUnEncryptedSubjectEnabled:(BOOL)enabled;
 
-/// Wraps the engine's `config_passive_mode`.
-/// @note That there's absolutely no error handling.
-+ (void)setPassiveModeEnabled:(BOOL)enabled
+/**
+ Enable or disable passive mode for all sessions.
+ */
++ (void)setPassiveModeEnabled:(BOOL)enabled;
 
-/// Add a passphrase for secret keys to the cache.
+/// Sets a passphrase (with a maximum of 250 code points) for
+/// (own) secret keys generated from now on.
 ///
-/// You can add as many passphrases to the cache as needed by calling this method.
+/// @discussion You can add as many passphrases to the cache as needed by calling this method.
 /// Every passphrase is valid for 10 min (default, compile-time configurable),
 /// after that it gets removed from memory. The maximum count of passphrases is 20.
 /// Setting the 21st replaces the 1st.
@@ -38,10 +46,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// approximated by checking the string length.
 /// If the passphrase exceeds this limit, the adapter throws PEPAdapterErrorPassphraseTooLong
 /// with a domain of PEPObjCAdapterErrorDomain.
+/// Sets a passphrase (with a maximum of 250 code points) for
+/// (own) secret keys generated from now on.
+///
+/// A `nil` password means disable own passwords for future keys,
+/// which is the default.
+///
+/// The password will be kept in memory until overwritten by another,
+/// which includes `nil`. It will be set or unset to _each_ session,
+/// similar to other configurable options in the adapter.
+///
 /// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
-/// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
 + (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
-                                error:(NSError * _Nullable * _Nullable)error
+                                error:(NSError * _Nullable * _Nullable)error;
 
 @end
 
