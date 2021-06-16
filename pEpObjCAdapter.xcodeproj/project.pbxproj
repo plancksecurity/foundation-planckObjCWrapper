@@ -204,6 +204,8 @@
 		4E81CEC225C1D751009F140D /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */; };
 		4E81CF1825C1E710009F140D /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CF1725C1E710009F140D /* PEPAttachment+SecureCodingTest.m */; };
 		4E81CF2825C1F48E009F140D /* PEPMessage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E81CF2725C1F48E009F140D /* PEPMessage+SecureCodingTest.m */; };
+		4E9096A2267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E9096A1267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E9096A3267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E9096A1267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h */; };
 		4EA9B51F25BF20EA0048427E /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EA9B54D25BF20FD0048427E /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */; };
 		4EA9B58425BF278B0048427E /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -480,6 +482,7 @@
 		4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPLanguage+SecureCodingTest.m"; sourceTree = "<group>"; };
 		4E81CF1725C1E710009F140D /* PEPAttachment+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPAttachment+SecureCodingTest.m"; sourceTree = "<group>"; };
 		4E81CF2725C1F48E009F140D /* PEPMessage+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+SecureCodingTest.m"; sourceTree = "<group>"; };
+		4E9096A1267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterConfigurationProtocol.h; sourceTree = "<group>"; };
 		4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+SecureCoding.h"; sourceTree = "<group>"; };
 		4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+SecureCoding.m"; sourceTree = "<group>"; };
 		4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPLanguage+SecureCoding.h"; sourceTree = "<group>"; };
@@ -653,6 +656,7 @@
 				4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */,
 				4EA9B5A525BF2A9A0048427E /* PEPAttachment+SecureCoding.h */,
 				4E58698125BF2FA900779EAD /* PEPMessage+SecureCoding.h */,
+				4E9096A1267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
@@ -880,6 +884,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1552D92B25765EDC00A92F71 /* PEPIdentity.h in Headers */,
+				4E9096A2267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h in Headers */,
 				1552D92C25765EDC00A92F71 /* PEPTypes.h in Headers */,
 				4EA9B5A725BF2A9A0048427E /* PEPAttachment+SecureCoding.h in Headers */,
 				1552D92825765EDC00A92F71 /* PEPLanguage.h in Headers */,
@@ -909,6 +914,7 @@
 				4EDB863C25C062F800FA045D /* PEPMessage+SecureCoding.h in Headers */,
 				1516070D257A405A00DD42E0 /* PEPAttachment.h in Headers */,
 				15160711257A405A00DD42E0 /* PEPMessage.h in Headers */,
+				4E9096A3267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h in Headers */,
 				4EDB863625C062F600FA045D /* PEPAttachment+SecureCoding.h in Headers */,
 				15160710257A405A00DD42E0 /* PEPSessionProtocol.h in Headers */,
 			);
