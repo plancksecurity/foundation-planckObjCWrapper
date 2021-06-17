@@ -215,7 +215,6 @@
 		4ED4FA43267B5D4B002F759C /* PEPObjCAdapterProtocols.h in Modulemap */ = {isa = PBXBuildFile; fileRef = 4ED4FA36267B5B0D002F759C /* PEPObjCAdapterProtocols.h */; };
 		4ED4FA44267B5D55002F759C /* module.modulemap in Modulemap */ = {isa = PBXBuildFile; fileRef = 4ED4FA40267B5C63002F759C /* module.modulemap */; };
 		4ED4FA45267B5D99002F759C /* libPEPObjCAdapterProtocols.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ED4FA34267B5B0D002F759C /* libPEPObjCAdapterProtocols.a */; };
-		4ED4FA48267B6128002F759C /* libPEPObjCAdapterTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 150E8FB225755B6900AE2198 /* libPEPObjCAdapterTypes_macOS.a */; };
 		4EDB861525C062E000FA045D /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */; };
 		4EDB861D25C062E300FA045D /* PEPLanguage+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B56525BF277F0048427E /* PEPLanguage+SecureCoding.m */; };
 		4EDB862325C062E500FA045D /* PEPAttachment+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B5A625BF2A9A0048427E /* PEPAttachment+SecureCoding.m */; };
@@ -572,7 +571,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ED4FA48267B6128002F759C /* libPEPObjCAdapterTypes_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
