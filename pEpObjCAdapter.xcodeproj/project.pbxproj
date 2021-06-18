@@ -272,6 +272,13 @@
 			remoteGlobalIDString = 150E8FB125755B6900AE2198;
 			remoteInfo = PEPObjCAdapterTypes_macOS;
 		};
+		4E5B4080267C98CB00999C51 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 352988A21AEF964100FA7E2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4ED4FA33267B5B0D002F759C;
+			remoteInfo = PEPObjCAdapterProtocols;
+		};
 		4E81CD4F25C19DD4009F140D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 352988A21AEF964100FA7E2E /* Project object */;
@@ -1126,6 +1133,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4E5B4081267C98CB00999C51 /* PBXTargetDependency */,
 				15A32463260E2A23009D07EB /* PBXTargetDependency */,
 				15A3246F260E2A5A009D07EB /* PBXTargetDependency */,
 			);
@@ -1519,6 +1527,11 @@
 			isa = PBXTargetDependency;
 			target = 150E8FB125755B6900AE2198 /* PEPObjCAdapterTypes_macOS */;
 			targetProxy = 15A3246E260E2A5A009D07EB /* PBXContainerItemProxy */;
+		};
+		4E5B4081267C98CB00999C51 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4ED4FA33267B5B0D002F759C /* PEPObjCAdapterProtocols */;
+			targetProxy = 4E5B4080267C98CB00999C51 /* PBXContainerItemProxy */;
 		};
 		4E81CD5025C19DD4009F140D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
