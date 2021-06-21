@@ -272,6 +272,13 @@
 			remoteGlobalIDString = 151606FC257A401000DD42E0;
 			remoteInfo = PEPObjCAdapterTypes_iOS;
 		};
+		4EEB4CCD2680E56A00161040 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4EEB4CA82680D57A00161040;
+			remoteInfo = PEPObjCAdapterProtocols;
+		};
 		64289E551B8B70E800FC617B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
@@ -371,7 +378,6 @@
 		15B107AA257520DE00D06C34 /* PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
 		15B107AB257520DE00D06C34 /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
 		15B107AC257520DE00D06C34 /* PEPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
-		15B109E525754F8100D06C34 /* PEPSessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocol.h; sourceTree = "<group>"; };
 		15B109E625754F8800D06C34 /* PEPSessionProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProtocol.m; sourceTree = "<group>"; };
 		15B109EB25754FCF00D06C34 /* PEPTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTypes.h; sourceTree = "<group>"; };
 		15B109FA2575510300D06C34 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
@@ -478,13 +484,13 @@
 		4E81CEC125C1D751009F140D /* PEPLanguage+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPLanguage+SecureCodingTest.m"; sourceTree = "<group>"; };
 		4E81CF1725C1E710009F140D /* PEPAttachment+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPAttachment+SecureCodingTest.m"; sourceTree = "<group>"; };
 		4E81CF2725C1F48E009F140D /* PEPMessage+SecureCodingTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+SecureCodingTest.m"; sourceTree = "<group>"; };
-		4E9096A1267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterConfigurationProtocol.h; sourceTree = "<group>"; };
 		4EA9B43D25BEE0990048427E /* PEPIdentity+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+SecureCoding.h"; sourceTree = "<group>"; };
 		4EA9B43E25BEE0990048427E /* PEPIdentity+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+SecureCoding.m"; sourceTree = "<group>"; };
 		4EA9B56425BF277F0048427E /* PEPLanguage+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPLanguage+SecureCoding.h"; sourceTree = "<group>"; };
 		4EA9B56525BF277F0048427E /* PEPLanguage+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPLanguage+SecureCoding.m"; sourceTree = "<group>"; };
 		4EA9B5A525BF2A9A0048427E /* PEPAttachment+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPAttachment+SecureCoding.h"; sourceTree = "<group>"; };
 		4EA9B5A625BF2A9A0048427E /* PEPAttachment+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPAttachment+SecureCoding.m"; sourceTree = "<group>"; };
+		4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCAdapterProtocols.xcodeproj; path = Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols.xcodeproj; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -710,6 +716,7 @@
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
+				4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */,
 				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
@@ -718,7 +725,6 @@
 				150E8FB325755B6900AE2198 /* PEPObjCAdapterTypes_macOS */,
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
 				1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */,
-				4ED4FA35267B5B0D002F759C /* PEPObjCAdapterProtocols */,
 				151606FE257A401000DD42E0 /* PEPObjCAdapterTypes_iOS */,
 				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
 				4E81CD4A25C19DD4009F140D /* PEPObjCAdapterTypesTests_iOS */,
@@ -845,21 +851,12 @@
 			path = TestUtils;
 			sourceTree = "<group>";
 		};
-		4ED4FA35267B5B0D002F759C /* PEPObjCAdapterProtocols */ = {
+		4EEB4CCA2680E56A00161040 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4ED4FA41267B5CEB002F759C /* PublicHeaders */,
+				4EEB4CCE2680E56A00161040 /* libPEPObjCAdapterProtocols.a */,
 			);
-			path = PEPObjCAdapterProtocols;
-			sourceTree = "<group>";
-		};
-		4ED4FA41267B5CEB002F759C /* PublicHeaders */ = {
-			isa = PBXGroup;
-			children = (
-				15B109E525754F8100D06C34 /* PEPSessionProtocol.h */,
-				4E9096A1267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h */,
-			);
-			path = PublicHeaders;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		64289E521B8B70E800FC617B /* Products */ = {
@@ -1173,6 +1170,10 @@
 					ProductGroup = 64289E521B8B70E800FC617B /* Products */;
 					ProjectRef = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
 				},
+				{
+					ProductGroup = 4EEB4CCA2680E56A00161040 /* Products */;
+					ProjectRef = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1192,6 +1193,13 @@
 			fileType = archive.ar;
 			path = libpEpEngine_macOS.a;
 			remoteRef = 1552DCBC2577E0B600A92F71 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4EEB4CCE2680E56A00161040 /* libPEPObjCAdapterProtocols.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPEPObjCAdapterProtocols.a;
+			remoteRef = 4EEB4CCD2680E56A00161040 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		64289E561B8B70E800FC617B /* libpEpEngine.a */ = {

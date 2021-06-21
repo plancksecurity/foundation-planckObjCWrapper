@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4EEB4CAE2680D57A00161040 /* PEPObjCAdapterProtocols.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4EEB4CAB2680D57A00161040 /* PEPObjCAdapterProtocols.h */; };
+		4EEB4CC42680DD6C00161040 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4EEB4CC52680DD6C00161040 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4EEB4CC72680DE4800161040 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +29,9 @@
 /* Begin PBXFileReference section */
 		4EEB4CA82680D57A00161040 /* libPEPObjCAdapterProtocols.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterProtocols.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EEB4CAB2680D57A00161040 /* PEPObjCAdapterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterProtocols.h; sourceTree = "<group>"; };
+		4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterConfigurationProtocol.h; sourceTree = "<group>"; };
+		4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocol.h; sourceTree = "<group>"; };
+		4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProtocol.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,18 +64,42 @@
 		4EEB4CAA2680D57A00161040 /* PEPObjCAdapterProtocols */ = {
 			isa = PBXGroup;
 			children = (
+				4EEB4CC02680DCAC00161040 /* PublicHeaders */,
+				4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */,
 				4EEB4CAB2680D57A00161040 /* PEPObjCAdapterProtocols.h */,
 			);
 			path = PEPObjCAdapterProtocols;
 			sourceTree = "<group>";
 		};
+		4EEB4CC02680DCAC00161040 /* PublicHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */,
+				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
+			);
+			path = PublicHeaders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4EEB4CC32680DD6200161040 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EEB4CC42680DD6C00161040 /* PEPObjCAdapterConfigurationProtocol.h in Headers */,
+				4EEB4CC52680DD6C00161040 /* PEPSessionProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		4EEB4CA72680D57A00161040 /* PEPObjCAdapterProtocols */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4EEB4CB12680D57A00161040 /* Build configuration list for PBXNativeTarget "PEPObjCAdapterProtocols" */;
 			buildPhases = (
+				4EEB4CC32680DD6200161040 /* Headers */,
 				4EEB4CA42680D57A00161040 /* Sources */,
 				4EEB4CA52680D57A00161040 /* Frameworks */,
 				4EEB4CA62680D57A00161040 /* CopyFiles */,
@@ -119,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EEB4CC72680DE4800161040 /* PEPSessionProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
