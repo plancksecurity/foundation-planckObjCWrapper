@@ -12,17 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PEPObjCAdapterConfigurationProtocol <NSObject>
 
-/**
- Sets Engine config for unecryptedSubjectEnabled to the given value on all Sessions created by
- this adapter.
-
- @param enabled Whether or not mail subjects should be encrypted
- */
+/// Sets Engine config for unecryptedSubjectEnabled to the given value on all Sessions created by
+/// this adapter.
+///
+/// @param enabled Whether or not mail subjects should be encrypted
 + (void)setUnEncryptedSubjectEnabled:(BOOL)enabled;
 
-/**
- Enable or disable passive mode for all sessions.
- */
+/// Enable or disable passive mode for all sessions.
 + (void)setPassiveModeEnabled:(BOOL)enabled;
 
 /// Sets a passphrase (with a maximum of 250 code points) for

@@ -209,7 +209,6 @@
 		4EA9B5A725BF2A9A0048427E /* PEPAttachment+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EA9B5A525BF2A9A0048427E /* PEPAttachment+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4EA9B5A825BF2A9A0048427E /* PEPAttachment+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA9B5A625BF2A9A0048427E /* PEPAttachment+SecureCoding.m */; };
 		4ED4FA37267B5B0D002F759C /* PEPObjCAdapterProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ED4FA36267B5B0D002F759C /* PEPObjCAdapterProtocols.h */; };
-		4ED4FA39267B5B0D002F759C /* PEPObjCAdapterProtocols.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED4FA38267B5B0D002F759C /* PEPObjCAdapterProtocols.m */; };
 		4ED4FA3E267B5BB2002F759C /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109E525754F8100D06C34 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4ED4FA3F267B5BBA002F759C /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E9096A1267A2BE9002AA98A /* PEPObjCAdapterConfigurationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4ED4FA43267B5D4B002F759C /* PEPObjCAdapterProtocols.h in Modulemap */ = {isa = PBXBuildFile; fileRef = 4ED4FA36267B5B0D002F759C /* PEPObjCAdapterProtocols.h */; };
@@ -513,7 +512,6 @@
 		4EA9B5A625BF2A9A0048427E /* PEPAttachment+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPAttachment+SecureCoding.m"; sourceTree = "<group>"; };
 		4ED4FA34267B5B0D002F759C /* libPEPObjCAdapterProtocols.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterProtocols.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED4FA36267B5B0D002F759C /* PEPObjCAdapterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterProtocols.h; sourceTree = "<group>"; };
-		4ED4FA38267B5B0D002F759C /* PEPObjCAdapterProtocols.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterProtocols.m; sourceTree = "<group>"; };
 		4ED4FA40267B5C63002F759C /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
@@ -889,7 +887,6 @@
 			children = (
 				4ED4FA41267B5CEB002F759C /* PublicHeaders */,
 				4ED4FA36267B5B0D002F759C /* PEPObjCAdapterProtocols.h */,
-				4ED4FA38267B5B0D002F759C /* PEPObjCAdapterProtocols.m */,
 				4ED4FA40267B5C63002F759C /* module.modulemap */,
 			);
 			path = PEPObjCAdapterProtocols;
@@ -1479,7 +1476,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4ED4FA39267B5B0D002F759C /* PEPObjCAdapterProtocols.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
