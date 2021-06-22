@@ -264,19 +264,19 @@
 			remoteGlobalIDString = 4E23E6E62681C7CD00B8F4C2;
 			remoteInfo = PEPObjCAdapterProtocols_macOS;
 		};
+		4E23E6FE2681D42B00B8F4C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E23E6E52681C7CD00B8F4C2;
+			remoteInfo = PEPObjCAdapterProtocols_macOS;
+		};
 		4E81CD4F25C19DD4009F140D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 352988A21AEF964100FA7E2E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 151606FC257A401000DD42E0;
 			remoteInfo = PEPObjCAdapterTypes_iOS;
-		};
-		4EEB4CCD2680E56A00161040 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4EEB4CA82680D57A00161040;
-			remoteInfo = PEPObjCAdapterProtocols;
 		};
 		4EEB4CD42680F12D00161040 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -859,7 +859,6 @@
 		4EEB4CCA2680E56A00161040 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4EEB4CCE2680E56A00161040 /* libPEPObjCAdapterProtocols.a */,
 				4E23E6F62681C8AF00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */,
 			);
 			name = Products;
@@ -1086,6 +1085,7 @@
 			dependencies = (
 				15A32463260E2A23009D07EB /* PBXTargetDependency */,
 				4EEB4CD52680F12D00161040 /* PBXTargetDependency */,
+				4E23E6FF2681D42B00B8F4C2 /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapter_macOS;
 			productName = PEPObjCAdapter_macOS;
@@ -1206,13 +1206,6 @@
 			fileType = archive.ar;
 			path = libPEPObjCAdapterProtocols_macOS.a;
 			remoteRef = 4E23E6F52681C8AF00B8F4C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4EEB4CCE2680E56A00161040 /* libPEPObjCAdapterProtocols.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPEPObjCAdapterProtocols.a;
-			remoteRef = 4EEB4CCD2680E56A00161040 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		64289E561B8B70E800FC617B /* libpEpEngine.a */ = {
@@ -1458,6 +1451,11 @@
 			platformFilter = ios;
 			target = 151606FC257A401000DD42E0 /* PEPObjCAdapterTypes_iOS */;
 			targetProxy = 15A32466260E2A42009D07EB /* PBXContainerItemProxy */;
+		};
+		4E23E6FF2681D42B00B8F4C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PEPObjCAdapterProtocols_macOS;
+			targetProxy = 4E23E6FE2681D42B00B8F4C2 /* PBXContainerItemProxy */;
 		};
 		4E81CD5025C19DD4009F140D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
