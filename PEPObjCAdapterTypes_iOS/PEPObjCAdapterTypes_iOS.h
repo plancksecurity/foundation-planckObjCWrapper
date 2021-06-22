@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "PEPTypes.h"
-#import "PEPSessionProtocol.h"
 #import "PEPEngineTypes.h"
 #import "PEPLanguage.h"
 #import "PEPMessage.h"
