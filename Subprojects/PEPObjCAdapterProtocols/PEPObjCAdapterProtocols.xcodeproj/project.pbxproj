@@ -8,38 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		4E23E6E92681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E23E6E82681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h */; };
-		4E23E6EB2681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E23E6EA2681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.m */; };
 		4E23E6F12681C7D600B8F4C2 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E23E6F22681C7D600B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E23E6F32681C7F800B8F4C2 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; };
-		4E23E7082681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E23E7072681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.m */; platformFilter = ios; };
-		4E23E7092681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E23E7062681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.h */; platformFilter = ios; };
 		4E23E70F2681D61700B8F4C2 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; platformFilter = ios; };
-		4E23E7112681D65F00B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E23E7122681D65F00B8F4C2 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E23E7112681D65F00B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E23E7122681D65F00B8F4C2 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4E23E7022681D5F300B8F4C2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				4E23E7092681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4E23E6CE2681B70400B8F4C2 /* libPEPObjCAdapterTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCAdapterTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E23E6E62681C7CD00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterProtocols_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E23E6E82681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterProtocols_macOS.h; sourceTree = "<group>"; };
-		4E23E6EA2681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterProtocols_macOS.m; sourceTree = "<group>"; };
 		4E23E7042681D5F300B8F4C2 /* libPEPObjCAdapterProtocols_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterProtocols_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E23E7062681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterProtocols_iOS.h; sourceTree = "<group>"; };
-		4E23E7072681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterProtocols_iOS.m; sourceTree = "<group>"; };
 		4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterConfigurationProtocol.h; sourceTree = "<group>"; };
 		4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocol.h; sourceTree = "<group>"; };
 		4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProtocol.m; sourceTree = "<group>"; };
@@ -75,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				4E23E6E82681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h */,
-				4E23E6EA2681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.m */,
 			);
 			path = PEPObjCAdapterProtocols_macOS;
 			sourceTree = "<group>";
@@ -84,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				4E23E7062681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.h */,
-				4E23E7072681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.m */,
 			);
 			path = PEPObjCAdapterProtocols_iOS;
 			sourceTree = "<group>";
@@ -159,6 +139,7 @@
 				4E23E6E22681C7CD00B8F4C2 /* Headers */,
 				4E23E6E32681C7CD00B8F4C2 /* Sources */,
 				4E23E6E42681C7CD00B8F4C2 /* Frameworks */,
+				4E23E71926820D5400B8F4C2 /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -176,7 +157,7 @@
 				4E23E7102681D65500B8F4C2 /* Headers */,
 				4E23E7002681D5F300B8F4C2 /* Sources */,
 				4E23E7012681D5F300B8F4C2 /* Frameworks */,
-				4E23E7022681D5F300B8F4C2 /* CopyFiles */,
+				4E23E71A26820DDB00B8F4C2 /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -222,13 +203,51 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4E23E71926820D5400B8F4C2 /* Copy artefacts to custom build dir */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy artefacts to custom build dir";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\necho \"{BUILD_DIR}: ${BUILD_DIR}\"\ncp -R \"${BUILD_DIR}/${CONFIGURATION}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILD_DIR}/${CONFIGURATION}/libPEPObjCAdapter_macOS.a\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILD_DIR}/${CONFIGURATION}/libPEPObjCAdapterTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+		};
+		4E23E71A26820DDB00B8F4C2 /* Copy artefacts to custom build dir */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy artefacts to custom build dir";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\necho \"{BUILD_DIR}: ${BUILD_DIR}\"\ncp -R \"${BUILD_DIR}/${CONFIGURATION}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILD_DIR}/${CONFIGURATION}/libPEPObjCAdapter_macOS.a\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILD_DIR}/${CONFIGURATION}/libPEPObjCAdapterTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4E23E6E32681C7CD00B8F4C2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4E23E6F32681C7F800B8F4C2 /* PEPSessionProtocol.m in Sources */,
-				4E23E6EB2681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E23E70F2681D61700B8F4C2 /* PEPSessionProtocol.m in Sources */,
-				4E23E7082681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
