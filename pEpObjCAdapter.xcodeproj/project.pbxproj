@@ -57,7 +57,7 @@
 		1543DD3F257A3B710041EFB5 /* PEPPassphraseProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1543DD40257A3B710041EFB5 /* NSNumber+PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */; };
 		1543DD41257A3B710041EFB5 /* PEPSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1543DD42257A3B710041EFB5 /* PEPNotifyHandshakeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */; };
+		1543DD42257A3B710041EFB5 /* PEPNotifyHandshakeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1543DD43257A3B710041EFB5 /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 435C0CAB222930340025C6B5 /* PEPConstants.m */; };
 		1543DD44257A3B710041EFB5 /* PEPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 434707F424C210CA00E05485 /* PEPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1543DD45257A3B710041EFB5 /* PEPSendMessageDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
