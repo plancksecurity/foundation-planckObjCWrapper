@@ -1626,6 +1626,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1654,6 +1655,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
