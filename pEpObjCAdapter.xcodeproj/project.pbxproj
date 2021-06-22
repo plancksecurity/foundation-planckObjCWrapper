@@ -191,6 +191,7 @@
 		43D2D5F12632B0FA00088BDC /* XCTestCase+PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
+		4E57581226821A760084F02D /* libPEPObjCAdapterProtocols_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E23E6F62681C8AF00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */; };
 		4E58698325BF2FA900779EAD /* PEPMessage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E58698125BF2FA900779EAD /* PEPMessage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E58698425BF2FA900779EAD /* PEPMessage+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E58698225BF2FA900779EAD /* PEPMessage+SecureCoding.m */; };
 		4E5DF322263860C400000DB9 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5DF31926385F8200000DB9 /* module.modulemap */; };
@@ -276,6 +277,13 @@
 			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 4E23E6E62681C7CD00B8F4C2;
+			remoteInfo = PEPObjCAdapterProtocols_macOS;
+		};
+		4E57580E26821A660084F02D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E23E6E52681C7CD00B8F4C2;
 			remoteInfo = PEPObjCAdapterProtocols_macOS;
 		};
 		4E81CD4F25C19DD4009F140D /* PBXContainerItemProxy */ = {
@@ -551,6 +559,7 @@
 				1500C92E264BD9BD001FD417 /* libPEPToolbox_macOS.a in Frameworks */,
 				1543DA892577FE230041EFB5 /* libPEPObjCAdapterTypes_macOS.a in Frameworks */,
 				1543D9E02577EF260041EFB5 /* libpEpEngine_macOS.a in Frameworks */,
+				4E57581226821A760084F02D /* libPEPObjCAdapterProtocols_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1094,6 +1103,7 @@
 			dependencies = (
 				15A32463260E2A23009D07EB /* PBXTargetDependency */,
 				4EEB4CD52680F12D00161040 /* PBXTargetDependency */,
+				4E57580F26821A660084F02D /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapter_macOS;
 			productName = PEPObjCAdapter_macOS;
@@ -1471,6 +1481,11 @@
 			isa = PBXTargetDependency;
 			name = PEPObjCAdapterProtocols_iOS;
 			targetProxy = 430D78E12681E1CF00B12650 /* PBXContainerItemProxy */;
+		};
+		4E57580F26821A660084F02D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PEPObjCAdapterProtocols_macOS;
+			targetProxy = 4E57580E26821A660084F02D /* PBXContainerItemProxy */;
 		};
 		4E81CD5025C19DD4009F140D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
