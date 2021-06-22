@@ -212,8 +212,8 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 /// with a domain of PEPObjCAdapterErrorDomain.
 /// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
 /// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
-+ (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
-                                error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 // MARK: - Methods that can be executed syncronously
 
