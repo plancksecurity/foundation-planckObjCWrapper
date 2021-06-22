@@ -6,6 +6,9 @@
 //  Copyright © 2019 p≡p. All rights reserved.
 //
 
+#ifndef PEPTypes_h
+#define PEPTypes_h
+
 #import <Foundation/Foundation.h>
 
 #pragma mark - Type definitions
@@ -20,3 +23,5 @@ typedef NS_CLOSED_ENUM(NSInteger, PEPAdapterError) {
     /// too many codepoints.
     PEPAdapterErrorPassphraseTooLong = 0
 };
+
+#endif /* PEPTypes_h */

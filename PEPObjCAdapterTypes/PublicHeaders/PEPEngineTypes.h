@@ -6,8 +6,8 @@
 //  Copyright © 2019 p≡p. All rights reserved.
 //
 
-#ifndef PEPTypes_h
-#define PEPTypes_h
+#ifndef PEPEngineTypes_h
+#define PEPEngineTypes_h
 
 #import <Foundation/Foundation.h>
 
@@ -256,4 +256,4 @@ typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
     PEPContentDispositionOther = -1 // PEP_CONTENT_DISP_OTHER
 };
 
-#endif /* PEPTypes_h */
+#endif /* PEPEngineTypes_h */
