@@ -1929,6 +1929,11 @@
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
 				ENABLE_TESTABILITY = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../pEpEngine/src",
+					"$(PROJECT_DIR)/../local/include/**",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+				);
 				INFOPLIST_FILE = pEpObjCTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1963,6 +1968,11 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../pEpEngine/src",
+					"$(PROJECT_DIR)/../local/include/**",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+				);
 				INFOPLIST_FILE = pEpObjCTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
