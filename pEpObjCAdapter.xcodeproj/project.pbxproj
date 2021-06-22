@@ -257,6 +257,13 @@
 			remoteGlobalIDString = 151606FC257A401000DD42E0;
 			remoteInfo = PEPObjCAdapterTypes_iOS;
 		};
+		430D78DE2681E13300B12650 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4E23E7042681D5F300B8F4C2;
+			remoteInfo = PEPObjCAdapterProtocols_iOS;
+		};
 		4E23E6F52681C8AF00B8F4C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
@@ -860,6 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				4E23E6F62681C8AF00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */,
+				430D78DF2681E13300B12650 /* libPEPObjCAdapterProtocols_iOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1199,6 +1207,13 @@
 			fileType = archive.ar;
 			path = libpEpEngine_macOS.a;
 			remoteRef = 1552DCBC2577E0B600A92F71 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		430D78DF2681E13300B12650 /* libPEPObjCAdapterProtocols_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPEPObjCAdapterProtocols_iOS.a;
+			remoteRef = 430D78DE2681E13300B12650 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		4E23E6F62681C8AF00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */ = {
@@ -1592,6 +1607,11 @@
 					"IS_IOS_BUILD=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../pEpEngine/src",
+					"$(PROJECT_DIR)/../local/include/**",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1616,6 +1636,11 @@
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_IOS_BUILD=1";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../pEpEngine/src",
+					"$(PROJECT_DIR)/../local/include/**",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-ObjC";
