@@ -347,6 +347,7 @@
 				4E575855268329170084F02D /* Sources */,
 				4E575856268329170084F02D /* Frameworks */,
 				4E5758B526833A120084F02D /* CopyFiles */,
+				4E5758F7268371770084F02D /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -365,6 +366,7 @@
 				4E575861268329A20084F02D /* Sources */,
 				4E575862268329A20084F02D /* Frameworks */,
 				4E575863268329A20084F02D /* CopyFiles */,
+				4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -441,6 +443,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E5758F7268371770084F02D /* Copy artefacts to custom build dir */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy artefacts to custom build dir";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\necho \"{BUILD_DIR}: ${BUILD_DIR}\"\ncp -R \"${BUILD_DIR}/${CONFIGURATION}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILD_DIR}/${CONFIGURATION}/libPEPObjCAdapterTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+		};
+		4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy artefacts to custom build dir";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\necho \"{BUILD_DIR}: ${BUILD_DIR}\"\nREAL_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}\necho \"{REAL_BUILD_DIR}: ${REAL_BUILD_DIR}\"\ncp -R \"${REAL_BUILD_DIR}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${REAL_BUILD_DIR}/libPEPObjCAdapterTypes_iOS.a\" ${CUSTOM_BUILD_DIR}\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E575855268329170084F02D /* Sources */ = {
