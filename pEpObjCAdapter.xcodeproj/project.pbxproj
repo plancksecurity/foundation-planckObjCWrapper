@@ -210,6 +210,27 @@
 			remoteGlobalIDString = 4E23E7032681D5F300B8F4C2;
 			remoteInfo = PEPObjCAdapterProtocols_iOS;
 		};
+		436B444826837F78002624AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4E575858268329170084F02D;
+			remoteInfo = PEPObjCAdapterTypes_macOS;
+		};
+		436B444A26837F78002624AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4E575865268329A20084F02D;
+			remoteInfo = PEPObjCAdapterTypes_iOS;
+		};
+		436B444C26837F78002624AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4E5758BF26833D140084F02D;
+			remoteInfo = PEPObjCAdapterTypesTests_iOS;
+		};
 		4E23E6F52681C8AF00B8F4C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
@@ -347,6 +368,7 @@
 		4360A9FE2227EBB200E62E5A /* NSNumber+PEPRating+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+PEPRating+Internal.h"; sourceTree = "<group>"; };
 		43676B631C57EA1A00233933 /* 0xB623F674.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 0xB623F674.asc; sourceTree = "<group>"; };
 		43676B641C57EA1A00233933 /* B623F674_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = B623F674_sec.asc; sourceTree = "<group>"; };
+		436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCAdapterTypes.xcodeproj; path = Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes.xcodeproj; sourceTree = "<group>"; };
 		436C9A3124DC48B600007A3D /* PEPPassphraseUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseUtil.h; sourceTree = "<group>"; };
 		436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseUtil.m; sourceTree = "<group>"; };
 		436DDE152640210800B88D66 /* pEpIOSToolboxForExtensions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = pEpIOSToolboxForExtensions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -518,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */,
+				436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */,
 				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
@@ -596,6 +619,16 @@
 				155674EC22B82D710097930C /* libz.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		436B444226837F78002624AB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				436B444926837F78002624AB /* libPEPObjCAdapterTypes_macOS.a */,
+				436B444B26837F78002624AB /* libPEPObjCAdapterTypes_iOS.a */,
+				436B444D26837F78002624AB /* PEPObjCAdapterTypesTests_iOS.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		438C0EE1254026E200337922 /* Extensions */ = {
@@ -848,6 +881,10 @@
 					ProductGroup = 4EEB4CCA2680E56A00161040 /* Products */;
 					ProjectRef = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
 				},
+				{
+					ProductGroup = 436B444226837F78002624AB /* Products */;
+					ProjectRef = 436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -871,6 +908,27 @@
 			fileType = archive.ar;
 			path = libPEPObjCAdapterProtocols_iOS.a;
 			remoteRef = 430D78DE2681E13300B12650 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		436B444926837F78002624AB /* libPEPObjCAdapterTypes_macOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPEPObjCAdapterTypes_macOS.a;
+			remoteRef = 436B444826837F78002624AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		436B444B26837F78002624AB /* libPEPObjCAdapterTypes_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPEPObjCAdapterTypes_iOS.a;
+			remoteRef = 436B444A26837F78002624AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		436B444D26837F78002624AB /* PEPObjCAdapterTypesTests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PEPObjCAdapterTypesTests_iOS.xctest;
+			remoteRef = 436B444C26837F78002624AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		4E23E6F62681C8AF00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */ = {
