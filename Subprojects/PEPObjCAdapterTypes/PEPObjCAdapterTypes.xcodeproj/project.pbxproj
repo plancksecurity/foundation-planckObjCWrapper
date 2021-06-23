@@ -54,7 +54,7 @@
 		4E5758B626833A4E0084F02D /* PEPObjCAdapterTypes_macOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCAdapterTypes_macOS.h */; };
 		4E5758B726833A560084F02D /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5758B4268339450084F02D /* module.modulemap */; };
 		4E5758BA26833A700084F02D /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5758B926833A700084F02D /* libpEpEngine_macOS.a */; };
-		4E5758C426833D140084F02D /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575865268329A20084F02D /* libPEPObjCAdapterTypes_iOS.a */; };
+		4E5758C426833D140084F02D /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575865268329A20084F02D /* libPEPObjCAdapterTypes_iOS.a */; platformFilter = ios; };
 		4E5758D126833F920084F02D /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */; };
 		4E5758D226833F920084F02D /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */; };
 		4E5758D326833F920084F02D /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */; };
@@ -63,7 +63,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4E5758C526833D140084F02D /* PBXContainerItemProxy */ = {
+		4E5758D726836A0C0084F02D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4E575836268328CD0084F02D /* Project object */;
 			proxyType = 1;
@@ -386,7 +386,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				4E5758C626833D140084F02D /* PBXTargetDependency */,
+				4E5758D826836A0C0084F02D /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapterTypesTests_iOS;
 			productName = PEPObjCAdapterTypesTests_iOS;
@@ -492,10 +492,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4E5758C626833D140084F02D /* PBXTargetDependency */ = {
+		4E5758D826836A0C0084F02D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 4E575864268329A20084F02D /* PEPObjCAdapterTypes_iOS */;
-			targetProxy = 4E5758C526833D140084F02D /* PBXContainerItemProxy */;
+			targetProxy = 4E5758D726836A0C0084F02D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
