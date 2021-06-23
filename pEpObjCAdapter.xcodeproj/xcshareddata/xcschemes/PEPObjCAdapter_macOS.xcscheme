@@ -56,10 +56,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "150E8FB125755B6900AE2198"
+               BlueprintIdentifier = "4E575857268329170084F02D"
                BuildableName = "libPEPObjCAdapterTypes_macOS.a"
                BlueprintName = "PEPObjCAdapterTypes_macOS"
-               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+               ReferencedContainer = "container:Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
