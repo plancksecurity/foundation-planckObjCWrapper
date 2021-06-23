@@ -53,7 +53,6 @@
 		4E5758B1268333230084F02D /* NSObject+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587726832F2F0084F02D /* NSObject+Extension.h */; platformFilter = ios; };
 		4E5758B626833A4E0084F02D /* PEPObjCAdapterTypes_macOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCAdapterTypes_macOS.h */; };
 		4E5758B726833A560084F02D /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5758B4268339450084F02D /* module.modulemap */; };
-		4E5758BA26833A700084F02D /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5758B926833A700084F02D /* libpEpEngine_macOS.a */; };
 		4E5758C426833D140084F02D /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575865268329A20084F02D /* libPEPObjCAdapterTypes_iOS.a */; platformFilter = ios; };
 		4E5758D126833F920084F02D /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */; };
 		4E5758D226833F920084F02D /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */; };
@@ -142,7 +141,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E5758BA26833A700084F02D /* libpEpEngine_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
