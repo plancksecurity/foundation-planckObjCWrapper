@@ -1165,6 +1165,7 @@
 					"$(PROJECT_DIR)/../local/include/**",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes/PublicHeaders",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1195,6 +1196,7 @@
 					"$(PROJECT_DIR)/../local/include/**",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes/PublicHeaders",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_FAST_MATH = YES;
