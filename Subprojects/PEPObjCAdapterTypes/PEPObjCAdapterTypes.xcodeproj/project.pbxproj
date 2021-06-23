@@ -51,6 +51,9 @@
 		4E5758AF2683331C0084F02D /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		4E5758B02683331C0084F02D /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588226832F2F0084F02D /* PEPLanguage.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		4E5758B1268333230084F02D /* NSObject+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587726832F2F0084F02D /* NSObject+Extension.h */; platformFilter = ios; };
+		4E5758B626833A4E0084F02D /* PEPObjCAdapterTypes_macOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCAdapterTypes_macOS.h */; };
+		4E5758B726833A560084F02D /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5758B4268339450084F02D /* module.modulemap */; };
+		4E5758BA26833A700084F02D /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5758B926833A700084F02D /* libpEpEngine_macOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +64,17 @@
 			dstSubfolderSpec = 16;
 			files = (
 				4E57586A268329A20084F02D /* PEPObjCAdapterTypes_iOS.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E5758B526833A120084F02D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				4E5758B726833A560084F02D /* module.modulemap in CopyFiles */,
+				4E5758B626833A4E0084F02D /* PEPObjCAdapterTypes_macOS.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +109,8 @@
 		4E57588626832F2F0084F02D /* PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
 		4E57588726832F2F0084F02D /* PEPLanguage+SecureCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPLanguage+SecureCoding.h"; sourceTree = "<group>"; };
 		4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+SecureCoding.h"; sourceTree = "<group>"; };
+		4E5758B4268339450084F02D /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		4E5758B926833A700084F02D /* libpEpEngine_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libpEpEngine_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E5758BA26833A700084F02D /* libpEpEngine_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +139,7 @@
 				4E575859268329170084F02D /* PEPObjCAdapterTypes_macOS */,
 				4E575866268329A20084F02D /* PEPObjCAdapterTypes_iOS */,
 				4E57583F268328CD0084F02D /* Products */,
+				4E5758B826833A700084F02D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +168,7 @@
 			children = (
 				4E57585A268329170084F02D /* PEPObjCAdapterTypes_macOS.h */,
 				4E57585C268329170084F02D /* PEPObjCAdapterTypes_macOS.m */,
+				4E5758B4268339450084F02D /* module.modulemap */,
 			);
 			path = PEPObjCAdapterTypes_macOS;
 			sourceTree = "<group>";
@@ -213,6 +232,14 @@
 			path = NSObject;
 			sourceTree = "<group>";
 		};
+		4E5758B826833A700084F02D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E5758B926833A700084F02D /* libpEpEngine_macOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -263,6 +290,7 @@
 				4E575854268329170084F02D /* Headers */,
 				4E575855268329170084F02D /* Sources */,
 				4E575856268329170084F02D /* Frameworks */,
+				4E5758B526833A120084F02D /* CopyFiles */,
 			);
 			buildRules = (
 			);
