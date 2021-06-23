@@ -151,6 +151,7 @@
 		4349CD7924ADDB8800A22A13 /* PEPPassphraseCache+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4349CD7824ADDB8800A22A13 /* PEPPassphraseCache+Reset.m */; };
 		43589EFB24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
+		436B444E26838437002624AB /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 436B444B26837F78002624AB /* libPEPObjCAdapterTypes_iOS.a */; };
 		436DDE162640210800B88D66 /* pEpIOSToolboxForExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436DDE152640210800B88D66 /* pEpIOSToolboxForExtensions.framework */; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
@@ -418,6 +419,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				436B444E26838437002624AB /* libPEPObjCAdapterTypes_iOS.a in Frameworks */,
 				430D78E02681E19000B12650 /* libPEPObjCAdapterProtocols_iOS.a in Frameworks */,
 				436DDE162640210800B88D66 /* pEpIOSToolboxForExtensions.framework in Frameworks */,
 				15160AF1257A58A000DD42E0 /* libpEpEngine.a in Frameworks */,
