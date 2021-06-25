@@ -97,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCAdapterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypes.h; sourceTree = "<group>"; };
 		4E575843268328CD0084F02D /* PEPObjCAdapterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterTypes.m; sourceTree = "<group>"; };
 		4E575858268329170084F02D /* libPEPObjCAdapterTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +212,7 @@
 			children = (
 				4E575867268329A20084F02D /* PEPObjCAdapterTypes_iOS.h */,
 				4E575868268329A20084F02D /* PEPObjCAdapterTypes_iOS.m */,
+				43D44C832685BE4300638D1C /* module.modulemap */,
 			);
 			path = PEPObjCAdapterTypes_iOS;
 			sourceTree = "<group>";
