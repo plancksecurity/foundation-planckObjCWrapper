@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43D44C822685BB3600638D1C /* PEPObjCAdapterTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCAdapterTypes_iOS.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		43D44C822685BB3600638D1C /* PEPObjCAdapterTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCAdapterTypes_iOS.h */; platformFilter = ios; };
 		4E57585B268329170084F02D /* PEPObjCAdapterTypes_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCAdapterTypes_macOS.h */; };
 		4E57585D268329170084F02D /* PEPObjCAdapterTypes_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57585C268329170084F02D /* PEPObjCAdapterTypes_macOS.m */; };
 		4E575869268329A20084F02D /* PEPObjCAdapterTypes_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E575868268329A20084F02D /* PEPObjCAdapterTypes_iOS.m */; platformFilter = ios; };
@@ -331,8 +331,8 @@
 				4E5758A72683331C0084F02D /* PEPAttachment.h in Headers */,
 				4E5758B1268333230084F02D /* NSObject+Extension.h in Headers */,
 				4E5758AD2683331C0084F02D /* PEPLanguage+SecureCoding.h in Headers */,
-				43D44C822685BB3600638D1C /* PEPObjCAdapterTypes_iOS.h in Headers */,
 				4E5758AA2683331C0084F02D /* PEPMessage+SecureCoding.h in Headers */,
+				43D44C822685BB3600638D1C /* PEPObjCAdapterTypes_iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
