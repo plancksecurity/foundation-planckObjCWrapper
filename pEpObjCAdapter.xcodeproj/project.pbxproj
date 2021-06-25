@@ -1429,6 +1429,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes/PublicHeaders",
 				);
 				INFOPLIST_FILE = pEpObjCTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1468,6 +1469,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes/PublicHeaders",
 				);
 				INFOPLIST_FILE = pEpObjCTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
