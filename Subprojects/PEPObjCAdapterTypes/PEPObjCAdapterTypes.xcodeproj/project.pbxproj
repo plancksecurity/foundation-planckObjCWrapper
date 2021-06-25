@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43D44C822685BB3600638D1C /* PEPObjCAdapterTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCAdapterTypes_iOS.h */; platformFilter = ios; };
+		43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* module.modulemap */; platformFilter = ios; };
 		4E57585B268329170084F02D /* PEPObjCAdapterTypes_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCAdapterTypes_macOS.h */; };
 		4E57585D268329170084F02D /* PEPObjCAdapterTypes_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57585C268329170084F02D /* PEPObjCAdapterTypes_macOS.m */; };
 		4E575869268329A20084F02D /* PEPObjCAdapterTypes_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E575868268329A20084F02D /* PEPObjCAdapterTypes_iOS.m */; platformFilter = ios; };
@@ -79,6 +80,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */,
 				4E57586A268329A20084F02D /* PEPObjCAdapterTypes_iOS.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
