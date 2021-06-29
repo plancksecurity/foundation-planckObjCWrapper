@@ -2,8 +2,7 @@
 //  PEPObjCAdapterTypes_iOS.m
 //  PEPObjCAdapterTypes_iOS
 //
-//  Created by Andreas Buff on 04.12.20.
-//  Copyright © 2020 p≡p. All rights reserved.
+//  Created by David Alarcon on 23/6/21.
 //
 
 #import "PEPObjCAdapterTypes_iOS.h"

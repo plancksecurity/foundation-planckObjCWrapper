@@ -8,8 +8,6 @@
 
 #import "PEPIdentity.h"
 
-#import "pEpEngine.h"
-
 #import "NSObject+Extension.h"
 
 @implementation PEPIdentity

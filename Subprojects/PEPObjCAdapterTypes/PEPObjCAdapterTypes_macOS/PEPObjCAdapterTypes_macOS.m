@@ -2,8 +2,7 @@
 //  PEPObjCAdapterTypes_macOS.m
 //  PEPObjCAdapterTypes_macOS
 //
-//  Created by Andreas Buff on 30.11.20.
-//  Copyright © 2020 p≡p. All rights reserved.
+//  Created by David Alarcon on 23/6/21.
 //
 
 #import "PEPObjCAdapterTypes_macOS.h"

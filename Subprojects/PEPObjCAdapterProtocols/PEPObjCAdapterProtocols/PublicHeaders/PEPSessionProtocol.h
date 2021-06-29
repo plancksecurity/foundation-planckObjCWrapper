@@ -190,10 +190,6 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 
 // MARK: - Configuration
 
-/// Wraps the engine's `config_passive_mode`.
-/// @note That there's absolutely no error handling.
-- (void)configurePassiveModeEnabled:(BOOL)enabled;
-
 /// Add a passphrase for secret keys to the cache.
 ///
 /// You can add as many passphrases to the cache as needed by calling this method.
@@ -216,8 +212,8 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 /// with a domain of PEPObjCAdapterErrorDomain.
 /// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
 /// or PEPStatusOutOfMemory (with PEPObjCAdapterEngineStatusErrorDomain)
-- (BOOL)configurePassphrase:(NSString *_Nonnull)passphrase
-                      error:(NSError *_Nullable *_Nullable)error;
+- (BOOL)configurePassphrase:(NSString * _Nonnull)passphrase
+                      error:(NSError * _Nullable __autoreleasing * _Nullable)error;
 
 // MARK: - Methods that can be executed syncronously
 

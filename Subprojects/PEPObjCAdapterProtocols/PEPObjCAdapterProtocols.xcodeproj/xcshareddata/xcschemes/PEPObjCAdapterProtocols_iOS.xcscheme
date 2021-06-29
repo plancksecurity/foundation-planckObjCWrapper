@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1220"
+   LastUpgradeVersion = "1250"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "NO"
-      buildImplicitDependencies = "NO">
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "15B10796257520B200D06C34"
-               BuildableName = "libPEPObjCAdapterTypes_iOS.a"
-               BlueprintName = "PEPObjCAdapterTypes_iOS"
-               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+               BlueprintIdentifier = "4E23E7032681D5F300B8F4C2"
+               BuildableName = "libPEPObjCAdapterProtocols_iOS.a"
+               BlueprintName = "PEPObjCAdapterProtocols_iOS"
+               ReferencedContainer = "container:PEPObjCAdapterProtocols.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,10 +50,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "15B10796257520B200D06C34"
-            BuildableName = "libPEPObjCAdapterTypes_iOS.a"
-            BlueprintName = "PEPObjCAdapterTypes_iOS"
-            ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+            BlueprintIdentifier = "4E23E7032681D5F300B8F4C2"
+            BuildableName = "libPEPObjCAdapterProtocols_iOS.a"
+            BlueprintName = "PEPObjCAdapterProtocols_iOS"
+            ReferencedContainer = "container:PEPObjCAdapterProtocols.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

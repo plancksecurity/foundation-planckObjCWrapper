@@ -56,20 +56,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "150E8FB125755B6900AE2198"
-               BuildableName = "libPEPObjCAdapterTypes_macOS.a"
-               BlueprintName = "PEPObjCAdapterTypes_macOS"
-               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "1552D93A2576602D00A92F71"
                BuildableName = "libPEPObjCAdapter_macOS.a"
                BlueprintName = "PEPObjCAdapter_macOS"
