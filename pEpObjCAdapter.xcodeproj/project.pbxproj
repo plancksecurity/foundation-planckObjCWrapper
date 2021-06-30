@@ -1190,8 +1190,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
-					"$(PROJECT_DIR)/../local/include/**",
-					"$(PROJECT_DIR)/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1219,8 +1219,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_IOS_BUILD=1";
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
-					"$(PROJECT_DIR)/../local/include/**",
-					"$(PROJECT_DIR)/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_FAST_MATH = YES;
@@ -1354,10 +1354,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../pEpEngine/src",
-					"$(PROJECT_DIR)/../local/include/**",
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1408,10 +1405,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../pEpEngine/src",
-					"$(PROJECT_DIR)/../local/include/**",
-				);
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../pEpEngine/src";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../Sequoia4iOS/build/lib";
 				MTL_ENABLE_DEBUG_INFO = NO;
