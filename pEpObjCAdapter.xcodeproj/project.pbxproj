@@ -1192,6 +1192,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1221,6 +1222,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_FAST_MATH = YES;
