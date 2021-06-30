@@ -1191,7 +1191,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
-					"$(PROJECT_DIR)/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1220,7 +1220,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/../local/include/**",
-					"$(PROJECT_DIR)/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_FAST_MATH = YES;
