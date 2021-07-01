@@ -18,7 +18,7 @@
 		15160690257A3E1900DD42E0 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* module.modulemap */; platformFilter = ios; };
 		15160701257A401000DD42E0 /* PEPObjCAdapterTypes_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 15160700257A401000DD42E0 /* PEPObjCAdapterTypes_iOS.m */; };
 		15160702257A401000DD42E0 /* PEPObjCAdapterTypes_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 151606FF257A401000DD42E0 /* PEPObjCAdapterTypes_iOS.h */; };
-		1516070C257A405A00DD42E0 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A4257520DE00D06C34 /* PEPEngineTypes.h */; };
+		1516070C257A405A00DD42E0 /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A4257520DE00D06C34 /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1516070D257A405A00DD42E0 /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A9257520DE00D06C34 /* PEPAttachment.h */; };
 		1516070E257A405A00DD42E0 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A7257520DE00D06C34 /* PEPLanguage.h */; };
 		1516070F257A405A00DD42E0 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109EB25754FCF00D06C34 /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
