@@ -55,7 +55,7 @@
 		1543DCC3257944EB0041EFB5 /* PEPPassphraseCacheEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 433DFBAB24A5E04000AB373B /* PEPPassphraseCacheEntry.m */; };
 		1543DCCA257944EF0041EFB5 /* PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 434707F524C210CA00E05485 /* PEPSession.m */; };
 		1543DCD1257944F10041EFB5 /* PEPPassphraseUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 436C9A3224DC48B600007A3D /* PEPPassphraseUtil.m */; };
-		1543DD3E257A3B710041EFB5 /* PEPObjCAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; };
+		1543DD3E257A3B710041EFB5 /* PEPObjCAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1543DD3F257A3B710041EFB5 /* PEPPassphraseProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; };
 		1543DD40257A3B710041EFB5 /* NSNumber+PEPRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */; };
 		1543DD41257A3B710041EFB5 /* PEPSync.h in Headers */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; };
