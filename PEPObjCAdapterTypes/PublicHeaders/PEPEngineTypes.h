@@ -1,5 +1,5 @@
 //
-//  PEPEngineTypes.h
+//  PEPTypes.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 27.02.19.
