@@ -22,7 +22,7 @@
 		1516070D257A405A00DD42E0 /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A9257520DE00D06C34 /* PEPAttachment.h */; };
 		1516070E257A405A00DD42E0 /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A7257520DE00D06C34 /* PEPLanguage.h */; };
 		1516070F257A405A00DD42E0 /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109EB25754FCF00D06C34 /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		15160710257A405A00DD42E0 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109E525754F8100D06C34 /* PEPSessionProtocol.h */; };
+		15160710257A405A00DD42E0 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109E525754F8100D06C34 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15160711257A405A00DD42E0 /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107A8257520DE00D06C34 /* PEPMessage.h */; };
 		15160712257A405A00DD42E0 /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B107AA257520DE00D06C34 /* PEPIdentity.h */; };
 		1516071D257A406700DD42E0 /* NSObject+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 15B109FA2575510300D06C34 /* NSObject+Extension.h */; };
