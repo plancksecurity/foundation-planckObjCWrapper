@@ -64,6 +64,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1585EB13269861CE00B822E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1585EB0D269861CE00B822E1 /* PEPObjCTypeUtils.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1585EA7C26984C4300B822E1;
+			remoteInfo = PEPObjCTypeUtils_macOS;
+		};
 		4E5758D726836A0C0084F02D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4E575836268328CD0084F02D /* Project object */;
@@ -99,6 +106,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1585EB0D269861CE00B822E1 /* PEPObjCTypeUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCTypeUtils.xcodeproj; path = ../../../PEPObjCTypeUtils/PEPObjCTypeUtils.xcodeproj; sourceTree = "<group>"; };
 		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCAdapterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypes.h; sourceTree = "<group>"; };
 		4E575843268328CD0084F02D /* PEPObjCAdapterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterTypes.m; sourceTree = "<group>"; };
@@ -166,9 +174,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1585EB0E269861CE00B822E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1585EB14269861CE00B822E1 /* libPEPObjCTypeUtils_macOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4E575835268328CD0084F02D = {
 			isa = PBXGroup;
 			children = (
+				1585EB0D269861CE00B822E1 /* PEPObjCTypeUtils.xcodeproj */,
 				4E575840268328CD0084F02D /* PEPObjCAdapterTypes */,
 				4E575859268329170084F02D /* PEPObjCAdapterTypes_macOS */,
 				4E575866268329A20084F02D /* PEPObjCAdapterTypes_iOS */,
@@ -429,6 +446,12 @@
 			mainGroup = 4E575835268328CD0084F02D;
 			productRefGroup = 4E57583F268328CD0084F02D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1585EB0E269861CE00B822E1 /* Products */;
+					ProjectRef = 1585EB0D269861CE00B822E1 /* PEPObjCTypeUtils.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4E575857268329170084F02D /* PEPObjCAdapterTypes_macOS */,
@@ -437,6 +460,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1585EB14269861CE00B822E1 /* libPEPObjCTypeUtils_macOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPEPObjCTypeUtils_macOS.a;
+			remoteRef = 1585EB13269861CE00B822E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4E5758BD26833D140084F02D /* Resources */ = {
