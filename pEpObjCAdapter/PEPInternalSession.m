@@ -8,7 +8,7 @@
 
 #import "PEPInternalSession.h"
 
-#import <PEPObjCTypeUtils/PEPObjCTypeUtils.h>
+#import <PEPObjCTypeUtils.h>
 
 #import "PEPConstants.h"
 #import "PEPObjCAdapter.h"

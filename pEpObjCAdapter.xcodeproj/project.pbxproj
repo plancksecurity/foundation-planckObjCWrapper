@@ -1229,7 +1229,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
-					"$(PROJECT_DIR)/../PEPObjCTypeUtils/**",
+					"$(PROJECT_DIR)/../PEPObjCTypeUtils/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1259,7 +1259,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
-					"$(PROJECT_DIR)/../PEPObjCTypeUtils/**",
+					"$(PROJECT_DIR)/../PEPObjCTypeUtils/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_FAST_MATH = YES;
@@ -1288,9 +1288,9 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../local/include/**",
+					"$(PROJECT_DIR)/../local/include",
 					"$(PROJECT_DIR)/../pep-toolbox/build/include",
-					"$(PROJECT_DIR)/../PEPObjCTypeUtils/**",
+					"$(PROJECT_DIR)/../PEPObjCTypeUtils/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/src",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1328,9 +1328,9 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				HEADER_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/../local/include/**",
+					"$(PROJECT_DIR)/../local/include",
 					"$(PROJECT_DIR)/../pep-toolbox/build/include",
-					"$(PROJECT_DIR)/../PEPObjCTypeUtils/**",
+					"$(PROJECT_DIR)/../PEPObjCTypeUtils/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/src",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
