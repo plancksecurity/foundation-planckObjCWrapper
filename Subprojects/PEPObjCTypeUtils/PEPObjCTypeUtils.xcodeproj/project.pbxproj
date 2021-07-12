@@ -25,41 +25,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1585EC67269C39ED00B822E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1585EC64269C39ED00B822E1 /* PEPObjCAdapterTypes.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4E575864268329A20084F02D;
-			remoteInfo = PEPObjCAdapterTypes_iOS;
-		};
-		1585EC6C269C39ED00B822E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1585EC64269C39ED00B822E1 /* PEPObjCAdapterTypes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E575858268329170084F02D;
-			remoteInfo = PEPObjCAdapterTypes_macOS;
-		};
-		1585EC6E269C39ED00B822E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1585EC64269C39ED00B822E1 /* PEPObjCAdapterTypes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E575865268329A20084F02D;
-			remoteInfo = PEPObjCAdapterTypes_iOS;
-		};
-		1585EC70269C39ED00B822E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1585EC64269C39ED00B822E1 /* PEPObjCAdapterTypes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E5758BF26833D140084F02D;
-			remoteInfo = PEPObjCAdapterTypesTests_iOS;
-		};
-		1585EC72269C39F700B822E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1585EC64269C39ED00B822E1 /* PEPObjCAdapterTypes.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4E575857268329170084F02D;
-			remoteInfo = PEPObjCAdapterTypes_macOS;
-		};
 		1585EC90269C51EC00B822E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1585EACB269850B400B822E1 /* pEpEngine.xcodeproj */;
@@ -136,7 +101,6 @@
 		1585EB3D2698636C00B822E1 /* libPEPObjCTypeUtils_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypeUtils_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypeUtils.h; sourceTree = "<group>"; };
 		1585EBC22698A8FC00B822E1 /* PEPObjCTypeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPObjCTypeUtils.m; sourceTree = "<group>"; };
-		1585EC64269C39ED00B822E1 /* PEPObjCAdapterTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCAdapterTypes.xcodeproj; path = /Users/buff/workspace/pEp/src_pEp4iOS/pEpObjCAdapter/Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes.xcodeproj; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +129,6 @@
 				1585EA7E26984C4300B822E1 /* PEPObjCTypeUtils */,
 				1585EA7D26984C4300B822E1 /* Products */,
 				1585EADB269850C700B822E1 /* Frameworks */,
-				1585EC64269C39ED00B822E1 /* PEPObjCAdapterTypes.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,16 +177,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1585EC65269C39ED00B822E1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1585EC6D269C39ED00B822E1 /* libPEPObjCAdapterTypes_macOS.a */,
-				1585EC6F269C39ED00B822E1 /* libPEPObjCAdapterTypes_iOS.a */,
-				1585EC71269C39ED00B822E1 /* PEPObjCAdapterTypesTests_iOS.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		1585EC8A269C51EC00B822E1 /* Products */ = {
@@ -287,7 +240,6 @@
 			);
 			dependencies = (
 				1585ECC4269C5A0800B822E1 /* PBXTargetDependency */,
-				1585EC73269C39F700B822E1 /* PBXTargetDependency */,
 			);
 			name = PEPObjCTypeUtils_macOS;
 			productName = PEPObjCTypeUtils;
@@ -307,7 +259,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				1585EC68269C39ED00B822E1 /* PBXTargetDependency */,
 			);
 			name = PEPObjCTypeUtils_iOS;
 			productName = PEPObjCTypeUtils_iOS;
@@ -347,10 +298,6 @@
 					ProjectRef = 1585EACB269850B400B822E1 /* pEpEngine.xcodeproj */;
 				},
 				{
-					ProductGroup = 1585EC65269C39ED00B822E1 /* Products */;
-					ProjectRef = 1585EC64269C39ED00B822E1 /* PEPObjCAdapterTypes.xcodeproj */;
-				},
-				{
 					ProductGroup = 1585EC99269C51EC00B822E1 /* Products */;
 					ProjectRef = 1585EADF2698524500B822E1 /* PEPObjCAdapterTypes.xcodeproj */;
 				},
@@ -364,27 +311,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		1585EC6D269C39ED00B822E1 /* libPEPObjCAdapterTypes_macOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPEPObjCAdapterTypes_macOS.a;
-			remoteRef = 1585EC6C269C39ED00B822E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1585EC6F269C39ED00B822E1 /* libPEPObjCAdapterTypes_iOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPEPObjCAdapterTypes_iOS.a;
-			remoteRef = 1585EC6E269C39ED00B822E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1585EC71269C39ED00B822E1 /* PEPObjCAdapterTypesTests_iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = PEPObjCAdapterTypesTests_iOS.xctest;
-			remoteRef = 1585EC70269C39ED00B822E1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		1585EC91269C51EC00B822E1 /* libpEpEngine.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -494,16 +420,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1585EC68269C39ED00B822E1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PEPObjCAdapterTypes_iOS;
-			targetProxy = 1585EC67269C39ED00B822E1 /* PBXContainerItemProxy */;
-		};
-		1585EC73269C39F700B822E1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PEPObjCAdapterTypes_macOS;
-			targetProxy = 1585EC72269C39F700B822E1 /* PBXContainerItemProxy */;
-		};
 		1585ECC4269C5A0800B822E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = pEpEngine_macOS;

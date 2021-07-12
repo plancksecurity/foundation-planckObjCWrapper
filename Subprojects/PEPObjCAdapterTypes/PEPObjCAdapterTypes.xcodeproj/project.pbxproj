@@ -99,7 +99,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1585EB0D269861CE00B822E1 /* PEPObjCTypeUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCTypeUtils.xcodeproj; path = ../PEPObjCTypeUtils/PEPObjCTypeUtils.xcodeproj; sourceTree = "<group>"; };
 		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCAdapterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypes.h; sourceTree = "<group>"; };
 		4E575843268328CD0084F02D /* PEPObjCAdapterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterTypes.m; sourceTree = "<group>"; };
@@ -170,7 +169,6 @@
 		4E575835268328CD0084F02D = {
 			isa = PBXGroup;
 			children = (
-				1585EB0D269861CE00B822E1 /* PEPObjCTypeUtils.xcodeproj */,
 				4E575840268328CD0084F02D /* PEPObjCAdapterTypes */,
 				4E575859268329170084F02D /* PEPObjCAdapterTypes_macOS */,
 				4E575866268329A20084F02D /* PEPObjCAdapterTypes_iOS */,
@@ -467,7 +465,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\n\ncp -R \"${BUILD_DIR}/${CONFIGURATION}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCAdapterTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\n\ncp -R \"${BUILT_PRODUCTS_DIR}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCAdapterTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 		4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
