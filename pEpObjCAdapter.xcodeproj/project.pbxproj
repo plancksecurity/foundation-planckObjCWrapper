@@ -201,20 +201,6 @@
 			remoteGlobalIDString = 1585EA7B26984C4300B822E1;
 			remoteInfo = PEPObjCTypeUtils_macOS;
 		};
-		15A32462260E2A23009D07EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 1552DB102577D4F100A92F71;
-			remoteInfo = pEpEngine_macOS;
-		};
-		15A32464260E2A33009D07EB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 64796A3E1B455AA5004B1C24;
-			remoteInfo = pEpEngine;
-		};
 		430D78DE2681E13300B12650 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
@@ -250,13 +236,6 @@
 			remoteGlobalIDString = 4E5758BF26833D140084F02D;
 			remoteInfo = PEPObjCAdapterTypesTests_iOS;
 		};
-		43D44C7B2685B96200638D1C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4E575864268329A20084F02D;
-			remoteInfo = PEPObjCAdapterTypes_iOS;
-		};
 		4E23E6F52681C8AF00B8F4C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
@@ -270,13 +249,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4E23E6E52681C7CD00B8F4C2;
 			remoteInfo = PEPObjCAdapterProtocols_macOS;
-		};
-		4EA8EB0826860BEF00B44B01 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4E575857268329170084F02D;
-			remoteInfo = PEPObjCAdapterTypes_macOS;
 		};
 		64289E551B8B70E800FC617B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -822,9 +794,7 @@
 			);
 			dependencies = (
 				1585EC7B269C458700B822E1 /* PBXTargetDependency */,
-				43D44C7C2685B96200638D1C /* PBXTargetDependency */,
 				430D78E22681E1CF00B12650 /* PBXTargetDependency */,
-				15A32465260E2A33009D07EB /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapter_iOS;
 			productName = PEPObjCAdapter_iOS;
@@ -844,8 +814,6 @@
 			);
 			dependencies = (
 				1585EC7D269C459300B822E1 /* PBXTargetDependency */,
-				15A32463260E2A23009D07EB /* PBXTargetDependency */,
-				4EA8EB0926860BEF00B44B01 /* PBXTargetDependency */,
 				4E57580F26821A660084F02D /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapter_macOS;
@@ -1168,35 +1136,15 @@
 			name = PEPObjCTypeUtils_macOS;
 			targetProxy = 1585EC7C269C459300B822E1 /* PBXContainerItemProxy */;
 		};
-		15A32463260E2A23009D07EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pEpEngine_macOS;
-			targetProxy = 15A32462260E2A23009D07EB /* PBXContainerItemProxy */;
-		};
-		15A32465260E2A33009D07EB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pEpEngine;
-			targetProxy = 15A32464260E2A33009D07EB /* PBXContainerItemProxy */;
-		};
 		430D78E22681E1CF00B12650 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PEPObjCAdapterProtocols_iOS;
 			targetProxy = 430D78E12681E1CF00B12650 /* PBXContainerItemProxy */;
 		};
-		43D44C7C2685B96200638D1C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PEPObjCAdapterTypes_iOS;
-			targetProxy = 43D44C7B2685B96200638D1C /* PBXContainerItemProxy */;
-		};
 		4E57580F26821A660084F02D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PEPObjCAdapterProtocols_macOS;
 			targetProxy = 4E57580E26821A660084F02D /* PBXContainerItemProxy */;
-		};
-		4EA8EB0926860BEF00B44B01 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PEPObjCAdapterTypes_macOS;
-			targetProxy = 4EA8EB0826860BEF00B44B01 /* PBXContainerItemProxy */;
 		};
 		64415E401BE95B2000F6CBB2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
