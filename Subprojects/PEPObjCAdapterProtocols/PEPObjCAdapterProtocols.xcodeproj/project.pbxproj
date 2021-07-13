@@ -220,7 +220,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nLIB_STATIC_NAME=\"lib${PRODUCT_NAME}.a\"\nmkdir -p ${CUSTOM_BUILD_DIR}\necho \"{BUILD_DIR}: ${BUILD_DIR}\"\ncp -R \"${BUILD_DIR}/${CONFIGURATION}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILD_DIR}/${CONFIGURATION}/${LIB_STATIC_NAME}\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=\"${CUSTOM_BUILD_DIR}/include/\"\nLIB_STATIC_NAME=\"lib${PRODUCT_NAME}.a\"\nmkdir -p ${CUSTOM_BUILD_DIR}\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\nPUBLIC_HEADERS_DIR=\"${PROJECT_DIR}/PEPObjCAdapterProtocols/PublicHeaders\"\n\ncp \"${PUBLIC_HEADERS_DIR}\"/*.h \"${CUSTOM_BUILD_DIR}/include/\"\ncp \"${BUILT_PRODUCTS_DIR}/${LIB_STATIC_NAME}\" ${CUSTOM_BUILD_DIR}\n";
 		};
 		4E23E71A26820DDB00B8F4C2 /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -238,7 +238,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nLIB_STATIC_NAME=\"lib${PRODUCT_NAME}.a\"\nmkdir -p ${CUSTOM_BUILD_DIR}\nREAL_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}\necho \"{REAL_BUILD_DIR}: ${REAL_BUILD_DIR}\"\ncp -R \"${REAL_BUILD_DIR}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${REAL_BUILD_DIR}/${LIB_STATIC_NAME}\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=\"${CUSTOM_BUILD_DIR}/include/\"\nLIB_STATIC_NAME=\"lib${PRODUCT_NAME}.a\"\nmkdir -p ${CUSTOM_BUILD_DIR}\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\nPUBLIC_HEADERS_DIR=\"${PROJECT_DIR}/PEPObjCAdapterProtocols/PublicHeaders\"\n\ncp \"${PUBLIC_HEADERS_DIR}\"/*.h \"${CUSTOM_BUILD_DIR}/include/\"\ncp \"${BUILT_PRODUCTS_DIR}/${LIB_STATIC_NAME}\" ${CUSTOM_BUILD_DIR}\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
