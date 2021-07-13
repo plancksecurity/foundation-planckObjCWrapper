@@ -1229,7 +1229,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
-					"$(PROJECT_DIR)/../PEPObjCTypeUtils/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1258,7 +1258,7 @@
 					"$(PROJECT_DIR)/../pEpEngine/src",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
-					"$(PROJECT_DIR)/../PEPObjCTypeUtils/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
 				MTL_FAST_MATH = YES;
@@ -1288,8 +1288,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../local/include",
 					"$(PROJECT_DIR)/../pep-toolbox/build/include",
-					"$(PROJECT_DIR)/../PEPObjCTypeUtils/build/include",
-					"$(PROJECT_DIR)/../pEpEngine/src",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
+					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1327,8 +1329,10 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../local/include",
 					"$(PROJECT_DIR)/../pep-toolbox/build/include",
-					"$(PROJECT_DIR)/../PEPObjCTypeUtils/build/include",
-					"$(PROJECT_DIR)/../pEpEngine/src",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
+					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
