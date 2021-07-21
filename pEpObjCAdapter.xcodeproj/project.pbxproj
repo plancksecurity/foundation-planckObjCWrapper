@@ -12,7 +12,7 @@
 		15160AF1257A58A000DD42E0 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 64289E561B8B70E800FC617B /* libpEpEngine.a */; platformFilter = ios; };
 		15160E80257AA06500DD42E0 /* pEp4iosIntern.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15160E7F257AA06500DD42E0 /* pEp4iosIntern.framework */; platformFilter = ios; };
 		152A9C472010F50400F962ED /* PEPInternalSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPInternalSessionTest.m */; };
-		1543D9E02577EF260041EFB5 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552DCBD2577E0B600A92F71 /* libpEpEngine_macOS.a */; };
+		152E48FE26A86327009BD3CE /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1552DCBD2577E0B600A92F71 /* libpEpEngine_macOS.a */; };
 		1543DC6A257943CF0041EFB5 /* PEPObjCAdapter_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */; };
 		1543DC6B257943CF0041EFB5 /* PEPObjCAdapter_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */; platformFilter = ios; };
 		1543DC89257944660041EFB5 /* PEPCSVScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */; };
@@ -328,6 +328,7 @@
 		15206CA81F8BA183003FF880 /* PEPSessionProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProvider.h; sourceTree = "<group>"; };
 		15206CA91F8BA183003FF880 /* PEPSessionProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProvider.m; sourceTree = "<group>"; };
 		152A9C462010F50400F962ED /* PEPInternalSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTest.m; sourceTree = "<group>"; };
+		152E488726A85A15009BD3CE /* CommonPEPDependencies.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonPEPDependencies.xcodeproj; path = "../common-dependency-build-helpers-4-apple-hardware/CommonPEPDependencies/CommonPEPDependencies.xcodeproj"; sourceTree = "<group>"; };
 		1543DC66257943CE0041EFB5 /* libPEPObjCAdapter_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_iOS.h; sourceTree = "<group>"; };
 		1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter_iOS.m; sourceTree = "<group>"; };
@@ -461,8 +462,8 @@
 			files = (
 				1585EC7F269C45AC00B822E1 /* libPEPObjCTypeUtils_macOS.a in Frameworks */,
 				4E5758F5268371440084F02D /* libPEPObjCAdapterTypes_macOS.a in Frameworks */,
+				152E48FE26A86327009BD3CE /* libpEpEngine_macOS.a in Frameworks */,
 				1500C92E264BD9BD001FD417 /* libPEPToolbox_macOS.a in Frameworks */,
-				1543D9E02577EF260041EFB5 /* libpEpEngine_macOS.a in Frameworks */,
 				4E57581226821A760084F02D /* libPEPObjCAdapterProtocols_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +481,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		152E488826A85A15009BD3CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,6 +587,7 @@
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
+				152E488726A85A15009BD3CE /* CommonPEPDependencies.xcodeproj */,
 				1585EB15269861D700B822E1 /* PEPObjCTypeUtils.xcodeproj */,
 				4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */,
 				436B444126837F78002624AB /* PEPObjCAdapterTypes.xcodeproj */,
@@ -906,6 +915,10 @@
 			productRefGroup = 352988AB1AEF964100FA7E2E /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 152E488826A85A15009BD3CE /* Products */;
+					ProjectRef = 152E488726A85A15009BD3CE /* CommonPEPDependencies.xcodeproj */;
+				},
 				{
 					ProductGroup = 64289E521B8B70E800FC617B /* Products */;
 					ProjectRef = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
@@ -1291,7 +1304,7 @@
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
-					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include",
+					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include/pEp",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1332,7 +1345,7 @@
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
-					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include",
+					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include/pEp",
 				);
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
