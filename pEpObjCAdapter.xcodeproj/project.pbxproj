@@ -166,13 +166,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		152E48B426A85B2C009BD3CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152E488726A85A15009BD3CE /* CommonPEPDependencies.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 152E48AA26A85AEE009BD3CE;
-			remoteInfo = "build-pEpObjCAdapter-dependencies_macOS";
-		};
 		1552DCBC2577E0B600A92F71 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
@@ -859,7 +852,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				152E48B526A85B2C009BD3CE /* PBXTargetDependency */,
 				1585ED8C269C77F000B822E1 /* PBXTargetDependency */,
 				1585ED83269C77BE00B822E1 /* PBXTargetDependency */,
 				1585EC7D269C459300B822E1 /* PBXTargetDependency */,
@@ -1179,11 +1171,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		152E48B526A85B2C009BD3CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "build-pEpObjCAdapter-dependencies_macOS";
-			targetProxy = 152E48B426A85B2C009BD3CE /* PBXContainerItemProxy */;
-		};
 		1585EC7B269C458700B822E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PEPObjCTypeUtils_iOS;
