@@ -8,8 +8,9 @@
 
 #import "PEPInternalSession.h"
 
-#import "PEPConstants.h"
+#import <PEPObjCTypeUtils.h>
 
+#import "PEPConstants.h"
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
 #import "PEPLanguage.h"
@@ -26,9 +27,6 @@
 #import "PEPPassphraseCache.h"
 #import "PEPInternalSession+PassphraseCache.h"
 #import "NSString+NormalizePassphrase.h"
-#import "NSArray+Engine.h"
-#import "PEPIdentity+Engine.h"
-#import "PEPMessage+Engine.h"
 #import "PEPIdentity+Reset.h"
 
 #import "key_reset.h"

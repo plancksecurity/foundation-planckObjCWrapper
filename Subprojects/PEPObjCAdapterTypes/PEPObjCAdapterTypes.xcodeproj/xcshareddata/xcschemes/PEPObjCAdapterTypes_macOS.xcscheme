@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1220"
+   LastUpgradeVersion = "1250"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "NO"
-      buildImplicitDependencies = "NO">
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,38 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18F3BFD61A81E06E00692297"
-               BuildableName = "libCocoaLumberjack.a"
-               BlueprintName = "CocoaLumberjack-Static"
-               ReferencedContainer = "container:../CocoaLumberjack/Lumberjack.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "15B220002603B04E0097927A"
-               BuildableName = "libPEPToolbox_macOS.a"
-               BlueprintName = "PEPToolbox_macOS"
-               ReferencedContainer = "container:../pep-toolbox/pEpIOSToolbox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1552D93A2576602D00A92F71"
-               BuildableName = "libPEPObjCAdapter_macOS.a"
-               BlueprintName = "PEPObjCAdapter_macOS"
-               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+               BlueprintIdentifier = "4E575857268329170084F02D"
+               BuildableName = "libPEPObjCAdapterTypes_macOS.a"
+               BlueprintName = "PEPObjCAdapterTypes_macOS"
+               ReferencedContainer = "container:PEPObjCAdapterTypes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -78,10 +50,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1552D93A2576602D00A92F71"
-            BuildableName = "libPEPObjCAdapter_macOS.a"
-            BlueprintName = "PEPObjCAdapter_macOS"
-            ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+            BlueprintIdentifier = "4E575857268329170084F02D"
+            BuildableName = "libPEPObjCAdapterTypes_macOS.a"
+            BlueprintName = "PEPObjCAdapterTypes_macOS"
+            ReferencedContainer = "container:PEPObjCAdapterTypes.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
