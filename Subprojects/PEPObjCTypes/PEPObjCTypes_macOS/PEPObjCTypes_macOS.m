@@ -5,8 +5,8 @@
 //  Created by David Alarcon on 23/6/21.
 //
 
-#import "PEPObjCAdapterTypes_macOS.h"
+#import "PEPObjCTypes_macOS.h"
 
-@implementation PEPObjCAdapterTypes_macOS
+@implementation PEPObjCTypes_macOS
 
 @end

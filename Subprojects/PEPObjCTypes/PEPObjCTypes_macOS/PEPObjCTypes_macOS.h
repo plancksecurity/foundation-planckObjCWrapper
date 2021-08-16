@@ -14,6 +14,6 @@
 #import "PEPAttachment.h"
 #import "PEPIdentity.h"
 
-@interface PEPObjCAdapterTypes_macOS : NSObject
+@interface PEPObjCTypes_macOS : NSObject
 
 @end
