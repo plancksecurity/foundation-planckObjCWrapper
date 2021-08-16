@@ -99,9 +99,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E575864268329A20084F02D"
-               BuildableName = "libPEPObjCAdapterTypes_iOS.a"
-               BlueprintName = "PEPObjCAdapterTypes_iOS"
-               ReferencedContainer = "container:Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes.xcodeproj">
+               BuildableName = "libPEPObjCTypes_iOS.a"
+               BlueprintName = "PEPObjCTypes_iOS"
+               ReferencedContainer = "container:Subprojects/PEPObjCAdapterTypes/PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -127,9 +127,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E5758BE26833D140084F02D"
-               BuildableName = "PEPObjCAdapterTypesTests_iOS.xctest"
-               BlueprintName = "PEPObjCAdapterTypesTests_iOS"
-               ReferencedContainer = "container:Subprojects/PEPObjCAdapterTypes/PEPObjCAdapterTypes.xcodeproj">
+               BuildableName = "PEPObjCTypesTests_iOS.xctest"
+               BlueprintName = "PEPObjCTypesTests_iOS"
+               ReferencedContainer = "container:Subprojects/PEPObjCAdapterTypes/PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

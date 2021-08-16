@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4E575857268329170084F02D"
-               BuildableName = "libPEPObjCAdapterTypes_macOS.a"
-               BlueprintName = "PEPObjCAdapterTypes_macOS"
-               ReferencedContainer = "container:PEPObjCAdapterTypes.xcodeproj">
+               BuildableName = "libPEPObjCTypes_macOS.a"
+               BlueprintName = "PEPObjCTypes_macOS"
+               ReferencedContainer = "container:PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -51,9 +51,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4E575857268329170084F02D"
-            BuildableName = "libPEPObjCAdapterTypes_macOS.a"
-            BlueprintName = "PEPObjCAdapterTypes_macOS"
-            ReferencedContainer = "container:PEPObjCAdapterTypes.xcodeproj">
+            BuildableName = "libPEPObjCTypes_macOS.a"
+            BlueprintName = "PEPObjCTypes_macOS"
+            ReferencedContainer = "container:PEPObjCTypes.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

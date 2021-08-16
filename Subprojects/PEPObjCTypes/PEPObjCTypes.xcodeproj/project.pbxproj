@@ -55,7 +55,7 @@
 		4E5758B1268333230084F02D /* NSObject+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587726832F2F0084F02D /* NSObject+Extension.h */; platformFilter = ios; };
 		4E5758B626833A4E0084F02D /* PEPObjCAdapterTypes_macOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCAdapterTypes_macOS.h */; };
 		4E5758B726833A560084F02D /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5758B4268339450084F02D /* module.modulemap */; };
-		4E5758C426833D140084F02D /* libPEPObjCAdapterTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575865268329A20084F02D /* libPEPObjCAdapterTypes_iOS.a */; platformFilter = ios; };
+		4E5758C426833D140084F02D /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575865268329A20084F02D /* libPEPObjCTypes_iOS.a */; platformFilter = ios; };
 		4E5758D126833F920084F02D /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */; };
 		4E5758D226833F920084F02D /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */; };
 		4E5758D326833F920084F02D /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */; };
@@ -102,10 +102,10 @@
 		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCAdapterTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypes.h; sourceTree = "<group>"; };
 		4E575843268328CD0084F02D /* PEPObjCAdapterTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterTypes.m; sourceTree = "<group>"; };
-		4E575858268329170084F02D /* libPEPObjCAdapterTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E57585A268329170084F02D /* PEPObjCAdapterTypes_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypes_macOS.h; sourceTree = "<group>"; };
 		4E57585C268329170084F02D /* PEPObjCAdapterTypes_macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterTypes_macOS.m; sourceTree = "<group>"; };
-		4E575865268329A20084F02D /* libPEPObjCAdapterTypes_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterTypes_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E575865268329A20084F02D /* libPEPObjCTypes_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E575867268329A20084F02D /* PEPObjCAdapterTypes_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterTypes_iOS.h; sourceTree = "<group>"; };
 		4E575868268329A20084F02D /* PEPObjCAdapterTypes_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapterTypes_iOS.m; sourceTree = "<group>"; };
 		4E57587426832F2F0084F02D /* PEPLanguage+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPLanguage+SecureCoding.m"; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+SecureCoding.h"; sourceTree = "<group>"; };
 		4E5758B4268339450084F02D /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E5758B926833A700084F02D /* libpEpEngine_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libpEpEngine_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E5758BF26833D140084F02D /* PEPObjCAdapterTypesTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCAdapterTypesTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E5758BF26833D140084F02D /* PEPObjCTypesTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypesTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E5758C326833D140084F02D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPAttachment+SecureCodingTest.m"; sourceTree = "<group>"; };
 		4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+SecureCodingTest.m"; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E5758C426833D140084F02D /* libPEPObjCAdapterTypes_iOS.a in Frameworks */,
+				4E5758C426833D140084F02D /* libPEPObjCTypes_iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,9 +181,9 @@
 		4E57583F268328CD0084F02D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4E575858268329170084F02D /* libPEPObjCAdapterTypes_macOS.a */,
-				4E575865268329A20084F02D /* libPEPObjCAdapterTypes_iOS.a */,
-				4E5758BF26833D140084F02D /* PEPObjCAdapterTypesTests_iOS.xctest */,
+				4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */,
+				4E575865268329A20084F02D /* libPEPObjCTypes_iOS.a */,
+				4E5758BF26833D140084F02D /* PEPObjCTypesTests_iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,9 +343,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4E575857268329170084F02D /* PEPObjCAdapterTypes_macOS */ = {
+		4E575857268329170084F02D /* PEPObjCTypes_macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E57585E268329170084F02D /* Build configuration list for PBXNativeTarget "PEPObjCAdapterTypes_macOS" */;
+			buildConfigurationList = 4E57585E268329170084F02D /* Build configuration list for PBXNativeTarget "PEPObjCTypes_macOS" */;
 			buildPhases = (
 				4E575854268329170084F02D /* Headers */,
 				4E575855268329170084F02D /* Sources */,
@@ -357,14 +357,14 @@
 			);
 			dependencies = (
 			);
-			name = PEPObjCAdapterTypes_macOS;
+			name = PEPObjCTypes_macOS;
 			productName = PEPObjCAdapterTypes_macOS;
-			productReference = 4E575858268329170084F02D /* libPEPObjCAdapterTypes_macOS.a */;
+			productReference = 4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		4E575864268329A20084F02D /* PEPObjCAdapterTypes_iOS */ = {
+		4E575864268329A20084F02D /* PEPObjCTypes_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E57586B268329A20084F02D /* Build configuration list for PBXNativeTarget "PEPObjCAdapterTypes_iOS" */;
+			buildConfigurationList = 4E57586B268329A20084F02D /* Build configuration list for PBXNativeTarget "PEPObjCTypes_iOS" */;
 			buildPhases = (
 				4E5758A6268333140084F02D /* Headers */,
 				4E575861268329A20084F02D /* Sources */,
@@ -376,14 +376,14 @@
 			);
 			dependencies = (
 			);
-			name = PEPObjCAdapterTypes_iOS;
+			name = PEPObjCTypes_iOS;
 			productName = PEPObjCAdapterTypes_iOS;
-			productReference = 4E575865268329A20084F02D /* libPEPObjCAdapterTypes_iOS.a */;
+			productReference = 4E575865268329A20084F02D /* libPEPObjCTypes_iOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		4E5758BE26833D140084F02D /* PEPObjCAdapterTypesTests_iOS */ = {
+		4E5758BE26833D140084F02D /* PEPObjCTypesTests_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4E5758C726833D140084F02D /* Build configuration list for PBXNativeTarget "PEPObjCAdapterTypesTests_iOS" */;
+			buildConfigurationList = 4E5758C726833D140084F02D /* Build configuration list for PBXNativeTarget "PEPObjCTypesTests_iOS" */;
 			buildPhases = (
 				4E5758BB26833D140084F02D /* Sources */,
 				4E5758BC26833D140084F02D /* Frameworks */,
@@ -394,9 +394,9 @@
 			dependencies = (
 				4E5758D826836A0C0084F02D /* PBXTargetDependency */,
 			);
-			name = PEPObjCAdapterTypesTests_iOS;
+			name = PEPObjCTypesTests_iOS;
 			productName = PEPObjCAdapterTypesTests_iOS;
-			productReference = 4E5758BF26833D140084F02D /* PEPObjCAdapterTypesTests_iOS.xctest */;
+			productReference = 4E5758BF26833D140084F02D /* PEPObjCTypesTests_iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -418,7 +418,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4E575839268328CD0084F02D /* Build configuration list for PBXProject "PEPObjCAdapterTypes" */;
+			buildConfigurationList = 4E575839268328CD0084F02D /* Build configuration list for PBXProject "PEPObjCTypes" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -431,9 +431,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4E575857268329170084F02D /* PEPObjCAdapterTypes_macOS */,
-				4E575864268329A20084F02D /* PEPObjCAdapterTypes_iOS */,
-				4E5758BE26833D140084F02D /* PEPObjCAdapterTypesTests_iOS */,
+				4E575857268329170084F02D /* PEPObjCTypes_macOS */,
+				4E575864268329A20084F02D /* PEPObjCTypes_iOS */,
+				4E5758BE26833D140084F02D /* PEPObjCTypesTests_iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -540,7 +540,7 @@
 		4E5758D826836A0C0084F02D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
-			target = 4E575864268329A20084F02D /* PEPObjCAdapterTypes_iOS */;
+			target = 4E575864268329A20084F02D /* PEPObjCTypes_iOS */;
 			targetProxy = 4E5758D726836A0C0084F02D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -762,7 +762,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4E575839268328CD0084F02D /* Build configuration list for PBXProject "PEPObjCAdapterTypes" */ = {
+		4E575839268328CD0084F02D /* Build configuration list for PBXProject "PEPObjCTypes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E575845268328CD0084F02D /* Debug */,
@@ -771,7 +771,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E57585E268329170084F02D /* Build configuration list for PBXNativeTarget "PEPObjCAdapterTypes_macOS" */ = {
+		4E57585E268329170084F02D /* Build configuration list for PBXNativeTarget "PEPObjCTypes_macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E57585F268329170084F02D /* Debug */,
@@ -780,7 +780,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E57586B268329A20084F02D /* Build configuration list for PBXNativeTarget "PEPObjCAdapterTypes_iOS" */ = {
+		4E57586B268329A20084F02D /* Build configuration list for PBXNativeTarget "PEPObjCTypes_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E57586C268329A20084F02D /* Debug */,
@@ -789,7 +789,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4E5758C726833D140084F02D /* Build configuration list for PBXNativeTarget "PEPObjCAdapterTypesTests_iOS" */ = {
+		4E5758C726833D140084F02D /* Build configuration list for PBXNativeTarget "PEPObjCTypesTests_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4E5758C826833D140084F02D /* Debug */,
