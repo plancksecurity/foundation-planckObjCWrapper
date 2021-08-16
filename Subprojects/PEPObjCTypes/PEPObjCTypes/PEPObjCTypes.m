@@ -7,6 +7,6 @@
 
 #import "PEPObjCAdapterTypes.h"
 
-@implementation PEPObjCAdapterTypes
+@implementation PEPObjCTypes
 
 @end

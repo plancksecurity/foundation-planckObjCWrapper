@@ -7,6 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PEPObjCAdapterTypes : NSObject
+@interface PEPObjCTypes : NSObject
 
 @end
