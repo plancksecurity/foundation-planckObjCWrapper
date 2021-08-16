@@ -5,8 +5,8 @@
 //  Created by David Alarcon on 23/6/21.
 //
 
-#import "PEPObjCAdapterTypes_iOS.h"
+#import "PEPObjCTypes_iOS.h"
 
-@implementation PEPObjCAdapterTypes_iOS
+@implementation PEPObjCTypes_iOS
 
 @end
