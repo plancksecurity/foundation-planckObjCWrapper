@@ -172,7 +172,7 @@
 				4E575840268328CD0084F02D /* PEPObjCTypes */,
 				4E575859268329170084F02D /* PEPObjCTypes_macOS */,
 				4E575866268329A20084F02D /* PEPObjCTypes_iOS */,
-				4E5758C026833D140084F02D /* PEPObjCAdapterTypesTests_iOS */,
+				4E5758C026833D140084F02D /* PEPObjCTypesTests_iOS */,
 				4E57583F268328CD0084F02D /* Products */,
 				4E5758B826833A700084F02D /* Frameworks */,
 			);
@@ -277,7 +277,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4E5758C026833D140084F02D /* PEPObjCAdapterTypesTests_iOS */ = {
+		4E5758C026833D140084F02D /* PEPObjCTypesTests_iOS */ = {
 			isa = PBXGroup;
 			children = (
 				4E5758CE26833F920084F02D /* TestUtils */,
@@ -287,7 +287,7 @@
 				4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */,
 				4E5758C326833D140084F02D /* Info.plist */,
 			);
-			path = PEPObjCAdapterTypesTests_iOS;
+			path = PEPObjCTypesTests_iOS;
 			sourceTree = "<group>";
 		};
 		4E5758CE26833F920084F02D /* TestUtils */ = {
@@ -722,7 +722,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
-				INFOPLIST_FILE = PEPObjCAdapterTypesTests_iOS/Info.plist;
+				INFOPLIST_FILE = PEPObjCTypesTests_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -731,7 +731,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "pep.foundation.PEPObjCAdapterTypesTests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "pep.foundation.PEPObjCTypesTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -743,7 +743,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
-				INFOPLIST_FILE = PEPObjCAdapterTypesTests_iOS/Info.plist;
+				INFOPLIST_FILE = PEPObjCTypesTests_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -751,7 +751,7 @@
 					"@loader_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "pep.foundation.PEPObjCAdapterTypesTests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "pep.foundation.PEPObjCTypesTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
