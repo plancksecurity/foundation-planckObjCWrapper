@@ -1,6 +1,6 @@
 //
-//  PEPObjCAdapterTypes.h
-//  PEPObjCAdapterTypes
+//  PEPObjCTypes.h
+//  PEPObjCTypes
 //
 //  Created by David Alarcon on 23/6/21.
 //

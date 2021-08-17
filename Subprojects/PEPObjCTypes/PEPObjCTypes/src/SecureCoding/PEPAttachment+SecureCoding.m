@@ -1,6 +1,6 @@
 //
 //  PEPAttachment+SecureCoding.m
-//  PEPObjCAdapterTypes_macOS
+//  PEPObjCTypes_macOS
 //
 //  Created by David Alarcon on 25/1/21.
 //  Copyright © 2021 p≡p. All rights reserved.

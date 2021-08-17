@@ -1,6 +1,6 @@
 //
-//  PEPObjCAdapterTypes_iOS.h
-//  PEPObjCAdapterTypes_iOS
+//  PEPObjCTypes_iOS.h
+//  PEPObjCTypes_iOS
 //
 //  Created by David Alarcon on 23/6/21.
 //

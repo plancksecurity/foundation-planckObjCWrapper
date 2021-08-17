@@ -1,6 +1,6 @@
 //
-//  PEPObjCAdapterTypes_macOS.h
-//  PEPObjCAdapterTypes_macOS
+//  PEPObjCTypes_macOS.h
+//  PEPObjCTypes_macOS
 //
 //  Created by David Alarcon on 23/6/21.
 //

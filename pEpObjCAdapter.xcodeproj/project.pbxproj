@@ -1178,7 +1178,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
-					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
 				);
@@ -1207,7 +1207,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_IOS_BUILD=1";
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../pEpEngine/src",
-					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
 				);
@@ -1239,7 +1239,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../local/include",
 					"$(PROJECT_DIR)/../pep-toolbox/build/include",
-					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include/pEp",
@@ -1280,7 +1280,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../local/include",
 					"$(PROJECT_DIR)/../pep-toolbox/build/include",
-					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterTypes/build/include",
+					"$(PROJECT_DIR)/Subprojects/PEPObjCTypes/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCTypeUtils/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include/pEp",

@@ -1,6 +1,6 @@
 //
-//  PEPObjCAdapterTypes.m
-//  PEPObjCAdapterTypes
+//  PEPObjCTypes.m
+//  PEPObjCTypes
 //
 //  Created by David Alarcon on 23/6/21.
 //

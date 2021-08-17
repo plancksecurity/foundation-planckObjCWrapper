@@ -1,6 +1,6 @@
 //
 //  PEPAttachment_SecureCodingTest.m
-//  PEPObjCAdapterTypesTests_iOS
+//  PEPObjCTypesTests_iOS
 //
 //  Created by David Alarcon on 27/1/21.
 //  Copyright © 2021 p≡p. All rights reserved.
