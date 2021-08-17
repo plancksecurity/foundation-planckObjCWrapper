@@ -22,6 +22,7 @@
 		1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1585EBC42698A8FC00B822E1 /* PEPObjCTypeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EBC22698A8FC00B822E1 /* PEPObjCTypeUtils.m */; };
 		1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E51BFA526CBC346007A2164 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E51BF5B26CA79EA007A2164 /* libPEPObjCTypes_macOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E51BFA526CBC346007A2164 /* libPEPObjCTypes_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
