@@ -7,7 +7,7 @@
 //
 
 #import "PEPObjCAdapter.h"
-#import "PEPObjCAdapterTypes_iOS.h"
+#import "PEPObjCTypes_iOS.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
