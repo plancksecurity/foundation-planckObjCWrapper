@@ -101,7 +101,7 @@
                BlueprintIdentifier = "4E575864268329A20084F02D"
                BuildableName = "libPEPObjCTypes_iOS.a"
                BlueprintName = "PEPObjCTypes_iOS"
-               ReferencedContainer = "container:../../src_pEp4AppleMail/pEpObjCAdapter/Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
+               ReferencedContainer = "container:../../src_pEpMime4macOS/pEpObjCAdapter/Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -129,7 +129,7 @@
                BlueprintIdentifier = "4E5758BE26833D140084F02D"
                BuildableName = "PEPObjCTypesTests_iOS.xctest"
                BlueprintName = "PEPObjCTypesTests_iOS"
-               ReferencedContainer = "container:../../src_pEp4AppleMail/pEpObjCAdapter/Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
+               ReferencedContainer = "container:../../src_pEpMime4macOS/pEpObjCAdapter/Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
