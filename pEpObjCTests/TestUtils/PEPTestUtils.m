@@ -10,7 +10,7 @@
 
 #import "PEPTestUtils.h"
 
-#import "PEPObjCAdapterTypes_iOS.h"
+#import "PEPObjCTypes_iOS.h"
 #import "PEPObjCAdapter_iOS.h"
 
 #import "PEPInternalSession.h"

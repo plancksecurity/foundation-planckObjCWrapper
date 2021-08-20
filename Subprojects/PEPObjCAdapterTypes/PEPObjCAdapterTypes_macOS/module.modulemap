@@ -1,4 +1,0 @@
-module PEPObjCAdapterTypes_macOS {
-    umbrella header "PEPObjCAdapterTypes_macOS.h"
-    export *
-}

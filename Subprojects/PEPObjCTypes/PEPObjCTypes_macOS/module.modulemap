@@ -1,0 +1,4 @@
+module PEPObjCTypes_macOS {
+    umbrella header "PEPObjCTypes_macOS.h"
+    export *
+}
