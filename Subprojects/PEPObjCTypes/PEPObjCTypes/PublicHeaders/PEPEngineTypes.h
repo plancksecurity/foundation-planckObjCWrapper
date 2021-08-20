@@ -11,6 +11,64 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_CLOSED_ENUM(NSUInteger, PEPCCTransportID) {
+
+    PEPCCTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
+    // Currently unsupported
+//    PEPCCTransportIDTransportEmail = 0x01,
+//    PEPCCTransportIDTransportRCE = 0x02,
+
+    // Used for figuring out the number of trasnport types. Which is all previously defined transport types plus one, the controll channel.
+    PEPCCTransportIDTransportCount,
+
+    PEPCCTransportIDTransportCC = 0xfe
+};
+
+
+/// From https://dev.pep.foundation/Engine/TransportStatusCode
+typedef NS_CLOSED_ENUM(NSInteger, PEPCCTransportStatusCode) {
+    // General / Common
+    PEPCCTransportStatusCodeReady = 0x0, // not an error state
+    PEPCCTransportStatusCodeConnectionDown = 0x1, // sent by connection based transports
+    PEPCCTransportStatusCodeConnectionUp = 0x2, // not an error state; sent by connection based transports
+    PEPCCTransportStatusCodeConnectionSomeRecipientsUnreachable = 0x3, // message could not be delivered to all recipients
+    PEPCCTransportStatusCodeConnectionNoRecipientsReachable = 0x4, // message could not be delivered at all
+    PEPCCTransportStatusCodeConnectionNoConfig = 0x5,
+    PEPCCTransportStatusCodeConnectionInvalidConfig = 0x6, // config incomplete or wrong
+    PEPCCTransportStatusCodeNoSendConfig = 0x7,
+    PEPCCTransportStatusCodeNoRecvConfig = 0x8,
+    PEPCCTransportStatusCodeInvalidSendConfig = 0x9,
+    PEPCCTransportStatusCodeInvalidRecvConfig = 0xA,
+    PEPCCTransportStatusCodeNetworkTimeout = 0xB,
+    PEPCCTransportStatusCodeMessageDelivered = 0x100000, // not an error state
+    PEPCCTransportStatusCodeMessageOnTheWay = 0x100001, // not an error state
+    PEPCCTransportStatusCodeCouldNotDeliver_Resending = 0x100002, // not an error state
+    PEPCCTransportStatusCodeCouldNotDeliver_GivingUp = 0x100003,
+    // Email
+    PEPCCTransportStatusCodeEmailSMTPServerUnreachable = 0x1100001,
+    PEPCCTransportStatusCodeEmailSMTPUnknownError = 0x110FFFF,
+
+    PEPCCTransportStatusCodeEmailIMAPServerUnreachable = 0x01110001,
+    PEPCCTransportStatusCodeEmailIMAPUnknownError = 0x0111FFFF,
+    // RCE
+    PEPCCTransportStatusCodeRCETorrentWithoutSeeders = 0x02FF0001,
+    PEPCCTransportStatusCodeRCEUnknownTorrentError = 0x02FFFFFF,
+    // Control Channel
+    PEPCCTransportStatusCodePEPCCUnknownSCTPError = 0xFEFFFFFF,
+    // Misc. errors
+    PEPCCTransportStatusCodeUnknownError = 0xFFFFFFFF
+};
+
+typedef NS_CLOSED_ENUM(int, PEPCCCallbackExcecutionType) {
+    /// execute callbacks immediately only
+    PEPCCCallbackExcecutionTypePolling = 0,
+    /// execute callbacks multiple times later on any thread; call with PEP_cbe_polling to disable
+    PEPCCCallbackExcecutionTypeAsync,
+    /// the last one is for the transport system only. Do not implement it in transports.
+    /// Rephrase: DO NOT IMPLEMENT, IGNORE :-)
+    PEPCCCallbackExcecutionTypeBlocking = 255
+};
+
 typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
     PEPDecryptFlagsNone = 0x0, // not actually defined in the engine
     PEPDecryptFlagsOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key
