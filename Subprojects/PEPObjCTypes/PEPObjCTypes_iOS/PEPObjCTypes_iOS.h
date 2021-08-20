@@ -7,12 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
-#import "PEPLanguage.h"
-#import "PEPMessage.h"
-#import "PEPAttachment.h"
-#import "PEPIdentity.h"
+#import "PEPObjCTypes.h"
 
 @interface PEPObjCTypes_iOS : NSObject
 

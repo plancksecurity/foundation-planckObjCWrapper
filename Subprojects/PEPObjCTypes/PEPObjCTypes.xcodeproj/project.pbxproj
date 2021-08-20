@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1598061A26CFC5D800593C9D /* PEPObjCTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575841268328CD0084F02D /* PEPObjCTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1598061B26CFC5D900593C9D /* PEPObjCTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575841268328CD0084F02D /* PEPObjCTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43D44C822685BB3600638D1C /* PEPObjCTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* module.modulemap */; platformFilter = ios; };
 		4E57585B268329170084F02D /* PEPObjCTypes_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
@@ -101,7 +103,6 @@
 /* Begin PBXFileReference section */
 		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes.h; sourceTree = "<group>"; };
-		4E575843268328CD0084F02D /* PEPObjCTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCTypes.m; sourceTree = "<group>"; };
 		4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes_macOS.h; sourceTree = "<group>"; };
 		4E57585C268329170084F02D /* PEPObjCTypes_macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCTypes_macOS.m; sourceTree = "<group>"; };
@@ -193,8 +194,6 @@
 			children = (
 				4E57587E26832F2F0084F02D /* PublicHeaders */,
 				4E57587326832F2F0084F02D /* src */,
-				4E575841268328CD0084F02D /* PEPObjCTypes.h */,
-				4E575843268328CD0084F02D /* PEPObjCTypes.m */,
 			);
 			path = PEPObjCTypes;
 			sourceTree = "<group>";
@@ -235,6 +234,7 @@
 		4E57587E26832F2F0084F02D /* PublicHeaders */ = {
 			isa = PBXGroup;
 			children = (
+				4E575841268328CD0084F02D /* PEPObjCTypes.h */,
 				4E57587F26832F2F0084F02D /* PEPEngineTypes.h */,
 				4E57588126832F2F0084F02D /* PEPTypes.h */,
 				4E57588226832F2F0084F02D /* PEPLanguage.h */,
@@ -309,6 +309,7 @@
 				4E57589F26832F2F0084F02D /* PEPLanguage.h in Headers */,
 				4E5758A226832F2F0084F02D /* PEPMessage+SecureCoding.h in Headers */,
 				4E5758A026832F2F0084F02D /* PEPMessage.h in Headers */,
+				1598061B26CFC5D900593C9D /* PEPObjCTypes.h in Headers */,
 				4E57588F26832F2F0084F02D /* NSObject+Extension.h in Headers */,
 				4E5758A126832F2F0084F02D /* PEPAttachment.h in Headers */,
 				4E57589C26832F2F0084F02D /* PEPEngineTypes.h in Headers */,
@@ -328,6 +329,7 @@
 				4E5758AF2683331C0084F02D /* PEPIdentity+SecureCoding.h in Headers */,
 				4E5758AC2683331C0084F02D /* PEPIdentity.h in Headers */,
 				4E5758AB2683331C0084F02D /* PEPAttachment+SecureCoding.h in Headers */,
+				1598061A26CFC5D800593C9D /* PEPObjCTypes.h in Headers */,
 				4E5758AE2683331C0084F02D /* PEPTypes.h in Headers */,
 				4E5758B02683331C0084F02D /* PEPLanguage.h in Headers */,
 				4E5758A82683331C0084F02D /* PEPEngineTypes.h in Headers */,
@@ -465,7 +467,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\n\ncp -R \"${BUILT_PRODUCTS_DIR}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\nCUSTOM_INCLUDE_DIR=${PROJECT_DIR}/build/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp  \"${PROJECT_DIR}/PEPObjCTypes/PublicHeaders\"/* ${CUSTOM_INCLUDE_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 		4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -581,6 +583,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -641,6 +644,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
