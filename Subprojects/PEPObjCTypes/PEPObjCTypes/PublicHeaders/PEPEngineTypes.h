@@ -11,7 +11,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_CLOSED_ENUM(NSUInteger, PEPCCTransportID) {
+typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
 
     PEPCCTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
     // Currently unsupported
@@ -26,7 +26,7 @@ typedef NS_CLOSED_ENUM(NSUInteger, PEPCCTransportID) {
 
 
 /// From https://dev.pep.foundation/Engine/TransportStatusCode
-typedef NS_CLOSED_ENUM(NSInteger, PEPCCTransportStatusCode) {
+typedef NS_CLOSED_ENUM(NSInteger, PEPTransportStatusCode) {
     // General / Common
     PEPCCTransportStatusCodeReady = 0x0, // not an error state
     PEPCCTransportStatusCodeConnectionDown = 0x1, // sent by connection based transports
@@ -59,14 +59,14 @@ typedef NS_CLOSED_ENUM(NSInteger, PEPCCTransportStatusCode) {
     PEPCCTransportStatusCodeUnknownError = 0xFFFFFFFF
 };
 
-typedef NS_CLOSED_ENUM(int, PEPCCCallbackExcecutionType) {
+typedef NS_CLOSED_ENUM(int, PEPTransportCallbackExcecutionType) {
     /// execute callbacks immediately only
-    PEPCCCallbackExcecutionTypePolling = 0,
+    PEPTransportCallbackExcecutionTypePolling = 0,
     /// execute callbacks multiple times later on any thread; call with PEP_cbe_polling to disable
-    PEPCCCallbackExcecutionTypeAsync,
+    PEPTransportCallbackExcecutionTypeAsync,
     /// the last one is for the transport system only. Do not implement it in transports.
     /// Rephrase: DO NOT IMPLEMENT, IGNORE :-)
-    PEPCCCallbackExcecutionTypeBlocking = 255
+    PEPTransportCallbackExcecutionTypeBlocking = 255
 };
 
 typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
