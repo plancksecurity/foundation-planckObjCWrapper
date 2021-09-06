@@ -31,6 +31,7 @@
 		4E5FB32726E6554000CDB7D4 /* NSError+PEPStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E5FB32426E6554000CDB7D4 /* NSError+PEPStatus.h */; };
 		4E5FB32826E6554000CDB7D4 /* NSError+PEPStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5FB32526E6554000CDB7D4 /* NSError+PEPStatus.m */; };
 		4E5FB32926E6554000CDB7D4 /* NSError+PEPStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5FB32526E6554000CDB7D4 /* NSError+PEPStatus.m */; };
+		4E5FB3F026E6697C00CDB7D4 /* PEPObjCTypeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EBC22698A8FC00B822E1 /* PEPObjCTypeUtils.m */; };
 		4E89010726CF900B00A683E9 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */; };
 /* End PBXBuildFile section */
 
@@ -182,24 +183,28 @@
 		1585EA7E26984C4300B822E1 /* PEPObjCTypeUtils */ = {
 			isa = PBXGroup;
 			children = (
-				1585EA9526984DB800B822E1 /* Interface */,
-			);
-			path = PEPObjCTypeUtils;
-			sourceTree = "<group>";
-		};
-		1585EA9526984DB800B822E1 /* Interface */ = {
-			isa = PBXGroup;
-			children = (
-				1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */,
+				1585EA9526984DB800B822E1 /* PublicHeaders */,
 				1585EBC22698A8FC00B822E1 /* PEPObjCTypeUtils.m */,
-				4E5FB32326E653A000CDB7D4 /* PublicHeaders */,
 				159806AE26CFF14600593C9D /* PEPTransport+Engine.m */,
 				1585EA8B26984D6B00B822E1 /* PEPMessage+Engine.m */,
 				1585EA8C26984D6B00B822E1 /* PEPIdentity+Engine.m */,
 				1585EA8926984D6B00B822E1 /* NSArray+Engine.m */,
 				4E5FB32526E6554000CDB7D4 /* NSError+PEPStatus.m */,
 			);
-			path = Interface;
+			path = PEPObjCTypeUtils;
+			sourceTree = "<group>";
+		};
+		1585EA9526984DB800B822E1 /* PublicHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */,
+				159806AD26CFF14600593C9D /* PEPTransport+Engine.h */,
+				1585EA8E26984D6B00B822E1 /* PEPMessage+Engine.h */,
+				1585EA8A26984D6B00B822E1 /* PEPIdentity+Engine.h */,
+				1585EA8D26984D6B00B822E1 /* NSArray+Engine.h */,
+				4E5FB32426E6554000CDB7D4 /* NSError+PEPStatus.h */,
+			);
+			path = PublicHeaders;
 			sourceTree = "<group>";
 		};
 		1585EADB269850C700B822E1 /* Frameworks */ = {
@@ -228,18 +233,6 @@
 				1598060526CFC0C500593C9D /* PEPObjCTypesTests_iOS.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		4E5FB32326E653A000CDB7D4 /* PublicHeaders */ = {
-			isa = PBXGroup;
-			children = (
-				159806AD26CFF14600593C9D /* PEPTransport+Engine.h */,
-				1585EA8E26984D6B00B822E1 /* PEPMessage+Engine.h */,
-				1585EA8A26984D6B00B822E1 /* PEPIdentity+Engine.h */,
-				1585EA8D26984D6B00B822E1 /* NSArray+Engine.h */,
-				4E5FB32426E6554000CDB7D4 /* NSError+PEPStatus.h */,
-			);
-			path = PublicHeaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,7 +415,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/PEPObjCTypeUtils/Interface/PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/PEPObjCTypeUtils/PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
 			showEnvVarsInLog = 0;
 		};
 		1585EC78269C3DD000B822E1 /* Copy Artefacts to Custom Build dir */ = {
@@ -441,7 +434,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/PEPObjCTypeUtils/Interface/PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_iOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/PEPObjCTypeUtils/PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_iOS.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -466,6 +459,7 @@
 				1585EB52269864B100B822E1 /* PEPMessage+Engine.m in Sources */,
 				1585EB4D2698648D00B822E1 /* NSArray+Engine.m in Sources */,
 				1585EB53269864B100B822E1 /* PEPIdentity+Engine.m in Sources */,
+				4E5FB3F026E6697C00CDB7D4 /* PEPObjCTypeUtils.m in Sources */,
 				159806B226CFF14600593C9D /* PEPTransport+Engine.m in Sources */,
 				4E5FB32926E6554000CDB7D4 /* NSError+PEPStatus.m in Sources */,
 			);
