@@ -28,35 +28,35 @@ typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
 /// From https://dev.pep.foundation/Engine/TransportStatusCode
 typedef NS_CLOSED_ENUM(NSInteger, PEPTransportStatusCode) {
     // General / Common
-    PEPCCTransportStatusCodeReady = 0x0, // not an error state
-    PEPCCTransportStatusCodeConnectionDown = 0x1, // sent by connection based transports
-    PEPCCTransportStatusCodeConnectionUp = 0x2, // not an error state; sent by connection based transports
-    PEPCCTransportStatusCodeConnectionSomeRecipientsUnreachable = 0x3, // message could not be delivered to all recipients
-    PEPCCTransportStatusCodeConnectionNoRecipientsReachable = 0x4, // message could not be delivered at all
-    PEPCCTransportStatusCodeConnectionNoConfig = 0x5,
-    PEPCCTransportStatusCodeConnectionInvalidConfig = 0x6, // config incomplete or wrong
-    PEPCCTransportStatusCodeNoSendConfig = 0x7,
-    PEPCCTransportStatusCodeNoRecvConfig = 0x8,
-    PEPCCTransportStatusCodeInvalidSendConfig = 0x9,
-    PEPCCTransportStatusCodeInvalidRecvConfig = 0xA,
-    PEPCCTransportStatusCodeNetworkTimeout = 0xB,
-    PEPCCTransportStatusCodeMessageDelivered = 0x100000, // not an error state
-    PEPCCTransportStatusCodeMessageOnTheWay = 0x100001, // not an error state
-    PEPCCTransportStatusCodeCouldNotDeliver_Resending = 0x100002, // not an error state
-    PEPCCTransportStatusCodeCouldNotDeliver_GivingUp = 0x100003,
+    PEPTransportStatusCodeReady = 0x0, // not an error state
+    PEPTransportStatusCodeConnectionDown = 0x1, // sent by connection based transports
+    PEPTransportStatusCodeConnectionUp = 0x2, // not an error state; sent by connection based transports
+    PEPTransportStatusCodeConnectionSomeRecipientsUnreachable = 0x3, // message could not be delivered to all recipients
+    PEPTransportStatusCodeConnectionNoRecipientsReachable = 0x4, // message could not be delivered at all
+    PEPTransportStatusCodeConnectionNoConfig = 0x5,
+    PEPTransportStatusCodeConnectionInvalidConfig = 0x6, // config incomplete or wrong
+    PEPTransportStatusCodeNoSendConfig = 0x7,
+    PEPTransportStatusCodeNoRecvConfig = 0x8,
+    PEPTransportStatusCodeInvalidSendConfig = 0x9,
+    PEPTransportStatusCodeInvalidRecvConfig = 0xA,
+    PEPTransportStatusCodeNetworkTimeout = 0xB,
+    PEPTransportStatusCodeMessageDelivered = 0x100000, // not an error state
+    PEPTransportStatusCodeMessageOnTheWay = 0x100001, // not an error state
+    PEPTransportStatusCodeCouldNotDeliver_Resending = 0x100002, // not an error state
+    PEPTransportStatusCodeCouldNotDeliver_GivingUp = 0x100003,
     // Email
-    PEPCCTransportStatusCodeEmailSMTPServerUnreachable = 0x1100001,
-    PEPCCTransportStatusCodeEmailSMTPUnknownError = 0x110FFFF,
+    PEPTransportStatusCodeEmailSMTPServerUnreachable = 0x1100001,
+    PEPTransportStatusCodeEmailSMTPUnknownError = 0x110FFFF,
 
-    PEPCCTransportStatusCodeEmailIMAPServerUnreachable = 0x01110001,
-    PEPCCTransportStatusCodeEmailIMAPUnknownError = 0x0111FFFF,
+    PEPTransportStatusCodeEmailIMAPServerUnreachable = 0x01110001,
+    PEPTransportStatusCodeEmailIMAPUnknownError = 0x0111FFFF,
     // RCE
-    PEPCCTransportStatusCodeRCETorrentWithoutSeeders = 0x02FF0001,
-    PEPCCTransportStatusCodeRCEUnknownTorrentError = 0x02FFFFFF,
+    PEPTransportStatusCodeRCETorrentWithoutSeeders = 0x02FF0001,
+    PEPTransportStatusCodeRCEUnknownTorrentError = 0x02FFFFFF,
     // Control Channel
-    PEPCCTransportStatusCodePEPCCUnknownSCTPError = 0xFEFFFFFF,
+    PEPTransportStatusCodePEPCCUnknownSCTPError = 0xFEFFFFFF,
     // Misc. errors
-    PEPCCTransportStatusCodeUnknownError = 0xFFFFFFFF
+    PEPTransportStatusCodeUnknownError = 0xFFFFFFFF
 };
 
 typedef NS_CLOSED_ENUM(int, PEPTransportCallbackExcecutionType) {
