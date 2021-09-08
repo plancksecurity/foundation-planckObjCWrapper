@@ -146,6 +146,7 @@
 		43D2D5F12632B0FA00088BDC /* XCTestCase+PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
+		4E0CFAA526E8AE6D001C7685 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E51BF3F26CA5E5C007A2164 /* libPEPObjCTypes_macOS.a */; };
 		4E51BFA726CBC685007A2164 /* libPEPToolbox_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E51BFA626CBC685007A2164 /* libPEPToolbox_macOS.a */; };
 		4E57581226821A760084F02D /* libPEPObjCAdapterProtocols_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E23E6F62681C8AF00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
@@ -425,6 +426,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E0CFAA526E8AE6D001C7685 /* libPEPObjCTypes_macOS.a in Frameworks */,
 				4E51BFA726CBC685007A2164 /* libPEPToolbox_macOS.a in Frameworks */,
 				1585EC7F269C45AC00B822E1 /* libPEPObjCTypeUtils_macOS.a in Frameworks */,
 				152E48FE26A86327009BD3CE /* libpEpEngine_macOS.a in Frameworks */,
