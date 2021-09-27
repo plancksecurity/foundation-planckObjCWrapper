@@ -4,6 +4,9 @@
 *.gch
 *.pch
 
+### Artefacts
+*.so*
+
 ### Objective-C ###
 # Xcode
 
