@@ -1,11 +1,15 @@
-### Pre Compiled Headers
+##GNUstep
 
+### Pre Compiled Headers
 *.d
 *.gch
 *.pch
 
 ### Artefacts
 *.so*
+
+###
+obj/
 
 ### Objective-C ###
 # Xcode
