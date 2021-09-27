@@ -1,3 +1,9 @@
+### Pre Compiled Headers
+
+*.d
+*.gch
+*.pch
+
 ### Objective-C ###
 # Xcode
 
