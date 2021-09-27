@@ -7,18 +7,14 @@
 # Include the common variables defined by the Makefile Package
 include $(GNUSTEP_MAKEFILES)/common.make
 
-# Build precompiled prefix header
-#$(shell cat PEPTypes.h)
-# files := $(shell echo *.h)
-# needless := $(shell prepare.sh)
-
+# Build pre-compiled prefix header
+SHELL_RESULT := $(shell ./prepare.sh)
 
 #echo About to make distribution
 
-
 # For Excecutable
 #TOOL_NAME = pEpObjCTypes
-# FOr Lib
+# For Lib
 LIBRARY_NAME = pEpObjCTypes
 
 #pEpObjCTypes_HEADER_FILES_DIR = ../PublicHeaders/
@@ -48,4 +44,4 @@ ADDITIONAL_FLAGS = -fobjc-runtime=gnustep-2.0 -fobjc-arc
 include $(GNUSTEP_MAKEFILES)/library.make
 
 # For Excecutable
-include $(GNUSTEP_MAKEFILES)/tool.make
+#include $(GNUSTEP_MAKEFILES)/tool.make
