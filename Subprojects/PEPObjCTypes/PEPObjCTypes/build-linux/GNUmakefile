@@ -23,7 +23,11 @@ ADDITIONAL_OBJCFLAGS += -include-pch PEPObjCGNUStepOptimizations.h.gch -Winvalid
 ADDITIONAL_OBJC_LIBS = -ldispatch
 ADDITIONAL_FLAGS = -fobjc-runtime=gnustep-2.0 -fobjc-arc -fPIC
 
-HEADER_FILES_INSTALL_DIR=build
+HEADER_FILES_INSTALL_DIR = build
 
 # For lib
 include $(GNUSTEP_MAKEFILES)/library.make
+
+# Copy Artefacts
+SHELL_RESULT := $(shell mkdir build)
+SHELL_RESULT := $(shell cp obj/*.a build/)
