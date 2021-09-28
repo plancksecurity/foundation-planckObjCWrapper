@@ -29,5 +29,5 @@ HEADER_FILES_INSTALL_DIR = build
 include $(GNUSTEP_MAKEFILES)/library.make
 
 # Copy Artefacts
-SHELL_RESULT := $(shell mkdir build)
+SHELL_RESULT := $(shell mkdir -p build)
 SHELL_RESULT := $(shell cp obj/*.a build/)
