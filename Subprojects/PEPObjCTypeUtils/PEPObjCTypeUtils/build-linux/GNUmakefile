@@ -1,14 +1,14 @@
 #
 # Dox: http://www.gnustep.org/resources/documentation/make_1.html
 #
-# To Run: `make messages=yes shared=no`
+# To Run: `make messages=yes shared=no
 #
 
 # Include the common variables defined by the Makefile Package
 include $(GNUSTEP_MAKEFILES)/common.make
 
 # Build pre-compiled prefix header
-SHELL_RESULT := $(shell ./prepare.sh)
+SHELL_RESULT := $(shell ../../../PEPObjCTypes/PEPObjCTypes/build-linux/prepare.sh)
 
 LIBRARY_NAME = pEpObjCTypeUtils
 pEpObjCTypeUtils_INCLUDE_DIRS = -I../PublicHeaders/
