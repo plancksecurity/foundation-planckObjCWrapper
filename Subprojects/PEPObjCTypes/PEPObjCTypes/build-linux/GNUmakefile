@@ -1,7 +1,7 @@
 #
 # Dox: http://www.gnustep.org/resources/documentation/make_1.html
 #
-# To Run: `make messages=yes shared=no
+# To Run: `make messages=yes shared=no`
 #
 
 # Include the common variables defined by the Makefile Package
