@@ -412,7 +412,7 @@ static __weak PEPSync *s_pEpSync;
 }
 
 - (void)nextCallMustWait {
-    @synchronized (self.blockmessageToSendGroup) {
+    @synchronized (self.lockObjectBlockmessageToSendGroupChanges) {
         if (!self.blockmessageToSendGroup) {
             self.blockmessageToSendGroup = dispatch_group_create();
         }
@@ -421,7 +421,7 @@ static __weak PEPSync *s_pEpSync;
 }
 
 - (void)stopWaiting {
-    @synchronized (self.blockmessageToSendGroup) {
+    @synchronized (self.lockObjectBlockmessageToSendGroupChanges) {
         if (self.blockmessageToSendGroup) {
             dispatch_group_leave(self.blockmessageToSendGroup);
             self.blockmessageToSendGroup = NULL;
