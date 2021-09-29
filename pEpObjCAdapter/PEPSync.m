@@ -424,7 +424,7 @@ static __weak PEPSync *s_pEpSync;
     @synchronized (self.blockmessageToSendGroup) {
         if (self.blockmessageToSendGroup) {
             dispatch_group_leave(self.blockmessageToSendGroup);
-            self.blockmessageToSendGroup = nil;
+            self.blockmessageToSendGroup = NULL;
         }
     }
 }
