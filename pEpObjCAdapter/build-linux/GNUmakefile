@@ -9,6 +9,7 @@ include $(GNUSTEP_MAKEFILES)/common.make
 
 # Build PEPObjCTypeUtils
 SHELL_RESULT := $(shell ./buildPEPObjCTypeUtils.sh)
+SHELL_RESULT := $(shell ./buildPEPObjCAdapterProtocols.sh)
 
 # Build pre-compiled prefix header
 SHELL_RESULT := $(shell ../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/prepare.sh)
