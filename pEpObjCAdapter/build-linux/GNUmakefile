@@ -17,12 +17,12 @@ LIBRARY_NAME = pEpObjCAdapter
 # Finds all dirs containing headers and prefixes with "-I"
 ALL_LOCAL_INCLUDE_HEADER_DIRS_PREFIXED := $(shell find ~/local/include/ -type d | sed -e 's/^/-I/;')
 PEP_OBJC_TYPES_HEADER_DIRS_PREFIXED := -I../../Subprojects/PEPObjCTypes/PEPObjCTypes/PublicHeaders/
-#$(shell find ../../PEPObjCTypes/PEPObjCTypes/PublicHeaders/ -type d | sed -e 's/^/-I/;')
 PEP_OBJC_TYPE_UTILS_HEADER_DIRS_PREFIXED := -I../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/PublicHeaders/
-#$(shell find ../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/PublicHeaders/ -type d | sed -e 's/^/-I/;')
+PEP_OBJC_ADAPTER_PROTOCOLS_HEADER_DIRS_PREFIXED := -I../../Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders/
+
 PEP_OBJC_ADAPTER_HEADER_DIRS_PREFIXED := $(shell find ../../pEpObjCAdapter/ -type d | sed -e 's/^/-I/;')
 
-pEpObjCAdapter_INCLUDE_DIRS = ${PEP_OBJC_ADAPTER_HEADER_DIRS_PREFIXED} ${ALL_LOCAL_INCLUDE_HEADER_DIRS_PREFIXED} ${PEP_OBJC_TYPES_HEADER_DIRS_PREFIXED} ${PEP_OBJC_TYPE_UTILS_HEADER_DIRS_PREFIXED} 
+pEpObjCAdapter_INCLUDE_DIRS = ${PEP_OBJC_ADAPTER_HEADER_DIRS_PREFIXED} ${ALL_LOCAL_INCLUDE_HEADER_DIRS_PREFIXED} ${PEP_OBJC_TYPES_HEADER_DIRS_PREFIXED} ${PEP_OBJC_TYPE_UTILS_HEADER_DIRS_PREFIXED} ${PEP_OBJC_ADAPTER_PROTOCOLS_HEADER_DIRS_PREFIXED}
 ALL_DOT_M_FILES := $(shell find ../ -maxdepth 1 -type f -name "*.m")
 pEpObjCAdapter_OBJC_FILES = ${ALL_DOT_M_FILES}
 pEpObjCAdapter_RESOURCE_FILES =
