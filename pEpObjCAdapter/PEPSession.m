@@ -25,7 +25,7 @@ static dispatch_queue_t queue;
 {
     if (self == [PEPSession class]) {
         dispatch_queue_attr_t attr = DISPATCH_QUEUE_SERIAL;
-        attr = dispatch_queue_attr_make_with_qos_class(attr, QOS_CLASS_USER_INITIATED, -1);
+        attr = dispatch_queue_attr_make_with_qos_class(attr, DISPATCH_QUEUE_PRIORITY_HIGH, -1);
         queue = dispatch_queue_create("PEPAsyncSession.queue", attr);
     }
 }
