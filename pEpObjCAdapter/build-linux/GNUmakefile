@@ -28,6 +28,8 @@ ALL_DOT_M_FILES := $(shell find ../ -maxdepth 1 -type f -name "*.m")
 pEpObjCAdapter_OBJC_FILES = ${ALL_DOT_M_FILES}
 pEpObjCAdapter_RESOURCE_FILES =
 
+pEpObjCAdapter_LDFLAGS = -L../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/build resides> -lpEpObjCTypes2.a
+
 ADDITIONAL_OBJCFLAGS += -include-pch PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
 ADDITIONAL_OBJC_LIBS = -ldispatch
 ADDITIONAL_FLAGS = -fobjc-runtime=gnustep-2.0 -fobjc-arc -fPIC
