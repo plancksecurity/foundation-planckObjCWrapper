@@ -28,7 +28,7 @@ ALL_DOT_M_FILES := $(shell find ../ -maxdepth 1 -type f -name "*.m")
 pEpObjCAdapter_OBJC_FILES = ${ALL_DOT_M_FILES}
 pEpObjCAdapter_RESOURCE_FILES =
 
-pEpObjCAdapter_LDFLAGS = -L../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/build resides> -lpEpObjCTypes2.a
+pEpObjCAdapter_LDFLAGS = ../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/build/libpEpObjCTypes.a ../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/build-linux/build/libpEpObjCTypeUtils.a ../../Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/build-linux/build/libpEpObjCAdapterProtocols.a
 
 ADDITIONAL_OBJCFLAGS += -include-pch PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
 ADDITIONAL_OBJC_LIBS = -ldispatch
