@@ -7,8 +7,10 @@
 # Include the common variables defined by the Makefile Package
 include $(GNUSTEP_MAKEFILES)/common.make
 
-# Build PEPObjCTypes
+# Build Dependencies ...
 SHELL_RESULT := $(shell ./buildPEPObjCTypes.sh)
+SHELL_RESULT := $(shell ./build_gmp.sh)
+SHELL_RESULT := $(shell ./build_nettle.sh)
 
 # Build pre-compiled prefix header
 SHELL_RESULT := $(shell ../../../PEPObjCTypes/PEPObjCTypes/build-linux/prepare.sh)
