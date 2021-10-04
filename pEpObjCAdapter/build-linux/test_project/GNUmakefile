@@ -44,8 +44,8 @@ ADDITIONAL_OBJC_LIBS = -ldispatch \
 -l${HOME}/local/lib/libnettle.a \
 -l${HOME}/local/lib/libhogweed.a \
 -l${HOME}/local/lib/libsqlite3.a \
--lpthread \ # sqlite3 dep
--ldl  # sqlite3 dep
+-lpthread \
+-ldl
 
 ADDITIONAL_FLAGS = -fobjc-runtime=gnustep-2.0 -fobjc-arc
 
