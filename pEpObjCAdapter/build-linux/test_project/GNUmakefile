@@ -31,21 +31,31 @@ ClientOfObjcAdapter_RESOURCE_FILES =
 #ClientOfObjcAdapter_LDFLAGS = -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapter.a -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapterProtocols.a -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypeUtils.a -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypes.a
 
 ADDITIONAL_OBJCFLAGS += -include-pch obj/HelloWorld.obj/PrecompiledHeaders/ObjC/PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
+
+## Linking Libs - Take Care !! The Order *DOES* Matter
 ADDITIONAL_OBJC_LIBS = -ldispatch \
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapter.a \
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapterProtocols.a \
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypeUtils.a \
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypes.a \
 -l${HOME}/local/lib/libpEpEngine.a \
--l${HOME}/src/pEpEngine/asn.1/libasn1.a \
 -l${HOME}/local/lib/libetpan.a \
--l${HOME}/local/lib/libsequoia_openpgp_ffi.a \
--l${HOME}/local/lib/libgmp.a \
--l${HOME}/local/lib/libnettle.a \
--l${HOME}/local/lib/libhogweed.a \
+-l${HOME}/src/pEpEngine/asn.1/libasn1.a \
 -l${HOME}/local/lib/libsqlite3.a \
 -lpthread \
--ldl
+-ldl \
+-l${HOME}/local/lib/libsequoia_openpgp_ffi.a \
+-l${HOME}/local/lib/libhogweed.a \
+-l${HOME}/local/lib/libnettle.a \
+-l${HOME}/local/lib/libgmp.a
+
+
+
+
+
+
+
+
 
 ADDITIONAL_FLAGS = -fobjc-runtime=gnustep-2.0 -fobjc-arc
 
