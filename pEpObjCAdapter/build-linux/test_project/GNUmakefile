@@ -39,8 +39,10 @@ ADDITIONAL_OBJC_LIBS = -ldispatch \
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypeUtils.a \
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypes.a \
 -l${HOME}/local/lib/libpEpEngine.a \
+-luuid \
+-lz \
 -l${HOME}/local/lib/libetpan.a \
--l${HOME}/src/pEpEngine/asn.1/libasn1.a \
+-l${HOME}/local/lib/libasn1.a \
 -l${HOME}/local/lib/libsqlite3.a \
 -lpthread \
 -ldl \

@@ -26,31 +26,31 @@ cd "${CURRENT_DIR}"
 LIB_DIR="${PREFIX}/lib"
 mkdir -p "${LIB_DIR}"
 
-SQLITE_NAME="sqlite"
+VERSION="v0.9.28"
+NAME="asn1c"
 
 # Exit on errors
 set -e
 
-if [ -f "${LIB_DIR}/libsqlite3.a" ]; then
-    echo "lib exists already in ${LIB_DIR}. If you want to rebuild it, delete the existing one."
+####BUFF: wrong!
+if [ -f "${PREFIX}/bin/asn1c" ]; then
+    echo "lib exists already in ${PREFIX}/bin/. If you want to rebuild it, delete the existing one."
     exit 0
 fi
 
-SQLITE_DIR="${SRC_DIR}/${SQLITE_NAME}"
-if [ ! -d "${SQLITE_DIR}" ]; then
+DIR="${SRC_DIR}/${NAME}"
+if [ ! -d "${DIR}" ]; then
     cd "${SRC_DIR}"
-        git clone https://pep-security.lu/gitlab/misc/sqlite.git
+        git clone -b ${VERSION} git://github.com/vlm/asn1c.git
     cd "${CURRENT_DIR}"
 fi
 
-cd "${SRC_DIR}/${SQLITE_NAME}/"
-    gcc -c -fPIC sqlite3.c -o sqlite3.o
-    ar qf libsqlite3.a sqlite3.o
-    ranlib libsqlite3.a
-    mv libsqlite3.a "${PREFIX}/lib"
-    mv sqlite3.h "${PREFIX}/include"
+cd "${SRC_DIR}/${NAME}/"
+    autoreconf -iv
+    ./configure --prefix="${PREFIX}"
+    make install
 cd "${CURRENT_DIR}"
 
-rm -rf "${SRC_DIR}/${SQLITE_NAME}"
+rm -rf "${DIR}"
 rm -rf "${LIB_DIR}/"*.so*
 rm -rf "${LIB_DIR}/"*.la

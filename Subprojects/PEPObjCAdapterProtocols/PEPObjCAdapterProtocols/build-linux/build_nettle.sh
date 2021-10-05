@@ -60,6 +60,7 @@ cd "${CURRENT_DIR}"
 mv "${PREFIX}/lib64/libnettle.a" "${PREFIX}/lib" 
 mv "${PREFIX}/lib64/libhogweed.a" "${PREFIX}/lib" 
 
+rm -rf "${SRC_DIR}/${NETTLE_NAME}"
 rm -rf "${SRC_DIR}"*.gz
 rm -rf "${LIB_DIR}/"*.so*
 rm -rf "${LIB_DIR}/"*.la

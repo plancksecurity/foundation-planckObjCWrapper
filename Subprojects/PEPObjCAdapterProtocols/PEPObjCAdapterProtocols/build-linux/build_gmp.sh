@@ -26,31 +26,35 @@ cd "${CURRENT_DIR}"
 LIB_DIR="${PREFIX}/lib"
 mkdir -p "${LIB_DIR}"
 
-SQLITE_NAME="sqlite"
+GMP_VERSION=6.2.1
+GMP_NAME="gmp-${GMP_VERSION}"
 
 # Exit on errors
 set -e
 
-if [ -f "${LIB_DIR}/libsqlite3.a" ]; then
+if [ -f "${LIB_DIR}/libgmp.a" ]; then
     echo "lib exists already in ${LIB_DIR}. If you want to rebuild it, delete the existing one."
     exit 0
 fi
 
-SQLITE_DIR="${SRC_DIR}/${SQLITE_NAME}"
-if [ ! -d "${SQLITE_DIR}" ]; then
-    cd "${SRC_DIR}"
-        git clone git clone https://pep-security.lu/gitlab/misc/sqlite.git
-    cd "${CURRENT_DIR}"
+GMP_DIR="${SRC_DIR}/${GMP_NAME}"
+if [ ! -d "${GMP_DIR}" ]; then
+	cd "${SRC_DIR}"
+	    # GMP snapshot must be used until released
+		wget -nc https://gmplib.org/download/gmp/$GMP_NAME.tar.bz2
+		tar xvf ${GMP_NAME}.tar.bz2
+	cd "${CURRENT_DIR}"
 fi
 
-cd "${SRC_DIR}/${SQLITE_NAME}/"
-    gcc -c sqlite3.c -o sqlite3.o
-    ar qf libsqlite3.a sqlite3.o
-    ranlib libsqlite3.a
-    mv libsqlite3.a "${PREFIX}/lib"
-    mv sqlite3.h "${PREFIX}/include"
+#export CC="${CC} -fPIC"
+cd "${SRC_DIR}/${GMP_NAME}"
+	PKG_CONFIG_ALLOW_CROSS=1 PKG_CONFIG_PATH="${PREFIX}"/lib/pkgconfig ./configure --prefix="${PREFIX}" --disable-shared
+	make clean
+	make -j4
+	make install
 cd "${CURRENT_DIR}"
 
-rm -rf "${SRC_DIR}"*.gz
+rm -rf "${SRC_DIR}/${GMP_NAME}"
+rm -rf "${SRC_DIR}"*.bz2
 rm -rf "${LIB_DIR}/"*.so*
 rm -rf "${LIB_DIR}/"*.la
