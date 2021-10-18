@@ -21,39 +21,6 @@ static MyClass *s_myClass;
 
 #import "MyClass.h"
 
-void test_using_objc_adapter() {
-    NSString *ownUserID = @"s_ownUserID";
-    NSString *ownAddress = @"me@ownAddress.com";
-    NSString *ownUserName = @"My Name";
-
-    PEPIdentity *me = [[PEPIdentity alloc] initWithAddress:ownUserID
-                                                    userID:ownUserID
-                                                  userName:ownUserName
-                                                     isOwn:YES
-                                               fingerPrint:nil
-                                                  commType:PEPCommTypeUnknown
-                                                  language:nil];
-
-    PEPMessage *srcMsg = [PEPMessage new];
-    srcMsg.from = me;
-    srcMsg.to = @[me];
-
-    PEPSession *session = [PEPSession new];
-    [session mySelf:me errorCallback:^(NSError * _Nonnull error) {
-        NSLog(@"Error: %@", error);
-    } successCallback:^(PEPIdentity * _Nonnull identity) {
-
-        [session encryptMessage:srcMsg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
-            NSLog(@"Error: %@", error);
-        } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
-            NSLog(@"Success!");
-            NSLog(@"Encrypted message: %@", destMessage);
-            NSLog(@"Original message: %@", srcMessage);
-        }];
-
-    }];
-}
-
 void test_arc_dealloc_once(NSString *baseName)
 {
     NSLog(@"%@: test_arc_dealloc", baseName);
@@ -103,19 +70,79 @@ void request(void)
     NSLog(@"Received %lu bytes", (unsigned long) data.length);
 }
 
+void test_using_objc_adapter() {
+    NSLog(@"Starting: test_using_objc_adapter");
+    NSString *ownUserID = @"s_ownUserID";
+    NSString *ownAddress = @"me@ownAddress.com";
+    NSString *ownUserName = @"My Name";
+
+    PEPIdentity *me = [[PEPIdentity alloc] initWithAddress:ownAddress
+                                                    userID:ownUserID
+                                                  userName:ownUserName
+                                                     isOwn:YES
+                                               fingerPrint:nil
+                                                  commType:PEPCommTypeUnknown
+                                                  language:nil];
+
+    PEPMessage *srcMsg = [PEPMessage new];
+    srcMsg.from = me;
+    srcMsg.to = @[me];
+
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_enter(group);
+    NSLog(@"Go Background");
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"test_using_objc_adapter: call myself");
+        PEPSession *session = [PEPSession new];
+        [session mySelf:me errorCallback:^(NSError * _Nonnull error) {
+            NSLog(@"Error: %@", error);
+            dispatch_group_leave(group);
+        } successCallback:^(PEPIdentity * _Nonnull identity) {
+            // PEPSession *session = [PEPSession new];
+            // [session encryptMessage:srcMsg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
+            //     NSLog(@"Error: %@", error);
+            //     dispatch_group_leave(group);
+            // } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
+            //     NSLog(@"Success!");
+            //     NSLog(@"Encrypted message: %@", destMessage);
+            //     NSLog(@"Original message: %@", srcMessage);
+
+            //     NSLog(@"Finnished_using_objc_adapter");
+            //     dispatch_group_leave(group);
+            // }];
+
+            dispatch_group_leave(group);
+        }];
+    });
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@"Done");
+    });
+    // dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    NSLog(@"test_using_objc_adapter: waitng for adapter to return");
+}
+
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
         NSLog(@"main");
+            // s_myClass = [[MyClass alloc] initWithName:@"static"];
+            // s_myClass = nil;
 
-        s_myClass = [[MyClass alloc] initWithName:@"static"];
-        s_myClass = nil;
-
-        test_arc_dealloc();
-        test_stream_connection();
-        request();
+            // test_arc_dealloc();
+            // test_stream_connection();
+            // request();
         test_using_objc_adapter();
+        // NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        // NSLog(@"runLoop: %@", runLoop);
+        // [runLoop run];
+        NSLog(@"Before runloop");
+        NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+        while (![NSThread currentThread].isCancelled) {
+            [runLoop runMode:NSDefaultRunLoopMode beforeDate: [NSDate distantFuture]];
+        }
     }
+
+    NSLog(@"bye!");
 
     return 0;
 }

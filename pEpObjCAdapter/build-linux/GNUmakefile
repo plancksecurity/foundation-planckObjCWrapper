@@ -1,7 +1,7 @@
 #
 # Dox: http://www.gnustep.org/resources/documentation/make_1.html
 #
-# To Run: `make messages=yes shared=no
+# To Run: `make messages=yes shared=no debug=yes
 #
 
 # Include the common variables defined by the Makefile Package
@@ -11,11 +11,11 @@ include $(GNUSTEP_MAKEFILES)/common.make
 SHELL_RESULT := $(shell ./buildPEPObjCTypeUtils.sh)
 SHELL_RESULT := $(shell ./buildPEPObjCAdapterProtocols.sh)
 
-# Build pre-compiled prefix header
-SHELL_RESULT := $(shell ../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/prepare.sh)
-
 LIBRARY_NAME = pEpObjCAdapter
-# Finds all dirs containing headers and prefixes with "-I"
+
+pEpObjCAdapter_OBJC_PRECOMPILED_HEADERS = PEPObjCGNUStepOptimizations.h
+
+#Finds all dirs containing headers and prefixes with "-I"
 ALL_LOCAL_INCLUDE_HEADER_DIRS_PREFIXED := $(shell find ~/local/include/ -type d | sed -e 's/^/-I/;')
 PEP_OBJC_TYPES_HEADER_DIRS_PREFIXED := -I../../Subprojects/PEPObjCTypes/PEPObjCTypes/PublicHeaders/
 PEP_OBJC_TYPE_UTILS_HEADER_DIRS_PREFIXED := -I../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/PublicHeaders/
@@ -28,11 +28,12 @@ ALL_DOT_M_FILES := $(shell find ../ -maxdepth 1 -type f -name "*.m")
 pEpObjCAdapter_OBJC_FILES = ${ALL_DOT_M_FILES}
 pEpObjCAdapter_RESOURCE_FILES =
 
-pEpObjCAdapter_LDFLAGS = ../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/build/libpEpObjCTypes.a ../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/build-linux/build/libpEpObjCTypeUtils.a ../../Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/build-linux/build/libpEpObjCAdapterProtocols.a
+pEpObjCAdapter_LDFLAGS = -objc -ObjC ../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/build/libpEpObjCTypes.a ../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/build-linux/build/libpEpObjCTypeUtils.a ../../Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/build-linux/build/libpEpObjCAdapterProtocols.a
 
-ADDITIONAL_OBJCFLAGS += -include-pch PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
+#ADDITIONAL_OBJCFLAGS += -objc -ObjC
+ADDITIONAL_OBJCFLAGS += -objc -ObjC -include-pch obj/pEpObjCAdapter.obj/PrecompiledHeaders/ObjC/PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
 ADDITIONAL_OBJC_LIBS = -ldispatch
-ADDITIONAL_FLAGS = -fobjc-runtime=gnustep-2.0 -fobjc-arc -fPIC
+ADDITIONAL_FLAGS = -objc -ObjC -fobjc-runtime=gnustep-2.0 -fobjc-arc -fPIC -g -O0
 
 HEADER_FILES_INSTALL_DIR = build
 
