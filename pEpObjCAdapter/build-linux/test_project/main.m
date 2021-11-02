@@ -17,8 +17,6 @@
 
 static MyClass *s_myClass;
 
-
-
 #import "MyClass.h"
 
 void test_arc_dealloc_once(NSString *baseName)
@@ -74,12 +72,16 @@ void test_dispatchToMainQueueNeverExecuted() {
     NSLog(@"test_dispatchToMainQueueNeverExecuted: Started");
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on background queue");
+        // NSLog(@"test_dispatchToMainQueueNeverExecuted: Now sleep(1)");
+        // sleep(1);
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue");
-            NSLog(@"SUCCESS!");
-      });
+            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  ASYNC");
+        });
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  SYNC");
+            NSLog(@"test_dispatchToMainQueueNeverExecuted: SUCCESS!");
+        });
     });
-
 }
 
 void test_using_objc_adapter() {
@@ -143,18 +145,14 @@ int main(int argc, const char * argv[])
             // test_arc_dealloc();
             // test_stream_connection();
             // request();
-
-        //test_using_objc_adapter();
         test_dispatchToMainQueueNeverExecuted()
 
-        // NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-        // NSLog(@"runLoop: %@", runLoop);
-        // [runLoop run];
+        test_using_objc_adapter();
+        
+
         NSLog(@"Before runloop");
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-        while (![NSThread currentThread].isCancelled) {
-            [runLoop runMode:NSDefaultRunLoopMode beforeDate: [NSDate distantFuture]];
-        }
+        [runLoop run];
     }
 
     NSLog(@"bye!");
