@@ -68,22 +68,6 @@ void request(void)
     NSLog(@"Received %lu bytes", (unsigned long) data.length);
 }
 
-void test_dispatchToMainQueueNeverExecuted() {
-    NSLog(@"test_dispatchToMainQueueNeverExecuted: Started");
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on background queue");
-        // NSLog(@"test_dispatchToMainQueueNeverExecuted: Now sleep(1)");
-        // sleep(1);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  ASYNC");
-        });
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  SYNC");
-            NSLog(@"test_dispatchToMainQueueNeverExecuted: SUCCESS!");
-        });
-    });
-}
-
 void test_using_objc_adapter() {
     NSLog(@"Starting: test_using_objc_adapter");
     NSString *ownUserID = @"s_ownUserID";
@@ -133,6 +117,30 @@ void test_using_objc_adapter() {
     });
     // dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     NSLog(@"test_using_objc_adapter: waitng for adapter to return");
+}
+
+void test_dispatchToMainQueueNeverExecuted() {
+    NSLog(@"test_dispatchToMainQueueNeverExecuted: Started");
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on background queue");
+        // NSLog(@"test_dispatchToMainQueueNeverExecuted: Now sleep(1)");
+        // sleep(1);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  ASYNC");
+        });
+        if (![NSThread isMainThread]) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  SYNC");
+                NSLog(@"test_dispatchToMainQueueNeverExecuted: SUCCESS!");
+            });
+        }
+    });
+
+    if ([NSThread isMainThread]) {
+        NSLog(@"test_dispatchToMainQueueNeverExecuted: [NSThread isMainThread] == true");
+    } else {
+        NSLog(@"test_dispatchToMainQueueNeverExecuted: PROBLEM. Should not be called");
+    }
 }
 
 int main(int argc, const char * argv[])
