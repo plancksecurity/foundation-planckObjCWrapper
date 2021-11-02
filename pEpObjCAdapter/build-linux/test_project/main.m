@@ -16,11 +16,19 @@ void test_dispatchToMainQueueNeverExecuted() {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  ASYNC");
         });
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  SYNC");
-            NSLog(@"test_dispatchToMainQueueNeverExecuted: SUCCESS!");
-        });
+        if (![NSThread isMainThread]) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  SYNC");
+                NSLog(@"test_dispatchToMainQueueNeverExecuted: SUCCESS!");
+            });
+        }
     });
+
+    if ([NSThread isMainThread]) {
+        NSLog(@"test_dispatchToMainQueueNeverExecuted: [NSThread isMainThread] == true");
+    } else {
+        NSLog(@"test_dispatchToMainQueueNeverExecuted: PROBLEM. Should not be called");
+    }
 
 }
 
