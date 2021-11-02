@@ -22,6 +22,4 @@ ADDITIONAL_FLAGS += -fobjc-runtime=gnustep-2.0 -fobjc-arc
 
 ADDITIONAL_OBJC_LIBS = 	-ldispatch
 
-ADDITIONAL_LDFLAGS += -ObjC
-
 include $(GNUSTEP_MAKEFILES)/tool.make

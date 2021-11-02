@@ -11,6 +11,8 @@ void test_dispatchToMainQueueNeverExecuted() {
     NSLog(@"test_dispatchToMainQueueNeverExecuted: Started");
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on background queue");
+        NSLog(@"test_dispatchToMainQueueNeverExecuted: Now sleep(1)");
+        sleep(1);
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue");
             NSLog(@"SUCCESS!");
@@ -31,9 +33,10 @@ int main(int argc, const char * argv[])
         // [runLoop run];
         NSLog(@"Before runloop");
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-        while (![NSThread currentThread].isCancelled) {
-            [runLoop runMode:NSDefaultRunLoopMode beforeDate: [NSDate distantFuture]];
-        }
+        [runLoop run];
+        // while (![NSThread currentThread].isCancelled) {
+            // [runLoop runMode:NSDefaultRunLoopMode beforeDate: [NSDate distantFuture]];
+        // }
     }
 
     NSLog(@"bye!");
