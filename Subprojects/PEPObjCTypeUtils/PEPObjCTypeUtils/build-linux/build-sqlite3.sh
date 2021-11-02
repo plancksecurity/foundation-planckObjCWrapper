@@ -11,7 +11,7 @@ cd "${CURRENT_DIR}"
 if [ "${PREFIX}" = "" ]; then
     PREFIX=~/local
 fi
-mkdir -p "${PREFIX}"
+mkdir -p "${PREFIX}/include"
 cd "${PREFIX}"
     PREFIX=$(pwd)
 cd "${CURRENT_DIR}"
@@ -48,7 +48,7 @@ cd "${SRC_DIR}/${SQLITE_NAME}/"
     ar qf libsqlite3.a sqlite3.o
     ranlib libsqlite3.a
     mv libsqlite3.a "${PREFIX}/lib"
-    mv sqlite3.h "${PREFIX}/include"
+    cp sqlite3.h "${PREFIX}/include/"
 cd "${CURRENT_DIR}"
 
 rm -rf "${SRC_DIR}/${SQLITE_NAME}"
