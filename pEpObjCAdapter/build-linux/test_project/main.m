@@ -70,6 +70,18 @@ void request(void)
     NSLog(@"Received %lu bytes", (unsigned long) data.length);
 }
 
+void test_dispatchToMainQueueNeverExecuted() {
+    NSLog(@"test_dispatchToMainQueueNeverExecuted: Started");
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on background queue");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue");
+            NSLog(@"SUCCESS!");
+      });
+    });
+
+}
+
 void test_using_objc_adapter() {
     NSLog(@"Starting: test_using_objc_adapter");
     NSString *ownUserID = @"s_ownUserID";
@@ -131,7 +143,10 @@ int main(int argc, const char * argv[])
             // test_arc_dealloc();
             // test_stream_connection();
             // request();
-        test_using_objc_adapter();
+
+        //test_using_objc_adapter();
+        test_dispatchToMainQueueNeverExecuted()
+
         // NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
         // NSLog(@"runLoop: %@", runLoop);
         // [runLoop run];
