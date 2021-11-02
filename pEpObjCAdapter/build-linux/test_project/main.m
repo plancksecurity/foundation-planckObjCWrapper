@@ -11,12 +11,15 @@ void test_dispatchToMainQueueNeverExecuted() {
     NSLog(@"test_dispatchToMainQueueNeverExecuted: Started");
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on background queue");
-        NSLog(@"test_dispatchToMainQueueNeverExecuted: Now sleep(1)");
-        sleep(1);
+        // NSLog(@"test_dispatchToMainQueueNeverExecuted: Now sleep(1)");
+        // sleep(1);
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue");
-            NSLog(@"SUCCESS!");
-      });
+            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  ASYNC");
+        });
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSLog(@"test_dispatchToMainQueueNeverExecuted: I am on main queue -  SYNC");
+            NSLog(@"test_dispatchToMainQueueNeverExecuted: SUCCESS!");
+        });
     });
 
 }
