@@ -59,16 +59,6 @@ typedef NS_CLOSED_ENUM(NSInteger, PEPTransportStatusCode) {
     PEPTransportStatusCodeUnknownError = 0xFFFFFFFF
 };
 
-typedef NS_CLOSED_ENUM(int, PEPTransportCallbackExcecutionType) {
-    /// execute callbacks immediately only
-    PEPTransportCallbackExcecutionTypePolling = 0,
-    /// execute callbacks multiple times later on any thread; call with PEP_cbe_polling to disable
-    PEPTransportCallbackExcecutionTypeAsync,
-    /// the last one is for the transport system only. Do not implement it in transports.
-    /// Rephrase: DO NOT IMPLEMENT, IGNORE :-)
-    PEPTransportCallbackExcecutionTypeBlocking = 255
-};
-
 typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
     PEPDecryptFlagsNone = 0x0, // not actually defined in the engine
     PEPDecryptFlagsOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key
