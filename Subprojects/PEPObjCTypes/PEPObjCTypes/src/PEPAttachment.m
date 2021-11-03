@@ -23,8 +23,8 @@
 {
     NSMutableString *str =
     [NSMutableString
-     stringWithFormat:@"<PEPAttachment 0x%u %ld bytes, contentDisposition %d",
-     (uint) self, (long) self.size, self.contentDisposition];
+     stringWithFormat:@"<PEPAttachment 0x%ld %ld bytes, contentDisposition %d",
+     (long) self, (long) self.size, self.contentDisposition];
 
     if (self.mimeType) {
         [str appendFormat:@", %@", self.mimeType];
