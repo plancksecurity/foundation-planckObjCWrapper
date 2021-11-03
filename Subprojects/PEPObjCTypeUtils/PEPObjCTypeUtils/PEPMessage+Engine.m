@@ -211,7 +211,7 @@
     self.optionalFields = nil;
     self.keywords = nil;
     self.receivedBy = nil;
-    self.direction = PEP_dir_incoming; // basically, 0
+    self.direction = (PEPMsgDirection) PEP_dir_incoming; // basically, 0
 }
 
 @end
