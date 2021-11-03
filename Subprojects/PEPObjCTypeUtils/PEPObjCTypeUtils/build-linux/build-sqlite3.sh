@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SCRIPT_DIR=$(dirname "$0")
 PREFIX=$1
 SRC_DIR=$2

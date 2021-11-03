@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SCRIPT_DIR=$(dirname "$0")
 PREFIX=$1
 SRC_DIR=$2
@@ -56,7 +58,7 @@ cd "${SRC_DIR}/${ENGINE_NAME}/"
 
     SQLITE3_FROM_OS=""
 
-    YML2_PATH=$(HOME)/src/yml2
+    YML2_PATH=$(HOME)/local/bin/yml2
 
     ETPAN_LIB=-L$(PREFIX)/lib
     ETPAN_INC=-I$(PREFIX)/include
