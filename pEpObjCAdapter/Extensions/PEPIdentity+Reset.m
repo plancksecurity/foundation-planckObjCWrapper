@@ -16,7 +16,7 @@
 
 - (void)reset
 {
-    self.commType = PEP_ct_unknown;
+    self.commType = (PEPCommType) PEP_ct_unknown;
     self.language = nil;
     self.fingerPrint = nil;
     self.userID = @"";
