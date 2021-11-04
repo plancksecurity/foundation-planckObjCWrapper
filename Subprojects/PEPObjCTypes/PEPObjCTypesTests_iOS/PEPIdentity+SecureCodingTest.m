@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "PEPTypesTestUtil.h"
-#import "PEPIdentity+SecureCoding.h"
+#import "PEPIdentity.h"
 
 @interface PEPIdentity_SecureCodingTest : XCTestCase
 @end

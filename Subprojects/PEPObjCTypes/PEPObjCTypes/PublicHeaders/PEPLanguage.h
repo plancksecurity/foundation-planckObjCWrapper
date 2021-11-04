@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PEPLanguage : NSObject
+@interface PEPLanguage : NSObject <NSSecureCoding>
 
 - (instancetype _Nonnull)initWithCode:(NSString * _Nonnull)code
                                  name:(NSString * _Nonnull)name

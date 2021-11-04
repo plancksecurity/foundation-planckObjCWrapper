@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "PEPTypesTestUtil.h"
-#import "PEPAttachment+SecureCoding.h"
+#import "PEPAttachment.h"
 
 @interface PEPAttachment_SecureCodingTest : XCTestCase
 @end
