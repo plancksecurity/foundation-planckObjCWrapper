@@ -4,8 +4,7 @@ cd ${SCRIPT_DIR}
 SCRIPT_DIR=$(pwd)
 
 PEP_OBJC_TYPES_BUILD_LINUX_DIR="${SCRIPT_DIR}/../../../PEPObjCTypes/PEPObjCTypes/build-linux"
+
 cd ${PEP_OBJC_TYPES_BUILD_LINUX_DIR}
-
-make messages=yes shared=no
-
+	make install messages=yes shared=no
 cd ${CURRENT_DIR}

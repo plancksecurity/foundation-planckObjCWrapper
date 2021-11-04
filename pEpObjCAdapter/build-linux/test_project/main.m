@@ -153,7 +153,7 @@ int main(int argc, const char * argv[])
             // test_arc_dealloc();
             // test_stream_connection();
             // request();
-        test_dispatchToMainQueueNeverExecuted();
+        test_dispatchToMainQueueNeverExecuted();    
 
         test_using_objc_adapter();
         

@@ -33,7 +33,7 @@ mkdir -p "${LIB_DIR}"
 #############################
 #############################
 
-ENGINE_VERSION="ENGINE-953"
+ENGINE_VERSION="master"
 ENGINE_NAME="pEpEngine"
 
 # Exit on errors

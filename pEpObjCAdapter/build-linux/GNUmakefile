@@ -30,8 +30,7 @@ pEpObjCAdapter_RESOURCE_FILES =
 
 pEpObjCAdapter_LDFLAGS = -objc -ObjC ../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/build/libpEpObjCTypes.a ../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/build-linux/build/libpEpObjCTypeUtils.a ../../Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/build-linux/build/libpEpObjCAdapterProtocols.a
 
-#ADDITIONAL_OBJCFLAGS += -objc -ObjC
-ADDITIONAL_OBJCFLAGS += -objc -ObjC -include-pch obj/pEpObjCAdapter.obj/PrecompiledHeaders/ObjC/PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
+ADDITIONAL_OBJCFLAGS += -include-pch obj/pEpObjCAdapter.obj/PrecompiledHeaders/ObjC/PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
 ADDITIONAL_OBJC_LIBS = -ldispatch
 ADDITIONAL_FLAGS = -objc -ObjC -fobjc-runtime=gnustep-2.0 -fobjc-arc -fPIC -g -O0
 

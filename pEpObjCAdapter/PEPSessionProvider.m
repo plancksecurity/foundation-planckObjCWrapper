@@ -150,11 +150,10 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         configurationBlock();
     };
 
-
     if ([NSThread isMainThread]) {
         creationBlock();
     } else {
-        dispatch_async(dispatch_get_main_queue(), creationBlock);
+        dispatch_sync(dispatch_get_main_queue(), creationBlock);
     }
 }
 

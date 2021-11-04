@@ -29,7 +29,6 @@ ClientOfObjcAdapter_INCLUDE_DIRS = ${CLIENT_OF_OBJC_ADAPTER_HEADER_DIRS_PREFIXED
 # Use this and comment out ADDITIONAL_OBJCFLAGS to build PCH
 #ClientOfObjcAdapter_OBJC_FILES = MyClass.m
 ClientOfObjcAdapter_OBJC_FILES = main.m MyClass.m StreamRunLoop.m Connector.m HTTPClient.m 
-#../../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/PEPIdentity+Engine.m
 
 ClientOfObjcAdapter_RESOURCE_FILES =
 
@@ -38,9 +37,9 @@ ADDITIONAL_FLAGS += -fobjc-runtime=gnustep-2.0 -fobjc-arc
 
 ## Linking Libs - Take Care !! The Order *DOES* Matter
 ADDITIONAL_OBJC_LIBS = 	-ldispatch \
--l/home/user/projects/pEp/IPS-5_ObjCAdapter/pEpObjCAdapter/pEpObjCAdapter/build-linux/obj/libpEpObjCAdapter.a\
+-l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapter.a\
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapterProtocols.a \
--l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypeUtils.a -ObjC\
+-l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypeUtils.a\
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypes.a \
 -l${HOME}/local/lib/libpEpEngine.a \
 -luuid \
@@ -55,8 +54,6 @@ ADDITIONAL_OBJC_LIBS = 	-ldispatch \
 -l${HOME}/local/lib/libnettle.a \
 -l${HOME}/local/lib/libgmp.a
 
-
-# Commented due to GNUstep bug. ADDITIONAL_LDFLAGS are actually used by the compiler (instead of linker) which causes the compiler to be confused (lags ignored warning results)
-ADDITIONAL_LDFLAGS += -ObjC
+#ADDITIONAL_LDFLAGS += ...
 
 include $(GNUSTEP_MAKEFILES)/tool.make
