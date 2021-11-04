@@ -7,9 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPMessage+Engine.h"
-#import "PEPIdentity+Engine.h"
-#import "NSArray+Engine.h"
+#import "PEPObjCTypeConversionUtil.h"
+
+// Umbrella Header
 @interface PEPObjCTypeUtils : NSObject
 
 @end
