@@ -14,6 +14,7 @@
 #import "status_to_string.h"
 
 #import "PEPSessionProtocol.h"
+#import "NSError+PEPStatus.h"
 
 @implementation NSError (Extension)
 
@@ -66,18 +67,6 @@
     } else {
         return NO;
     }
-}
-
-/**
- Could in theory return a fully localized version of the underlying error.
- */
-NSString * _Nonnull localizedErrorStringFromPEPStatus(PEP_STATUS status) {
-    return stringFromPEPStatus(status);
-}
-
-NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status) {
-    const char *pstrStatus = pEp_status_to_string(status);
-    return [NSString stringWithUTF8String:pstrStatus];
 }
 
 - (NSString * _Nullable)pEpErrorString
