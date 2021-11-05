@@ -11,6 +11,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPTransportStatusCode.h"
+
 typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
 
     PEPCCTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
@@ -22,41 +24,6 @@ typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
     PEPCCTransportIDTransportCount,
 
     PEPCCTransportIDTransportCC = 0xfe
-};
-
-
-/// From https://dev.pep.foundation/Engine/TransportStatusCode
-typedef NS_CLOSED_ENUM(NSInteger, PEPTransportStatusCode) {
-    // General / Common
-    PEPTransportStatusCodeReady = 0x0, // not an error state
-    PEPTransportStatusCodeConnectionDown = 0x1, // sent by connection based transports
-    PEPTransportStatusCodeConnectionUp = 0x2, // not an error state; sent by connection based transports
-    PEPTransportStatusCodeConnectionSomeRecipientsUnreachable = 0x3, // message could not be delivered to all recipients
-    PEPTransportStatusCodeConnectionNoRecipientsReachable = 0x4, // message could not be delivered at all
-    PEPTransportStatusCodeConnectionNoConfig = 0x5,
-    PEPTransportStatusCodeConnectionInvalidConfig = 0x6, // config incomplete or wrong
-    PEPTransportStatusCodeNoSendConfig = 0x7,
-    PEPTransportStatusCodeNoRecvConfig = 0x8,
-    PEPTransportStatusCodeInvalidSendConfig = 0x9,
-    PEPTransportStatusCodeInvalidRecvConfig = 0xA,
-    PEPTransportStatusCodeNetworkTimeout = 0xB,
-    PEPTransportStatusCodeMessageDelivered = 0x100000, // not an error state
-    PEPTransportStatusCodeMessageOnTheWay = 0x100001, // not an error state
-    PEPTransportStatusCodeCouldNotDeliver_Resending = 0x100002, // not an error state
-    PEPTransportStatusCodeCouldNotDeliver_GivingUp = 0x100003,
-    // Email
-    PEPTransportStatusCodeEmailSMTPServerUnreachable = 0x1100001,
-    PEPTransportStatusCodeEmailSMTPUnknownError = 0x110FFFF,
-
-    PEPTransportStatusCodeEmailIMAPServerUnreachable = 0x01110001,
-    PEPTransportStatusCodeEmailIMAPUnknownError = 0x0111FFFF,
-    // RCE
-    PEPTransportStatusCodeRCETorrentWithoutSeeders = 0x02FF0001,
-    PEPTransportStatusCodeRCEUnknownTorrentError = 0x02FFFFFF,
-    // Control Channel
-    PEPTransportStatusCodePEPCCUnknownSCTPError = 0xFEFFFFFF,
-    // Misc. errors
-    PEPTransportStatusCodeUnknownError = 0xFFFFFFFF
 };
 
 typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
