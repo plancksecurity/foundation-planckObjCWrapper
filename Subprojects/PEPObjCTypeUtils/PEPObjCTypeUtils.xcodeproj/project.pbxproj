@@ -10,8 +10,8 @@
 		1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1598062A26CFCA0000593C9D /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1598060326CFC0C500593C9D /* libPEPObjCTypes_iOS.a */; };
-		15BD2FB32734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD2FB12734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h */; };
-		15BD2FB42734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD2FB12734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h */; };
+		15BD2FB32734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD2FB12734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		15BD2FB42734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD2FB12734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BD2FB52734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD2FB22734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m */; };
 		15BD2FB62734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD2FB22734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m */; };
 		4E89010726CF900B00A683E9 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */; };
@@ -490,8 +490,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/pEp",
-					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/",
 					"${PROJECT_DIR}/../PEPObjCTypes/build/include",
+					"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -548,8 +548,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/pEp",
-					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/",
 					"${PROJECT_DIR}/../PEPObjCTypes/build/include",
+					"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;

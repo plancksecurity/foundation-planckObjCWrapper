@@ -95,7 +95,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         *rating = PEPRatingUndefined;
     }
 
-    message *_src = [theMessage toStruct];
+    message *_src = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
     __block message *_dst = NULL;
     __block stringlist_t *theKeys = NULL;
     __block PEPDecryptFlags theFlags = 0;
@@ -105,7 +105,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     if (extraKeys && [*extraKeys count]) {
-        theKeys = [*extraKeys toStringList];
+        theKeys = [PEPObjCTypeConversionUtil arrayToStringList:*extraKeys];
     }
 
     __block PEPRating internalRating = PEPRatingUndefined;
@@ -135,17 +135,17 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     PEPMessage *dst_;
 
     if (_dst) {
-        dst_ = [PEPMessage fromStruct:_dst];
+        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_dst];
     } else {
-        dst_ = [PEPMessage fromStruct:_src];
+        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_src];
     }
 
     if (theFlags & PEP_decrypt_flag_untrusted_server) {
-        [theMessage overWriteFromStruct:_src];
+        [PEPObjCTypeConversionUtil overWritePEPMessageObject:theMessage withValuesFromStruct:_src];
     }
 
     if (extraKeys) {
-        *extraKeys = [NSArray arrayFromStringlist:theKeys];
+        *extraKeys = [PEPObjCTypeConversionUtil arrayFromStringlist:theKeys];
     }
 
     decryptMessageFree(_src, _dst, theKeys);
@@ -163,11 +163,11 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                    status:(PEPStatus * _Nullable)status
                     error:(NSError * _Nullable * _Nullable)error
 {
-    message *_src = [theMessage toStruct];
+    message *_src = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
 
     stringlist_t *theKeys = NULL;
     if ([xKeyList count]) {
-        theKeys = [xKeyList toStringList];
+        theKeys = [PEPObjCTypeConversionUtil arrayToStringList:xKeyList];
     }
 
     PEPRating originalRating = *rating;
@@ -208,9 +208,9 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     __block PEP_encrypt_flags_t flags = 0;
 
-    __block message *_src = [[messageCopy removeEmptyRecipients] toStruct];
+    __block message *_src = [PEPObjCTypeConversionUtil structFromPEPMessage:[PEPObjCTypeConversionUtil pEpMessageWithEmptyRecipientsRemovedFromPEPMessage:messageCopy]];
     __block message *_dst = NULL;
-    __block stringlist_t *_keys = [extraKeys toStringList];
+    __block stringlist_t *_keys = [PEPObjCTypeConversionUtil arrayToStringList:extraKeys];
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return encrypt_message(session,
@@ -232,10 +232,10 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     PEPMessage *dst_;
 
     if (_dst) {
-        dst_ = [PEPMessage fromStruct:_dst];
+        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_dst];
     }
     else {
-        dst_ = [PEPMessage fromStruct:_src];
+        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_src];
     }
 
     free_message(_src);
@@ -269,11 +269,11 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     __block PEP_encrypt_flags_t flags = 0;
 
-    __block message *_src = [[messageCopy removeEmptyRecipients] toStruct];
-    __block pEp_identity *ident = [ownIdentity toStruct];
+    __block message *_src = [PEPObjCTypeConversionUtil structFromPEPMessage:[PEPObjCTypeConversionUtil pEpMessageWithEmptyRecipientsRemovedFromPEPMessage:messageCopy]];
+    __block pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:ownIdentity];
     __block message *_dst = NULL;
 
-    __block stringlist_t *keysStringList = [extraKeys toStringList];
+    __block stringlist_t *keysStringList = [PEPObjCTypeConversionUtil arrayToStringList:extraKeys];
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return encrypt_message_for_self(session,
@@ -298,10 +298,10 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     PEPMessage *dst_;
 
     if (_dst) {
-        dst_ = [PEPMessage fromStruct:_dst];
+        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_dst];
     }
     else {
-        dst_ = [PEPMessage fromStruct:_src];
+        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_src];
     }
 
     free_message(_src);
@@ -321,7 +321,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     // Don't change the original
     PEPMessage *messageCopy = [[PEPMessage alloc] initWithMessage:theMessage];
 
-    message *src = [[messageCopy removeEmptyRecipients] toStruct];
+    message *src = [PEPObjCTypeConversionUtil structFromPEPMessage:[PEPObjCTypeConversionUtil pEpMessageWithEmptyRecipientsRemovedFromPEPMessage:messageCopy]];
     __block message *dst = NULL;
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
@@ -343,7 +343,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     if (dst) {
         // As long as dst is non-nil, the result is also non-nil
-        PEPMessage *result = [PEPMessage fromStruct:dst];
+        PEPMessage *result = [PEPObjCTypeConversionUtil pEpMessagefromStruct:dst];
         return result;
     }
 
@@ -353,7 +353,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error
 {
-    message *_msg = [theMessage toStruct];
+    message *_msg = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
     __block PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
@@ -372,7 +372,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 - (NSNumber * _Nullable)outgoingRatingPreviewForMessage:(PEPMessage * _Nonnull)theMessage
                                                   error:(NSError * _Nullable * _Nullable)error
 {
-    message *_msg = [theMessage toStruct];
+    message *_msg = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
     PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = (PEPStatus) outgoing_message_rating_preview(_session,
@@ -391,7 +391,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 - (NSNumber * _Nullable)ratingForIdentity:(PEPIdentity * _Nonnull)identity
                                     error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
     __block PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
@@ -447,7 +447,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (BOOL)mySelf:(PEPIdentity * _Nonnull)identity error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return myself(session, ident);
@@ -459,7 +459,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     [identity reset];
-    [identity overWriteFromStruct:ident];
+    [PEPObjCTypeConversionUtil overWritePEPIdentityObject:identity withValuesFromStruct:ident];
     free_identity(ident);
 
     return YES;
@@ -470,7 +470,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     if (identity.isOwn) {
         return [self mySelf:identity error:error];
     } else {
-        pEp_identity *ident = [identity toStruct];
+        pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
         PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
             return update_identity(session, ident);
@@ -482,7 +482,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         }
 
         [identity reset];
-        [identity overWriteFromStruct:ident];
+        [PEPObjCTypeConversionUtil overWritePEPIdentityObject:identity withValuesFromStruct:ident];
         free_identity(ident);
 
         return YES;
@@ -492,7 +492,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 - (BOOL)trustPersonalKey:(PEPIdentity * _Nonnull)identity
                    error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return trust_personal_key(session, ident);
@@ -510,7 +510,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (BOOL)keyMistrusted:(PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return key_mistrusted(session, ident);
@@ -529,7 +529,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 - (BOOL)keyResetTrust:(PEPIdentity * _Nonnull)identity
                 error:(NSError * _Nullable * _Nullable)error
 {
-    __block pEp_identity *ident = [identity toStruct];
+    __block pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return key_reset_trust(session, ident);
@@ -553,7 +553,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return NO;
     }
 
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return enable_identity_for_sync(session, ident);
@@ -577,7 +577,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return NO;
     }
 
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return disable_identity_for_sync(session, ident);
@@ -609,7 +609,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return nil;
     }
 
-    NSArray *idents = [NSArray arrayFromIdentityList:identList];
+    NSArray *idents = [PEPObjCTypeConversionUtil arrayFromIdentityList:identList];
     free(identList);
 
     return idents;
@@ -665,8 +665,8 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                           full:(BOOL)full
                                          error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident1 = [identity1 toStruct];
-    pEp_identity *ident2 = [identity2 toStruct];
+    pEp_identity *ident1 = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity1];
+    pEp_identity *ident2 = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity2];
 
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     __block size_t sizeWritten = 0;
@@ -814,7 +814,7 @@ static NSDictionary *stringToRating;
 - (NSNumber * _Nullable)isPEPUser:(PEPIdentity * _Nonnull)identity
                             error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
     __block bool isPEP;
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return is_pEp_user(session, ident, &isPEP);
@@ -832,7 +832,7 @@ static NSDictionary *stringToRating;
 - (BOOL)setOwnKey:(PEPIdentity * _Nonnull)identity fingerprint:(NSString * _Nonnull)fingerprint
             error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return set_own_key(session,
@@ -859,7 +859,7 @@ static NSDictionary *stringToRating;
      forIdentity:(PEPIdentity *)identity
            error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return set_identity_flags(session, ident, flags);
@@ -870,7 +870,7 @@ static NSDictionary *stringToRating;
         return NO;
     } else {
         [identity reset];
-        [identity overWriteFromStruct:ident];
+        [PEPObjCTypeConversionUtil overWritePEPIdentityObject:identity withValuesFromStruct:ident];
         free_identity(ident);
         return YES;
     }
@@ -883,7 +883,7 @@ static NSDictionary *stringToRating;
     identity_list *identitiesSharingData = NULL;
 
     if (identitiesSharing) {
-        identitiesSharingData = [identitiesSharing toIdentityList];
+        identitiesSharingData = [PEPObjCTypeConversionUtil arrayToIdentityList:identitiesSharing];
     }
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
@@ -904,7 +904,7 @@ static NSDictionary *stringToRating;
 - (BOOL)trustOwnKeyIdentity:(PEPIdentity * _Nonnull)identity
                       error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return trust_own_key(session, ident);
@@ -929,7 +929,7 @@ static NSDictionary *stringToRating;
      fingerprint:(NSString * _Nullable)fingerprint
            error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
     const char *fpr = [[fingerprint precomposedStringWithCanonicalMapping] UTF8String];
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {

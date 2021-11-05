@@ -211,6 +211,12 @@
     }
 }
 
++ (PEPMessage *)pEpMessageWithEmptyRecipientsRemovedFromPEPMessage:(PEPMessage *)pEpMessage
+{
+    [self removeEmptyRecipientsFromPEPMessage:pEpMessage];
+    return pEpMessage;
+}
+
 // MARK: - PRIVATE
 
 + (void)resetPEPMessage:(PEPMessage *)pEpMessage

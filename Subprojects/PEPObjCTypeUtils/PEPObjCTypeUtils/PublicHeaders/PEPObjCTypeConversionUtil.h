@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)removeEmptyRecipientsFromPEPMessage:(PEPMessage *)pEpMessage;
 
++ (PEPMessage *)pEpMessageWithEmptyRecipientsRemovedFromPEPMessage:(PEPMessage *)pEpMessage;
+
 // MARK: - PEPIdentity
 
 + (PEPIdentity * _Nullable)pEpIdentityfromStruct:(pEp_identity * _Nonnull)identityStruct;
