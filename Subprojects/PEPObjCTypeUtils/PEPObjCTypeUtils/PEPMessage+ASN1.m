@@ -22,6 +22,9 @@
     }
 
     message *msg = ASN1Message_to_message(asn1Message, NULL, YES, 0);
+
+    // TODO: Free ASN1Message_t *asn1Message (ENGINE-969)
+
     if (!msg) {
         return nil;
     }
@@ -42,6 +45,8 @@
     char *msgBytes = NULL;
     size_t msgBytesSze = 0;
     PEP_STATUS status = encode_ASN1Message_message(asn1Message, &msgBytes, &msgBytesSze);
+
+    // TODO: Free ASN1Message_t *asn1Message (ENGINE-969)
 
     if (status != PEP_STATUS_OK) {
         return nil;
