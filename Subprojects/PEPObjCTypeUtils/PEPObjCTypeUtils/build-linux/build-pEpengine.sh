@@ -47,7 +47,9 @@ fi
 EGNINE_DIR="${SRC_DIR}/${ENGINE_NAME}"
 if [ ! -d "${EGNINE_DIR}" ]; then
     cd "${SRC_DIR}"
-        git clone -b ${ENGINE_VERSION} https://gitea.pep.foundation/pEp.foundation/pEpEngine           
+        git clone -b ${ENGINE_VERSION} https://gitea.pep.foundation/buff/pEpEngine    
+        # cd pEpEngine
+        # git checkout cdb7070e8934bfbaa23ca93c563e2a01a6361774       
     cd "${CURRENT_DIR}"
 fi
 

@@ -81,42 +81,39 @@ void test_using_objc_adapter() {
                                                fingerPrint:nil
                                                   commType:PEPCommTypeUnknown
                                                   language:nil];
-
     PEPMessage *srcMsg = [PEPMessage new];
     srcMsg.from = me;
     srcMsg.to = @[me];
+    srcMsg.direction = PEPMsgDirectionOutgoing;
+    srcMsg.shortMessage = @"shortMessage";
+    srcMsg.longMessage = @"longMessage";
+    srcMsg.longMessageFormatted = @"longMessageFormatted";
 
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
-    NSLog(@"Go Background");
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{ // 0 == DISPATCH_QUEUE_PRORITY_DEFAULT
         NSLog(@"test_using_objc_adapter: call myself");
         PEPSession *session = [PEPSession new];
         [session mySelf:me errorCallback:^(NSError * _Nonnull error) {
             NSLog(@"Error: %@", error);
             dispatch_group_leave(group);
         } successCallback:^(PEPIdentity * _Nonnull identity) {
-            // PEPSession *session = [PEPSession new];
-            // [session encryptMessage:srcMsg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
-            //     NSLog(@"Error: %@", error);
-            //     dispatch_group_leave(group);
-            // } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
-            //     NSLog(@"Success!");
-            //     NSLog(@"Encrypted message: %@", destMessage);
-            //     NSLog(@"Original message: %@", srcMessage);
-
-            //     NSLog(@"Finnished_using_objc_adapter");
-            //     dispatch_group_leave(group);
-            // }];
-
-            dispatch_group_leave(group);
+            PEPSession *session = [PEPSession new];
+            [session encryptMessage:srcMsg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
+                NSLog(@"Error encryptMessage: %@", error);
+                dispatch_group_leave(group);
+            } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
+                NSLog(@"Encrypted message: %@", destMessage);
+                NSLog(@"Original message: %@", srcMessage);
+                dispatch_group_leave(group);
+            }];    
         }];
     });
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        NSLog(@"Done");
+        NSLog(@"test_using_objc_adapter: Done");
     });
-    // dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-    NSLog(@"test_using_objc_adapter: waitng for adapter to return");
+    NSLog(@"test_using_objc_adapter: waiting for adapter to return");
 }
 
 void test_dispatchToMainQueueNeverExecuted() {
@@ -147,18 +144,16 @@ int main(int argc, const char * argv[])
 {
     @autoreleasepool {
         NSLog(@"main");
-            // s_myClass = [[MyClass alloc] initWithName:@"static"];
-            // s_myClass = nil;
+        s_myClass = [[MyClass alloc] initWithName:@"static"];
+        s_myClass = nil;
 
-            // test_arc_dealloc();
-            // test_stream_connection();
-            // request();
+        test_arc_dealloc();
+        test_stream_connection();
+        request();
         test_dispatchToMainQueueNeverExecuted();    
-
         test_using_objc_adapter();
         
-
-        NSLog(@"Before runloop");
+        NSLog(@"Entering runloop");
         NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
         [runLoop run];
     }

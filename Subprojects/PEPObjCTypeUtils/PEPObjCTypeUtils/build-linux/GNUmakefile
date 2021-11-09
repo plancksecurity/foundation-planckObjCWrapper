@@ -7,13 +7,15 @@
 # Include the common variables defined by the Makefile Package
 include $(GNUSTEP_MAKEFILES)/common.make
 
-# Build Dependencies ...
-SHELL_RESULT := $(shell ./build-PEPObjCTypes.sh)
-SHELL_RESULT := $(shell ./build-gmp.sh)
-SHELL_RESULT := $(shell ./build-nettle.sh)
+# # Build Dependencies ...
+# SHELL_RESULT := $(shell ./build-PEPObjCTypes.sh)
+# SHELL_RESULT := $(shell ./build-gmp.sh)
+# SHELL_RESULT := $(shell ./build-nettle.sh)
 
 # Build pre-compiled prefix header
 #SHELL_RESULT := $(shell ../../../PEPObjCTypes/PEPObjCTypes/build-linux/prepare.sh)
+
+pEpObjCTypeUtils_OBJC_PRECOMPILED_HEADERS = PEPObjCGNUStepOptimizations.h
 
 # Finds all dirs containing headers and prefixes with "-I"
 ALL_LOCAL_INCLUDE_HEADER_DIRS_PREFIXED := $(shell find ~/local/include/ -type d | sed -e 's/^/-I/;')
@@ -25,7 +27,7 @@ ALL_DOT_M_FILES := $(shell find ../ -maxdepth 1 -type f -name "*.m")
 pEpObjCTypeUtils_OBJC_FILES = ${ALL_DOT_M_FILES}
 pEpObjCTypeUtils_RESOURCE_FILES =
 
-ADDITIONAL_OBJCFLAGS += -include-pch PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
+ADDITIONAL_OBJCFLAGS += -include-pch obj/pEpObjCTypeUtils.obj/PrecompiledHeaders/ObjC/PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
 ADDITIONAL_OBJC_LIBS = -ldispatch
 ADDITIONAL_FLAGS = -fobjc-runtime=gnustep-2.0 -fobjc-arc -fPIC
 

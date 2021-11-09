@@ -37,7 +37,7 @@ ADDITIONAL_FLAGS += -fobjc-runtime=gnustep-2.0 -fobjc-arc
 
 ## Linking Libs - Take Care !! The Order *DOES* Matter
 ADDITIONAL_OBJC_LIBS = 	-ldispatch \
--l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapter.a\
+-l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapter.so \
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapterProtocols.a \
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypeUtils.a\
 -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCTypes.a \
@@ -54,6 +54,8 @@ ADDITIONAL_OBJC_LIBS = 	-ldispatch \
 -l${HOME}/local/lib/libnettle.a \
 -l${HOME}/local/lib/libgmp.a
 
-#ADDITIONAL_LDFLAGS += ...
+# -l/usr/GNUstep/Local/Library/Libraries/libpEpObjCAdapter.a\
+
+ADDITIONAL_LDFLAGS += -L/usr/GNUstep/Local/Library/Libraries
 
 include $(GNUSTEP_MAKEFILES)/tool.make

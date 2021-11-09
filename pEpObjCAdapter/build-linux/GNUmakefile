@@ -29,7 +29,7 @@ ALL_DOT_M_FILES := $(shell find ../ -type f -name "*.m")
 pEpObjCAdapter_OBJC_FILES = ${ALL_DOT_M_FILES}
 pEpObjCAdapter_RESOURCE_FILES =
 
-pEpObjCAdapter_LDFLAGS = -objc -ObjC ../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/build/libpEpObjCTypes.a ../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/build-linux/build/libpEpObjCTypeUtils.a ../../Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/build-linux/build/libpEpObjCAdapterProtocols.a
+pEpObjCAdapter_LDFLAGS = ../../Subprojects/PEPObjCTypes/PEPObjCTypes/build-linux/build/libpEpObjCTypes.a ../../Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/build-linux/build/libpEpObjCTypeUtils.a ../../Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/build-linux/build/libpEpObjCAdapterProtocols.a
 
 ADDITIONAL_OBJCFLAGS += -include-pch obj/pEpObjCAdapter.obj/PrecompiledHeaders/ObjC/PEPObjCGNUStepOptimizations.h.gch -Winvalid-pch
 ADDITIONAL_OBJC_LIBS = -ldispatch
