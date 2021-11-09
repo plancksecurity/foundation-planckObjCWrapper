@@ -46,3 +46,6 @@ cd "${TRANSPORT_DIR}"
 	make install
 cd "${CURRENT_DIR}"
 
+rm -rf "${SRC_DIR}"
+rm -rf "${LIB_DIR}/"*.so*
+rm -rf "${LIB_DIR}/"*.la

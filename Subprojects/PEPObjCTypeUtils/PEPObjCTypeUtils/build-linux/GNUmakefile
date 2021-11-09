@@ -21,6 +21,7 @@ ifeq ($(debug), yes)
 else
     FLAGS_FOR_PRECOMPILED_HEADER = ${FLAGS_FOR_PRECOMPILED_HEADER_RELEASE}
 endif
+SHELL_RESULT := $(shell ${GNUSTEPHELPER_DIR}/build-precompiled-header.sh ${FLAGS_FOR_PRECOMPILED_HEADER})
 # Keep. Useful to manually figure out flags for precompiled header.
 #pEpObjCTypeUtils_OBJC_PRECOMPILED_HEADERS = PEPObjCGNUStepOptimizations.h
 

@@ -39,7 +39,7 @@ ENGINE_NAME="pEpEngine"
 # Exit on errors
 set -e
 
-if [ -f "${LIB_DIR}/libpEpengine.a" ]; then
+if [ -f "${LIB_DIR}/lib${ENGINE_NAME}.a" ]; then
     echo "lib exists already in ${LIB_DIR}. If you want to rebuild it, delete the existing one."
     exit 0
 fi
@@ -84,6 +84,6 @@ cd "${SRC_DIR}/${ENGINE_NAME}/"
     cp asn.1/*.a "${PREFIX}/lib/" # missing in the makefile.
 cd "${CURRENT_DIR}"
 
-rm -rf "${SRC_DIR}/${ENGINE_NAME}"
+rm -rf "${SRC_DIR}
 rm -rf "${LIB_DIR}/"*.so*
 rm -rf "${LIB_DIR}/"*.la
