@@ -17,8 +17,8 @@
 		1598067B26CFE9CF00593C9D /* PEPTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = 1598067826CFE9CF00593C9D /* PEPTransport.m */; };
 		1598067C26CFE9CF00593C9D /* PEPTransportConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1598067926CFE9CF00593C9D /* PEPTransportConfig.m */; };
 		1598067D26CFE9CF00593C9D /* PEPTransportConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1598067926CFE9CF00593C9D /* PEPTransportConfig.m */; };
-		438EB957273AAFC40023E81D /* PEPTransportStatusCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 438EB956273AAFC40023E81D /* PEPTransportStatusCode.h */; };
-		438EB958273AAFC40023E81D /* PEPTransportStatusCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 438EB956273AAFC40023E81D /* PEPTransportStatusCode.h */; };
+		438EB957273AAFC40023E81D /* PEPTransportStatusCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 438EB956273AAFC40023E81D /* PEPTransportStatusCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		438EB958273AAFC40023E81D /* PEPTransportStatusCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 438EB956273AAFC40023E81D /* PEPTransportStatusCode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43D44C822685BB3600638D1C /* PEPObjCTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* module.modulemap */; platformFilter = ios; };
 		4E57585B268329170084F02D /* PEPObjCTypes_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
