@@ -559,7 +559,6 @@
 					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/",
 					"${PROJECT_DIR}/../PEPObjCTypes/build/include",
 					"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include",
-					"$(PROJECT_DIR)/../../../libpEpTransport/build-mac/build/include/pEp/",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -619,7 +618,6 @@
 					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/",
 					"${PROJECT_DIR}/../PEPObjCTypes/build/include",
 					"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include",
-					"$(PROJECT_DIR)/../../../libpEpTransport/build-mac/build/include/pEp/",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
