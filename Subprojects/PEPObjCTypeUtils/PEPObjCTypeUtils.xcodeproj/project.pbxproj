@@ -29,6 +29,7 @@
 		159806B226CFF14600593C9D /* PEPTransport+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 159806AE26CFF14600593C9D /* PEPTransport+Engine.m */; };
 		438EB9D4273BCE940023E81D /* libPEPObjCTypeUtils_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EA7C26984C4300B822E1 /* libPEPObjCTypeUtils_macOS.a */; };
 		438EB9DF273BCF0E0023E81D /* PEPMessageASN1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 438EB9DE273BCF0E0023E81D /* PEPMessageASN1Tests.m */; };
+		438EBA1F273BE6CC0023E81D /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EC93269C51EC00B822E1 /* libpEpEngine_macOS.a */; };
 		43FC2BED27393919004013DE /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FC2BE827393919004013DE /* PEPMessage+ASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43FC2BEE27393919004013DE /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FC2BE827393919004013DE /* PEPMessage+ASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43FC2BF027393959004013DE /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FC2BEF27393959004013DE /* PEPMessage+ASN1.m */; };
@@ -179,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				438EBA1F273BE6CC0023E81D /* libpEpEngine_macOS.a in Frameworks */,
 				438EB9D4273BCE940023E81D /* libPEPObjCTypeUtils_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
