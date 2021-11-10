@@ -770,6 +770,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "security.pEp.PEPObjCTypeUtilsTests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -788,6 +789,7 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "security.pEp.PEPObjCTypeUtilsTests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
