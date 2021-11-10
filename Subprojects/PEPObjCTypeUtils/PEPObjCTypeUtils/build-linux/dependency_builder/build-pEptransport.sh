@@ -16,9 +16,8 @@ mkdir -p "${PREFIX}"
 cd "${PREFIX}"
     PREFIX=$(pwd)
 cd "${CURRENT_DIR}"
-if [ "${SRC_DIR}" = "" ]; then
-    SRC_DIR=~/src
-fi
+
+SRC_DIR=~/src
 mkdir -p "${SRC_DIR}"
 cd "${SRC_DIR}"
     SRC_DIR=$(pwd)
@@ -46,6 +45,5 @@ cd "${TRANSPORT_DIR}"
 	make install
 cd "${CURRENT_DIR}"
 
-rm -rf "${SRC_DIR}"
 rm -rf "${LIB_DIR}/"*.so*
 rm -rf "${LIB_DIR}/"*.la
