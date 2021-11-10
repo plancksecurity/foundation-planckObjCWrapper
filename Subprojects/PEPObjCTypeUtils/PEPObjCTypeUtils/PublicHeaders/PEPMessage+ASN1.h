@@ -25,8 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return The asn.1 encoded message bytes, or nil if encoding didn't work, and maybe on insufficient memory.
 - (NSData * _Nullable)asn1Data;
 
-// TODO: Engine test case. Remove this.
-BOOL testCaseAsnEncodeMessageAttachment(void);
+// TODO: Engine test case. Re-enable with ENGINE-970 having been fixed, verify, and then remove.
+//BOOL testCaseAsnEncodeMessageAttachment(void);
 
 @end
 
