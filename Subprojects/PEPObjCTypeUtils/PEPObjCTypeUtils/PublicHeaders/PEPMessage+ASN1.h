@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSData * _Nullable)asn1Data;
 
 // TODO: Engine test case. Re-enable with ENGINE-970 having been fixed, verify, and then remove.
-//BOOL testCaseAsnEncodeMessageAttachment(void);
+BOOL testCaseAsnEncodeMessageAttachment(void);
 
 @end
 
