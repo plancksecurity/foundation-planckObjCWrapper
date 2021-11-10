@@ -29,6 +29,7 @@
 		159806B226CFF14600593C9D /* PEPTransport+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 159806AE26CFF14600593C9D /* PEPTransport+Engine.m */; };
 		438EB9D2273BCE940023E81D /* PEPObjCTypeUtilsTests_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 438EB9D1273BCE940023E81D /* PEPObjCTypeUtilsTests_macOS.m */; };
 		438EB9D4273BCE940023E81D /* libPEPObjCTypeUtils_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EA7C26984C4300B822E1 /* libPEPObjCTypeUtils_macOS.a */; };
+		438EB9DF273BCF0E0023E81D /* PEPMessageASN1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 438EB9DE273BCF0E0023E81D /* PEPMessageASN1Tests.m */; };
 		43FC2BED27393919004013DE /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FC2BE827393919004013DE /* PEPMessage+ASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43FC2BEE27393919004013DE /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43FC2BE827393919004013DE /* PEPMessage+ASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43FC2BF027393959004013DE /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 43FC2BEF27393959004013DE /* PEPMessage+ASN1.m */; };
@@ -151,6 +152,7 @@
 		438EB9CF273BCE940023E81D /* PEPObjCTypeUtilsTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypeUtilsTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		438EB9D1273BCE940023E81D /* PEPObjCTypeUtilsTests_macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCTypeUtilsTests_macOS.m; sourceTree = "<group>"; };
 		438EB9D3273BCE940023E81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		438EB9DE273BCF0E0023E81D /* PEPMessageASN1Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMessageASN1Tests.m; sourceTree = "<group>"; };
 		43FC2BE827393919004013DE /* PEPMessage+ASN1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+ASN1.h"; sourceTree = "<group>"; };
 		43FC2BEF27393959004013DE /* PEPMessage+ASN1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+ASN1.m"; sourceTree = "<group>"; };
 		4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +270,7 @@
 		438EB9D0273BCE940023E81D /* PEPObjCTypeUtilsTests_macOS */ = {
 			isa = PBXGroup;
 			children = (
+				438EB9DE273BCF0E0023E81D /* PEPMessageASN1Tests.m */,
 				438EB9D1273BCE940023E81D /* PEPObjCTypeUtilsTests_macOS.m */,
 				438EB9D3273BCE940023E81D /* Info.plist */,
 			);
@@ -544,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				438EB9DF273BCF0E0023E81D /* PEPMessageASN1Tests.m in Sources */,
 				438EB9D2273BCE940023E81D /* PEPObjCTypeUtilsTests_macOS.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
