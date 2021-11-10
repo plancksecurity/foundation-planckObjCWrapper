@@ -148,12 +148,10 @@
 }
 
  // TODO: Engine test case. Re-enable with ENGINE-970 having been fixed, verify, and then remove.
-/*
 - (void)testCaseAsnEncodeMessageAttachment
 {
     XCTAssertTrue(testCaseAsnEncodeMessageAttachment());
 }
- */
 
 #pragma mark - Private Helpers
 
