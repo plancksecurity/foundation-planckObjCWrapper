@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// The message serialized to bytes, via asn.1.
 ///
-/// @note All `PEPIdentities` must have a fingerprint, or the encoding will fail.
 /// @return The asn.1 encoded message bytes, or nil if encoding didn't work, and maybe on insufficient memory.
 - (NSData * _Nullable)asn1Data;
 
