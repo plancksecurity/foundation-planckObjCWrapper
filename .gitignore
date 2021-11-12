@@ -1,4 +1,17 @@
-### Objective-C ###
+##GNUstep
+
+### Pre Compiled Headers
+*.d
+*.gch
+*.pch
+
+### Artefacts
+*.so*
+
+###
+obj/
+
+## Objective-C ##
 # Xcode
 
 ## Build generated

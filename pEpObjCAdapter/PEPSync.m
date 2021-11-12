@@ -8,6 +8,8 @@
 
 #import "pEpEngine.h"
 
+#import <PEPObjCTypeUtils.h>
+
 #import "PEPSync.h"
 #import "PEPSync_Internal.h"
 
@@ -24,8 +26,8 @@
 #import "PEPPassphraseCache.h"
 #import "PEPPassphraseUtil.h"
 #import "Logger.h"
-#import "PEPIdentity+Engine.h"
-#import "PEPMessage+Engine.h"
+#import <PEPIdentity.h>
+#import "PEPMessage.h"
 
 // MARK: - Internals
 
@@ -319,7 +321,7 @@ static __weak PEPSync *s_pEpSync;
         }
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
-            PEPMessage *theMessage = [PEPMessage fromStruct:msg];
+            PEPMessage *theMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
             return (PEP_STATUS)  [self.sendMessageDelegate sendMessage:theMessage];
         } else {
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
@@ -379,8 +381,8 @@ static __weak PEPSync *s_pEpSync;
                        signal:(sync_handshake_signal)signal
 {
     if (self.notifyHandshakeDelegate) {
-        PEPIdentity *meIdentity = [PEPIdentity fromStruct:me];
-        PEPIdentity *partnerIdentity = partner != nil ? [PEPIdentity fromStruct:partner] : nil;
+        PEPIdentity *meIdentity = [PEPObjCTypeConversionUtil pEpIdentityfromStruct:me];
+        PEPIdentity *partnerIdentity = partner != nil ? [PEPObjCTypeConversionUtil pEpIdentityfromStruct:partner] : nil;
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity
@@ -412,7 +414,7 @@ static __weak PEPSync *s_pEpSync;
 }
 
 - (void)nextCallMustWait {
-    @synchronized (self.blockmessageToSendGroup) {
+    @synchronized (self.lockObjectBlockmessageToSendGroupChanges) {
         if (!self.blockmessageToSendGroup) {
             self.blockmessageToSendGroup = dispatch_group_create();
         }
@@ -421,10 +423,10 @@ static __weak PEPSync *s_pEpSync;
 }
 
 - (void)stopWaiting {
-    @synchronized (self.blockmessageToSendGroup) {
+    @synchronized (self.lockObjectBlockmessageToSendGroupChanges) {
         if (self.blockmessageToSendGroup) {
             dispatch_group_leave(self.blockmessageToSendGroup);
-            self.blockmessageToSendGroup = nil;
+            self.blockmessageToSendGroup = NULL;
         }
     }
 }

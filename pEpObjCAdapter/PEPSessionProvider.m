@@ -150,7 +150,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         configurationBlock();
     };
 
-
     if ([NSThread isMainThread]) {
         creationBlock();
     } else {

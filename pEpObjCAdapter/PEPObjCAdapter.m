@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 #ifdef IS_IOS_BUILD
 #import <pEp4iosIntern/pEp4iosIntern.h>

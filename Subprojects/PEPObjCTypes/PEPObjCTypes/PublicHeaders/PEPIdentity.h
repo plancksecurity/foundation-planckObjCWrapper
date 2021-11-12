@@ -12,7 +12,7 @@
 
 @class PEPSession;
 
-@interface PEPIdentity : NSObject <NSMutableCopying>
+@interface PEPIdentity : NSObject <NSMutableCopying, NSSecureCoding>
 
 /**
  The network address of this identity

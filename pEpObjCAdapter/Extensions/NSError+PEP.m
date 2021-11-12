@@ -7,6 +7,7 @@
 //
 
 #import "PEPTypes.h"
+#import <PEPObjCTypeUtils.h>
 
 #import "NSError+PEP.h"
 #import "NSError+PEP+Internal.h"
@@ -14,7 +15,6 @@
 #import "status_to_string.h"
 
 #import "PEPSessionProtocol.h"
-#import "NSError+PEPStatus.h"
 
 @implementation NSError (Extension)
 

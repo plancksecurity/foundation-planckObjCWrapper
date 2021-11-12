@@ -8,12 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPMessage+SecureCoding.h"
-
+#import "PEPMessage.h"
 #import "PEPTypesTestUtil.h"
 #import "PEPIdentity.h"
 #import "PEPAttachment.h"
-#import "NSObject+Extension.h"
+#import "PEPEqualableTools.h"
 
 @interface PEPMessage_SecureCodingTest : XCTestCase
 @end
@@ -180,7 +179,7 @@
 - (BOOL)isEqualToPEPAttachment:(PEPAttachment * _Nonnull)attachment {
     NSArray *s_keys = @[@"data", @"size", @"mimeType", @"filename", @"contentDisposition"];
 
-    return [self isEqualToObject:attachment basedOnKeys:s_keys];
+    return [PEPEqualableTools object:self isEqualTo:attachment basedOnKeys:s_keys];
 }
 
 - (BOOL)isEqual:(id)object {

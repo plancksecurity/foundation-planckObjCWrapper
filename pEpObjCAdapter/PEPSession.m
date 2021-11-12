@@ -24,9 +24,7 @@ static dispatch_queue_t queue;
 + (void)initialize
 {
     if (self == [PEPSession class]) {
-        dispatch_queue_attr_t attr = DISPATCH_QUEUE_SERIAL;
-        attr = dispatch_queue_attr_make_with_qos_class(attr, QOS_CLASS_USER_INITIATED, -1);
-        queue = dispatch_queue_create("PEPAsyncSession.queue", attr);
+        queue = dispatch_queue_create("security.pep.PEPAsyncSession.queue", DISPATCH_QUEUE_SERIAL);
     }
 }
 
