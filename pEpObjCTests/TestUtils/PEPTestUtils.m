@@ -71,7 +71,8 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
     if (!txtFileContents) {
         return NO;
     } else {
-        return [session importKey:txtFileContents error:nil];
+        NSArray<PEPIdentity *> *identities = [session importKey:txtFileContents error:nil];
+        return ([identities count] > 0);
     }
 }
 
