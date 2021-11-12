@@ -29,7 +29,7 @@ git clone https://gitea.pep.foundation/pep.foundation/pEpObjCAdapter.git
 
 ```
 cd pEpObjCAdapter/pEpObjCAdapter/build-linux
-make install messages=yes [shared=no] debug=[yes|no]
+make install messages=yes shared=yes debug=yes
 ```
 
 ## Known Issues
