@@ -6,8 +6,6 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #import "PEPPassphraseProviderProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
