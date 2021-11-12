@@ -219,9 +219,6 @@
 		43F29512273E7BE0009611F8 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
 		43F29513273E7BE0009611F8 /* PEPPassphraseCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */; };
 		43F29514273E7BE0009611F8 /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
-		43F29516273E7BE0009611F8 /* libPEPObjCAdapter_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1543DC66257943CE0041EFB5 /* libPEPObjCAdapter_iOS.a */; platformFilter = ios; };
-		43F29517273E7BE0009611F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; platformFilter = ios; };
-		43F29518273E7BE0009611F8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABB1B57F97E00377032 /* CFNetwork.framework */; platformFilter = ios; };
 		43F2951A273E7BE0009611F8 /* partner2_F9D9CCD0A401311F_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D11C884C5F00DDF874 /* partner2_F9D9CCD0A401311F_pub.asc */; };
 		43F2951B273E7BE0009611F8 /* system.db in Resources */ = {isa = PBXBuildFile; fileRef = 15921D87261CB474003346B7 /* system.db */; };
 		43F2951C273E7BE0009611F8 /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
@@ -243,6 +240,7 @@
 		43F2952C273E7BE0009611F8 /* 6FF00E97.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E421BEA523300F6CBB2 /* 6FF00E97.asc */; };
 		43F2952D273E7BE0009611F8 /* pEpTrustWords.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 64AE6B211BE15E3A000867E4 /* pEpTrustWords.bundle */; };
 		43F2952E273E7BE0009611F8 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
+		43F2958B273E8A8D009611F8 /* libPEPObjCAdapter_4ipsec_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C3089226E8B5030013F39F /* libPEPObjCAdapter_4ipsec_macOS.a */; };
 		4E51BFA726CBC685007A2164 /* libPEPToolbox_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E51BFA626CBC685007A2164 /* libPEPToolbox_macOS.a */; };
 		4E57581226821A760084F02D /* libPEPObjCAdapterProtocols_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E23E6F62681C8AF00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
@@ -575,9 +573,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43F29516273E7BE0009611F8 /* libPEPObjCAdapter_iOS.a in Frameworks */,
-				43F29517273E7BE0009611F8 /* Security.framework in Frameworks */,
-				43F29518273E7BE0009611F8 /* CFNetwork.framework in Frameworks */,
+				43F2958B273E8A8D009611F8 /* libPEPObjCAdapter_4ipsec_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
