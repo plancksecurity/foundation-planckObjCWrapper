@@ -33,7 +33,7 @@ void test_using_objc_adapter() {
     dispatch_group_enter(group);
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{ // 0 == DISPATCH_QUEUE_PRORITY_DEFAULT
-        NSLog(@"test_using_objc_adapter: call myself");
+        NSLog(@"test_using_objc_adapter: ### call myself ###");
         PEPSession *session = [PEPSession new];
         [session mySelf:me errorCallback:^(NSError * _Nonnull error) {
             NSLog(@"Error: %@", error);
@@ -41,14 +41,36 @@ void test_using_objc_adapter() {
         } successCallback:^(PEPIdentity * _Nonnull identity) {
 
             PEPSession *session = [PEPSession new];
-            NSLog(@"test_using_objc_adapter: encryptMessage");
+            NSLog(@"test_using_objc_adapter: ### encryptMessage ###");
             [session encryptMessage:srcMsg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
                 NSLog(@"test_using_objc_adapter: Error encryptMessage: %@", error);
                 dispatch_group_leave(group);
             } successCallback:^(PEPMessage * _Nonnull srcMessage, PEPMessage * _Nonnull destMessage) {
                 NSLog(@"test_using_objc_adapter: Encrypted message: %@", destMessage);
                 NSLog(@"test_using_objc_adapter: Original message: %@", srcMessage);
-                dispatch_group_leave(group);
+
+                PEPMessage *encryptedMsg = destMessage;
+                PEPRating rating = PEPRatingUndefined;
+                PEPStringList *keys = nil;
+                NSLog(@"test_using_objc_adapter: ### decryptMessage ###");
+                [session decryptMessage:destMessage flags:NULL extraKeys:keys errorCallback:^(NSError * _Nonnull error) {
+                    NSLog(@"test_using_objc_adapter: Error decryptMessage: %@", error);
+                    dispatch_group_leave(group);
+                } successCallback:^(PEPMessage *decryptSrcMessage, 
+                                    PEPMessage *decryptDstMessage, 
+                                    PEPStringList *keyList, 
+                                    PEPRating rating, 
+                                    PEPDecryptFlags flags,
+                                    BOOL isFormerlyEncryptedReuploadedMessage) {
+                    NSLog(@"test_using_objc_adapter: Decrypted message: %@", decryptDstMessage);
+                    NSLog(@"test_using_objc_adapter: keyList: %@", keyList);
+                    NSLog(@"test_using_objc_adapter: rating: %d", rating);
+                    NSLog(@"test_using_objc_adapter: keyList: %d", flags);
+                    NSLog(@"test_using_objc_adapter: isFormerlyEncryptedReuploadedMessage: %d", isFormerlyEncryptedReuploadedMessage);
+
+                    dispatch_group_leave(group);
+                }];
+
             }];   
 
         }];
