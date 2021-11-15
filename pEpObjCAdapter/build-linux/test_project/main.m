@@ -41,6 +41,7 @@ void test_using_objc_adapter() {
         } successCallback:^(PEPIdentity * _Nonnull identity) {
 
             PEPSession *session = [PEPSession new];
+            NSLog(@"test_using_objc_adapter: encryptMessage");
             [session encryptMessage:srcMsg extraKeys:nil errorCallback:^(NSError * _Nonnull error) {
                 NSLog(@"test_using_objc_adapter: Error encryptMessage: %@", error);
                 dispatch_group_leave(group);
