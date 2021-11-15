@@ -77,6 +77,7 @@
 
 #pragma mark - API
 
+///!!!: this is _not_ API. Move or rm mark.
 void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     free_message(src);
