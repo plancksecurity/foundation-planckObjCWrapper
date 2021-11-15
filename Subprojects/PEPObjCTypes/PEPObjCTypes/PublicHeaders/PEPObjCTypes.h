@@ -13,6 +13,7 @@
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPIdentity.h"
+#import "PEPErrors.h"
 
 @interface PEPObjCTypes : NSObject
 

@@ -18,7 +18,6 @@
 #import "NSArray+Take.h"
 #import "PEPIdentity.h"
 #import "PEPMessage.h"
-#import "NSError+PEP+Internal.h"
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
 #import "PEPSync.h"
@@ -124,7 +123,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         decryptMessageFree(_src, _dst, theKeys);
         return nil;
     }
@@ -191,7 +190,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         return YES;
@@ -226,7 +225,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         return nil;
     }
 
@@ -292,7 +291,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         return nil;
     }
 
@@ -338,7 +337,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         *status = theStatus;
     }
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         return nil;
     }
 
@@ -363,7 +362,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     free_message(_msg);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return nil;
     }
 
@@ -382,7 +381,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     free_message(_msg);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return nil;
     }
 
@@ -401,7 +400,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return nil;
     }
 
@@ -436,7 +435,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                              &size);
         }];
 
-        if ([NSError setError:error fromPEPStatus:status]) {
+        if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
             return nil;
         }
 
@@ -454,7 +453,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return myself(session, ident);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free_identity(ident);
         return NO;
     }
@@ -477,7 +476,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
             return update_identity(session, ident);
         }];
 
-        if ([NSError setError:error fromPEPStatus:status]) {
+        if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
             free_identity(ident);
             return NO;
         }
@@ -499,7 +498,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return trust_personal_key(session, ident);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free_identity(ident);
         return NO;
     }
@@ -517,7 +516,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return key_mistrusted(session, ident);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free_identity(ident);
         return NO;
     }
@@ -536,7 +535,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return key_reset_trust(session, ident);
     }];
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         free_identity(ident);
         return NO;
     }
@@ -550,7 +549,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                         error:(NSError * _Nullable * _Nullable)error
 {
     if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
         return NO;
     }
 
@@ -560,7 +559,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return enable_identity_for_sync(session, ident);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free_identity(ident);
         return NO;
     }
@@ -574,7 +573,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                          error:(NSError * _Nullable * _Nullable)error
 {
     if (!identity.isOwn) {
-        [NSError setError:error fromPEPStatus:PEPStatusIllegalValue];
+        [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
         return NO;
     }
 
@@ -584,7 +583,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return disable_identity_for_sync(session, ident);
     }];
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         free_identity(ident);
         return NO;
     }
@@ -605,7 +604,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                           [keydata length], &identList);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free(identList);
         return nil;
     }
@@ -634,7 +633,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                           UTF8String]);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return NO;
     } else {
         return YES;
@@ -648,14 +647,14 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return get_crashdump_log(session, 0, &theChars);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return nil;
     }
 
     if (theChars) {
         return [NSString stringWithUTF8String:theChars];
     } else {
-        [NSError setError:error fromPEPStatus:(PEPStatus) PEP_UNKNOWN_ERROR];
+        [PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) PEP_UNKNOWN_ERROR];
         return nil;
     }
 }
@@ -684,7 +683,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     NSString *result = nil;
 
-    if (![NSError setError:error fromPEPStatus:status]) {
+    if (![PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         result = [NSString stringWithUTF8String:trustwords.charPointer];
     }
 
@@ -712,7 +711,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     
     NSString *result = nil;
     
-    if (![NSError setError:error fromPEPStatus:status]) {
+    if (![PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         result = [NSString stringWithUTF8String:trustwords.charPointer];
     }
     
@@ -726,7 +725,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return get_languagelist(session, chLangs.charPointerPointer);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return nil;
     }
 
@@ -823,7 +822,7 @@ static NSDictionary *stringToRating;
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return nil;
     } else {
         return [NSNumber numberWithBool:isPEP];
@@ -844,7 +843,7 @@ static NSDictionary *stringToRating;
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return NO;
     } else {
         return YES;
@@ -866,7 +865,7 @@ static NSDictionary *stringToRating;
         return set_identity_flags(session, ident, flags);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free_identity(ident);
         return NO;
     } else {
@@ -895,7 +894,7 @@ static NSDictionary *stringToRating;
 
     free(identitiesSharingData);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return NO;
     } else {
         return YES;
@@ -913,7 +912,7 @@ static NSDictionary *stringToRating;
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return NO;
     } else {
         return YES;
@@ -939,7 +938,7 @@ static NSDictionary *stringToRating;
 
     free_identity(ident);
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         return YES;
@@ -952,7 +951,7 @@ static NSDictionary *stringToRating;
         return leave_device_group(session);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return NO;
     } else {
         return YES;
@@ -965,7 +964,7 @@ static NSDictionary *stringToRating;
         return key_reset_all_own_keys(self.session);
     }];
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         return YES;
@@ -989,7 +988,7 @@ static NSDictionary *stringToRating;
 
     PEP_STATUS status = config_passphrase(_session, [normalizedPassphrase UTF8String]);
 
-    if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) status]) {
         return NO;
     }
     [PEPSync.sharedInstance handleNewPassphraseConfigured];
@@ -1008,7 +1007,7 @@ static NSDictionary *stringToRating;
         return disable_all_sync_channels(self.session);
     }];
 
-    if ([NSError setError:error fromPEPStatus:theStatus]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
         return NO;
     } else {
         return YES;

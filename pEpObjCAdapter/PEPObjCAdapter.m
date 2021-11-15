@@ -14,7 +14,6 @@
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"  

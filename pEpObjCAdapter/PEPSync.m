@@ -20,7 +20,6 @@
 #import "PEPMessage.h"
 #import "PEPQueue.h"
 #import "PEPObjCAdapter.h"
-#import "NSError+PEP+Internal.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"
@@ -162,7 +161,7 @@ static __weak PEPSync *s_pEpSync;
 
     if (status != PEP_STATUS_OK) {
         if (error) {
-            *error = [NSError errorWithPEPStatusInternal:status];
+            *error = [PEPStatusNSErrorUtil errorWithPEPStatus:status];
             LogError(@"error creating session: %@", *error);
         }
         return nil;

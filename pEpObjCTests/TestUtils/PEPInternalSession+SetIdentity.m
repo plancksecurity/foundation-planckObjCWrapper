@@ -26,7 +26,7 @@
         return set_identity(self.session, ident);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free_identity(ident);
         return NO;
     }

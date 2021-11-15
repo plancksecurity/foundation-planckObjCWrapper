@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 #import "PEPObjCTypeConversionUtil.h"
+#import "PEPStatusNSErrorUtil.h"
 
 // Umbrella Header
 @interface PEPObjCTypeUtils : NSObject
