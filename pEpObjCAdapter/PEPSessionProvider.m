@@ -20,7 +20,9 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
 
 /** We have to conform to the Engines rule: "The first session has to be created on the main thread and kept
  alive until all sessiopns created afterwards have been teared down."
- Here we hold it.
+ PEPSessionProvider makes sure we conform to that rules.
+ All PEPSessions given to the client of PEPObjCAdapter MUST be provided by PEPSessionProvider.
+ PEPSessionProvider is threadsave.
  */
 static PEPInternalSession *s_sessionForMainThread = nil;
 
