@@ -128,13 +128,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
  */
 + (void)assureSessionForMainThreadExists
 {
-    // shared code to set global configuration every time
-    void (^configurationBlock)(void) = ^{
-        [[self sessionForThreadLock] lock];
-        [self configureSession:s_sessionForMainThread];
-        [[self sessionForThreadLock] unlock];
-    };
-
     if (s_sessionForMainThread) {
         return;
     }
@@ -147,7 +140,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
         [[self sessionForThreadLock] lock];
         s_sessionForMainThread = [PEPInternalSession new];
         [[self sessionForThreadLock] unlock];
-        configurationBlock();
     };
 
     if ([NSThread isMainThread]) {
