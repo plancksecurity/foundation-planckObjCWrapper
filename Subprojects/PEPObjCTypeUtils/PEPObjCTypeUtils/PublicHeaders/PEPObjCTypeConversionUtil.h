@@ -73,14 +73,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (bloblist_t * _Nullable)arrayToBloblist:(NSArray<PEPAttachment*> *)array;
 
-//!!!: this maybe privare after moving NSError<->PEP_STATUS from adapter to here
-// MARK: - NSString From PEP_STATUS
-
-/// Could in theory return a fully localized version of the underlying error.
-NSString * _Nonnull localizedErrorStringFromPEPStatus(PEP_STATUS status);
-
-NSString * _Nonnull stringFromPEPStatus(PEP_STATUS status);
-
 @end
 
 NS_ASSUME_NONNULL_END

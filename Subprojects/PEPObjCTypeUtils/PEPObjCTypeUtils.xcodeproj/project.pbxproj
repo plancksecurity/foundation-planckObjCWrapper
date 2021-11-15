@@ -14,6 +14,10 @@
 		15BD2FB42734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD2FB12734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BD2FB52734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD2FB22734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m */; };
 		15BD2FB62734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD2FB22734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m */; };
+		15BD31722742820400B1B1F5 /* PEPStatusNSErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */; };
+		15BD31732742820400B1B1F5 /* PEPStatusNSErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */; };
+		15BD31742742820400B1B1F5 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */; };
+		15BD31752742820400B1B1F5 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */; };
 		4E89010726CF900B00A683E9 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +114,8 @@
 		159805FA26CFC0C500593C9D /* PEPObjCTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCTypes.xcodeproj; path = ../PEPObjCTypes/PEPObjCTypes.xcodeproj; sourceTree = "<group>"; };
 		15BD2FB12734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypeConversionUtil.h; sourceTree = "<group>"; };
 		15BD2FB22734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCTypeConversionUtil.m; sourceTree = "<group>"; };
+		15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPStatusNSErrorUtil.h; sourceTree = "<group>"; };
+		15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPStatusNSErrorUtil.m; sourceTree = "<group>"; };
 		4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +164,7 @@
 			children = (
 				1585EA9526984DB800B822E1 /* PublicHeaders */,
 				15BD2FB22734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m */,
+				15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */,
 			);
 			path = PEPObjCTypeUtils;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 			children = (
 				1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */,
 				15BD2FB12734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h */,
+				15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
@@ -206,6 +214,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15BD31722742820400B1B1F5 /* PEPStatusNSErrorUtil.h in Headers */,
 				15BD2FB32734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h in Headers */,
 				1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */,
 			);
@@ -215,6 +224,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15BD31732742820400B1B1F5 /* PEPStatusNSErrorUtil.h in Headers */,
 				15BD2FB42734487F00B1B1F5 /* PEPObjCTypeConversionUtil.h in Headers */,
 				1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */,
 			);
@@ -400,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15BD2FB52734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m in Sources */,
+				15BD31742742820400B1B1F5 /* PEPStatusNSErrorUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15BD2FB62734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m in Sources */,
+				15BD31752742820400B1B1F5 /* PEPStatusNSErrorUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

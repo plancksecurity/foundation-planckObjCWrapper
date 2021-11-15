@@ -15,7 +15,7 @@
 #import "PEPIdentity.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalConstants.h"
-#import "NSError+PEP+Internal.h"
+#import <PEPObjCTypeUtils.h>
 
 static dispatch_queue_t queue;
 
@@ -595,7 +595,7 @@ successCallback:(void (^)(NSString *log))successCallback
     PEPInternalSession *session = [PEPSessionProvider session];
     if (session == nil) {
         if (error) {
-            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
+            *error = [PEPStatusNSErrorUtil errorWithPEPStatus:PEP_UNKNOWN_ERROR];
         }
         return NO;
     }
@@ -636,7 +636,7 @@ successCallback:(void (^)(NSString *log))successCallback
     PEPInternalSession *session = [PEPSessionProvider session];
     if (session == nil) {
         if (error) {
-            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
+            *error = [PEPStatusNSErrorUtil errorWithPEPStatus:PEP_UNKNOWN_ERROR];
         }
         return NO;
     }
