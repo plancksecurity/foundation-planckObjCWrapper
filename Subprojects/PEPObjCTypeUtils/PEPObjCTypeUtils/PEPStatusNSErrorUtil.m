@@ -18,8 +18,6 @@
     return [self errorWithPEPStatusInternal:(PEP_STATUS)status];
 }
 
-// ## Public oneeded?
-
 + (BOOL)setError:(NSError * _Nullable * _Nullable)error fromPEPStatus:(PEPStatus)status
 {
     // Determine if the given status is an error.
