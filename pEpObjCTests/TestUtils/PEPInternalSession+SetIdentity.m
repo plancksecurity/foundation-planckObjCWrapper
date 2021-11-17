@@ -12,7 +12,7 @@
 #import "PEPInternalSession.h"
 #import "PEPInternalSession+PassphraseCache.h"
 #import "NSError+PEP+Internal.h"
-#import "PEPIdentity+Engine.h"
+#import "PEPIdentity"
 
 #import "pEpEngine.h"
 
@@ -26,7 +26,7 @@
         return set_identity(self.session, ident);
     }];
 
-    if ([NSError setError:error fromPEPStatus:status]) {
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free_identity(ident);
         return NO;
     }

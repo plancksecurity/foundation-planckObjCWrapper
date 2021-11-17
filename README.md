@@ -1,6 +1,4 @@
-WIP
-
-HowToBuild static lib for macOS
+# HowToBuild pEpObjCAdapter for macOS & iOS
 
 ## Deployment
 
@@ -53,8 +51,8 @@ You need to have an Apple ID (connected to pEp team account) configured in Xcode
 
 ## Build Dependencies
 ```
-mkdir src_pEpObjCAdapter_macOS
-cd src_pEpObjCAdapter_macOS
+mkdir src_pEpObjCAdapter
+cd src_pEpObjCAdapter
 
 git clone https://gitea.pep.foundation/buff/common-dependency-build-helpers-4-apple-hardware.git
 git clone http://pep-security.lu/gitlab/iOS/pep-toolbox.git
@@ -65,7 +63,7 @@ git clone https://gitea.pep.foundation/pEp.foundation/pEpEngine
 git clone https://gitea.pep.foundation/pep.foundation/pEpObjCAdapter.git
 ```
 
-## Build
+## Build for iOS
 
 ### iOS Only: Copy System DB 
 
@@ -75,9 +73,34 @@ Backround: Has been introduces to use Apple Shared App Directory of the client A
 
 ### Using Xcode UI
 
-`open pEpMacOSAdapter/pEpObjCAdapter.xcworkspace/`
+`open pEpObjCAdapter/pEpObjCAdapter.xcworkspace/`
 
-Build scheme "All" of pEpObjCAdapter.xcworkspace
+Build scheme "pEpObjCAdapter_iOS".
+
+### Using terminal
+
+`xcodebuild -workspace "pEpObjCAdapter.xcworkspace" -scheme "PEPObjCAdapter_iOS" -configuration RELEASE`
+
+(or DEBUG)
+
+### Build Dir & Build Artefacts
+
+You can find the build artefacts in the `pEpMacOSAdapter/build` folder
+
+
+## Build for macOS
+
+### Using Xcode UI
+
+`open pEpObjCAdapter/pEpObjCAdapter.xcworkspace/`
+
+Build scheme "PEPObjCAdapter_macOS".
+
+### Using terminal
+
+`xcodebuild -workspace "pEpObjCAdapter.xcworkspace" -scheme "PEPObjCAdapter_macOS" -configuration RELEASE`
+
+(or DEBUG)
 
 ### Using terminal
 
@@ -88,3 +111,8 @@ Build scheme "All" of pEpObjCAdapter.xcworkspace
 ### Build Dir & Build Artefacts
 
 You can find the build artefacts in the `pEpMacOSAdapter/build` folder
+
+
+# HowToBuild pEpObjCAdapter for Linux
+
+See pEpObjCAdapter/pEpObjCAdapter/build-linux/README.md

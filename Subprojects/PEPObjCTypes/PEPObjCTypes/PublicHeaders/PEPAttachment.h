@@ -10,7 +10,7 @@
 
 #import "PEPEngineTypes.h"
 
-@interface PEPAttachment : NSObject
+@interface PEPAttachment : NSObject <NSSecureCoding>
 
 @property (nonatomic, nonnull) NSData *data;
 @property (nonatomic) NSInteger size;

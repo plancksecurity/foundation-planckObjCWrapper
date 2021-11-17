@@ -55,7 +55,9 @@
 
 - (NSUInteger)hash
 {
-    return [NSString stringWithFormat:@"%@", self.thread].hash;
+    // Cast is required to fix GNUStep error: " error: property 'hash' not found on object of type 'id'"
+    // Assume GNUstep translates ìnstancetype` to `id`.
+    return ((NSString *) [NSString stringWithFormat:@"%@", self.thread]).hash;
 }
 
 - (NSString *)description

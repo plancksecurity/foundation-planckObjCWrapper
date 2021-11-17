@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 #ifdef IS_IOS_BUILD
 #import <pEp4iosIntern/pEp4iosIntern.h>
@@ -14,7 +14,6 @@
 
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+Internal.h"
-#import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"  
