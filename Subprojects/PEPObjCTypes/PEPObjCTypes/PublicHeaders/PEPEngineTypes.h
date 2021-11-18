@@ -11,8 +11,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTransportStatusCode.h"
-
 typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
 
     PEPCCTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
