@@ -30,12 +30,12 @@
         return nil;
     }
 
-    return [PEPMessage fromStruct:msg];
+    return [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
 }
 
 - (NSData *)asn1Data
 {
-    message *msg = [self toStruct];
+    message *msg = [PEPObjCTypeConversionUtil structFromPEPMessage:self];
     ASN1Message_t *asn1Message = ASN1Message_from_message(msg, NULL, YES, 0);
     free_message(msg);
 
