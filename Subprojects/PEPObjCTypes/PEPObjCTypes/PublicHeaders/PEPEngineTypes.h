@@ -13,16 +13,16 @@
 
 typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
 
-    PEPCCTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
+    PEPTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
     // Currently unsupported
-//    PEPCCTransportIDTransportEmail = 0x01,
-//    PEPCCTransportIDTransportRCE = 0x02,
+//    PEPTransportIDTransportEmail = 0x01,
+//    PEPTransportIDTransportRCE = 0x02,
 
     // Used for figuring out the number of trasnport types. Which is all previously defined transport types plus one, the controll channel.
-    PEPCCTransportIDTransportCount,
+    PEPTransportIDTransportCount,
 
-    PEPCCTransportIDTransportSCTP = 0xfd,
-    PEPCCTransportIDTransportCC = 0xfe
+    PEPTransportIDTransportSCTP = 0xfd,
+    PEPTransportIDTransportCC = 0xfe
 };
 
 typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
