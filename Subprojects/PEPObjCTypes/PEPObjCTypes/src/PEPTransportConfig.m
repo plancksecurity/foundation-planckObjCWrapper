@@ -1,6 +1,6 @@
 //
 //  PEPTransportConfig.m
-//  pEpCC_macOS
+//  PEPObjCTypes
 //
 //  Created by Andreas Buff on 16.08.21.
 //
