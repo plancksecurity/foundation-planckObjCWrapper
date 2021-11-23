@@ -8,11 +8,12 @@
 
 #import "PEPInternalSession+SetIdentity.h"
 
+#import "PEPObjCTypes.h"
+#import "PEPObjCTypeUtils.h"
+
 #import "PEPTypes.h"
 #import "PEPInternalSession.h"
 #import "PEPInternalSession+PassphraseCache.h"
-#import "NSError+PEP+Internal.h"
-#import "PEPIdentity"
 
 #import "pEpEngine.h"
 
