@@ -21,6 +21,7 @@ typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
     // Used for figuring out the number of trasnport types. Which is all previously defined transport types plus one, the controll channel.
     PEPCCTransportIDTransportCount,
 
+    PEPCCTransportIDTransportSCTP = 0xfd,
     PEPCCTransportIDTransportCC = 0xfe
 };
 
