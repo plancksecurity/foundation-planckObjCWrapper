@@ -21,8 +21,8 @@
 		15BD2F9B27342A2400B1B1F5 /* PEPEqualableTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD2F9827342A2400B1B1F5 /* PEPEqualableTools.h */; };
 		15BD2F9C27342A2400B1B1F5 /* PEPEqualableTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD2F9927342A2400B1B1F5 /* PEPEqualableTools.m */; };
 		15BD2F9D27342A2400B1B1F5 /* PEPEqualableTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD2F9927342A2400B1B1F5 /* PEPEqualableTools.m */; };
-		15BD319C2742A1B500B1B1F5 /* PEPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD319A2742A1B500B1B1F5 /* PEPErrors.h */; };
-		15BD319D2742A1B500B1B1F5 /* PEPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD319A2742A1B500B1B1F5 /* PEPErrors.h */; };
+		15BD319C2742A1B500B1B1F5 /* PEPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD319A2742A1B500B1B1F5 /* PEPErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		15BD319D2742A1B500B1B1F5 /* PEPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD319A2742A1B500B1B1F5 /* PEPErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BD319E2742A1B500B1B1F5 /* PEPErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD319B2742A1B500B1B1F5 /* PEPErrors.m */; };
 		15BD319F2742A1B500B1B1F5 /* PEPErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD319B2742A1B500B1B1F5 /* PEPErrors.m */; };
 		43D44C822685BB3600638D1C /* PEPObjCTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
