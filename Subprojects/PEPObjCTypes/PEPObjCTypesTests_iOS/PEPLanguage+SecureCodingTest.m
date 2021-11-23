@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 #import "PEPTypesTestUtil.h"
-#import "PEPLanguage+SecureCoding.h"
+#import "PEPLanguage.h"
 
 @interface PEPLanguage_SecureCodingTest : XCTestCase
 @end

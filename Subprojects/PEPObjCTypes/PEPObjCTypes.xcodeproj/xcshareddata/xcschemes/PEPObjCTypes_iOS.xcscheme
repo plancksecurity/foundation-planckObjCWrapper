@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4E5758BE26833D140084F02D"
+               BuildableName = "PEPObjCTypesTests_iOS.xctest"
+               BlueprintName = "PEPObjCTypesTests_iOS"
+               ReferencedContainer = "container:PEPObjCTypes.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

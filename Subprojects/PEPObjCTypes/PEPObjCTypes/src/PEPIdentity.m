@@ -7,8 +7,7 @@
 //
 
 #import "PEPIdentity.h"
-
-#import "NSObject+Extension.h"
+#import "PEPEqualableTools.h"
 
 @implementation PEPIdentity
 
@@ -75,12 +74,12 @@ static NSArray *s_keys;
 
 - (BOOL)isEqualToPEPIdentity:(PEPIdentity * _Nonnull)identity
 {
-    return [self isEqualToObject:identity basedOnKeys:s_keys];
+    return [PEPEqualableTools object:self isEqualTo:identity basedOnKeys:s_keys];
 }
 
 - (NSUInteger)hash
 {
-    return [self hashBasedOnKeys:s_keys];
+    return [PEPEqualableTools hashForObject:self basedOnKeys:s_keys];
 }
 
 - (BOOL)isEqual:(id)object
@@ -121,5 +120,38 @@ static NSArray *s_keys;
 {
     s_keys = @[@"address"];
 }
+
+// MARK: - NSSecureCoding
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
+    if (self = [self init]) {
+        self.address = [decoder decodeObjectOfClass:[NSString class] forKey:@"address"];
+        self.userID = [decoder decodeObjectOfClass:[NSString class] forKey:@"userID"];
+        self.userName = [decoder decodeObjectOfClass:[NSString class] forKey:@"userName"];
+        self.fingerPrint = [decoder decodeObjectOfClass:[NSString class] forKey:@"fingerPrint"];
+        self.language = [decoder decodeObjectOfClass:[NSString class] forKey:@"language"];
+        self.commType = [decoder decodeIntForKey:@"commType"];
+        self.isOwn = [decoder decodeBoolForKey:@"isOwn"];
+        self.flags = [decoder decodeIntForKey:@"flags"];
+    }
+
+    return self;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeObject:self.address forKey:@"address"];
+    [coder encodeObject:self.userID forKey:@"userID"];
+    [coder encodeObject:self.userName forKey:@"userName"];
+    [coder encodeObject:self.fingerPrint forKey:@"fingerPrint"];
+    [coder encodeObject:self.language forKey:@"language"];
+    [coder encodeInt:self.commType forKey:@"commType"];
+    [coder encodeBool:self.isOwn forKey:@"isOwn"];
+    [coder encodeInt:self.flags forKey:@"flags"];
+}
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
 
 @end

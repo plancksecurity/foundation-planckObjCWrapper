@@ -17,9 +17,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Domain for errors indicated by the pEp engine.
-extern NSString *const _Nonnull PEPObjCAdapterEngineStatusErrorDomain;
-
 /// Domain for errors indicated by the pEp adapter itself.
 extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 

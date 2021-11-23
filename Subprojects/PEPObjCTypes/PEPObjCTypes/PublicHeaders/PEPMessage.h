@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPMessage : NSObject
+@interface PEPMessage : NSObject <NSSecureCoding>
 
 @property (nonatomic, nullable) NSString *messageID;
 

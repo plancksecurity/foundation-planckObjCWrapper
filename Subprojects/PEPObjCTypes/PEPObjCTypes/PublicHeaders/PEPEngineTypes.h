@@ -118,6 +118,7 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusInitSqlite3WithoutMutex = 0x0120, // PEP_INIT_SQLITE3_WITHOUT_MUTEX
     PEPStatusInitCannotOpenDB = 0x0121, // PEP_INIT_CANNOT_OPEN_DB
     PEPStatusInitCannotOpenSystemDB = 0x0122, // PEP_INIT_CANNOT_OPEN_SYSTEM_DB
+    PEPStatusInitDbDowngradeViolation = 0x0123, // PEP_INIT_DB_DOWNGRADE_VIOLATION
     PEPStatusUnknownDBError = 0x01ff, // PEP_UNKNOWN_DB_ERROR
 
     PEPStatusKeyNotFound = 0x0201, // PEP_KEY_NOT_FOUND
