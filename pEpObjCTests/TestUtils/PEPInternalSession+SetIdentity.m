@@ -21,7 +21,7 @@
 
 - (BOOL)setIdentity:(PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [identity toStruct];
+    pEp_identity *ident = [PEPObjCTypeConversionUtil structFromPEPIdentity:identity];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return set_identity(self.session, ident);
