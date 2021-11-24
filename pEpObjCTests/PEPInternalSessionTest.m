@@ -1309,7 +1309,7 @@
                     error:&error]);
     XCTAssertNotNil(error);
 
-    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqualObjects(error.domain, PEPObjCEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
 }
 
@@ -1338,7 +1338,7 @@
                     error:&error]);
     XCTAssertNotNil(error);
 
-    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqualObjects(error.domain, PEPObjCEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusPassphraseRequired);
 }
 
@@ -1368,7 +1368,7 @@
                     error:&error]);
     XCTAssertNotNil(error);
 
-    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqualObjects(error.domain, PEPObjCEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
 }
 
@@ -1406,7 +1406,7 @@
                     error:&error]);
     XCTAssertNotNil(error);
 
-    XCTAssertEqualObjects(error.domain, PEPObjCAdapterEngineStatusErrorDomain);
+    XCTAssertEqualObjects(error.domain, PEPObjCEngineStatusErrorDomain);
     XCTAssertEqual(error.code, PEPStatusWrongPassphrase);
     XCTAssertTrue(passphraseProviderMock1.passphraseTooLongWasCalled);
 }
