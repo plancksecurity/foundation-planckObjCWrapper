@@ -13,60 +13,16 @@
 
 typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
 
-    PEPCCTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
+    PEPTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
     // Currently unsupported
-//    PEPCCTransportIDTransportEmail = 0x01,
-//    PEPCCTransportIDTransportRCE = 0x02,
+//    PEPTransportIDTransportEmail = 0x01,
+//    PEPTransportIDTransportRCE = 0x02,
 
     // Used for figuring out the number of trasnport types. Which is all previously defined transport types plus one, the controll channel.
-    PEPCCTransportIDTransportCount,
+    PEPTransportIDTransportCount,
 
-    PEPCCTransportIDTransportCC = 0xfe
-};
-
-
-/// From https://dev.pep.foundation/Engine/TransportStatusCode
-typedef NS_CLOSED_ENUM(NSInteger, PEPTransportStatusCode) {
-    // General / Common
-    PEPTransportStatusCodeReady = 0x0, // not an error state
-    PEPTransportStatusCodeConnectionDown = 0x1, // sent by connection based transports
-    PEPTransportStatusCodeConnectionUp = 0x2, // not an error state; sent by connection based transports
-    PEPTransportStatusCodeConnectionSomeRecipientsUnreachable = 0x3, // message could not be delivered to all recipients
-    PEPTransportStatusCodeConnectionNoRecipientsReachable = 0x4, // message could not be delivered at all
-    PEPTransportStatusCodeConnectionNoConfig = 0x5,
-    PEPTransportStatusCodeConnectionInvalidConfig = 0x6, // config incomplete or wrong
-    PEPTransportStatusCodeNoSendConfig = 0x7,
-    PEPTransportStatusCodeNoRecvConfig = 0x8,
-    PEPTransportStatusCodeInvalidSendConfig = 0x9,
-    PEPTransportStatusCodeInvalidRecvConfig = 0xA,
-    PEPTransportStatusCodeNetworkTimeout = 0xB,
-    PEPTransportStatusCodeMessageDelivered = 0x100000, // not an error state
-    PEPTransportStatusCodeMessageOnTheWay = 0x100001, // not an error state
-    PEPTransportStatusCodeCouldNotDeliver_Resending = 0x100002, // not an error state
-    PEPTransportStatusCodeCouldNotDeliver_GivingUp = 0x100003,
-    // Email
-    PEPTransportStatusCodeEmailSMTPServerUnreachable = 0x1100001,
-    PEPTransportStatusCodeEmailSMTPUnknownError = 0x110FFFF,
-
-    PEPTransportStatusCodeEmailIMAPServerUnreachable = 0x01110001,
-    PEPTransportStatusCodeEmailIMAPUnknownError = 0x0111FFFF,
-    // RCE
-    PEPTransportStatusCodeRCETorrentWithoutSeeders = 0x02FF0001,
-    PEPTransportStatusCodeRCEUnknownTorrentError = 0x02FFFFFF,
-    // Control Channel
-    PEPTransportStatusCodePEPCCUnknownSCTPError = 0xFEFFFFFF,
-    // Misc. errors
-    PEPTransportStatusCodeUnknownError = 0xFFFFFFFF
-};
-
-typedef NS_CLOSED_ENUM(int, PEPTransportCallbackExcecutionType) {
-    /// execute callbacks immediately only
-    PEPTransportCallbackExcecutionTypePolling = 0,
-    /// execute callbacks multiple times later on any thread; call with PEP_cbe_polling to disable
-    PEPTransportCallbackExcecutionTypeAsync,
-    /// the last one is for the transport system only. Do not implement it in transports.
-    /// Rephrase: DO NOT IMPLEMENT, IGNORE :-)
-    PEPTransportCallbackExcecutionTypeBlocking = 255
+    PEPTransportIDTransportSCTP = 0xfd,
+    PEPTransportIDTransportCC = 0xfe
 };
 
 typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
