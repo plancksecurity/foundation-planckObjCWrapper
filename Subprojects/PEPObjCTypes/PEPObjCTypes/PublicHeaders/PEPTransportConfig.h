@@ -10,8 +10,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPTransportConfig : NSObject
+
 @property (nonatomic) Size size;
 @property (nonatomic) UInt16 port;
+
+- (instancetype)initWithSize:(Size)size port:(UInt16)port;
+
 @end
 
 NS_ASSUME_NONNULL_END
