@@ -557,7 +557,11 @@
 
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"0xC9C2EE39.asc" session:session]);
+    XCTAssertNotNil([self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                                            address:@"pep.test.bob@pep-project.org"
+                                             userID:@"This Is Bob"
+                                        fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                                            session: session]);
 
     PEPIdentity *identBob = [[PEPIdentity alloc]
                              initWithAddress:@"pep.test.bob@pep-project.org"
