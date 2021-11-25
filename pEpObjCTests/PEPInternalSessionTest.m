@@ -559,13 +559,11 @@
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
     XCTAssertTrue([PEPTestUtils importBundledKey:@"0xC9C2EE39.asc" session:session]);
 
-    PEPIdentity *identBob = [self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
-                                                    address:@"pep.test.bob@pep-project.org"
-                                                     userID:@"42"
-                                                fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
-                                                    session:session];
-
-    XCTAssertNotNil(identBob);
+    PEPIdentity *identBob = [[PEPIdentity alloc]
+                             initWithAddress:@"pep.test.bob@pep-project.org"
+                             userID:@"42" userName:@"pEp Test Bob"
+                             isOwn:NO
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
     XCTAssertNil(error);
