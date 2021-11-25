@@ -503,12 +503,10 @@
 
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
-    NSString *johnUserId = @"This Is John";
-    NSString *johnFingerprint = @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39";
     PEPIdentity *identJohn = [self checkImportingKeyFilePath:@"0x70DCF575.asc"
                                                      address:@"pep.test.john@pep-project.org"
-                                                      userID:johnUserId
-                                                 fingerPrint:johnFingerprint
+                                                      userID:@"This Is John"
+                                                 fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
                                                      session: session];
     XCTAssertNotNil(identJohn);
 
