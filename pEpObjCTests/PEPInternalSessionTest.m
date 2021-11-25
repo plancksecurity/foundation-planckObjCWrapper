@@ -565,7 +565,8 @@
 
     PEPIdentity *identBob = [[PEPIdentity alloc]
                              initWithAddress:@"pep.test.bob@pep-project.org"
-                             userID:@"42" userName:@"pEp Test Bob"
+                             userID:@"42"
+                             userName:@"pEp Test Bob"
                              isOwn:NO
                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
 
