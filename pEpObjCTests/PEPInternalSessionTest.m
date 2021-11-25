@@ -500,15 +500,23 @@
     XCTAssertEqual(rating, PEPRatingTrusted);
 
     // Now let see if it turns back yellow if we add an unconfirmed folk.
+
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"0x70DCF575.asc" session:session]);
+    NSString *johnUserId = @"This Is John";
+    NSString *johnFingerprint = @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39";
+    XCTAssertNotNil([self checkImportingKeyFilePath:@"0x70DCF575.asc"
+                                            address:@"pep.test.john@pep-project.org"
+                                             userID:johnUserId
+                                        fingerPrint:johnFingerprint
+                                            session: session]);
 
     PEPIdentity *identJohn = [[PEPIdentity alloc]
                               initWithAddress:@"pep.test.john@pep-project.org"
-                              userID:@"101" userName:@"pEp Test John"
+                              userID:johnUserId
+                              userName:@"pEp Test John"
                               isOwn:NO
-                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
+                              fingerPrint:johnFingerprint];
 
     XCTAssertTrue([session updateIdentity:identJohn error:&error]);
     XCTAssertNil(error);
