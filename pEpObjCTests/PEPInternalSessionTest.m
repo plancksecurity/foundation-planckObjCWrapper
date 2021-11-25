@@ -505,18 +505,12 @@
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
     NSString *johnUserId = @"This Is John";
     NSString *johnFingerprint = @"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39";
-    XCTAssertNotNil([self checkImportingKeyFilePath:@"0x70DCF575.asc"
-                                            address:@"pep.test.john@pep-project.org"
-                                             userID:johnUserId
-                                        fingerPrint:johnFingerprint
-                                            session: session]);
-
-    PEPIdentity *identJohn = [[PEPIdentity alloc]
-                              initWithAddress:@"pep.test.john@pep-project.org"
-                              userID:johnUserId
-                              userName:@"pEp Test John"
-                              isOwn:NO
-                              fingerPrint:johnFingerprint];
+    PEPIdentity *identJohn = [self checkImportingKeyFilePath:@"0x70DCF575.asc"
+                                                     address:@"pep.test.john@pep-project.org"
+                                                      userID:johnUserId
+                                                 fingerPrint:johnFingerprint
+                                                     session: session];
+    XCTAssertNotNil(identJohn);
 
     XCTAssertTrue([session updateIdentity:identJohn error:&error]);
     XCTAssertNil(error);
