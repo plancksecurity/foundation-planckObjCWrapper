@@ -555,10 +555,6 @@
     XCTAssertTrue([session mySelf:identAlice error:&error]);
     XCTAssertNil(error);
 
-    // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
-    // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"0xC9C2EE39.asc" session:session]);
-
     PEPIdentity *identBob = [self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
                                                     address:@"pep.test.bob@pep-project.org"
                                                      userID:@"42"
