@@ -1680,6 +1680,10 @@
     NSError *error = nil;
 
     XCTAssertNotNil(partnerIdentity.fingerPrint);
+
+    XCTAssertTrue([session setIdentity:partnerIdentity error:&error]);
+    XCTAssertNil(error);
+
     XCTAssertTrue([session updateIdentity:partnerIdentity error:&error]);
     XCTAssertNil(error);
     XCTAssertNotNil(partnerIdentity.fingerPrint);
