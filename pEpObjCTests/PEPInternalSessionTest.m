@@ -492,6 +492,9 @@
                                                      session: session];
     XCTAssertNotNil(identJohn);
 
+    // check john's rating
+    rating = [self ratingForIdentity:identJohn session:session];
+    XCTAssertEqual(rating, PEPRatingReliable);
 
     msg.bcc = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.john@pep-project.org"
                                               userID:@"101" userName:@"pEp Test John" isOwn:NO]];
