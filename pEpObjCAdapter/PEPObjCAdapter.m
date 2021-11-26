@@ -128,9 +128,9 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
 #else
     if ([self isXCTestRunning]) {
-        NSURL *pEpDir = [self createTestDataDirectoryMacOS];
+        s_homeURL = [self createTestDataDirectoryMacOS];
         // The engine will put its per_user_directory under this directory.
-        setenv("HOME", [[pEpDir path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+        setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
     } else {
         // For macOS there is nothing toDo. The defaults in Engine platform_unix.h should do.
     }
