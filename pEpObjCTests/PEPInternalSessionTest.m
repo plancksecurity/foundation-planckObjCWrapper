@@ -496,12 +496,12 @@
     rating = [self ratingForIdentity:identJohn session:session];
     XCTAssertEqual(rating, PEPRatingReliable);
 
-    // BCC should make it unencrypted
+    // Adding bcc is still reliable
     msg.bcc = @[identJohn];
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
     XCTAssertTrue([session trustPersonalKey:identJohn error:&error]);
     XCTAssertNil(error);
