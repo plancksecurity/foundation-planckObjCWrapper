@@ -496,10 +496,8 @@
     rating = [self ratingForIdentity:identJohn session:session];
     XCTAssertEqual(rating, PEPRatingReliable);
 
-    msg.bcc = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.john@pep-project.org"
-                                              userID:@"101" userName:@"pEp Test John" isOwn:NO]];
-
     // BCC should make it unencrypted
+    msg.bcc = @[identJohn];
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
