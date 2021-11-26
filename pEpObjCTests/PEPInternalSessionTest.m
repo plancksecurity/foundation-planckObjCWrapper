@@ -278,7 +278,7 @@
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
-/** ENGINE-384 */
+/// This was once crashing, for historical details, see ENGINE-384.
 - (void)testIdentityRatingCrash
 {
     PEPInternalSession *session = [PEPSessionProvider session];
