@@ -672,14 +672,12 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *partner1Orig = [PEPTestUtils foreignPepIdentityWithAddress:@"partner1@dontcare.me"
-                                                                   userName:@"Partner 1"];
-    NSString *pubKeyPartner1 = [PEPTestUtils loadResourceByName:@"partner1_F2D281C2789DD7F6_pub.asc"];
-    XCTAssertNotNil(pubKeyPartner1);
-
-    NSError *error = nil;
-    XCTAssertTrue([session importKey:pubKeyPartner1 error:&error]);
-    XCTAssertNil(error);
+    PEPIdentity *partner1Orig = [self checkImportingKeyFilePath:@"partner1_F2D281C2789DD7F6_pub.asc"
+                                                        address:@"partner1@dontcare.me"
+                                                         userID:@"partner1"
+                                                    fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"
+                                                        session:session];
+    XCTAssertNotNil(partner1Orig);
 
     PEPRating color = [self ratingForIdentity:partner1Orig session:session];
     XCTAssertEqual(color, PEPRatingReliable);
