@@ -271,10 +271,8 @@
 
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
-    XCTAssertTrue([session keyMistrusted:alice error:&error]);
-    XCTAssertNil(error);
+    // key_reset_trust makes the key not being elected anymore
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
@@ -310,10 +308,8 @@
 
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
-    XCTAssertTrue([session keyMistrusted:alice error:&error]);
-    XCTAssertNil(error);
+    // key_reset_trust makes the key not being elected anymore
     XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
@@ -408,22 +404,8 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
-    // mistrust Bob
-    XCTAssertTrue([session keyMistrusted:identBob error:&error]);
-    XCTAssertNil(error);
-
-    identBob.fingerPrint = nil;
-    XCTAssertFalse([session updateIdentity:identBob error:&error]);
-    XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, PEP_KEY_UNSUITABLE);
-    XCTAssertNil(identBob.fingerPrint);
-
-    // Gray == PEPRatingUnencrypted
-    numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
-    XCTAssertNotNil(numRating);
-    XCTAssertNil(error);
+    // key_reset_trust makes the key not being elected anymore
     XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 }
 
