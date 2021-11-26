@@ -499,11 +499,11 @@
     msg.bcc = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.john@pep-project.org"
                                               userID:@"101" userName:@"pEp Test John" isOwn:NO]];
 
-    // Yellow ?
+    // BCC should make it unencrypted
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
     XCTAssertTrue([session trustPersonalKey:identJohn error:&error]);
     XCTAssertNil(error);
