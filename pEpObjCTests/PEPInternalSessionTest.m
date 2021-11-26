@@ -492,8 +492,6 @@
                                                      session: session];
     XCTAssertNotNil(identJohn);
 
-    XCTAssertTrue([session updateIdentity:identJohn error:&error]);
-    XCTAssertNil(error);
 
     msg.bcc = @[[[PEPIdentity alloc] initWithAddress:@"pep.test.john@pep-project.org"
                                               userID:@"101" userName:@"pEp Test John" isOwn:NO]];
