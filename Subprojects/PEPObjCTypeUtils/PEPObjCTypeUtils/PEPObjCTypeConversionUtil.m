@@ -117,6 +117,8 @@
         msg->attachments = [self arrayToBloblist:pEpMessage.attachments];
     }
 
+    msg->rating = (PEP_rating) pEpMessage.rating;
+
     return msg;
 }
 
@@ -194,6 +196,8 @@
     if (message->attachments && message->attachments->value) {
         pEpMessage.attachments = [self arrayFromBloblist:message->attachments];
     }
+
+    pEpMessage.rating = (PEPRating) message->rating;
 }
 
 + (void)removeEmptyRecipientsFromPEPMessage:(PEPMessage *)pEpMessage
@@ -239,6 +243,7 @@
     pEpMessage.keywords = nil;
     pEpMessage.receivedBy = nil;
     pEpMessage.direction = (PEPMsgDirection) PEP_dir_incoming; // basically, 0
+    pEpMessage.rating = PEPRatingUndefined;
 }
 
 // MARK: - PEPIdentity
