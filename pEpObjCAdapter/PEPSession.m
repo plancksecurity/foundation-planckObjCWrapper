@@ -595,7 +595,7 @@ successCallback:(void (^)(NSString *log))successCallback
     PEPInternalSession *session = [PEPSessionProvider session];
     if (session == nil) {
         if (error) {
-            *error = [PEPStatusNSErrorUtil errorWithPEPStatus:PEP_UNKNOWN_ERROR];
+            *error = [PEPStatusNSErrorUtil errorWithPEPStatus:PEPStatusUnknownError];
         }
         return NO;
     }
