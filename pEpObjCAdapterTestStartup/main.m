@@ -15,23 +15,18 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSLog(@"Hello, World!");
 
-        __block dispatch_group_t group = dispatch_group_create();
         dispatch_queue_t queue = dispatch_queue_create("queue", nil);
-
-        dispatch_group_enter(group);
 
         dispatch_async(queue, ^{
             PEPSession *session = [PEPSession new];
             [session languageList:^(NSError * _Nonnull error) {
                 NSLog(@"*** error: error");
-                dispatch_group_leave(group);
             } successCallback:^(NSArray<PEPLanguage *> * _Nonnull languages) {
                 NSLog(@"*** have %lu languages", (unsigned long) languages.count);
-                dispatch_group_leave(group);
             }];
         });
 
-        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+        [NSRunLoop mainRunLoop];
     }
     return 0;
 }
