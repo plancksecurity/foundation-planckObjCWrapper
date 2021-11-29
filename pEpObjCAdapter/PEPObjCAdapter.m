@@ -275,14 +275,17 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 /// This is only used under macOS, although it should work on iOS as well.
 + (BOOL)isXCTestRunning
 {
-    id xctestConfig = [[[NSProcessInfo processInfo] environment] valueForKey:@"XCTestConfigurationFilePath"];
+    BOOL isTesting = NO;
     Class testProbeClass = NSClassFromString(@"XCTestProbe");
     if (testProbeClass) {
         NSNumber *numberValue = [testProbeClass valueForKey:@"isTesting"];
-        return [numberValue boolValue];
+        isTesting = [numberValue boolValue];
     }
 
-    return NO;
+    id configFp = [[[NSProcessInfo processInfo] environment]
+                   valueForKey:@"XCTestConfigurationFilePath"];
+
+    return isTesting || configFp != nil;
 }
 
 /// Creates a pEp directory for use by the engine that is nowhere in a production data area, for use by XCTests.
