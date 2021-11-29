@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "PEPObjCAdapter.h"
+#import "PEPSession.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
         NSLog(@"Hello, World!");
+        PEPSession *session = [PEPSession new];
+        session = nil;
     }
     return 0;
 }
