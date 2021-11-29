@@ -520,7 +520,7 @@
 		436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Rick Deckard (43F270EC) – Secret.asc"; sourceTree = "<group>"; };
 		436E917524B71E12000296FF /* PEPPassphraseProviderMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderMock.h; sourceTree = "<group>"; };
 		436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseProviderMock.m; sourceTree = "<group>"; };
-		437C094E2754EE4B00E86695 /* pEpObjCAdapterTestStartup */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pEpObjCAdapterTestStartup; sourceTree = BUILT_PRODUCTS_DIR; };
+		437C094E2754EE4B00E86695 /* pEpObjCAdapterTestStartup_4ipsec_macOS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pEpObjCAdapterTestStartup_4ipsec_macOS; sourceTree = BUILT_PRODUCTS_DIR; };
 		437C09502754EE4B00E86695 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4396CEB52187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPInternalSessionTestNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
 		4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestNotifyHandshakeDelegate.m; sourceTree = "<group>"; };
@@ -746,7 +746,7 @@
 				1543DC66257943CE0041EFB5 /* libPEPObjCAdapter_iOS.a */,
 				15C3089226E8B5030013F39F /* libPEPObjCAdapter_4ipsec_macOS.a */,
 				43F29532273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.xctest */,
-				437C094E2754EE4B00E86695 /* pEpObjCAdapterTestStartup */,
+				437C094E2754EE4B00E86695 /* pEpObjCAdapterTestStartup_4ipsec_macOS */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1043,9 +1043,9 @@
 			productReference = 15C3089226E8B5030013F39F /* libPEPObjCAdapter_4ipsec_macOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		437C094D2754EE4B00E86695 /* pEpObjCAdapterTestStartup */ = {
+		437C094D2754EE4B00E86695 /* pEpObjCAdapterTestStartup_4ipsec_macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 437C09762754EE4B00E86695 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTestStartup" */;
+			buildConfigurationList = 437C09762754EE4B00E86695 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTestStartup_4ipsec_macOS" */;
 			buildPhases = (
 				437C094A2754EE4B00E86695 /* Sources */,
 				437C094B2754EE4B00E86695 /* Frameworks */,
@@ -1056,9 +1056,9 @@
 			dependencies = (
 				437C09792754EEAD00E86695 /* PBXTargetDependency */,
 			);
-			name = pEpObjCAdapterTestStartup;
+			name = pEpObjCAdapterTestStartup_4ipsec_macOS;
 			productName = pEpObjCAdapterTestStartup;
-			productReference = 437C094E2754EE4B00E86695 /* pEpObjCAdapterTestStartup */;
+			productReference = 437C094E2754EE4B00E86695 /* pEpObjCAdapterTestStartup_4ipsec_macOS */;
 			productType = "com.apple.product-type.tool";
 		};
 		43F29503273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS */ = {
@@ -1163,7 +1163,7 @@
 				64415E161BE94FCB00F6CBB2 /* pEpObjCAdapterTests */,
 				15C3084B26E8B5030013F39F /* PEPObjCAdapter_4ipsec_macOS */,
 				43F29503273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS */,
-				437C094D2754EE4B00E86695 /* pEpObjCAdapterTestStartup */,
+				437C094D2754EE4B00E86695 /* pEpObjCAdapterTestStartup_4ipsec_macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -2078,7 +2078,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		437C09762754EE4B00E86695 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTestStartup" */ = {
+		437C09762754EE4B00E86695 /* Build configuration list for PBXNativeTarget "pEpObjCAdapterTestStartup_4ipsec_macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				437C09522754EE4B00E86695 /* Debug */,
