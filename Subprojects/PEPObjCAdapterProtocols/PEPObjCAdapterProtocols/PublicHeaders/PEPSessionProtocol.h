@@ -35,7 +35,6 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *dstMessage,
                                  PEPStringList *keyList,
-                                 PEPRating rating,
                                  PEPDecryptFlags flags,
                                  BOOL isFormerlyEncryptedReuploadedMessage))successCallback;
 

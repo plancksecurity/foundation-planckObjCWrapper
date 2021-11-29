@@ -40,7 +40,6 @@ static dispatch_queue_t queue;
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *dstMessage,
                                  PEPStringList *keyList,
-                                 PEPRating rating,
                                  PEPDecryptFlags flags,
                                  BOOL isFormerlyEncryptedReuploadedMessage))successCallback
 {
@@ -66,7 +65,6 @@ static dispatch_queue_t queue;
             successCallback(theMessage,
                             newMessage,
                             theExtraKeys,
-                            theRating,
                             theFlags,
                             isFormerlyEncryptedReuploadedMessage);
         } else {
