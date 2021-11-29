@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPObjCAdapter.h"
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
