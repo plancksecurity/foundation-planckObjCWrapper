@@ -275,6 +275,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 /// This is only used under macOS, although it should work on iOS as well.
 + (BOOL)isXCTestRunning
 {
+    id xctestConfig = [[[NSProcessInfo processInfo] environment] valueForKey:@"XCTestConfigurationFilePath"];
     Class testProbeClass = NSClassFromString(@"XCTestProbe");
     if (testProbeClass) {
         NSNumber *numberValue = [testProbeClass valueForKey:@"isTesting"];
