@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSLog(@"Hello, World!");
 
-        dispatch_group_t group = dispatch_group_create();
+        __block dispatch_group_t group = dispatch_group_create();
         dispatch_queue_t queue = dispatch_queue_create("queue", nil);
 
         dispatch_group_enter(group);
@@ -31,7 +31,7 @@ int main(int argc, const char * argv[]) {
             }];
         });
 
-        dispatch_group_wait(group, durationForever);
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     }
     return 0;
 }
