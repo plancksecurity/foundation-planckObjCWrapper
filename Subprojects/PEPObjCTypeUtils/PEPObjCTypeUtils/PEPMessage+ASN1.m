@@ -23,8 +23,7 @@
 
     message *msg = ASN1Message_to_message(asn1Message, NULL, YES, 0);
 
-    // TODO: Use free_ASN1Message as soon as available (see ENGINE-969)
-    ASN_STRUCT_FREE(asn_DEF_ASN1Message, asn1Message);
+    free_ASN1Message(asn1Message);
 
     if (!msg) {
         return nil;
@@ -47,8 +46,7 @@
     size_t msgBytesSze = 0;
     PEP_STATUS status = encode_ASN1Message_message(asn1Message, &msgBytes, &msgBytesSze);
 
-    // TODO: Use free_ASN1Message as soon as available (see ENGINE-969)
-    ASN_STRUCT_FREE(asn_DEF_ASN1Message, asn1Message);
+    free_ASN1Message(asn1Message);
 
     if (status != PEP_STATUS_OK) {
         return nil;
