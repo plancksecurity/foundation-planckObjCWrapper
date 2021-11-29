@@ -15,18 +15,8 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSLog(@"Hello, World!");
 
-        dispatch_queue_t queue = dispatch_queue_create("queue", nil);
-
-        dispatch_async(queue, ^{
-            PEPSession *session = [PEPSession new];
-            [session languageList:^(NSError * _Nonnull error) {
-                NSLog(@"*** error: error");
-            } successCallback:^(NSArray<PEPLanguage *> * _Nonnull languages) {
-                NSLog(@"*** have %lu languages", (unsigned long) languages.count);
-            }];
-        });
-
-        [NSRunLoop mainRunLoop];
+        PEPSession *session = [PEPSession new];
+        [session ratingFromString:@"blarg"];
     }
     return 0;
 }
