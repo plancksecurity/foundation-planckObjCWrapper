@@ -20,7 +20,7 @@ int main(int argc, const char * argv[]) {
 
         dispatch_group_enter(group);
 
-        dispatch_sync(queue, ^{
+        dispatch_async(queue, ^{
             PEPSession *session = [PEPSession new];
             [session languageList:^(NSError * _Nonnull error) {
                 NSLog(@"*** error: error");
