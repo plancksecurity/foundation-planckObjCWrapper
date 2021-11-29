@@ -103,15 +103,12 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = [PEPObjCTypeConversionUtil arrayToStringList:*extraKeys];
     }
 
-    __block PEPRating internalRating = PEPRatingUndefined;
-
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return decrypt_message(session,
-                               _src,
-                               &_dst,
-                               &theKeys,
-                               (PEP_rating *) &internalRating,
-                               (PEP_decrypt_flags *) &theFlags);
+        return decrypt_message_2(session,
+                                 _src,
+                                 &_dst,
+                                 &theKeys,
+                                 (PEP_decrypt_flags *) &theFlags);
     }];
 
     if (status) {
