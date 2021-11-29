@@ -86,15 +86,10 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)theMessage
                                    flags:(PEPDecryptFlags * _Nullable)flags
-                                  rating:(PEPRating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    if (rating) {
-        *rating = PEPRatingUndefined;
-    }
-
     message *_src = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
     __block message *_dst = NULL;
     __block stringlist_t *theKeys = NULL;
@@ -149,10 +144,6 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     decryptMessageFree(_src, _dst, theKeys);
-
-    if (rating) {
-        *rating = internalRating;
-    }
 
     return dst_;
 }

@@ -47,21 +47,19 @@ static dispatch_queue_t queue;
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
 
         PEPDecryptFlags theFlags = flags;
-        PEPRating theRating;
         PEPStringList *theExtraKeys = extraKeys;
         PEPStatus status;
         NSError *error = nil;
 
         PEPMessage *newMessage = [[PEPSessionProvider session] decryptMessage:theMessage
                                                                         flags:&theFlags
-                                                                       rating:&theRating
                                                                     extraKeys:&theExtraKeys
                                                                        status:&status
                                                                         error:&error];
 
         if (newMessage) {
             // See IOS-2414 for details
-            BOOL isFormerlyEncryptedReuploadedMessage = (status == PEPStatusUnencrypted) && theRating >= PEPRatingUnreliable;
+            BOOL isFormerlyEncryptedReuploadedMessage = (status == PEPStatusUnencrypted) && newMessage.rating >= PEPRatingUnreliable;
             successCallback(theMessage,
                             newMessage,
                             theExtraKeys,
