@@ -104,6 +104,8 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     // Note: According to the engine docs for decrypt_message_2, the destination
     // message will be NULL on error, and the source message rating will be set regardless.
+    // Since we derive our returned messages from either the destination message or source,
+    // we'll have a correct rating in the returned result regardless.
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return decrypt_message_2(session,
                                  src,
