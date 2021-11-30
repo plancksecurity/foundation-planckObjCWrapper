@@ -154,7 +154,7 @@ static NSArray *s_keys;
                                                       forKey:@"optionalFields"];
         self.keywords = [decoder decodeObjectOfClasses:stringArraySet forKey:@"keywords"];
         self.receivedBy = [decoder decodeObjectOfClass:[PEPIdentity class] forKey:@"receivedBy"];
-        self.direction = [decoder decodeIntForKey:@"direction"];;
+        self.direction = [decoder decodeIntForKey:@"direction"];
     }
 
     return self;
