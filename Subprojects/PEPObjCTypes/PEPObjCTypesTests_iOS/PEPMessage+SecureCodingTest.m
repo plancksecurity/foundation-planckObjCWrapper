@@ -188,7 +188,7 @@
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
-    XCTAssertEqual(testee, unarchivedTestee);
+    XCTAssertEqualObjects(testee, unarchivedTestee);
 }
 
 // MARK: - Helper
