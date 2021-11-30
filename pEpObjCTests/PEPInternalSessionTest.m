@@ -1745,21 +1745,21 @@
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
     error = nil;
-    PEPMessage *unencDict = [session
-                             decryptMessage:encMessage
-                             flags:nil
-                             extraKeys:keys
-                             status:nil
-                             error:&error];
-    XCTAssertNotNil(unencDict);
+    PEPMessage *decMsg = [session
+                          decryptMessage:encMessage
+                          flags:nil
+                          extraKeys:keys
+                          status:nil
+                          error:&error];
+    XCTAssertNotNil(decMsg);
     XCTAssertNil(error);
 
-    XCTAssertGreaterThanOrEqual(unencDict.rating, PEPRatingReliable);
+    XCTAssertGreaterThanOrEqual(decMsg.rating, PEPRatingReliable);
 
-    XCTAssertEqualObjects(unencDict.shortMessage, shortMessage);
-    XCTAssertEqualObjects(unencDict.longMessage, longMessage);
+    XCTAssertEqualObjects(decMsg.shortMessage, shortMessage);
+    XCTAssertEqualObjects(decMsg.longMessage, longMessage);
 
-    return unencDict;
+    return decMsg;
 }
 
 - (void)pEpCleanUp
