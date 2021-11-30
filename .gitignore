@@ -1,4 +1,5 @@
-##GNUstep
+# pEp build config
+local.conf
 
 ### Pre Compiled Headers
 *.d

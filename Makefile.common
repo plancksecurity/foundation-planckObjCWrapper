@@ -1,5 +1,7 @@
 # Makefile skeleton to build static libraries from objective C.
-# Define $(TARGET) (library name), $(OBJECTS) (*.o files) and then include this.
+# Define $(TARGET) (library name), $(OBJECTS) (*.o files), $(LIBS) (linker
+# flags specific to this library), $(HEADERS) (header files to be installed)
+# and then include this.
 # This will respect local.conf automatically.
 
 HERE:=$(dir $(lastword $(MAKEFILE_LIST)))
@@ -31,6 +33,12 @@ OBJCFLAGS = $(CFLAGS) \
   -fobjc-runtime=gnustep-2.0 -fobjc-arc -fblocks -x objective-c \
   -include PEPObjCGNUStepOptimizations.h
 
+OBJCLINKFLAGS = $(LDFLAGS) \
+  -fuse-ld=/usr/bin/ld.gold \
+  -pthread -fexceptions -rdynamic -fblocks \
+  -fobjc-runtime=gnustep-2.0 \
+
+
 # Unless any rule is defined before including this, this will be the default rule.
 $(TARGET) : $(TARGET).a $(TARGET).so
 
@@ -39,7 +47,7 @@ $(TARGET).a : $(OBJECTS)
 	ranlib $@
 
 $(TARGET).so : $(OBJECTS)
-	clang --shared $(LD_FLAGS) -Wl,--no-undefined -o $@ $^ $(LD_LIBS)
+	clang --shared $(OBJCLINKFLAGS) -Wl,--no-undefined -o $@ $^ $(LD_LIBS) $(LIBS)
 
 
 %.o: %.m $(GENERATED)
