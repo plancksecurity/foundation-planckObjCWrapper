@@ -123,12 +123,12 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         *flags = theFlags;
     }
 
-    PEPMessage *dst_;
+    PEPMessage *dstMessage;
 
     if (_dst) {
-        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_dst];
+        dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_dst];
     } else {
-        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_src];
+        dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_src];
     }
 
     if (theFlags & PEP_decrypt_flag_untrusted_server) {
@@ -141,7 +141,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     decryptMessageFree(_src, _dst, theKeys);
 
-    return dst_;
+    return dstMessage;
 }
 
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)theMessage
