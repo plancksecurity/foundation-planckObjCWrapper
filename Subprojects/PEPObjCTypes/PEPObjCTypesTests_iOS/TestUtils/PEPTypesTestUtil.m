@@ -86,6 +86,8 @@
     message.receivedBy = identity;
     message.direction = PEPMsgDirectionIncoming;
 
+    message.rating = PEPRatingB0rken;
+
     return message;
 }
 
