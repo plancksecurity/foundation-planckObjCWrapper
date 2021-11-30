@@ -183,6 +183,14 @@
     XCTAssertEqual(testee.rating, unarchivedTestee.rating);
 }
 
+- (void)testMessageEquality
+{
+    PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
+    PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
+
+    XCTAssertEqual(testee, unarchivedTestee);
+}
+
 // MARK: - Helper
 
 - (PEPMessage *)archiveAndUnarchiveMessage:(PEPMessage *)message {
