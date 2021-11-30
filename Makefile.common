@@ -39,14 +39,14 @@ $(TARGET).a : $(OBJECTS)
 	ranlib $@
 
 $(TARGET).so : $(OBJECTS)
-	clang --shared $(LD_FLAGS) -o $@ $^ $(LD_LIBS)
+	clang --shared $(LD_FLAGS) -Wl,--no-undefined -o $@ $^ $(LD_LIBS)
 
 
 %.o: %.m $(GENERATED)
 	clang $(OBJCFLAGS) $(INCLUDES) -o $@ -c $<
 
 clean:
-	rm -f $(OBJECTS) $(DEPFILES) $(TARGET).a
+	rm -f $(OBJECTS) $(DEPFILES) $(TARGET).a $(TARGET).so
 
 install:
 	install $(TARGET).a $(PREFIX)/lib/
