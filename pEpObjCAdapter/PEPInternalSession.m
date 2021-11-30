@@ -89,8 +89,8 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    message *_src = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
-    __block message *_dst = NULL;
+    message *src = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
+    __block message *dst = NULL;
     __block stringlist_t *theKeys = NULL;
     __block PEPDecryptFlags theFlags = 0;
 
@@ -104,8 +104,8 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return decrypt_message_2(session,
-                                 _src,
-                                 &_dst,
+                                 src,
+                                 &dst,
                                  &theKeys,
                                  (PEP_decrypt_flags *) &theFlags);
     }];
@@ -115,7 +115,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
-        decryptMessageFree(_src, _dst, theKeys);
+        decryptMessageFree(src, dst, theKeys);
         return nil;
     }
 
@@ -125,21 +125,21 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
     PEPMessage *dstMessage;
 
-    if (_dst) {
-        dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_dst];
+    if (dst) {
+        dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:dst];
     } else {
-        dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_src];
+        dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:src];
     }
 
     if (theFlags & PEP_decrypt_flag_untrusted_server) {
-        [PEPObjCTypeConversionUtil overWritePEPMessageObject:theMessage withValuesFromStruct:_src];
+        [PEPObjCTypeConversionUtil overWritePEPMessageObject:theMessage withValuesFromStruct:src];
     }
 
     if (extraKeys) {
         *extraKeys = [PEPObjCTypeConversionUtil arrayFromStringlist:theKeys];
     }
 
-    decryptMessageFree(_src, _dst, theKeys);
+    decryptMessageFree(src, dst, theKeys);
 
     return dstMessage;
 }
