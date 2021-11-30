@@ -1744,19 +1744,17 @@
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
-    PEPRating rating;
     error = nil;
     PEPMessage *unencDict = [session
                              decryptMessage:encMessage
                              flags:nil
-                             rating:&rating
                              extraKeys:keys
                              status:nil
                              error:&error];
     XCTAssertNotNil(unencDict);
     XCTAssertNil(error);
 
-    XCTAssertGreaterThanOrEqual(rating, PEPRatingReliable);
+    XCTAssertGreaterThanOrEqual(unencDict.rating, PEPRatingReliable);
 
     XCTAssertEqualObjects(unencDict.shortMessage, shortMessage);
     XCTAssertEqualObjects(unencDict.longMessage, longMessage);
