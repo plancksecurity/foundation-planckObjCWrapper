@@ -650,17 +650,15 @@
     NSArray *keys;
 
     error = nil;
-    PEPRating rating = PEPRatingUndefined;
     PEPMessage *decmsg = [session
                           decryptMessage:encMsg
                           flags:nil
-                          rating:&rating
                           extraKeys:&keys
                           status:nil
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
-    XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+    XCTAssertEqual(decmsg.rating, PEPRatingTrustedAndAnonymized);
 
     // There shouldn't be any attachments
     XCTAssertEqual(decmsg.attachments.count, 0);
@@ -1015,17 +1013,15 @@
 
     error = nil;
     PEPStringList *keys;
-    PEPRating rating = PEPRatingUndefined;
     PEPMessage *decmsg = [session
                           decryptMessage:mail
                           flags:nil
-                          rating:&rating
                           extraKeys:&keys
                           status:nil
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
-    XCTAssertEqual(rating, PEPRatingUnencrypted);
+    XCTAssertEqual(decmsg.rating, PEPRatingUnencrypted);
 
     PEPAttachment *decryptedAttachment = [decmsg.attachments objectAtIndex:0];
     XCTAssertEqualObjects(decryptedAttachment.mimeType, attachment.mimeType);
