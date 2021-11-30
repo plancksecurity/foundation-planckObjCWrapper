@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPObjCTypes_iOS.h"
+#import "PEPObjCTypes.h"
 #import "PEPObjCAdapter_iOS.h"
 
 #import "NSNumber+PEPRating.h"
@@ -249,7 +249,7 @@
 
     XCTAssertTrue([self keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingHaveNoKey);
 
     XCTAssertTrue([self keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
