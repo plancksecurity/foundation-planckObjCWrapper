@@ -121,13 +121,18 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 }
 
 + (void)setupPerUserDirectory {
-    // The Engine uses the home env as per-user-directory. We hijack that on iOS.
+    // The Engine uses the home env as per-user-directory. We hijack that on iOS,
+    // or when running XCTests on macOS.
 #if TARGET_OS_IPHONE
     s_homeURL = [self createApplicationDirectory];
-    // The engine will put its per_user_directory under this directory.
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
 #else
-    // For macOS there is nothing toDo. The defaults in Engine platform_unix.h should do.
+    if ([self isXCTestRunning]) {
+        s_homeURL = [self createTestDataDirectoryMacOS];
+        setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
+    } else {
+        // For macOS there is nothing toDo. The defaults in Engine platform_unix.h should do.
+    }
 #endif
 }
 
@@ -261,6 +266,49 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 + (NSString * _Nonnull)perMachineDirectoryString
 {
     return [NSString stringWithCString:per_machine_directory() encoding:NSUTF8StringEncoding];
+}
+
+#pragma mark - DB PATHS Helpers for macOS
+
+/// Determines whether the adapter is running under a XCTest.
+///
+/// This is only used under macOS, although it should work on iOS as well.
++ (BOOL)isXCTestRunning
+{
+    BOOL isTesting = NO;
+    Class testProbeClass = NSClassFromString(@"XCTestProbe");
+    if (testProbeClass) {
+        NSNumber *numberValue = [testProbeClass valueForKey:@"isTesting"];
+        isTesting = [numberValue boolValue];
+    }
+
+    id configFp = [[[NSProcessInfo processInfo] environment]
+                   valueForKey:@"XCTestConfigurationFilePath"];
+
+    return isTesting || configFp != nil;
+}
+
+/// Creates a pEp directory for use by the engine that is nowhere in a production data area, for use by XCTests.
++ (NSURL *)createTestDataDirectoryMacOS
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray *appSupportDir = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask];
+    NSURL *containerUrl = containerUrl = [appSupportDir lastObject];
+
+    if (containerUrl == nil) {
+        LogErrorAndCrash(@"No app container, no application support directory.");
+    }
+
+    NSURL *dirPath = [containerUrl URLByAppendingPathComponent:s_pEpHomeComponent];
+
+    // If the directory does not exist, this method creates it.
+    NSError *theError = nil;
+    if (![fm createDirectoryAtURL:dirPath withIntermediateDirectories:YES
+                       attributes:nil error:&theError]) {
+        LogErrorAndCrash(@"Could not create pEp home directory, directly writing to app container instead.");
+    }
+
+    return dirPath;
 }
 
 @end

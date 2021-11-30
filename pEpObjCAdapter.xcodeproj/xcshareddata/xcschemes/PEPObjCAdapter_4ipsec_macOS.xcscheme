@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43F29503273E7BE0009611F8"
+               BuildableName = "pEpObjCAdapterTests_4ipsec_macOS.xctest"
+               BlueprintName = "pEpObjCAdapterTests_4ipsec_macOS"
+               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
