@@ -128,6 +128,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     PEPMessage *dstMessage;
 
     if (dst) {
+        // Decryption was successful
         dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:dst];
     } else {
         dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:src];
