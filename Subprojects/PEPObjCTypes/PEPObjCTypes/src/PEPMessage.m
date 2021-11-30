@@ -155,6 +155,7 @@ static NSArray *s_keys;
         self.keywords = [decoder decodeObjectOfClasses:stringArraySet forKey:@"keywords"];
         self.receivedBy = [decoder decodeObjectOfClass:[PEPIdentity class] forKey:@"receivedBy"];
         self.direction = [decoder decodeIntForKey:@"direction"];
+        self.rating = [decoder decodeIntForKey:@"rating"];
     }
 
     return self;
@@ -185,6 +186,7 @@ static NSArray *s_keys;
     [coder encodeObject:self.keywords forKey:@"keywords"];
     [coder encodeObject:self.receivedBy forKey:@"receivedBy"];
     [coder encodeInt:self.direction forKey:@"direction"];
+    [coder encodeInt:self.rating forKey:@"rating"];
 }
 
 + (BOOL)supportsSecureCoding {
