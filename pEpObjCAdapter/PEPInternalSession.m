@@ -136,7 +136,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:src];
     }
 
-    if (theFlags & PEP_decrypt_flag_untrusted_server) {
+    if (theFlags & PEP_decrypt_flag_src_modified) {
         [PEPObjCTypeConversionUtil overWritePEPMessageObject:theMessage withValuesFromStruct:src];
     }
 
