@@ -135,7 +135,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     if (theFlags & PEP_decrypt_flag_untrusted_server) {
-        // For untrusted server, the source PEPMessage is updated with the engine's source message
+        // For untrusted server, the source PEPMessage is overwritten with the engine's source message
         [PEPObjCTypeConversionUtil overWritePEPMessageObject:theMessage withValuesFromStruct:src];
     }
 
