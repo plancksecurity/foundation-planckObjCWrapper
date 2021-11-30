@@ -74,15 +74,14 @@
     });
 }
 
-#pragma mark - API
-
-///!!!: this is _not_ API. Move or rm mark.
 void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     free_message(src);
     free_message(dst);
     free_stringlist(extraKeys);
 }
+
+#pragma mark - API
 
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)theMessage
                                    flags:(PEPDecryptFlags * _Nullable)flags
