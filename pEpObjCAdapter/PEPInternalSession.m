@@ -102,6 +102,8 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = [PEPObjCTypeConversionUtil arrayToStringList:*extraKeys];
     }
 
+    // Note: According to the engine docs for decrypt_message_2, the destination
+    // message will be NULL on error, and the source message rating will be set regardless.
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return decrypt_message_2(session,
                                  src,
