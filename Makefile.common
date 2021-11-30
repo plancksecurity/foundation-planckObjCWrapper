@@ -19,7 +19,9 @@ INCLUDES = \
   -I$(HERE)/Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/PublicHeaders \
   -I$(PREFIX)/System/Library/Headers \
   -I$(PREFIX)/include/ \
+  -I$(PEP_INCLUDE) \
   -I../src/ \
+  $(EXTRA_INCLUDES) \
 
 OBJCFLAGS = $(CFLAGS) \
   -MMD -MP \
