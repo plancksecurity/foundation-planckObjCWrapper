@@ -683,7 +683,6 @@
 				64415E181BE94FCB00F6CBB2 /* PEPObjCAdapterTests */,
 				352988AB1AEF964100FA7E2E /* Products */,
 				43447C51221D448500B6323E /* Frameworks */,
-				43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */,
 				439F4D22275792AF005F278E /* PEPObjCTypes.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -823,6 +822,7 @@
 		64415E181BE94FCB00F6CBB2 /* PEPObjCAdapterTests */ = {
 			isa = PBXGroup;
 			children = (
+				43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */,
 				15D3D762200F6C6A00A0DA20 /* TestUtils */,
 				15DE372B200F5F93007FBD94 /* Recources */,
 				434226801D4F60000083ED79 /* PepTests.m */,
