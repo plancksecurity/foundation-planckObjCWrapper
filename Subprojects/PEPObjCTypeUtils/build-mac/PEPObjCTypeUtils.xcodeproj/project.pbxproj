@@ -76,6 +76,13 @@
 			remoteGlobalIDString = 644297BF1BE11C65002BC73B;
 			remoteInfo = pEpTrustWords;
 		};
+		439F4CD327577C27005F278E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 159805FA26CFC0C500593C9D /* PEPObjCTypes.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E575857268329170084F02D;
+			remoteInfo = PEPObjCTypes_macOS;
+		};
 		43B0EAD6274D21E100F5D076 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1585EA7426984C4300B822E1 /* Project object */;
@@ -265,6 +272,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				439F4CD427577C27005F278E /* PBXTargetDependency */,
 			);
 			name = PEPObjCTypeUtils_macOS;
 			productName = PEPObjCTypeUtils;
@@ -491,6 +499,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		439F4CD427577C27005F278E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PEPObjCTypes_macOS;
+			targetProxy = 439F4CD327577C27005F278E /* PBXContainerItemProxy */;
+		};
 		43B0EAD7274D21E100F5D076 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1585EA7B26984C4300B822E1 /* PEPObjCTypeUtils_macOS */;
