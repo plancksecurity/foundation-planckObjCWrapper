@@ -1737,7 +1737,7 @@
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypeUtils/build-mac/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 					"$(PROJECT_DIR)/../../pEpEngine/build-mac/build/include/pEp",
-					"$(PROJECT_DIR)/../libpEpTransport/build-mac/build/include",
+					"$(PROJECT_DIR)/../../libpEpTransport/build-mac/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
@@ -1797,7 +1797,7 @@
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypeUtils/build-mac/build/include",
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 					"$(PROJECT_DIR)/../../pEpEngine/build-mac/build/include/pEp",
-					"$(PROJECT_DIR)/../libpEpTransport/build-mac/build/include",
+					"$(PROJECT_DIR)/../../libpEpTransport/build-mac/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
