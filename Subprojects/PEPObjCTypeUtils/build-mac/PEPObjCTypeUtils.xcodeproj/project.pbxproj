@@ -20,6 +20,8 @@
 		439F4CB027577AC3005F278E /* PEPObjCTypeConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 439F4CAB27577AC3005F278E /* PEPObjCTypeConversionUtil.m */; };
 		439F4CB127577AC3005F278E /* PEPObjCTypeConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 439F4CAB27577AC3005F278E /* PEPObjCTypeConversionUtil.m */; };
 		439F4CD727577D71005F278E /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439F4CBB27577ADC005F278E /* libPEPObjCTypes_iOS.a */; };
+		439F4CDC27578120005F278E /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439F4CD027577AF6005F278E /* libpEpEngine_macOS.a */; };
+		439F4CDD27578127005F278E /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439F4CCE27577AF6005F278E /* libpEpEngine.a */; };
 		43B0EAC3274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; };
 		43B0EAC4274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; };
 		43B0EAD5274D21E100F5D076 /* libPEPObjCTypeUtils_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EA7C26984C4300B822E1 /* libPEPObjCTypeUtils_macOS.a */; };
@@ -148,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439F4CDC27578120005F278E /* libpEpEngine_macOS.a in Frameworks */,
 				4E89010726CF900B00A683E9 /* libPEPObjCTypes_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439F4CDD27578127005F278E /* libpEpEngine.a in Frameworks */,
 				439F4CD727577D71005F278E /* libPEPObjCTypes_iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
