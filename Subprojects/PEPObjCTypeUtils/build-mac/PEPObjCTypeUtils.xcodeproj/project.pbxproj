@@ -148,7 +148,7 @@
 				1585EACB269850B400B822E1 /* pEpEngine.xcodeproj */,
 				1585EA9526984DB800B822E1 /* PublicHeaders */,
 				439F4CA827577AC3005F278E /* src */,
-				43B0EAD2274D21E100F5D076 /* PEPObjCTypeUtilsTests_macOS */,
+				43B0EAD2274D21E100F5D076 /* PEPObjCTypeUtilsTests */,
 				1585EA7D26984C4300B822E1 /* Products */,
 				1585EADB269850C700B822E1 /* Frameworks */,
 			);
@@ -216,13 +216,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43B0EAD2274D21E100F5D076 /* PEPObjCTypeUtilsTests_macOS */ = {
+		43B0EAD2274D21E100F5D076 /* PEPObjCTypeUtilsTests */ = {
 			isa = PBXGroup;
 			children = (
 				43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */,
 			);
-			name = PEPObjCTypeUtilsTests_macOS;
-			path = ../PEPObjCTypeUtilsTests_macOS;
+			name = PEPObjCTypeUtilsTests;
+			path = ../PEPObjCTypeUtilsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
