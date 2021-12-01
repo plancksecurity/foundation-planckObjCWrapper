@@ -72,6 +72,7 @@
 		4EEB4C9F2680D57A00161040 = {
 			isa = PBXGroup;
 			children = (
+				4EEB4CC02680DCAC00161040 /* PublicHeaders */,
 				4EEB4CAA2680D57A00161040 /* PEPObjCAdapterProtocols */,
 				4E23E6E72681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS */,
 				4E23E7052681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS */,
@@ -92,7 +93,6 @@
 		4EEB4CAA2680D57A00161040 /* PEPObjCAdapterProtocols */ = {
 			isa = PBXGroup;
 			children = (
-				4EEB4CC02680DCAC00161040 /* PublicHeaders */,
 				4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */,
 			);
 			path = PEPObjCAdapterProtocols;
@@ -104,7 +104,8 @@
 				4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */,
 				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
 			);
-			path = PublicHeaders;
+			name = PublicHeaders;
+			path = PEPObjCAdapterProtocols/PublicHeaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
