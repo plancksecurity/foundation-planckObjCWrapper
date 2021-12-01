@@ -95,7 +95,8 @@
 			children = (
 				4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */,
 			);
-			path = PEPObjCAdapterProtocols;
+			name = PEPObjCAdapterProtocols;
+			path = ../PEPObjCAdapterProtocols;
 			sourceTree = "<group>";
 		};
 		4EEB4CC02680DCAC00161040 /* PublicHeaders */ = {
@@ -105,7 +106,7 @@
 				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
 			);
 			name = PublicHeaders;
-			path = PEPObjCAdapterProtocols/PublicHeaders;
+			path = ../PublicHeaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
