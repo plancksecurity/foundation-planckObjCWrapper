@@ -474,7 +474,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/PEPObjCTypeUtils/PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
 			showEnvVarsInLog = 0;
 		};
 		1585EC78269C3DD000B822E1 /* Copy Artefacts to Custom Build dir */ = {
