@@ -550,7 +550,7 @@
 				43209B251ECC2ACD007E7E2E /* src */,
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
 				1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */,
-				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
+				64415E181BE94FCB00F6CBB2 /* PEPObjCAdapterTests */,
 				352988AB1AEF964100FA7E2E /* Products */,
 				43447C51221D448500B6323E /* Frameworks */,
 				43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */,
@@ -657,7 +657,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		64415E181BE94FCB00F6CBB2 /* pEpObjCTests */ = {
+		64415E181BE94FCB00F6CBB2 /* PEPObjCAdapterTests */ = {
 			isa = PBXGroup;
 			children = (
 				15D3D762200F6C6A00A0DA20 /* TestUtils */,
@@ -670,8 +670,8 @@
 				43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */,
 				434707F824C30E9700E05485 /* PEPSessionTest.m */,
 			);
-			name = pEpObjCTests;
-			path = ../pEpObjCTests;
+			name = PEPObjCAdapterTests;
+			path = ../PEPObjCAdapterTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
