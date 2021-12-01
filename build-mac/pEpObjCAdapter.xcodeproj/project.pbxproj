@@ -478,7 +478,8 @@
 				43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */,
 				436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */,
 			);
-			path = PublicHeaders;
+			name = PublicHeaders;
+			path = ../PublicHeaders;
 			sourceTree = "<group>";
 		};
 		15D3D762200F6C6A00A0DA20 /* TestUtils */ = {
@@ -543,6 +544,7 @@
 				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
+				1552D99B257663F200A92F71 /* PublicHeaders */,
 				43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */,
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
 				1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */,
@@ -568,7 +570,6 @@
 		43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				1552D99B257663F200A92F71 /* PublicHeaders */,
 				438C0EE1254026E200337922 /* Extensions */,
 				43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */,
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
