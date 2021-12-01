@@ -545,7 +545,7 @@
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
 				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
 				1552D99B257663F200A92F71 /* PublicHeaders */,
-				43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */,
+				43209B251ECC2ACD007E7E2E /* src */,
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
 				1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */,
 				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
@@ -567,7 +567,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43209B251ECC2ACD007E7E2E /* pEpObjCAdapter */ = {
+		43209B251ECC2ACD007E7E2E /* src */ = {
 			isa = PBXGroup;
 			children = (
 				438C0EE1254026E200337922 /* Extensions */,
@@ -600,7 +600,8 @@
 				43E1A7AB252B421D00307A7D /* Logger.h */,
 				15C3089326E8B8550013F39F /* Logger.m */,
 			);
-			path = pEpObjCAdapter;
+			name = src;
+			path = ../src;
 			sourceTree = "<group>";
 		};
 		43447C51221D448500B6323E /* Frameworks */ = {
