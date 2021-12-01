@@ -509,7 +509,7 @@
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
 		43E1A7AB252B421D00307A7D /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		43F29532273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests_4ipsec_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pEpObjCAdapterTests_4ipsec_macOS.plist; path = ../pEpObjCAdapterTests_4ipsec_macOS.plist; sourceTree = "<group>"; };
+		43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = pEpObjCAdapterTests_4ipsec_macOS.plist; sourceTree = "<group>"; };
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
 		4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCTypes.xcodeproj; path = "../Subprojects/PEPObjCTypes/build-mac/PEPObjCTypes.xcodeproj"; sourceTree = "<group>"; };
 		4E51BFA626CBC685007A2164 /* libPEPToolbox_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPToolbox_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
