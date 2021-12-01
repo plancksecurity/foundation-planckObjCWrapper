@@ -484,7 +484,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\nCUSTOM_INCLUDE_DIR=${PROJECT_DIR}/build/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp  \"${PROJECT_DIR}/../PublicHeaders\"/* ${CUSTOM_INCLUDE_DIR}\ncp  \"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include/pEp/PEPTransportStatusCode.h\" ${CUSTOM_INCLUDE_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\nCUSTOM_INCLUDE_DIR=${PROJECT_DIR}/build/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp  \"${PROJECT_DIR}/../PublicHeaders\"/* ${CUSTOM_INCLUDE_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 		4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
