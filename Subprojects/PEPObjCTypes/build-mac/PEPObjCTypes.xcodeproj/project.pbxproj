@@ -25,7 +25,6 @@
 		15BD319D2742A1B500B1B1F5 /* PEPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD319A2742A1B500B1B1F5 /* PEPErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BD319E2742A1B500B1B1F5 /* PEPErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD319B2742A1B500B1B1F5 /* PEPErrors.m */; };
 		15BD319F2742A1B500B1B1F5 /* PEPErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD319B2742A1B500B1B1F5 /* PEPErrors.m */; };
-		439F4C9A2757696C005F278E /* PEPObjCTypesTests_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 439F4C992757696C005F278E /* PEPObjCTypesTests_macOS.m */; };
 		439F4C9B2757696C005F278E /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */; };
 		439F4CA127576977005F278E /* PEPTypesTestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758D026833F920084F02D /* PEPTypesTestUtil.m */; };
 		439F4CA22757697A005F278E /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */; };
@@ -120,7 +119,6 @@
 		15BD319A2742A1B500B1B1F5 /* PEPErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPErrors.h; sourceTree = "<group>"; };
 		15BD319B2742A1B500B1B1F5 /* PEPErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPErrors.m; sourceTree = "<group>"; };
 		439F4C972757696C005F278E /* PEPObjCTypesTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypesTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		439F4C992757696C005F278E /* PEPObjCTypesTests_macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCTypesTests_macOS.m; sourceTree = "<group>"; };
 		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes.h; sourceTree = "<group>"; };
 		4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,14 +192,6 @@
 			path = PEPEqualableTools;
 			sourceTree = "<group>";
 		};
-		439F4C982757696C005F278E /* PEPObjCTypesTests_macOS */ = {
-			isa = PBXGroup;
-			children = (
-				439F4C992757696C005F278E /* PEPObjCTypesTests_macOS.m */,
-			);
-			path = PEPObjCTypesTests_macOS;
-			sourceTree = "<group>";
-		};
 		4E575835268328CD0084F02D = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +200,6 @@
 				4E575859268329170084F02D /* PEPObjCTypes_macOS */,
 				4E575866268329A20084F02D /* PEPObjCTypes_iOS */,
 				4E5758C026833D140084F02D /* PEPObjCTypesTests_iOS */,
-				439F4C982757696C005F278E /* PEPObjCTypesTests_macOS */,
 				4E57583F268328CD0084F02D /* Products */,
 				4E5758B826833A700084F02D /* Frameworks */,
 			);
@@ -537,7 +526,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				439F4CA527576985005F278E /* PEPMessage+SecureCodingTest.m in Sources */,
-				439F4C9A2757696C005F278E /* PEPObjCTypesTests_macOS.m in Sources */,
 				439F4CA127576977005F278E /* PEPTypesTestUtil.m in Sources */,
 				439F4CA427576981005F278E /* PEPLanguage+SecureCodingTest.m in Sources */,
 				439F4CA32757697E005F278E /* PEPIdentity+SecureCodingTest.m in Sources */,
