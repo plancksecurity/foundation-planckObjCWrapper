@@ -57,8 +57,6 @@
 		4E5758AC2683331C0084F02D /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588626832F2F0084F02D /* PEPIdentity.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		4E5758AE2683331C0084F02D /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588126832F2F0084F02D /* PEPTypes.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		4E5758B02683331C0084F02D /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588226832F2F0084F02D /* PEPLanguage.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
-		4E5758B626833A4E0084F02D /* PEPObjCTypes_macOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
-		4E5758B726833A560084F02D /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5758B4268339450084F02D /* module.modulemap */; };
 		4E5758C426833D140084F02D /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575865268329A20084F02D /* libPEPObjCTypes_iOS.a */; platformFilter = ios; };
 		4E5758D126833F920084F02D /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */; };
 		4E5758D226833F920084F02D /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */; };
@@ -93,17 +91,6 @@
 			files = (
 				43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */,
 				4E57586A268329A20084F02D /* PEPObjCTypes_iOS.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4E5758B526833A120084F02D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				4E5758B726833A560084F02D /* module.modulemap in CopyFiles */,
-				4E5758B626833A4E0084F02D /* PEPObjCTypes_macOS.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +359,6 @@
 				4E575854268329170084F02D /* Headers */,
 				4E575855268329170084F02D /* Sources */,
 				4E575856268329170084F02D /* Frameworks */,
-				4E5758B526833A120084F02D /* CopyFiles */,
 				4E5758F7268371770084F02D /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
