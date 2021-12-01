@@ -670,7 +670,8 @@
 				43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */,
 				434707F824C30E9700E05485 /* PEPSessionTest.m */,
 			);
-			path = pEpObjCTests;
+			name = pEpObjCTests;
+			path = ../pEpObjCTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
