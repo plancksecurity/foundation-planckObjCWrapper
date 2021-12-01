@@ -453,7 +453,8 @@
 				1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */,
 				1543DD8B257A3C9E0041EFB5 /* module.modulemap */,
 			);
-			path = PEPObjCAdapter_iOS;
+			name = PEPObjCAdapter_iOS;
+			path = ../PEPObjCAdapter_iOS;
 			sourceTree = "<group>";
 		};
 		1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */ = {
@@ -462,7 +463,8 @@
 				1552D93D2576602D00A92F71 /* PEPObjCAdapter_macOS.h */,
 				1552D93F2576602D00A92F71 /* PEPObjCAdapter_macOS.m */,
 			);
-			path = PEPObjCAdapter_macOS;
+			name = PEPObjCAdapter_macOS;
+			path = ../PEPObjCAdapter_macOS;
 			sourceTree = "<group>";
 		};
 		1552D99B257663F200A92F71 /* PublicHeaders */ = {
