@@ -166,6 +166,7 @@
 		15C3089626E8B8550013F39F /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C3089326E8B8550013F39F /* Logger.m */; };
 		15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
 		43062BAD24EEC83400489258 /* PEPIdentity+isPEPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 43062BAC24EEC83400489258 /* PEPIdentity+isPEPUser.m */; };
+		430CD87A2757968800B2BE2C /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 430CD85D2757960200B2BE2C /* libPEPObjCTypes_macOS.a */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
 		432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
@@ -294,6 +295,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 15C3084B26E8B5030013F39F;
 			remoteInfo = PEPObjCAdapter_4ipsec_macOS;
+		};
+		430CD8782757968000B2BE2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E575857268329170084F02D;
+			remoteInfo = PEPObjCTypes_macOS;
 		};
 		439F4D1427578C60005F278E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -525,6 +533,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				430CD87A2757968800B2BE2C /* libPEPObjCTypes_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -974,6 +983,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				430CD8792757968000B2BE2C /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapter_4ipsec_macOS;
 			productName = PEPObjCAdapter_macOS;
@@ -1452,6 +1462,11 @@
 			isa = PBXTargetDependency;
 			target = 15C3084B26E8B5030013F39F /* PEPObjCAdapter_4ipsec_macOS */;
 			targetProxy = 430CD8762757962F00B2BE2C /* PBXContainerItemProxy */;
+		};
+		430CD8792757968000B2BE2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PEPObjCTypes_macOS;
+			targetProxy = 430CD8782757968000B2BE2C /* PBXContainerItemProxy */;
 		};
 		439F4D26275792AF005F278E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
