@@ -81,7 +81,7 @@
 
     message.attachments = @[attachment];
 
-    message.optionalFields = @[@"optionalField"];
+    message.optionalFields = @[@[@"optionalField", @"optionalValue"]];
     message.keywords = @[@"keyword"];
     message.receivedBy = identity;
     message.direction = PEPMsgDirectionIncoming;
