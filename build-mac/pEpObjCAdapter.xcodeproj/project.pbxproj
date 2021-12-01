@@ -1750,7 +1750,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypes/build-mac/build/include",
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypeUtils/build-mac/build/include",
-					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
+					"$(PROJECT_DIR)/../Subprojects/PEPObjCAdapterProtocols/build-mac/build/include",
 					"$(PROJECT_DIR)/../../pEpEngine/build-mac/build/include/pEp",
 					"$(PROJECT_DIR)/../../libpEpTransport/build-mac/build/include",
 				);
@@ -1810,7 +1810,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypes/build-mac/build/include",
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypeUtils/build-mac/build/include",
-					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
+					"$(PROJECT_DIR)/../Subprojects/PEPObjCAdapterProtocols/build-mac/build/include",
 					"$(PROJECT_DIR)/../../pEpEngine/build-mac/build/include/pEp",
 					"$(PROJECT_DIR)/../../libpEpTransport/build-mac/build/include",
 				);
