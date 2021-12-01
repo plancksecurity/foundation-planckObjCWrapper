@@ -567,7 +567,7 @@
 					"${PROJECT_DIR}/../../../../pEpEngine/build-mac/build/include/",
 					"${PROJECT_DIR}/../../../../pEpEngine/build-mac/build/include/pEp",
 					"${PROJECT_DIR}/../../PEPObjCTypes/build-mac/build/include",
-					"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include",
+					"${PROJECT_DIR}/../../../../libpEpTransport/build-mac/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -631,7 +631,7 @@
 					"${PROJECT_DIR}/../../../../pEpEngine/build-mac/build/include/",
 					"${PROJECT_DIR}/../../../../pEpEngine/build-mac/build/include/pEp",
 					"${PROJECT_DIR}/../../PEPObjCTypes/build-mac/build/include",
-					"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include",
+					"${PROJECT_DIR}/../../../../libpEpTransport/build-mac/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
