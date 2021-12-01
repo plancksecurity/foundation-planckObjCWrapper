@@ -509,7 +509,7 @@
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
 		43E1A7AB252B421D00307A7D /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		43F29532273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests_4ipsec_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pEpObjCAdapterTests_4ipsec_macOS.plist; path = /Users/dirk/projects/pEp/src_pEp4ipsec/pEpObjCAdapter/pEpObjCAdapterTests_4ipsec_macOS.plist; sourceTree = "<absolute>"; };
+		43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pEpObjCAdapterTests_4ipsec_macOS.plist; path = ../pEpObjCAdapterTests_4ipsec_macOS.plist; sourceTree = "<group>"; };
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
 		4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCTypes.xcodeproj; path = "../Subprojects/PEPObjCTypes/build-mac/PEPObjCTypes.xcodeproj"; sourceTree = "<group>"; };
 		4E51BFA626CBC685007A2164 /* libPEPToolbox_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPToolbox_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -822,12 +822,12 @@
 		64415E181BE94FCB00F6CBB2 /* PEPObjCAdapterTests */ = {
 			isa = PBXGroup;
 			children = (
-				43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */,
 				15D3D762200F6C6A00A0DA20 /* TestUtils */,
 				15DE372B200F5F93007FBD94 /* Recources */,
 				434226801D4F60000083ED79 /* PepTests.m */,
 				15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */,
 				152A9C462010F50400F962ED /* PEPInternalSessionTest.m */,
+				43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */,
 				64415E1B1BE94FCB00F6CBB2 /* Info.plist */,
 				4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */,
 				43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */,
