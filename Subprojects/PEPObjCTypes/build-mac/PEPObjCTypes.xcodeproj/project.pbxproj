@@ -199,7 +199,7 @@
 				4E57587326832F2F0084F02D /* src */,
 				4E575859268329170084F02D /* PEPObjCTypes_macOS */,
 				4E575866268329A20084F02D /* PEPObjCTypes_iOS */,
-				4E5758C026833D140084F02D /* PEPObjCTypesTests_iOS */,
+				4E5758C026833D140084F02D /* PEPObjCTypesTests */,
 				4E57583F268328CD0084F02D /* Products */,
 				4E5758B826833A700084F02D /* Frameworks */,
 			);
@@ -278,7 +278,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4E5758C026833D140084F02D /* PEPObjCTypesTests_iOS */ = {
+		4E5758C026833D140084F02D /* PEPObjCTypesTests */ = {
 			isa = PBXGroup;
 			children = (
 				4E5758CE26833F920084F02D /* TestUtils */,
@@ -288,7 +288,7 @@
 				4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */,
 				4E5758C326833D140084F02D /* Info.plist */,
 			);
-			path = PEPObjCTypesTests_iOS;
+			path = PEPObjCTypesTests;
 			sourceTree = "<group>";
 		};
 		4E5758CE26833F920084F02D /* TestUtils */ = {
