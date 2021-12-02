@@ -95,7 +95,8 @@
 			children = (
 				4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */,
 			);
-			path = src;
+			name = src;
+			path = ../src;
 			sourceTree = "<group>";
 		};
 		4EEB4CC02680DCAC00161040 /* PublicHeaders */ = {
