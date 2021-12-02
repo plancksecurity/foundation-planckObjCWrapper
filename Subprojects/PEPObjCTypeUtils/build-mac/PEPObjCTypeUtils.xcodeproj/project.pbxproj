@@ -203,7 +203,8 @@
 				15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */,
 				43B0EABB274D1E7B00F5D076 /* PEPMessage+ASN1.m */,
 			);
-			path = src;
+			name = src;
+			path = ../src;
 			sourceTree = "<group>";
 		};
 		1585EA9526984DB800B822E1 /* PublicHeaders */ = {
