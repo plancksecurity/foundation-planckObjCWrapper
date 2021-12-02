@@ -73,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				4EEB4CC02680DCAC00161040 /* PublicHeaders */,
-				4EEB4CAA2680D57A00161040 /* PEPObjCAdapterProtocols */,
+				4EEB4CAA2680D57A00161040 /* src */,
 				4E23E6E72681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS */,
 				4E23E7052681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS */,
 				4EEB4CA92680D57A00161040 /* Products */,
@@ -90,12 +90,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4EEB4CAA2680D57A00161040 /* PEPObjCAdapterProtocols */ = {
+		4EEB4CAA2680D57A00161040 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */,
 			);
-			path = PEPObjCAdapterProtocols;
+			path = src;
 			sourceTree = "<group>";
 		};
 		4EEB4CC02680DCAC00161040 /* PublicHeaders */ = {
