@@ -265,7 +265,8 @@
 				4E57588626832F2F0084F02D /* PEPIdentity.h */,
 				15BD319A2742A1B500B1B1F5 /* PEPErrors.h */,
 			);
-			path = PublicHeaders;
+			name = PublicHeaders;
+			path = ../PublicHeaders;
 			sourceTree = "<group>";
 		};
 		4E5758B826833A700084F02D /* Frameworks */ = {
