@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "439F4C962757696C005F278E"
+               BlueprintIdentifier = "439F4C35275632B2005F278E"
                BuildableName = "PEPObjCTypesTests_macOS.xctest"
                BlueprintName = "PEPObjCTypesTests_macOS"
                ReferencedContainer = "container:PEPObjCTypes.xcodeproj">

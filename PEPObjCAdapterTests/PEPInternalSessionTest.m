@@ -650,17 +650,15 @@
     NSArray *keys;
 
     error = nil;
-    PEPRating rating = PEPRatingUndefined;
     PEPMessage *decmsg = [session
                           decryptMessage:encMsg
                           flags:nil
-                          rating:&rating
                           extraKeys:&keys
                           status:nil
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
-    XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+    XCTAssertEqual(decmsg.rating, PEPRatingTrustedAndAnonymized);
 
     // There shouldn't be any attachments
     XCTAssertEqual(decmsg.attachments.count, 0);
@@ -1015,17 +1013,15 @@
 
     error = nil;
     PEPStringList *keys;
-    PEPRating rating = PEPRatingUndefined;
     PEPMessage *decmsg = [session
                           decryptMessage:mail
                           flags:nil
-                          rating:&rating
                           extraKeys:&keys
                           status:nil
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
-    XCTAssertEqual(rating, PEPRatingUnencrypted);
+    XCTAssertEqual(decmsg.rating, PEPRatingUnencrypted);
 
     PEPAttachment *decryptedAttachment = [decmsg.attachments objectAtIndex:0];
     XCTAssertEqualObjects(decryptedAttachment.mimeType, attachment.mimeType);
@@ -1748,24 +1744,22 @@
     XCTAssertEqual(status, 0);
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
-    PEPRating rating;
     error = nil;
-    PEPMessage *unencDict = [session
-                             decryptMessage:encMessage
-                             flags:nil
-                             rating:&rating
-                             extraKeys:keys
-                             status:nil
-                             error:&error];
-    XCTAssertNotNil(unencDict);
+    PEPMessage *decMsg = [session
+                          decryptMessage:encMessage
+                          flags:nil
+                          extraKeys:keys
+                          status:nil
+                          error:&error];
+    XCTAssertNotNil(decMsg);
     XCTAssertNil(error);
 
-    XCTAssertGreaterThanOrEqual(rating, PEPRatingReliable);
+    XCTAssertGreaterThanOrEqual(decMsg.rating, PEPRatingReliable);
 
-    XCTAssertEqualObjects(unencDict.shortMessage, shortMessage);
-    XCTAssertEqualObjects(unencDict.longMessage, longMessage);
+    XCTAssertEqualObjects(decMsg.shortMessage, shortMessage);
+    XCTAssertEqualObjects(decMsg.longMessage, longMessage);
 
-    return unencDict;
+    return decMsg;
 }
 
 - (void)pEpCleanUp
@@ -1830,12 +1824,10 @@
     XCTAssertNotNil(encMsg);
 
     PEPStringList *keys;
-    PEPRating pEpRating;
     error = nil;
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
                           flags:nil
-                          rating:&pEpRating
                           extraKeys:&keys
                           status:nil
                           error:&error];
@@ -1845,7 +1837,7 @@
     if (!toSelf) {
         // Only check this for outgoing mails. For drafts etc. this rating looks incorrect
         // and the x-encstatus is the relevant one.
-        XCTAssertEqual(pEpRating, expectedRating);
+        XCTAssertEqual(decMsg.rating, expectedRating);
     }
 
     NSArray * encStatusField = nil;
