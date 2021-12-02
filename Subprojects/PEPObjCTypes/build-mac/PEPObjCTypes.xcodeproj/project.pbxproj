@@ -248,7 +248,8 @@
 				15BD319B2742A1B500B1B1F5 /* PEPErrors.m */,
 				15BD2F9E27342A3500B1B1F5 /* PEPEqualableTools */,
 			);
-			path = src;
+			name = src;
+			path = ../src;
 			sourceTree = "<group>";
 		};
 		4E57587E26832F2F0084F02D /* PublicHeaders */ = {
