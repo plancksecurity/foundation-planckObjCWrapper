@@ -104,7 +104,8 @@
 				4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */,
 				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
 			);
-			path = PublicHeaders;
+			name = PublicHeaders;
+			path = ../PublicHeaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
