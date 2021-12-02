@@ -141,7 +141,7 @@
 				4E23E6E22681C7CD00B8F4C2 /* Headers */,
 				4E23E6E32681C7CD00B8F4C2 /* Sources */,
 				4E23E6E42681C7CD00B8F4C2 /* Frameworks */,
-				4E23E71926820D5400B8F4C2 /* Copy artefacts to custom build dir */,
+				4E23E71926820D5400B8F4C2 /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -206,7 +206,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4E23E71926820D5400B8F4C2 /* Copy artefacts to custom build dir */ = {
+		4E23E71926820D5400B8F4C2 /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -215,7 +215,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy artefacts to custom build dir";
+			name = "Copy artifacts to custom build dir";
 			outputFileListPaths = (
 			);
 			outputPaths = (
