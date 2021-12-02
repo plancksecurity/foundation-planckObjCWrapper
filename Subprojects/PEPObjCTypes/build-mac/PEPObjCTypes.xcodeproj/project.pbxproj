@@ -195,7 +195,8 @@
 		4E575835268328CD0084F02D = {
 			isa = PBXGroup;
 			children = (
-				4E575840268328CD0084F02D /* PEPObjCTypes */,
+				4E57587E26832F2F0084F02D /* PublicHeaders */,
+				4E57587326832F2F0084F02D /* src */,
 				4E575859268329170084F02D /* PEPObjCTypes_macOS */,
 				4E575866268329A20084F02D /* PEPObjCTypes_iOS */,
 				4E5758C026833D140084F02D /* PEPObjCTypesTests_iOS */,
@@ -213,15 +214,6 @@
 				439F4C36275632B2005F278E /* PEPObjCTypesTests_macOS.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		4E575840268328CD0084F02D /* PEPObjCTypes */ = {
-			isa = PBXGroup;
-			children = (
-				4E57587E26832F2F0084F02D /* PublicHeaders */,
-				4E57587326832F2F0084F02D /* src */,
-			);
-			path = PEPObjCTypes;
 			sourceTree = "<group>";
 		};
 		4E575859268329170084F02D /* PEPObjCTypes_macOS */ = {
