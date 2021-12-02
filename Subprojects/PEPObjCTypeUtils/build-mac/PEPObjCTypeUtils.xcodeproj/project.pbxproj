@@ -178,6 +178,7 @@
 			children = (
 				159805FA26CFC0C500593C9D /* PEPObjCTypes.xcodeproj */,
 				1585EACB269850B400B822E1 /* pEpEngine.xcodeproj */,
+				1585EA9526984DB800B822E1 /* PublicHeaders */,
 				1585EA7E26984C4300B822E1 /* PEPObjCTypeUtils */,
 				43B0EAD2274D21E100F5D076 /* PEPObjCTypeUtilsTests_macOS */,
 				1585EA7D26984C4300B822E1 /* Products */,
@@ -198,7 +199,6 @@
 		1585EA7E26984C4300B822E1 /* PEPObjCTypeUtils */ = {
 			isa = PBXGroup;
 			children = (
-				1585EA9526984DB800B822E1 /* PublicHeaders */,
 				15BD2FB22734487F00B1B1F5 /* PEPObjCTypeConversionUtil.m */,
 				15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */,
 				43B0EABB274D1E7B00F5D076 /* PEPMessage+ASN1.m */,
