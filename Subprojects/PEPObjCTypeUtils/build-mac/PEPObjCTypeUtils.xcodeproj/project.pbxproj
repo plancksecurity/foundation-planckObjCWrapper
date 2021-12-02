@@ -214,7 +214,8 @@
 				15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */,
 				43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */,
 			);
-			path = PublicHeaders;
+			name = PublicHeaders;
+			path = ../PublicHeaders;
 			sourceTree = "<group>";
 		};
 		1585EADB269850C700B822E1 /* Frameworks */ = {
