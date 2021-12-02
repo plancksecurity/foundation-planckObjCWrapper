@@ -112,11 +112,10 @@
          successCallback:^(PEPMessage * srcMessage,
                            PEPMessage * dstMessage,
                            PEPStringList * keyList,
-                           PEPRating rating,
                            PEPDecryptFlags flags,
                            BOOL isFormerlyEncryptedReuploadedMessage) {
             XCTAssertNotNil(dstMessage);
-            XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+            XCTAssertEqual(dstMessage.rating, PEPRatingTrustedAndAnonymized);
             [expectationDec fulfill];
         }];
         [self waitForExpectations:@[expectationDec] timeout:PEPTestInternalSyncTimeout];

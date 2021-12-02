@@ -25,6 +25,12 @@
 		15BD319D2742A1B500B1B1F5 /* PEPErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD319A2742A1B500B1B1F5 /* PEPErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BD319E2742A1B500B1B1F5 /* PEPErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD319B2742A1B500B1B1F5 /* PEPErrors.m */; };
 		15BD319F2742A1B500B1B1F5 /* PEPErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD319B2742A1B500B1B1F5 /* PEPErrors.m */; };
+		439F4C3A275632B2005F278E /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */; };
+		439F4C40275632D7005F278E /* PEPTypesTestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758D026833F920084F02D /* PEPTypesTestUtil.m */; };
+		439F4C41275632DC005F278E /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */; };
+		439F4C42275632DF005F278E /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */; };
+		439F4C43275632E2005F278E /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */; };
+		439F4C44275632E6005F278E /* PEPMessage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */; };
 		43D44C822685BB3600638D1C /* PEPObjCTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* module.modulemap */; platformFilter = ios; };
 		4E57585B268329170084F02D /* PEPObjCTypes_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
@@ -62,6 +68,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		439F4C3B275632B2005F278E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E575836268328CD0084F02D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E575857268329170084F02D;
+			remoteInfo = PEPObjCTypes_macOS;
+		};
 		4E5758D726836A0C0084F02D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4E575836268328CD0084F02D /* Project object */;
@@ -105,6 +118,7 @@
 		15BD2F9927342A2400B1B1F5 /* PEPEqualableTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPEqualableTools.m; sourceTree = "<group>"; };
 		15BD319A2742A1B500B1B1F5 /* PEPErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPErrors.h; sourceTree = "<group>"; };
 		15BD319B2742A1B500B1B1F5 /* PEPErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPErrors.m; sourceTree = "<group>"; };
+		439F4C36275632B2005F278E /* PEPObjCTypesTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypesTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes.h; sourceTree = "<group>"; };
 		4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +150,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		439F4C33275632B2005F278E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439F4C3A275632B2005F278E /* libPEPObjCTypes_macOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4E575856268329170084F02D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,6 +210,7 @@
 				4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */,
 				4E575865268329A20084F02D /* libPEPObjCTypes_iOS.a */,
 				4E5758BF26833D140084F02D /* PEPObjCTypesTests_iOS.xctest */,
+				439F4C36275632B2005F278E /* PEPObjCTypesTests_macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -327,6 +350,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		439F4C35275632B2005F278E /* PEPObjCTypesTests_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 439F4C3F275632B2005F278E /* Build configuration list for PBXNativeTarget "PEPObjCTypesTests_macOS" */;
+			buildPhases = (
+				439F4C32275632B2005F278E /* Sources */,
+				439F4C33275632B2005F278E /* Frameworks */,
+				439F4C34275632B2005F278E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				439F4C3C275632B2005F278E /* PBXTargetDependency */,
+			);
+			name = PEPObjCTypesTests_macOS;
+			productName = PEPObjCTypesTests_macOS;
+			productReference = 439F4C36275632B2005F278E /* PEPObjCTypesTests_macOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4E575857268329170084F02D /* PEPObjCTypes_macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4E57585E268329170084F02D /* Build configuration list for PBXNativeTarget "PEPObjCTypes_macOS" */;
@@ -391,6 +432,9 @@
 			attributes = {
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					439F4C35275632B2005F278E = {
+						CreatedOnToolsVersion = 13.1;
+					};
 					4E575857268329170084F02D = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -418,11 +462,19 @@
 				4E575857268329170084F02D /* PEPObjCTypes_macOS */,
 				4E575864268329A20084F02D /* PEPObjCTypes_iOS */,
 				4E5758BE26833D140084F02D /* PEPObjCTypesTests_iOS */,
+				439F4C35275632B2005F278E /* PEPObjCTypesTests_macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		439F4C34275632B2005F278E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4E5758BD26833D140084F02D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -472,6 +524,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		439F4C32275632B2005F278E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439F4C44275632E6005F278E /* PEPMessage+SecureCodingTest.m in Sources */,
+				439F4C40275632D7005F278E /* PEPTypesTestUtil.m in Sources */,
+				439F4C43275632E2005F278E /* PEPLanguage+SecureCodingTest.m in Sources */,
+				439F4C42275632DF005F278E /* PEPIdentity+SecureCodingTest.m in Sources */,
+				439F4C41275632DC005F278E /* PEPAttachment+SecureCodingTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4E575855268329170084F02D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -519,6 +583,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		439F4C3C275632B2005F278E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4E575857268329170084F02D /* PEPObjCTypes_macOS */;
+			targetProxy = 439F4C3B275632B2005F278E /* PBXContainerItemProxy */;
+		};
 		4E5758D826836A0C0084F02D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -528,6 +597,52 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		439F4C3D275632B2005F278E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_BUNDLE_IDENTIFIER = "security.pEp.PEPObjCTypesTests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Debug;
+		};
+		439F4C3E275632B2005F278E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NQLYU6MGPN;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "security.pEp.PEPObjCTypesTests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+			};
+			name = Release;
+		};
 		4E575845268328CD0084F02D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -744,6 +859,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		439F4C3F275632B2005F278E /* Build configuration list for PBXNativeTarget "PEPObjCTypesTests_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				439F4C3D275632B2005F278E /* Debug */,
+				439F4C3E275632B2005F278E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4E575839268328CD0084F02D /* Build configuration list for PBXProject "PEPObjCTypes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

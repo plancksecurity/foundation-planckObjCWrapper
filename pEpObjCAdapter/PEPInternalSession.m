@@ -74,9 +74,6 @@
     });
 }
 
-#pragma mark - API
-
-///!!!: this is _not_ API. Move or rm mark.
 void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     free_message(src);
@@ -84,19 +81,16 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     free_stringlist(extraKeys);
 }
 
+#pragma mark - API
+
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)theMessage
                                    flags:(PEPDecryptFlags * _Nullable)flags
-                                  rating:(PEPRating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
 {
-    if (rating) {
-        *rating = PEPRatingUndefined;
-    }
-
-    message *_src = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
-    __block message *_dst = NULL;
+    message *src = [PEPObjCTypeConversionUtil structFromPEPMessage:theMessage];
+    __block message *dst = NULL;
     __block stringlist_t *theKeys = NULL;
     __block PEPDecryptFlags theFlags = 0;
 
@@ -108,15 +102,16 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = [PEPObjCTypeConversionUtil arrayToStringList:*extraKeys];
     }
 
-    __block PEPRating internalRating = PEPRatingUndefined;
-
+    // Note: According to the engine docs for decrypt_message_2, the destination
+    // message will be NULL on error, and the source message rating will be set regardless.
+    // Since we derive our returned messages from either the destination message or source,
+    // we'll have a correct rating in the returned result regardless.
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return decrypt_message(session,
-                               _src,
-                               &_dst,
-                               &theKeys,
-                               (PEP_rating *) &internalRating,
-                               (PEP_decrypt_flags *) &theFlags);
+        return decrypt_message_2(session,
+                                 src,
+                                 &dst,
+                                 &theKeys,
+                                 (PEP_decrypt_flags *) &theFlags);
     }];
 
     if (status) {
@@ -124,7 +119,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
-        decryptMessageFree(_src, _dst, theKeys);
+        decryptMessageFree(src, dst, theKeys);
         return nil;
     }
 
@@ -132,29 +127,26 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         *flags = theFlags;
     }
 
-    PEPMessage *dst_;
+    PEPMessage *dstMessage;
 
-    if (_dst) {
-        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_dst];
+    if (dst) {
+        // Decryption was successful
+        dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:dst];
     } else {
-        dst_ = [PEPObjCTypeConversionUtil pEpMessagefromStruct:_src];
+        dstMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:src];
     }
 
-    if (theFlags & PEP_decrypt_flag_untrusted_server) {
-        [PEPObjCTypeConversionUtil overWritePEPMessageObject:theMessage withValuesFromStruct:_src];
+    if (theFlags & PEP_decrypt_flag_src_modified) {
+        [PEPObjCTypeConversionUtil overWritePEPMessageObject:theMessage withValuesFromStruct:src];
     }
 
     if (extraKeys) {
         *extraKeys = [PEPObjCTypeConversionUtil arrayFromStringlist:theKeys];
     }
 
-    decryptMessageFree(_src, _dst, theKeys);
+    decryptMessageFree(src, dst, theKeys);
 
-    if (rating) {
-        *rating = internalRating;
-    }
-
-    return dst_;
+    return dstMessage;
 }
 
 - (BOOL)reEvaluateMessage:(PEPMessage * _Nonnull)theMessage

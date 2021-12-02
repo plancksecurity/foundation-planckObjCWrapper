@@ -19,140 +19,176 @@
 
 @implementation PEPMessage_SecureCodingTest
 
-- (void)testConformsSecureCodingProtocol {
+- (void)testConformsSecureCodingProtocol
+{
     PEPMessage *testee = [PEPMessage new];
 
     XCTAssertTrue([testee conformsToProtocol:@protocol(NSSecureCoding)]);
 }
 
-- (void)testSupportsSecureCodingProtocol {
+- (void)testSupportsSecureCodingProtocol
+{
     XCTAssertTrue([PEPMessage supportsSecureCoding]);
 }
 
-- (void)testMessageMessageID {
+- (void)testMessageMessageID
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.messageID, unarchivedTestee.messageID);
 }
 
-- (void)testMessageFrom {
+- (void)testMessageFrom
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.from, unarchivedTestee.from);
 }
 
-- (void)testMessageTo {
+- (void)testMessageTo
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.to, unarchivedTestee.to);
 }
 
-- (void)testMessageCC {
+- (void)testMessageCC
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.cc, unarchivedTestee.cc);
 }
 
-- (void)testMessageBCC {
+- (void)testMessageBCC
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.bcc, unarchivedTestee.bcc);
 }
 
-- (void)testMessageShortMessage {
+- (void)testMessageShortMessage
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.shortMessage, unarchivedTestee.shortMessage);
 }
 
-- (void)testMessageLongMessage {
+- (void)testMessageLongMessage
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.longMessage, unarchivedTestee.longMessage);
 }
 
-- (void)testMessageLongMessageFormatted {
+- (void)testMessageLongMessageFormatted
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.longMessageFormatted, unarchivedTestee.longMessageFormatted);
 }
 
-- (void)testMessageReplyTo {
+- (void)testMessageReplyTo
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.replyTo, unarchivedTestee.replyTo);
 }
 
-- (void)testMessageInReplyTo {
+- (void)testMessageInReplyTo
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.inReplyTo, unarchivedTestee.inReplyTo);
 }
 
-- (void)testMessageReferences {
+- (void)testMessageReferences
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.references, unarchivedTestee.references);
 }
 
-- (void)testMessageSentDate {
+- (void)testMessageSentDate
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.sentDate, unarchivedTestee.sentDate);
 }
 
-- (void)testMessageReceivedDate {
+- (void)testMessageReceivedDate
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.receivedDate, unarchivedTestee.receivedDate);
 }
 
-- (void)testMessageAttachments {
+- (void)testMessageAttachments
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.attachments, unarchivedTestee.attachments);
 }
 
-- (void)testMessageOptionalFields {
+- (void)testMessageOptionalFields
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.optionalFields, unarchivedTestee.optionalFields);
 }
 
-- (void)testMessageKeywords {
+- (void)testMessageKeywords
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.keywords, unarchivedTestee.keywords);
 }
 
-- (void)testMessageReceivedBy {
+- (void)testMessageReceivedBy
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqualObjects(testee.receivedBy, unarchivedTestee.receivedBy);
 }
 
-- (void)testMessageDirection {
+- (void)testMessageDirection
+{
     PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
     PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
 
     XCTAssertEqual(testee.direction, unarchivedTestee.direction);
+}
+
+- (void)testMessageRating
+{
+    PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
+    PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
+
+    XCTAssertEqual(testee.rating, unarchivedTestee.rating);
+}
+
+- (void)testMessageEquality
+{
+    PEPMessage *testee = [PEPTypesTestUtil pEpMessageWithAllFieldsFilled];
+    PEPMessage *unarchivedTestee = [self archiveAndUnarchiveMessage:testee];
+
+    XCTAssertEqualObjects(testee, unarchivedTestee);
 }
 
 // MARK: - Helper
