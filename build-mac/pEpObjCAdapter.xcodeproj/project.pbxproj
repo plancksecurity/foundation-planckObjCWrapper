@@ -382,7 +382,7 @@
 		1552D93B2576602D00A92F71 /* libPEPObjCAdapter_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1552D93D2576602D00A92F71 /* PEPObjCAdapter_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_macOS.h; sourceTree = "<group>"; };
 		1552D93F2576602D00A92F71 /* PEPObjCAdapter_macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter_macOS.m; sourceTree = "<group>"; };
-		15921D87261CB474003346B7 /* system.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = system.db; path = ../../../pEpEngine/db/system.db; sourceTree = "<group>"; };
+		15921D87261CB474003346B7 /* system.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = system.db; path = ../../../../pEpEngine/db/system.db; sourceTree = "<group>"; };
 		15C3089226E8B5030013F39F /* libPEPObjCAdapter_4ipsec_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_4ipsec_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C3089326E8B8550013F39F /* Logger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProviderTest.m; sourceTree = "<group>"; };
