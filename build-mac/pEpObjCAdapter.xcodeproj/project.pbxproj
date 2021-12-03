@@ -450,6 +450,7 @@
 		43927FE9275A1F66008E80C2 /* pEpEngine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpEngine.xcodeproj; path = "../../pEpEngine/build-mac/pEpEngine.xcodeproj"; sourceTree = "<group>"; };
 		43927FFA275A1FA8008E80C2 /* PEPObjCAdapterProtocols.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCAdapterProtocols.xcodeproj; path = "../Subprojects/PEPObjCAdapterProtocols/build-mac/PEPObjCAdapterProtocols.xcodeproj"; sourceTree = "<group>"; };
 		4392808C275A2511008E80C2 /* PEPObjCTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCTypes.xcodeproj; path = "../Subprojects/PEPObjCTypes/build-mac/PEPObjCTypes.xcodeproj"; sourceTree = "<group>"; };
+		439280C7275A3095008E80C2 /* pEpObjCAdapterTests_4ipsec_macOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pEpObjCAdapterTests_4ipsec_macOS.plist; sourceTree = "<group>"; };
 		4396CEB52187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPInternalSessionTestNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
 		4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestNotifyHandshakeDelegate.m; sourceTree = "<group>"; };
 		4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestSendMessageDelegate.m; sourceTree = "<group>"; };
@@ -750,6 +751,7 @@
 				43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */,
 				434707F824C30E9700E05485 /* PEPSessionTest.m */,
 				64415E1B1BE94FCB00F6CBB2 /* Info.plist */,
+				439280C7275A3095008E80C2 /* pEpObjCAdapterTests_4ipsec_macOS.plist */,
 			);
 			path = pEpObjCAdapterTests;
 			sourceTree = "<group>";
