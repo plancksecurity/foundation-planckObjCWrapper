@@ -436,7 +436,7 @@
 		35FB0ABD1B57F99D00377032 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		43062BAB24EEC59800489258 /* PEPIdentity+isPEPUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+isPEPUser.h"; sourceTree = "<group>"; };
 		43062BAC24EEC83400489258 /* PEPIdentity+isPEPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+isPEPUser.m"; sourceTree = "<group>"; };
-		430CD9B02292AC4900AAC37F /* PEPSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEPSync.h; path = PublicHeaders/PEPSync.h; sourceTree = SOURCE_ROOT; };
+		430CD9B02292AC4900AAC37F /* PEPSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSync.h; sourceTree = "<group>"; };
 		430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPSendMessageDelegate.h; sourceTree = "<group>"; };
 		430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
 		430CD9BF2292B1EA00AAC37F /* PEPSync_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSync_Internal.h; sourceTree = "<group>"; };
