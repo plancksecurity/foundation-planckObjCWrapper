@@ -1708,7 +1708,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = pEpObjCAdapterTests_4ipsec_macOS.plist;
+				INFOPLIST_FILE = pEpObjCAdapterTests/pEpObjCAdapterTests_4ipsec_macOS.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1733,7 +1733,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = pEpObjCAdapterTests_4ipsec_macOS.plist;
+				INFOPLIST_FILE = pEpObjCAdapterTests/pEpObjCAdapterTests_4ipsec_macOS.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
