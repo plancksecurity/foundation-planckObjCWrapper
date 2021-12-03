@@ -230,7 +230,6 @@
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABD1B57F99D00377032 /* Security.framework */; platformFilter = ios; };
-		64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35FB0ABB1B57F97E00377032 /* CFNetwork.framework */; platformFilter = ios; };
 		64415E481BEA523300F6CBB2 /* 6FF00E97.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E421BEA523300F6CBB2 /* 6FF00E97.asc */; };
 		64415E491BEA523300F6CBB2 /* 6FF00E97_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E431BEA523300F6CBB2 /* 6FF00E97_sec.asc */; };
 		64415E4A1BEA523300F6CBB2 /* 0x70DCF575.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E441BEA523300F6CBB2 /* 0x70DCF575.asc */; };
@@ -387,7 +386,6 @@
 		15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProviderTest.m; sourceTree = "<group>"; };
 		15D3D77B2010DDC500A0DA20 /* PEPTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTestUtils.h; sourceTree = "<group>"; };
 		15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPTestUtils.m; sourceTree = "<group>"; };
-		35FB0ABB1B57F97E00377032 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		35FB0ABD1B57F99D00377032 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		43062BAB24EEC59800489258 /* PEPIdentity+isPEPUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+isPEPUser.h"; sourceTree = "<group>"; };
 		43062BAC24EEC83400489258 /* PEPIdentity+isPEPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+isPEPUser.m"; sourceTree = "<group>"; };
@@ -519,7 +517,6 @@
 			files = (
 				1585EB762698955800B822E1 /* libPEPObjCAdapter_iOS.a in Frameworks */,
 				64415E2F1BE9511C00F6CBB2 /* Security.framework in Frameworks */,
-				64415E301BE9513300F6CBB2 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +621,6 @@
 				1552D99B257663F200A92F71 /* PublicHeaders */,
 				43209B251ECC2ACD007E7E2E /* src */,
 				35FB0ABD1B57F99D00377032 /* Security.framework */,
-				35FB0ABB1B57F97E00377032 /* CFNetwork.framework */,
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
 				1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */,
 				64415E181BE94FCB00F6CBB2 /* pEpObjCTests */,
