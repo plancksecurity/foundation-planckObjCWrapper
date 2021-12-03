@@ -417,7 +417,6 @@
 		15206CA81F8BA183003FF880 /* PEPSessionProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProvider.h; sourceTree = "<group>"; };
 		15206CA91F8BA183003FF880 /* PEPSessionProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProvider.m; sourceTree = "<group>"; };
 		152A9C462010F50400F962ED /* PEPInternalSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTest.m; sourceTree = "<group>"; };
-		152E488726A85A15009BD3CE /* CommonPEPDependencies.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CommonPEPDependencies.xcodeproj; path = "../common-dependency-build-helpers-4-apple-hardware/CommonPEPDependencies/CommonPEPDependencies.xcodeproj"; sourceTree = "<group>"; };
 		1543DC66257943CE0041EFB5 /* libPEPObjCAdapter_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_iOS.h; sourceTree = "<group>"; };
 		1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter_iOS.m; sourceTree = "<group>"; };
@@ -578,13 +577,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		152E488826A85A15009BD3CE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,7 +677,6 @@
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
-				152E488726A85A15009BD3CE /* CommonPEPDependencies.xcodeproj */,
 				1585EB15269861D700B822E1 /* PEPObjCTypeUtils.xcodeproj */,
 				4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */,
 				4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */,
@@ -1070,10 +1061,6 @@
 			productRefGroup = 352988AB1AEF964100FA7E2E /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 152E488826A85A15009BD3CE /* Products */;
-					ProjectRef = 152E488726A85A15009BD3CE /* CommonPEPDependencies.xcodeproj */;
-				},
 				{
 					ProductGroup = 64289E521B8B70E800FC617B /* Products */;
 					ProjectRef = 64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */;
