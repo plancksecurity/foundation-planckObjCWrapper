@@ -746,10 +746,10 @@
 				434226801D4F60000083ED79 /* PepTests.m */,
 				15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */,
 				152A9C462010F50400F962ED /* PEPInternalSessionTest.m */,
-				64415E1B1BE94FCB00F6CBB2 /* Info.plist */,
 				4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */,
 				43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */,
 				434707F824C30E9700E05485 /* PEPSessionTest.m */,
+				64415E1B1BE94FCB00F6CBB2 /* Info.plist */,
 			);
 			path = pEpObjCAdapterTests;
 			sourceTree = "<group>";
