@@ -617,7 +617,8 @@
 				43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */,
 				436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */,
 			);
-			path = PublicHeaders;
+			name = PublicHeaders;
+			path = ../PublicHeaders;
 			sourceTree = "<group>";
 		};
 		1585EC4B269C38FB00B822E1 /* Products */ = {
