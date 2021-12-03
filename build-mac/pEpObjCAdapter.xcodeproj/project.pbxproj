@@ -913,7 +913,7 @@
 				15C3085226E8B5030013F39F /* Headers */,
 				15C3087226E8B5030013F39F /* Sources */,
 				15C3088926E8B5030013F39F /* Frameworks */,
-				15C3088E26E8B5030013F39F /* Copy artefacts to custom build dir */,
+				15C3088E26E8B5030013F39F /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -1206,7 +1206,7 @@
 			shellPath = /bin/sh;
 			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\n\ncp -R \"${BUILT_PRODUCTS_DIR}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCAdapter_macOS.a\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
-		15C3088E26E8B5030013F39F /* Copy artefacts to custom build dir */ = {
+		15C3088E26E8B5030013F39F /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1215,7 +1215,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy artefacts to custom build dir";
+			name = "Copy artifacts to custom build dir";
 			outputFileListPaths = (
 			);
 			outputPaths = (
