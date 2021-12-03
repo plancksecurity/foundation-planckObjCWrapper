@@ -346,27 +346,6 @@
 			remoteGlobalIDString = 4E23E6E62681C7CD00B8F4C2;
 			remoteInfo = PEPObjCAdapterProtocols_macOS;
 		};
-		4E51BF3E26CA5E5C007A2164 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E575858268329170084F02D;
-			remoteInfo = PEPObjCTypes_macOS;
-		};
-		4E51BF4026CA5E5C007A2164 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E575865268329A20084F02D;
-			remoteInfo = PEPObjCTypes_iOS;
-		};
-		4E51BF4226CA5E5C007A2164 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4E5758BF26833D140084F02D;
-			remoteInfo = PEPObjCTypesTests_iOS;
-		};
 		4E57580E26821A660084F02D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
@@ -508,7 +487,6 @@
 		43F29532273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests_4ipsec_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F29533273E7BE0009611F8 /* pEpObjCAdapterTests_4ipsec_macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = pEpObjCAdapterTests_4ipsec_macOS.plist; path = /Users/dirk/projects/pEp/src_pEp4ipsec/pEpObjCAdapter/pEpObjCAdapterTests_4ipsec_macOS.plist; sourceTree = "<absolute>"; };
 		43F73BE92166248E00AB4524 /* PEPSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSync.m; sourceTree = "<group>"; };
-		4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCTypes.xcodeproj; path = Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj; sourceTree = "<group>"; };
 		4E51BFA626CBC685007A2164 /* libPEPToolbox_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPToolbox_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCAdapterProtocols.xcodeproj; path = Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols.xcodeproj; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
@@ -679,7 +657,6 @@
 			children = (
 				1585EB15269861D700B822E1 /* PEPObjCTypeUtils.xcodeproj */,
 				4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */,
-				4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */,
 				64DA243B1B833248000BEE80 /* pEpEngine.xcodeproj */,
 				1552D99B257663F200A92F71 /* PublicHeaders */,
 				43209B251ECC2ACD007E7E2E /* src */,
@@ -766,16 +743,6 @@
 				433DFBB624A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		4E51BF3926CA5E5C007A2164 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4E51BF3F26CA5E5C007A2164 /* libPEPObjCTypes_macOS.a */,
-				4E51BF4126CA5E5C007A2164 /* libPEPObjCTypes_iOS.a */,
-				4E51BF4326CA5E5C007A2164 /* PEPObjCTypesTests_iOS.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		4EEB4CCA2680E56A00161040 /* Products */ = {
@@ -1070,10 +1037,6 @@
 					ProjectRef = 4EEB4CC92680E56A00161040 /* PEPObjCAdapterProtocols.xcodeproj */;
 				},
 				{
-					ProductGroup = 4E51BF3926CA5E5C007A2164 /* Products */;
-					ProjectRef = 4E51BF3826CA5E5C007A2164 /* PEPObjCTypes.xcodeproj */;
-				},
-				{
 					ProductGroup = 1585EC4B269C38FB00B822E1 /* Products */;
 					ProjectRef = 1585EB15269861D700B822E1 /* PEPObjCTypeUtils.xcodeproj */;
 				},
@@ -1123,27 +1086,6 @@
 			fileType = archive.ar;
 			path = libPEPObjCAdapterProtocols_macOS.a;
 			remoteRef = 4E23E6F52681C8AF00B8F4C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4E51BF3F26CA5E5C007A2164 /* libPEPObjCTypes_macOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPEPObjCTypes_macOS.a;
-			remoteRef = 4E51BF3E26CA5E5C007A2164 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4E51BF4126CA5E5C007A2164 /* libPEPObjCTypes_iOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPEPObjCTypes_iOS.a;
-			remoteRef = 4E51BF4026CA5E5C007A2164 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4E51BF4326CA5E5C007A2164 /* PEPObjCTypesTests_iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = PEPObjCTypesTests_iOS.xctest;
-			remoteRef = 4E51BF4226CA5E5C007A2164 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		64289E561B8B70E800FC617B /* libpEpEngine.a */ = {
