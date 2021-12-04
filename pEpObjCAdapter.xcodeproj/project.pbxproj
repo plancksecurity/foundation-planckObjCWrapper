@@ -937,6 +937,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1543DC6F257943CF0041EFB5 /* Build configuration list for PBXNativeTarget "PEPObjCAdapter_iOS" */;
 			buildPhases = (
+				15132437275B6AC3001182CA /* Delete module.modulemap - Workaround for "duplicate module definition" */,
 				1543DD3D257A3B620041EFB5 /* Headers */,
 				1543DC62257943CE0041EFB5 /* Sources */,
 				1543DC63257943CE0041EFB5 /* Frameworks */,
@@ -1233,6 +1234,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		15132437275B6AC3001182CA /* Delete module.modulemap - Workaround for "duplicate module definition" */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Delete module.modulemap - Workaround for \"duplicate module definition\"";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -f ${BUILT_PRODUCTS_DIR}/include/PEPObjCAdapter_iOS/module.modulemap\n";
+		};
 		151607E9257A4A9C00DD42E0 /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
