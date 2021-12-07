@@ -19,7 +19,6 @@
 		15BD31732742820400B1B1F5 /* PEPStatusNSErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */; };
 		15BD31742742820400B1B1F5 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */; };
 		15BD31752742820400B1B1F5 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */; };
-		43217FE0275F87FB008CFEAE /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1598060126CFC0C500593C9D /* libPEPObjCTypes_macOS.a */; };
 		43B0EAC0274D1E7B00F5D076 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EABB274D1E7B00F5D076 /* PEPMessage+ASN1.m */; };
 		43B0EAC1274D1E7B00F5D076 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EABB274D1E7B00F5D076 /* PEPMessage+ASN1.m */; };
 		43B0EAC3274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; };
@@ -165,7 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43217FE0275F87FB008CFEAE /* libPEPObjCTypes_macOS.a in Frameworks */,
 				43B0EAD5274D21E100F5D076 /* libPEPObjCTypeUtils_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
