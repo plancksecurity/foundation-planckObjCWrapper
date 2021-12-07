@@ -292,6 +292,8 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 }
 
 /// Creates a pEp directory for use by the engine that is nowhere in a production data area, for use by XCTests.
+///
+/// Uses `[NSFileManager URLsForDirectory:inDomains:]`, so not safe for other platforms besides macOS.
 + (NSURL *)createTestDataDirectoryMacOS
 {
     NSFileManager *fm = [NSFileManager defaultManager];
