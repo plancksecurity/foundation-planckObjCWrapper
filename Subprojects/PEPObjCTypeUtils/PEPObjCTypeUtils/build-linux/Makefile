@@ -13,7 +13,6 @@ INCLUDES = \
   -I../ \
   -I../PublicHeaders \
   -I$(PEP_INCLUDE) \
-  -I$(PEP_SRC)
 
 
 # Only for making .so libs. Libs for static linking are defined with the final binary.
