@@ -129,7 +129,6 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     s_homeURL = [self createApplicationDirectory];
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
     return;
-
 #elif TARGET_OS_OSX
     if ([self isXCTestRunning]) {
         s_homeURL = [self createTestDataDirectoryMacOS];
