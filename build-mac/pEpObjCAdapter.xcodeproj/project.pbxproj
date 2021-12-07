@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15160690257A3E1900DD42E0 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* module.modulemap */; platformFilter = ios; };
+		15160690257A3E1900DD42E0 /* pEpObjCAdapterModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */; platformFilter = ios; };
 		152A9C472010F50400F962ED /* PEPInternalSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 152A9C462010F50400F962ED /* PEPInternalSessionTest.m */; };
 		1543DC6A257943CF0041EFB5 /* PEPObjCAdapter_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */; };
 		1543DC6B257943CF0041EFB5 /* PEPObjCAdapter_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */; platformFilter = ios; };
@@ -360,7 +360,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				1543DC6B257943CF0041EFB5 /* PEPObjCAdapter_iOS.h in CopyFiles */,
-				15160690257A3E1900DD42E0 /* module.modulemap in CopyFiles */,
+				15160690257A3E1900DD42E0 /* pEpObjCAdapterModuleMap.modulemap in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +375,7 @@
 		1543DC66257943CE0041EFB5 /* libPEPObjCAdapter_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_iOS.h; sourceTree = "<group>"; };
 		1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter_iOS.m; sourceTree = "<group>"; };
-		1543DD8B257A3C9E0041EFB5 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = pEpObjCAdapterModuleMap.modulemap; sourceTree = "<group>"; };
 		1552D93B2576602D00A92F71 /* libPEPObjCAdapter_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1552D93D2576602D00A92F71 /* PEPObjCAdapter_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_macOS.h; sourceTree = "<group>"; };
 		1552D93F2576602D00A92F71 /* PEPObjCAdapter_macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter_macOS.m; sourceTree = "<group>"; };
@@ -526,7 +526,7 @@
 			children = (
 				1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */,
 				1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */,
-				1543DD8B257A3C9E0041EFB5 /* module.modulemap */,
+				1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */,
 			);
 			path = PEPObjCAdapter_iOS;
 			sourceTree = "<group>";
@@ -877,6 +877,7 @@
 				1543DC62257943CE0041EFB5 /* Sources */,
 				1543DC63257943CE0041EFB5 /* Frameworks */,
 				1543DC64257943CE0041EFB5 /* CopyFiles */,
+				15132437275B6AC3001182CA /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */,
 				151607E9257A4A9C00DD42E0 /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
@@ -1170,6 +1171,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		15132437275B6AC3001182CA /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Rename Module Map File  - Workaround for \"duplicate module definition\" - IOS-2879";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mv ${BUILT_PRODUCTS_DIR}/include/PEPObjCAdapter_iOS/pEpObjCAdapterModuleMap.modulemap ${BUILT_PRODUCTS_DIR}/include/PEPObjCAdapter_iOS/module.modulemap\n";
+			showEnvVarsInLog = 0;
+		};
 		151607E9257A4A9C00DD42E0 /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1402,6 +1423,7 @@
 					"$(inherited)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
+				MODULEMAP_FILE = "";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1425,6 +1447,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = "IS_IOS_BUILD=1";
 				IPHONEOS_DEPLOYMENT_TARGET = "${inherited}";
+				MODULEMAP_FILE = "";
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
