@@ -124,19 +124,22 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     // The Engine uses the HOME env as per-user-directory. We hijack that on iOS,
     // or when running XCTests on macOS.
 #if TARGET_OS_MAC
+
 #if TARGET_OS_IPHONE
     s_homeURL = [self createApplicationDirectory];
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
     return;
-#elsif TARGET_OS_OSX
+
+#elif TARGET_OS_OSX
     if ([self isXCTestRunning]) {
         s_homeURL = [self createTestDataDirectoryMacOS];
         setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
     }
     return;
 #endif
+
 #else
-    // No mac/iOS platform. The engine will use the $HOME from the starting process/user
+    // Neither macOS nor iOS. The engine will use $HOME.
 #endif
 }
 
