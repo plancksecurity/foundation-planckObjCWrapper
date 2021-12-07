@@ -18,13 +18,13 @@
 		15BD31742742820400B1B1F5 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */; };
 		15BD31752742820400B1B1F5 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD31712742820400B1B1F5 /* PEPStatusNSErrorUtil.m */; };
 		431ABA5327590FB100017E1B /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 431ABA4E27590F9E00017E1B /* libpEpEngine_macOS.a */; };
-		431ABA6527590FFE00017E1B /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 431ABA5C27590FE700017E1B /* libPEPObjCTypes_macOS.a */; };
 		43B0EAC0274D1E7B00F5D076 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EABB274D1E7B00F5D076 /* PEPMessage+ASN1.m */; };
 		43B0EAC1274D1E7B00F5D076 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EABB274D1E7B00F5D076 /* PEPMessage+ASN1.m */; };
 		43B0EAC3274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; };
 		43B0EAC4274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; };
 		43B0EAD5274D21E100F5D076 /* libPEPObjCTypeUtils_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EA7C26984C4300B822E1 /* libPEPObjCTypeUtils_macOS.a */; };
 		43B0EAE0274D222000F5D076 /* PEPMessageASN1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */; };
+		43C4E2B6275F5D82005DEE69 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 431ABA5C27590FE700017E1B /* libPEPObjCTypes_macOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43C4E2B6275F5D82005DEE69 /* libPEPObjCTypes_macOS.a in Frameworks */,
 				43B0EAD5274D21E100F5D076 /* libPEPObjCTypeUtils_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
