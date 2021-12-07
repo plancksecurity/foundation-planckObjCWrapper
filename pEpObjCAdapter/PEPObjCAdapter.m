@@ -272,6 +272,9 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
 /// Determines whether the adapter is running under a XCTest.
 ///
+/// Uses `NSClassFromString`, `[NSObject valueForKey]` and `[NSProcessInfo processInfo]` and should therefore
+/// compile on most GNUstep platforms an macOS.
+///
 /// This is only used under macOS, although it should work on iOS as well.
 + (BOOL)isXCTestRunning
 {
