@@ -10,8 +10,6 @@
 
 #import "PEPEngineTypes.h"
 
-@class PEPSession;
-
 @interface PEPIdentity : NSObject <NSMutableCopying, NSSecureCoding>
 
 /**

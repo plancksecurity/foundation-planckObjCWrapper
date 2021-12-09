@@ -32,7 +32,7 @@
 		439F4C43275632E2005F278E /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */; };
 		439F4C44275632E6005F278E /* PEPMessage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */; };
 		43D44C822685BB3600638D1C /* PEPObjCTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
-		43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* module.modulemap */; platformFilter = ios; };
+		43D44C842685BEB400638D1C /* pEpObjCTypesModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */; platformFilter = ios; };
 		4E57585B268329170084F02D /* PEPObjCTypes_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
 		4E57585D268329170084F02D /* PEPObjCTypes_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57585C268329170084F02D /* PEPObjCTypes_macOS.m */; };
 		4E575869268329A20084F02D /* PEPObjCTypes_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E575868268329A20084F02D /* PEPObjCTypes_iOS.m */; platformFilter = ios; };
@@ -58,7 +58,7 @@
 		4E5758AE2683331C0084F02D /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588126832F2F0084F02D /* PEPTypes.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		4E5758B02683331C0084F02D /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588226832F2F0084F02D /* PEPLanguage.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		4E5758B626833A4E0084F02D /* PEPObjCTypes_macOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
-		4E5758B726833A560084F02D /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5758B4268339450084F02D /* module.modulemap */; };
+		4E5758B726833A560084F02D /* pEpObjCTypesModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5758B4268339450084F02D /* pEpObjCTypesModuleMap.modulemap */; };
 		4E5758C426833D140084F02D /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575865268329A20084F02D /* libPEPObjCTypes_iOS.a */; platformFilter = ios; };
 		4E5758D126833F920084F02D /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */; };
 		4E5758D226833F920084F02D /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */; };
@@ -91,7 +91,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */,
+				43D44C842685BEB400638D1C /* pEpObjCTypesModuleMap.modulemap in CopyFiles */,
 				4E57586A268329A20084F02D /* PEPObjCTypes_iOS.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +102,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				4E5758B726833A560084F02D /* module.modulemap in CopyFiles */,
+				4E5758B726833A560084F02D /* pEpObjCTypesModuleMap.modulemap in CopyFiles */,
 				4E5758B626833A4E0084F02D /* PEPObjCTypes_macOS.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +110,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = pEpObjCTypesModuleMap.modulemap; sourceTree = "<group>"; };
 		1598067226CFE9B100593C9D /* PEPTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTransport.h; sourceTree = "<group>"; };
 		1598067326CFE9B100593C9D /* PEPTransportConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTransportConfig.h; sourceTree = "<group>"; };
 		1598067826CFE9CF00593C9D /* PEPTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPTransport.m; sourceTree = "<group>"; };
@@ -119,7 +120,6 @@
 		15BD319A2742A1B500B1B1F5 /* PEPErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPErrors.h; sourceTree = "<group>"; };
 		15BD319B2742A1B500B1B1F5 /* PEPErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPErrors.m; sourceTree = "<group>"; };
 		439F4C36275632B2005F278E /* PEPObjCTypesTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypesTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes.h; sourceTree = "<group>"; };
 		4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes_macOS.h; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		4E57588326832F2F0084F02D /* PEPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPMessage.h; sourceTree = "<group>"; };
 		4E57588426832F2F0084F02D /* PEPAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPAttachment.h; sourceTree = "<group>"; };
 		4E57588626832F2F0084F02D /* PEPIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPIdentity.h; sourceTree = "<group>"; };
-		4E5758B4268339450084F02D /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		4E5758B4268339450084F02D /* pEpObjCTypesModuleMap.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = pEpObjCTypesModuleMap.modulemap; sourceTree = "<group>"; };
 		4E5758B926833A700084F02D /* libpEpEngine_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libpEpEngine_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E5758BF26833D140084F02D /* PEPObjCTypesTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypesTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E5758C326833D140084F02D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 			children = (
 				4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */,
 				4E57585C268329170084F02D /* PEPObjCTypes_macOS.m */,
-				4E5758B4268339450084F02D /* module.modulemap */,
+				4E5758B4268339450084F02D /* pEpObjCTypesModuleMap.modulemap */,
 			);
 			path = PEPObjCTypes_macOS;
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 			children = (
 				4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */,
 				4E575868268329A20084F02D /* PEPObjCTypes_iOS.m */,
-				43D44C832685BE4300638D1C /* module.modulemap */,
+				43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */,
 			);
 			path = PEPObjCTypes_iOS;
 			sourceTree = "<group>";
@@ -376,6 +376,7 @@
 				4E575855268329170084F02D /* Sources */,
 				4E575856268329170084F02D /* Frameworks */,
 				4E5758B526833A120084F02D /* CopyFiles */,
+				15A9C9322760D85F00307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */,
 				4E5758F7268371770084F02D /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
@@ -395,6 +396,7 @@
 				4E575861268329A20084F02D /* Sources */,
 				4E575862268329A20084F02D /* Frameworks */,
 				4E575863268329A20084F02D /* CopyFiles */,
+				15A9C9332760D86500307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */,
 				4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */,
 			);
 			buildRules = (
@@ -485,6 +487,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		15A9C9322760D85F00307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Rename Module Map File  - Workaround for \"duplicate module definition\" - IOS-2879";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_INCLUDE_DIR=\"${BUILT_PRODUCTS_DIR}/include/PEPObjCTypes_macOS\"\nmv ${BUILD_INCLUDE_DIR}/pEpObjCTypesModuleMap.modulemap ${BUILD_INCLUDE_DIR}/module.modulemap\n";
+		};
+		15A9C9332760D86500307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Rename Module Map File  - Workaround for \"duplicate module definition\" - IOS-2879";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_INCLUDE_DIR=\"${BUILT_PRODUCTS_DIR}/include/PEPObjCTypes_iOS\"\nmv ${BUILD_INCLUDE_DIR}/pEpObjCTypesModuleMap.modulemap ${BUILD_INCLUDE_DIR}/module.modulemap\n";
+		};
 		4E5758F7268371770084F02D /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
