@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "transport.h"
+#import <transport.h>
 
 @class PEPTransport;
 @class PEPMessage;
