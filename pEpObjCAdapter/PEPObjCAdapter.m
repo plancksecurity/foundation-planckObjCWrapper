@@ -304,6 +304,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 /// @note While this kind of check is feasible on all kinds of OSs, it should be used only on macOS,
 /// because there is a strict separation between a shell environment (used by developers) and the
 /// environment used by apps and background tasks.
+/// E.g., see https://support.apple.com/guide/terminal/use-environment-variables-apd382cc5fa-4f58-4449-b20a-41c53c006f8f/2.11/mac/11.0
 /// @return `YES` when the `PEP_TEST` environment variable is set.
 + (BOOL)isRunningInDevelopmentEnvironment
 {
