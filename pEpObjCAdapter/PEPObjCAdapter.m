@@ -130,7 +130,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
     return;
 #elif TARGET_OS_OSX
-    if ([self isXCTestRunning]) {
+    if ([self isXCTestRunning] || [self isRunningInDevelopmentEnvironment]) {
         s_homeURL = [self createTestDataDirectoryMacOS];
         setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
     }
@@ -295,6 +295,20 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
                    valueForKey:@"XCTestConfigurationFilePath"];
 
     return isTesting || configFp != nil;
+}
+
+/// Checks the environment for a variable that hints at development.
+///
+/// In a development environment, the engine should never read from or write to production data.
+///
+/// @note While this kind of check is feasible on all kinds of OSs, it should be used only on macOS,
+/// because there is a strict separation between a shell environment (used by developers) and the
+/// environment used by apps and background tasks.
+/// @return `YES` when the `PEP_TEST` environment variable is set.
++ (BOOL)isRunningInDevelopmentEnvironment
+{
+    id pEpTest = [[[NSProcessInfo processInfo] environment] valueForKey:@"PEP_TEST"];
+    return pEpTest != nil;
 }
 
 #if TARGET_OS_OSX
