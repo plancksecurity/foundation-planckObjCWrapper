@@ -2,7 +2,7 @@ root = ../../
 
 # Content of this library
 TARGET = libpEpObjCAdapter
-OBJECTS = $(call find-objects,..)
+OBJECTS = $(patsubst %.m,%.o,$(wildcard ../*.m ../*/*.m))
 DEPFILES = $(call find-deps,..)
 HEADERS = $(call find-headers,../PublicHeaders/)
 
