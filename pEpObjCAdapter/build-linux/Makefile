@@ -2,9 +2,9 @@ root = ../../
 
 # Content of this library
 TARGET = libpEpObjCAdapter
-OBJECTS := $(patsubst %.m,%.o,$(wildcard ../*.m ../*/*.m))
-DEPFILES := $(wildcard ../*.d)
-HEADERS := $(wildcard ../PublicHeaders/*.h)
+OBJECTS = $(call find-objects,..)
+DEPFILES = $(call find-deps,..)
+HEADERS = $(call find-headers,../PublicHeaders/)
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
 INCLUDES = \

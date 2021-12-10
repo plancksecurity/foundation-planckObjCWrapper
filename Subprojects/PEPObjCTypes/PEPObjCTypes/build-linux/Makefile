@@ -1,14 +1,13 @@
 # Content of this library
 TARGET = libPEPObjCTypes
-OBJECTS := $(patsubst %.m,%.o,$(wildcard ../src/*.m ../src/*/*.m))
-DEPFILES := $(wildcard ..src/*.d ../src/*/*.d)
-HEADERS := $(wildcard ../PublicHeaders/*.h)
+OBJECTS = $(call find-objects,../src)
+DEPFILES = $(call find-deps,../src)
+HEADERS = $(call find-headers,../PublicHeaders/)
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
 INCLUDES = \
   -I../PublicHeaders \
-  -I../src \
-  -I../src/PEPEqualableTools
+  $(call find-includes,..)
 
 # Only for making .so libs. Libs for static linking are defined with the final binary.
 LIBS =

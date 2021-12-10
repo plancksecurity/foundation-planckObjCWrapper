@@ -1,13 +1,12 @@
 # Content of this library
 TARGET = libPEPObjCAdapterProtocols
-OBJECTS := $(patsubst %.m,%.o,$(wildcard ../*.m))
-DEPFILES := $(wildcard ../*.d)
-HEADERS := $(wildcard ../PublicHeaders/*.h)
+OBJECTS = $(call find-objects,..)
+DEPFILES = $(call find-deps,..)
+HEADERS = $(call find-headers,../PublicHeaders/)
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
 INCLUDES = \
-  -I../ \
-  -I../PublicHeaders
+  $(call find-includes,..)
 
 # Only for making .so libs. Libs for static linking are defined with the final binary.
 LIBS =

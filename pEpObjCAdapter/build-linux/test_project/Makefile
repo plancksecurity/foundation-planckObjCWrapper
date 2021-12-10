@@ -2,9 +2,9 @@ root = ../../../
 
 # Content of this library
 TARGET_EXE = test_project
-OBJECTS := $(patsubst %.m,%.o,$(wildcard *.m))
-DEPFILES := $(wildcard *.d)
-HEADERS :=
+OBJECTS = $(call find-objects,.)
+DEPFILES = $(call find-deps,.)
+HEADERS =
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
 INCLUDES = \
