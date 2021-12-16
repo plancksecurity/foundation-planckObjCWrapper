@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPObjCTypes_iOS.h"
+#import "PEPObjCTypes.h"
 #import "PEPObjCAdapter_iOS.h"
 
 #import "NSNumber+PEPRating.h"
@@ -112,11 +112,10 @@
          successCallback:^(PEPMessage * srcMessage,
                            PEPMessage * dstMessage,
                            PEPStringList * keyList,
-                           PEPRating rating,
                            PEPDecryptFlags flags,
                            BOOL isFormerlyEncryptedReuploadedMessage) {
             XCTAssertNotNil(dstMessage);
-            XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
+            XCTAssertEqual(dstMessage.rating, PEPRatingTrustedAndAnonymized);
             [expectationDec fulfill];
         }];
         [self waitForExpectations:@[expectationDec] timeout:PEPTestInternalSyncTimeout];
@@ -249,7 +248,7 @@
 
     XCTAssertTrue([self keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingHaveNoKey);
 
     XCTAssertTrue([self keyMistrusted:alice error:&error]);
     XCTAssertNil(error);

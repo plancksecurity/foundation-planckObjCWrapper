@@ -7,14 +7,13 @@
 
 #import "PEPMessage+ASN1.h"
 
-#import "PEPObjCTypeUtils.h"
-#import "map_asn1.h"
-#import "message_codec.h"
+#import "PEPObjCTypeConversionUtil.h"
+#import <map_asn1.h>
+#import <message_codec.h>
 
 @implementation PEPMessage (ASN1)
 
-+ (instancetype _Nullable)messageFromAsn1Data:(NSData *)asn1Data
-{
++ (instancetype _Nullable)messageFromAsn1Data:(NSData *)asn1Data {
     ASN1Message_t *asn1Message = NULL;
     PEP_STATUS status = decode_ASN1Message_message(asn1Data.bytes, asn1Data.length, &asn1Message);
     if (status != PEP_STATUS_OK) {
@@ -23,8 +22,7 @@
 
     message *msg = ASN1Message_to_message(asn1Message, NULL, YES, 0);
 
-    // TODO: Use free_ASN1Message as soon as available (see ENGINE-969)
-    ASN_STRUCT_FREE(asn_DEF_ASN1Message, asn1Message);
+    free_ASN1Message(asn1Message);
 
     if (!msg) {
         return nil;
@@ -33,8 +31,7 @@
     return [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
 }
 
-- (NSData *)asn1Data
-{
+- (NSData *)asn1Data {
     message *msg = [PEPObjCTypeConversionUtil structFromPEPMessage:self];
     ASN1Message_t *asn1Message = ASN1Message_from_message(msg, NULL, YES, 0);
     free_message(msg);
@@ -47,8 +44,7 @@
     size_t msgBytesSze = 0;
     PEP_STATUS status = encode_ASN1Message_message(asn1Message, &msgBytes, &msgBytesSze);
 
-    // TODO: Use free_ASN1Message as soon as available (see ENGINE-969)
-    ASN_STRUCT_FREE(asn_DEF_ASN1Message, asn1Message);
+    free_ASN1Message(asn1Message);
 
     if (status != PEP_STATUS_OK) {
         return nil;

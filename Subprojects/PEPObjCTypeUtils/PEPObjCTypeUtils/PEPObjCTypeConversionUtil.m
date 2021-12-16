@@ -7,7 +7,6 @@
 
 #import "PEPObjCTypeConversionUtil.h"
 
-#import <PEPTransport.h>
 #import <PEPAttachment.h>
 #import <PEPMessage.h>
 #import <PEPIdentity.h>
@@ -15,28 +14,6 @@
 #import <status_to_string.h>
 
 @implementation PEPObjCTypeConversionUtil
-
-// MARK: - PEPTransport
-
-+ (PEPTransport * _Nullable)pEpTransportfromStruct:(PEP_transport_t * _Nonnull)transportStruct
-{
-    PEPTransport *result = nil;
-    NSAssert(false, @"unimplemented stub");
-    return result;
-}
-
-+ (PEP_transport_t *)structFromPEPTransport:(PEPTransport *)pEpTransport
-{
-    PEP_transport_t *transportStruct = NULL;
-    NSAssert(false, @"unimplemented stub");
-    return transportStruct;
-}
-
-+ (void)overWritePEPTransportObject:(PEPTransport *)pEpTransport
-               withValuesFromStruct:(PEP_transport_t * _Nonnull)transportStruct
-{
-    NSAssert(false, @"unimplemented stub");
-}
 
 // MARK: - PEPMessage
 
@@ -117,6 +94,8 @@
         msg->attachments = [self arrayToBloblist:pEpMessage.attachments];
     }
 
+    msg->rating = (PEP_rating) pEpMessage.rating;
+
     return msg;
 }
 
@@ -194,6 +173,8 @@
     if (message->attachments && message->attachments->value) {
         pEpMessage.attachments = [self arrayFromBloblist:message->attachments];
     }
+
+    pEpMessage.rating = (PEPRating) message->rating;
 }
 
 + (void)removeEmptyRecipientsFromPEPMessage:(PEPMessage *)pEpMessage
@@ -239,6 +220,7 @@
     pEpMessage.keywords = nil;
     pEpMessage.receivedBy = nil;
     pEpMessage.direction = (PEPMsgDirection) PEP_dir_incoming; // basically, 0
+    pEpMessage.rating = PEPRatingUndefined;
 }
 
 // MARK: - PEPIdentity
