@@ -9,11 +9,10 @@
 
 @implementation PEPTransportConfig
 
-- (instancetype)initWithSize:(Size)size port:(UInt16)port
+- (instancetype)initWithPort:(UInt16)port
 {
     self = [super init];
     if (self) {
-        _size = size;
         _port = port;
     }
     return self;

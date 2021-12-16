@@ -14,6 +14,7 @@
 #import "PEPAttachment.h"
 #import "PEPIdentity.h"
 #import "PEPErrors.h"
+#import "PEPTransportConfig.h"
 
 @interface PEPObjCTypes : NSObject
 
