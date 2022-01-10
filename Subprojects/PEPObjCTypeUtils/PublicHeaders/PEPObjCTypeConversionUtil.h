@@ -7,9 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "transport.h"
+#import <transport.h>
 
-@class PEPTransport;
 @class PEPMessage;
 @class PEPIdentity;
 @class PEPAttachment;
@@ -17,15 +16,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPObjCTypeConversionUtil : NSObject
-
-// MARK: - PEPTransport
-
-+ (PEPTransport * _Nullable)pEpTransportfromStruct:(PEP_transport_t * _Nonnull)transportStruct;
-
-+ (PEP_transport_t *)structFromPEPTransport:(PEPTransport *)pEpTransport;
-
-+ (void)overWritePEPTransportObject:(PEPTransport *)pEpTransport
-               withValuesFromStruct:(PEP_transport_t * _Nonnull)transportStruct;
 
 // MARK: - PEPMessage
 

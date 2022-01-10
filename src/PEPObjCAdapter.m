@@ -121,18 +121,24 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 }
 
 + (void)setupPerUserDirectory {
-    // The Engine uses the home env as per-user-directory. We hijack that on iOS,
+    // The Engine uses the HOME env as per-user-directory. We hijack that on iOS,
     // or when running XCTests on macOS.
+#if TARGET_OS_MAC
+
 #if TARGET_OS_IPHONE
     s_homeURL = [self createApplicationDirectory];
     setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-#else
-    if ([self isXCTestRunning]) {
+    return;
+#elif TARGET_OS_OSX
+    if ([self isXCTestRunning] || [self isRunningInDevelopmentEnvironment]) {
         s_homeURL = [self createTestDataDirectoryMacOS];
         setenv("HOME", [[s_homeURL path] cStringUsingEncoding:NSUTF8StringEncoding], 1);
-    } else {
-        // For macOS there is nothing toDo. The defaults in Engine platform_unix.h should do.
     }
+    return;
+#endif
+
+#else
+    // Neither macOS nor iOS. The engine will use $HOME.
 #endif
 }
 
@@ -272,6 +278,9 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
 /// Determines whether the adapter is running under a XCTest.
 ///
+/// Uses `NSClassFromString`, `[NSObject valueForKey]` and `[NSProcessInfo processInfo]` and should therefore
+/// compile on most GNUstep platforms an macOS.
+///
 /// This is only used under macOS, although it should work on iOS as well.
 + (BOOL)isXCTestRunning
 {
@@ -288,7 +297,27 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
     return isTesting || configFp != nil;
 }
 
-/// Creates a pEp directory for use by the engine that is nowhere in a production data area, for use by XCTests.
+/// Checks the environment for a variable that hints at development.
+///
+/// In a development environment, the engine should never read from or write to production data.
+///
+/// @note While this kind of check is feasible on all kinds of OSs, it should be used only on macOS,
+/// because there is a strict separation between a shell environment (used by developers) and the
+/// environment used by apps and background tasks.
+/// E.g., see https://support.apple.com/guide/terminal/use-environment-variables-apd382cc5fa-4f58-4449-b20a-41c53c006f8f/2.11/mac/11.0
+/// @return `YES` when the `PEP_TEST` environment variable is set.
++ (BOOL)isRunningInDevelopmentEnvironment
+{
+    id pEpTest = [[[NSProcessInfo processInfo] environment] valueForKey:@"PEP_TEST"];
+    return pEpTest != nil;
+}
+
+#if TARGET_OS_OSX
+
+/// Creates a pEp directory for use by the engine that doesn't affect production data,
+/// e.g. for use by XCTests or when running in a development environment.
+///
+/// Uses `[NSFileManager URLsForDirectory:inDomains:]`, so not safe for other platforms besides macOS.
 + (NSURL *)createTestDataDirectoryMacOS
 {
     NSFileManager *fm = [NSFileManager defaultManager];
@@ -310,5 +339,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
     return dirPath;
 }
+
+#endif
 
 @end
