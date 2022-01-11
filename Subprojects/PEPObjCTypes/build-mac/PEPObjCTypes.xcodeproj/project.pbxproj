@@ -215,7 +215,8 @@
 				4E57587E26832F2F0084F02D /* PublicHeaders */,
 				4E57587326832F2F0084F02D /* src */,
 			);
-			path = PEPObjCTypes;
+			name = PEPObjCTypes;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		4E575859268329170084F02D /* PEPObjCTypes_macOS */ = {
