@@ -577,7 +577,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/",
 					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/pEp",
-					"${PROJECT_DIR}/../../PEPObjCTypes/build-mac/include",
+					"${PROJECT_DIR}/../../PEPObjCTypes/build-mac/build/include",
 					"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -641,7 +641,7 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/",
 					"${PROJECT_DIR}/../../../pEpEngine/build-mac/build/include/pEp",
-					"${PROJECT_DIR}/../../PEPObjCTypes/build-mac/include",
+					"${PROJECT_DIR}/../../PEPObjCTypes/build-mac/build/include",
 					"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
