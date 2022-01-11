@@ -272,7 +272,7 @@
 				1585EA7826984C4300B822E1 /* Headers */,
 				1585EA7926984C4300B822E1 /* Sources */,
 				1585EA7A26984C4300B822E1 /* Frameworks */,
-				1585EA9626984E6F00B822E1 /* Copy Artefacts to Custom Build Dir */,
+				1585EA9626984E6F00B822E1 /* Copy Artifacts to Custom Build Dir */,
 			);
 			buildRules = (
 			);
@@ -434,7 +434,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1585EA9626984E6F00B822E1 /* Copy Artefacts to Custom Build Dir */ = {
+		1585EA9626984E6F00B822E1 /* Copy Artifacts to Custom Build Dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -443,14 +443,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy Artefacts to Custom Build Dir";
+			name = "Copy Artifacts to Custom Build Dir";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/PEPObjCTypeUtils/PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
 			showEnvVarsInLog = 0;
 		};
 		1585EC78269C3DD000B822E1 /* Copy Artefacts to Custom Build dir */ = {
