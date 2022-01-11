@@ -368,7 +368,7 @@
 				4E575856268329170084F02D /* Frameworks */,
 				4E5758B526833A120084F02D /* CopyFiles */,
 				15A9C9322760D85F00307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */,
-				4E5758F7268371770084F02D /* Copy artefacts to custom build dir */,
+				4E5758F7268371770084F02D /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -514,7 +514,7 @@
 			shellPath = /bin/sh;
 			shellScript = "BUILD_INCLUDE_DIR=\"${BUILT_PRODUCTS_DIR}/include/PEPObjCTypes_iOS\"\nmv ${BUILD_INCLUDE_DIR}/pEpObjCTypesModuleMap.modulemap ${BUILD_INCLUDE_DIR}/module.modulemap\n";
 		};
-		4E5758F7268371770084F02D /* Copy artefacts to custom build dir */ = {
+		4E5758F7268371770084F02D /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -523,14 +523,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy artefacts to custom build dir";
+			name = "Copy artifacts to custom build dir";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\nCUSTOM_INCLUDE_DIR=${PROJECT_DIR}/build/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp  \"${PROJECT_DIR}/PEPObjCTypes/PublicHeaders\"/* ${CUSTOM_INCLUDE_DIR}\ncp  \"${PROJECT_DIR}/../../../libpEpTransport/build-mac/build/include/pEp/PEPTransportStatusCode.h\" ${CUSTOM_INCLUDE_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\nCUSTOM_INCLUDE_DIR=${PROJECT_DIR}/build/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/* ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 		4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
