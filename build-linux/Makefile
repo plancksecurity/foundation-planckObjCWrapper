@@ -20,7 +20,7 @@ INCLUDES = \
 LIBS = -lpEpEngine -Wl,--whole-archive -lPEPObjCTypes -lPEPObjCTypeUtils -lPEPObjCAdapterProtocols -Wl,--no-whole-archive
 
 # Load the shared pEp ObjC Makefile.
-MAKEFILE_COMMON ?= ../../../pepgnustephelper/
+MAKEFILE_COMMON ?= ../../pepgnustephelper
 include $(MAKEFILE_COMMON)/Makefile.common
 
 # This enables proper header-dependencies based on .d files made by the compiler.
