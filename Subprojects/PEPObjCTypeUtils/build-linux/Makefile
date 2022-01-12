@@ -18,7 +18,7 @@ INCLUDES = \
 LIBS = -lpEpEngine -lasn1 -lPEPObjCTypes
 
 # Load the shared pEp ObjC Makefile.
-MAKEFILE_COMMON ?= ../../../../../pepgnustephelper/
+MAKEFILE_COMMON ?= ../../../../pepgnustephelper/
 include $(MAKEFILE_COMMON)/Makefile.common
 
 print:
