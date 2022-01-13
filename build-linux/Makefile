@@ -1,4 +1,4 @@
-root = ../../
+root = ..
 
 # Content of this library
 TARGET = libpEpObjCAdapter
@@ -8,19 +8,19 @@ HEADERS = $(call find-headers,../PublicHeaders/)
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
 INCLUDES = \
-  -I$(root)/pEpObjCAdapter/PublicHeaders \
-  -I$(root)/pEpObjCAdapter/Extensions \
-  -I$(root)/pEpObjCAdapter \
-  -I$(root)/Subprojects/PEPObjCAdapterProtocols/PEPObjCAdapterProtocols/PublicHeaders \
-  -I$(root)/Subprojects/PEPObjCTypes/PEPObjCTypes/PublicHeaders \
-  -I$(root)/Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils/PublicHeaders \
+  -I$(root)/PublicHeaders \
+  -I$(root)/src/Extensions \
+  -I$(root)/src \
+  -I$(root)/Subprojects/PEPObjCAdapterProtocols/PublicHeaders \
+  -I$(root)/Subprojects/PEPObjCTypes/PublicHeaders \
+  -I$(root)/Subprojects/PEPObjCTypeUtils/PublicHeaders \
   -I$(PEP_INCLUDE)
 
 # Only for making .so libs. Libs for static linking are defined with the final binary.
 LIBS = -lpEpEngine -Wl,--whole-archive -lPEPObjCTypes -lPEPObjCTypeUtils -lPEPObjCAdapterProtocols -Wl,--no-whole-archive
 
 # Load the shared pEp ObjC Makefile.
-MAKEFILE_COMMON ?= ../../../pepgnustephelper/
+MAKEFILE_COMMON ?= ../../pepgnustephelper
 include $(MAKEFILE_COMMON)/Makefile.common
 
 # This enables proper header-dependencies based on .d files made by the compiler.

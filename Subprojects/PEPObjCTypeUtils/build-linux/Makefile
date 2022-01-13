@@ -1,9 +1,7 @@
-root = ../../../../
-
 # Content of this library
 TARGET = libPEPObjCTypeUtils
-OBJECTS = $(call find-objects,..)
-DEPFILES = $(call find-deps,..)
+OBJECTS = $(call find-objects,../src)
+DEPFILES = $(call find-deps,../src)
 HEADERS = $(call find-headers,../PublicHeaders)
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
@@ -18,7 +16,7 @@ INCLUDES = \
 LIBS = -lpEpEngine -lasn1 -lPEPObjCTypes
 
 # Load the shared pEp ObjC Makefile.
-MAKEFILE_COMMON ?= ../../../../../pepgnustephelper/
+MAKEFILE_COMMON ?= ../../../../pepgnustephelper/
 include $(MAKEFILE_COMMON)/Makefile.common
 
 print:

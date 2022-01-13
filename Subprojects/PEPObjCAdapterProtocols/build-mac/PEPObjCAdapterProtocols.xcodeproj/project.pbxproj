@@ -72,7 +72,8 @@
 		4EEB4C9F2680D57A00161040 = {
 			isa = PBXGroup;
 			children = (
-				4EEB4CAA2680D57A00161040 /* PEPObjCAdapterProtocols */,
+				4EEB4CC02680DCAC00161040 /* PublicHeaders */,
+				4EEB4CAA2680D57A00161040 /* src */,
 				4E23E6E72681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS */,
 				4E23E7052681D5F300B8F4C2 /* PEPObjCAdapterProtocols_iOS */,
 				4EEB4CA92680D57A00161040 /* Products */,
@@ -89,13 +90,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4EEB4CAA2680D57A00161040 /* PEPObjCAdapterProtocols */ = {
+		4EEB4CAA2680D57A00161040 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				4EEB4CC02680DCAC00161040 /* PublicHeaders */,
 				4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */,
 			);
-			path = PEPObjCAdapterProtocols;
+			name = src;
+			path = ../src;
 			sourceTree = "<group>";
 		};
 		4EEB4CC02680DCAC00161040 /* PublicHeaders */ = {
@@ -104,7 +105,8 @@
 				4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */,
 				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
 			);
-			path = PublicHeaders;
+			name = PublicHeaders;
+			path = ../PublicHeaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +141,7 @@
 				4E23E6E22681C7CD00B8F4C2 /* Headers */,
 				4E23E6E32681C7CD00B8F4C2 /* Sources */,
 				4E23E6E42681C7CD00B8F4C2 /* Frameworks */,
-				4E23E71926820D5400B8F4C2 /* Copy artefacts to custom build dir */,
+				4E23E71926820D5400B8F4C2 /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -204,7 +206,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4E23E71926820D5400B8F4C2 /* Copy artefacts to custom build dir */ = {
+		4E23E71926820D5400B8F4C2 /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -213,14 +215,14 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy artefacts to custom build dir";
+			name = "Copy artifacts to custom build dir";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=\"${CUSTOM_BUILD_DIR}/include/\"\nLIB_STATIC_NAME=\"lib${PRODUCT_NAME}.a\"\nmkdir -p ${CUSTOM_BUILD_DIR}\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\nPUBLIC_HEADERS_DIR=\"${PROJECT_DIR}/PEPObjCAdapterProtocols/PublicHeaders\"\n\ncp \"${PUBLIC_HEADERS_DIR}\"/*.h \"${CUSTOM_BUILD_DIR}/include/\"\ncp \"${BUILT_PRODUCTS_DIR}/${LIB_STATIC_NAME}\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=\"${CUSTOM_BUILD_DIR}/include/\"\nLIB_STATIC_NAME=\"lib${PRODUCT_NAME}.a\"\nmkdir -p ${CUSTOM_BUILD_DIR}\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\nPUBLIC_HEADERS_DIR=\"${PROJECT_DIR}/../PublicHeaders\"\n\ncp \"${PUBLIC_HEADERS_DIR}\"/*.h \"${CUSTOM_BUILD_DIR}/include/\"\ncp \"${BUILT_PRODUCTS_DIR}/${LIB_STATIC_NAME}\" ${CUSTOM_BUILD_DIR}\n";
 		};
 		4E23E71A26820DDB00B8F4C2 /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
