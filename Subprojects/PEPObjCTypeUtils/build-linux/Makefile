@@ -1,7 +1,7 @@
 # Content of this library
 TARGET = libPEPObjCTypeUtils
-OBJECTS = $(call find-objects,..)
-DEPFILES = $(call find-deps,..)
+OBJECTS = $(call find-objects,../src)
+DEPFILES = $(call find-deps,../src)
 HEADERS = $(call find-headers,../PublicHeaders)
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
