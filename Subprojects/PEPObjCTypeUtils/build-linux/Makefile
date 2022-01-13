@@ -1,5 +1,3 @@
-root = ../../../../
-
 # Content of this library
 TARGET = libPEPObjCTypeUtils
 OBJECTS = $(call find-objects,..)
