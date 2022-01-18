@@ -19,12 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - PEPMessage
 
-+ (PEPMessage * _Nullable)pEpMessagefromStruct:(message * _Nullable)msg;
++ (PEPMessage * _Nullable)pEpMessagefromStruct:(const message * _Nullable)msg;
 
 + (message * _Nullable)structFromPEPMessage:(PEPMessage *)pEpMessage;
 
 + (void)overWritePEPMessageObject:(PEPMessage *)pEpMessage
-             withValuesFromStruct:(message * _Nonnull)message;
+             withValuesFromStruct:(const message * _Nonnull)message;
 
 + (void)removeEmptyRecipientsFromPEPMessage:(PEPMessage *)pEpMessage;
 
@@ -32,34 +32,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - PEPIdentity
 
-+ (PEPIdentity * _Nullable)pEpIdentityfromStruct:(pEp_identity * _Nonnull)identityStruct;
++ (PEPIdentity * _Nullable)pEpIdentityfromStruct:(const pEp_identity * _Nonnull)identityStruct;
 
 + (pEp_identity *)structFromPEPIdentity:(PEPIdentity *)pEpIdentity;
 
 + (void)overWritePEPIdentityObject:(PEPIdentity *)pEpIdentity
-              withValuesFromStruct:(pEp_identity * _Nonnull)identityStruct;
+              withValuesFromStruct:(const pEp_identity * _Nonnull)identityStruct;
 
 // MARK: - NSArray <-> stringlist_t
 
-+ (NSArray<NSString*> *)arrayFromStringlist:(stringlist_t * _Nonnull)stringList;
++ (NSArray<NSString*> *)arrayFromStringlist:(const stringlist_t * _Nonnull)stringList;
 
 + (stringlist_t * _Nullable)arrayToStringList:(NSArray<NSString*> *)array;
 
 // MARK: - NSArray <-> identity_list
 
-+ (NSArray<PEPIdentity*> *)arrayFromIdentityList:(identity_list *)identityList;
++ (NSArray<PEPIdentity*> *)arrayFromIdentityList:(const identity_list *)identityList;
 
 + (identity_list * _Nullable)arrayToIdentityList:(NSArray<PEPIdentity*> *)array;
 
 // MARK: - NSArray <-> stringpair_list_t
 
-+ (NSArray<NSArray<NSString*>*> *)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList;
++ (NSArray<NSArray<NSString*>*> *)arrayFromStringPairlist:(const stringpair_list_t * _Nonnull)stringPairList;
 
 + (stringpair_list_t * _Nullable)arrayToStringPairlist:(NSArray<NSArray<NSString*>*> *)array;
 
 // MARK: - NSArray<PEPAttachment*> <-> bloblist_t
 
-+ (NSArray<PEPAttachment*> *)arrayFromBloblist:(bloblist_t * _Nonnull)blobList;
++ (NSArray<PEPAttachment*> *)arrayFromBloblist:(const bloblist_t * _Nonnull)blobList;
 
 + (bloblist_t * _Nullable)arrayToBloblist:(NSArray<PEPAttachment*> *)array;
 
