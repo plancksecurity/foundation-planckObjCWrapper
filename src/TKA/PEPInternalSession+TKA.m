@@ -33,7 +33,7 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
 
 // MARK: - Internal API
 
-- (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate
+- (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
                                 error:(NSError * _Nullable * _Nullable)error {
     // not implemented
     return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
