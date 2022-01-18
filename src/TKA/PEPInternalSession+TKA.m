@@ -12,7 +12,7 @@
 
 #import "PEPStatusNSErrorUtil.h"
 
-// MARK: - Fake the engine TKA API
+// MARK: - Cheap fake of the engine's TKA API
 
 typedef PEP_STATUS (*tka_keychange_t)(const pEp_identity *me,
                                       const pEp_identity *partner,
