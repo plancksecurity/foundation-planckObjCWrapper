@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPTKADelegate : NSObject
+@protocol PEPTKADelegate <NSObject>
 
 /// From tka_api.h, the `tka_keychange_t` callback.
 - (PEPStatus)tkaKeyChangeMe:(PEPIdentity *)me partner:(PEPIdentity *)partner key:(NSString *)key;
