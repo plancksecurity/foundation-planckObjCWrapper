@@ -29,10 +29,14 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     return PEP_ILLEGAL_VALUE;
 }
 
-// MARK: - Internal Vars
+// MARK: - Internal Vars and Forward Declarations
 
 /// The global TKA delegate.
 id<PEPTKADelegate> s_tkaDelegate = nil;
+
+PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
+                                const pEp_identity *partner,
+                                const char *key);
 
 @implementation PEPInternalSession (TKA)
 
@@ -41,6 +45,13 @@ id<PEPTKADelegate> s_tkaDelegate = nil;
 - (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
                                 error:(NSError * _Nullable * _Nullable)error {
     s_tkaDelegate = delegate;
+
+    if (delegate != nil) {
+        tka_subscribe_keychange(self.session, tkaKeychangeCallback);
+    } else {
+        tka_subscribe_keychange(self.session, NULL);
+    }
+
     return YES;
 }
 
