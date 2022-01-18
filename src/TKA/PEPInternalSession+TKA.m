@@ -52,7 +52,7 @@ id<PEPTKADelegate> s_tkaDelegate = nil;
     free_identity(enginePartner);
 
     // not implemented
-    //PEP_STATUS engineStatus = PEPStatusIllegalValue;
+    //PEP_STATUS engineStatus = PEP_ILLEGAL_VALUE;
 
     return [PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) engineStatus];
 }
