@@ -173,9 +173,6 @@
 		43147DDD2797048A00661780 /* PEPTKADelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 43147DDB2797048A00661780 /* PEPTKADelegate.h */; };
 		43147DDE2797048A00661780 /* PEPTKADelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 43147DDB2797048A00661780 /* PEPTKADelegate.h */; };
 		43147DDF2797048A00661780 /* PEPTKADelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 43147DDB2797048A00661780 /* PEPTKADelegate.h */; };
-		43147DE02797048A00661780 /* PEPTKADelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147DDC2797048A00661780 /* PEPTKADelegate.m */; };
-		43147DE12797048A00661780 /* PEPTKADelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147DDC2797048A00661780 /* PEPTKADelegate.m */; };
-		43147DE22797048A00661780 /* PEPTKADelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147DDC2797048A00661780 /* PEPTKADelegate.m */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
 		432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
@@ -460,7 +457,6 @@
 		43147DD5279703E600661780 /* PEPInternalSession+TKA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPInternalSession+TKA.h"; sourceTree = "<group>"; };
 		43147DD6279703E600661780 /* PEPInternalSession+TKA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPInternalSession+TKA.m"; sourceTree = "<group>"; };
 		43147DDB2797048A00661780 /* PEPTKADelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPTKADelegate.h; sourceTree = "<group>"; };
-		43147DDC2797048A00661780 /* PEPTKADelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPTKADelegate.m; sourceTree = "<group>"; };
 		43209B261ECC2ACD007E7E2E /* NSArray+Take.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Take.h"; sourceTree = "<group>"; };
 		43209B271ECC2ACD007E7E2E /* NSArray+Take.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Take.m"; sourceTree = "<group>"; };
 		43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPCSVScanner.h; sourceTree = "<group>"; };
@@ -714,7 +710,6 @@
 				43147DD5279703E600661780 /* PEPInternalSession+TKA.h */,
 				43147DD6279703E600661780 /* PEPInternalSession+TKA.m */,
 				43147DDB2797048A00661780 /* PEPTKADelegate.h */,
-				43147DDC2797048A00661780 /* PEPTKADelegate.m */,
 			);
 			path = TKA;
 			sourceTree = "<group>";
@@ -1349,7 +1344,6 @@
 				1543DCA5257944C70041EFB5 /* PEPCopyableThread.m in Sources */,
 				159C009925BB13F700F13E2B /* NSArray+Take.m in Sources */,
 				1543DCD1257944F10041EFB5 /* PEPPassphraseUtil.m in Sources */,
-				43147DE02797048A00661780 /* PEPTKADelegate.m in Sources */,
 				1543DCCA257944EF0041EFB5 /* PEPSession.m in Sources */,
 				159C00A925BB140F00F13E2B /* NSString+NormalizePassphrase.m in Sources */,
 				159C00A525BB140F00F13E2B /* NSNumber+PEPRating.m in Sources */,
@@ -1380,7 +1374,6 @@
 				1552D97D257660C900A92F71 /* PEPInternalConstants.m in Sources */,
 				1552D973257660C900A92F71 /* PEPInternalSession.m in Sources */,
 				1552D970257660C900A92F71 /* PEPSessionProvider.m in Sources */,
-				43147DE12797048A00661780 /* PEPTKADelegate.m in Sources */,
 				1552D97A257660C900A92F71 /* PEPCopyableThread.m in Sources */,
 				1552D9402576602D00A92F71 /* PEPObjCAdapter_macOS.m in Sources */,
 				1552D9512576607900A92F71 /* PEPConstants.m in Sources */,
@@ -1411,7 +1404,6 @@
 				15C3087326E8B5030013F39F /* PEPInternalConstants.m in Sources */,
 				15C3087426E8B5030013F39F /* PEPInternalSession.m in Sources */,
 				15C3087526E8B5030013F39F /* PEPSessionProvider.m in Sources */,
-				43147DE22797048A00661780 /* PEPTKADelegate.m in Sources */,
 				15C3087626E8B5030013F39F /* PEPCopyableThread.m in Sources */,
 				15C3087726E8B5030013F39F /* PEPObjCAdapter_macOS.m in Sources */,
 				15C3087826E8B5030013F39F /* PEPConstants.m in Sources */,
