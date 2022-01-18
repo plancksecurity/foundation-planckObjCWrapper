@@ -8,16 +8,20 @@
 
 #import "PEPInternalSession+TKA.h"
 
+#import "PEPStatusNSErrorUtil.h"
+
 @implementation PEPInternalSession (TKA)
 
-- (PEPStatus)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate {
+- (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate
+                                error:(NSError * _Nullable * _Nullable)error {
     // not implemented
-    return PEPStatusIllegalValue;
+    return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
 }
 
-- (PEPStatus)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner {
+- (BOOL)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
+                      error:(NSError * _Nullable * _Nullable)error {
     // not implemented
-    return PEPStatusIllegalValue;
+    return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
 }
 
 @end

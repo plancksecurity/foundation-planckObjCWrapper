@@ -17,10 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PEPInternalSession (TKA)
 
 /// Wraps the engine's `tka_subscribe_keychange`.
-- (PEPStatus)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate;
+- (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate
+                                error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps the engine's `tka_request_temp_key`.
-- (PEPStatus)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner;
+- (BOOL)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
+                      error:(NSError * _Nullable * _Nullable)error;
 
 @end
 
