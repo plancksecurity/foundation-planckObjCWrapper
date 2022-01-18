@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Wraps the engine's `tka_subscribe_keychange`.
 - (PEPStatus)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate;
 
+/// Wraps the engine's `tka_request_temp_key`.
+- (PEPStatus)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,7 +11,12 @@
 @implementation PEPInternalSession (TKA)
 
 - (PEPStatus)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate {
-    // Not yet implemented
+    // not implemented
+    return PEPStatusIllegalValue;
+}
+
+- (PEPStatus)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner {
+    // not implemented
     return PEPStatusIllegalValue;
 }
 
