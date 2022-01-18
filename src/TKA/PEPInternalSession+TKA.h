@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPObjCTypes.h"
+#import "PEPInternalSession.h"
 
 #import "PEPTKADelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPInternalSession_TKA : NSObject
+@interface PEPInternalSession (TKA)
 
 - (PEPStatus)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate;
 

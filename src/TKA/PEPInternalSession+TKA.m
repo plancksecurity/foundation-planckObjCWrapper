@@ -8,6 +8,6 @@
 
 #import "PEPInternalSession+TKA.h"
 
-@implementation PEPInternalSession_TKA
+@implementation PEPInternalSession (TKA)
 
 @end
