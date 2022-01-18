@@ -65,3 +65,15 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
 
 /// The global TKA delegate.
 id<PEPTKADelegate> s_tkaDelegate = nil;
+
+PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
+                                const pEp_identity *partner,
+                                const char *key) {
+    if (s_tkaDelegate == nil) {
+        return PEP_ILLEGAL_VALUE;
+    }
+    PEPIdentity *objcMe = [PEPObjCTypeConversionUtil pEpIdentityfromStruct:me];
+    PEPIdentity *objcPartner = [PEPObjCTypeConversionUtil pEpIdentityfromStruct:partner];
+
+    return PEP_ILLEGAL_VALUE;
+}
