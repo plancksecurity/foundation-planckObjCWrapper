@@ -707,9 +707,9 @@
 		43147DCE279703BC00661780 /* TKA */ = {
 			isa = PBXGroup;
 			children = (
+				43147DDB2797048A00661780 /* PEPTKADelegate.h */,
 				43147DD5279703E600661780 /* PEPInternalSession+TKA.h */,
 				43147DD6279703E600661780 /* PEPInternalSession+TKA.m */,
-				43147DDB2797048A00661780 /* PEPTKADelegate.h */,
 			);
 			path = TKA;
 			sourceTree = "<group>";
