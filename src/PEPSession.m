@@ -640,4 +640,38 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session disableAllSyncChannels:error];
 }
 
+// MARK: - TKA
+
+- (void)tkaSubscribeKeychangeDelegate:(nonnull id<PEPTKADelegate>)delegate
+                        errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
+                      successCallback:(nonnull void (^)(void))successCallback {
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session] tkaSubscribeKeychangeDelegate:delegate
+                                                                             error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)tkaRequestTempKeyMe:(nonnull PEPIdentity *)me
+                    partner:(nonnull PEPIdentity *)partner
+              errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
+            successCallback:(nonnull void (^)(void))successCallback {
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session] tkaRequestTempKeyMe:me
+                                                                 partner:partner
+                                                                   error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end
