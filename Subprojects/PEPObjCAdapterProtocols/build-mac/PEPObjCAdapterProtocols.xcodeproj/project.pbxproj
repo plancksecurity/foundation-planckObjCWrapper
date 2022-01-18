@@ -106,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */,
-				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
 				43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */,
+				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
 			);
 			name = PublicHeaders;
 			path = ../PublicHeaders;
