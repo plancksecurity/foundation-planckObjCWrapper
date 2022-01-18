@@ -29,14 +29,19 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     return PEP_ILLEGAL_VALUE;
 }
 
+// MARK: - Internal Vars
+
+/// The global TKA delegate.
+id<PEPTKADelegate> s_tkaDelegate = nil;
+
 @implementation PEPInternalSession (TKA)
 
 // MARK: - Internal API
 
 - (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
                                 error:(NSError * _Nullable * _Nullable)error {
-    // not implemented
-    return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
+    s_tkaDelegate = delegate;
+    return YES;
 }
 
 - (BOOL)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
@@ -60,11 +65,6 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
 }
 
 @end
-
-// MARK: - Internal
-
-/// The global TKA delegate.
-id<PEPTKADelegate> s_tkaDelegate = nil;
 
 PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
                                 const pEp_identity *partner,
