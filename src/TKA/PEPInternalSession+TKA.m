@@ -8,6 +8,8 @@
 
 #import "PEPInternalSession+TKA.h"
 
+#import "PEPObjCTypeUtils.h"
+
 #import "PEPStatusNSErrorUtil.h"
 
 typedef PEP_STATUS (*tka_keychange_t)(
@@ -40,8 +42,25 @@ id<PEPTKADelegate> s_tkaDelegate = nil;
 
 - (BOOL)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
                       error:(NSError * _Nullable * _Nullable)error {
+    pEp_identity *engineMe = [PEPObjCTypeConversionUtil structFromPEPIdentity:me];
+    if (engineMe == NULL) {
+        return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
+    }
+
+    pEp_identity *enginePartner = [PEPObjCTypeConversionUtil structFromPEPIdentity:partner];
+    if (enginePartner == NULL) {
+        return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
+    }
+
+    PEP_STATUS engineStatus = tka_request_temp_key(self.session, engineMe, enginePartner);
+
+    free_identity(engineMe);
+    free_identity(enginePartner);
+
     // not implemented
-    return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
+    //PEP_STATUS engineStatus = PEPStatusIllegalValue;
+
+    return [PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) engineStatus];
 }
 
 @end
