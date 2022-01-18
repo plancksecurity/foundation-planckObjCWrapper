@@ -17,11 +17,15 @@ typedef PEP_STATUS (*tka_keychange_t)(const pEp_identity *me,
                                       const char *key);
 
 PEP_STATUS tka_subscribe_keychange(PEP_SESSION session,
-                                   tka_keychange_t callback);
+                                   tka_keychange_t callback) {
+    return PEP_ILLEGAL_VALUE;
+}
 
 PEP_STATUS tka_request_temp_key(PEP_SESSION session,
                                 pEp_identity *me,
-                                pEp_identity *partner);
+                                pEp_identity *partner) {
+    return PEP_ILLEGAL_VALUE;
+}
 
 /// The global TKA delegate.
 id<PEPTKADelegate> s_tkaDelegate = nil;
