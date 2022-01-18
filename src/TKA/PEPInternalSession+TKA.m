@@ -56,9 +56,6 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     free_identity(engineMe);
     free_identity(enginePartner);
 
-    // not implemented
-    //PEP_STATUS engineStatus = PEP_ILLEGAL_VALUE;
-
     return [PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) engineStatus];
 }
 
