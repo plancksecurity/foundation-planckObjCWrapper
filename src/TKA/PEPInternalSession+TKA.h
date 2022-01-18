@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPInternalSession (TKA)
 
+/// Wraps the engine's `tka_subscribe_keychange`.
 - (PEPStatus)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate;
 
 @end
