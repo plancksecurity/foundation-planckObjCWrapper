@@ -10,6 +10,9 @@
 
 #import "PEPStatusNSErrorUtil.h"
 
+/// The global TKA delegate.
+id<PEPTKADelegate> s_tkaDelegate = nil;
+
 @implementation PEPInternalSession (TKA)
 
 - (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate
