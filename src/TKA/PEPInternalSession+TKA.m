@@ -10,4 +10,9 @@
 
 @implementation PEPInternalSession (TKA)
 
+- (PEPStatus)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate {
+    // Not yet implemented
+    return PEPStatusIllegalValue;
+}
+
 @end
