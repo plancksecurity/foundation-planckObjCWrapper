@@ -11,6 +11,7 @@
 #import "PEPMessage.h"
 #import "PEPEngineTypes.h"
 #import "PEPInternalSession.h"
+#import "PEPInternalSession+TKA.h"
 #import "NSNumber+PEPRating.h"
 #import "PEPIdentity.h"
 #import "PEPSessionProvider.h"
