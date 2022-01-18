@@ -72,8 +72,12 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
     if (s_tkaDelegate == nil) {
         return PEP_ILLEGAL_VALUE;
     }
+
     PEPIdentity *objcMe = [PEPObjCTypeConversionUtil pEpIdentityfromStruct:me];
     PEPIdentity *objcPartner = [PEPObjCTypeConversionUtil pEpIdentityfromStruct:partner];
 
-    return PEP_ILLEGAL_VALUE;
+    return (PEP_STATUS) [s_tkaDelegate
+                         tkaKeyChangeMe:objcMe
+                         partner:objcPartner
+                         key:[NSString stringWithCString:key encoding:NSUTF8StringEncoding]];
 }
