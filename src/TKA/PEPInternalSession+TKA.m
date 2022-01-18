@@ -12,6 +12,8 @@
 
 #import "PEPStatusNSErrorUtil.h"
 
+// MARK: - Fake the engine TKA API
+
 typedef PEP_STATUS (*tka_keychange_t)(const pEp_identity *me,
                                       const pEp_identity *partner,
                                       const char *key);
@@ -27,10 +29,9 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     return PEP_ILLEGAL_VALUE;
 }
 
-/// The global TKA delegate.
-id<PEPTKADelegate> s_tkaDelegate = nil;
-
 @implementation PEPInternalSession (TKA)
+
+// MARK: - Internal API
 
 - (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate>)delegate
                                 error:(NSError * _Nullable * _Nullable)error {
@@ -62,3 +63,8 @@ id<PEPTKADelegate> s_tkaDelegate = nil;
 }
 
 @end
+
+// MARK: - Internal
+
+/// The global TKA delegate.
+id<PEPTKADelegate> s_tkaDelegate = nil;
