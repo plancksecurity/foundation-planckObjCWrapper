@@ -98,6 +98,9 @@
     if (error) {
         *error = errorResult;
     }
+
+    [self waitForExpectations:@[expDelegateSet] timeout:PEPTestInternalFastTimeout];
+
     return success;
 }
 
