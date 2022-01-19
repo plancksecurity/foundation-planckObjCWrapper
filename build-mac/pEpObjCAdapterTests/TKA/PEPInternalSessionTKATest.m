@@ -8,19 +8,29 @@
 
 #import <XCTest/XCTest.h>
 
+#import "PEPObjCAdapter.h"
+#import "PEPTestUtils.h"
+
 @interface PEPInternalSessionTKATest : XCTestCase
 
 @end
 
 @implementation PEPInternalSessionTKATest
 
+// MARK: - Setup, teardown etc.
+
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [super setUp];
+
+    [self pEpCleanUp];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [self pEpCleanUp];
+    [super tearDown];
 }
+
+// MARK: - Tests
 
 - (void)testExample {
     // This is an example of a functional test case.
@@ -32,6 +42,12 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+// MARK: - Internal Helpers
+
+- (void)pEpCleanUp {
+    [PEPTestUtils cleanUp];
 }
 
 @end
