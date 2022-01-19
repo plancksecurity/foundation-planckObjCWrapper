@@ -12,7 +12,8 @@
 
 #import "PEPTestUtils.h"
 #import "PEPSessionProvider.h"
-#import "PEPInternalSession.h"
+#import "PEPInternalSession+TKA.h"
+#import "PEPTKATestDelegate.h"
 
 @interface PEPInternalSessionTKATest : XCTestCase
 
@@ -36,6 +37,12 @@
 
 - (void)testSimpleTKACallback {
     PEPInternalSession *session = [PEPSessionProvider session];
+    XCTestExpectation *expDelegateCalled = [self expectationWithDescription:@"expDelegateCalled"];
+    PEPTKATestDelegate *delegate = [[PEPTKATestDelegate alloc]
+                                    initExpectationKeyChangedCalled:expDelegateCalled];
+    NSError *error = nil;
+    XCTAssertTrue([session tkaSubscribeKeychangeDelegate:delegate error:&error]);
+    XCTAssertNil(error);
 }
 
 // MARK: - Internal Helpers
