@@ -76,7 +76,7 @@
     [PEPTestUtils cleanUp];
 }
 
-/// Synchronizes the async version in `PEPSession`.
+/// Synchronizes the async version from `PEPSession`.
 - (BOOL)tkaSubscribeSession:(PEPSession * _Nonnull)session
           keychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
                       error:(NSError * _Nullable * _Nullable)error {
@@ -104,7 +104,7 @@
     return success;
 }
 
-/// Synchronizes the async version in `PEPSession`.
+/// Synchronizes the async version from `PEPSession`.
 - (BOOL)tkaRequestTempKeySession:(PEPSession * _Nonnull)session
                               me:(PEPIdentity *)me partner:(PEPIdentity *)partner
                            error:(NSError * _Nullable * _Nullable)error {
