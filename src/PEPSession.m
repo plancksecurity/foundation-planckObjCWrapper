@@ -642,7 +642,7 @@ successCallback:(void (^)(NSString *log))successCallback
 
 // MARK: - TKA
 
-- (void)tkaSubscribeKeychangeDelegate:(nonnull id<PEPTKADelegate>)delegate
+- (void)tkaSubscribeKeychangeDelegate:(nullable id<PEPTKADelegate>)delegate
                         errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
                       successCallback:(nonnull void (^)(void))successCallback {
     dispatch_async(queue, ^{
