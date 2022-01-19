@@ -10,4 +10,20 @@
 
 @implementation PEPTKATestDelegate
 
+- (instancetype)initExpectationKeyChangedCalled:(XCTestExpectation *)expectationKeyChangedCalled
+{
+    self = [super init];
+    if (self) {
+        _expectationKeyChangedCalled = expectationKeyChangedCalled;
+    }
+    return self;
+}
+
+- (PEPStatus)tkaKeyChangeMe:(nonnull PEPIdentity *)me
+                    partner:(nonnull PEPIdentity *)partner
+                        key:(nonnull NSString *)key {
+    [self.expectationKeyChangedCalled fulfill];
+    return PEPStatusOK;
+}
+
 @end
