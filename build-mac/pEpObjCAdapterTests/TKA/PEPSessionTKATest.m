@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
+#import "PEPTKATestDelegate.h"
+#import "PEPSession.h"
+
 @interface PEPSessionTKATest : XCTestCase
 
 @end
@@ -32,6 +35,33 @@
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
     }];
+}
+
+// MARK: - Internal Helpers
+
+/// Synchronizes the async version in `PEPSession`.
+- (BOOL)tkaSubscribeSession:(PEPSession * _Nonnull)session
+          keychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
+                      error:(NSError * _Nullable * _Nullable)error {
+    __block NSError *errorResult = nil;
+    __block BOOL success = NO;
+    XCTestExpectation *expDelegateSet = [self expectationWithDescription:@"expDelegateSet"];
+
+    [session tkaSubscribeKeychangeDelegate:delegate
+                             errorCallback:^(NSError * _Nonnull error) {
+        errorResult = error;
+        success = NO;
+        [expDelegateSet fulfill];
+    }
+                           successCallback:^{
+        success = YES;
+        [expDelegateSet fulfill];
+    }];
+
+    if (error) {
+        *error = errorResult;
+    }
+    return success;
 }
 
 @end
