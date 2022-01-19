@@ -85,6 +85,7 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
 
 @end
 
+/// This is the C callback that is hit by the engine's TKA mechanism, if a delegate gets set by the client.
 PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
                                 const pEp_identity *partner,
                                 const char *key) {
