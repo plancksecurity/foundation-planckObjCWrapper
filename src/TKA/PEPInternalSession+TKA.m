@@ -80,7 +80,7 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
     free_identity(engineMe);
     free_identity(enginePartner);
 
-    return [PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) engineStatus];
+    return ![PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) engineStatus];
 }
 
 @end
