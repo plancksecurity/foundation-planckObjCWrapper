@@ -48,7 +48,7 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
 
 @implementation PEPInternalSession (TKA)
 
-// MARK: - Internal API
+// MARK: - Internal Session API
 
 - (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
                                 error:(NSError * _Nullable * _Nullable)error {
