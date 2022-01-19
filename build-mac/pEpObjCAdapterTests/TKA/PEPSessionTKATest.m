@@ -124,7 +124,9 @@
         [expDelegateSet fulfill];
     }];
 
-    return NO;
+    [self waitForExpectations:@[expDelegateSet] timeout:PEPTestInternalFastTimeout];
+
+    return success;
 }
 
 @end
