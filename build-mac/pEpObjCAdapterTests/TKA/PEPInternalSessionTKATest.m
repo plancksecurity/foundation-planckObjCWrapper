@@ -41,6 +41,10 @@
     XCTestExpectation *expDelegateCalled = [self expectationWithDescription:@"expDelegateCalled"];
     PEPTKATestDelegate *delegate = [[PEPTKATestDelegate alloc]
                                     initExpectationKeyChangedCalled:expDelegateCalled];
+
+    // now owned by the adapter
+    delegate = nil;
+
     NSError *error = nil;
     XCTAssertTrue([session tkaSubscribeKeychangeDelegate:delegate error:&error]);
     XCTAssertNil(error);
@@ -62,6 +66,10 @@
     XCTAssertNil(error);
 
     [self waitForExpectations:@[expDelegateCalled] timeout:PEPTestInternalFastTimeout];
+
+    error = nil;
+    XCTAssertTrue([session tkaSubscribeKeychangeDelegate:nil error:&error]);
+    XCTAssertNil(error);
 }
 
 // MARK: - Internal Helpers
