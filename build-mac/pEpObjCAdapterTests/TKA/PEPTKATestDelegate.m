@@ -11,16 +11,19 @@
 @interface PEPTKATestDelegate ()
 
 @property (nonatomic, readonly) XCTestExpectation *expectationKeyChangedCalled;
+@property (nonatomic, readonly) XCTestExpectation *expectationDealloced;
 
 @end
 
 @implementation PEPTKATestDelegate
 
 - (instancetype)initExpectationKeyChangedCalled:(XCTestExpectation *)expectationKeyChangedCalled
+                           expectationDealloced:(XCTestExpectation *)expectationDealloced
 {
     self = [super init];
     if (self) {
         _expectationKeyChangedCalled = expectationKeyChangedCalled;
+        _expectationDealloced = expectationDealloced;
     }
     return self;
 }
@@ -30,6 +33,10 @@
                         key:(nonnull NSString *)key {
     [self.expectationKeyChangedCalled fulfill];
     return PEPStatusOK;
+}
+
+- (void)dealloc {
+    [self.expectationDealloced fulfill];
 }
 
 @end

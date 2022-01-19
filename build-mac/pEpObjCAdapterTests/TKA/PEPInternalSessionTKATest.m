@@ -39,8 +39,10 @@
 - (void)testSimpleTKACallback {
     PEPInternalSession *session = [PEPSessionProvider session];
     XCTestExpectation *expDelegateCalled = [self expectationWithDescription:@"expDelegateCalled"];
+    XCTestExpectation *expDealloced = [self expectationWithDescription:@"expDealloced"];
     PEPTKATestDelegate *delegate = [[PEPTKATestDelegate alloc]
-                                    initExpectationKeyChangedCalled:expDelegateCalled];
+                                    initExpectationKeyChangedCalled:expDelegateCalled
+                                    expectationDealloced:expDealloced];
 
     NSError *error = nil;
     XCTAssertTrue([session tkaSubscribeKeychangeDelegate:delegate error:&error]);
@@ -70,6 +72,8 @@
     error = nil;
     XCTAssertTrue([session tkaSubscribeKeychangeDelegate:nil error:&error]);
     XCTAssertNil(error);
+
+    [self waitForExpectations:@[expDealloced] timeout:PEPTestInternalFastTimeout];
 }
 
 // MARK: - Internal Helpers
