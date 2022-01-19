@@ -20,6 +20,8 @@
 
 @end
 
+/// @note These tests work as long as the TKA implementation is completely mocked, and _may_ work
+///   (whole or partly)  even with the real engine implementation.
 @implementation PEPInternalSessionTKATest
 
 // MARK: - Setup, teardown etc.
