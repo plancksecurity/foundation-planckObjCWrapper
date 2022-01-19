@@ -8,6 +8,12 @@
 
 #import "PEPTKATestDelegate.h"
 
+@interface PEPTKATestDelegate ()
+
+@property (nonatomic, readonly) XCTestExpectation *expectationKeyChangedCalled;
+
+@end
+
 @implementation PEPTKATestDelegate
 
 - (instancetype)initExpectationKeyChangedCalled:(XCTestExpectation *)expectationKeyChangedCalled
