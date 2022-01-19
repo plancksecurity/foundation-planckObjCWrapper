@@ -14,6 +14,7 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession+TKA.h"
 #import "PEPTKATestDelegate.h"
+#import "PEPTestUtils.h"
 
 @interface PEPInternalSessionTKATest : XCTestCase
 
@@ -60,7 +61,7 @@
     XCTAssertTrue([session tkaRequestTempKeyMe:me partner:other error:&error]);
     XCTAssertNil(error);
 
-    [self waitForExpectations:@[expDelegateCalled] timeout:0];
+    [self waitForExpectations:@[expDelegateCalled] timeout:PEPTestInternalFastTimeout];
 }
 
 // MARK: - Internal Helpers
