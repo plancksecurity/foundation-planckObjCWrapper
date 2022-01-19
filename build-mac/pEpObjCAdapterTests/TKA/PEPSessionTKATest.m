@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
+#import "PEPTestUtils.h"
 #import "PEPTKATestDelegate.h"
 #import "PEPSession.h"
 
@@ -18,11 +19,13 @@
 @implementation PEPSessionTKATest
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    [super setUp];
+    [self pEpCleanUp];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [self pEpCleanUp];
+    [super tearDown];
 }
 
 - (void)testExample {
@@ -38,6 +41,10 @@
 }
 
 // MARK: - Internal Helpers
+
+- (void)pEpCleanUp {
+    [PEPTestUtils cleanUp];
+}
 
 /// Synchronizes the async version in `PEPSession`.
 - (BOOL)tkaSubscribeSession:(PEPSession * _Nonnull)session
