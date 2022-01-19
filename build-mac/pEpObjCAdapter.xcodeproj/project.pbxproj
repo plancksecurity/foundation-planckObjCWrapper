@@ -176,6 +176,8 @@
 		43147E392798110000661780 /* PEPInternalSessionTKATest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147E37279810F400661780 /* PEPInternalSessionTKATest.m */; };
 		43147E3C27981C9700661780 /* PEPTKATestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147E3B27981C9700661780 /* PEPTKATestDelegate.m */; };
 		43147E3D27981C9700661780 /* PEPTKATestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147E3B27981C9700661780 /* PEPTKATestDelegate.m */; };
+		43147E3F27984D2A00661780 /* PEPSessionTKATest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147E3E27984D2A00661780 /* PEPSessionTKATest.m */; };
+		43147E4027984D2A00661780 /* PEPSessionTKATest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147E3E27984D2A00661780 /* PEPSessionTKATest.m */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
 		432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
@@ -462,6 +464,7 @@
 		43147E37279810F400661780 /* PEPInternalSessionTKATest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTKATest.m; sourceTree = "<group>"; };
 		43147E3A27981C9700661780 /* PEPTKATestDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPTKATestDelegate.h; sourceTree = "<group>"; };
 		43147E3B27981C9700661780 /* PEPTKATestDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPTKATestDelegate.m; sourceTree = "<group>"; };
+		43147E3E27984D2A00661780 /* PEPSessionTKATest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionTKATest.m; sourceTree = "<group>"; };
 		43209B261ECC2ACD007E7E2E /* NSArray+Take.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Take.h"; sourceTree = "<group>"; };
 		43209B271ECC2ACD007E7E2E /* NSArray+Take.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Take.m"; sourceTree = "<group>"; };
 		43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPCSVScanner.h; sourceTree = "<group>"; };
@@ -721,9 +724,10 @@
 		43147E30279810BF00661780 /* TKA */ = {
 			isa = PBXGroup;
 			children = (
-				43147E37279810F400661780 /* PEPInternalSessionTKATest.m */,
 				43147E3A27981C9700661780 /* PEPTKATestDelegate.h */,
 				43147E3B27981C9700661780 /* PEPTKATestDelegate.m */,
+				43147E37279810F400661780 /* PEPInternalSessionTKATest.m */,
+				43147E3E27984D2A00661780 /* PEPSessionTKATest.m */,
 			);
 			path = TKA;
 			sourceTree = "<group>";
@@ -1456,6 +1460,7 @@
 				43F2950E273E7BE0009611F8 /* PEPTestUtils.m in Sources */,
 				43F2950F273E7BE0009611F8 /* PEPPassphraseCache+Reset.m in Sources */,
 				43F29510273E7BE0009611F8 /* PEPIdentity+isPEPUser.m in Sources */,
+				43147E4027984D2A00661780 /* PEPSessionTKATest.m in Sources */,
 				43F29511273E7BE0009611F8 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */,
 				43F29512273E7BE0009611F8 /* PEPSessionProviderTest.m in Sources */,
 				43F29513273E7BE0009611F8 /* PEPPassphraseCacheTest.m in Sources */,
@@ -1479,6 +1484,7 @@
 				4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */,
 				4349CD7924ADDB8800A22A13 /* PEPPassphraseCache+Reset.m in Sources */,
 				43062BAD24EEC83400489258 /* PEPIdentity+isPEPUser.m in Sources */,
+				43147E3F27984D2A00661780 /* PEPSessionTKATest.m in Sources */,
 				4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */,
 				15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */,
 				43589EFB24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m in Sources */,
