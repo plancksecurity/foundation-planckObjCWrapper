@@ -42,12 +42,12 @@
     PEPTKATestDelegate *delegate = [[PEPTKATestDelegate alloc]
                                     initExpectationKeyChangedCalled:expDelegateCalled];
 
-    // now owned by the adapter
-    delegate = nil;
-
     NSError *error = nil;
     XCTAssertTrue([session tkaSubscribeKeychangeDelegate:delegate error:&error]);
     XCTAssertNil(error);
+
+    // now owned by the adapter
+    delegate = nil;
 
     PEPIdentity *me = [[PEPIdentity alloc]
                        initWithAddress:@"me@example.org"
