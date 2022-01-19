@@ -43,8 +43,8 @@
     XCTestExpectation *expDelegateCalled = [self expectationWithDescription:@"expDelegateCalled"];
     XCTestExpectation *expDealloced = [self expectationWithDescription:@"expDealloced"];
     PEPTKATestDelegate *delegate = [[PEPTKATestDelegate alloc]
-                                    initExpectationKeyChangedCalled:expDelegateCalled
-                                    expectationDealloced:expDealloced];
+                                    initExpKeyChangedCalled:expDelegateCalled
+                                    expDealloced:expDealloced];
 
     NSError *error = nil;
     XCTAssertTrue([session tkaSubscribeKeychangeDelegate:delegate error:&error]);

@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPTKATestDelegate : NSObject <PEPTKADelegate>
 
-- (instancetype)initExpectationKeyChangedCalled:(XCTestExpectation *)expectationKeyChangedCalled
-                           expectationDealloced:(XCTestExpectation *)expectationDealloced;
+- (instancetype)initExpKeyChangedCalled:(XCTestExpectation *)expKeyChangedCalled
+                           expDealloced:(XCTestExpectation *)expDealloced;
 
 @end
 
