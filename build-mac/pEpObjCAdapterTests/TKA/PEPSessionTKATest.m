@@ -108,6 +108,22 @@
 - (BOOL)tkaRequestTempKeySession:(PEPSession * _Nonnull)session
                               me:(PEPIdentity *)me partner:(PEPIdentity *)partner
                            error:(NSError * _Nullable * _Nullable)error {
+    __block NSError *errorResult = nil;
+    __block BOOL success = NO;
+    XCTestExpectation *expDelegateSet = [self expectationWithDescription:@"expDelegateSet"];
+
+    [session tkaRequestTempKeyMe:me
+                         partner:partner
+                   errorCallback:^(NSError * _Nonnull error) {
+        errorResult = error;
+        success = NO;
+        [expDelegateSet fulfill];
+    }
+                 successCallback:^{
+        success = YES;
+        [expDelegateSet fulfill];
+    }];
+
     return NO;
 }
 
