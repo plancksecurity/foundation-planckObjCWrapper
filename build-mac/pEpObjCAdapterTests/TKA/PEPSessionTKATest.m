@@ -57,17 +57,15 @@
                           userName:@"Other_Other"
                           isOwn:NO];
 
-    /*
     error = nil;
-    XCTAssertTrue([session tkaRequestTempKeyMe:me partner:other error:&error]);
+    XCTAssertTrue([self tkaRequestTempKeySession:session me:me partner:other error:&error]);
     XCTAssertNil(error);
 
     [self waitForExpectations:@[expDelegateCalled] timeout:PEPTestInternalFastTimeout];
 
     error = nil;
-    XCTAssertTrue([session tkaSubscribeKeychangeDelegate:nil error:&error]);
+    XCTAssertTrue([self tkaSubscribeSession:session keychangeDelegate:nil error:&error]);
     XCTAssertNil(error);
-     */
 
     [self waitForExpectations:@[expDealloced] timeout:PEPTestInternalFastTimeout];
 }
@@ -101,6 +99,13 @@
         *error = errorResult;
     }
     return success;
+}
+
+/// Synchronizes the async version in `PEPSession`.
+- (BOOL)tkaRequestTempKeySession:(PEPSession * _Nonnull)session
+                              me:(PEPIdentity *)me partner:(PEPIdentity *)partner
+                           error:(NSError * _Nullable * _Nullable)error {
+    return NO;
 }
 
 @end
