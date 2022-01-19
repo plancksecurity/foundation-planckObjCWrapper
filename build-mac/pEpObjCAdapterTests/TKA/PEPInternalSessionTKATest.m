@@ -43,6 +43,24 @@
     NSError *error = nil;
     XCTAssertTrue([session tkaSubscribeKeychangeDelegate:delegate error:&error]);
     XCTAssertNil(error);
+
+    PEPIdentity *me = [[PEPIdentity alloc]
+                       initWithAddress:@"me@example.org"
+                       userID:@"me_myself"
+                       userName:@"Me Me"
+                       isOwn:YES];
+
+    PEPIdentity *other = [[PEPIdentity alloc]
+                          initWithAddress:@"other@example.org"
+                          userID:@"other_not_myself"
+                          userName:@"Other_Other"
+                          isOwn:NO];
+
+    error = nil;
+    XCTAssertTrue([session tkaRequestTempKeyMe:me partner:other error:&error]);
+    XCTAssertNil(error);
+
+    [self waitForExpectations:@[expDelegateCalled] timeout:0];
 }
 
 // MARK: - Internal Helpers
