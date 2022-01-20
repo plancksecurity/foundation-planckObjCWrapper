@@ -45,26 +45,6 @@
                BlueprintIdentifier = "439F4C35275632B2005F278E"
                BuildableName = "PEPObjCTypesTests_macOS.xctest"
                BlueprintName = "PEPObjCTypesTests_macOS"
-               ReferencedContainer = "container:Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43B0EAD0274D21E100F5D076"
-               BuildableName = "PEPObjCTypeUtilsTests_macOS.xctest"
-               BlueprintName = "PEPObjCTypeUtilsTests_macOS"
-               ReferencedContainer = "container:Subprojects/PEPObjCTypeUtils/PEPObjCTypeUtils.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "439F4C35275632B2005F278E"
-               BuildableName = "PEPObjCTypesTests_macOS.xctest"
-               BlueprintName = "PEPObjCTypesTests_macOS"
                ReferencedContainer = "container:../Subprojects/PEPObjCTypes/build-mac/PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </TestableReference>
