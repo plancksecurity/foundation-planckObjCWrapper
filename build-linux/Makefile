@@ -10,6 +10,7 @@ HEADERS = $(call find-headers,../PublicHeaders/)
 INCLUDES = \
   -I$(root)/PublicHeaders \
   -I$(root)/src/Extensions \
+  -I$(root)/src/TKA \
   -I$(root)/src \
   -I$(root)/Subprojects/PEPObjCAdapterProtocols/PublicHeaders \
   -I$(root)/Subprojects/PEPObjCTypes/PublicHeaders \
