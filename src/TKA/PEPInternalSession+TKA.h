@@ -24,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
                                     error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps the engine's `tka_request_temp_key`.
-- (BOOL)tkaRequestTempKeyForMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
+- (BOOL)tkaRequestTempKeyForMe:(PEPIdentity *)me
+                       partner:(PEPIdentity *)partner
                          error:(NSError * _Nullable * _Nullable)error;
 
 @end

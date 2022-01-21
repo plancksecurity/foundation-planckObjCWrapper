@@ -63,7 +63,8 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
     return YES;
 }
 
-- (BOOL)tkaRequestTempKeyForMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
+- (BOOL)tkaRequestTempKeyForMe:(PEPIdentity *)me
+                       partner:(PEPIdentity *)partner
                          error:(NSError * _Nullable * _Nullable)error {
     pEp_identity *engineMe = [PEPObjCTypeConversionUtil structFromPEPIdentity:me];
     if (engineMe == NULL) {
