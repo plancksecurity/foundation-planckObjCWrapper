@@ -52,8 +52,7 @@
         return nil;
     }
 
-    NSData *msgData = [[NSData alloc] initWithBytesNoCopy:msgBytes length:msgBytesSze];
-
+    NSData *msgData = [[NSData alloc] initWithBytesNoCopy:msgBytes length:msgBytesSze freeWhenDone:YES];
     return msgData;
 }
 
