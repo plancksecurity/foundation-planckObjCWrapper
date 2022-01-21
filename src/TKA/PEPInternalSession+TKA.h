@@ -20,12 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @note The delegate parameter will be stored with a strong reference.
 ///       Because it's strongly referenced, it is nullable intentionally, so you can set it to nil
 ///       in order to break memory cycles.
-- (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
-                                error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)tkaSubscribeWithKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
+                                    error:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps the engine's `tka_request_temp_key`.
-- (BOOL)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
-                      error:(NSError * _Nullable * _Nullable)error;
+- (BOOL)tkaRequestTempKeyForMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
+                         error:(NSError * _Nullable * _Nullable)error;
 
 @end
 

@@ -642,13 +642,13 @@ successCallback:(void (^)(NSString *log))successCallback
 
 // MARK: - TKA
 
-- (void)tkaSubscribeKeychangeDelegate:(nullable id<PEPTKADelegate>)delegate
-                        errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
-                      successCallback:(nonnull void (^)(void))successCallback {
+- (void)tkaSubscribeWithKeychangeDelegate:(nullable id<PEPTKADelegate>)delegate
+                            errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
+                          successCallback:(nonnull void (^)(void))successCallback {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] tkaSubscribeKeychangeDelegate:delegate
-                                                                             error:&error];
+        BOOL success = [[PEPSessionProvider session] tkaSubscribeWithKeychangeDelegate:delegate
+                                                                                 error:&error];
         if (success) {
             successCallback();
         } else {
@@ -657,15 +657,15 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-- (void)tkaRequestTempKeyMe:(nonnull PEPIdentity *)me
-                    partner:(nonnull PEPIdentity *)partner
-              errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
-            successCallback:(nonnull void (^)(void))successCallback {
+- (void)tkaRequestTempKeyForMe:(nonnull PEPIdentity *)me
+                       partner:(nonnull PEPIdentity *)partner
+                 errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
+               successCallback:(nonnull void (^)(void))successCallback {
     dispatch_async(queue, ^{
         NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] tkaRequestTempKeyMe:me
-                                                                 partner:partner
-                                                                   error:&error];
+        BOOL success = [[PEPSessionProvider session] tkaRequestTempKeyForMe:me
+                                                                    partner:partner
+                                                                      error:&error];
         if (success) {
             successCallback();
         } else {

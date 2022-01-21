@@ -17,14 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 /// Sets the delegate that will receive key changes via TKA. The delegate will be owned by the adapter and can be unset
 /// (by calling this method with a nil delegate). That's the reason the delegate parameter is nullable.
-- (void)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
-                        errorCallback:(void (^)(NSError *error))errorCallback
-                      successCallback:(void (^)(void))successCallback;
+- (void)tkaSubscribeWithKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
+                            errorCallback:(void (^)(NSError *error))errorCallback
+                          successCallback:(void (^)(void))successCallback;
 
 /// Wraps the engine's `tka_request_temp_key`.
-- (void)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
-              errorCallback:(void (^)(NSError *error))errorCallback
-            successCallback:(void (^)(void))successCallback;
+- (void)tkaRequestTempKeyForMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(void))successCallback;
 
 @end
 

@@ -50,8 +50,8 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
 
 // MARK: - Internal Session API
 
-- (BOOL)tkaSubscribeKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
-                                error:(NSError * _Nullable * _Nullable)error {
+- (BOOL)tkaSubscribeWithKeychangeDelegate:(id<PEPTKADelegate> _Nullable)delegate
+                                    error:(NSError * _Nullable * _Nullable)error {
     s_tkaDelegate = delegate;
 
     if (delegate != nil) {
@@ -63,8 +63,8 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
     return YES;
 }
 
-- (BOOL)tkaRequestTempKeyMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
-                      error:(NSError * _Nullable * _Nullable)error {
+- (BOOL)tkaRequestTempKeyForMe:(PEPIdentity *)me partner:(PEPIdentity *)partner
+                         error:(NSError * _Nullable * _Nullable)error {
     pEp_identity *engineMe = [PEPObjCTypeConversionUtil structFromPEPIdentity:me];
     if (engineMe == NULL) {
         return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];

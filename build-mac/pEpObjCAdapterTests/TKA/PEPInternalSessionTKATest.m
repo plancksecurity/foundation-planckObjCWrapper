@@ -47,7 +47,7 @@
                                     expDealloced:expDealloced];
 
     NSError *error = nil;
-    XCTAssertTrue([session tkaSubscribeKeychangeDelegate:delegate error:&error]);
+    XCTAssertTrue([session tkaSubscribeWithKeychangeDelegate:delegate error:&error]);
     XCTAssertNil(error);
 
     // now owned by the adapter
@@ -66,13 +66,13 @@
                           isOwn:NO];
 
     error = nil;
-    XCTAssertTrue([session tkaRequestTempKeyMe:me partner:other error:&error]);
+    XCTAssertTrue([session tkaRequestTempKeyForMe:me partner:other error:&error]);
     XCTAssertNil(error);
 
     [self waitForExpectations:@[expDelegateCalled] timeout:PEPTestInternalFastTimeout];
 
     error = nil;
-    XCTAssertTrue([session tkaSubscribeKeychangeDelegate:nil error:&error]);
+    XCTAssertTrue([session tkaSubscribeWithKeychangeDelegate:nil error:&error]);
     XCTAssertNil(error);
 
     [self waitForExpectations:@[expDealloced] timeout:PEPTestInternalFastTimeout];

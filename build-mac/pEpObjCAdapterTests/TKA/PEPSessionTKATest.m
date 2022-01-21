@@ -58,7 +58,7 @@
                           isOwn:NO];
 
     error = nil;
-    XCTAssertTrue([self tkaRequestTempKeySession:session me:me partner:other error:&error]);
+    XCTAssertTrue([self tkaRequestTempKeyWithSession:session me:me partner:other error:&error]);
     XCTAssertNil(error);
 
     [self waitForExpectations:@[expDelegateCalled] timeout:PEPTestInternalFastTimeout];
@@ -84,8 +84,8 @@
     __block BOOL success = NO;
     XCTestExpectation *expDelegateSet = [self expectationWithDescription:@"expDelegateSet"];
 
-    [session tkaSubscribeKeychangeDelegate:delegate
-                             errorCallback:^(NSError * _Nonnull error) {
+    [session tkaSubscribeWithKeychangeDelegate:delegate
+                                 errorCallback:^(NSError * _Nonnull error) {
         errorResult = error;
         success = NO;
         [expDelegateSet fulfill];
@@ -105,16 +105,16 @@
 }
 
 /// Synchronizes the async version from `PEPSession`.
-- (BOOL)tkaRequestTempKeySession:(PEPSession * _Nonnull)session
-                              me:(PEPIdentity *)me partner:(PEPIdentity *)partner
-                           error:(NSError * _Nullable * _Nullable)error {
+- (BOOL)tkaRequestTempKeyWithSession:(PEPSession * _Nonnull)session
+                                  me:(PEPIdentity *)me partner:(PEPIdentity *)partner
+                               error:(NSError * _Nullable * _Nullable)error {
     __block NSError *errorResult = nil;
     __block BOOL success = NO;
     XCTestExpectation *expDelegateSet = [self expectationWithDescription:@"expDelegateSet"];
 
-    [session tkaRequestTempKeyMe:me
-                         partner:partner
-                   errorCallback:^(NSError * _Nonnull error) {
+    [session tkaRequestTempKeyForMe:me
+                            partner:partner
+                      errorCallback:^(NSError * _Nonnull error) {
         errorResult = error;
         success = NO;
         [expDelegateSet fulfill];
