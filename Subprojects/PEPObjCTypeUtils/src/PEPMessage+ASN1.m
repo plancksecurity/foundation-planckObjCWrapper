@@ -28,7 +28,9 @@
         return nil;
     }
 
-    return [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
+    PEPMessage *messageToReturn = [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
+    free_message(msg);
+    return messageToReturn;
 }
 
 - (NSData *)asn1Data {
