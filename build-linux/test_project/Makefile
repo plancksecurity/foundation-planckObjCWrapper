@@ -1,4 +1,4 @@
-root = ../../../
+root = ../../
 
 # Content of this library
 TARGET_EXE = test_project
@@ -8,7 +8,7 @@ HEADERS =
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
 INCLUDES = \
-  -I$(root)/pEpObjCAdapter/PublicHeaders
+  $(call find-includes,$(root)/pEpObjCAdapter/PublicHeaders)
 
 # Since we link an excecuatble here, these options matter a lot. We also need
 # to list all transitive dependincies if we want to link statically.
@@ -32,7 +32,7 @@ LIBS = \
 all: $(TARGET_EXE)
 
 # Load the shared pEp ObjC Makefile.
-MAKEFILE_COMMON ?= ../../../../pepgnustephelper/
+MAKEFILE_COMMON ?= ../../../pepgnustephelper/
 include $(MAKEFILE_COMMON)/Makefile.common
 
 # This enables proper header-dependencies based on .d files made by the compiler.
