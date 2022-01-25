@@ -11,6 +11,7 @@
 #import "PEPMessage.h"
 #import "PEPEngineTypes.h"
 #import "PEPInternalSession.h"
+#import "PEPInternalSession+TKA.h"
 #import "NSNumber+PEPRating.h"
 #import "PEPIdentity.h"
 #import "PEPSessionProvider.h"
@@ -637,6 +638,40 @@ successCallback:(void (^)(NSString *log))successCallback
         return NO;
     }
     return [session disableAllSyncChannels:error];
+}
+
+// MARK: - TKA
+
+- (void)tkaSubscribeWithKeychangeDelegate:(nullable id<PEPTKADelegate>)delegate
+                            errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
+                          successCallback:(nonnull void (^)(void))successCallback {
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session] tkaSubscribeWithKeychangeDelegate:delegate
+                                                                                 error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)tkaRequestTempKeyForMe:(nonnull PEPIdentity *)me
+                       partner:(nonnull PEPIdentity *)partner
+                 errorCallback:(nonnull void (^)(NSError * _Nonnull))errorCallback
+               successCallback:(nonnull void (^)(void))successCallback {
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session] tkaRequestTempKeyForMe:me
+                                                                    partner:partner
+                                                                      error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
 }
 
 @end

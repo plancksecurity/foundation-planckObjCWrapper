@@ -22,6 +22,9 @@ extern NSString * const ownUserId;
  */
 extern const NSInteger PEPTestInternalSyncTimeout;
 
+/// Timeout for relatively quick internal operations.
+extern const NSInteger PEPTestInternalFastTimeout;
+
 @interface PEPTestUtils : NSObject
 
 + (PEPIdentity *)foreignPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;

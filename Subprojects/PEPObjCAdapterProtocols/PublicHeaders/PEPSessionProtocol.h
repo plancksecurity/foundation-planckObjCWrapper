@@ -10,6 +10,7 @@
 
 #import "PEPTypes.h"
 #import "PEPEngineTypes.h"
+#import "PEPSessionProtocolTKA.h"
 
 @class PEPLanguage;
 @class PEPIdentity;
@@ -20,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Domain for errors indicated by the pEp adapter itself.
 extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 
-@protocol PEPSessionProtocol <NSObject>
+@protocol PEPSessionProtocol <NSObject, PEPSessionProtocolTKA>
 
 /// You must call this method once before your process gets terminated to be able to gracefully shutdown.
 /// You must not make any calls to PEPSession in between the last call to `cleanup()` and getting terminated.

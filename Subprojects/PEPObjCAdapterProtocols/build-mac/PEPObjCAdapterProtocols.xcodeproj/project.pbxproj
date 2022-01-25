@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43147DE727970BC600661780 /* PEPSessionProtocolTKA.h in Headers */ = {isa = PBXBuildFile; fileRef = 43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43147DE827970BC600661780 /* PEPSessionProtocolTKA.h in Headers */ = {isa = PBXBuildFile; fileRef = 43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43147E1027970DFE00661780 /* PEPTKADelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 43147E0F27970DFE00661780 /* PEPTKADelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43147E1127970DFE00661780 /* PEPTKADelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 43147E0F27970DFE00661780 /* PEPTKADelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E23E6E92681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E23E6E82681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h */; };
 		4E23E6F12681C7D600B8F4C2 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E23E6F22681C7D600B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocolTKA.h; sourceTree = "<group>"; };
+		43147E0F27970DFE00661780 /* PEPTKADelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTKADelegate.h; sourceTree = "<group>"; };
 		4E23E6CE2681B70400B8F4C2 /* libPEPObjCAdapterTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCAdapterTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E23E6E62681C7CD00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterProtocols_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E23E6E82681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterProtocols_macOS.h; sourceTree = "<group>"; };
@@ -103,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */,
+				43147E0F27970DFE00661780 /* PEPTKADelegate.h */,
+				43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */,
 				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
 			);
 			name = PublicHeaders;
@@ -116,8 +124,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43147DE727970BC600661780 /* PEPSessionProtocolTKA.h in Headers */,
 				4E23E6E92681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h in Headers */,
 				4E23E6F12681C7D600B8F4C2 /* PEPSessionProtocol.h in Headers */,
+				43147E1027970DFE00661780 /* PEPTKADelegate.h in Headers */,
 				4E23E6F22681C7D600B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +137,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E23E7112681D65F00B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */,
+				43147DE827970BC600661780 /* PEPSessionProtocolTKA.h in Headers */,
+				43147E1127970DFE00661780 /* PEPTKADelegate.h in Headers */,
 				4E23E7122681D65F00B8F4C2 /* PEPSessionProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

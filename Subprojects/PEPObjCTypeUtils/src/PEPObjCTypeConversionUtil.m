@@ -17,7 +17,7 @@
 
 // MARK: - PEPMessage
 
-+ (PEPMessage * _Nullable)pEpMessagefromStruct:(message * _Nullable)msg
++ (PEPMessage * _Nullable)pEpMessagefromStruct:(const message * _Nullable)msg
 {
     if (!msg) {
         return nil;
@@ -100,7 +100,7 @@
 }
 
 + (void)overWritePEPMessageObject:(PEPMessage *)pEpMessage
-             withValuesFromStruct:(message * _Nonnull)message
+             withValuesFromStruct:(const message * _Nonnull)message
 {
     [self resetPEPMessage:pEpMessage];
 
@@ -225,7 +225,7 @@
 
 // MARK: - PEPIdentity
 
-+ (PEPIdentity * _Nullable)pEpIdentityfromStruct:(pEp_identity * _Nonnull)identityStruct
++ (PEPIdentity * _Nullable)pEpIdentityfromStruct:(const pEp_identity * _Nonnull)identityStruct
 {
     PEPIdentity *identity = nil;
 
@@ -261,7 +261,7 @@
 }
 
 + (void)overWritePEPIdentityObject:(PEPIdentity *)pEpIdentity
-               withValuesFromStruct:(pEp_identity * _Nonnull)identityStruct
+               withValuesFromStruct:(const pEp_identity * _Nonnull)identityStruct
 {
     if (identityStruct->address && identityStruct->address[0]) {
         pEpIdentity.address = [NSString stringWithUTF8String:identityStruct->address];
@@ -291,10 +291,10 @@
 
 // MARK: - NSArray <-> stringlist_t
 
-+ (NSArray<NSString*> *)arrayFromStringlist:(stringlist_t * _Nonnull)stringList {
++ (NSArray<NSString*> *)arrayFromStringlist:(const stringlist_t * _Nonnull)stringList {
     NSMutableArray *array = [NSMutableArray array];
 
-    for (stringlist_t *_sl = stringList; _sl && _sl->value; _sl = _sl->next) {
+    for (const stringlist_t *_sl = stringList; _sl && _sl->value; _sl = _sl->next) {
         [array addObject:[NSString stringWithUTF8String:_sl->value]];
     }
 
@@ -317,10 +317,10 @@
 
 // MARK: - NSArray <-> identity_list
 
-+ (NSArray<PEPIdentity*> *)arrayFromIdentityList:(identity_list *)identityList {
++ (NSArray<PEPIdentity*> *)arrayFromIdentityList:(const identity_list *)identityList {
     NSMutableArray *array = [NSMutableArray array];
 
-    for (identity_list *_il = identityList; _il && _il->ident; _il = _il->next) {
+    for (const identity_list *_il = identityList; _il && _il->ident; _il = _il->next) {
         [array addObject:[self pEpIdentityfromStruct:_il->ident]];
     }
 
@@ -346,10 +346,10 @@
 
 // MARK: - NSArray <-> stringpair_list_t
 
-+ (NSArray<NSArray<NSString*>*> *)arrayFromStringPairlist:(stringpair_list_t * _Nonnull)stringPairList {
++ (NSArray<NSArray<NSString*>*> *)arrayFromStringPairlist:(const stringpair_list_t * _Nonnull)stringPairList {
     NSMutableArray *array = [NSMutableArray array];
 
-    for (stringpair_list_t *_sl = stringPairList; _sl && _sl->value; _sl = _sl->next) {
+    for (const stringpair_list_t *_sl = stringPairList; _sl && _sl->value; _sl = _sl->next) {
         [array addObject:[[NSMutableArray alloc ]initWithObjects:
                 [NSString stringWithUTF8String:_sl->value->key],
                 [NSString stringWithUTF8String:_sl->value->value],
@@ -377,10 +377,10 @@
 
 // MARK: - NSArray<PEPAttachment*> <-> bloblist_t
 
-+ (NSArray<PEPAttachment*> *)arrayFromBloblist:(bloblist_t * _Nonnull)blobList {
++ (NSArray<PEPAttachment*> *)arrayFromBloblist:(const bloblist_t * _Nonnull)blobList {
     NSMutableArray *array = [NSMutableArray array];
 
-    for (bloblist_t *_bl = blobList; _bl && _bl->value; _bl = _bl->next) {
+    for (const bloblist_t *_bl = blobList; _bl && _bl->value; _bl = _bl->next) {
         PEPAttachment* theAttachment = [[PEPAttachment alloc]
                                         initWithData:[NSData dataWithBytes:_bl->value
                                                                     length:_bl->size]];
