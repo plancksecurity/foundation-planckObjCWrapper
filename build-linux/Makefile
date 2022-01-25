@@ -8,13 +8,11 @@ HEADERS = $(call find-headers,../PublicHeaders/)
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
 INCLUDES = \
-  -I$(root)/PublicHeaders \
-  -I$(root)/src/Extensions \
-  -I$(root)/src/TKA \
-  -I$(root)/src \
-  -I$(root)/Subprojects/PEPObjCAdapterProtocols/PublicHeaders \
-  -I$(root)/Subprojects/PEPObjCTypes/PublicHeaders \
-  -I$(root)/Subprojects/PEPObjCTypeUtils/PublicHeaders \
+  $(call find-includes,$(root)/PublicHeaders) \
+  $(call find-includes,$(root)/src) \
+  $(call find-includes,$(root)/Subprojects/PEPObjCAdapterProtocols/PublicHeaders) \
+  $(call find-includes,$(root)/Subprojects/PEPObjCTypes/PublicHeaders) \
+  $(call find-includes,$(root)/Subprojects/PEPObjCTypeUtils/PublicHeaders) \
   -I$(PEP_INCLUDE)
 
 # Only for making .so libs. Libs for static linking are defined with the final binary.

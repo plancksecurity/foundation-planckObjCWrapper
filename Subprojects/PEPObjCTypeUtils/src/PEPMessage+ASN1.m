@@ -28,7 +28,9 @@
         return nil;
     }
 
-    return [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
+    PEPMessage *messageToReturn = [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
+    free_message(msg);
+    return messageToReturn;
 }
 
 - (NSData *)asn1Data {
@@ -50,8 +52,7 @@
         return nil;
     }
 
-    NSData *msgData = [[NSData alloc] initWithBytesNoCopy:msgBytes length:msgBytesSze];
-
+    NSData *msgData = [[NSData alloc] initWithBytesNoCopy:msgBytes length:msgBytesSze freeWhenDone:YES];
     return msgData;
 }
 
