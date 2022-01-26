@@ -1,11 +1,9 @@
 //
-//  PEPObjCTypeConversionUtil.m
+//  NSArray+Convert.m
 //  PEPObjCTypeUtils
 //
-//  Created by Andreas Buff on 04.11.21.
+//  Created by Martín Brude on 26/1/22.
 //
-
-#import "PEPObjCTypeConversionUtil.h"
 
 #import <PEPAttachment.h>
 #import <PEPMessage.h>
@@ -13,7 +11,7 @@
 #import <pEp_string.h>
 #import <status_to_string.h>
 
-@implementation PEPObjCTypeConversionUtil
+@implementation NSArray (Convert)
 
 // MARK: - NSArray <-> stringlist_t
 
@@ -67,5 +65,3 @@
 
     return sl;
 }
-
-@end

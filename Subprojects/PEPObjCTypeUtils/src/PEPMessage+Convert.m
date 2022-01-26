@@ -10,6 +10,7 @@
 #import "PEPMessage+Convert.h"
 #import "PEPIdentity+Convert.h"
 #import "PEPAttachment+Convert.h"
+#import "NSArray+Convert.h"
 #import "pEp_string.h"
 
 @implementation PEPMessage (Convert)
@@ -78,19 +79,19 @@
     }
 
     if (pEpMessage.inReplyTo) {
-        msg->in_reply_to = [PEPObjCTypeConversionUtil arrayToStringList:pEpMessage.inReplyTo];
+        msg->in_reply_to = [NSArray arrayToStringList:pEpMessage.inReplyTo];
     }
 
     if (pEpMessage.references) {
-        msg->references = [PEPObjCTypeConversionUtil arrayToStringList:pEpMessage.references];
+        msg->references = [NSArray arrayToStringList:pEpMessage.references];
     }
 
     if (pEpMessage.keywords) {
-        msg->keywords = [PEPObjCTypeConversionUtil arrayToStringList:pEpMessage.keywords];
+        msg->keywords = [NSArray arrayToStringList:pEpMessage.keywords];
     }
 
     if (pEpMessage.optionalFields) {
-        msg->opt_fields = [PEPObjCTypeConversionUtil arrayToStringPairlist:pEpMessage.optionalFields];
+        msg->opt_fields = [NSArray arrayToStringPairlist:pEpMessage.optionalFields];
     }
 
     if (pEpMessage.longMessage) {
@@ -161,19 +162,19 @@
     }
 
     if (message->in_reply_to) {
-        pEpMessage.inReplyTo = [PEPObjCTypeConversionUtil arrayFromStringlist:message->in_reply_to];
+        pEpMessage.inReplyTo = [NSArray arrayFromStringlist:message->in_reply_to];
     }
 
     if (message->references && message->references->value) {
-        pEpMessage.references = [PEPObjCTypeConversionUtil arrayFromStringlist:message->references];
+        pEpMessage.references = [NSArray arrayFromStringlist:message->references];
     }
 
     if (message->keywords && message->keywords->value) {
-        pEpMessage.keywords = [PEPObjCTypeConversionUtil arrayFromStringlist:message->keywords];
+        pEpMessage.keywords = [NSArray arrayFromStringlist:message->keywords];
     }
 
     if (message->opt_fields) {
-        pEpMessage.optionalFields = [PEPObjCTypeConversionUtil arrayFromStringPairlist:message->opt_fields];
+        pEpMessage.optionalFields = [NSArray arrayFromStringPairlist:message->opt_fields];
     }
 
     if (message->longmsg_formatted) {

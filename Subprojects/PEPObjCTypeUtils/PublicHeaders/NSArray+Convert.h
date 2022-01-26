@@ -1,12 +1,11 @@
 //
-//  PEPObjCTypeConversionUtil.h
+//  NSArray+Convert.h
 //  PEPObjCTypeUtils
 //
-//  Created by Andreas Buff on 04.11.21.
+//  Created by Martín Brude on 26/1/22.
 //
 
 #import <Foundation/Foundation.h>
-
 #import <transport.h>
 
 @class PEPMessage;
@@ -15,7 +14,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPObjCTypeConversionUtil : NSObject
+
+@interface NSArray (Convert)
 
 // MARK: - NSArray <-> stringlist_t
 
