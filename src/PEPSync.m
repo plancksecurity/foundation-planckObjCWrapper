@@ -27,6 +27,8 @@
 #import "Logger.h"
 #import <PEPIdentity.h>
 #import "PEPMessage.h"
+#import "PEPMessage+Convert.h"
+#import "PEPIdentity+Convert.h"
 
 // MARK: - Internals
 
@@ -320,7 +322,7 @@ static __weak PEPSync *s_pEpSync;
         }
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
-            PEPMessage *theMessage = [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
+            PEPMessage *theMessage = [PEPMessage pEpMessagefromStruct:msg];
             return (PEP_STATUS)  [self.sendMessageDelegate sendMessage:theMessage];
         } else {
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
@@ -380,8 +382,8 @@ static __weak PEPSync *s_pEpSync;
                        signal:(sync_handshake_signal)signal
 {
     if (self.notifyHandshakeDelegate) {
-        PEPIdentity *meIdentity = [PEPObjCTypeConversionUtil pEpIdentityfromStruct:me];
-        PEPIdentity *partnerIdentity = partner != nil ? [PEPObjCTypeConversionUtil pEpIdentityfromStruct:partner] : nil;
+        PEPIdentity *meIdentity = [PEPIdentity pEpIdentityfromStruct:me];
+        PEPIdentity *partnerIdentity = partner != nil ? [PEPIdentity pEpIdentityfromStruct:partner] : nil;
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity
