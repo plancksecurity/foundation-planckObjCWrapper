@@ -5,7 +5,6 @@
 //  Created by Martín Brude on 25/1/22.
 //
 
-#import "PEPObjCTypeConversionUtil.h"
 #import "PEPMessage.h"
 #import "PEPMessage+Convert.h"
 #import "PEPIdentity+Convert.h"

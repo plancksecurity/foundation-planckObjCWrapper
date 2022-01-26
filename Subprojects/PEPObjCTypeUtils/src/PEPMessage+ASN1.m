@@ -7,7 +7,6 @@
 
 #import "PEPMessage+ASN1.h"
 
-#import "PEPObjCTypeConversionUtil.h"
 #import <map_asn1.h>
 #import <message_codec.h>
 #import "PEPMessage+Convert.h"
