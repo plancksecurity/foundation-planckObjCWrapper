@@ -31,6 +31,12 @@
 		5B29DA7B27A0574000D7638E /* PEPAttachment+Convert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B29DA7827A0574000D7638E /* PEPAttachment+Convert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B29DA7C27A0574000D7638E /* PEPAttachment+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA7927A0574000D7638E /* PEPAttachment+Convert.m */; };
 		5B29DA7D27A0574000D7638E /* PEPAttachment+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA7927A0574000D7638E /* PEPAttachment+Convert.m */; };
+		5B5ACF8F27A19B1100B34412 /* PEPObjCTypeConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1727A1925800B34412 /* PEPObjCTypeConversionUtil.m */; };
+		5B5ACF9727A19B1C00B34412 /* PEPObjCTypeConversionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1727A1925800B34412 /* PEPObjCTypeConversionUtil.m */; };
+		5B5ACF9827A19B1F00B34412 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */; };
+		5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */; };
+		5B5ACF9A27A19B2100B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
+		5B5ACF9B27A19B2200B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -513,8 +519,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B29DA2C27A0439F00D7638E /* PEPMessage+Convert.m in Sources */,
+				5B5ACF9827A19B1F00B34412 /* PEPMessage+ASN1.m in Sources */,
 				5B29DA3A27A0466E00D7638E /* PEPIdentity+Convert.m in Sources */,
 				5B29DA7C27A0574000D7638E /* PEPAttachment+Convert.m in Sources */,
+				5B5ACF8F27A19B1100B34412 /* PEPObjCTypeConversionUtil.m in Sources */,
+				5B5ACF9B27A19B2200B34412 /* PEPStatusNSErrorUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,8 +532,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B29DA2D27A0439F00D7638E /* PEPMessage+Convert.m in Sources */,
+				5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */,
 				5B29DA3B27A0466E00D7638E /* PEPIdentity+Convert.m in Sources */,
 				5B29DA7D27A0574000D7638E /* PEPAttachment+Convert.m in Sources */,
+				5B5ACF9727A19B1C00B34412 /* PEPObjCTypeConversionUtil.m in Sources */,
+				5B5ACF9A27A19B2100B34412 /* PEPStatusNSErrorUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
