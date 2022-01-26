@@ -9,6 +9,9 @@
 
 #import "PEPObjCTypeConversionUtil.h"
 #import "PEPStatusNSErrorUtil.h"
+#import "PEPMessage+Convert.h"
+#import "PEPIdentity+Convert.h"
+#import "PEPAttachment+Convert.h"
 
 // Umbrella Header
 @interface PEPObjCTypeUtils : NSObject
