@@ -36,6 +36,7 @@
 
     PEPMessage *msg1 = [PEPMessage new];
     msg1.from = fromId;
+
     msg1.to = @[toId];
 
     NSData *blob = [msg1 asn1Data];

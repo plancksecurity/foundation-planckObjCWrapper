@@ -7,9 +7,9 @@
 
 #import "PEPMessage+ASN1.h"
 
-#import "PEPObjCTypeConversionUtil.h"
 #import <map_asn1.h>
 #import <message_codec.h>
+#import "PEPMessage+Convert.h"
 
 @implementation PEPMessage (ASN1)
 
@@ -28,13 +28,13 @@
         return nil;
     }
 
-    PEPMessage *messageToReturn = [PEPObjCTypeConversionUtil pEpMessagefromStruct:msg];
+    PEPMessage *messageToReturn = [PEPMessage fromStruct:msg];
     free_message(msg);
     return messageToReturn;
 }
 
 - (NSData *)asn1Data {
-    message *msg = [PEPObjCTypeConversionUtil structFromPEPMessage:self];
+    message *msg = [self toStruct];
     ASN1Message_t *asn1Message = ASN1Message_from_message(msg, NULL, YES, 0);
     free_message(msg);
 
