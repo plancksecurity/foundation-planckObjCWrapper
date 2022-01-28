@@ -33,12 +33,12 @@
 		5B5ACF9B27A19B2200B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
 		5BC7CC6E27A3E83D0072AC5B /* NSArray+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3F43ED27A1A79000A446D9 /* NSArray+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BC7CC6F27A3E8400072AC5B /* NSArray+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F43F727A1A7E800A446D9 /* NSArray+PEPConvert.m */; };
-		5BC7CC7127A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */; };
-		5BC7CC7227A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */; };
+		5BC7CC7127A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5BC7CC7227A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BC7CC7427A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */; };
 		5BC7CC7527A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */; };
-		5BC7CC7827A3FD190072AC5B /* NSArray+PEPBloblist.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7627A3FD190072AC5B /* NSArray+PEPBloblist.h */; };
-		5BC7CC7927A3FD190072AC5B /* NSArray+PEPBloblist.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7627A3FD190072AC5B /* NSArray+PEPBloblist.h */; };
+		5BC7CC7827A3FD190072AC5B /* NSArray+PEPBloblist.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7627A3FD190072AC5B /* NSArray+PEPBloblist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5BC7CC7927A3FD190072AC5B /* NSArray+PEPBloblist.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7627A3FD190072AC5B /* NSArray+PEPBloblist.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BC7CC7A27A3FD190072AC5B /* NSArray+PEPBloblist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7727A3FD190072AC5B /* NSArray+PEPBloblist.m */; };
 		5BC7CC7B27A3FD190072AC5B /* NSArray+PEPBloblist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7727A3FD190072AC5B /* NSArray+PEPBloblist.m */; };
 /* End PBXBuildFile section */

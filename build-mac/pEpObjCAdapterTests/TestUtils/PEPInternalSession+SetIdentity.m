@@ -21,7 +21,7 @@
 
 - (BOOL)setIdentity:(PEPIdentity *)identity error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident = [PEPIdentity structFromPEPIdentity:identity];
+    pEp_identity *ident = [identity toStruct];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return set_identity(self.session, ident);

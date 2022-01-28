@@ -65,12 +65,12 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
 - (BOOL)tkaRequestTempKeyForMe:(PEPIdentity *)me
                        partner:(PEPIdentity *)partner
                          error:(NSError * _Nullable * _Nullable)error {
-    pEp_identity *engineMe = [PEPIdentity structFromPEPIdentity:me];
+    pEp_identity *engineMe = [me toStruct];
     if (engineMe == NULL) {
         return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
     }
 
-    pEp_identity *enginePartner = [PEPIdentity structFromPEPIdentity:partner];
+    pEp_identity *enginePartner = [partner toStruct];
     if (enginePartner == NULL) {
         return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
     }
@@ -92,8 +92,8 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
     if (s_tkaDelegate == nil) {
         return PEP_ILLEGAL_VALUE;
     }
-    PEPIdentity *objcMe = [PEPIdentity pEpIdentityfromStruct:me];
-    PEPIdentity *objcPartner = [PEPIdentity pEpIdentityfromStruct:partner];
+    PEPIdentity *objcMe = [PEPIdentity fromStruct:me];
+    PEPIdentity *objcPartner = [PEPIdentity fromStruct:partner];
 
     return (PEP_STATUS) [s_tkaDelegate
                          tkaKeyChangeForMe:objcMe

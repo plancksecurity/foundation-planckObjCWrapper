@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (pEp_identity *)toStruct;
 
++ (void)overwritePEPIdentityObject:(PEPIdentity *)pEpIdentity withValuesFromStruct:(const pEp_identity * _Nonnull)identityStruct;
+
 @end
 
 NS_ASSUME_NONNULL_END

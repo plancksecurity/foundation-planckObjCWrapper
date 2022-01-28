@@ -18,11 +18,11 @@
         identity = [[PEPIdentity alloc]
                     initWithAddress:[NSString stringWithUTF8String:identityStruct->address]];
     }
-    [self overWritePEPIdentityObject:identity withValuesFromStruct:identityStruct];
+    [self overwritePEPIdentityObject:identity withValuesFromStruct:identityStruct];
     return identity;
 }
 
-+ (void)overWritePEPIdentityObject:(PEPIdentity *)pEpIdentity
++ (void)overwritePEPIdentityObject:(PEPIdentity *)pEpIdentity
               withValuesFromStruct:(const pEp_identity * _Nonnull)identityStruct
 {
     if (identityStruct->address && identityStruct->address[0]) {

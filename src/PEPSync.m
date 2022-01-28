@@ -322,7 +322,7 @@ static __weak PEPSync *s_pEpSync;
         }
     } else if (msg != NULL) {
         if (self.sendMessageDelegate) {
-            PEPMessage *theMessage = [PEPMessage pEpMessagefromStruct:msg];
+            PEPMessage *theMessage = [PEPMessage fromStruct:msg];
             return (PEP_STATUS)  [self.sendMessageDelegate sendMessage:theMessage];
         } else {
             return PEP_SYNC_NO_MESSAGE_SEND_CALLBACK;
@@ -382,8 +382,8 @@ static __weak PEPSync *s_pEpSync;
                        signal:(sync_handshake_signal)signal
 {
     if (self.notifyHandshakeDelegate) {
-        PEPIdentity *meIdentity = [PEPIdentity pEpIdentityfromStruct:me];
-        PEPIdentity *partnerIdentity = partner != nil ? [PEPIdentity pEpIdentityfromStruct:partner] : nil;
+        PEPIdentity *meIdentity = [PEPIdentity fromStruct:me];
+        PEPIdentity *partnerIdentity = partner != nil ? [PEPIdentity fromStruct:partner] : nil;
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity

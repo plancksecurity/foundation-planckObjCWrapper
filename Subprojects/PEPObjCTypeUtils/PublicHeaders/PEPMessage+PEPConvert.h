@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (message * _Nullable)toStruct;
 
-+ (void)overWritePEPMessageObject:(PEPMessage *)pEpMessage
++ (void)overwritePEPMessageObject:(PEPMessage *)pEpMessage
              withValuesFromStruct:(message * _Nonnull)message;
 
 + (void)removeEmptyRecipientsFromPEPMessage:(PEPMessage *)pEpMessage;

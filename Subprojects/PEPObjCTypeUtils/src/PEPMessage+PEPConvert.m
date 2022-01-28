@@ -25,7 +25,7 @@
         return nil;
     }
     PEPMessage *theMessage = [PEPMessage new];
-    [self overWritePEPMessageObject:theMessage withValuesFromStruct:msg];
+    [self overwritePEPMessageObject:theMessage withValuesFromStruct:msg];
     return theMessage;
 }
 
@@ -118,7 +118,7 @@
     return msg;
 }
 
-+ (void)overWritePEPMessageObject:(PEPMessage *)pEpMessage
++ (void)overwritePEPMessageObject:(PEPMessage *)pEpMessage
              withValuesFromStruct:(message * _Nonnull)message
 {
     [self resetPEPMessage:pEpMessage];
