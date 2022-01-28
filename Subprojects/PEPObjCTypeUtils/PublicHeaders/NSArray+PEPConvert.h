@@ -1,5 +1,5 @@
 //
-//  NSArray+Convert.h
+//  NSArray+PEPConvert.h
 //  PEPObjCTypeUtils
 //
 //  Created by Martín Brude on 26/1/22.

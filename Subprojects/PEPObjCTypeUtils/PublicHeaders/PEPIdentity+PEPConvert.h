@@ -1,5 +1,5 @@
 //
-//  PEPIdentity+Convert.h
+//  PEPIdentity+PEPConvert.h
 //  PEPObjCTypeUtils
 //
 //  Created by Martín Brude on 25/1/22.
