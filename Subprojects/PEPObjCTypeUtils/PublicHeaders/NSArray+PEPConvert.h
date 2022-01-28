@@ -8,6 +8,12 @@
 #import <Foundation/Foundation.h>
 #import <transport.h>
 
+#import "bloblist.h"
+#import "stringpair.h"
+#import "stringlist.h"
+#import "PEPIdentity+Convert.h"
+#import "PEPMessage+Convert.h"
+
 @class PEPMessage;
 @class PEPIdentity;
 @class PEPAttachment;
@@ -27,12 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray<NSArray<NSString*>*> *)fromStringPairlist:(const stringpair_list_t * _Nonnull)stringPairList;
 
 - (stringpair_list_t * _Nullable)toStringPairList;
-
-// MARK: - NSArray<PEPIdentity> <-> identity_list
-
-+ (NSArray<PEPIdentity*> *)fromIdentityList:(identity_list *)identityList;
-
-- (identity_list * _Nullable)toIdentityList;
 
 // MARK: - NSArray<PEPAttachment> <-> bloblist_t
 

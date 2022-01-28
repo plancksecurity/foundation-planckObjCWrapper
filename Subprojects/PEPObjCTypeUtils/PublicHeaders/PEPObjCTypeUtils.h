@@ -11,7 +11,7 @@
 #import "PEPMessage+Convert.h"
 #import "PEPIdentity+Convert.h"
 #import "NSArray+PEPConvert.h"
-
+#import "NSArray+PEPIdentityList.h"
 
 // Umbrella Header
 @interface PEPObjCTypeUtils : NSObject

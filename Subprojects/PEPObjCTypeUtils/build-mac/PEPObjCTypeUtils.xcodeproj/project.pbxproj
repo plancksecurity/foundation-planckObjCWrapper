@@ -31,8 +31,12 @@
 		5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */; };
 		5B5ACF9A27A19B2100B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
 		5B5ACF9B27A19B2200B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
-		5BC7CC6E27A3E83D0072AC5B /* NSArray+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3F43ED27A1A79000A446D9 /* NSArray+PEPConvert.h */; };
+		5BC7CC6E27A3E83D0072AC5B /* NSArray+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B3F43ED27A1A79000A446D9 /* NSArray+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BC7CC6F27A3E8400072AC5B /* NSArray+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3F43F727A1A7E800A446D9 /* NSArray+PEPConvert.m */; };
+		5BC7CC7127A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */; };
+		5BC7CC7227A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */; };
+		5BC7CC7427A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */; };
+		5BC7CC7527A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,13 +136,15 @@
 		43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMessageASN1Tests.m; sourceTree = "<group>"; };
 		4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B29DA2827A0439F00D7638E /* PEPMessage+Convert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+Convert.h"; sourceTree = "<group>"; };
-		5B29DA2927A0439F00D7638E /* PEPMessage+Convert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+Convert.m"; sourceTree = "<group>"; };
+		5B29DA2927A0439F00D7638E /* PEPMessage+Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+Convert.m"; sourceTree = "<group>"; };
 		5B29DA3627A0466E00D7638E /* PEPIdentity+Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Convert.h"; sourceTree = "<group>"; };
 		5B29DA3727A0466E00D7638E /* PEPIdentity+Convert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+Convert.m"; sourceTree = "<group>"; };
 		5B3F43ED27A1A79000A446D9 /* NSArray+PEPConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PEPConvert.h"; sourceTree = "<group>"; };
 		5B3F43F727A1A7E800A446D9 /* NSArray+PEPConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PEPConvert.m"; sourceTree = "<group>"; };
 		5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPStatusNSErrorUtil.m; sourceTree = "<group>"; };
 		5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+ASN1.m"; sourceTree = "<group>"; };
+		5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+PEPIdentityList.h"; sourceTree = "<group>"; };
+		5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PEPIdentityList.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +212,7 @@
 			children = (
 				1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */,
 				5B3F43ED27A1A79000A446D9 /* NSArray+PEPConvert.h */,
+				5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */,
 				5B29DA3627A0466E00D7638E /* PEPIdentity+Convert.h */,
 				43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */,
 				5B29DA2827A0439F00D7638E /* PEPMessage+Convert.h */,
@@ -254,6 +261,7 @@
 		5B5ACE1427A1925800B34412 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */,
 				5B3F43F727A1A7E800A446D9 /* NSArray+PEPConvert.m */,
 				5B29DA3727A0466E00D7638E /* PEPIdentity+Convert.m */,
 				5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */,
@@ -276,6 +284,7 @@
 				1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */,
 				5B29DA2A27A0439F00D7638E /* PEPMessage+Convert.h in Headers */,
 				43B0EAC3274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */,
+				5BC7CC7127A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */,
 				5B3F43F827A1A7E800A446D9 /* NSArray+PEPConvert.m in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +297,7 @@
 				5B29DA3927A0466E00D7638E /* PEPIdentity+Convert.h in Headers */,
 				1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */,
 				5BC7CC6E27A3E83D0072AC5B /* NSArray+PEPConvert.h in Headers */,
+				5BC7CC7227A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */,
 				5B29DA2B27A0439F00D7638E /* PEPMessage+Convert.h in Headers */,
 				43B0EAC4274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */,
 			);
@@ -510,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B29DA2C27A0439F00D7638E /* PEPMessage+Convert.m in Sources */,
+				5BC7CC7427A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */,
 				5B5ACF9827A19B1F00B34412 /* PEPMessage+ASN1.m in Sources */,
 				5B29DA3A27A0466E00D7638E /* PEPIdentity+Convert.m in Sources */,
 				5B5ACF9B27A19B2200B34412 /* PEPStatusNSErrorUtil.m in Sources */,
@@ -521,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B29DA2D27A0439F00D7638E /* PEPMessage+Convert.m in Sources */,
+				5BC7CC7527A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */,
 				5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */,
 				5BC7CC6F27A3E8400072AC5B /* NSArray+PEPConvert.m in Sources */,
 				5B29DA3B27A0466E00D7638E /* PEPIdentity+Convert.m in Sources */,
