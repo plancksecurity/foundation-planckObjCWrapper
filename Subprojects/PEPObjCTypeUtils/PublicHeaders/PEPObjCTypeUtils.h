@@ -9,7 +9,9 @@
 
 #import "PEPStatusNSErrorUtil.h"
 #import "PEPMessage+Convert.h"
+#import "PEPMessage+ASN1.h"
 #import "PEPIdentity+Convert.h"
+#import "NSArray+PEPBloblist.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
 
