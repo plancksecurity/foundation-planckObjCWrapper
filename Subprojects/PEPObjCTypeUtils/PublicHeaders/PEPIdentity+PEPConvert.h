@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPIdentity (Convert)
+@interface PEPIdentity (PEPConvert)
 
 + (PEPIdentity * _Nullable)fromStruct:(const pEp_identity * _Nonnull)identityStruct;
 

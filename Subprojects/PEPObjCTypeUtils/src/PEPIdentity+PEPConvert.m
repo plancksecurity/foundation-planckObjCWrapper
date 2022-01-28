@@ -6,9 +6,9 @@
 //
 
 #import "PEPIdentity.h"
-#import "PEPIdentity+Convert.h"
+#import "PEPIdentity+PEPConvert.h"
 
-@implementation PEPIdentity (Convert)
+@implementation PEPIdentity (PEPConvert)
 
 + (PEPIdentity * _Nullable)fromStruct:(const pEp_identity * _Nonnull)identityStruct
 {

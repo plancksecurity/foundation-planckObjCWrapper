@@ -9,8 +9,8 @@
 #import "bloblist.h"
 #import "stringpair.h"
 #import "stringlist.h"
-#import "PEPIdentity+Convert.h"
-#import "PEPMessage+Convert.h"
+#import "PEPIdentity+PEPConvert.h"
+#import "PEPMessage+PEPConvert.h"
 
 @class PEPMessage;
 @class PEPIdentity;

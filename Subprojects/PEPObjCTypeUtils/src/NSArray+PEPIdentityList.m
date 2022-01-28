@@ -9,7 +9,7 @@
 #import "identity_list.h"
 #import <pEp_string.h>
 #import <status_to_string.h>
-#import "PEPIdentity+Convert.h"
+#import "PEPIdentity+PEPConvert.h"
 
 @implementation NSArray (PEPIdentityList)
 

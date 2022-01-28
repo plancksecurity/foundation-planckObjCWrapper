@@ -9,7 +9,7 @@
 
 #import <map_asn1.h>
 #import <message_codec.h>
-#import "PEPMessage+Convert.h"
+#import "PEPMessage+PEPConvert.h"
 
 @implementation PEPMessage (ASN1)
 
