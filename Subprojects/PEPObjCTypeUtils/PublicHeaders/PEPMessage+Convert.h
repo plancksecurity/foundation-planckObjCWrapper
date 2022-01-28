@@ -5,9 +5,9 @@
 //  Created by Martín Brude on 25/1/22.
 //
 #import <Foundation/Foundation.h>
-#import <transport.h>
 
-@class PEPMessage;
+#import "message.h"
+#import "PEPMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

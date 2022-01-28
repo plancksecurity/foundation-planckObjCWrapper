@@ -10,8 +10,10 @@
 #import "PEPIdentity+Convert.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
+#import "NSArray+PEPBloblist.h"
 #import "pEp_string.h"
 #import "NSArray+PEPIdentityList.h"
+
 
 @implementation PEPMessage (Convert)
 

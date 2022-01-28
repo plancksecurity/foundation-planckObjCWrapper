@@ -34,11 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (stringpair_list_t * _Nullable)toStringPairList;
 
-// MARK: - NSArray<PEPAttachment> <-> bloblist_t
-
-+ (NSArray<PEPAttachment*> *)fromBloblist:(const bloblist_t * _Nonnull)blobList;
-
-- (bloblist_t * _Nullable)toBloblist;
 
 @end
 
