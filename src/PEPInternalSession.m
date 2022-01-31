@@ -27,8 +27,8 @@
 #import "PEPInternalSession+PassphraseCache.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPIdentity+Reset.h"
-#import "PEPMessage+Convert.h"
-#import "PEPIdentity+Convert.h"
+#import "PEPMessage+PEPConvert.h"
+#import "PEPIdentity+PEPConvert.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
 

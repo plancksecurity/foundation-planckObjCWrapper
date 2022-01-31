@@ -27,8 +27,8 @@
 #import "Logger.h"
 #import <PEPIdentity.h>
 #import "PEPMessage.h"
-#import "PEPMessage+Convert.h"
-#import "PEPIdentity+Convert.h"
+#import "PEPMessage+PEPConvert.h"
+#import "PEPIdentity+PEPConvert.h"
 
 // MARK: - Internals
 

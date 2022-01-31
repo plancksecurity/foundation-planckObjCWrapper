@@ -14,7 +14,7 @@
 #import "PEPTypes.h"
 #import "PEPInternalSession.h"
 #import "PEPInternalSession+PassphraseCache.h"
-#import "PEPIdentity+Convert.h"
+#import "PEPIdentity+PEPConvert.h"
 #import "pEpEngine.h"
 
 @implementation PEPInternalSession (SetIdentity)

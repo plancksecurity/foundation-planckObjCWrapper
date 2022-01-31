@@ -9,7 +9,7 @@
 #import "PEPInternalSession+TKA.h"
 #import "PEPObjCTypeUtils.h"
 #import "PEPStatusNSErrorUtil.h"
-#import "PEPIdentity+Convert.h"
+#import "PEPIdentity+PEPConvert.h"
 
 // MARK: - Cheap fake of the engine's TKA API
 
