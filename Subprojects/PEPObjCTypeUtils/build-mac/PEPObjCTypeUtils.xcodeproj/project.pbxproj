@@ -223,7 +223,6 @@
 				5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */,
 				43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */,
 				5B29DA2827A0439F00D7638E /* PEPMessage+PEPConvert.h */,
-				15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
@@ -268,6 +267,7 @@
 		5B5ACE1427A1925800B34412 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */,
 				5BC7CC7727A3FD190072AC5B /* NSArray+PEPBloblist.m */,
 				5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */,
 				5B3F43F727A1A7E800A446D9 /* NSArray+PEPConvert.m */,
