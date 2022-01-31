@@ -11,7 +11,7 @@
 		1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BD31722742820400B1B1F5 /* PEPStatusNSErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15BD31732742820400B1B1F5 /* PEPStatusNSErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 15BD31702742820400B1B1F5 /* PEPStatusNSErrorUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43431E6D278D7FED00A1AB63 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E27278D784D00A1AB63 /* libpEpEngine_macOS.a */; };
+		15D3862327A852500005CA31 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E27278D784D00A1AB63 /* libpEpEngine_macOS.a */; };
 		43B0EAC3274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B0EAC4274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B0EAD5274D21E100F5D076 /* libPEPObjCTypeUtils_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EA7C26984C4300B822E1 /* libPEPObjCTypeUtils_macOS.a */; };
@@ -158,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43431E6D278D7FED00A1AB63 /* libpEpEngine_macOS.a in Frameworks */,
+				15D3862327A852500005CA31 /* libpEpEngine_macOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
