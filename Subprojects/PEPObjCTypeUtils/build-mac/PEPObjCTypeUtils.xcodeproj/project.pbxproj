@@ -216,6 +216,7 @@
 				5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */,
 				43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */,
 				5B29DA2827A0439F00D7638E /* PEPMessage+PEPConvert.h */,
+				5BAAF80127A936430037C55E /* PEPStatusNSErrorUtil.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
@@ -266,7 +267,6 @@
 				5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */,
 				5B29DA2927A0439F00D7638E /* PEPMessage+PEPConvert.m */,
 				5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */,
-				5BAAF80127A936430037C55E /* PEPStatusNSErrorUtil.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
