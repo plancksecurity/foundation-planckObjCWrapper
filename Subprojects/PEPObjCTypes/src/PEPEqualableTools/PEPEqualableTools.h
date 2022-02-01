@@ -7,6 +7,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+///!!!: ObjCTypes is definatelly the wrong place for this
 @interface PEPEqualableTools : NSObject
 
 /**
