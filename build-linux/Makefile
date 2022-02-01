@@ -1,18 +1,14 @@
-root = ..
-
 # Content of this library
 TARGET = libpEpObjCAdapter
+# Can't use find-objects here since that would search the entire repo.
 OBJECTS = $(patsubst %.m,%.o,$(wildcard ../*.m ../*/*.m))
 DEPFILES = $(call find-deps,..)
 HEADERS = $(call find-headers,../PublicHeaders/)
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
 INCLUDES = \
-  $(call find-includes,$(root)/PublicHeaders) \
-  $(call find-includes,$(root)/src) \
-  $(call find-includes,$(root)/Subprojects/PEPObjCAdapterProtocols/PublicHeaders) \
-  $(call find-includes,$(root)/Subprojects/PEPObjCTypes/PublicHeaders) \
-  $(call find-includes,$(root)/Subprojects/PEPObjCTypeUtils/PublicHeaders) \
+  $(call find-includes,../PublicHeaders) \
+  $(call find-includes,../src) \
   -I$(PEP_INCLUDE)
 
 # Only for making .so libs. Libs for static linking are defined with the final binary.

@@ -11,7 +11,7 @@
 #import "PEPTestUtils.h"
 #import "PEPTKATestDelegate.h"
 #import "PEPSession.h"
-#import <PEPObjCTypes.h>
+#import "PEPIdentity.h"
 
 @interface PEPSessionTKATest : XCTestCase
 
