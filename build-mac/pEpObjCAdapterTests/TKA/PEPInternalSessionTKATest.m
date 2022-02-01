@@ -17,6 +17,7 @@
 #import "PEPInternalSession+TKA.h"
 #import "PEPTKATestDelegate.h"
 #import "PEPTestUtils.h"
+#import "PEPIdentity.h"
 
 @interface PEPInternalSessionTKATest : XCTestCase
 
