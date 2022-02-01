@@ -95,8 +95,10 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
     PEPIdentity *objcMe = [PEPIdentity fromStruct:me];
     PEPIdentity *objcPartner = [PEPIdentity fromStruct:partner];
 
-    return (PEP_STATUS) [s_tkaDelegate
-                         tkaKeyChangeForMe:objcMe
-                         partner:objcPartner
-                         key:[NSString stringWithCString:key encoding:NSUTF8StringEncoding]];
+    [s_tkaDelegate
+     tkaKeyChangeForMe:objcMe
+     partner:objcPartner
+     key:[NSString stringWithCString:key encoding:NSUTF8StringEncoding]];
+
+    return PEP_STATUS_OK;
 }

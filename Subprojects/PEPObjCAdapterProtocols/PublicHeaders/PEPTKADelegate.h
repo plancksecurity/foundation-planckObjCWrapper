@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PEPTKADelegate <NSObject>
 
 /// From tka_api.h, the `tka_keychange_t` callback.
-- (PEPStatus)tkaKeyChangeForMe:(PEPIdentity *)me partner:(PEPIdentity *)partner key:(NSString *)key;
+///
+/// @note The return is void, since the adapter doesn't expect any error conditions here and will report ok to the engine.
+- (void)tkaKeyChangeForMe:(PEPIdentity *)me partner:(PEPIdentity *)partner key:(NSString *)key;
 
 @end
 
