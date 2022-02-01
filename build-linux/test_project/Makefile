@@ -1,5 +1,3 @@
-root = ../../
-
 # Content of this library
 TARGET_EXE = test_project
 OBJECTS = $(call find-objects,.)
@@ -7,8 +5,7 @@ DEPFILES = $(call find-deps,.)
 HEADERS =
 
 # Dependencies *within* this repo (other headers should be installed and found in $PREFIX).
-INCLUDES = \
-  $(call find-includes,$(root)/pEpObjCAdapter/PublicHeaders)
+INCLUDES =
 
 # Since we link an excecuatble here, these options matter a lot. We also need
 # to list all transitive dependincies if we want to link statically.

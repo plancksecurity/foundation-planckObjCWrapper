@@ -19,8 +19,5 @@ LIBS = -lpEpEngine -lasn1 -lPEPObjCTypes
 MAKEFILE_COMMON ?= ../../../../pepgnustephelper/
 include $(MAKEFILE_COMMON)/Makefile.common
 
-print:
-	echo $(OBJECTS)
-
 # This enables proper header-dependencies based on .d files made by the compiler.
 include $(DEPFILES)
