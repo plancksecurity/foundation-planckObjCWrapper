@@ -211,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */,
+				5BAAF80127A936430037C55E /* PEPStatusNSErrorUtil.h */,
 				5BC7CC7627A3FD190072AC5B /* NSArray+PEPConvert.h */,
 				5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */,
 				5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */,
