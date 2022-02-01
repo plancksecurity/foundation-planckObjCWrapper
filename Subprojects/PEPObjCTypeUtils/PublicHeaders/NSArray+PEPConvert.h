@@ -2,12 +2,10 @@
 //  NSArray+PEPConvert.h
 //  PEPObjCTypeUtils
 //
-//  Created by Martín Brude on 26/1/22.
+//  Created by Martín Brude on 28/1/22.
 //
 
 #import <Foundation/Foundation.h>
-#import <transport.h>
-
 #import "bloblist.h"
 #import "stringpair.h"
 #import "stringlist.h"
@@ -20,9 +18,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// NSArray<PEPAttachment> <-> bloblist_t
+
 @interface NSArray (PEPConvert)
 
-// MARK: - NSArray <-> stringlist_t
++ (NSArray<PEPAttachment*> *)fromBloblist:(const bloblist_t * _Nonnull)blobList;
+
+- (bloblist_t * _Nullable)toBloblist;
+
 
 + (NSArray<NSString*> *)fromStringlist:(const stringlist_t * _Nonnull)stringList;
 

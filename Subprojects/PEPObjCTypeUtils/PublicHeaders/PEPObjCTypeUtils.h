@@ -11,7 +11,6 @@
 #import "PEPMessage+PEPConvert.h"
 #import "PEPMessage+ASN1.h"
 #import "PEPIdentity+PEPConvert.h"
-#import "NSArray+PEPBloblist.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
 

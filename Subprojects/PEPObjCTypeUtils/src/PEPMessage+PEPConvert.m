@@ -8,9 +8,8 @@
 #import "PEPMessage.h"
 #import "PEPMessage+PEPConvert.h"
 #import "PEPIdentity+PEPConvert.h"
-#import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
-#import "NSArray+PEPBloblist.h"
+#import "NSArray+PEPConvert.h"
 #import "pEp_string.h"
 #import "NSArray+PEPIdentityList.h"
 
