@@ -12,7 +12,6 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
-
     PEPTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
     // Currently unsupported
 //    PEPTransportIDTransportEmail = 0x01,
