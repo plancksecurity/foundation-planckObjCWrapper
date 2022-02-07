@@ -28,10 +28,11 @@
     return self;
 }
 
-- (void)tkaKeyChangeForMe:(nonnull PEPIdentity *)me
-                  partner:(nonnull PEPIdentity *)partner
-                      key:(nonnull NSString *)key {
+- (PEPStatus)tkaKeyChangeForMe:(nonnull PEPIdentity *)me
+                       partner:(nonnull PEPIdentity *)partner
+                           key:(nonnull NSString *)key {
     [self.expKeyChangedCalled fulfill];
+    return PEPStatusOK;
 }
 
 - (void)dealloc {
