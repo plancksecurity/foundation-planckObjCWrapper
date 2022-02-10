@@ -16,8 +16,15 @@
         NSObject *valueOther = [other valueForKey:theKey];
         if (valueObject == nil && valueOther == nil) {
             continue;
-        } else if (![valueObject isEqual:valueOther]) {
-            return NO;
+        } else {
+            if ([valueObject isKindOfClass:[NSString class]] && [valueOther isKindOfClass:[NSString class]]) {
+                NSString *valueString = [(NSString *)valueObject lowercaseString];
+                NSString *valueOtherString = [(NSString *)valueOther lowercaseString];
+                return [valueString isEqualToString:valueOtherString];
+            }
+            if (![valueObject isEqual:valueOther]) {
+                return NO;
+            }
         }
     }
 
