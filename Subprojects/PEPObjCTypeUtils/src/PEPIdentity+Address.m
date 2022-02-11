@@ -11,8 +11,8 @@
 
 @implementation PEPIdentity (Address)
 
-NSString* IPV4Format = @"pep+%@:%@:%lu";
-NSString* IPV6Format = @"pep+%@:[%@]:%lu";
+NSString * _Nonnull const IPV4Format = @"pEp+%@:%@:%lu";
+NSString * _Nonnull const IPV6Format = @"pEp+%@:[%@]:%lu";
 
 NSString* IPV6Separator = @"::";
 NSString* IPV4Separator = @":";

@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString *const _Nonnull IPV4Format;
+extern NSString *const _Nonnull IPV6Format;
+
 @interface PEPIdentity (Address)
 
 /// Instanciate an Identity with the given parameters.
