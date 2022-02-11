@@ -39,7 +39,7 @@ NSString *const _Nonnull IPV4Separator = @":";
 }
 
 - (NSString * _Nullable)getIPV4 {
-    if ([self.address containsString:@"::"]) {
+    if ([self.address containsString:IPV6Separator]) {
         return nil;
     }
     return [self.address stringBetweenString:IPV4Separator andString:IPV4Separator];
@@ -48,13 +48,13 @@ NSString *const _Nonnull IPV4Separator = @":";
 - (NSString * _Nullable)getIPV6 {
     NSString *protocol = [self getProtocol];
     NSUInteger port = [self getPort];
-    NSString *lowerBound = [NSString stringWithFormat:@"%@%@:[", @"pEp+", protocol];
+    NSString *lowerBound = [NSString stringWithFormat:@"%@%@:[", pEpPlus, protocol];
     NSString *upperBound = [NSString stringWithFormat:@"]:%lu", port];
     return [self.address stringBetweenString:lowerBound andString:upperBound];
 }
 
 - (NSUInteger)getPort {
-    return [[[self.address componentsSeparatedByString:@":"] lastObject] longLongValue];
+    return [[[self.address componentsSeparatedByString:IPV4Separator] lastObject] longLongValue];
 }
 
 - (NSString * _Nullable)getProtocol {
