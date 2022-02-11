@@ -33,4 +33,21 @@
     return nil;
 }
 
+- (BOOL)isNumeric
+{
+    // Implementation taken from SO
+    // http://stackoverflow.com/questions/6644004/how-to-check-if-nsstring-is-numeric
+    NSScanner *sc = [NSScanner scannerWithString: self];
+    // We can pass NULL because we don't actually need the value to test
+    // To check if the string is numeric this is allowable.
+    if ( [sc scanFloat:NULL] )
+    {
+        // Ensure nothing left in scanner so that "42foo" is not accepted.
+        // ("42" would be consumed by scanFloat above leaving "foo".)
+        return [sc isAtEnd];
+    }
+    // Couldn't even scan a float
+    return NO;
+}
+
 @end

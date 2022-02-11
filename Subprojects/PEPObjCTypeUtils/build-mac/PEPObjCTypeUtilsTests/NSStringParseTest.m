@@ -58,5 +58,34 @@
     XCTAssertTrue([result isEqualToString:expectedResult], @"Strings are not equal %@ %@", result, expectedResult);
 }
 
+- (void)testStringisNumericWithEmojis {
+    BOOL result = [@"👀" isNumeric];
+    XCTAssertFalse(result);
+}
+
+- (void)testStringisNumericWithText {
+    BOOL result = [@"Foo" isNumeric];
+    XCTAssertFalse(result);
+}
+
+- (void)testStringisNumericWithTextAndNumber {
+    BOOL result = [@"Foo 10" isNumeric];
+    XCTAssertFalse(result);
+}
+
+- (void)testStringisNumericWithNumberAndText {
+    BOOL result = [@"42foo" isNumeric];
+    XCTAssertFalse(result);
+}
+
+- (void)testStringisNumericWithOnlyFloatNumber {
+    BOOL result = [@"10.2" isNumeric];
+    XCTAssertTrue(result);
+}
+
+- (void)testStringisNumericWithOnlyIntegerNumber {
+    BOOL result = [@"10" isNumeric];
+    XCTAssertTrue(result);
+}
 
 @end

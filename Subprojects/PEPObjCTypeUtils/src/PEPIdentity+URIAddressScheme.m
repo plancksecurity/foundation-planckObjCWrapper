@@ -54,7 +54,12 @@ NSString *const _Nonnull IPV4Separator = @":";
 }
 
 - (NSUInteger)getPort {
-    return [[[self.address componentsSeparatedByString:IPV4Separator] lastObject] longLongValue];
+    NSArray *parts = [self.address componentsSeparatedByString:IPV4Separator];
+    NSString *probablyThePort = [parts lastObject];
+    if (![probablyThePort isNumeric]) {
+        return 0;
+    }
+    return [probablyThePort longLongValue];
 }
 
 - (NSString * _Nullable)getProtocol {

@@ -28,6 +28,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return The resultant (sub)string.
 - (NSString * _Nullable)stringBetweenString:(NSString *)start andString:(NSString *)end;
 
+/// Indicates if the string is a number.
+///
+/// "14 foo" will return NO.
+/// "14.0 " will return YES.
+/// "14" will return YES.
+///
+///@return YES, if the value is a number.
+- (BOOL)isNumeric;
+
 @end
 
 NS_ASSUME_NONNULL_END
