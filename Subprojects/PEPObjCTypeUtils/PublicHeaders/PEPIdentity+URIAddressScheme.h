@@ -38,39 +38,43 @@ extern NSString *const _Nonnull IPV4Separator;
                                   port:(NSUInteger)port;
 
 /// Get the IPV4 from the address of the identity if it's IPV4, otherwise will return nil.
+/// If the address does not respect the pEp scheme will return nil.
 ///
 /// For example:
-/// from the address "pep+sctp:1.2.3.4:666" it will return '1.2.3.4'
-/// from the address "pep+sctp:[1::2::3::4::5::6::7::8]:666" it will return nil
+/// from the address "pEp+sctp:1.2.3.4:666" it will return '1.2.3.4'
+/// from the address "pEp+sctp:[1::2::3::4::5::6::7::8]:666" it will return nil
 /// from "some.address@pep.security" will return nil.
 ///
 /// @return the IPV4
 - (NSString * _Nullable)getIPV4;
 
 /// Get the protocol from the address of the identity if it's IPV6, otherwise will return nil.
+/// If the address does not respect the pEp scheme will return nil.
 ///
 /// For example:
-/// from the address "pep+sctp:[1::2::3::4::5::6::7::8]:666" it will return '1::2::3::4::5::6::7::8'
-/// from the address "pep+sctp:1.2.3.4:666" it will return nil
+/// from the address "pEp+sctp:[1::2::3::4::5::6::7::8]:666" it will return '1::2::3::4::5::6::7::8'
+/// from the address "pEp+sctp:1.2.3.4:666" it will return nil
 /// from "some.address@pep.security" will return nil.
 ///
 /// @return the IPV6
 - (NSString * _Nullable)getIPV6;
 
 /// Get the port from the address of the identity.
+/// If the address does not respect the pEp scheme will return 0.
 ///
 /// For example:
-/// from the address "pep+sctp:1.2.3.4:666" it will return '666'
+/// from the address "pEp+sctp:1.2.3.4:666" it will return '666'
 /// from "some.address@pep.security" will return 0.
 ///
 /// @return the port
 - (NSUInteger)getPort;
 
 /// Get the protocol from the address of the identity if can find it.
-/// Otherwise will return nil. .
+/// If the address does not respect the pEp scheme will return nil.
+/// Otherwise will return nil.
 ///
 /// For example:
-/// from the address "pep+sctp:1.2.3.4:666" it will return 'sctp'
+/// from the address "pEp+sctp:1.2.3.4:666" it will return 'sctp'
 ///
 /// @return the port
 
