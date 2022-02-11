@@ -31,14 +31,17 @@ NSString* IPV4Separator = @":";
 }
 
 - (NSString * _Nullable)getIPV4 {
+    if ([self.address containsString:@"::"]) {
+        return nil;
+    }
     return [self.address stringBetweenString:IPV4Separator andString:IPV4Separator];
 }
 
 - (NSString * _Nullable)getIPV6 {
     NSString *protocol = [self getProtocol];
     NSUInteger port = [self getPort];
-    NSString *lowerBound = [NSString stringWithFormat:@"%@%@:[", @"pep+", protocol];
-    NSString *upperBound = [NSString stringWithFormat:@":%lu:", port];
+    NSString *lowerBound = [NSString stringWithFormat:@"%@%@:[", @"pEp+", protocol];
+    NSString *upperBound = [NSString stringWithFormat:@"]:%lu", port];
     return [self.address stringBetweenString:lowerBound andString:upperBound];
 }
 

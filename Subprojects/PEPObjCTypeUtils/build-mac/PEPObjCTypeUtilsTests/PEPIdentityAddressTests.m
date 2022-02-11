@@ -21,7 +21,7 @@ NSString *defaultUserID = @"1";
 @implementation PEPIdentityAddressTests
 
 - (void)testIdentityWithIPV4 {
-    PEPIdentity *identity = [[PEPIdentity alloc] initWithUserId:defaultUserID protocol:defaultSctpProtocol ip:defaultIPV4 port:defaultPort];
+    PEPIdentity *identity = [[PEPIdentity alloc] initWithUserID:defaultUserID protocol:defaultSctpProtocol ip:defaultIPV4 port:defaultPort];
     XCTAssertEqual(defaultPort, [identity getPort]);
 
     NSString *ipV4 = [identity getIPV4];
@@ -32,14 +32,14 @@ NSString *defaultUserID = @"1";
 }
 
 - (void)testIdentityWithIPV4ButExpectingIPV6 {
-    PEPIdentity *identity = [[PEPIdentity alloc] initWithUserId:defaultUserID protocol:defaultSctpProtocol ip:defaultIPV4 port:defaultPort];
+    PEPIdentity *identity = [[PEPIdentity alloc] initWithUserID:defaultUserID protocol:defaultSctpProtocol ip:defaultIPV4 port:defaultPort];
 
     NSString *ipV6 = [identity getIPV6];
     XCTAssertNil(ipV6);
 }
 
 - (void)testIdentityWithIPV6 {
-    PEPIdentity *identity = [[PEPIdentity alloc] initWithUserId:defaultUserID protocol:defaultSctpProtocol ip:defaultIPV6 port:defaultPort];
+    PEPIdentity *identity = [[PEPIdentity alloc] initWithUserID:defaultUserID protocol:defaultSctpProtocol ip:defaultIPV6 port:defaultPort];
     XCTAssertEqual(defaultPort, [identity getPort]);
 
     NSString *ipV6 = [identity getIPV6];
@@ -50,7 +50,7 @@ NSString *defaultUserID = @"1";
 }
 
 - (void)testIdentityWithIPV6ButExpectingIPV4 {
-    PEPIdentity *identity = [[PEPIdentity alloc] initWithUserId:defaultUserID protocol:defaultSctpProtocol ip:defaultIPV6 port:defaultPort];
+    PEPIdentity *identity = [[PEPIdentity alloc] initWithUserID:defaultUserID protocol:defaultSctpProtocol ip:defaultIPV6 port:defaultPort];
     NSString *ipV4 = [identity getIPV4];
     XCTAssertNil(ipV4);
 }
