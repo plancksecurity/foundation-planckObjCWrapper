@@ -6,7 +6,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PEPIdentity+Address.h"
+#import "PEPIdentity+URIAddressScheme.h"
 
 @interface PEPIdentityAddressTests : XCTestCase
 

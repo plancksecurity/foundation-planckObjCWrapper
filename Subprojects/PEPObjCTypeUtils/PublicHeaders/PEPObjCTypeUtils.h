@@ -13,7 +13,7 @@
 #import "PEPIdentity+PEPConvert.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
-#import "NSString+Parse.h"
+#import "NSString+PEPParse.h"
 
 // Umbrella Header
 @interface PEPObjCTypeUtils : NSObject

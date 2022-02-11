@@ -1,13 +1,13 @@
 //
-//  NSString+Parse.m
+//  NSString+PEPParse.m
 //  PEPObjCTypeUtils
 //
 //  Created by Martín Brude on 9/2/22.
 //
 
-#import "NSString+Parse.h"
+#import "NSString+PEPParse.h"
 
-@implementation NSString (Parse)
+@implementation NSString (PEPParse)
 
 - (NSString * _Nullable)stringBetweenString:(NSString * _Nonnull)start
                                   andString:(NSString * _Nonnull)end {

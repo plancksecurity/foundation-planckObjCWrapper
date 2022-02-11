@@ -6,7 +6,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSString+Parse.h"
+#import "NSString+PEPParse.h"
 
 @interface NSStringParseTest : XCTestCase
 

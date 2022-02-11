@@ -1,21 +1,29 @@
 //
-//  PEPIdentity+Address.m
+//  PEPIdentity+URIAddressScheme.m
 //  pEpObjCAdapter
 //
 //  Created by Martín Brude on 9/2/22.
 //  Copyright © 2022 p≡p. All rights reserved.
 //
 
-#import "PEPIdentity+Address.h"
-#import "NSString+Parse.h"
+#import "PEPIdentity+URIAddressScheme.h"
+#import "NSString+PEPParse.h"
 
-@implementation PEPIdentity (Address)
 
-NSString * _Nonnull const IPV4Format = @"pEp+%@:%@:%lu";
-NSString * _Nonnull const IPV6Format = @"pEp+%@:[%@]:%lu";
+NSString *const _Nonnull kURIscheme = @"pEp.cc";
 
-NSString* IPV6Separator = @"::";
-NSString* IPV4Separator = @":";
+NSString *const _Nonnull pEpPlus = @"pEp+";
+
+NSString *const _Nonnull closeBracket = @"]";
+NSString *const _Nonnull openBracket = @"[";
+NSString *const _Nonnull IPV4Format = @"pEp+%@:%@:%lu";
+NSString *const _Nonnull IPV6Format = @"pEp+%@:[%@]:%lu";
+
+NSString *const _Nonnull IPV6Separator = @"::";
+NSString *const _Nonnull IPV4Separator = @":";
+
+@implementation PEPIdentity (URIAddressScheme)
+
 
 - (nonnull instancetype)initWithUserID:(NSString *)userID
                               protocol:(NSString *)protocol

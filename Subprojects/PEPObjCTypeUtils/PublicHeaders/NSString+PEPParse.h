@@ -1,5 +1,5 @@
 //
-//  NSString+Parse.h
+//  NSString+PEPParse.h
 //  PEPObjCTypeUtils
 //
 //  Created by Martín Brude on 9/2/22.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSString (Parse)
+@interface NSString (PEPParse)
 
 /// Retrieve the substring between two strings, if can find it.
 /// Otherwise, will return nil.

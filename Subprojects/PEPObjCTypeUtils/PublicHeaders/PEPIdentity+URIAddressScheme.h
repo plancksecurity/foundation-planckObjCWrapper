@@ -1,5 +1,5 @@
 //
-//  PEPIdentity+Address.h
+//  PEPIdentity+URIAddressScheme.h
 //  pEpObjCAdapter
 //
 //  Created by Martín Brude on 9/2/22.
@@ -14,7 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString *const _Nonnull IPV4Format;
 extern NSString *const _Nonnull IPV6Format;
 
-@interface PEPIdentity (Address)
+extern NSString *const _Nonnull kURIscheme;
+extern NSString *const _Nonnull pEpPlus;
+extern NSString *const _Nonnull colons;
+extern NSString *const _Nonnull closeBracket;
+extern NSString *const _Nonnull openBracket;
+
+extern NSString *const _Nonnull IPV6Separator;
+extern NSString *const _Nonnull IPV4Separator;
+
+@interface PEPIdentity (URIAddressScheme)
 
 /// Instanciate an Identity with the given parameters.
 /// There is no validation.
