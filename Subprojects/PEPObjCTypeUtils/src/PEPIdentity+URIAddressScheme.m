@@ -24,7 +24,6 @@ NSString *const _Nonnull IPV4Separator = @":";
 
 @implementation PEPIdentity (URIAddressScheme)
 
-
 - (nonnull instancetype)initWithUserID:(NSString *)userID
                               protocol:(NSString *)protocol
                                     ip:(NSString *)ip
