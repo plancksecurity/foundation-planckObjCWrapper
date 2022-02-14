@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// For example:
 /// [@"One two three" stringBetweenString:@"One " andString: @" three"]; it will return @"two".
 /// [@"One 1 three One 2 three One 3 three" stringBetweenString:@"One " andString: @" three"]; it will return @"1".
-/// [@"Onethree" stringBetweenString:@"One " andString: @" three"]; it will return @"".
+/// [@"Onethree" stringBetweenString:@"One" andString: @" three"]; it will return @"".
 /// [@"One three" stringBetweenString:@"Two " andString: @" Four"]; it will return nil.
 /// [@"One three" stringBetweenString:@"One " andString: @" Four"]; it will return nil.
 ///
