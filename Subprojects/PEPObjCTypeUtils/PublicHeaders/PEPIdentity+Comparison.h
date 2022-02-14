@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Determine if the identity passed by param is the same identity.
 ///
+/// If both identities have no address will be considered equal.
+/// Address comparison is case-insensitive.
+///
 /// @param otherIdentity The identity to compare.
 /// @return YES if it's the same identity. Otherwise it returns NO.
 - (BOOL)isEqualToIdentity:(PEPIdentity *)otherIdentity;
