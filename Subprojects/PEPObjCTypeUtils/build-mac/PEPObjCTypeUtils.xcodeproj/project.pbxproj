@@ -19,8 +19,8 @@
 		5B11963B27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
 		5B11963C27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B11963D27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B11964027B429E900FDF0B5 /* NSString+PEPParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B11964127B429E900FDF0B5 /* NSString+PEPParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5B11964027B429E900FDF0B5 /* NSString+PEPParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */; };
+		5B11964127B429E900FDF0B5 /* NSString+PEPParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */; };
 		5B11964227B429E900FDF0B5 /* NSString+PEPParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */; };
 		5B11964327B429E900FDF0B5 /* NSString+PEPParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */; };
 		5B11964527B50B0A00FDF0B5 /* PEPIdentityAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */; };
@@ -33,10 +33,6 @@
 		5B29DA3927A0466E00D7638E /* PEPIdentity+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B29DA3A27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */; };
 		5B29DA3B27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */; };
-		5B2F476727BA5A11003517EC /* PEPIdentity+Comparison.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B2F476527BA5A10003517EC /* PEPIdentity+Comparison.h */; };
-		5B2F476827BA5A11003517EC /* PEPIdentity+Comparison.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B2F476527BA5A10003517EC /* PEPIdentity+Comparison.h */; };
-		5B2F476927BA5A11003517EC /* PEPIdentity+Comparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F476627BA5A10003517EC /* PEPIdentity+Comparison.m */; };
-		5B2F476A27BA5A11003517EC /* PEPIdentity+Comparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F476627BA5A10003517EC /* PEPIdentity+Comparison.m */; };
 		5B2F476C27BA5CAF003517EC /* PEPIdentityComparisonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */; };
 		5B5ACF9827A19B1F00B34412 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */; };
 		5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */; };
@@ -159,8 +155,6 @@
 		5B29DA2927A0439F00D7638E /* PEPMessage+PEPConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+PEPConvert.m"; sourceTree = "<group>"; };
 		5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+PEPConvert.h"; sourceTree = "<group>"; };
 		5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+PEPConvert.m"; sourceTree = "<group>"; };
-		5B2F476527BA5A10003517EC /* PEPIdentity+Comparison.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+Comparison.h"; sourceTree = "<group>"; };
-		5B2F476627BA5A10003517EC /* PEPIdentity+Comparison.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+Comparison.m"; sourceTree = "<group>"; };
 		5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentityComparisonTest.m; sourceTree = "<group>"; };
 		5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPStatusNSErrorUtil.m; sourceTree = "<group>"; };
 		5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+ASN1.m"; sourceTree = "<group>"; };
@@ -242,8 +236,6 @@
 				43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */,
 				5B29DA2827A0439F00D7638E /* PEPMessage+PEPConvert.h */,
 				5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */,
-				5B2F476527BA5A10003517EC /* PEPIdentity+Comparison.h */,
-				5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
@@ -291,8 +283,8 @@
 		5B5ACE1427A1925800B34412 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				5B2F476627BA5A10003517EC /* PEPIdentity+Comparison.m */,
 				5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */,
+				5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */,
 				5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */,
 				5BC7CC7727A3FD190072AC5B /* NSArray+PEPConvert.m */,
 				5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */,
@@ -312,7 +304,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B29DA3827A0466E00D7638E /* PEPIdentity+PEPConvert.h in Headers */,
-				5B2F476727BA5A11003517EC /* PEPIdentity+Comparison.h in Headers */,
 				5BC7CC7827A3FD190072AC5B /* NSArray+PEPConvert.h in Headers */,
 				1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */,
 				5B11963C27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h in Headers */,
@@ -329,7 +320,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B29DA3927A0466E00D7638E /* PEPIdentity+PEPConvert.h in Headers */,
-				5B2F476827BA5A11003517EC /* PEPIdentity+Comparison.h in Headers */,
 				1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */,
 				5BC7CC7227A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */,
 				5B11963D27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h in Headers */,
@@ -565,7 +555,6 @@
 				5B11963A27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */,
 				5B29DA3A27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */,
 				5B5ACF9B27A19B2200B34412 /* PEPStatusNSErrorUtil.m in Sources */,
-				5B2F476927BA5A11003517EC /* PEPIdentity+Comparison.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +570,6 @@
 				5B11963B27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */,
 				5B29DA3B27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */,
 				5B5ACF9A27A19B2100B34412 /* PEPStatusNSErrorUtil.m in Sources */,
-				5B2F476A27BA5A11003517EC /* PEPIdentity+Comparison.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

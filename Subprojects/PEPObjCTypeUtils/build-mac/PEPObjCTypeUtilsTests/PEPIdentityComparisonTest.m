@@ -6,7 +6,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PEPIdentity+Comparison.h"
 #import "PEPObjCTypes.h"
 
 @interface PEPIdentityComparisonTest : XCTestCase
@@ -22,31 +21,31 @@ NSString *differentAddress = @"differentAddress";
 - (void)testIdentityComparisonWithSameAddress {
     PEPIdentity *identity = [[PEPIdentity alloc] initWithAddress:uppercaseAddress];
     PEPIdentity *otherIdentity = [[PEPIdentity alloc] initWithAddress:uppercaseAddress];
-    XCTAssertTrue([identity isEqualToIdentity:otherIdentity]);
+    XCTAssertTrue([identity isEqualTo:otherIdentity]);
 }
 
 - (void)testIdentityComparisonWithCamelcaseAddress {
     PEPIdentity *identity = [[PEPIdentity alloc] initWithAddress:uppercaseAddress];
     PEPIdentity *otherIdentity = [[PEPIdentity alloc] initWithAddress:camelcaseAddress];
-    XCTAssertTrue([identity isEqualToIdentity:otherIdentity]);
+    XCTAssertTrue([identity isEqualTo:otherIdentity]);
 }
 
 - (void)testIdentityComparisonWithLowercaseAddress {
     PEPIdentity *identity = [[PEPIdentity alloc] initWithAddress:uppercaseAddress];
     PEPIdentity *otherIdentity = [[PEPIdentity alloc] initWithAddress:lowercaseAddress];
-    XCTAssertTrue([identity isEqualToIdentity:otherIdentity]);
+    XCTAssertTrue([identity isEqualTo:otherIdentity]);
 }
 
 - (void)testIdentityComparisonWithDifferentAddress {
     PEPIdentity *identity = [[PEPIdentity alloc] initWithAddress:uppercaseAddress];
     PEPIdentity *otherIdentity = [[PEPIdentity alloc] initWithAddress:differentAddress];
-    XCTAssertFalse([identity isEqualToIdentity:otherIdentity]);
+    XCTAssertFalse([identity isEqualTo:otherIdentity]);
 }
 
 - (void)testIdentityComparisonWithNoAddress {
     PEPIdentity *identity = [[PEPIdentity alloc] init];
     PEPIdentity *otherIdentity = [[PEPIdentity alloc] init];
-    XCTAssertTrue([identity isEqualToIdentity:otherIdentity]);
+    XCTAssertTrue([identity isEqualTo:otherIdentity]);
 }
 
 

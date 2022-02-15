@@ -153,5 +153,24 @@ static NSArray *s_keys;
     return YES;
 }
 
+// MARK: - isEqualTo
+
+/// Determine if the object passed by param is the same identity.
+///
+/// If the param is an identitiy and both identities have no address will be considered equal.
+/// Address comparison is case-insensitive.
+///
+/// @param object The object to compare.
+/// @return YES if it's the same identity. Otherwise it returns NO.
+- (BOOL)isEqualTo:(id)object
+{
+    if ([object isKindOfClass:[PEPIdentity class]]) {
+        NSString *key = @"address";
+        NSString *selfAddress = (NSString *) [self valueForKey:key];
+        NSString *otherAddress = (NSString *) [object valueForKey:key];
+        return [selfAddress caseInsensitiveCompare:otherAddress] == NSOrderedSame;
+    }
+    return NO;
+}
 
 @end
