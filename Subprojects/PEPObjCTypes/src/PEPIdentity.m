@@ -72,27 +72,11 @@
  */
 static NSArray *s_keys;
 
-- (BOOL)isEqualToPEPIdentity:(PEPIdentity * _Nonnull)identity
-{
-    return [PEPEqualableTools object:self isEqualTo:identity basedOnKeys:s_keys];
-}
-
 - (NSUInteger)hash
 {
     return [PEPEqualableTools hashForObject:self basedOnKeys:s_keys];
 }
 
-- (BOOL)isEqual:(id)object
-{
-    if (object == self) {
-        return YES;
-    }
-    if (!object || ![object isKindOfClass:[self class]]) {
-        return NO;
-    }
-
-    return [self isEqualToPEPIdentity:object];
-}
 
 // MARK: - NSMutableCopying
 
@@ -153,5 +137,33 @@ static NSArray *s_keys;
     return YES;
 }
 
+// MARK: - Equality
+
+/// Determine if the object passed by param is the same identity.
+///
+/// @see isEqual as it calls it internally.
+/// @param object The object to compare.
+/// @return YES if it's the same identity. Otherwise it returns NO.
+- (BOOL)isEqualTo:(id)object
+{
+    return [self isEqual:object];
+}
+
+/// Determine if the object passed by param is the same identity.
+/// If the param is an identitiy and both identities have no address will be considered equal.
+/// Address comparison is case-insensitive.
+///
+/// @param object The object to compare.
+/// @return YES if it's the same identity. Otherwise it returns NO.
+- (BOOL)isEqual:(id)object
+{
+    if ([object isKindOfClass:[PEPIdentity class]]) {
+        NSString *key = @"address";
+        NSString *selfAddress = (NSString *) [self valueForKey:key];
+        NSString *otherAddress = (NSString *) [object valueForKey:key];
+        return [selfAddress caseInsensitiveCompare:otherAddress] == NSOrderedSame;
+    }
+    return NO;
+}
 
 @end
