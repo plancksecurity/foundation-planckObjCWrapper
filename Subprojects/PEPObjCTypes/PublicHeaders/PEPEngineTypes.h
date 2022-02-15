@@ -1,5 +1,5 @@
 //
-//  PEPTypes.h
+//  PEPEngineTypes.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 27.02.19.
@@ -12,16 +12,17 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
-
     PEPTransportIDTransportAuto = 0, // auto transport chooses transport per message automatically
     // Currently unsupported
 //    PEPTransportIDTransportEmail = 0x01,
 //    PEPTransportIDTransportRCE = 0x02,
 
-    // Used for figuring out the number of trasnport types. Which is all previously defined transport types plus one, the controll channel.
+    PEPTransportIDTransportSCTP = 0xfd,
+
+    /// Used for figuring out the number of transport types.
+    /// Which is all previously defined transport types plus one, the control channel.
     PEPTransportIDTransportCount,
 
-    PEPTransportIDTransportSCTP = 0xfd,
     PEPTransportIDTransportCC = 0xfe
 };
 
