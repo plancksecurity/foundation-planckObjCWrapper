@@ -137,13 +137,11 @@ static NSArray *s_keys;
     return YES;
 }
 
-// MARK: - isEqualTo
+// MARK: - Equality
 
 /// Determine if the object passed by param is the same identity.
 ///
-/// If the param is an identitiy and both identities have no address will be considered equal.
-/// Address comparison is case-insensitive.
-///
+/// @see isEqual as it calls it internally.
 /// @param object The object to compare.
 /// @return YES if it's the same identity. Otherwise it returns NO.
 - (BOOL)isEqualTo:(id)object
@@ -151,6 +149,12 @@ static NSArray *s_keys;
     return [self isEqual:object];
 }
 
+/// Determine if the object passed by param is the same identity.
+/// If the param is an identitiy and both identities have no address will be considered equal.
+/// Address comparison is case-insensitive.
+
+/// @param object The object to compare.
+/// @return YES if it's the same identity. Otherwise it returns NO.
 - (BOOL)isEqual:(id)object
 {
     if ([object isKindOfClass:[PEPIdentity class]]) {
