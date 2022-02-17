@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPAutoPointer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPCopyableThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPCSVScanner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPInternalConstants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPInternalSession.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPObjCAdapter+Internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPPassphraseCacheEntry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPPassphraseCacheInternal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPPassphraseUtil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPSessionProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PEPSync_Internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Logger.m">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\PEPAutoPointer.m" />
+    <ClCompile Include="..\..\src\PEPCopyableThread.m" />
+    <ClCompile Include="..\..\src\PEPCSVScanner.m" />
+    <ClCompile Include="..\..\src\PEPInternalConstants.m" />
+    <ClCompile Include="..\..\src\PEPInternalSession.m" />
+    <ClCompile Include="..\..\src\PEPObjCAdapter.m" />
+    <ClCompile Include="..\..\src\PEPPassphraseCache.m" />
+    <ClCompile Include="..\..\src\PEPPassphraseCacheEntry.m" />
+    <ClCompile Include="..\..\src\PEPPassphraseUtil.m" />
+    <ClCompile Include="..\..\src\PEPQueue.m" />
+    <ClCompile Include="..\..\src\PEPSession.m" />
+    <ClCompile Include="..\..\src\PEPSessionProvider.m" />
+    <ClCompile Include="..\..\src\PEPSync.m" />
+    <ClCompile Include="..\..\src\Extensions\PEPInternalSession+PassphraseCache.m" />
+    <ClCompile Include="..\..\src\Extensions\NSString+NormalizePassphrase.m" />
+    <ClCompile Include="..\..\src\Extensions\NSNumber+PEPRating.m" />
+    <ClCompile Include="..\..\src\Extensions\NSArray+Take.m" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\Extensions\PEPIdentity+Reset.m" />
+  </ItemGroup>
+</Project>

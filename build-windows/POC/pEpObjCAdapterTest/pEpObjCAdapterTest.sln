@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pEpObjCAdapterTest", "pEpObjCAdapterTest\pEpObjCAdapterTest.vcxproj", "{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pEpEngine", "..\pEpEngine\build-windows\pEpEngine.vcxproj", "{146E69F8-E1DA-456A-B048-6DD29D9ACF6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}.Debug|x64.ActiveCfg = Debug|x64
+		{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}.Debug|x64.Build.0 = Debug|x64
+		{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}.Debug|x86.ActiveCfg = Debug|Win32
+		{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}.Debug|x86.Build.0 = Debug|Win32
+		{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}.Release|x64.ActiveCfg = Release|x64
+		{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}.Release|x64.Build.0 = Release|x64
+		{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}.Release|x86.ActiveCfg = Release|Win32
+		{1FC74E51-FB9E-4F35-96FA-B6CDC780B0E9}.Release|x86.Build.0 = Release|Win32
+		{146E69F8-E1DA-456A-B048-6DD29D9ACF6B}.Debug|x64.ActiveCfg = Debug|x64
+		{146E69F8-E1DA-456A-B048-6DD29D9ACF6B}.Debug|x86.ActiveCfg = Debug|x64
+		{146E69F8-E1DA-456A-B048-6DD29D9ACF6B}.Release|x64.ActiveCfg = Release|x64
+		{146E69F8-E1DA-456A-B048-6DD29D9ACF6B}.Release|x64.Build.0 = Release|x64
+		{146E69F8-E1DA-456A-B048-6DD29D9ACF6B}.Release|x86.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7636D34-2028-4F99-B7C3-2B999569A512}
+	EndGlobalSection
+EndGlobal
