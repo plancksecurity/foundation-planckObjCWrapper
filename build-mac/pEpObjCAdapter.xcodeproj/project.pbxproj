@@ -1322,7 +1322,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\n\ncp -R \"${BUILT_PRODUCTS_DIR}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCAdapter_iOS.a\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_iOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/lib${PRODUCT_NAME}.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 		1543D9262577E3920041EFB5 /* Copy artefacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1340,7 +1340,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\n\ncp -R \"${BUILT_PRODUCTS_DIR}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCAdapter_macOS.a\" ${CUSTOM_BUILD_DIR}\ncp  \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/lib${PRODUCT_NAME}.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 		15C3088E26E8B5030013F39F /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1358,7 +1358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nmkdir -p ${CUSTOM_BUILD_DIR}\n\ncp -R \"${BUILT_PRODUCTS_DIR}/usr/local/include\" ${CUSTOM_BUILD_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCAdapter_4ipsec_macOS.a\" ${CUSTOM_BUILD_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypes_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/lib${PRODUCT_NAME}.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
