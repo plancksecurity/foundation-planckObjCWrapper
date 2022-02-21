@@ -88,15 +88,6 @@ extern NSString *const _Nonnull colon;
 
 - (NSString * _Nullable)getProtocol;
 
-
-//- (NSString * _Nullable)getIPV4Separator;
-//
-//- (NSString * _Nullable)getIPV6Separator;
-//
-//- (NSString * _Nullable)isIPV4;
-//
-//- (NSString * _Nullable)isIPV6;
-
 @end
 
 NS_ASSUME_NONNULL_END
