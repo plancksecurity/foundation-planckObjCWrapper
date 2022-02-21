@@ -15,7 +15,6 @@ extern NSString *const _Nonnull IPV4Format;
 extern NSString *const _Nonnull IPV6Format;
 
 extern NSString *const _Nonnull kURIscheme;
-extern NSString *const _Nonnull pEpPlus;
 extern NSString *const _Nonnull colons;
 extern NSString *const _Nonnull closeBracket;
 extern NSString *const _Nonnull openBracket;
@@ -41,8 +40,8 @@ extern NSString *const _Nonnull IPV4Separator;
 /// If the address does not respect the pEp scheme will return nil.
 ///
 /// For example:
-/// from the address "pEp+sctp:1.2.3.4:666" it will return '1.2.3.4'
-/// from the address "pEp+sctp:[1::2::3::4::5::6::7::8]:666" it will return nil
+/// from the address "sctp:1.2.3.4:666" it will return '1.2.3.4'
+/// from the address "sctp:[1::2::3::4::5::6::7::8]:666" it will return nil
 /// from "some.address@pep.security" will return nil.
 ///
 /// @return the IPV4
@@ -52,8 +51,8 @@ extern NSString *const _Nonnull IPV4Separator;
 /// If the address does not respect the pEp scheme will return nil.
 ///
 /// For example:
-/// from the address "pEp+sctp:[1::2::3::4::5::6::7::8]:666" it will return '1::2::3::4::5::6::7::8'
-/// from the address "pEp+sctp:1.2.3.4:666" it will return nil
+/// from the address "sctp:[1::2::3::4::5::6::7::8]:666" it will return '1::2::3::4::5::6::7::8'
+/// from the address "sctp:1.2.3.4:666" it will return nil
 /// from "some.address@pep.security" will return nil.
 ///
 /// @return the IPV6
@@ -63,7 +62,7 @@ extern NSString *const _Nonnull IPV4Separator;
 /// If the address does not respect the pEp scheme will return 0.
 ///
 /// For example:
-/// from the address "pEp+sctp:1.2.3.4:666" it will return '666'
+/// from the address "sctp:1.2.3.4:666" it will return '666'
 /// from "some.address@pep.security" will return 0.
 ///
 /// @return the port
@@ -74,7 +73,7 @@ extern NSString *const _Nonnull IPV4Separator;
 /// Otherwise will return nil.
 ///
 /// For example:
-/// from the address "pEp+sctp:1.2.3.4:666" it will return 'sctp'
+/// from the address "sctp:1.2.3.4:666" it will return 'sctp'
 ///
 /// @return the port
 

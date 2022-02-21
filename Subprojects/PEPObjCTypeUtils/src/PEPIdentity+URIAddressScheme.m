@@ -12,12 +12,10 @@
 
 NSString *const _Nonnull kURIscheme = @"pEp.cc";
 
-NSString *const _Nonnull pEpPlus = @"pEp+";
-
 NSString *const _Nonnull closeBracket = @"]";
 NSString *const _Nonnull openBracket = @"[";
-NSString *const _Nonnull IPV4Format = @"pEp+%@:%@:%lu";
-NSString *const _Nonnull IPV6Format = @"pEp+%@:[%@]:%lu";
+NSString *const _Nonnull IPV4Format = @"%@:%@:%lu";
+NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
 
 NSString *const _Nonnull IPV6Separator = @"::";
 NSString *const _Nonnull IPV4Separator = @":";
@@ -47,7 +45,7 @@ NSString *const _Nonnull IPV4Separator = @":";
 - (NSString * _Nullable)getIPV6 {
     NSString *protocol = [self getProtocol];
     NSUInteger port = [self getPort];
-    NSString *lowerBound = [NSString stringWithFormat:@"%@%@:[", pEpPlus, protocol];
+    NSString *lowerBound = [NSString stringWithFormat:@"%@:[", protocol];
     NSString *upperBound = [NSString stringWithFormat:@"]:%lu", port];
     return [self.address stringBetweenString:lowerBound andString:upperBound];
 }
@@ -62,12 +60,10 @@ NSString *const _Nonnull IPV4Separator = @":";
 }
 
 - (NSString * _Nullable)getProtocol {
-    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"+:"];
-    NSArray *parts = [self.address componentsSeparatedByCharactersInSet:characterSet];
-    if (parts.count > 1) {
-        return parts[1];
-    }
-    return nil;
+    // As the address scheme for pEp4IPsec is "$PROTOCOL:$IPV4:$PORT" or "$PROTOCOL:[$IPV6]:$PORT",
+    // we can separate the protocol using the IPV4Separator, colon `:`.
+    NSArray *parts = [self.address componentsSeparatedByString:IPV4Separator];
+    return [parts firstObject];
 }
 
 @end
