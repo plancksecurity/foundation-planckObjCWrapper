@@ -9,8 +9,6 @@
 #import "PEPIdentity+URIAddressScheme.h"
 #import "NSString+PEPParse.h"
 
-NSString *const _Nonnull kURIscheme = @"pEp.cc";
-
 NSString *const _Nonnull closeBracket = @"]";
 NSString *const _Nonnull openBracket = @"[";
 NSString *const _Nonnull IPV4Format = @"%@:%@:%lu";
