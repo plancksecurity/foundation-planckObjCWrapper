@@ -71,12 +71,19 @@ NSString *const _Nonnull colon = @":";
     if (![self.address containsString:colon]) {
         return nil;
     }
-    NSArray *parts = [self.address componentsSeparatedByString:colon];
-    return [parts firstObject];
+    if ([self isIPV6] || [self isIPV4]) {
+        NSArray *parts = [self.address componentsSeparatedByString:colon];
+        return [parts firstObject];
+    }
+    return nil;
 }
 
 - (BOOL)isIPV6 {
     return [self.address containsString:openBracket] && [self.address containsString:closeBracket];
+}
+
+- (BOOL)isIPV4 {
+    return [self getIPV4] != nil;
 }
 
 @end
