@@ -26,7 +26,6 @@ NSString *const _Nonnull colon = @":";
 {
     if (self = [super init]) {
         self.userID = userID;
-        self.isIPV4 = YES;
         self.address = [NSString stringWithFormat:IPV4Format, protocol, ipV4, (unsigned long) port];
     }
     return self;
@@ -39,28 +38,27 @@ NSString *const _Nonnull colon = @":";
 {
     if (self = [super init]) {
         self.userID = userID;
-        self.isIPV6 = YES;
         self.address = [NSString stringWithFormat:IPV6Format, protocol, ipV6, (unsigned long) port];
     }
     return self;
 }
 
 - (NSString * _Nullable)getIPV4 {
-    if (!self.isIPV4) {
+    if ([self isIPV6] || ![self.address containsString:colon]) {
         return nil;
     }
     return [self.address stringBetweenString:colon andString:colon];
 }
 
 - (NSString * _Nullable)getIPV6 {
-    if (!self.isIPV6) {
+    if (![self isIPV6]) {
         return nil;
     }
     return [self.address stringBetweenString:openBracket andString:closeBracket];
 }
 
 - (NSUInteger)getPort {
-    if ((!self.isIPV4 && !self.isIPV6) || ![self.address containsString:colon]) {
+    if (![self.address containsString:colon]) {
         return 0;
     }
     NSArray *parts = [self.address componentsSeparatedByString:colon];
@@ -72,14 +70,18 @@ NSString *const _Nonnull colon = @":";
 }
 
 - (NSString * _Nullable)getProtocol {
-    if ((!self.isIPV4 && !self.isIPV6) || ![self.address containsString:colon]) {
+    if (![self.address containsString:colon]) {
         return nil;
     }
     NSArray *parts = [self.address componentsSeparatedByString:colon];
     return [parts firstObject];
 }
 
+- (BOOL)isIPV6 {
+    return [self.address containsString:openBracket] && [self.address containsString:closeBracket];
+}
 
 @end
+
 
 
