@@ -9,49 +9,61 @@
 #import "PEPIdentity+URIAddressScheme.h"
 #import "NSString+PEPParse.h"
 
-
 NSString *const _Nonnull kURIscheme = @"pEp.cc";
 
 NSString *const _Nonnull closeBracket = @"]";
 NSString *const _Nonnull openBracket = @"[";
 NSString *const _Nonnull IPV4Format = @"%@:%@:%lu";
 NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
-
-NSString *const _Nonnull IPV6Separator = @"::";
-NSString *const _Nonnull IPV4Separator = @":";
+NSString *const _Nonnull colon = @":";
 
 @implementation PEPIdentity (URIAddressScheme)
 
 - (nonnull instancetype)initWithUserID:(NSString *)userID
                               protocol:(NSString *)protocol
-                                    ip:(NSString *)ip
-                                  port:(NSUInteger)port;
+                                  ipV4:(NSString *)ip
+                                  port:(NSUInteger)port
 {
     if (self = [super init]) {
         self.userID = userID;
-        BOOL isIPV6 = [ip containsString:IPV6Separator];
-        self.address = [NSString stringWithFormat:isIPV6 ? IPV6Format : IPV4Format, protocol, ip, (unsigned long) port];
+        self.isIPV4 = YES;
+        self.address = [NSString stringWithFormat:IPV4Format, protocol, ip, (unsigned long) port];
+    }
+    return self;
+}
+
+- (nonnull instancetype)initWithUserID:(NSString *)userID
+                              protocol:(NSString *)protocol
+                                  ipV6:(NSString *)ip
+                                  port:(NSUInteger)port
+{
+    if (self = [super init]) {
+        self.userID = userID;
+        self.isIPV6 = YES;
+        self.address = [NSString stringWithFormat:IPV6Format, protocol, ip, (unsigned long) port];
     }
     return self;
 }
 
 - (NSString * _Nullable)getIPV4 {
-    if ([self.address containsString:IPV6Separator]) {
+    if (!self.isIPV4) {
         return nil;
     }
-    return [self.address stringBetweenString:IPV4Separator andString:IPV4Separator];
+    return [self.address stringBetweenString:colon andString:colon];
 }
 
 - (NSString * _Nullable)getIPV6 {
-    NSString *protocol = [self getProtocol];
-    NSUInteger port = [self getPort];
-    NSString *lowerBound = [NSString stringWithFormat:@"%@:[", protocol];
-    NSString *upperBound = [NSString stringWithFormat:@"]:%lu", port];
-    return [self.address stringBetweenString:lowerBound andString:upperBound];
+    if (!self.isIPV6) {
+        return nil;
+    }
+    return [self.address stringBetweenString:openBracket andString:closeBracket];
 }
 
 - (NSUInteger)getPort {
-    NSArray *parts = [self.address componentsSeparatedByString:IPV4Separator];
+    if ((!self.isIPV4 && !self.isIPV6) || ![self.address containsString:colon]) {
+        return 0;
+    }
+    NSArray *parts = [self.address componentsSeparatedByString:colon];
     NSString *probablyThePort = [parts lastObject];
     if (![probablyThePort isNumeric]) {
         return 0;
@@ -60,14 +72,13 @@ NSString *const _Nonnull IPV4Separator = @":";
 }
 
 - (NSString * _Nullable)getProtocol {
-    // As the address scheme for pEp4IPsec is "$PROTOCOL:$IPV4:$PORT" or "$PROTOCOL:[$IPV6]:$PORT",
-    // we can separate the protocol using the IPV4Separator, colon `:`.
-    if (![self.address containsString:IPV4Separator]) {
+    if ((!self.isIPV4 && !self.isIPV6) || ![self.address containsString:colon]) {
         return nil;
     }
-    NSArray *parts = [self.address componentsSeparatedByString:IPV4Separator];
+    NSArray *parts = [self.address componentsSeparatedByString:colon];
     return [parts firstObject];
 }
+
 
 @end
 

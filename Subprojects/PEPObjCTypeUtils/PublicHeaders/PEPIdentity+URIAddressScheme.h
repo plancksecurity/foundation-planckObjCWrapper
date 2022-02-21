@@ -15,12 +15,9 @@ extern NSString *const _Nonnull IPV4Format;
 extern NSString *const _Nonnull IPV6Format;
 
 extern NSString *const _Nonnull kURIscheme;
-extern NSString *const _Nonnull colons;
 extern NSString *const _Nonnull closeBracket;
 extern NSString *const _Nonnull openBracket;
-
-extern NSString *const _Nonnull IPV6Separator;
-extern NSString *const _Nonnull IPV4Separator;
+extern NSString *const _Nonnull colon;
 
 @interface PEPIdentity (URIAddressScheme)
 
@@ -29,11 +26,23 @@ extern NSString *const _Nonnull IPV4Separator;
 ///
 /// @param userID The user id. 
 /// @param protocol The communication protocol.
-/// @param ip Valid IPv4 or IPV6 must be passed.
+/// @param ipV4 Valid IPv4 must be passed.
 /// @param port The port.
 - (nonnull instancetype)initWithUserID:(NSString *)userID
                               protocol:(NSString *)protocol
-                                    ip:(NSString *)ip
+                                  ipV4:(NSString *)ipV4
+                                  port:(NSUInteger)port;
+
+/// Instanciate an Identity with the given parameters.
+/// There is no validation.
+///
+/// @param userID The user id.
+/// @param protocol The communication protocol.
+/// @param ipV6 Valid IPv6 must be passed.
+/// @param port The port.
+- (nonnull instancetype)initWithUserID:(NSString *)userID
+                              protocol:(NSString *)protocol
+                                  ipV6:(NSString *)ipV6
                                   port:(NSUInteger)port;
 
 /// Get the IPV4 from the address of the identity if it's IPV4, otherwise will return nil.
@@ -78,6 +87,15 @@ extern NSString *const _Nonnull IPV4Separator;
 /// @return the port
 
 - (NSString * _Nullable)getProtocol;
+
+
+//- (NSString * _Nullable)getIPV4Separator;
+//
+//- (NSString * _Nullable)getIPV6Separator;
+//
+//- (NSString * _Nullable)isIPV4;
+//
+//- (NSString * _Nullable)isIPV6;
 
 @end
 

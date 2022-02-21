@@ -47,6 +47,12 @@
  */
 @property BOOL isOwn;
 
+/// Indicates if the identity ip is IPV4
+@property BOOL isIPV4;
+
+/// Indicates if the identity ip is IPV6
+@property BOOL isIPV6;
+
 /// Flags controlling pEp sync behaviour, consisting of PEPIdentityFlags enums
 /// ORed together.
 @property int flags;
@@ -76,5 +82,7 @@
  Copy constructor.
  */
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
+
+
 
 @end
