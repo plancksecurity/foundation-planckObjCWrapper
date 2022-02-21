@@ -77,6 +77,4 @@
  */
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
 
-
-
 @end

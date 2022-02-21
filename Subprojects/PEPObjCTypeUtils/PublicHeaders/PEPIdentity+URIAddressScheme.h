@@ -11,13 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString *const _Nonnull IPV4Format;
-extern NSString *const _Nonnull IPV6Format;
-
-extern NSString *const _Nonnull closeBracket;
-extern NSString *const _Nonnull openBracket;
-extern NSString *const _Nonnull colon;
-
 @interface PEPIdentity (URIAddressScheme)
 
 /// Instanciate an Identity with the given parameters.
