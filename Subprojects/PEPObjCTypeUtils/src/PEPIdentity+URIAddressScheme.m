@@ -21,26 +21,26 @@ NSString *const _Nonnull colon = @":";
 
 - (nonnull instancetype)initWithUserID:(NSString *)userID
                               protocol:(NSString *)protocol
-                                  ipV4:(NSString *)ip
+                                  ipV4:(NSString *)ipV4
                                   port:(NSUInteger)port
 {
     if (self = [super init]) {
         self.userID = userID;
         self.isIPV4 = YES;
-        self.address = [NSString stringWithFormat:IPV4Format, protocol, ip, (unsigned long) port];
+        self.address = [NSString stringWithFormat:IPV4Format, protocol, ipV4, (unsigned long) port];
     }
     return self;
 }
 
 - (nonnull instancetype)initWithUserID:(NSString *)userID
                               protocol:(NSString *)protocol
-                                  ipV6:(NSString *)ip
+                                  ipV6:(NSString *)ipV6
                                   port:(NSUInteger)port
 {
     if (self = [super init]) {
         self.userID = userID;
         self.isIPV6 = YES;
-        self.address = [NSString stringWithFormat:IPV6Format, protocol, ip, (unsigned long) port];
+        self.address = [NSString stringWithFormat:IPV6Format, protocol, ipV6, (unsigned long) port];
     }
     return self;
 }
