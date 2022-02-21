@@ -60,11 +60,11 @@ NSString *const _Nonnull IPV4Separator = @":";
 }
 
 - (NSString * _Nullable)getProtocol {
+    // As the address scheme for pEp4IPsec is "$PROTOCOL:$IPV4:$PORT" or "$PROTOCOL:[$IPV6]:$PORT",
+    // we can separate the protocol using the IPV4Separator, colon `:`.
     if (![self.address containsString:IPV4Separator]) {
         return nil;
     }
-    // As the address scheme for pEp4IPsec is "$PROTOCOL:$IPV4:$PORT" or "$PROTOCOL:[$IPV6]:$PORT",
-    // we can separate the protocol using the IPV4Separator, colon `:`.
     NSArray *parts = [self.address componentsSeparatedByString:IPV4Separator];
     return [parts firstObject];
 }
