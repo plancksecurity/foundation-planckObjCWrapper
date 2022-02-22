@@ -22,7 +22,7 @@ NSString *defaultUserID = @"1";
 
 - (void)testIdentityWithIPV4 {
     PEPIdentity *identity = [[PEPIdentity alloc] initWithUserID:defaultUserID protocol:defaultSctpProtocol ipV4:defaultIPV4 port:defaultPort];
-    XCTAssertEqual(defaultPort, [identity getPort]);
+    XCTAssertEqual(defaultPort, [[identity getPort] longLongValue]);
 
     NSString *ipV4 = [identity getIPV4];
     XCTAssertTrue([defaultIPV4 isEqualToString:ipV4], @"Strings are not equal %@ %@", defaultIPV4, ipV4);
@@ -40,7 +40,7 @@ NSString *defaultUserID = @"1";
 
 - (void)testIdentityWithIPV6 {
     PEPIdentity *identity = [[PEPIdentity alloc] initWithUserID:defaultUserID protocol:defaultSctpProtocol ipV6:defaultIPV6 port:defaultPort];
-    XCTAssertEqual(defaultPort, [identity getPort]);
+    XCTAssertEqual(defaultPort, [[identity getPort] longLongValue]);
 
     NSString *ipV6 = [identity getIPV6];
     XCTAssertTrue([defaultIPV6 isEqualToString:ipV6], @"Strings are not equal %@ %@", defaultIPV6, ipV6);
