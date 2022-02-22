@@ -80,8 +80,11 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
     NSString *colon = @":";
     NSRange firstColonRange = [self.address rangeOfString:colon];
     NSRange lastColonRange = [self.address rangeOfString:colon options:NSBackwardsSearch];
+    //No colon, no parts.
+    if (firstColonRange.location == NSNotFound || lastColonRange.location == NSNotFound) {
+        return nil;
+    }
     NSString *lastPart = [self.address substringFromIndex:lastColonRange.location + lastColonRange.length];
-
     NSString *middlePart;
     if (firstColonRange.location != NSNotFound) {
         middlePart = [self.address substringFromIndex:firstColonRange.location + firstColonRange.length];
