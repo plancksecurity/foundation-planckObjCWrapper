@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPSessionProtocol.h"
+#import <PEPSessionProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

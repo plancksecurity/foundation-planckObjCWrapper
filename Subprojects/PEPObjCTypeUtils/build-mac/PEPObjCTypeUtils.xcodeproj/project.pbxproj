@@ -7,30 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43431E6D278D7FED00A1AB63 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E27278D784D00A1AB63 /* libpEpEngine_macOS.a */; };
-		43B0EAC3274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43B0EAC4274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */ = {isa = PBXBuildFile; fileRef = 43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43B0EAD5274D21E100F5D076 /* libPEPObjCTypeUtils_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EA7C26984C4300B822E1 /* libPEPObjCTypeUtils_macOS.a */; };
 		43B0EAE0274D222000F5D076 /* PEPMessageASN1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */; };
 		43D97EF1278D875D005EA014 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E10278D782A00A1AB63 /* libPEPObjCTypes_macOS.a */; };
 		5B11963A27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
 		5B11963B27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
-		5B11963C27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B11963D27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B11964027B429E900FDF0B5 /* NSString+PEPParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */; };
-		5B11964127B429E900FDF0B5 /* NSString+PEPParse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */; };
 		5B11964227B429E900FDF0B5 /* NSString+PEPParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */; };
 		5B11964327B429E900FDF0B5 /* NSString+PEPParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */; };
 		5B11964527B50B0A00FDF0B5 /* PEPIdentityAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */; };
 		5B11968F27B54F9C00FDF0B5 /* NSStringParseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11968E27B54F9C00FDF0B5 /* NSStringParseTest.m */; };
-		5B29DA2A27A0439F00D7638E /* PEPMessage+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B29DA2827A0439F00D7638E /* PEPMessage+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B29DA2B27A0439F00D7638E /* PEPMessage+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B29DA2827A0439F00D7638E /* PEPMessage+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B29DA2C27A0439F00D7638E /* PEPMessage+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA2927A0439F00D7638E /* PEPMessage+PEPConvert.m */; };
 		5B29DA2D27A0439F00D7638E /* PEPMessage+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA2927A0439F00D7638E /* PEPMessage+PEPConvert.m */; };
-		5B29DA3827A0466E00D7638E /* PEPIdentity+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B29DA3927A0466E00D7638E /* PEPIdentity+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B29DA3A27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */; };
 		5B29DA3B27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */; };
 		5B2F476C27BA5CAF003517EC /* PEPIdentityComparisonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */; };
@@ -38,14 +26,8 @@
 		5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */; };
 		5B5ACF9A27A19B2100B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
 		5B5ACF9B27A19B2200B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
-		5BAAF80227A936430037C55E /* PEPStatusNSErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BAAF80127A936430037C55E /* PEPStatusNSErrorUtil.h */; };
-		5BAAF80327A936430037C55E /* PEPStatusNSErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BAAF80127A936430037C55E /* PEPStatusNSErrorUtil.h */; };
-		5BC7CC7127A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5BC7CC7227A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BC7CC7427A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */; };
 		5BC7CC7527A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */; };
-		5BC7CC7827A3FD190072AC5B /* NSArray+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7627A3FD190072AC5B /* NSArray+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5BC7CC7927A3FD190072AC5B /* NSArray+PEPConvert.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC7CC7627A3FD190072AC5B /* NSArray+PEPConvert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BC7CC7A27A3FD190072AC5B /* NSArray+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7727A3FD190072AC5B /* NSArray+PEPConvert.m */; };
 		5BC7CC7B27A3FD190072AC5B /* NSArray+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7727A3FD190072AC5B /* NSArray+PEPConvert.m */; };
 /* End PBXBuildFile section */
@@ -298,47 +280,11 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		1585EA7826984C4300B822E1 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5B29DA3827A0466E00D7638E /* PEPIdentity+PEPConvert.h in Headers */,
-				5BC7CC7827A3FD190072AC5B /* NSArray+PEPConvert.h in Headers */,
-				1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */,
-				5B11963C27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h in Headers */,
-				5B29DA2A27A0439F00D7638E /* PEPMessage+PEPConvert.h in Headers */,
-				43B0EAC3274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */,
-				5B11964027B429E900FDF0B5 /* NSString+PEPParse.h in Headers */,
-				5BC7CC7127A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */,
-				5BAAF80227A936430037C55E /* PEPStatusNSErrorUtil.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1585EB4B2698647800B822E1 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5B29DA3927A0466E00D7638E /* PEPIdentity+PEPConvert.h in Headers */,
-				1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */,
-				5BC7CC7227A3F9360072AC5B /* NSArray+PEPIdentityList.h in Headers */,
-				5B11963D27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h in Headers */,
-				5B29DA2B27A0439F00D7638E /* PEPMessage+PEPConvert.h in Headers */,
-				5BC7CC7927A3FD190072AC5B /* NSArray+PEPConvert.h in Headers */,
-				5B11964127B429E900FDF0B5 /* NSString+PEPParse.h in Headers */,
-				43B0EAC4274D1EA700F5D076 /* PEPMessage+ASN1.h in Headers */,
-				5BAAF80327A936430037C55E /* PEPStatusNSErrorUtil.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		1585EA7B26984C4300B822E1 /* PEPObjCTypeUtils_macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1585EA8526984C4300B822E1 /* Build configuration list for PBXNativeTarget "PEPObjCTypeUtils_macOS" */;
 			buildPhases = (
-				1585EA7826984C4300B822E1 /* Headers */,
 				1585EA7926984C4300B822E1 /* Sources */,
 				1585EA7A26984C4300B822E1 /* Frameworks */,
 				1585EA9626984E6F00B822E1 /* Copy Artifacts to Custom Build Dir */,
@@ -358,7 +304,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1585EB4A2698636C00B822E1 /* Build configuration list for PBXNativeTarget "PEPObjCTypeUtils_iOS" */;
 			buildPhases = (
-				1585EB4B2698647800B822E1 /* Headers */,
 				1585EB392698636C00B822E1 /* Sources */,
 				1585EB3A2698636C00B822E1 /* Frameworks */,
 				1585EB3B2698636C00B822E1 /* CopyFiles */,
@@ -519,7 +464,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_macOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/lib${PRODUCT_NAME}.a\" ${CUSTOM_BUILD_DIR}\n";
 			showEnvVarsInLog = 0;
 		};
 		1585EC78269C3DD000B822E1 /* Copy Artefacts to Custom Build dir */ = {
@@ -538,7 +483,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/PEPObjCTypeUtils/PublicHeaders\"/*.h \"${CUSTOM_INCLUDE_DIR}\"\ncp \"${BUILT_PRODUCTS_DIR}/libPEPObjCTypeUtils_iOS.a\" ${CUSTOM_BUILD_DIR}\n";
+			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/lib${PRODUCT_NAME}.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
