@@ -89,11 +89,8 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
     NSString *lastPart = [self.address substringFromIndex:lastColonRange.location + lastColonRange.length];
 
     //Get the middle part.
-    NSString *middlePart;
-    NSString *fromFirstColonPart = [self.address substringFromIndex:firstColonRange.location + firstColonRange.length];
-    //We need the range again as the container string is different.
-    lastColonRange = [fromFirstColonPart rangeOfString:colon options:NSBackwardsSearch];
-    middlePart = [fromFirstColonPart substringToIndex:lastColonRange.location];
+    NSRange middleRange = NSMakeRange(firstColonRange.location + firstColonRange.length , lastColonRange.location - firstColonRange.location - lastColonRange.length);
+    NSString *middlePart = [self.address substringWithRange:middleRange];
 
     //Get the first part
     NSString *firstPart = [self.address substringWithRange: NSMakeRange(0, firstColonRange.location)];
