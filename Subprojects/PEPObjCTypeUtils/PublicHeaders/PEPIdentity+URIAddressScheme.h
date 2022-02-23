@@ -17,11 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// There is no validation.
 ///
 /// @param userID The user id. 
-/// @param protocol The communication protocol.
+/// @param scheme The communication scheme.
 /// @param ipV4 Valid IPv4 must be passed.
 /// @param port The port.
 - (nonnull instancetype)initWithUserID:(NSString *)userID
-                                scheme:(NSString *)protocol
+                                scheme:(NSString *)scheme
                                   ipV4:(NSString *)ipV4
                                   port:(NSUInteger)port;
 
@@ -29,11 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// There is no validation.
 ///
 /// @param userID The user id.
-/// @param protocol The communication protocol.
+/// @param scheme The communication scheme.
 /// @param ipV6 Valid IPv6 must be passed.
 /// @param port The port.
 - (nonnull instancetype)initWithUserID:(NSString *)userID
-                                scheme:(NSString *)protocol
+                                scheme:(NSString *)scheme
                                   ipV6:(NSString *)ipV6
                                   port:(NSUInteger)port;
 
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return the IPV4
 - (NSString * _Nullable)getIPV4;
 
-/// Get the protocol from the address of the identity if it's IPV6, otherwise will return nil.
+/// Get the IPV6 from the address of the identity if it's IPV6, otherwise will return nil.
 /// If the address does not respect the pEp scheme will return nil.
 ///
 /// For example:
