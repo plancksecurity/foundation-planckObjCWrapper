@@ -84,21 +84,17 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
     if (firstColonRange.location == NSNotFound || lastColonRange.location == NSNotFound) {
         return nil;
     }
+    //Get the last part
     NSString *lastPart = [self.address substringFromIndex:lastColonRange.location + lastColonRange.length];
-    NSString *middlePart;
-    if (firstColonRange.location != NSNotFound) {
-        middlePart = [self.address substringFromIndex:firstColonRange.location + firstColonRange.length];
-        //We need the range again as it's a relative position.
-        lastColonRange = [middlePart rangeOfString:colon options:NSBackwardsSearch];
-        if (lastColonRange.location != NSNotFound) {
-            middlePart = [middlePart substringToIndex:lastColonRange.location];
-        } else {
-            return nil;
-        }
-    } else {
-        return nil;
-    }
 
+    //Get the middle part.
+    NSString *middlePart;
+    NSString *formFirstColonPart = [self.address substringFromIndex:firstColonRange.location + firstColonRange.length];
+    //We need the range again as it's a relative position.
+    lastColonRange = [formFirstColonPart rangeOfString:colon options:NSBackwardsSearch];    
+    middlePart = [formFirstColonPart substringToIndex:lastColonRange.location];
+
+    //Get the first part
     NSString *firstPart = [self.address substringWithRange: NSMakeRange(0, firstColonRange.location)];
     return @[firstPart, middlePart, lastPart];
 }
