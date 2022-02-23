@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param ipV4 Valid IPv4 must be passed.
 /// @param port The port.
 - (nonnull instancetype)initWithUserID:(NSString *)userID
-                              protocol:(NSString *)protocol
+                                scheme:(NSString *)protocol
                                   ipV4:(NSString *)ipV4
                                   port:(NSUInteger)port;
 
@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param ipV6 Valid IPv6 must be passed.
 /// @param port The port.
 - (nonnull instancetype)initWithUserID:(NSString *)userID
-                              protocol:(NSString *)protocol
+                                scheme:(NSString *)protocol
                                   ipV6:(NSString *)ipV6
                                   port:(NSUInteger)port;
 
@@ -69,15 +69,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return the port
 - (NSString * _Nullable)getPort;
 
-/// Get the protocol from the address of the identity if can find it.
+/// Get the scheme from the address of the identity if can find it.
 /// If the address does not respect the pEp scheme will return nil.
 /// Otherwise will return nil.
 ///
 /// For example:
 /// from the address "sctp:1.2.3.4:666" it will return 'sctp'
 ///
-/// @return the protocol
-- (NSString * _Nullable)getProtocol;
+/// @return the scheme
+- (NSString * _Nullable)getScheme;
 
 @end
 

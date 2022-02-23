@@ -14,30 +14,30 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
 @implementation PEPIdentity (URIAddressScheme)
 
 - (nonnull instancetype)initWithUserID:(NSString *)userID
-                              protocol:(NSString *)protocol
+                                scheme:(NSString *)scheme
                                   ipV4:(NSString *)ipV4
                                   port:(NSUInteger)port
 {
     if (self = [super init]) {
         self.userID = userID;
-        self.address = [NSString stringWithFormat:IPV4Format, protocol, ipV4, (unsigned long) port];
+        self.address = [NSString stringWithFormat:IPV4Format, scheme, ipV4, (unsigned long) port];
     }
     return self;
 }
 
 - (nonnull instancetype)initWithUserID:(NSString *)userID
-                              protocol:(NSString *)protocol
+                                scheme:(NSString *)scheme
                                   ipV6:(NSString *)ipV6
                                   port:(NSUInteger)port
 {
     if (self = [super init]) {
         self.userID = userID;
-        self.address = [NSString stringWithFormat:IPV6Format, protocol, ipV6, (unsigned long) port];
+        self.address = [NSString stringWithFormat:IPV6Format, scheme, ipV6, (unsigned long) port];
     }
     return self;
 }
 
-- (NSString * _Nullable)getProtocol {
+- (NSString * _Nullable)getScheme {
     NSArray *parts = [self getParts];
     if (parts) {
         return [parts firstObject];
@@ -47,7 +47,7 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
 
 - (NSString * _Nullable)getPort {
     NSArray *parts = [self getParts];
-    if (parts) {
+    if (parts.count == 3) {
         return [parts lastObject];
     }
     return nil;
@@ -81,6 +81,13 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
     NSRange firstColonRange = [self.address rangeOfString:colon];
     NSRange lastColonRange = [self.address rangeOfString:colon options:NSBackwardsSearch];
     //No colon, no parts.
+
+    //if we have only one colon
+    if (firstColonRange.location == lastColonRange.location) {
+        NSString *firstPart = [self.address substringWithRange: NSMakeRange(0, firstColonRange.location)];
+        return @[firstPart];
+    }
+
     if (firstColonRange.location == NSNotFound || lastColonRange.location == NSNotFound) {
         return nil;
     }
@@ -90,7 +97,7 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
     //Get the middle part.
     NSString *middlePart;
     NSString *fromFirstColonPart = [self.address substringFromIndex:firstColonRange.location + firstColonRange.length];
-    //We need the range again as the container string is different. 
+    //We need the range again as the container string is different.
     lastColonRange = [fromFirstColonPart rangeOfString:colon options:NSBackwardsSearch];
     middlePart = [fromFirstColonPart substringToIndex:lastColonRange.location];
 
@@ -101,7 +108,7 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
 
 - (NSString * _Nullable)getIP {
     NSMutableArray *parts = [[self getParts] mutableCopy];
-    if (parts) {
+    if (parts.count == 3) {
         [parts removeObjectAtIndex:0];
         [parts removeLastObject];
         return [parts componentsJoinedByString:@""];
