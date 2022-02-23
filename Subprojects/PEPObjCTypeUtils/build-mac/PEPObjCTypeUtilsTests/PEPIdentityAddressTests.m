@@ -26,8 +26,7 @@ NSString *defaultUserID = @"1";
     XCTAssertNil([identity getPort]);
     XCTAssertNil([identity getIPV4]);
     XCTAssertNil([identity getIPV6]);
-    NSString *scheme = [identity getScheme];
-    XCTAssertTrue([scheme isEqualToString:defaultSctpScheme], @"Strings are not equal %@ %@", defaultSctpScheme, scheme);
+    XCTAssertNil([identity getScheme]);
 }
 
 - (void)testIdentityWithIPV4 {

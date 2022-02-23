@@ -82,13 +82,7 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
     NSRange lastColonRange = [self.address rangeOfString:colon options:NSBackwardsSearch];
     //No colon, no parts.
 
-    //if we have only one colon
-    if (firstColonRange.location == lastColonRange.location) {
-        NSString *firstPart = [self.address substringWithRange: NSMakeRange(0, firstColonRange.location)];
-        return @[firstPart];
-    }
-
-    if (firstColonRange.location == NSNotFound || lastColonRange.location == NSNotFound) {
+    if (firstColonRange.location == NSNotFound || lastColonRange.location == NSNotFound || firstColonRange.location == lastColonRange.location) {
         return nil;
     }
     //Get the last part
