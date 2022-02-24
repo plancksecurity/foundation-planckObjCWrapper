@@ -13,10 +13,7 @@
 		43D97EF1278D875D005EA014 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E10278D782A00A1AB63 /* libPEPObjCTypes_macOS.a */; };
 		5B11963A27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
 		5B11963B27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
-		5B11964227B429E900FDF0B5 /* NSString+PEPParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */; };
-		5B11964327B429E900FDF0B5 /* NSString+PEPParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */; };
 		5B11964527B50B0A00FDF0B5 /* PEPIdentityAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */; };
-		5B11968F27B54F9C00FDF0B5 /* NSStringParseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11968E27B54F9C00FDF0B5 /* NSStringParseTest.m */; };
 		5B29DA2C27A0439F00D7638E /* PEPMessage+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA2927A0439F00D7638E /* PEPMessage+PEPConvert.m */; };
 		5B29DA2D27A0439F00D7638E /* PEPMessage+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA2927A0439F00D7638E /* PEPMessage+PEPConvert.m */; };
 		5B29DA3A27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */; };
@@ -129,10 +126,7 @@
 		4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+URIAddressScheme.m"; sourceTree = "<group>"; };
 		5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+URIAddressScheme.h"; sourceTree = "<group>"; };
-		5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+PEPParse.h"; sourceTree = "<group>"; };
-		5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+PEPParse.m"; sourceTree = "<group>"; };
 		5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentityAddressTests.m; sourceTree = "<group>"; };
-		5B11968E27B54F9C00FDF0B5 /* NSStringParseTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringParseTest.m; sourceTree = "<group>"; };
 		5B29DA2827A0439F00D7638E /* PEPMessage+PEPConvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+PEPConvert.h"; sourceTree = "<group>"; };
 		5B29DA2927A0439F00D7638E /* PEPMessage+PEPConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+PEPConvert.m"; sourceTree = "<group>"; };
 		5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+PEPConvert.h"; sourceTree = "<group>"; };
@@ -257,7 +251,6 @@
 				43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */,
 				5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */,
 				5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */,
-				5B11968E27B54F9C00FDF0B5 /* NSStringParseTest.m */,
 			);
 			path = PEPObjCTypeUtilsTests;
 			sourceTree = "<group>";
@@ -266,8 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */,
-				5B11963E27B429E900FDF0B5 /* NSString+PEPParse.h */,
-				5B11963F27B429E900FDF0B5 /* NSString+PEPParse.m */,
 				5BC7CC7727A3FD190072AC5B /* NSArray+PEPConvert.m */,
 				5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */,
 				5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */,
@@ -493,7 +484,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B29DA2C27A0439F00D7638E /* PEPMessage+PEPConvert.m in Sources */,
-				5B11964227B429E900FDF0B5 /* NSString+PEPParse.m in Sources */,
 				5BC7CC7427A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */,
 				5B5ACF9827A19B1F00B34412 /* PEPMessage+ASN1.m in Sources */,
 				5BC7CC7A27A3FD190072AC5B /* NSArray+PEPConvert.m in Sources */,
@@ -508,7 +498,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B29DA2D27A0439F00D7638E /* PEPMessage+PEPConvert.m in Sources */,
-				5B11964327B429E900FDF0B5 /* NSString+PEPParse.m in Sources */,
 				5BC7CC7527A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */,
 				5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */,
 				5BC7CC7B27A3FD190072AC5B /* NSArray+PEPConvert.m in Sources */,
@@ -525,7 +514,6 @@
 				5B2F476C27BA5CAF003517EC /* PEPIdentityComparisonTest.m in Sources */,
 				5B11964527B50B0A00FDF0B5 /* PEPIdentityAddressTests.m in Sources */,
 				43B0EAE0274D222000F5D076 /* PEPMessageASN1Tests.m in Sources */,
-				5B11968F27B54F9C00FDF0B5 /* NSStringParseTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

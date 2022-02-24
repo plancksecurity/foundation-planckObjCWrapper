@@ -7,69 +7,104 @@
 //
 
 #import "PEPIdentity+URIAddressScheme.h"
-#import "NSString+PEPParse.h"
 
-
-NSString *const _Nonnull kURIscheme = @"pEp.cc";
-
-NSString *const _Nonnull pEpPlus = @"pEp+";
-
-NSString *const _Nonnull closeBracket = @"]";
-NSString *const _Nonnull openBracket = @"[";
-NSString *const _Nonnull IPV4Format = @"pEp+%@:%@:%lu";
-NSString *const _Nonnull IPV6Format = @"pEp+%@:[%@]:%lu";
-
-NSString *const _Nonnull IPV6Separator = @"::";
-NSString *const _Nonnull IPV4Separator = @":";
+NSString *const _Nonnull IPV4Format = @"%@:%@:%lu";
+NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
 
 @implementation PEPIdentity (URIAddressScheme)
 
 - (nonnull instancetype)initWithUserID:(NSString *)userID
-                              protocol:(NSString *)protocol
-                                    ip:(NSString *)ip
-                                  port:(NSUInteger)port;
+                                scheme:(NSString *)scheme
+                                  ipV4:(NSString *)ipV4
+                                  port:(NSUInteger)port
 {
     if (self = [super init]) {
         self.userID = userID;
-        BOOL isIPV6 = [ip containsString:IPV6Separator];
-        self.address = [NSString stringWithFormat:isIPV6 ? IPV6Format : IPV4Format, protocol, ip, (unsigned long) port];
+        self.address = [NSString stringWithFormat:IPV4Format, scheme, ipV4, (unsigned long) port];
     }
     return self;
 }
 
-- (NSString * _Nullable)getIPV4 {
-    if ([self.address containsString:IPV6Separator]) {
-        return nil;
+- (nonnull instancetype)initWithUserID:(NSString *)userID
+                                scheme:(NSString *)scheme
+                                  ipV6:(NSString *)ipV6
+                                  port:(NSUInteger)port
+{
+    if (self = [super init]) {
+        self.userID = userID;
+        self.address = [NSString stringWithFormat:IPV6Format, scheme, ipV6, (unsigned long) port];
     }
-    return [self.address stringBetweenString:IPV4Separator andString:IPV4Separator];
+    return self;
+}
+
+- (NSString * _Nullable)getScheme {
+    NSArray *parts = [self getParts];
+    if (parts) {
+        return [parts firstObject];
+    }
+    return nil;
+}
+
+- (NSString * _Nullable)getPort {
+    NSArray *parts = [self getParts];
+    if (parts.count == 3) {
+        return [parts lastObject];
+    }
+    return nil;
 }
 
 - (NSString * _Nullable)getIPV6 {
-    NSString *protocol = [self getProtocol];
-    NSUInteger port = [self getPort];
-    NSString *lowerBound = [NSString stringWithFormat:@"%@%@:[", pEpPlus, protocol];
-    NSString *upperBound = [NSString stringWithFormat:@"]:%lu", port];
-    return [self.address stringBetweenString:lowerBound andString:upperBound];
-}
-
-- (NSUInteger)getPort {
-    NSArray *parts = [self.address componentsSeparatedByString:IPV4Separator];
-    NSString *probablyThePort = [parts lastObject];
-    if (![probablyThePort isNumeric]) {
-        return 0;
+    NSString *ip = [self getIP];
+    if (ip) {
+        if ([ip hasPrefix:@"["] && [ip hasSuffix:@"]"]) {
+            return [ip substringWithRange:NSMakeRange(1, [ip length] - 2)];
+        }
     }
-    return [probablyThePort longLongValue];
+    return nil;
 }
 
-- (NSString * _Nullable)getProtocol {
-    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"+:"];
-    NSArray *parts = [self.address componentsSeparatedByCharactersInSet:characterSet];
-    if (parts.count > 1) {
-        return parts[1];
+- (NSString * _Nullable)getIPV4 {
+    NSString *ip = [self getIP];
+    if (ip) {
+        if ([ip hasPrefix:@"["] && [ip hasSuffix:@"]"]) {
+            return nil;
+        }
+        return ip;
+    }
+    return nil;
+}
+
+//MARK: - Private
+
+- (NSArray * _Nullable)getParts {
+    NSString *colon = @":";
+    NSRange firstColonRange = [self.address rangeOfString:colon];
+    NSRange lastColonRange = [self.address rangeOfString:colon options:NSBackwardsSearch];
+    //No colon, no parts.
+
+    if (firstColonRange.location == NSNotFound || lastColonRange.location == NSNotFound || firstColonRange.location == lastColonRange.location) {
+        return nil;
+    }
+    //Get the last part
+    NSString *lastPart = [self.address substringFromIndex:lastColonRange.location + lastColonRange.length];
+
+    //Get the middle part.
+    NSRange middleRange = NSMakeRange(firstColonRange.location + firstColonRange.length , lastColonRange.location - firstColonRange.location - lastColonRange.length);
+    NSString *middlePart = [self.address substringWithRange:middleRange];
+
+    //Get the first part
+    NSString *firstPart = [self.address substringWithRange: NSMakeRange(0, firstColonRange.location)];
+    return @[firstPart, middlePart, lastPart];
+}
+
+- (NSString * _Nullable)getIP {
+    NSMutableArray *parts = [[self getParts] mutableCopy];
+    if (parts.count == 3) {
+        [parts removeObjectAtIndex:0];
+        [parts removeLastObject];
+        return [parts componentsJoinedByString:@""];
     }
     return nil;
 }
 
 @end
-
-
