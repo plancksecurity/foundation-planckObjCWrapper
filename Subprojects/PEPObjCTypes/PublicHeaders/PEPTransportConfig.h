@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPTransportConfig : NSObject
 
+// The protocol port.
 @property (nonatomic) UInt16 port;
 
 /// The UDP encapsulation port used for SCTP connections.
