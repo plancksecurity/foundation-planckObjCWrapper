@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) UInt16 port;
 
-- (instancetype)initWithPort:(UInt16)port;
+@property (nonatomic) UInt16 encapsulationPort;
+
+- (instancetype)initWithPort:(UInt16)port encapsulationPort:(UInt16)encapsulationPort;
 
 @end
 
