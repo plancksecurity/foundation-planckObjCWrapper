@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "PEPObjCTypes_iOS.h"
+#import "PEPObjCTypes.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
