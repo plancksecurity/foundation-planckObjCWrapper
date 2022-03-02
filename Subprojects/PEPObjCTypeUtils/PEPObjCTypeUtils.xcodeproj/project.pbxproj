@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		1585EA8F26984D6B00B822E1 /* NSArray+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EA8926984D6B00B822E1 /* NSArray+Engine.m */; };
-		1585EA9026984D6B00B822E1 /* PEPIdentity+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8A26984D6B00B822E1 /* PEPIdentity+Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1585EA9026984D6B00B822E1 /* PEPIdentity+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8A26984D6B00B822E1 /* PEPIdentity+Engine.h */; };
 		1585EA9126984D6C00B822E1 /* PEPMessage+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EA8B26984D6B00B822E1 /* PEPMessage+Engine.m */; };
 		1585EA9226984D6C00B822E1 /* PEPIdentity+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EA8C26984D6B00B822E1 /* PEPIdentity+Engine.m */; };
-		1585EA9326984D6C00B822E1 /* NSArray+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8D26984D6B00B822E1 /* NSArray+Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1585EA9426984D6C00B822E1 /* PEPMessage+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8E26984D6B00B822E1 /* PEPMessage+Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1585EA9326984D6C00B822E1 /* NSArray+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8D26984D6B00B822E1 /* NSArray+Engine.h */; };
+		1585EA9426984D6C00B822E1 /* PEPMessage+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8E26984D6B00B822E1 /* PEPMessage+Engine.h */; };
 		1585EB4D2698648D00B822E1 /* NSArray+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EA8926984D6B00B822E1 /* NSArray+Engine.m */; };
-		1585EB50269864AA00B822E1 /* PEPMessage+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8E26984D6B00B822E1 /* PEPMessage+Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1585EB51269864AA00B822E1 /* PEPIdentity+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8A26984D6B00B822E1 /* PEPIdentity+Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1585EB50269864AA00B822E1 /* PEPMessage+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8E26984D6B00B822E1 /* PEPMessage+Engine.h */; };
+		1585EB51269864AA00B822E1 /* PEPIdentity+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8A26984D6B00B822E1 /* PEPIdentity+Engine.h */; };
 		1585EB52269864B100B822E1 /* PEPMessage+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EA8B26984D6B00B822E1 /* PEPMessage+Engine.m */; };
 		1585EB53269864B100B822E1 /* PEPIdentity+Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EA8C26984D6B00B822E1 /* PEPIdentity+Engine.m */; };
-		1585EB54269864B600B822E1 /* NSArray+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8D26984D6B00B822E1 /* NSArray+Engine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1585EB54269864B600B822E1 /* NSArray+Engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EA8D26984D6B00B822E1 /* NSArray+Engine.h */; };
+		1585EBC32698A8FC00B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; };
 		1585EBC42698A8FC00B822E1 /* PEPObjCTypeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1585EBC22698A8FC00B822E1 /* PEPObjCTypeUtils.m */; };
-		1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1585EC79269C3E1700B822E1 /* PEPObjCTypeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */; };
 		1598062A26CFCA0000593C9D /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1598060326CFC0C500593C9D /* libPEPObjCTypes_iOS.a */; };
 		4E89010726CF900B00A683E9 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */; };
 /* End PBXBuildFile section */
