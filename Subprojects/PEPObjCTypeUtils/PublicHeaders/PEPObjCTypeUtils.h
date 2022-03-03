@@ -13,6 +13,7 @@
 #import "PEPIdentity+PEPConvert.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
+#import "PEPIdentity+URIAddressScheme.h"
 
 // Umbrella Header
 @interface PEPObjCTypeUtils : NSObject
