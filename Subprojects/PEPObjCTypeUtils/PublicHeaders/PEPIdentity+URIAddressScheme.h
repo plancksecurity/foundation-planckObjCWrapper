@@ -64,10 +64,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 /// For example:
 /// from the address "sctp:1.2.3.4:666" it will return '666'
-/// from "some.address@pep.security" will return '0'.
+/// from "some.address@pep.security" will return nil`.
 ///
 /// @return the port
-- (NSString * _Nullable)getPort;
+- (NSNumber * _Nullable)getPort;
 
 /// Get the scheme from the address of the identity if can find it.
 /// If the address does not respect the pEp scheme will return nil.

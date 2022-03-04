@@ -6,8 +6,8 @@
 //
 #import <Foundation/Foundation.h>
 
-#import "message.h"
-#import "PEPMessage.h"
+#import <message.h>
+#import <PEPMessage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
