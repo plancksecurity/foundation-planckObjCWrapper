@@ -157,6 +157,10 @@ static NSArray *s_keys;
 /// @return YES if it's the same identity. Otherwise it returns NO.
 - (BOOL)isEqual:(id)object
 {
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+
     if (object == nil) {
         return NO;
     }
@@ -164,11 +168,10 @@ static NSArray *s_keys;
     if (self == object) {
         return YES;
     }
-
+    PEPIdentity *other = object;
     if ([object isKindOfClass:[PEPIdentity class]]) {
-        NSString *key = @"address";
-        NSString *selfAddress = (NSString *) [self valueForKey:key];
-        NSString *otherAddress = (NSString *) [object valueForKey:key];
+        NSString *selfAddress = self.address;
+        NSString *otherAddress = other.address;
         return [selfAddress caseInsensitiveCompare:otherAddress] == NSOrderedSame;
     }
     return NO;
