@@ -45,10 +45,10 @@ NSString *const _Nonnull IPV6Format = @"%@:[%@]:%lu";
     return nil;
 }
 
-- (NSString * _Nullable)getPort {
+- (NSNumber * _Nullable)getPort {
     NSArray *parts = [self getParts];
     if (parts.count == 3) {
-        return [parts lastObject];
+        return @([[parts lastObject] intValue]);
     }
     return nil;
 }
