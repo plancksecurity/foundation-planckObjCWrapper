@@ -11,9 +11,6 @@ INCLUDES = \
   $(call find-includes,../src) \
   -I$(PEP_INCLUDE)
 
-# Only for making .so libs. Libs for static linking are defined with the final binary.
-LIBS = -lpEpEngine -Wl,--whole-archive -lPEPObjCTypes -lPEPObjCTypeUtils -lPEPObjCAdapterProtocols -Wl,--no-whole-archive
-
 # Load the shared pEp ObjC Makefile.
 MAKEFILE_COMMON ?= ../../pepgnustephelper
 include $(MAKEFILE_COMMON)/Makefile.common
