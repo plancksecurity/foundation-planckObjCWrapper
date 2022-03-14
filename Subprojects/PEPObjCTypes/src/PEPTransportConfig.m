@@ -9,11 +9,12 @@
 
 @implementation PEPTransportConfig
 
-- (instancetype)initWithPort:(UInt16)port
+- (instancetype)initWithPort:(UInt16)port encapsulationPort:(UInt16)encapsulationPort
 {
     self = [super init];
     if (self) {
         _port = port;
+        _encapsulationPort = encapsulationPort;
     }
     return self;
 }
