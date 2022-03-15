@@ -8,9 +8,6 @@ HEADERS = $(call find-headers,../PublicHeaders/)
 INCLUDES = \
   $(call find-includes,..)
 
-# Only for making .so libs. Libs for static linking are defined with the final binary.
-LIBS =
-
 # Load the shared pEp ObjC Makefile.
 MAKEFILE_COMMON ?= ../../../../pepgnustephelper/
 include $(MAKEFILE_COMMON)/Makefile.common
