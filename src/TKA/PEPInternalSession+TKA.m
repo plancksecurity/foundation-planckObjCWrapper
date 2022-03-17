@@ -13,6 +13,10 @@
 
 // MARK: - Cheap fake of the engine's TKA API
 
+// NOTE: IOSAD-239
+// Delete this section once the engine has TKA implemented,
+// and instead simply include the correct header.
+
 typedef PEP_STATUS (*tka_keychange_t)(const pEp_identity *me,
                                       const pEp_identity *partner,
                                       const char *key);
