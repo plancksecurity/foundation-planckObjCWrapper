@@ -44,8 +44,13 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     int64_t nsDelta = 1000000000; // 1s in nanoseconds
     dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, nsDelta);
 
+    pEp_identity *meCopy = identity_dup(me);
+    pEp_identity *partnerCopy = identity_dup(partner);
+
     dispatch_after(delay, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        g_tkaKeyChangeCallback(me, partner, s_mockedTmpKey);
+        g_tkaKeyChangeCallback(meCopy, partnerCopy, s_mockedTmpKey);
+        free_identity(meCopy);
+        free_identity(partnerCopy);
     });
 
     return PEP_STATUS_OK;
