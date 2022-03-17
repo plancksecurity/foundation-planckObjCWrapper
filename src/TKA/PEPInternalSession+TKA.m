@@ -25,6 +25,11 @@ PEP_STATUS tka_subscribe_keychange(PEP_SESSION session,
     return PEP_STATUS_OK;
 }
 
+const char *s_mockedTmpKey =
+"base64"
+"line2"
+"line3";
+
 PEP_STATUS tka_request_temp_key(PEP_SESSION session,
                                 pEp_identity *me,
                                 pEp_identity *partner) {
@@ -32,7 +37,7 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
         return PEP_ILLEGAL_VALUE;
     }
 
-    g_tkaKeyChangeCallback(me, partner, "compleeeetely_fake_key");
+    g_tkaKeyChangeCallback(me, partner, s_mockedTmpKey);
     return PEP_STATUS_OK;
 }
 
