@@ -45,7 +45,7 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     static dispatch_once_t onlyOnce;
     dispatch_once(&onlyOnce, ^{
         s_mockedTmpKey = malloc(s_numberOfBytesForKey);
-        srand(1); // Make the default explicit, just in case
+        srand(1); // Make the default explicit
         for (int byteIndex = 0; byteIndex < s_numberOfBytesForKey; ++byteIndex) {
             s_mockedTmpKey[byteIndex] = rand();
         }
