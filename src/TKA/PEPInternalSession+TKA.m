@@ -29,10 +29,11 @@ PEP_STATUS tka_subscribe_keychange(PEP_SESSION session,
     return PEP_STATUS_OK;
 }
 
-const char *s_mockedTmpKey =
-"base64"
-"line2"
-"line3";
+/// The number bytes the engine would use for temp key.
+const NSUInteger s_numberOfBytesForKey = 256/8;
+
+/// 256 bits of "random" data, which in this mock is always the same.
+char *s_mockedTmpKey = NULL;
 
 PEP_STATUS tka_request_temp_key(PEP_SESSION session,
                                 pEp_identity *me,
@@ -40,6 +41,15 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     if (g_tkaKeyChangeCallback == NULL) {
         return PEP_ILLEGAL_VALUE;
     }
+
+    static dispatch_once_t onlyOnce;
+    dispatch_once(&onlyOnce, ^{
+        s_mockedTmpKey = malloc(s_numberOfBytesForKey);
+        srand(1); // Make the default explicit, just in case
+        for (int byteIndex = 0; byteIndex < s_numberOfBytesForKey; ++byteIndex) {
+            s_mockedTmpKey[byteIndex] = rand();
+        }
+    });
 
     int64_t nsDelta = 1000000000; // 1s in nanoseconds
     dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, nsDelta);
