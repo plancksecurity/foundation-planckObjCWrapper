@@ -9,6 +9,8 @@
 #import "PEPInternalSession.h"
 
 #import <PEPObjCTypeUtils.h>
+#import <PEPLogger.hh>
+#import <PEPLoggerMacros.hh>
 
 #import "PEPConstants.h"
 #import "PEPObjCAdapter.h"
@@ -31,7 +33,6 @@
 #import "PEPIdentity+PEPConvert.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
-
 #import "key_reset.h"
 
 @implementation PEPInternalSession
@@ -41,6 +42,8 @@
     self = [super init];
     if (self) {
         [PEPInternalSession setupTrustWordsDB];
+        [[PEPLogger sharedInstance] setMode:PEPDefault];
+        [[PEPLogger sharedInstance] setTarget:PEPConsole];
 
         // Get an engine session from PEPSync, because its creation requires callbacks
         // that PEPSync is responsible for.
@@ -65,6 +68,7 @@
 
 - (void)configUnEncryptedSubjectEnabled:(BOOL)enabled;
 {
+    LogCall(@"config_unencrypted_subject enabled %hhd", enabled);
     config_unencrypted_subject(self.session, enabled);
 }
 
@@ -111,6 +115,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     // Since we derive our returned messages from either the destination message or source,
     // we'll have a correct rating in the returned result regardless.
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"decrypt_message_2");
         return decrypt_message_2(session,
                                  src,
                                  &dst,
@@ -170,6 +175,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block PEPRating resultRating = PEPRatingUndefined;
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"re_evaluate_message_rating");
         PEP_STATUS tmpStatus = re_evaluate_message_rating(session,
                                                           _src,
                                                           theKeys,
@@ -209,6 +215,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block stringlist_t *_keys = [extraKeys toStringList];
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"encrypt_message");
         return encrypt_message(session,
                                _src,
                                _keys,
@@ -272,6 +279,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block stringlist_t *keysStringList = [extraKeys toStringList];
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"encrypt_message_for_self");
         return encrypt_message_for_self(session,
                                         ident,
                                         _src,
@@ -321,6 +329,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block message *dst = NULL;
 
     PEPStatus theStatus = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"encrypt_message_and_add_priv_key");
         return encrypt_message_and_add_priv_key(session,
                                                 src,
                                                 &dst,
@@ -353,6 +362,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"outgoing_message_rating");
         return outgoing_message_rating(session, _msg, (PEP_rating *) &rating);
     }];
 
@@ -371,6 +381,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     message *_msg = [theMessage toStruct];
     PEPRating rating = PEPRatingUndefined;
 
+    LogCall(@"outgoing_message_rating_preview");
     PEPStatus status = (PEPStatus) outgoing_message_rating_preview(_session,
                                                                    _msg,
                                                                    (PEP_rating *) &rating);
@@ -391,6 +402,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block PEPRating rating = PEPRatingUndefined;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"identity_rating");
         return identity_rating(session, ident, (PEP_rating *) &rating);
     }];
 
@@ -423,6 +435,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         __block size_t size;
 
         PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+            LogCall(@"trustword");
             return trustword(session,
                              value,
                              [[languageID precomposedStringWithCanonicalMapping]
@@ -446,6 +459,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     pEp_identity *ident = [identity toStruct];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"myself");
         return myself(session, ident);
     }];
 
@@ -469,6 +483,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         pEp_identity *ident = [identity toStruct];
 
         PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+            LogCall(@"update_identity");
             return update_identity(session, ident);
         }];
 
@@ -491,6 +506,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     pEp_identity *ident = [identity toStruct];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"trust_personal_key");
         return trust_personal_key(session, ident);
     }];
 
@@ -509,6 +525,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     pEp_identity *ident = [identity toStruct];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"key_mistrusted");
         return key_mistrusted(session, ident);
     }];
 
@@ -528,6 +545,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block pEp_identity *ident = [identity toStruct];
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"key_reset_trust");
         return key_reset_trust(session, ident);
     }];
 
@@ -552,6 +570,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     pEp_identity *ident = [identity toStruct];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"enable_identity_for_sync");
         return enable_identity_for_sync(session, ident);
     }];
 
@@ -576,6 +595,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     pEp_identity *ident = [identity toStruct];
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"disable_identity_for_sync");
         return disable_identity_for_sync(session, ident);
     }];
 
@@ -595,6 +615,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block identity_list *identList = NULL;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"import_key");
         return import_key(session,
                           [[keydata precomposedStringWithCanonicalMapping] UTF8String],
                           [keydata length], &identList);
@@ -618,6 +639,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
            error:(NSError * _Nullable * _Nullable)error
 {
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"log_event");
         return log_event(session,
                          [[title precomposedStringWithCanonicalMapping]
                           UTF8String],
@@ -640,6 +662,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     __block char *theChars = NULL;
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"get_crashdump_log");
         return get_crashdump_log(session, 0, &theChars);
     }];
 
@@ -668,6 +691,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block size_t sizeWritten = 0;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"get_trustwords");
         return get_trustwords(session, ident1, ident2,
                               [[language precomposedStringWithCanonicalMapping]
                                UTF8String],
@@ -699,6 +723,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block size_t sizeWritten = 0;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"get_trustwords_for_fprs");
         return get_trustwords_for_fprs(session, _fpr1, _fpr2,
                                        [[language precomposedStringWithCanonicalMapping]
                                         UTF8String],
@@ -718,6 +743,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     PEPAutoPointer *chLangs = [PEPAutoPointer new];
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"get_languagelist");
         return get_languagelist(session, chLangs.charPointerPointer);
     }];
 
@@ -813,6 +839,7 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = [identity toStruct];
     __block bool isPEP;
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"is_pEp_user");
         return is_pEp_user(session, ident, &isPEP);
     }];
 
@@ -831,6 +858,7 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = [identity toStruct];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"set_own_key");
         return set_own_key(session,
                            ident,
                            [[fingerprint precomposedStringWithCanonicalMapping]
@@ -848,6 +876,7 @@ static NSDictionary *stringToRating;
 
 - (void)configurePassiveModeEnabled:(BOOL)enabled
 {
+    LogCall(@"config_passive_mode");
     config_passive_mode(_session, enabled);
 }
 
@@ -858,6 +887,7 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = [identity toStruct];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"set_identity_flags");
         return set_identity_flags(session, ident, flags);
     }];
 
@@ -883,6 +913,7 @@ static NSDictionary *stringToRating;
     }
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"deliverHandshakeResult");
         return deliverHandshakeResult(session,
                                       (sync_handshake_result) result,
                                       identitiesSharingData);
@@ -903,6 +934,7 @@ static NSDictionary *stringToRating;
     pEp_identity *ident = [identity toStruct];
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"trust_own_key");
         return trust_own_key(session, ident);
     }];
 
@@ -917,9 +949,9 @@ static NSDictionary *stringToRating;
 
 - (PEPColor)colorFromRating:(PEPRating)rating
 {
+    LogCall(@"color_from_rating");
     return (PEPColor) color_from_rating((PEP_rating) rating);
 }
-
 
 - (BOOL)keyReset:(PEPIdentity * _Nonnull)identity
      fingerprint:(NSString * _Nullable)fingerprint
@@ -929,6 +961,7 @@ static NSDictionary *stringToRating;
     const char *fpr = [[fingerprint precomposedStringWithCanonicalMapping] UTF8String];
 
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"key_reset_user");
         return key_reset_user(session, ident->user_id, fpr);
     }];
 
@@ -944,6 +977,7 @@ static NSDictionary *stringToRating;
 - (BOOL)leaveDeviceGroup:(NSError * _Nullable * _Nullable)error
 {
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"leave_device_group");
         return leave_device_group(session);
     }];
 
@@ -957,6 +991,7 @@ static NSDictionary *stringToRating;
 - (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error
 {
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"key_reset_all_own_keys");
         return key_reset_all_own_keys(self.session);
     }];
 
@@ -981,7 +1016,7 @@ static NSDictionary *stringToRating;
     }
 
     [self.passphraseCache addPassphrase:normalizedPassphrase];
-
+    LogCall(@"config_passphrase");
     PEP_STATUS status = config_passphrase(_session, [normalizedPassphrase UTF8String]);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) status]) {
@@ -1000,6 +1035,7 @@ static NSDictionary *stringToRating;
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error
 {
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        LogCall(@"disable_all_sync_channels");
         return disable_all_sync_channels(self.session);
     }];
 
