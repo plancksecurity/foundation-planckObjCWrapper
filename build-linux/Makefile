@@ -1,7 +1,6 @@
 # Content of this library
 TARGET = libpEpObjCAdapter
-# Can't use find-objects here since that would search the entire repo.
-OBJECTS = $(patsubst %.m,%.o,$(wildcard ../*.m ../*/*.m))
+OBJECTS = $(call find-objects,../src/)
 DEPFILES = $(call find-deps,..)
 HEADERS = $(call find-headers,../PublicHeaders/)
 
