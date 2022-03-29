@@ -10,7 +10,6 @@
 #import "PEPObjCTypeUtils.h"
 #import "PEPStatusNSErrorUtil.h"
 #import "PEPIdentity+PEPConvert.h"
-#import <PEPLoggerCXX.hh>
 
 // MARK: - Cheap fake of the engine's TKA API
 
@@ -32,7 +31,7 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     if (g_tkaKeyChangeCallback == NULL) {
         return PEP_ILLEGAL_VALUE;
     }
-    
+
     g_tkaKeyChangeCallback(me, partner, "compleeeetely_fake_key");
     return PEP_STATUS_OK;
 }
