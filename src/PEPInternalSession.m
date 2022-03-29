@@ -9,8 +9,8 @@
 #import "PEPInternalSession.h"
 
 #import <PEPObjCTypeUtils.h>
-#import <PEPLogger.hh>
-#import <PEPLoggerMacros.hh>
+#import <PEPObjCLogger.hh>
+#import <PEPObjCLoggerMacros.hh>
 
 #import "PEPConstants.h"
 #import "PEPObjCAdapter.h"
@@ -42,8 +42,8 @@
     self = [super init];
     if (self) {
         [PEPInternalSession setupTrustWordsDB];
-        [[PEPLogger sharedInstance] setMode:PEPDefault];
-        [[PEPLogger sharedInstance] setTarget:PEPConsole];
+        [[PEPObjCLogger sharedInstance] setMode:PEPDefault];
+        [[PEPObjCLogger sharedInstance] setTarget:PEPConsole];
 
         // Get an engine session from PEPSync, because its creation requires callbacks
         // that PEPSync is responsible for.
