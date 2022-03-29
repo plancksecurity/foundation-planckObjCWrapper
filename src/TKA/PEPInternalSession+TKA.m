@@ -29,7 +29,7 @@ PEP_STATUS tka_subscribe_keychange(PEP_SESSION session,
     return PEP_STATUS_OK;
 }
 
-/// The number bytes the engine would use for temp key.
+/// The number of bytes the engine would use for temp key.
 const NSUInteger s_numberOfBytesForKey = 256/8;
 
 /// 256 bits of "random" data, which in this mock is always the same.
