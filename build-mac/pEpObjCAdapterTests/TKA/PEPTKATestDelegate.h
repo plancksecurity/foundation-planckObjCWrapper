@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPTKATestDelegate : NSObject <PEPTKADelegate>
 
+/// The key that has been received by the engine.
+@property (nonatomic, readonly, nullable) NSString *keyReceived;
+
 - (instancetype)initExpKeyChangedCalled:(XCTestExpectation *)expKeyChangedCalled
                            expDealloced:(XCTestExpectation *)expDealloced;
 

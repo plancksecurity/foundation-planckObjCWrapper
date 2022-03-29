@@ -53,9 +53,6 @@
     XCTAssertTrue([session tkaSubscribeWithKeychangeDelegate:delegate error:&error]);
     XCTAssertNil(error);
 
-    // now owned by the adapter
-    delegate = nil;
-
     PEPIdentity *me = [[PEPIdentity alloc]
                        initWithAddress:@"me@example.org"
                        userID:@"me_myself"
@@ -73,6 +70,11 @@
     XCTAssertNil(error);
 
     [self waitForExpectations:@[expDelegateCalled] timeout:PEPTestInternalFastTimeout];
+
+    XCTAssertNotNil(delegate.keyReceived);
+
+    // now owned by the adapter
+    delegate = nil;
 
     error = nil;
     XCTAssertTrue([session tkaSubscribeWithKeychangeDelegate:nil error:&error]);
