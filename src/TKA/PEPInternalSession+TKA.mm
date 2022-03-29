@@ -32,8 +32,9 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
     if (g_tkaKeyChangeCallback == NULL) {
         return PEP_ILLEGAL_VALUE;
     }
-    
+    Log_call("%s my address: %d: partner address: %s", "g_tkaKeyChangeCallback", me->address, partner->address);
     g_tkaKeyChangeCallback(me, partner, "compleeeetely_fake_key");
+    Log_call("%s my address: %d: partner address: %s OK", "g_tkaKeyChangeCallback", me->address, partner->address);
     return PEP_STATUS_OK;
 }
 
@@ -55,9 +56,13 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
     s_tkaDelegate = delegate;
 
     if (delegate != nil) {
+        Log_call("%s", "tka_subscribe_keychange");
         tka_subscribe_keychange(self.session, tkaKeychangeCallback);
+        Log_call("%s OK", "tka_subscribe_keychange");
     } else {
+        Log_call("%s OK", "tka_subscribe_keychange");
         tka_subscribe_keychange(self.session, NULL);
+        Log_call("%s OK", "tka_subscribe_keychange");
     }
 
     return YES;
@@ -76,8 +81,9 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
         return [PEPStatusNSErrorUtil setError:error fromPEPStatus:PEPStatusIllegalValue];
     }
 
+    Log_call("%s", "tka_request_temp_key");
     PEP_STATUS engineStatus = tka_request_temp_key(self.session, engineMe, enginePartner);
-
+    Log_call("%s OK", "tka_request_temp_key");
     free_identity(engineMe);
     free_identity(enginePartner);
 

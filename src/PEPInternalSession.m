@@ -996,6 +996,7 @@ static NSDictionary *stringToRating;
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        LogError(@"config_passphrase Failed");
         return NO;
     } else {
         return YES;
@@ -1020,8 +1021,10 @@ static NSDictionary *stringToRating;
     PEP_STATUS status = config_passphrase(_session, [normalizedPassphrase UTF8String]);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) status]) {
+        LogError(@"config_passphrase Failed");
         return NO;
     }
+    LogCall(@"config_passphrase OK");
     [PEPSync.sharedInstance handleNewPassphraseConfigured];
 
     return YES;
@@ -1038,10 +1041,11 @@ static NSDictionary *stringToRating;
         LogCall(@"disable_all_sync_channels");
         return disable_all_sync_channels(self.session);
     }];
-
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        LogError(@"disable_all_sync_channels Failed");
         return NO;
     } else {
+        LogCall(@"disable_all_sync_channels OK");
         return YES;
     }
 }
