@@ -47,7 +47,7 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
         s_mockedTmpKey = malloc(s_numberOfBytesForKey + 1);
         srand(1); // Make the default explicit
         for (int byteIndex = 0; byteIndex < s_numberOfBytesForKey; ++byteIndex) {
-            s_mockedTmpKey[byteIndex] = rand() % 64;
+            s_mockedTmpKey[byteIndex] = ' ' + (rand() % 94);
         }
         s_mockedTmpKey[s_numberOfBytesForKey] = '\0';
     });
