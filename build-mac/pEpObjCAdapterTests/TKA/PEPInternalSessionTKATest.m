@@ -73,6 +73,10 @@
 
     XCTAssertNotNil(delegate.keyReceived);
 
+    // NOTE: 256 bits is the expected key size currently produced by the *mock*.
+    // Bound to change any time.
+    XCTAssertEqual([delegate.keyReceived length], 256/8);
+
     // now owned by the adapter
     delegate = nil;
 
