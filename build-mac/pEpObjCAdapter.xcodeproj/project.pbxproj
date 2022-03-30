@@ -148,9 +148,9 @@
 		5B65399A27ECC7C1009AF5E1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B65399927ECC7C1009AF5E1 /* libc++.tbd */; };
 		5BAAF7CE27A928EC0037C55E /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43928099275A2511008E80C2 /* libPEPObjCTypes_macOS.a */; };
 		5BAAF7CF27A9293B0037C55E /* libPEPObjCTypeUtils_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43927FD5275A1E09008E80C2 /* libPEPObjCTypeUtils_macOS.a */; };
-		5BB7A1E627F32D4500C79DF0 /* PEPInternalSession+TKA.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.mm */; };
-		5BB7A1E727F32D4500C79DF0 /* PEPInternalSession+TKA.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.mm */; };
-		5BB7A1E827F32D4500C79DF0 /* PEPInternalSession+TKA.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.mm */; };
+		5BB7A1E627F32D4500C79DF0 /* PEPInternalSession+TKA.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.m */; };
+		5BB7A1E727F32D4500C79DF0 /* PEPInternalSession+TKA.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.m */; };
+		5BB7A1E827F32D4500C79DF0 /* PEPInternalSession+TKA.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.m */; };
 		640F79231C9B517C00DBEC4E /* 5CB2C182_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */; };
 		640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */ = {isa = PBXBuildFile; fileRef = 640F79221C9B517C00DBEC4E /* 5CB2C182.asc */; };
 		64415E481BEA523300F6CBB2 /* 6FF00E97.asc in Resources */ = {isa = PBXBuildFile; fileRef = 64415E421BEA523300F6CBB2 /* 6FF00E97.asc */; };
@@ -459,7 +459,7 @@
 		5B65399127ECC759009AF5E1 /* libPEPLogger.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPLogger.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B65399927ECC7C1009AF5E1 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		5BAAF7D027A92AE90037C55E /* libpEpIPsecObjCTypeUtils_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libpEpIPsecObjCTypeUtils_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "PEPInternalSession+TKA.mm"; sourceTree = "<group>"; };
+		5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPInternalSession+TKA.m"; sourceTree = "<group>"; };
 		640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182_sec.asc; sourceTree = "<group>"; };
 		640F79221C9B517C00DBEC4E /* 5CB2C182.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 5CB2C182.asc; sourceTree = "<group>"; };
 		64415E171BE94FCB00F6CBB2 /* pEpObjCAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pEpObjCAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -639,7 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				43147DD5279703E600661780 /* PEPInternalSession+TKA.h */,
-				5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.mm */,
+				5BB7A1E527F32D4500C79DF0 /* PEPInternalSession+TKA.m */,
 			);
 			path = TKA;
 			sourceTree = "<group>";
@@ -1186,7 +1186,7 @@
 				159C00A725BB140F00F13E2B /* PEPIdentity+Reset.m in Sources */,
 				1543DC89257944660041EFB5 /* PEPCSVScanner.m in Sources */,
 				15C3089426E8B8550013F39F /* Logger.m in Sources */,
-				5BB7A1E627F32D4500C79DF0 /* PEPInternalSession+TKA.mm in Sources */,
+				5BB7A1E627F32D4500C79DF0 /* PEPInternalSession+TKA.m in Sources */,
 				1543DCB5257944DC0041EFB5 /* PEPInternalConstants.m in Sources */,
 				1543DC9E257944C40041EFB5 /* PEPInternalSession.m in Sources */,
 				159C00AA25BB140F00F13E2B /* (null) in Sources */,
@@ -1216,7 +1216,7 @@
 				1552D984257660C900A92F71 /* PEPInternalSession+PassphraseCache.m in Sources */,
 				1552D96E257660C900A92F71 /* PEPAutoPointer.m in Sources */,
 				15C3089526E8B8550013F39F /* Logger.m in Sources */,
-				5BB7A1E727F32D4500C79DF0 /* PEPInternalSession+TKA.mm in Sources */,
+				5BB7A1E727F32D4500C79DF0 /* PEPInternalSession+TKA.m in Sources */,
 				1552D96C257660C900A92F71 /* PEPSync.m in Sources */,
 				1552D986257660C900A92F71 /* PEPPassphraseUtil.m in Sources */,
 				1552D980257660C900A92F71 /* PEPObjCAdapter.m in Sources */,
@@ -1246,7 +1246,7 @@
 				15C3088026E8B5030013F39F /* PEPInternalSession+PassphraseCache.m in Sources */,
 				15C3088126E8B5030013F39F /* PEPAutoPointer.m in Sources */,
 				15C3089626E8B8550013F39F /* Logger.m in Sources */,
-				5BB7A1E827F32D4500C79DF0 /* PEPInternalSession+TKA.mm in Sources */,
+				5BB7A1E827F32D4500C79DF0 /* PEPInternalSession+TKA.m in Sources */,
 				15C3088226E8B5030013F39F /* PEPSync.m in Sources */,
 				15C3088326E8B5030013F39F /* PEPPassphraseUtil.m in Sources */,
 				15C3088526E8B5030013F39F /* PEPObjCAdapter.m in Sources */,

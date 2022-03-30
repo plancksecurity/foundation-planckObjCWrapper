@@ -733,7 +733,10 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     NSString *result = nil;
     
     if (![PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        LogCall(@"get_trustwords_for_fprs OK");
         result = [NSString stringWithUTF8String:trustwords.charPointer];
+    } else {
+        LogError(@"get_trustwords_for_fprs Failed");
     }
     
     return result;
@@ -748,8 +751,10 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        LogError(@"get_languagelist Failed");
         return nil;
     }
+    LogCall(@"get_languagelist OK");
 
     NSString *parserInput = [NSString stringWithUTF8String:chLangs.charPointer];
 
@@ -846,8 +851,10 @@ static NSDictionary *stringToRating;
     free_identity(ident);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        LogError(@"is_pEp_user failed");
         return nil;
     } else {
+        LogCall(@"is_pEp_user OK");
         return [NSNumber numberWithBool:isPEP];
     }
 }
@@ -868,8 +875,10 @@ static NSDictionary *stringToRating;
     free_identity(ident);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        LogError(@"set_own_key failed");
         return NO;
     } else {
+        LogCall(@"set_own_key failed");
         return YES;
     }
 }
@@ -893,11 +902,13 @@ static NSDictionary *stringToRating;
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         free_identity(ident);
+        LogError(@"set_identity_flags failed");
         return NO;
     } else {
         [identity reset];
         [PEPIdentity overwritePEPIdentityObject:identity withValuesFromStruct:ident];
         free_identity(ident);
+        LogCall(@"set_identity_flags OK");
         return YES;
     }
 }
@@ -922,8 +933,10 @@ static NSDictionary *stringToRating;
     free(identitiesSharingData);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        LogError(@"deliverHandshakeResult failed");
         return NO;
     } else {
+        LogCall(@"deliverHandshakeResult OK");
         return YES;
     }
 }
@@ -941,8 +954,10 @@ static NSDictionary *stringToRating;
     free_identity(ident);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        LogError(@"trust_own_key failed");
         return NO;
     } else {
+        LogCall(@"trust_own_key OK");
         return YES;
     }
 }
@@ -968,8 +983,10 @@ static NSDictionary *stringToRating;
     free_identity(ident);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        LogError(@"key_reset_user failed");
         return NO;
     } else {
+        LogCall(@"key_reset_user OK");
         return YES;
     }
 }
@@ -982,8 +999,10 @@ static NSDictionary *stringToRating;
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        LogError(@"leave_device_group failed");
         return NO;
     } else {
+        LogCall(@"leave_device_group OK");
         return YES;
     }
 }
@@ -999,6 +1018,7 @@ static NSDictionary *stringToRating;
         LogError(@"config_passphrase Failed");
         return NO;
     } else {
+        LogCall(@"config_passphrase OK");
         return YES;
     }
 }

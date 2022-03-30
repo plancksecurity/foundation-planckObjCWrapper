@@ -10,6 +10,8 @@
 
 @interface PEPTKATestDelegate ()
 
+@property (nonatomic, nullable) NSString *keyReceived;
+
 @property (nonatomic, readonly) XCTestExpectation *expKeyChangedCalled;
 @property (nonatomic, readonly) XCTestExpectation *expDealloced;
 
@@ -31,6 +33,7 @@
 - (void)tkaKeyChangeForMe:(nonnull PEPIdentity *)me
                   partner:(nonnull PEPIdentity *)partner
                       key:(nonnull NSString *)key {
+    self.keyReceived = key;
     [self.expKeyChangedCalled fulfill];
 }
 
