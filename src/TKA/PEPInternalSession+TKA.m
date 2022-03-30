@@ -13,6 +13,10 @@
 
 // MARK: - Cheap fake of the engine's TKA API
 
+// NOTE: IOSAD-239
+// Delete this section once the engine has TKA implemented,
+// and instead simply include the correct header.
+
 typedef PEP_STATUS (*tka_keychange_t)(const pEp_identity *me,
                                       const pEp_identity *partner,
                                       const char *key);
@@ -25,6 +29,12 @@ PEP_STATUS tka_subscribe_keychange(PEP_SESSION session,
     return PEP_STATUS_OK;
 }
 
+/// The number of bytes the engine would use for temp key.
+const NSUInteger s_numberOfBytesForKey = 256/8;
+
+/// 256 bits of "random" data, which in this mock is always the same.
+char *s_mockedTmpKey = NULL;
+
 PEP_STATUS tka_request_temp_key(PEP_SESSION session,
                                 pEp_identity *me,
                                 pEp_identity *partner) {
@@ -32,7 +42,28 @@ PEP_STATUS tka_request_temp_key(PEP_SESSION session,
         return PEP_ILLEGAL_VALUE;
     }
 
-    g_tkaKeyChangeCallback(me, partner, "compleeeetely_fake_key");
+    static dispatch_once_t onlyOnce;
+    dispatch_once(&onlyOnce, ^{
+        s_mockedTmpKey = malloc(s_numberOfBytesForKey + 1);
+        srand(1); // Make the default explicit
+        for (int byteIndex = 0; byteIndex < s_numberOfBytesForKey; ++byteIndex) {
+            s_mockedTmpKey[byteIndex] = ' ' + (rand() % 94);
+        }
+        s_mockedTmpKey[s_numberOfBytesForKey] = '\0';
+    });
+
+    int64_t nsDelta = 1000000000; // 1s in nanoseconds
+    dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, nsDelta);
+
+    pEp_identity *meCopy = identity_dup(me);
+    pEp_identity *partnerCopy = identity_dup(partner);
+
+    dispatch_after(delay, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        g_tkaKeyChangeCallback(meCopy, partnerCopy, s_mockedTmpKey);
+        free_identity(meCopy);
+        free_identity(partnerCopy);
+    });
+
     return PEP_STATUS_OK;
 }
 
