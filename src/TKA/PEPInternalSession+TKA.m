@@ -116,11 +116,16 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
 
     LogCall(@"%s", "tka_request_temp_key");
     PEP_STATUS engineStatus = tka_request_temp_key(self.session, engineMe, enginePartner);
-    LogCall(@"%s OK", "tka_request_temp_key");
     free_identity(engineMe);
     free_identity(enginePartner);
 
-    return ![PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) engineStatus];
+    BOOL success = ![PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) engineStatus];
+    if (success) {
+        LogCall(@"%s OK", "tka_request_temp_key");
+    } else {
+        LogError(@"%s Failed", "tka_request_temp_key");
+    }
+    return success;
 }
 
 @end
