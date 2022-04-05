@@ -43,7 +43,6 @@
     if (self) {
         [PEPInternalSession setupTrustWordsDB];
         [[PEPObjCLogger sharedInstance] setMode:PEPDefault];
-        [[PEPObjCLogger sharedInstance] setTarget:PEPConsole];
 
         // Get an engine session from PEPSync, because its creation requires callbacks
         // that PEPSync is responsible for.
@@ -736,7 +735,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         LogCall(@"get_trustwords_for_fprs OK");
         result = [NSString stringWithUTF8String:trustwords.charPointer];
     } else {
-        LogError(@"get_trustwords_for_fprs Failed");
+        LogError(@"get_trustwords_for_fprs failed");
     }
     
     return result;
@@ -751,7 +750,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
-        LogError(@"get_languagelist Failed");
+        LogError(@"get_languagelist failed");
         return nil;
     }
     LogCall(@"get_languagelist OK");
@@ -1015,7 +1014,7 @@ static NSDictionary *stringToRating;
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
-        LogError(@"config_passphrase Failed");
+        LogError(@"config_passphrase failed");
         return NO;
     } else {
         LogCall(@"config_passphrase OK");
@@ -1041,7 +1040,7 @@ static NSDictionary *stringToRating;
     PEP_STATUS status = config_passphrase(_session, [normalizedPassphrase UTF8String]);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:(PEPStatus) status]) {
-        LogError(@"config_passphrase Failed");
+        LogError(@"config_passphrase failed");
         return NO;
     }
     LogCall(@"config_passphrase OK");
@@ -1062,7 +1061,7 @@ static NSDictionary *stringToRating;
         return disable_all_sync_channels(self.session);
     }];
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
-        LogError(@"disable_all_sync_channels Failed");
+        LogError(@"disable_all_sync_channels failed");
         return NO;
     } else {
         LogCall(@"disable_all_sync_channels OK");

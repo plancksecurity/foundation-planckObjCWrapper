@@ -123,7 +123,7 @@ PEP_STATUS tkaKeychangeCallback(const pEp_identity *me,
     if (success) {
         LogCall(@"%s OK", "tka_request_temp_key");
     } else {
-        LogError(@"%s Failed", "tka_request_temp_key");
+        LogError(@"%s failed", "tka_request_temp_key");
     }
     return success;
 }
