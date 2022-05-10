@@ -1800,14 +1800,12 @@
     // Partner pubkey for the test:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97.asc" session:session]);
-
-    PEPIdentity *identAlice = [[PEPIdentity alloc]
-                               initWithAddress:@"pep.test.alice@pep-project.org"
+    PEPIdentity *identAlice = [self
+                               checkImportingKeyFilePath:@"6FF00E97.asc"
+                               address:@"pep.test.alice@pep-project.org"
                                userID:ownUserId
-                               userName:@"pEp Test Alice"
-                               isOwn:NO
-                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                               session:session];
     [self updateAndVerifyPartnerIdentity:identAlice session:session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
