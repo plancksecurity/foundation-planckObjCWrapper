@@ -502,14 +502,12 @@
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"0x70DCF575.asc" session:session]);
-
-    PEPIdentity *identJohn = [[PEPIdentity alloc]
-                              initWithAddress:@"pep.test.john@pep-project.org"
-                              userID:@"101" userName:@"pEp Test John"
-                              isOwn:NO
-                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
-
+    PEPIdentity *identJohn = [self
+                              checkImportingKeyFilePath:@"0x70DCF575.asc"
+                              address:@"pep.test.john@pep-project.org"
+                              userID:@"101"
+                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"
+                              session:session];
     XCTAssertTrue([session updateIdentity:identJohn error:&error]);
     XCTAssertNil(error);
 
