@@ -466,11 +466,12 @@
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    PEPIdentity *identBob = [self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
-                                                    address:@"pep.test.bob@pep-project.org"
-                                                     userID:@"42"
-                                                fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
-                                                    session:session];
+    PEPIdentity *identBob = [self
+                             checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                             address:@"pep.test.bob@pep-project.org"
+                             userID:@"42"
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                             session:session];
     XCTAssertNotNil(identBob);
 
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
