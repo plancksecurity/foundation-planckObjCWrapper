@@ -448,11 +448,12 @@
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    PEPIdentity *identBob = [self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
-                                                    address:@"pep.test.bob@pep-project.org"
-                                                     userID:@"42"
-                                                fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
-                                                    session:session];
+    PEPIdentity *identBob = [self
+                             checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                             address:@"pep.test.bob@pep-project.org"
+                             userID:@"42"
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                             session:session];
     XCTAssertNotNil(identBob);
 
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
@@ -485,11 +486,12 @@
 
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
-    PEPIdentity *identJohn = [self checkImportingKeyFilePath:@"0x70DCF575.asc"
-                                                     address:@"pep.test.john@pep-project.org"
-                                                      userID:@"This Is John"
-                                                 fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
-                                                     session: session];
+    PEPIdentity *identJohn = [self
+                              checkImportingKeyFilePath:@"0x70DCF575.asc"
+                              address:@"pep.test.john@pep-project.org"
+                              userID:@"This Is John"
+                              fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                              session: session];
     XCTAssertNotNil(identJohn);
 
     // check john's rating
@@ -538,11 +540,12 @@
 
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    PEPIdentity *identBob = [self checkImportingKeyFilePath:@"0xC9C2EE39.asc"
-                                                    address:@"pep.test.bob@pep-project.org"
-                                                     userID:@"This Is Bob"
-                                                fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
-                                                    session: session];
+    PEPIdentity *identBob = [self
+                             checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                             address:@"pep.test.bob@pep-project.org"
+                             userID:@"This Is Bob"
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                             session: session];
     XCTAssertNotNil(identBob);
 
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
@@ -668,11 +671,12 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *partner1Orig = [self checkImportingKeyFilePath:@"partner1_F2D281C2789DD7F6_pub.asc"
-                                                        address:@"partner1@dontcare.me"
-                                                         userID:@"partner1"
-                                                    fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"
-                                                        session:session];
+    PEPIdentity *partner1Orig = [self
+                                 checkImportingKeyFilePath:@"partner1_F2D281C2789DD7F6_pub.asc"
+                                 address:@"partner1@dontcare.me"
+                                 userID:@"partner1"
+                                 fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"
+                                 session:session];
     XCTAssertNotNil(partner1Orig);
 
     PEPRating color = [self ratingForIdentity:partner1Orig session:session];
@@ -1775,11 +1779,12 @@
     // Partner pubkey for the test:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    PEPIdentity *identAlice = [self checkImportingKeyFilePath:@"6FF00E97.asc"
-                                                      address:@"pep.test.alice@pep-project.org"
-                                                       userID:ownUserId
-                                                  fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
-                                                      session:session];
+    PEPIdentity *identAlice = [self
+                               checkImportingKeyFilePath:@"6FF00E97.asc"
+                               address:@"pep.test.alice@pep-project.org"
+                               userID:ownUserId
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                               session:session];
     [self updateAndVerifyPartnerIdentity:identAlice session:session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
