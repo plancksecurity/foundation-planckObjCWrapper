@@ -1349,7 +1349,7 @@
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include/pEp",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1408,7 +1408,7 @@
 					"$(PROJECT_DIR)/Subprojects/PEPObjCAdapterProtocols/build/include",
 					"$(PROJECT_DIR)/../pEpEngine/build-mac/build/include/pEp",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
