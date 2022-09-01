@@ -27,6 +27,7 @@ typedef NS_CLOSED_ENUM(int, PEPEncFormat) {
     PEPEncFormatSMIME, // PEP_enc_S_MIME
     PEPEncFormatPGPMIME, // PEP_enc_PGP_MIME
     PEPEncFormatPEP, // PEP_enc_PEP
+    PEPEncFormatMediaKey = PEPEncFormatPEP, // media_key_enc_format
     PEPEncFormatPGPMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1
 };
 
