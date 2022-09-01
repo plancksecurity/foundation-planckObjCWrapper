@@ -37,7 +37,7 @@ typedef NS_CLOSED_ENUM(int, PEPRating) {
     PEPRatingHaveNoKey = 2, // PEP_rating_have_no_key
     PEPRatingUnencrypted = 3, // PEP_rating_unencrypted
     PEPRatingUnreliable = 5, // PEP_rating_unreliable
-    PEPRatingMediaKeyMessage = 5, // media_key_message_rating
+    PEPRatingMediaKeyMessage = PEPRatingUnreliable, // media_key_message_rating
     PEPRatingReliable = 6, // PEP_rating_reliable
     PEPRatingTrusted = 7, // PEP_rating_trusted
     PEPRatingTrustedAndAnonymized = 8, // PEP_rating_trusted_and_anonymized
