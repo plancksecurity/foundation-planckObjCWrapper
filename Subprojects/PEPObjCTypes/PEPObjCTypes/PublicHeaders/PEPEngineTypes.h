@@ -211,6 +211,7 @@ typedef NS_CLOSED_ENUM(int, PEPCommType) {
     PEPCommTypeMistrusted = 0x0f, // PEP_ct_mistrusted
 
     PEPCommTypeUnconfirmedEncryption = 0x10, // PEP_ct_unconfirmed_encryption
+    PEPCommTypeMediaKey = PEPCommTypeUnconfirmedEncryption, // PEP_comm_type media_key_comm_type
     PEPCommTypeOpenPGPWeakUnconfirmed = 0x11, // PEP_ct_OpenPGP_weak_unconfirmed
 
     PEPCommTypeToBeChecked = 0x20, // PEP_ct_to_be_checked
