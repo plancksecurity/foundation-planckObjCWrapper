@@ -1094,6 +1094,7 @@
     PEPInternalSession *session = [PEPSessionProvider session];
     NSError *error = nil;
     [session syncReinit:&error];
+    XCTAssertNotNil(error);
     XCTAssertEqual(error.code, PEPStatusCannotFindIdentity);
 }
 
