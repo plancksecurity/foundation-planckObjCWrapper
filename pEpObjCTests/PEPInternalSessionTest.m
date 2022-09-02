@@ -1100,7 +1100,8 @@
 
     error = nil;
     [session syncReinit:&error];
-    XCTAssertNil(error);
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, PEPStatusStatemachineError);
 }
 
 - (void)testReinitSyncWithoutOwnIdentity
