@@ -1083,7 +1083,39 @@
     }
 }
 
-- (void)testReinitSyncWithoutSyncLoop
+/// Test creating a new own identity with pEp sync disabled.
+- (void)testNoBeaconOnMyself
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    identMe.flags |= PEPIdentityFlagsNotForSync;
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    [NSThread sleepForTimeInterval:1];
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    [self shutdownSync];
+}
+
+#pragma mark - sync_reinit
+
+- (void)testSyncReinitWithoutSyncLoop
 {
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
@@ -1104,7 +1136,7 @@
     XCTAssertEqual(error.code, PEPStatusStatemachineError);
 }
 
-- (void)testReinitSyncWithoutOwnIdentity
+- (void)testSyncReinitWithoutOwnIdentity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     NSError *error = nil;
@@ -1115,7 +1147,7 @@
 
 /// @Note This test only proves that `sync_reinit` can be called without errors.
 /// There was no observable change to verify, e.g., there was no message sent out.
-- (void)testReinitSync
+- (void)testSyncReinit
 {
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
@@ -1150,36 +1182,6 @@
     [session syncReinit:&error];
     XCTAssertNil(error);
 
-    [self shutdownSync];
-}
-
-/// Test creating a new own identity with pEp sync disabled.
-- (void)testNoBeaconOnMyself
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
-    XCTAssertNil(self.sendMessageDelegate.lastMessage);
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-    identMe.flags |= PEPIdentityFlagsNotForSync;
-
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-    XCTAssertTrue([session disableSyncForIdentity:identMe error:&error]);
-    XCTAssertNil(error);
-
-    [self startSync];
-
-    [NSThread sleepForTimeInterval:1];
-    XCTAssertNil(self.sendMessageDelegate.lastMessage);
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
     [self shutdownSync];
 }
 
