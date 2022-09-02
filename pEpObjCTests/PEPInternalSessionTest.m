@@ -91,7 +91,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
@@ -111,7 +110,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
@@ -778,7 +776,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     // PEP_CANNOT_FIND_PERSON == 902
@@ -812,7 +809,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     // The fingerprint is definitely wrong, we don't have a key
@@ -842,7 +838,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPIdentity *identAlice = [self
@@ -889,7 +884,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     NSString *fprAlice = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
@@ -1645,7 +1639,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
@@ -1884,7 +1877,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPMessage *msg = [PEPMessage new];
