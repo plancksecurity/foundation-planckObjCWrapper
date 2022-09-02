@@ -1094,21 +1094,22 @@
     PEPInternalSession *session = [PEPSessionProvider session];
     [self testSendMessageOnSession:session];
 
-    NSUInteger currentMesageCount = self.sendMessageDelegate.messages.count;
+    self.sendMessageDelegate.lastMessage = nil;
 
-    NSError *error = nil;
+    NSUInteger currentMesageCount = self.sendMessageDelegate.messages.count;
 
     XCTKVOExpectation *expHaveOtherMessage = [[XCTKVOExpectation alloc]
                                               initWithKeyPath:@"lastMessage"
                                               object:self.sendMessageDelegate];
 
+    NSError *error = nil;
     [session syncReinit:&error];
     XCTAssertNil(error);
 
     [self waitForExpectations:@[expHaveOtherMessage] timeout:PEPTestInternalSyncTimeout];
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
 
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 2);
+    XCTAssertGreaterThan(self.sendMessageDelegate.messages.count, currentMesageCount);
     [self shutdownSync];
 }
 
