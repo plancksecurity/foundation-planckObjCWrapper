@@ -108,13 +108,6 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
             NSLog(@"Error deleting '%@': %@", fileUrl, [error localizedDescription]);
         }
     }
-
-    [NSThread sleepForTimeInterval:5];
-    NSDirectoryEnumerator<NSString *> *enumerator2 = [fileManager enumeratorAtPath:homeString];
-    for (NSString *path in enumerator2) {
-        NSURL *fileUrl = [NSURL fileURLWithPath:path isDirectory:NO relativeToURL:homeUrl];
-        NSLog(@"*** error: Unexpected file: %@", fileUrl);
-    }
 }
 
 @end

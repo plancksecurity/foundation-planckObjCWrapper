@@ -42,6 +42,8 @@
 {
     [super setUp];
 
+    [self pEpCleanUp];
+
     [PEPObjCAdapter setUnEncryptedSubjectEnabled:NO];
 
     NSError *error = nil;
