@@ -1089,6 +1089,26 @@
     }
 }
 
+- (void)testReinitSyncWithoutSyncLoop
+{
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    error = nil;
+    [session syncReinit:&error];
+    XCTAssertNil(error);
+}
+
 - (void)testReinitSyncWithoutOwnIdentity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -1116,14 +1136,13 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
 
     [self startSync];
 
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
                                          object:self.sendMessageDelegate];
-
-    XCTAssertNotNil(identMe.fingerPrint);
 
     [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
@@ -1572,14 +1591,13 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
 
     [self startSync];
 
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
                                          object:self.sendMessageDelegate];
-
-    XCTAssertNotNil(identMe.fingerPrint);
 
     [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
