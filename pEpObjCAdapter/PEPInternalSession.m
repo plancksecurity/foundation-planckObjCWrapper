@@ -1016,7 +1016,15 @@ static NSDictionary *stringToRating;
 
 - (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error
 {
-    return (PEPStatus) sync_reinit(self.session);
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return sync_reinit(self.session);
+    }];
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 @end

@@ -645,16 +645,18 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session disableAllSyncChannels:error];
 }
 
-- (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error
+- (void)syncReinit:(void (^)(NSError *error))errorCallback
+   successCallback:(void (^)(void))successCallback
 {
-    PEPInternalSession *session = [PEPSessionProvider session];
-    if (session == nil) {
-        if (error) {
-            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session] syncReinit:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
         }
-        return NO;
-    }
-    return [session syncReinit:error];
+    });
 }
 
 @end

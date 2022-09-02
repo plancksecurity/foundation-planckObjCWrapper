@@ -227,7 +227,8 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
 
 /// Wraps `sync_reinit` (sync_api.h).
-- (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error;
+- (void)syncReinit:(void (^)(NSError *error))errorCallback
+   successCallback:(void (^)(void))successCallback;
 
 @end
 
