@@ -223,8 +223,11 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 /// Wraps color_from_rating.
 - (PEPColor)colorFromRating:(PEPRating)rating;
 
-/// Wraps `disable_all_sync_channels` (`sync_api.h`).
+/// Wraps `disable_all_sync_channels` (sync_api.h).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
+
+/// Wraps `sync_reinit` (sync_api.h).
+- (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error;
 
 @end
 

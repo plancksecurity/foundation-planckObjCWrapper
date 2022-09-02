@@ -1014,4 +1014,9 @@ static NSDictionary *stringToRating;
     }
 }
 
+- (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error
+{
+    return (PEPStatus) sync_reinit(self.session);
+}
+
 @end
