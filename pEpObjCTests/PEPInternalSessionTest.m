@@ -1089,6 +1089,8 @@
     }
 }
 
+/// @Note This test only proves that `sync_reinit` can be called without errors.
+/// There was no observable change to verify, e.g., there was no message sent out.
 - (void)testReinitSync
 {
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
@@ -1121,20 +1123,10 @@
 
     self.sendMessageDelegate.lastMessage = nil;
 
-    NSUInteger currentMesageCount = self.sendMessageDelegate.messages.count;
-
-    XCTKVOExpectation *expHaveOtherMessage = [[XCTKVOExpectation alloc]
-                                              initWithKeyPath:@"lastMessage"
-                                              object:self.sendMessageDelegate];
-
     error = nil;
     [session syncReinit:&error];
     XCTAssertNil(error);
 
-    [self waitForExpectations:@[expHaveOtherMessage] timeout:PEPTestInternalSyncTimeout];
-    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-
-    XCTAssertGreaterThan(self.sendMessageDelegate.messages.count, currentMesageCount);
     [self shutdownSync];
 }
 
