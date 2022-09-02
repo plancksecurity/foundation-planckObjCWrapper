@@ -1089,6 +1089,29 @@
     }
 }
 
+- (void)testReinitSync
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    [self testSendMessageOnSession:session];
+
+    NSUInteger currentMesageCount = self.sendMessageDelegate.messages.count;
+
+    NSError *error = nil;
+
+    XCTKVOExpectation *expHaveOtherMessage = [[XCTKVOExpectation alloc]
+                                              initWithKeyPath:@"lastMessage"
+                                              object:self.sendMessageDelegate];
+
+    [session syncReinit:&error];
+    XCTAssertNil(error);
+
+    [self waitForExpectations:@[expHaveOtherMessage] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 2);
+    [self shutdownSync];
+}
+
 /// Test creating a new own identity with pEp sync disabled.
 - (void)testNoBeaconOnMyself
 {
