@@ -1089,6 +1089,14 @@
     }
 }
 
+- (void)testReinitSyncWithoutOwnIdentityOrSyncLoop
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    NSError *error = nil;
+    [session syncReinit:&error];
+    XCTAssertNil(error);
+}
+
 /// @Note This test only proves that `sync_reinit` can be called without errors.
 /// There was no observable change to verify, e.g., there was no message sent out.
 - (void)testReinitSync
