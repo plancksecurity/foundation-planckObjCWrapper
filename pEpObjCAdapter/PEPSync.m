@@ -268,6 +268,7 @@ static __weak PEPSync *s_pEpSync;
 
     self.syncLoopSession = nil;
     self.syncThread = nil;
+    s_pEpSync = nil;
 
     [self.conditionLockForJoiningSyncThread unlockWithCondition:YES];
 }
