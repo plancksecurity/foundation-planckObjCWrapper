@@ -1142,7 +1142,7 @@
     NSError *error = nil;
     [session syncReinit:&error];
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, PEPStatusCannotFindIdentity);
+    XCTAssertEqual(error.code, PEPStatusStatemachineError);
 }
 
 #pragma mark - key_reset_user
