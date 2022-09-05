@@ -1145,6 +1145,46 @@
     XCTAssertEqual(error.code, PEPStatusStatemachineError);
 }
 
+/// @Note This test only proves that `sync_reinit` can be called without errors.
+/// There was no observable change to verify, e.g., there was no message sent out.
+- (void)testSyncReinit
+{
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    [self startSync];
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
+
+    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+
+    self.sendMessageDelegate.lastMessage = nil;
+
+    error = nil;
+    [session syncReinit:&error];
+    XCTAssertNil(error);
+
+    [self shutdownSync];
+}
+
 #pragma mark - key_reset_user
 
 - (void)testKeyResetIdentityOnOwnKeyIsIllegal
