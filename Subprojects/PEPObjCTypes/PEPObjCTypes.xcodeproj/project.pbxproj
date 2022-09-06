@@ -248,11 +248,11 @@
 				4E57588326832F2F0084F02D /* PEPMessage.h */,
 				4E57588426832F2F0084F02D /* PEPAttachment.h */,
 				4E57588626832F2F0084F02D /* PEPIdentity.h */,
+				43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */,
 				4E57588026832F2F0084F02D /* PEPAttachment+SecureCoding.h */,
 				4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */,
 				4E57588726832F2F0084F02D /* PEPLanguage+SecureCoding.h */,
 				4E57588526832F2F0084F02D /* PEPMessage+SecureCoding.h */,
-				43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
