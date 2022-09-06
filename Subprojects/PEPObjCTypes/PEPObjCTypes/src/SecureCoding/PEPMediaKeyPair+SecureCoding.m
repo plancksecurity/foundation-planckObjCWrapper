@@ -9,9 +9,9 @@
 
 @implementation PEPMediaKeyPair (SecureCoding)
 
-- (void)encodeWithCoder:(nonnull NSCoder *)coder
++ (BOOL)supportsSecureCoding
 {
-    // TODO
+    return YES;
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
@@ -20,9 +20,9 @@
     return nil;
 }
 
-+ (BOOL)supportsSecureCoding
+- (void)encodeWithCoder:(nonnull NSCoder *)coder
 {
-    return YES;
+    // TODO
 }
 
 @end
