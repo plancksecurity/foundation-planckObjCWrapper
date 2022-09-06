@@ -7,6 +7,9 @@
 
 #import "PEPMediaKeyPair+SecureCoding.h"
 
+static NSString * const kPattern = @"pattern";
+static NSString * const kFingerprint = @"fingerprint";
+
 @implementation PEPMediaKeyPair (SecureCoding)
 
 + (BOOL)supportsSecureCoding
@@ -16,8 +19,8 @@
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
-    NSString *pattern = [coder decodeObjectOfClass:[NSString class] forKey:@"pattern"];
-    NSString *fingerprint = [coder decodeObjectOfClass:[NSString class] forKey:@"fingerprint"];
+    NSString *pattern = [coder decodeObjectOfClass:[NSString class] forKey:kPattern];
+    NSString *fingerprint = [coder decodeObjectOfClass:[NSString class] forKey:kFingerprint];
 
     if (pattern == nil || fingerprint == nil) {
         return nil;
@@ -28,8 +31,8 @@
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder
 {
-    [coder encodeObject:self.pattern forKey:@"pattern"];
-    [coder encodeObject:self.fingerprint forKey:@"fingerprint"];
+    [coder encodeObject:self.pattern forKey:kPattern];
+    [coder encodeObject:self.fingerprint forKey:kFingerprint];
 }
 
 @end
