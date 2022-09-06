@@ -1,12 +1,12 @@
 //
-//  NSObject+Extension.m
+//  NSObject+Equality.m
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 24.04.18.
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import "NSObject+Extension.h"
+#import "NSObject+Equality.h"
 
 @implementation NSObject (Extension)
 

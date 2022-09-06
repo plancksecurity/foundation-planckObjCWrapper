@@ -1,5 +1,5 @@
 //
-//  NSObject+Extension.h
+//  NSObject+Equality.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 24.04.18.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (Extension)
+@interface NSObject (Equality)
 
 /// Comparse the given objects for equality, taking into account that they could be nil.
 + (BOOL)isEqualObject1:(id _Nullable)obj1 toObject2:(id _Nullable)obj2;
