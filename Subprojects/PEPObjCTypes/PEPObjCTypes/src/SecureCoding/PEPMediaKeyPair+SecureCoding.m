@@ -28,7 +28,8 @@
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder
 {
-    // TODO
+    [coder encodeObject:self.pattern forKey:@"pattern"];
+    [coder encodeObject:self.fingerprint forKey:@"fingerprint"];
 }
 
 @end
