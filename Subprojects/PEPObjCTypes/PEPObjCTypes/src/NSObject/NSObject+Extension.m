@@ -10,6 +10,18 @@
 
 @implementation NSObject (Extension)
 
++ (BOOL)isEqualObject1:(id _Nullable)obj1 toObject2:(id _Nullable)obj2
+{
+    if (obj1 != nil) {
+        return [obj1 isEqual:obj2];
+    } else if (obj2 != nil) {
+        return [obj2 isEqual:obj1];
+    }
+
+    // both must be nil
+    return YES;
+}
+
 - (BOOL)isEqualToObject:(NSObject * _Nonnull)other
             basedOnKeys:(NSArray<NSString *> * _Nonnull)keys
 {

@@ -10,6 +10,9 @@
 
 @interface NSObject (Extension)
 
+/// Comparse the given objects for equality, taking into account that they could be nil.
++ (BOOL)isEqualObject1:(id _Nullable)obj1 toObject2:(id _Nullable)obj2;
+
 /**
  Invokes `[value1 isEqual:value2]` between all value pairs retrieved
  from `self` and `other`, based on the list of keys.
