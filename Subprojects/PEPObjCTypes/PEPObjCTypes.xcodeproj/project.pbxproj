@@ -15,8 +15,8 @@
 		43EF25F828C73E0600480977 /* PEPMediaKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43EF25F928C73E0600480977 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */; };
 		43EF25FA28C73E0600480977 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */; };
-		43EF25FD28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25FB28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h */; };
-		43EF25FE28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25FB28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h */; };
+		43EF25FD28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25FB28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43EF25FE28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25FB28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43EF25FF28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25FC28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m */; };
 		43EF260028C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25FC28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m */; };
 		43EF260228C7604C00480977 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF260128C7604C00480977 /* PEPMediaKeyPair+SecureCoding+Test.m */; };
