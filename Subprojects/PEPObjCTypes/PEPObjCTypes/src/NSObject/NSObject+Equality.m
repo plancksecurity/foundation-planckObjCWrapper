@@ -10,30 +10,6 @@
 
 @implementation NSObject (Extension)
 
-+ (BOOL)isEqualObject1:(id _Nullable)obj1 toObject2:(id _Nullable)obj2
-{
-    if (obj1 != nil) {
-        return [obj1 isEqual:obj2];
-    } else if (obj2 != nil) {
-        return [obj2 isEqual:obj1];
-    }
-
-    // both must be nil
-    return YES;
-}
-
-+ (BOOL)isEqualString1:(NSString * _Nullable)str1 toString2:(NSString * _Nullable)str2
-{
-    if (str1 != nil) {
-        return [str1 isEqualToString:str2];
-    } else if (str2 != nil) {
-        return [str2 isEqual:str1];
-    }
-
-    // both must be nil
-    return YES;
-}
-
 - (BOOL)isEqualToObject:(NSObject * _Nonnull)other
             basedOnKeys:(NSArray<NSString *> * _Nonnull)keys
 {
