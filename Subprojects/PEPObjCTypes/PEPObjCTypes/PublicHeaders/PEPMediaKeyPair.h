@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// The fingerprint for this media key entry.
 @property (nonatomic, readonly) NSString *fingerprint;
 
+- (instancetype)initWithPattern:(NSString *)pattern fingerprint:(NSString *)fingerprint;
+
 @end
 
 NS_ASSUME_NONNULL_END

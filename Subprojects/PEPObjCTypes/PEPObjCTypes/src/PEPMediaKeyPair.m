@@ -9,4 +9,14 @@
 
 @implementation PEPMediaKeyPair
 
+- (instancetype)initWithPattern:(NSString *)pattern fingerprint:(NSString *)fingerprint
+{
+    self = [super init];
+    if (self) {
+        _pattern = pattern;
+        _fingerprint = fingerprint;
+    }
+    return self;
+}
+
 @end
