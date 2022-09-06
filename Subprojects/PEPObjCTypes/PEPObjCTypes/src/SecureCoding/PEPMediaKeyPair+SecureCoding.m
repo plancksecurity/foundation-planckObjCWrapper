@@ -7,6 +7,14 @@
 
 #import "PEPMediaKeyPair+SecureCoding.h"
 
+
+@interface PEPMediaKeyPair ()
+
+@property (nonatomic) NSString *pattern;
+@property (nonatomic) NSString *fingerprint;
+
+@end
+
 @implementation PEPMediaKeyPair (SecureCoding)
 
 + (BOOL)supportsSecureCoding
@@ -16,8 +24,12 @@
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
-    // TODO
-    return nil;
+    if (self = [self init]) {
+        self.pattern = [coder decodeObjectOfClass:[NSString class] forKey:@"pattern"];
+        self.fingerprint = [coder decodeObjectOfClass:[NSString class] forKey:@"fingerprint"];
+    }
+
+    return self;
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder
