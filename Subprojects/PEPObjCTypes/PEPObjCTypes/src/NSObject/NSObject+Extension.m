@@ -22,6 +22,18 @@
     return YES;
 }
 
++ (BOOL)isEqualString1:(NSString * _Nullable)str1 toString2:(NSString * _Nullable)str2
+{
+    if (str1 != nil) {
+        return [str1 isEqualToString:str2];
+    } else if (str2 != nil) {
+        return [str2 isEqual:str1];
+    }
+
+    // both must be nil
+    return YES;
+}
+
 - (BOOL)isEqualToObject:(NSObject * _Nonnull)other
             basedOnKeys:(NSArray<NSString *> * _Nonnull)keys
 {
