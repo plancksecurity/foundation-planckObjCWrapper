@@ -187,6 +187,9 @@ static __weak PEPSync *s_pEpSync;
 
 - (void)startup
 {
+    // Make it illegal to shutdown sync, and then re-use the object to do a startup again.
+    assert(s_pEpSync);
+
     self.shutdownRequested = NO;
     [self stopWaiting];
 
