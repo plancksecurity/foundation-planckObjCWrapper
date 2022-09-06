@@ -9,7 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
 /// Models the input to the engine's `config_media_keys`.
 /// @see https://dev.pep.foundation/Engine/Media%20keys
 @interface PEPMediaKeyPair : NSObject
