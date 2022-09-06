@@ -10,10 +10,10 @@
 
 @interface NSObject (Equality)
 
-/// Comparse the given objects for equality, taking into account that they could be nil.
+/// Compares the given objects for equality, taking into account that they could be nil.
 + (BOOL)isEqualObject1:(id _Nullable)obj1 toObject2:(id _Nullable)obj2;
 
-/// Comparse the given `NSString`s for equality, taking into account that they could be nil.
+/// Compares the given `NSString`s for equality, taking into account that they could be nil.
 + (BOOL)isEqualString1:(NSString * _Nullable)str1 toString2:(NSString * _Nullable)str2;
 
 /**
