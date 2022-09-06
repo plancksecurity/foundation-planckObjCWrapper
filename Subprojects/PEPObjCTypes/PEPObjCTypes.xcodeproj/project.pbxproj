@@ -11,6 +11,10 @@
 		1598061B26CFC5D900593C9D /* PEPObjCTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575841268328CD0084F02D /* PEPObjCTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43D44C822685BB3600638D1C /* PEPObjCTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */; platformFilter = ios; };
 		43D44C842685BEB400638D1C /* pEpObjCTypesModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */; platformFilter = ios; };
+		43EF25F728C73E0600480977 /* PEPMediaKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43EF25F828C73E0600480977 /* PEPMediaKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43EF25F928C73E0600480977 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */; };
+		43EF25FA28C73E0600480977 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */; };
 		4E57585B268329170084F02D /* PEPObjCTypes_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
 		4E57585D268329170084F02D /* PEPObjCTypes_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57585C268329170084F02D /* PEPObjCTypes_macOS.m */; };
 		4E575869268329A20084F02D /* PEPObjCTypes_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E575868268329A20084F02D /* PEPObjCTypes_iOS.m */; platformFilter = ios; };
@@ -102,6 +106,8 @@
 
 /* Begin PBXFileReference section */
 		43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = pEpObjCTypesModuleMap.modulemap; sourceTree = "<group>"; };
+		43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMediaKeyPair.h; sourceTree = "<group>"; };
+		43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMediaKeyPair.m; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes.h; sourceTree = "<group>"; };
 		4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes_macOS.h; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 				4E57587526832F2F0084F02D /* PEPIdentity.m */,
 				4E57587B26832F2F0084F02D /* PEPLanguage.m */,
 				4E57587D26832F2F0084F02D /* PEPMessage.m */,
+				43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */,
 				4E5758B3268334AC0084F02D /* NSObject */,
 				4E5758B22683348A0084F02D /* SecureCoding */,
 			);
@@ -245,6 +252,7 @@
 				4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */,
 				4E57588726832F2F0084F02D /* PEPLanguage+SecureCoding.h */,
 				4E57588526832F2F0084F02D /* PEPMessage+SecureCoding.h */,
+				43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
@@ -313,6 +321,7 @@
 				4E5758A026832F2F0084F02D /* PEPMessage.h in Headers */,
 				1598061B26CFC5D900593C9D /* PEPObjCTypes.h in Headers */,
 				4E5758A126832F2F0084F02D /* PEPAttachment.h in Headers */,
+				43EF25F728C73E0600480977 /* PEPMediaKeyPair.h in Headers */,
 				4E57589C26832F2F0084F02D /* PEPEngineTypes.h in Headers */,
 				4E57589D26832F2F0084F02D /* PEPAttachment+SecureCoding.h in Headers */,
 				4E5758A426832F2F0084F02D /* PEPLanguage+SecureCoding.h in Headers */,
@@ -333,6 +342,7 @@
 				1598061A26CFC5D800593C9D /* PEPObjCTypes.h in Headers */,
 				4E5758AE2683331C0084F02D /* PEPTypes.h in Headers */,
 				4E5758B02683331C0084F02D /* PEPLanguage.h in Headers */,
+				43EF25F828C73E0600480977 /* PEPMediaKeyPair.h in Headers */,
 				4E5758A82683331C0084F02D /* PEPEngineTypes.h in Headers */,
 				4E5758A92683331C0084F02D /* PEPMessage.h in Headers */,
 				4E5758A72683331C0084F02D /* PEPAttachment.h in Headers */,
@@ -542,6 +552,7 @@
 				4E57589426832F2F0084F02D /* NSObject+Extension.m in Sources */,
 				4E57585D268329170084F02D /* PEPObjCTypes_macOS.m in Sources */,
 				4E57589A26832F2F0084F02D /* PEPMessage.m in Sources */,
+				43EF25F928C73E0600480977 /* PEPMediaKeyPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +570,7 @@
 				4E57589526832F2F0084F02D /* NSObject+Extension.m in Sources */,
 				4E575869268329A20084F02D /* PEPObjCTypes_iOS.m in Sources */,
 				4E57589B26832F2F0084F02D /* PEPMessage.m in Sources */,
+				43EF25FA28C73E0600480977 /* PEPMediaKeyPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
