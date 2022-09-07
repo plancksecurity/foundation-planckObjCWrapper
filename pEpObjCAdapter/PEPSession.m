@@ -660,6 +660,9 @@ successCallback:(void (^)(NSString *log))successCallback
 }
 
 - (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
-                     error:(NSError * _Nullable * _Nullable)error;
+                     error:(NSError * _Nullable * _Nullable)error
+{
+    return NO;
+}
 
 @end
