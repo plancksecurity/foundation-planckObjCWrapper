@@ -1061,4 +1061,9 @@ static NSDictionary *stringToRating;
     config_enable_echo_protocol(self.session, enabled);
 }
 
+- (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
+{
+    config_enable_echo_in_outgoing_message_rating_preview(self.session, enabled);
+}
+
 @end

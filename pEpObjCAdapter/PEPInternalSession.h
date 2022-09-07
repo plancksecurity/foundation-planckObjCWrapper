@@ -342,6 +342,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configureEchoProtocolEnabled:(BOOL)enabled;
 
+- (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled;
+
 @end
 
 NS_ASSUME_NONNULL_END
