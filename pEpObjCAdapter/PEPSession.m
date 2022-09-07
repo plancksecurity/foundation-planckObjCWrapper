@@ -604,6 +604,28 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session configurePassphrase:passphrase error:error];
 }
 
+- (void)syncReinit:(void (^)(NSError *error))errorCallback
+   successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session] syncReinit:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+#pragma mark - Media Key / Echo Protocol
+
+- (void)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
+             errorCallback:(void (^)(NSError *error))errorCallback
+           successCallback:(void (^)(void))successCallback
+{
+}
+
 // MARK: - Methods that can be executed syncronously
 
 - (PEPRating)ratingFromString:(NSString * _Nonnull)string
@@ -643,20 +665,6 @@ successCallback:(void (^)(NSString *log))successCallback
         return NO;
     }
     return [session disableAllSyncChannels:error];
-}
-
-- (void)syncReinit:(void (^)(NSError *error))errorCallback
-   successCallback:(void (^)(void))successCallback
-{
-    dispatch_async(queue, ^{
-        NSError *error = nil;
-        BOOL success = [[PEPSessionProvider session] syncReinit:&error];
-        if (success) {
-            successCallback();
-        } else {
-            errorCallback(error);
-        }
-    });
 }
 
 @end
