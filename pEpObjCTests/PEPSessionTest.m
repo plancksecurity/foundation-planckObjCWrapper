@@ -386,7 +386,8 @@
                             isOwn:YES];
 
     NSError *error = nil;
-    XCTAssertTrue([self mySelf:identMe error:&error]);
+    identMe = [self mySelf:identMe error:&error];
+    XCTAssertNotNil(identMe);
     XCTAssertNil(error);
     XCTAssertNotNil(identMe.fingerPrint);
 
