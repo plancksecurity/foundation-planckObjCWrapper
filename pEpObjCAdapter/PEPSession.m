@@ -662,7 +662,14 @@ successCallback:(void (^)(NSString *log))successCallback
 - (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
                      error:(NSError * _Nullable * _Nullable)error
 {
-    return NO;
+    PEPInternalSession *session = [PEPSessionProvider session];
+    if (session == nil) {
+        if (error) {
+            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
+        }
+        return NO;
+    }
+    return [session configureMediaKeys:mediaKeys error:error];
 }
 
 @end
