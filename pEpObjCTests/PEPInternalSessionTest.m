@@ -1113,7 +1113,7 @@
     [self shutdownSync];
 }
 
-#pragma mark - sync_reinit
+#pragma mark - Sync/sync_reinit
 
 - (void)testSyncReinitWithoutSyncLoop
 {
