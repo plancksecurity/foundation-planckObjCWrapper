@@ -1117,27 +1117,6 @@
 
 - (void)testSyncReinitWithoutSyncLoop
 {
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-
-    PEPInternalSession *session = [PEPSessionProvider session];
-
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-    XCTAssertNotNil(identMe.fingerPrint);
-
-    error = nil;
-    [session syncReinit:&error];
-    XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, PEPStatusStatemachineError);
-}
-
-- (void)testSyncReinitWithoutOwnIdentity
-{
     PEPInternalSession *session = [PEPSessionProvider session];
     NSError *error = nil;
     [session syncReinit:&error];
