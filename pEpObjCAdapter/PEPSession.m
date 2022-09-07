@@ -618,14 +618,6 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
-#pragma mark - Media Key / Echo Protocol
-
-- (void)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
-             errorCallback:(void (^)(NSError *error))errorCallback
-           successCallback:(void (^)(void))successCallback
-{
-}
-
 // MARK: - Methods that can be executed syncronously
 
 - (PEPRating)ratingFromString:(NSString * _Nonnull)string
@@ -666,5 +658,8 @@ successCallback:(void (^)(NSString *log))successCallback
     }
     return [session disableAllSyncChannels:error];
 }
+
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
+                     error:(NSError * _Nullable * _Nullable)error;
 
 @end

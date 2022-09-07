@@ -192,12 +192,6 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 - (void)syncReinit:(void (^)(NSError *error))errorCallback
    successCallback:(void (^)(void))successCallback;
 
-#pragma mark - Media Key / Echo Protocol
-
-- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
-             errorCallback:(void (^)(NSError *error))errorCallback
-           successCallback:(void (^)(void))successCallback;
-
 // MARK: - Configuration
 
 /// Add a passphrase for secret keys to the cache.
@@ -235,6 +229,9 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 
 /// Wraps `disable_all_sync_channels` (sync_api.h).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
+
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
+                     error:(NSError * _Nullable * _Nullable)error;
 
 @end
 
