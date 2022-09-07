@@ -1037,6 +1037,13 @@ static NSDictionary *stringToRating;
         *error = nil;
     }
 
+    stringpair_list_t *list = new_stringpair_list(NULL);
+    for (PEPMediaKeyPair *pair in mediaKeys) {
+        stringpair_t *thePair = new_stringpair([pair.pattern UTF8String],
+                                                  [pair.fingerprint UTF8String]);
+        stringpair_list_add(list, thePair);
+    }
+
     PEP_STATUS status = PEP_VERIFIED; // config_passphrase(_session, [normalizedPassphrase UTF8String]);
 
     if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
