@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
+#import "PEPObjCTypes.h"
 
 @class PEPLanguage;
 @class PEPIdentity;
