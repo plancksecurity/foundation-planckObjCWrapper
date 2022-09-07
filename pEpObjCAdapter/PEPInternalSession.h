@@ -21,6 +21,8 @@
 @class PEPPassphraseCache;
 @class PEPMediaKeyPair;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Represents a real pEp session (in contrast to PEPSession, which is a fake session to handle to the client).
  Never expose this class to the client.
@@ -339,3 +341,5 @@
                      error:(NSError * _Nullable * _Nullable)error;
 
 @end
+
+NS_ASSUME_NONNULL_END
