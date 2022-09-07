@@ -340,6 +340,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
                      error:(NSError * _Nullable * _Nullable)error;
 
+- (void)configureEchoProtocolEnabled:(BOOL)enabled;
+
 @end
 
 NS_ASSUME_NONNULL_END

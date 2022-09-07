@@ -1056,4 +1056,9 @@ static NSDictionary *stringToRating;
     return YES;
 }
 
+- (void)configureEchoProtocolEnabled:(BOOL)enabled
+{
+    config_enable_echo_protocol(self.session, enabled);
+}
+
 @end
