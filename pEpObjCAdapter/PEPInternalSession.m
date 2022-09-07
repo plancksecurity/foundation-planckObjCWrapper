@@ -28,6 +28,7 @@
 #import "PEPInternalSession+PassphraseCache.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPIdentity+Reset.h"
+#import "PEPMediaKeyPair.h"
 
 #import "key_reset.h"
 
@@ -1028,5 +1029,21 @@ static NSDictionary *stringToRating;
 }
 
 #pragma mark - Media Key / Echo Protocol
+
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> * _Nonnull)mediaKeys
+                     error:(NSError * _Nullable * _Nullable)error
+{
+    if (error) {
+        *error = nil;
+    }
+
+    PEP_STATUS status = PEP_VERIFIED; // config_passphrase(_session, [normalizedPassphrase UTF8String]);
+
+    if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
+        return NO;
+    }
+
+    return YES;
+}
 
 @end

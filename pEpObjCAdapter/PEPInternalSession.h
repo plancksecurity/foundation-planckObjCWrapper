@@ -19,6 +19,7 @@
 @class PEPIdentity;
 @class PEPMessage;
 @class PEPPassphraseCache;
+@class PEPMediaKeyPair;
 
 /**
  Represents a real pEp session (in contrast to PEPSession, which is a fake session to handle to the client).
@@ -333,5 +334,8 @@
 - (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error;
 
 #pragma mark - Media Key / Echo Protocol
+
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
+                     error:(NSError * _Nullable * _Nullable)error;
 
 @end
