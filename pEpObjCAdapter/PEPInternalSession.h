@@ -332,4 +332,6 @@
 /// Wraps `sync_reinit` (sync_api.h).
 - (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error;
 
+#pragma mark - Media Key / Echo Protocol
+
 @end

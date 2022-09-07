@@ -1027,4 +1027,6 @@ static NSDictionary *stringToRating;
     }
 }
 
+#pragma mark - Media Key / Echo Protocol
+
 @end
