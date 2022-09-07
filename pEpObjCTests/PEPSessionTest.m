@@ -544,4 +544,28 @@
     }
 }
 
+- (BOOL)syncReinit:(NSError * _Nullable *)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+
+    __block NSError *outerError = nil;
+
+    XCTestExpectation *expSyncReinit = [self expectationWithDescription:@"expSyncReinit"];
+    [asyncSession syncReinit:^(NSError * _Nonnull innerError) {
+        outerError = innerError;
+        [expSyncReinit fulfill];
+    } successCallback:^{
+        [expSyncReinit fulfill];
+    }];
+
+    [self waitForExpectations:@[expSyncReinit] timeout:PEPTestInternalSyncTimeout];
+
+    if (outerError) {
+        *error = outerError;
+        return NO;
+    }
+
+    return YES;
+}
+
 @end
