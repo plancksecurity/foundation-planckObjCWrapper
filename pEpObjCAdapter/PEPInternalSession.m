@@ -1043,7 +1043,6 @@ static NSDictionary *stringToRating;
         stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
                                                   [pair.fingerprint UTF8String]);
         stringpair_list_add(engineList, engineStringPair);
-        free_stringpair(engineStringPair);
     }
 
     PEP_STATUS status = config_media_keys(self.session, engineList);
