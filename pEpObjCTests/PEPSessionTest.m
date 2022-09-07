@@ -399,9 +399,8 @@
 
 - (void)testSyncReinitWithoutOwnIdentity
 {
-    PEPInternalSession *session = [PEPSessionProvider session];
     NSError *error = nil;
-    [session syncReinit:&error];
+    [self syncReinit:&error];
     XCTAssertNotNil(error);
     XCTAssertEqual(error.code, PEPStatusStatemachineError);
 }
