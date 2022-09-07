@@ -31,6 +31,7 @@
 #import "PEPMediaKeyPair.h"
 
 #import "key_reset.h"
+#import "media_key.h"
 
 @implementation PEPInternalSession
 
@@ -1037,14 +1038,17 @@ static NSDictionary *stringToRating;
         *error = nil;
     }
 
-    stringpair_list_t *list = new_stringpair_list(NULL);
+    stringpair_list_t *engineList = new_stringpair_list(NULL);
     for (PEPMediaKeyPair *pair in mediaKeys) {
-        stringpair_t *thePair = new_stringpair([pair.pattern UTF8String],
+        stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
                                                   [pair.fingerprint UTF8String]);
-        stringpair_list_add(list, thePair);
+        stringpair_list_add(engineList, engineStringPair);
+        free_stringpair(engineStringPair);
     }
 
-    PEP_STATUS status = PEP_VERIFIED; // config_passphrase(_session, [normalizedPassphrase UTF8String]);
+    PEP_STATUS status = config_media_keys(self.session, engineList);
+
+    free_stringpair_list(engineList);
 
     if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
         return NO;
