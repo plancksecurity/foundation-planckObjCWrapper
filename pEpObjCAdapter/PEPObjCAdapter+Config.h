@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPObjCAdapter ()
+@interface PEPObjCAdapter (Config)
 
 /**
  unecryptedSubjectEnabled value to use for all sessions created.
