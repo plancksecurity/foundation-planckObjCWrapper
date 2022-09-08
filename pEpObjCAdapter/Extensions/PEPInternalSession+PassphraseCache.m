@@ -11,7 +11,7 @@
 #import "pEpEngine.h"
 
 #import "PEPPassphraseCache.h"
-#import "PEPObjCAdapter+Config.h"
+#import "PEPObjCAdapter+ReadConfig.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPPassphraseUtil.h"
 

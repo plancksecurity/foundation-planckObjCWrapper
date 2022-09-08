@@ -12,7 +12,7 @@
 
 #import "PEPConstants.h"
 #import "PEPObjCAdapter.h"
-#import "PEPObjCAdapter+Config.h"
+#import "PEPObjCAdapter+ReadConfig.h"
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Take.h"
