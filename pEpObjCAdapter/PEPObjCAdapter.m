@@ -41,6 +41,9 @@ static BOOL s_passiveModeEnabled = NO;
 static NSString *s_passphraseForNewKeys = nil;
 static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
+static BOOL s_echoProtocolEnabled = YES;
+static BOOL s_echoInOutgoingMessageRatingPreviewEnabled = YES;
+
 @implementation PEPObjCAdapter
 
 #pragma mark - SUBJECT PROTECTION
@@ -106,6 +109,18 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 + (id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider
 {
     return s_passphraseProvider;
+}
+
+#pragma mark - Echo Protocol
+
+- (void)configureEchoProtocolEnabled:(BOOL)enabled
+{
+    s_echoProtocolEnabled = enabled;
+}
+
+- (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
+{
+    s_echoInOutgoingMessageRatingPreviewEnabled = enabled;
 }
 
 #pragma mark - DB PATHS

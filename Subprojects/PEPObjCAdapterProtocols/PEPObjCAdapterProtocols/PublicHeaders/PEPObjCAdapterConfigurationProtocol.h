@@ -56,6 +56,16 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
                                 error:(NSError * _Nullable * _Nullable)error;
 
+/// Enables or disable the use of the echo protocol.
+///
+/// The protocol is enabled by default.
+- (void)configureEchoProtocolEnabled:(BOOL)enabled;
+
+/// Enables or disables pings for the engine's `outgoing_message_rating_preview`.
+///
+/// Ping messages from outgoing_message_rating_preview are enabled by default.
+- (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled;
+
 @end
 
 NS_ASSUME_NONNULL_END
