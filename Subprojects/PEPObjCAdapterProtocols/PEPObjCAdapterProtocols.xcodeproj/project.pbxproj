@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		4E23E6E92681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E23E6E82681C7CD00B8F4C2 /* PEPObjCAdapterProtocols_macOS.h */; };
 		4E23E6F12681C7D600B8F4C2 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */; };
-		4E23E6F22681C7D600B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; };
+		4E23E6F22681C7D600B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4E23E6F32681C7F800B8F4C2 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; };
 		4E23E70F2681D61700B8F4C2 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; platformFilter = ios; };
-		4E23E7112681D65F00B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; platformFilter = ios; };
+		4E23E7112681D65F00B8F4C2 /* PEPObjCAdapterConfigurationProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC12680DCAC00161040 /* PEPObjCAdapterConfigurationProtocol.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		4E23E7122681D65F00B8F4C2 /* PEPSessionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
