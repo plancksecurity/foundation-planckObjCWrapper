@@ -13,7 +13,6 @@
 #endif
 
 #import "PEPObjCAdapter.h"
-#import "PEPObjCAdapter+ReadConfig.h"
 #import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
