@@ -112,12 +112,12 @@ static BOOL s_echoInOutgoingMessageRatingPreviewEnabled = YES;
 
 #pragma mark - Echo Protocol
 
-- (void)configureEchoProtocolEnabled:(BOOL)enabled
++ (void)setEchoProtocolEnabled:(BOOL)enabled
 {
     s_echoProtocolEnabled = enabled;
 }
 
-- (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
++ (void)setEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
 {
     s_echoInOutgoingMessageRatingPreviewEnabled = enabled;
 }
