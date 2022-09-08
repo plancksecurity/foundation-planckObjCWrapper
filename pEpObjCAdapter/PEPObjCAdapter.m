@@ -122,6 +122,16 @@ static BOOL s_echoInOutgoingMessageRatingPreviewEnabled = YES;
     s_echoInOutgoingMessageRatingPreviewEnabled = enabled;
 }
 
++ (BOOL)echoProtocolEnabled
+{
+    return s_echoProtocolEnabled;
+}
+
++ (BOOL)echoInOutgoingMessageRatingPreviewEnabled
+{
+    return s_echoInOutgoingMessageRatingPreviewEnabled;
+}
+
 #pragma mark - DB PATHS
 
 + (void)initialize
