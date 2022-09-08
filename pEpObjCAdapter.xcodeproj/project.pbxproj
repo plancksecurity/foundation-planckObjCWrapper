@@ -141,6 +141,8 @@
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
+		4379C1D728C9D25600977A32 /* PEPObjCAdapter+ReadEchoConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 4379C1B928C9D24A00977A32 /* PEPObjCAdapter+ReadEchoConfig.h */; };
+		4379C1D828C9D25800977A32 /* PEPObjCAdapter+ReadEchoConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 4379C1B928C9D24A00977A32 /* PEPObjCAdapter+ReadEchoConfig.h */; };
 		4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
 		43D2D5F12632B0FA00088BDC /* XCTestCase+PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */; };
@@ -380,6 +382,7 @@
 		436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Rick Deckard (43F270EC) – Secret.asc"; sourceTree = "<group>"; };
 		436E917524B71E12000296FF /* PEPPassphraseProviderMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseProviderMock.h; sourceTree = "<group>"; };
 		436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPPassphraseProviderMock.m; sourceTree = "<group>"; };
+		4379C1B928C9D24A00977A32 /* PEPObjCAdapter+ReadEchoConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPObjCAdapter+ReadEchoConfig.h"; sourceTree = "<group>"; };
 		4396CEB52187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPInternalSessionTestNotifyHandshakeDelegate.h; sourceTree = "<group>"; };
 		4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestNotifyHandshakeDelegate.m; sourceTree = "<group>"; };
 		4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestSendMessageDelegate.m; sourceTree = "<group>"; };
@@ -585,6 +588,7 @@
 				43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */,
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
 				43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+ReadConfig.h */,
+				4379C1B928C9D24A00977A32 /* PEPObjCAdapter+ReadEchoConfig.h */,
 				43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */,
 				43209B311ECC2ACD007E7E2E /* PEPQueue.h */,
 				43209B321ECC2ACD007E7E2E /* PEPQueue.m */,
@@ -696,6 +700,7 @@
 				15A922E425BF2D6000D33EAB /* NSArray+Take.h in Headers */,
 				1543DD6A257A3BA90041EFB5 /* PEPCSVScanner.h in Headers */,
 				1543DD7B257A3BCF0041EFB5 /* PEPPassphraseCacheInternal.h in Headers */,
+				4379C1D728C9D25600977A32 /* PEPObjCAdapter+ReadEchoConfig.h in Headers */,
 				1543DD7D257A3BCF0041EFB5 /* PEPSync_Internal.h in Headers */,
 				1543DD7A257A3BCF0041EFB5 /* PEPPassphraseCacheEntry.h in Headers */,
 				1543DD80257A3BCF0041EFB5 /* PEPInternalSession.h in Headers */,
@@ -751,6 +756,7 @@
 				1552D972257660C900A92F71 /* PEPCSVScanner.h in Headers */,
 				1552D975257660C900A92F71 /* PEPIdentity+Reset.h in Headers */,
 				1552D985257660C900A92F71 /* NSNumber+PEPRating+Internal.h in Headers */,
+				4379C1D828C9D25800977A32 /* PEPObjCAdapter+ReadEchoConfig.h in Headers */,
 				1552D96B257660C900A92F71 /* PEPPassphraseCache.h in Headers */,
 				1552D963257660C900A92F71 /* NSString+NormalizePassphrase.h in Headers */,
 				1552D982257660C900A92F71 /* PEPPassphraseUtil.h in Headers */,
