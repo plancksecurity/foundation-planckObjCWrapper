@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPObjCAdapter (ReadEchoConfig)
 
++ (BOOL)echoProtocolEnabled;
++ (BOOL)echoInOutgoingMessageRatingPreviewEnabled;
+
 @end
 
 #endif /* PEPObjCAdapter_ReadEchoConfig_h */
