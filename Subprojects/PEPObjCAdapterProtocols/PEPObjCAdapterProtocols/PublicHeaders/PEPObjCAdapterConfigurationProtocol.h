@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPObjCAdapterConfigurationProtocol+Echo.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol PEPObjCAdapterConfigurationProtocol <NSObject>
+@protocol PEPObjCAdapterConfigurationProtocol <PEPObjCAdapterEchoConfigurationProtocol>
 
 /// Sets Engine config for unecryptedSubjectEnabled to the given value on all Sessions created by
 /// this adapter.
@@ -55,16 +57,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @Throws PEPAdapterErrorPassphraseTooLong (with a domain of PEPObjCAdapterErrorDomain)
 + (BOOL)configurePassphraseForNewKeys:(NSString * _Nullable)passphrase
                                 error:(NSError * _Nullable * _Nullable)error;
-
-/// Enables or disable the use of the echo protocol.
-///
-/// The protocol is enabled by default.
-- (void)configureEchoProtocolEnabled:(BOOL)enabled;
-
-/// Enables or disables pings for the engine's `outgoing_message_rating_preview`.
-///
-/// Ping messages from outgoing_message_rating_preview are enabled by default.
-- (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled;
 
 @end
 
