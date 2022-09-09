@@ -9,8 +9,8 @@
 #ifndef PEPIOSAdapter_ReadConfig_h
 #define PEPIOSAdapter_ReadConfig_h
 
-#import "PEPQueue.h"
-#import "PEPInternalSession.h"
+#import "PEPObjCAdapter.h"
+
 #import "PEPPassphraseProviderProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN

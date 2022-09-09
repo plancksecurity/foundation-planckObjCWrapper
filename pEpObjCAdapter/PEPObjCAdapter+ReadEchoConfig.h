@@ -9,6 +9,8 @@
 #ifndef PEPObjCAdapter_ReadEchoConfig_h
 #define PEPObjCAdapter_ReadEchoConfig_h
 
+#import "PEPObjCAdapter.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPObjCAdapter (ReadEchoConfig)
