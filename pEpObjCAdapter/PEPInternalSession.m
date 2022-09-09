@@ -12,7 +12,7 @@
 
 #import "PEPConstants.h"
 #import "PEPObjCAdapter.h"
-#import "PEPObjCAdapter+Internal.h"
+#import "PEPObjCAdapter+ReadConfig.h"
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Take.h"
@@ -28,8 +28,10 @@
 #import "PEPInternalSession+PassphraseCache.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPIdentity+Reset.h"
+#import "PEPMediaKeyPair.h"
 
 #import "key_reset.h"
+#import "media_key.h"
 
 @implementation PEPInternalSession
 
@@ -1012,6 +1014,56 @@ static NSDictionary *stringToRating;
     } else {
         return YES;
     }
+}
+
+- (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error
+{
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return sync_reinit(self.session);
+    }];
+
+    if ([NSError setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+#pragma mark - Media Key / Echo Protocol
+
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> * _Nonnull)mediaKeys
+                     error:(NSError * _Nullable * _Nullable)error
+{
+    if (error) {
+        *error = nil;
+    }
+
+    stringpair_list_t *engineList = new_stringpair_list(NULL);
+    for (PEPMediaKeyPair *pair in mediaKeys) {
+        stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
+                                                  [pair.fingerprint UTF8String]);
+        stringpair_list_add(engineList, engineStringPair);
+    }
+
+    PEP_STATUS status = config_media_keys(self.session, engineList);
+
+    free_stringpair_list(engineList);
+
+    if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
+        return NO;
+    }
+
+    return YES;
+}
+
+- (void)configureEchoProtocolEnabled:(BOOL)enabled
+{
+    config_enable_echo_protocol(self.session, enabled);
+}
+
+- (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
+{
+    config_enable_echo_in_outgoing_message_rating_preview(self.session, enabled);
 }
 
 @end

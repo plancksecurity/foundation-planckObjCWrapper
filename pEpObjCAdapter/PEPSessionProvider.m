@@ -8,7 +8,8 @@
 
 #import "PEPSessionProvider.h"
 
-#import "PEPObjCAdapter+Internal.h"
+#import "PEPObjCAdapter+ReadConfig.h"
+#import "PEPObjCAdapter+ReadEchoConfig.h"
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
 #import "Logger.h"
@@ -84,13 +85,14 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     return s_sessionForThreadDict;
 }
 
-#pragma mark - configuration
+#pragma mark - Configuration
 
 + (void)configureSession:(PEPInternalSession *)session
 {
     [self setConfigUnEncryptedSubjectOnSession:session];
     [self setPassiveModeOnSession:session];
     [self setPassphraseForNewKeysOnSession:session];
+    [self configureEchoProtocolOnSession:session];
 }
 
 + (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
@@ -119,6 +121,15 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     if (status != PEPStatusOK) {
         LogError(@"could not configure passphrase for new keys: %d", status);
     }
+}
+
++ (void)configureEchoProtocolOnSession:(PEPInternalSession *)session
+{
+    BOOL echoEnabled = [PEPObjCAdapter echoProtocolEnabled];
+    [session configureEchoProtocolEnabled:echoEnabled];
+
+    BOOL echoInOutgoing = [PEPObjCAdapter echoInOutgoingMessageRatingPreviewEnabled];
+    [session configureEchoInOutgoingMessageRatingPreviewEnabled:echoInOutgoing];
 }
 
 #pragma mark -

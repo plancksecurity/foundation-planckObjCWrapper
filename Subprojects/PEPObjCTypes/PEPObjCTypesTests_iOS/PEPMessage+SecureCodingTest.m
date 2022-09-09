@@ -13,7 +13,7 @@
 #import "PEPTypesTestUtil.h"
 #import "PEPIdentity.h"
 #import "PEPAttachment.h"
-#import "NSObject+Extension.h"
+#import "NSObject+Equality.h"
 
 @interface PEPMessage_SecureCodingTest : XCTestCase
 @end

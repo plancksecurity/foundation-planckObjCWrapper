@@ -7,10 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1598061A26CFC5D800593C9D /* PEPObjCTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575841268328CD0084F02D /* PEPObjCTypes.h */; };
-		1598061B26CFC5D900593C9D /* PEPObjCTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575841268328CD0084F02D /* PEPObjCTypes.h */; };
+		1598061A26CFC5D800593C9D /* PEPObjCTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575841268328CD0084F02D /* PEPObjCTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1598061B26CFC5D900593C9D /* PEPObjCTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575841268328CD0084F02D /* PEPObjCTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43D44C822685BB3600638D1C /* PEPObjCTypes_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */; platformFilter = ios; };
 		43D44C842685BEB400638D1C /* pEpObjCTypesModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */; platformFilter = ios; };
+		43EF25F728C73E0600480977 /* PEPMediaKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43EF25F828C73E0600480977 /* PEPMediaKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43EF25F928C73E0600480977 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */; };
+		43EF25FA28C73E0600480977 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */; };
+		43EF25FD28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25FB28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43EF25FE28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EF25FB28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43EF25FF28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25FC28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m */; };
+		43EF260028C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF25FC28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m */; };
+		43EF260228C7604C00480977 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EF260128C7604C00480977 /* PEPMediaKeyPair+SecureCoding+Test.m */; };
 		4E57585B268329170084F02D /* PEPObjCTypes_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
 		4E57585D268329170084F02D /* PEPObjCTypes_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57585C268329170084F02D /* PEPObjCTypes_macOS.m */; };
 		4E575869268329A20084F02D /* PEPObjCTypes_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E575868268329A20084F02D /* PEPObjCTypes_iOS.m */; platformFilter = ios; };
@@ -21,40 +30,40 @@
 		4E57588C26832F2F0084F02D /* PEPIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587526832F2F0084F02D /* PEPIdentity.m */; platformFilter = ios; };
 		4E57588D26832F2F0084F02D /* PEPMessage+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587626832F2F0084F02D /* PEPMessage+SecureCoding.m */; };
 		4E57588E26832F2F0084F02D /* PEPMessage+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587626832F2F0084F02D /* PEPMessage+SecureCoding.m */; platformFilter = ios; };
-		4E57588F26832F2F0084F02D /* NSObject+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587726832F2F0084F02D /* NSObject+Extension.h */; };
+		4E57588F26832F2F0084F02D /* NSObject+Equality.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587726832F2F0084F02D /* NSObject+Equality.h */; };
 		4E57589026832F2F0084F02D /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587826832F2F0084F02D /* PEPAttachment.m */; };
 		4E57589126832F2F0084F02D /* PEPAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587826832F2F0084F02D /* PEPAttachment.m */; platformFilter = ios; };
 		4E57589226832F2F0084F02D /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587926832F2F0084F02D /* PEPIdentity+SecureCoding.m */; };
 		4E57589326832F2F0084F02D /* PEPIdentity+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587926832F2F0084F02D /* PEPIdentity+SecureCoding.m */; platformFilter = ios; };
-		4E57589426832F2F0084F02D /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587A26832F2F0084F02D /* NSObject+Extension.m */; };
-		4E57589526832F2F0084F02D /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587A26832F2F0084F02D /* NSObject+Extension.m */; platformFilter = ios; };
+		4E57589426832F2F0084F02D /* NSObject+Equality.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587A26832F2F0084F02D /* NSObject+Equality.m */; };
+		4E57589526832F2F0084F02D /* NSObject+Equality.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587A26832F2F0084F02D /* NSObject+Equality.m */; platformFilter = ios; };
 		4E57589626832F2F0084F02D /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587B26832F2F0084F02D /* PEPLanguage.m */; };
 		4E57589726832F2F0084F02D /* PEPLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587B26832F2F0084F02D /* PEPLanguage.m */; platformFilter = ios; };
 		4E57589826832F2F0084F02D /* PEPAttachment+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587C26832F2F0084F02D /* PEPAttachment+SecureCoding.m */; };
 		4E57589926832F2F0084F02D /* PEPAttachment+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587C26832F2F0084F02D /* PEPAttachment+SecureCoding.m */; platformFilter = ios; };
 		4E57589A26832F2F0084F02D /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587D26832F2F0084F02D /* PEPMessage.m */; };
 		4E57589B26832F2F0084F02D /* PEPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57587D26832F2F0084F02D /* PEPMessage.m */; platformFilter = ios; };
-		4E57589C26832F2F0084F02D /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587F26832F2F0084F02D /* PEPEngineTypes.h */; };
-		4E57589D26832F2F0084F02D /* PEPAttachment+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588026832F2F0084F02D /* PEPAttachment+SecureCoding.h */; };
-		4E57589E26832F2F0084F02D /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588126832F2F0084F02D /* PEPTypes.h */; };
-		4E57589F26832F2F0084F02D /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588226832F2F0084F02D /* PEPLanguage.h */; };
-		4E5758A026832F2F0084F02D /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588326832F2F0084F02D /* PEPMessage.h */; };
-		4E5758A126832F2F0084F02D /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588426832F2F0084F02D /* PEPAttachment.h */; };
-		4E5758A226832F2F0084F02D /* PEPMessage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588526832F2F0084F02D /* PEPMessage+SecureCoding.h */; };
-		4E5758A326832F2F0084F02D /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588626832F2F0084F02D /* PEPIdentity.h */; };
-		4E5758A426832F2F0084F02D /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588726832F2F0084F02D /* PEPLanguage+SecureCoding.h */; };
-		4E5758A526832F2F0084F02D /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */; };
-		4E5758A72683331C0084F02D /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588426832F2F0084F02D /* PEPAttachment.h */; platformFilter = ios; };
-		4E5758A82683331C0084F02D /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587F26832F2F0084F02D /* PEPEngineTypes.h */; platformFilter = ios; };
-		4E5758A92683331C0084F02D /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588326832F2F0084F02D /* PEPMessage.h */; platformFilter = ios; };
-		4E5758AA2683331C0084F02D /* PEPMessage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588526832F2F0084F02D /* PEPMessage+SecureCoding.h */; platformFilter = ios; };
-		4E5758AB2683331C0084F02D /* PEPAttachment+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588026832F2F0084F02D /* PEPAttachment+SecureCoding.h */; platformFilter = ios; };
-		4E5758AC2683331C0084F02D /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588626832F2F0084F02D /* PEPIdentity.h */; platformFilter = ios; };
-		4E5758AD2683331C0084F02D /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588726832F2F0084F02D /* PEPLanguage+SecureCoding.h */; platformFilter = ios; };
-		4E5758AE2683331C0084F02D /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588126832F2F0084F02D /* PEPTypes.h */; platformFilter = ios; };
-		4E5758AF2683331C0084F02D /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */; platformFilter = ios; };
-		4E5758B02683331C0084F02D /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588226832F2F0084F02D /* PEPLanguage.h */; platformFilter = ios; };
-		4E5758B1268333230084F02D /* NSObject+Extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587726832F2F0084F02D /* NSObject+Extension.h */; platformFilter = ios; };
+		4E57589C26832F2F0084F02D /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587F26832F2F0084F02D /* PEPEngineTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E57589D26832F2F0084F02D /* PEPAttachment+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588026832F2F0084F02D /* PEPAttachment+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E57589E26832F2F0084F02D /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588126832F2F0084F02D /* PEPTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E57589F26832F2F0084F02D /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588226832F2F0084F02D /* PEPLanguage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A026832F2F0084F02D /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588326832F2F0084F02D /* PEPMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A126832F2F0084F02D /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588426832F2F0084F02D /* PEPAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A226832F2F0084F02D /* PEPMessage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588526832F2F0084F02D /* PEPMessage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A326832F2F0084F02D /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588626832F2F0084F02D /* PEPIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A426832F2F0084F02D /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588726832F2F0084F02D /* PEPLanguage+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A526832F2F0084F02D /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A72683331C0084F02D /* PEPAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588426832F2F0084F02D /* PEPAttachment.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A82683331C0084F02D /* PEPEngineTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587F26832F2F0084F02D /* PEPEngineTypes.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758A92683331C0084F02D /* PEPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588326832F2F0084F02D /* PEPMessage.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758AA2683331C0084F02D /* PEPMessage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588526832F2F0084F02D /* PEPMessage+SecureCoding.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758AB2683331C0084F02D /* PEPAttachment+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588026832F2F0084F02D /* PEPAttachment+SecureCoding.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758AC2683331C0084F02D /* PEPIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588626832F2F0084F02D /* PEPIdentity.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758AD2683331C0084F02D /* PEPLanguage+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588726832F2F0084F02D /* PEPLanguage+SecureCoding.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758AE2683331C0084F02D /* PEPTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588126832F2F0084F02D /* PEPTypes.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758AF2683331C0084F02D /* PEPIdentity+SecureCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758B02683331C0084F02D /* PEPLanguage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57588226832F2F0084F02D /* PEPLanguage.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
+		4E5758B1268333230084F02D /* NSObject+Equality.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E57587726832F2F0084F02D /* NSObject+Equality.h */; platformFilter = ios; };
 		4E5758B626833A4E0084F02D /* PEPObjCTypes_macOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */; };
 		4E5758B726833A560084F02D /* pEpObjCTypesModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E5758B4268339450084F02D /* pEpObjCTypesModuleMap.modulemap */; };
 		4E5758C426833D140084F02D /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575865268329A20084F02D /* libPEPObjCTypes_iOS.a */; platformFilter = ios; };
@@ -102,6 +111,11 @@
 
 /* Begin PBXFileReference section */
 		43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = pEpObjCTypesModuleMap.modulemap; sourceTree = "<group>"; };
+		43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMediaKeyPair.h; sourceTree = "<group>"; };
+		43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPMediaKeyPair.m; sourceTree = "<group>"; };
+		43EF25FB28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMediaKeyPair+SecureCoding.h"; sourceTree = "<group>"; };
+		43EF25FC28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMediaKeyPair+SecureCoding.m"; sourceTree = "<group>"; };
+		43EF260128C7604C00480977 /* PEPMediaKeyPair+SecureCoding+Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMediaKeyPair+SecureCoding+Test.m"; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes.h; sourceTree = "<group>"; };
 		4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes_macOS.h; sourceTree = "<group>"; };
@@ -112,10 +126,10 @@
 		4E57587426832F2F0084F02D /* PEPLanguage+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPLanguage+SecureCoding.m"; sourceTree = "<group>"; };
 		4E57587526832F2F0084F02D /* PEPIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPIdentity.m; sourceTree = "<group>"; };
 		4E57587626832F2F0084F02D /* PEPMessage+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+SecureCoding.m"; sourceTree = "<group>"; };
-		4E57587726832F2F0084F02D /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
+		4E57587726832F2F0084F02D /* NSObject+Equality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Equality.h"; sourceTree = "<group>"; };
 		4E57587826832F2F0084F02D /* PEPAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPAttachment.m; sourceTree = "<group>"; };
 		4E57587926832F2F0084F02D /* PEPIdentity+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+SecureCoding.m"; sourceTree = "<group>"; };
-		4E57587A26832F2F0084F02D /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		4E57587A26832F2F0084F02D /* NSObject+Equality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Equality.m"; sourceTree = "<group>"; };
 		4E57587B26832F2F0084F02D /* PEPLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPLanguage.m; sourceTree = "<group>"; };
 		4E57587C26832F2F0084F02D /* PEPAttachment+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPAttachment+SecureCoding.m"; sourceTree = "<group>"; };
 		4E57587D26832F2F0084F02D /* PEPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMessage.m; sourceTree = "<group>"; };
@@ -225,6 +239,7 @@
 				4E57587526832F2F0084F02D /* PEPIdentity.m */,
 				4E57587B26832F2F0084F02D /* PEPLanguage.m */,
 				4E57587D26832F2F0084F02D /* PEPMessage.m */,
+				43EF25F628C73E0600480977 /* PEPMediaKeyPair.m */,
 				4E5758B3268334AC0084F02D /* NSObject */,
 				4E5758B22683348A0084F02D /* SecureCoding */,
 			);
@@ -241,10 +256,12 @@
 				4E57588326832F2F0084F02D /* PEPMessage.h */,
 				4E57588426832F2F0084F02D /* PEPAttachment.h */,
 				4E57588626832F2F0084F02D /* PEPIdentity.h */,
+				43EF25F528C73E0600480977 /* PEPMediaKeyPair.h */,
 				4E57588026832F2F0084F02D /* PEPAttachment+SecureCoding.h */,
 				4E57588826832F2F0084F02D /* PEPIdentity+SecureCoding.h */,
 				4E57588726832F2F0084F02D /* PEPLanguage+SecureCoding.h */,
 				4E57588526832F2F0084F02D /* PEPMessage+SecureCoding.h */,
+				43EF25FB28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
@@ -256,6 +273,7 @@
 				4E57587926832F2F0084F02D /* PEPIdentity+SecureCoding.m */,
 				4E57587426832F2F0084F02D /* PEPLanguage+SecureCoding.m */,
 				4E57587626832F2F0084F02D /* PEPMessage+SecureCoding.m */,
+				43EF25FC28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m */,
 			);
 			path = SecureCoding;
 			sourceTree = "<group>";
@@ -263,8 +281,8 @@
 		4E5758B3268334AC0084F02D /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
-				4E57587726832F2F0084F02D /* NSObject+Extension.h */,
-				4E57587A26832F2F0084F02D /* NSObject+Extension.m */,
+				4E57587726832F2F0084F02D /* NSObject+Equality.h */,
+				4E57587A26832F2F0084F02D /* NSObject+Equality.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -285,6 +303,7 @@
 				4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */,
 				4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */,
 				4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */,
+				43EF260128C7604C00480977 /* PEPMediaKeyPair+SecureCoding+Test.m */,
 				4E5758C326833D140084F02D /* Info.plist */,
 			);
 			path = PEPObjCTypesTests_iOS;
@@ -306,16 +325,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E57588F26832F2F0084F02D /* NSObject+Extension.h in Headers */,
+				4E57588F26832F2F0084F02D /* NSObject+Equality.h in Headers */,
 				4E57585B268329170084F02D /* PEPObjCTypes_macOS.h in Headers */,
 				4E57589F26832F2F0084F02D /* PEPLanguage.h in Headers */,
 				4E5758A226832F2F0084F02D /* PEPMessage+SecureCoding.h in Headers */,
 				4E5758A026832F2F0084F02D /* PEPMessage.h in Headers */,
 				1598061B26CFC5D900593C9D /* PEPObjCTypes.h in Headers */,
 				4E5758A126832F2F0084F02D /* PEPAttachment.h in Headers */,
+				43EF25F728C73E0600480977 /* PEPMediaKeyPair.h in Headers */,
 				4E57589C26832F2F0084F02D /* PEPEngineTypes.h in Headers */,
 				4E57589D26832F2F0084F02D /* PEPAttachment+SecureCoding.h in Headers */,
 				4E5758A426832F2F0084F02D /* PEPLanguage+SecureCoding.h in Headers */,
+				43EF25FD28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h in Headers */,
 				4E5758A526832F2F0084F02D /* PEPIdentity+SecureCoding.h in Headers */,
 				4E5758A326832F2F0084F02D /* PEPIdentity.h in Headers */,
 				4E57589E26832F2F0084F02D /* PEPTypes.h in Headers */,
@@ -326,16 +347,18 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E5758B1268333230084F02D /* NSObject+Extension.h in Headers */,
+				4E5758B1268333230084F02D /* NSObject+Equality.h in Headers */,
 				4E5758AF2683331C0084F02D /* PEPIdentity+SecureCoding.h in Headers */,
 				4E5758AC2683331C0084F02D /* PEPIdentity.h in Headers */,
 				4E5758AB2683331C0084F02D /* PEPAttachment+SecureCoding.h in Headers */,
 				1598061A26CFC5D800593C9D /* PEPObjCTypes.h in Headers */,
 				4E5758AE2683331C0084F02D /* PEPTypes.h in Headers */,
 				4E5758B02683331C0084F02D /* PEPLanguage.h in Headers */,
+				43EF25F828C73E0600480977 /* PEPMediaKeyPair.h in Headers */,
 				4E5758A82683331C0084F02D /* PEPEngineTypes.h in Headers */,
 				4E5758A92683331C0084F02D /* PEPMessage.h in Headers */,
 				4E5758A72683331C0084F02D /* PEPAttachment.h in Headers */,
+				43EF25FE28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.h in Headers */,
 				4E5758AD2683331C0084F02D /* PEPLanguage+SecureCoding.h in Headers */,
 				4E5758AA2683331C0084F02D /* PEPMessage+SecureCoding.h in Headers */,
 				43D44C822685BB3600638D1C /* PEPObjCTypes_iOS.h in Headers */,
@@ -539,9 +562,11 @@
 				4E57588926832F2F0084F02D /* PEPLanguage+SecureCoding.m in Sources */,
 				4E57589226832F2F0084F02D /* PEPIdentity+SecureCoding.m in Sources */,
 				4E57589826832F2F0084F02D /* PEPAttachment+SecureCoding.m in Sources */,
-				4E57589426832F2F0084F02D /* NSObject+Extension.m in Sources */,
+				4E57589426832F2F0084F02D /* NSObject+Equality.m in Sources */,
 				4E57585D268329170084F02D /* PEPObjCTypes_macOS.m in Sources */,
+				43EF25FF28C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m in Sources */,
 				4E57589A26832F2F0084F02D /* PEPMessage.m in Sources */,
+				43EF25F928C73E0600480977 /* PEPMediaKeyPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,9 +581,11 @@
 				4E57588A26832F2F0084F02D /* PEPLanguage+SecureCoding.m in Sources */,
 				4E57589326832F2F0084F02D /* PEPIdentity+SecureCoding.m in Sources */,
 				4E57589926832F2F0084F02D /* PEPAttachment+SecureCoding.m in Sources */,
-				4E57589526832F2F0084F02D /* NSObject+Extension.m in Sources */,
+				4E57589526832F2F0084F02D /* NSObject+Equality.m in Sources */,
 				4E575869268329A20084F02D /* PEPObjCTypes_iOS.m in Sources */,
+				43EF260028C74C1900480977 /* PEPMediaKeyPair+SecureCoding.m in Sources */,
 				4E57589B26832F2F0084F02D /* PEPMessage.m in Sources */,
+				43EF25FA28C73E0600480977 /* PEPMediaKeyPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +598,7 @@
 				4E5758D126833F920084F02D /* PEPAttachment+SecureCodingTest.m in Sources */,
 				4E5758D526833F920084F02D /* PEPTypesTestUtil.m in Sources */,
 				4E5758D226833F920084F02D /* PEPIdentity+SecureCodingTest.m in Sources */,
+				43EF260228C7604C00480977 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

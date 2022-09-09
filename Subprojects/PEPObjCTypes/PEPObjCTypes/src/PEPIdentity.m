@@ -8,7 +8,7 @@
 
 #import "PEPIdentity.h"
 
-#import "NSObject+Extension.h"
+#import "NSObject+Equality.h"
 
 @implementation PEPIdentity
 

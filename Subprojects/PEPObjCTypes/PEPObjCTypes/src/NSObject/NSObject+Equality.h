@@ -1,5 +1,5 @@
 //
-//  NSObject+Extension.h
+//  NSObject+Equality.h
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 24.04.18.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (Extension)
+@interface NSObject (Equality)
 
 /**
  Invokes `[value1 isEqual:value2]` between all value pairs retrieved

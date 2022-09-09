@@ -13,7 +13,6 @@
 #endif
 
 #import "PEPObjCAdapter.h"
-#import "PEPObjCAdapter+Internal.h"
 #import "NSError+PEP.h"
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
@@ -40,6 +39,9 @@ static BOOL s_unEncryptedSubjectEnabled = NO;
 static BOOL s_passiveModeEnabled = NO;
 static NSString *s_passphraseForNewKeys = nil;
 static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
+
+static BOOL s_echoProtocolEnabled = YES;
+static BOOL s_echoInOutgoingMessageRatingPreviewEnabled = YES;
 
 @implementation PEPObjCAdapter
 
@@ -106,6 +108,28 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 + (id<PEPPassphraseProviderProtocol> _Nullable)passphraseProvider
 {
     return s_passphraseProvider;
+}
+
+#pragma mark - Echo Protocol
+
++ (void)setEchoProtocolEnabled:(BOOL)enabled
+{
+    s_echoProtocolEnabled = enabled;
+}
+
++ (void)setEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
+{
+    s_echoInOutgoingMessageRatingPreviewEnabled = enabled;
+}
+
++ (BOOL)echoProtocolEnabled
+{
+    return s_echoProtocolEnabled;
+}
+
++ (BOOL)echoInOutgoingMessageRatingPreviewEnabled
+{
+    return s_echoInOutgoingMessageRatingPreviewEnabled;
 }
 
 #pragma mark - DB PATHS

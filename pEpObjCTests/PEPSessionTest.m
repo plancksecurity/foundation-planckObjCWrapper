@@ -375,6 +375,32 @@
     XCTAssertNotEqual(fprOriginal, fprAfterReset);
 }
 
+#pragma mark - Sync/sync_reinit
+
+- (void)testSyncReinitWithoutSyncLoop
+{
+    NSError *error = nil;
+    [self syncReinit:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, PEPStatusStatemachineError);
+}
+
+#pragma mark - Media Key / Echo Protocol
+
+- (void)testConfigureMediaKeys
+{
+    NSArray *mediaKeys = @[
+        [[PEPMediaKeyPair alloc] initWithPattern:@"*@example.com"
+                                     fingerprint:@"97B69752A72FC5036971F5C83AC51FA45F01DA6C"]
+    ];
+
+    PEPSession *asyncSession = [PEPSession new];
+
+    NSError *error = nil;
+    [asyncSession configureMediaKeys:mediaKeys error:&error];
+    XCTAssertNil(error);
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf

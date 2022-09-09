@@ -1,21 +1,21 @@
 //
-//  PEPIOSAdapter+Internal.h
+//  PEPIOSAdapter+ReadConfig.h
 //  pEpiOSAdapter
 //
 //  Created by Edouard Tisserant on 11/11/15.
 //  Copyright © 2015 p≡p. All rights reserved.
 //
 
-#ifndef PEPIOSAdapter_Internal_h
-#define PEPIOSAdapter_Internal_h
+#ifndef PEPIOSAdapter_ReadConfig_h
+#define PEPIOSAdapter_ReadConfig_h
 
-#import "PEPQueue.h"
-#import "PEPInternalSession.h"
+#import "PEPObjCAdapter.h"
+
 #import "PEPPassphraseProviderProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PEPObjCAdapter ()
+@interface PEPObjCAdapter (ReadConfig)
 
 /**
  unecryptedSubjectEnabled value to use for all sessions created.
@@ -40,4 +40,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#endif /* PEPIOSAdapter_Internal_h */
+#endif /* PEPIOSAdapter_ReadConfig_h */

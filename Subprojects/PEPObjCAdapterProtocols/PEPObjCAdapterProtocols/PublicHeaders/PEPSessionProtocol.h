@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
+#import "PEPObjCTypes.h"
 
 @class PEPLanguage;
 @class PEPIdentity;
@@ -188,6 +187,10 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 - (void)keyResetAllOwnKeys:(void (^)(NSError *error))errorCallback
            successCallback:(void (^)(void))successCallback;
 
+/// Wraps `sync_reinit` (sync_api.h).
+- (void)syncReinit:(void (^)(NSError *error))errorCallback
+   successCallback:(void (^)(void))successCallback;
+
 // MARK: - Configuration
 
 /// Add a passphrase for secret keys to the cache.
@@ -223,8 +226,11 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 /// Wraps color_from_rating.
 - (PEPColor)colorFromRating:(PEPRating)rating;
 
-/// Wraps `disable_all_sync_channels` (`sync_api.h`).
+/// Wraps `disable_all_sync_channels` (sync_api.h).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
+
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
+                     error:(NSError * _Nullable * _Nullable)error;
 
 @end
 

@@ -91,7 +91,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
@@ -111,7 +110,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
     XCTAssertNotEqual(identMe.commType, PEPCommTypeUnknown);
 
@@ -415,9 +413,8 @@
     XCTAssertNil(error);
 
     identBob.fingerPrint = nil;
-    XCTAssertFalse([session updateIdentity:identBob error:&error]);
-    XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, PEP_KEY_UNSUITABLE);
+    XCTAssertTrue([session updateIdentity:identBob error:&error]);
+    XCTAssertNil(error);
     XCTAssertNil(identBob.fingerPrint);
 
     // Gray == PEPRatingUnencrypted
@@ -779,7 +776,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     // PEP_CANNOT_FIND_PERSON == 902
@@ -813,7 +809,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     // The fingerprint is definitely wrong, we don't have a key
@@ -843,7 +838,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPIdentity *identAlice = [self
@@ -890,7 +884,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     NSString *fprAlice = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
@@ -1117,6 +1110,57 @@
     XCTAssertNil(self.sendMessageDelegate.lastMessage);
 
     XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    [self shutdownSync];
+}
+
+#pragma mark - Sync/sync_reinit
+
+- (void)testSyncReinitWithoutSyncLoop
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    NSError *error = nil;
+    [session syncReinit:&error];
+    XCTAssertNotNil(error);
+    XCTAssertEqual(error.code, PEPStatusStatemachineError);
+}
+
+/// @Note This test only proves that `sync_reinit` can be called without errors.
+/// There was no observable change to verify, e.g., there was no message sent out.
+- (void)testSyncReinit
+{
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
+    XCTAssertNil(self.sendMessageDelegate.lastMessage);
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    [self startSync];
+
+    XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
+                                         initWithKeyPath:@"lastMessage"
+                                         object:self.sendMessageDelegate];
+
+    [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
+    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
+
+    XCTAssertEqual(self.sendMessageDelegate.messages.count, 1);
+
+    self.sendMessageDelegate.lastMessage = nil;
+
+    error = nil;
+    [session syncReinit:&error];
+    XCTAssertNil(error);
+
     [self shutdownSync];
 }
 
@@ -1475,6 +1519,28 @@
     XCTAssertTrue(mock.passphraseRequiredWasCalled);
 }
 
+#pragma mark - Media Key / Echo Protocol
+
+- (void)testConfigureMediaKeys
+{
+    // These echo settings don't interfere at all with the tests,
+    // but may be used to prove (via debugger) that the config works.
+    // See [PEPSessionProvider configureEchoProtocolOnSession:]
+    [PEPObjCAdapter setEchoProtocolEnabled:NO];
+    [PEPObjCAdapter setEchoInOutgoingMessageRatingPreviewEnabled:NO];
+
+    NSArray *mediaKeys = @[
+        [[PEPMediaKeyPair alloc] initWithPattern:@"*@example.com"
+                                     fingerprint:@"97B69752A72FC5036971F5C83AC51FA45F01DA6C"]
+    ];
+
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    NSError *error = nil;
+    [session configureMediaKeys:mediaKeys error:&error];
+    XCTAssertNil(error);
+}
+
 #pragma mark - Helpers
 
 - (void)setupEncryptWithImportedKeySession:(PEPInternalSession **)session
@@ -1523,14 +1589,13 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
 
     [self startSync];
 
     XCTKVOExpectation *expHaveMessage = [[XCTKVOExpectation alloc]
                                          initWithKeyPath:@"lastMessage"
                                          object:self.sendMessageDelegate];
-
-    XCTAssertNotNil(identMe.fingerPrint);
 
     [self waitForExpectations:@[expHaveMessage] timeout:PEPTestInternalSyncTimeout];
     XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
@@ -1578,7 +1643,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPIdentity *identAlice = [[PEPIdentity alloc]
@@ -1817,7 +1881,6 @@
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
-
     XCTAssertNotNil(identMe.fingerPrint);
 
     PEPMessage *msg = [PEPMessage new];
