@@ -1523,7 +1523,7 @@
 
 - (void)testConfigureMediaKeys
 {
-    // Those echo settings don't interfere at all with the tests,
+    // These echo settings don't interfere at all with the tests,
     // but may be used to prove (via debugger) that the config works.
     // See [PEPSessionProvider configureEchoProtocolOnSession:]
     [PEPObjCAdapter setEchoProtocolEnabled:NO];
