@@ -8,6 +8,7 @@
 #ifndef PEPObjCAdapterConfigurationProtocol_Echo_h
 #define PEPObjCAdapterConfigurationProtocol_Echo_h
 
+/// @see https://dev.pep.foundation/Engine/Echo%20Protocol
 @protocol PEPObjCAdapterEchoConfigurationProtocol <NSObject>
 
 /// Enables or disable the use of the echo protocol.
