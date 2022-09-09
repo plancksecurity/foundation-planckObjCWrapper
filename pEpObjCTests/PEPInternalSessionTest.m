@@ -1523,6 +1523,12 @@
 
 - (void)testConfigureMediaKeys
 {
+    // Those echo settings don't interfere at all with the tests,
+    // but may be used to prove (via debugger) that the config works.
+    // See [PEPSessionProvider configureEchoProtocolOnSession:]
+    [PEPObjCAdapter setEchoProtocolEnabled:NO];
+    [PEPObjCAdapter setEchoInOutgoingMessageRatingPreviewEnabled:NO];
+
     NSArray *mediaKeys = @[
         [[PEPMediaKeyPair alloc] initWithPattern:@"*@example.com"
                                      fingerprint:@"97B69752A72FC5036971F5C83AC51FA45F01DA6C"]
