@@ -396,8 +396,12 @@
 
     [PEPObjCAdapter configureMediaKeys:mediaKeys];
 
-    PEPSession *asyncSession = [PEPSession new];
-    asyncSession = nil;
+    NSString *fprAlice = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
+    PEPIdentity *identAlice = [self
+                               checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                               address:@"pep.test.alice@pep-project.org"
+                               userID:@"alice_user_id"
+                               fingerPrint:fprAlice];
 }
 
 #pragma mark - Helpers
