@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Echo protocol configuration across all sessions, including existing ones.
+///
 /// @see https://dev.pep.foundation/Engine/Echo%20Protocol
 @protocol PEPObjCAdapterEchoConfigurationProtocol <NSObject>
 
