@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPObjCAdapter (ReadMediaKeyConfig)
 
++ (NSArray<PEPMediaKeyPair *> * _Nullable)mediaKeys;
+
 @end
 
 NS_ASSUME_NONNULL_END

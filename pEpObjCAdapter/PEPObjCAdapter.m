@@ -142,6 +142,11 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
     s_mediaKeys = ourCopy;
 }
 
++ (NSArray<PEPMediaKeyPair *> *)mediaKeys
+{
+    return s_mediaKeys;
+}
+
 #pragma mark - DB PATHS
 
 + (void)initialize
