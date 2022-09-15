@@ -8,12 +8,16 @@
 #ifndef PEPObjCAdapterConfigurationProtocol_MediaKeys_h
 #define PEPObjCAdapterConfigurationProtocol_MediaKeys_h
 
+#import "PEPMediaKeyPair.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// Media keys configuration across all sessions, including existing ones.
 ///
 /// @see https://dev.pep.foundation/Engine/Media%20keys
 @protocol PEPObjCAdapterMediaKeysConfigurationProtocol <NSObject>
+
++ (void)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys;
 
 @end
 
