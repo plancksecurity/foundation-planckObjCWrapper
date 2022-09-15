@@ -8,6 +8,8 @@
 #ifndef PEPObjCAdapterConfigurationProtocol_Echo_h
 #define PEPObjCAdapterConfigurationProtocol_Echo_h
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// @see https://dev.pep.foundation/Engine/Echo%20Protocol
 @protocol PEPObjCAdapterEchoConfigurationProtocol <NSObject>
 
@@ -22,5 +24,7 @@
 + (void)setEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* PEPObjCAdapterConfigurationProtocol_Echo_h */
