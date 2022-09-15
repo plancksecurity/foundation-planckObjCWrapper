@@ -10,6 +10,7 @@
 
 #import "PEPObjCAdapter+ReadConfig.h"
 #import "PEPObjCAdapter+ReadEchoConfig.h"
+#import "PEPObjCAdapter+ReadMediaKeyConfig.h"
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
 #import "Logger.h"

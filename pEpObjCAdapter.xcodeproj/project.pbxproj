@@ -389,6 +389,7 @@
 		4396CEC9218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPInternalSessionTestSendMessageDelegate.h; sourceTree = "<group>"; };
 		43AD0E2E22E99ECE00D46F56 /* PEPInternalConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPInternalConstants.h; sourceTree = "<group>"; };
 		43AD0E2F22E99ECE00D46F56 /* PEPInternalConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalConstants.m; sourceTree = "<group>"; };
+		43D1E4C828D317290081FA7F /* PEPObjCAdapter+ReadMediaKeyConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPObjCAdapter+ReadMediaKeyConfig.h"; sourceTree = "<group>"; };
 		43D2D5EE2632B0FA00088BDC /* XCTestCase+PEPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+PEPSession.h"; sourceTree = "<group>"; };
 		43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+PEPSession.m"; sourceTree = "<group>"; };
 		43DED784203C25E200D45CD6 /* NSError+PEP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+PEP.h"; sourceTree = "<group>"; };
@@ -589,6 +590,7 @@
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
 				43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+ReadConfig.h */,
 				4379C1B928C9D24A00977A32 /* PEPObjCAdapter+ReadEchoConfig.h */,
+				43D1E4C828D317290081FA7F /* PEPObjCAdapter+ReadMediaKeyConfig.h */,
 				43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */,
 				43209B311ECC2ACD007E7E2E /* PEPQueue.h */,
 				43209B321ECC2ACD007E7E2E /* PEPQueue.m */,
