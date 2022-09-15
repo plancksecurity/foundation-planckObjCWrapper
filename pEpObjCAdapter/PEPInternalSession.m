@@ -1038,11 +1038,15 @@ static NSDictionary *stringToRating;
         *error = nil;
     }
 
-    stringpair_list_t *engineList = new_stringpair_list(NULL);
-    for (PEPMediaKeyPair *pair in mediaKeys) {
-        stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
-                                                  [pair.fingerprint UTF8String]);
-        stringpair_list_add(engineList, engineStringPair);
+    stringpair_list_t *engineList = NULL;
+
+    if (mediaKeys.count) {
+        engineList = new_stringpair_list(NULL);
+        for (PEPMediaKeyPair *pair in mediaKeys) {
+            stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
+                                                            [pair.fingerprint UTF8String]);
+            stringpair_list_add(engineList, engineStringPair);
+        }
     }
 
     PEP_STATUS status = config_media_keys(self.session, engineList);
