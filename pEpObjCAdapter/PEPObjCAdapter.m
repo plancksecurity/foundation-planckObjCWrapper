@@ -43,6 +43,8 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 static BOOL s_echoProtocolEnabled = YES;
 static BOOL s_echoInOutgoingMessageRatingPreviewEnabled = YES;
 
+static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
+
 @implementation PEPObjCAdapter
 
 #pragma mark - SUBJECT PROTECTION
@@ -130,6 +132,14 @@ static BOOL s_echoInOutgoingMessageRatingPreviewEnabled = YES;
 + (BOOL)echoInOutgoingMessageRatingPreviewEnabled
 {
     return s_echoInOutgoingMessageRatingPreviewEnabled;
+}
+
+#pragma mark - Media Keys
+
++ (void)configureMediaKeys:(nonnull NSArray<PEPMediaKeyPair *> *)mediaKeys
+{
+    NSArray *ourCopy = [NSArray arrayWithArray:mediaKeys];
+    s_mediaKeys = ourCopy;
 }
 
 #pragma mark - DB PATHS
