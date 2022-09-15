@@ -394,11 +394,10 @@
                                      fingerprint:@"97B69752A72FC5036971F5C83AC51FA45F01DA6C"]
     ];
 
-    PEPSession *asyncSession = [PEPSession new];
+    [PEPObjCAdapter configureMediaKeys:mediaKeys];
 
-    NSError *error = nil;
-    [asyncSession configureMediaKeys:mediaKeys error:&error];
-    XCTAssertNil(error);
+    PEPSession *asyncSession = [PEPSession new];
+    asyncSession = nil;
 }
 
 #pragma mark - Helpers
