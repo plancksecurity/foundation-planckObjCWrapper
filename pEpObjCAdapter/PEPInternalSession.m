@@ -1040,15 +1040,12 @@ static NSDictionary *stringToRating;
 
     stringpair_list_t *engineList = NULL;
 
-    // arbitrary limit of the patterns and fingerprints
-    const size_t maxStringSize = 256;
-
     if (mediaKeys.count) {
         engineList = new_stringpair_list(NULL);
         for (PEPMediaKeyPair *pair in mediaKeys) {
             // Engine wants to own the whole thing, which is to say it wants to free it.
-            const char *pattern = strndup([pair.pattern UTF8String], maxStringSize);
-            const char *fingerprint = strndup([pair.fingerprint UTF8String], maxStringSize);
+            const char *pattern = strdup([pair.pattern UTF8String]);
+            const char *fingerprint = strdup([pair.fingerprint UTF8String]);
 
             // Please note the lacking corresponding freeing, the engine wants to own it.
             stringpair_t *engineStringPair = new_stringpair(pattern, fingerprint);
