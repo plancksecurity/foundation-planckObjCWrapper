@@ -229,9 +229,6 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 /// Wraps `disable_all_sync_channels` (sync_api.h).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
 
-- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
-                     error:(NSError * _Nullable * _Nullable)error;
-
 @end
 
 NS_ASSUME_NONNULL_END
