@@ -94,6 +94,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     [self setPassiveModeOnSession:session];
     [self setPassphraseForNewKeysOnSession:session];
     [self configureEchoProtocolOnSession:session];
+    [self configureMediaKeysOnSession:session];
 }
 
 + (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
@@ -131,6 +132,10 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
     BOOL echoInOutgoing = [PEPObjCAdapter echoInOutgoingMessageRatingPreviewEnabled];
     [session configureEchoInOutgoingMessageRatingPreviewEnabled:echoInOutgoing];
+}
+
++ (void)configureMediaKeysOnSession:(PEPInternalSession *)session
+{
 }
 
 #pragma mark -
