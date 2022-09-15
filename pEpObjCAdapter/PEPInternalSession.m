@@ -1031,7 +1031,7 @@ static NSDictionary *stringToRating;
 
 #pragma mark - Media Key / Echo Protocol
 
-- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> * _Nonnull)mediaKeys
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
                      error:(NSError * _Nullable * _Nullable)error
 {
     if (error) {
