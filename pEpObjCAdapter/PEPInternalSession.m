@@ -1038,19 +1038,13 @@ static NSDictionary *stringToRating;
         *error = nil;
     }
 
-    // Note:
-    // `config_media_keys` takes over ownership over the whole list.
-    // That means, that nothing gets freed from the adapter's side,
-    // and all strings are malloc'ed and given over to the engine.
-
     stringpair_list_t *engineList = NULL;
 
     if (mediaKeys.count) {
         engineList = new_stringpair_list(NULL);
         for (PEPMediaKeyPair *pair in mediaKeys) {
-            const char *pattern = strdup([pair.pattern UTF8String]);
-            const char *fingerprint = strdup([pair.fingerprint UTF8String]);
-            stringpair_t *engineStringPair = new_stringpair(pattern, fingerprint);
+            stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
+                                                            [pair.fingerprint UTF8String]);
 
             stringpair_list_add(engineList, engineStringPair);
         }
