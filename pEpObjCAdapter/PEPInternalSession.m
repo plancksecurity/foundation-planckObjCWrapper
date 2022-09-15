@@ -1051,8 +1051,6 @@ static NSDictionary *stringToRating;
 
     PEP_STATUS status = config_media_keys(self.session, engineList);
 
-    free_stringpair_list(engineList);
-
     if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
         return NO;
     }
