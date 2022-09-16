@@ -1,5 +1,5 @@
 //
-//  PEPObjCAdapterConfigurationProtocol+MediaKeys.h
+//  PEPObjCAdapterMediaKeysConfigurationProtocol.h
 //  PEPObjCAdapterProtocols
 //
 //  Created by Dirk Zimmermann on 15.09.22.

@@ -1,5 +1,5 @@
 //
-//  PEPObjCAdapterConfigurationProtocol+Echo.h
+//  PEPObjCAdapterEchoConfigurationProtocol.h
 //  PEPObjCAdapterProtocols
 //
 //  Created by Dirk Zimmermann on 08.09.22.
