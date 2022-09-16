@@ -1041,6 +1041,7 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
                                                         [pair.fingerprint UTF8String]);
 
         engineList = stringpair_list_add(engineList, engineStringPair);
+
         if (engineListStart == NULL) {
             engineListStart = engineList;
         }
