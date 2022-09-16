@@ -338,7 +338,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Media Key / Echo Protocol
 
 /// Wraps `config_media_keys`.
-/// @Note The media keys can be nil, which should have the session not use any media keys.
+/// @Note The media keys can be nil, which should make the session not use any media keys.
 - (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> * _Nullable)mediaKeys
                      error:(NSError * _Nullable * _Nullable)error;
 
