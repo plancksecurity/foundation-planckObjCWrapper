@@ -140,25 +140,14 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
     NSError *error = nil;
 
-    if (mediaKeys) {
-        BOOL success = [session configureMediaKeys:mediaKeys error:&error];
-        if (!success) {
-            if (error) {
-                LogError(@"Could not configure the media keys: %@\n  media keys: %@",
-                         error,
-                         mediaKeys);
-            } else {
-                LogError(@"Could not configure the media keys %@", mediaKeys);
-            }
-        }
-    } else {
-        BOOL success = [session configureMediaKeys:nil error:&error];
-        if (!success) {
-            if (error) {
-                LogError(@"Could not configure the media keys to nil: %@", error);
-            } else {
-                LogError(@"Could not configure the media keys to nil");
-            }
+    BOOL success = [session configureMediaKeys:mediaKeys error:&error];
+    if (!success) {
+        if (error) {
+            LogError(@"Could not configure the media keys: %@\n  media keys: %@",
+                     error,
+                     mediaKeys);
+        } else {
+            LogError(@"Could not configure the media keys %@", mediaKeys);
         }
     }
 }
