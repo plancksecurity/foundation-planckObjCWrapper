@@ -1,5 +1,5 @@
 //
-//  PEPObjCAdapterConfigurationProtocol+Echo.h
+//  PEPObjCAdapterEchoConfigurationProtocol.h
 //  PEPObjCAdapterProtocols
 //
 //  Created by Dirk Zimmermann on 08.09.22.
@@ -8,6 +8,10 @@
 #ifndef PEPObjCAdapterConfigurationProtocol_Echo_h
 #define PEPObjCAdapterConfigurationProtocol_Echo_h
 
+NS_ASSUME_NONNULL_BEGIN
+
+/// Echo protocol configuration across all sessions, including existing ones.
+///
 /// @see https://dev.pep.foundation/Engine/Echo%20Protocol
 @protocol PEPObjCAdapterEchoConfigurationProtocol <NSObject>
 
@@ -22,5 +26,7 @@
 + (void)setEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* PEPObjCAdapterConfigurationProtocol_Echo_h */

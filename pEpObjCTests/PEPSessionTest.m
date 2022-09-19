@@ -394,11 +394,19 @@
                                      fingerprint:@"97B69752A72FC5036971F5C83AC51FA45F01DA6C"]
     ];
 
-    PEPSession *asyncSession = [PEPSession new];
+    [PEPObjCAdapter configureMediaKeys:mediaKeys];
 
-    NSError *error = nil;
-    [asyncSession configureMediaKeys:mediaKeys error:&error];
-    XCTAssertNil(error);
+    NSString *fprAlice = @"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97";
+
+    // Note: This should lead to an updateIdentity, which in turn leads to checking
+    // the media keys.
+    [self
+     checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+     address:@"pep.test.alice@pep-project.org"
+     userID:@"alice_user_id"
+     fingerPrint:fprAlice];
+
+    [PEPObjCAdapter configureMediaKeys:mediaKeys];
 }
 
 #pragma mark - Helpers

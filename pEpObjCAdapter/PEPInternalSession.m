@@ -1031,23 +1031,33 @@ static NSDictionary *stringToRating;
 
 #pragma mark - Media Key / Echo Protocol
 
-- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> * _Nonnull)mediaKeys
+stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys)
+{
+    stringpair_list_t *engineList = NULL;
+    stringpair_list_t *engineListStart = NULL;
+
+    for (PEPMediaKeyPair *pair in mediaKeys) {
+        stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
+                                                        [pair.fingerprint UTF8String]);
+
+        engineList = stringpair_list_add(engineList, engineStringPair);
+
+        if (engineListStart == NULL) {
+            engineListStart = engineList;
+        }
+    }
+
+    return engineListStart;
+}
+
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
                      error:(NSError * _Nullable * _Nullable)error
 {
     if (error) {
         *error = nil;
     }
 
-    stringpair_list_t *engineList = new_stringpair_list(NULL);
-    for (PEPMediaKeyPair *pair in mediaKeys) {
-        stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
-                                                  [pair.fingerprint UTF8String]);
-        stringpair_list_add(engineList, engineStringPair);
-    }
-
-    PEP_STATUS status = config_media_keys(self.session, engineList);
-
-    free_stringpair_list(engineList);
+    PEP_STATUS status = config_media_keys(self.session, stringListFromMediaKeys(mediaKeys));
 
     if ([NSError setError:error fromPEPStatus:(PEPStatus) status]) {
         return NO;

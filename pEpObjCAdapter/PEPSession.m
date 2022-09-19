@@ -659,17 +659,4 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session disableAllSyncChannels:error];
 }
 
-- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
-                     error:(NSError * _Nullable * _Nullable)error
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-    if (session == nil) {
-        if (error) {
-            *error = [NSError errorWithPEPStatusInternal:PEP_UNKNOWN_ERROR];
-        }
-        return NO;
-    }
-    return [session configureMediaKeys:mediaKeys error:error];
-}
-
 @end

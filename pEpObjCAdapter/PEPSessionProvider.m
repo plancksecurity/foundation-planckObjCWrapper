@@ -10,6 +10,7 @@
 
 #import "PEPObjCAdapter+ReadConfig.h"
 #import "PEPObjCAdapter+ReadEchoConfig.h"
+#import "PEPObjCAdapter+ReadMediaKeyConfig.h"
 #import "PEPInternalSession.h"
 #import "PEPCopyableThread.h"
 #import "Logger.h"
@@ -93,6 +94,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     [self setPassiveModeOnSession:session];
     [self setPassphraseForNewKeysOnSession:session];
     [self configureEchoProtocolOnSession:session];
+    [self configureMediaKeysOnSession:session];
 }
 
 + (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
@@ -130,6 +132,24 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
     BOOL echoInOutgoing = [PEPObjCAdapter echoInOutgoingMessageRatingPreviewEnabled];
     [session configureEchoInOutgoingMessageRatingPreviewEnabled:echoInOutgoing];
+}
+
++ (void)configureMediaKeysOnSession:(PEPInternalSession *)session
+{
+    NSArray<PEPMediaKeyPair *> *mediaKeys = [PEPObjCAdapter mediaKeys];
+
+    NSError *error = nil;
+
+    BOOL success = [session configureMediaKeys:mediaKeys error:&error];
+    if (!success) {
+        if (error) {
+            LogError(@"Could not configure the media keys: %@\n  media keys: %@",
+                     error,
+                     mediaKeys);
+        } else {
+            LogError(@"Could not configure the media keys %@", mediaKeys);
+        }
+    }
 }
 
 #pragma mark -
