@@ -325,7 +325,7 @@
 				4E575862268329A20084F02D /* Frameworks */,
 				4E575863268329A20084F02D /* CopyFiles */,
 				15A9C9332760D86500307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */,
-				4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */,
+				4E5758F8268371B10084F02D /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -469,7 +469,7 @@
 			shellPath = /bin/sh;
 			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/lib${PRODUCT_NAME}.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
-		4E5758F8268371B10084F02D /* Copy artefacts to custom build dir */ = {
+		4E5758F8268371B10084F02D /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -478,7 +478,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy artefacts to custom build dir";
+			name = "Copy artifacts to custom build dir";
 			outputFileListPaths = (
 			);
 			outputPaths = (
