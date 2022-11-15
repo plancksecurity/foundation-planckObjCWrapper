@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Platform.h"
+
 #ifdef IS_IOS_BUILD
 #import <pEp4iosIntern/pEp4iosIntern.h>
 #endif
