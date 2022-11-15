@@ -354,6 +354,41 @@
 			remoteGlobalIDString = 3AE6870024FFA5ED00B416ED;
 			remoteInfo = pEp4iosIntern;
 		};
+		43B2AD052923D06E00D8C6F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7911EB421F7358500D7F66F;
+			remoteInfo = pEpIOSToolbox;
+		};
+		43B2AD072923D06E00D8C6F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B7DB7F57221315BD003968DA;
+			remoteInfo = pEpIOSToolboxTests;
+		};
+		43B2AD092923D06E00D8C6F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 15B220012603B04E0097927A;
+			remoteInfo = PEPToolbox_macOS;
+		};
+		43B2AD0B2923D06E00D8C6F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 43D3EF24260A0D7E00110971;
+			remoteInfo = pEpIOSToolboxForExtensions;
+		};
+		43B2AD0D2923D08C00D8C6F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 43D3EF23260A0D7E00110971;
+			remoteInfo = pEpIOSToolboxForExtensions;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -455,6 +490,7 @@
 		43B2ACE72923AF7700D8C6F8 /* libPEPObjCAdapter_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		43B2ACF12923C52000D8C6F8 /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		43B2ACF22923CE6E00D8C6F8 /* pEp4iosIntern.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEp4iosIntern.xcodeproj; path = ../../pep_for_ios_intern/pEp4iosIntern/pEp4iosIntern.xcodeproj; sourceTree = "<group>"; };
+		43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpIOSToolbox.xcodeproj; path = "../../pep-toolbox/pEpIOSToolbox.xcodeproj"; sourceTree = "<group>"; };
 		43D2D5EE2632B0FA00088BDC /* XCTestCase+PEPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+PEPSession.h"; sourceTree = "<group>"; };
 		43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+PEPSession.m"; sourceTree = "<group>"; };
 		43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A_sec.asc; sourceTree = "<group>"; };
@@ -615,6 +651,7 @@
 				4392808C275A2511008E80C2 /* PEPObjCTypes.xcodeproj */,
 				43927FC6275A1E08008E80C2 /* PEPObjCTypeUtils.xcodeproj */,
 				43B2ACF22923CE6E00D8C6F8 /* pEp4iosIntern.xcodeproj */,
+				43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */,
 				1552D99B257663F200A92F71 /* PublicHeaders */,
 				43209B251ECC2ACD007E7E2E /* src */,
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
@@ -770,6 +807,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		43B2ACFF2923D06E00D8C6F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43B2AD062923D06E00D8C6F8 /* pEpIOSToolbox.framework */,
+				43B2AD082923D06E00D8C6F8 /* pEpIOSToolboxTests.xctest */,
+				43B2AD0A2923D06E00D8C6F8 /* libPEPToolbox_macOS.a */,
+				43B2AD0C2923D06E00D8C6F8 /* pEpIOSToolboxForExtensions.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		64415E181BE94FCB00F6CBB2 /* pEpObjCAdapterTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +892,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				43B2AD0E2923D08C00D8C6F8 /* PBXTargetDependency */,
 				43B2ACFD2923CEB700D8C6F8 /* PBXTargetDependency */,
 				43B2ACEF2923AFEF00D8C6F8 /* PBXTargetDependency */,
 				43B2ACED2923AFE100D8C6F8 /* PBXTargetDependency */,
@@ -942,6 +991,10 @@
 				{
 					ProductGroup = 43927FEA275A1F66008E80C2 /* Products */;
 					ProjectRef = 43927FE9275A1F66008E80C2 /* pEpEngine.xcodeproj */;
+				},
+				{
+					ProductGroup = 43B2ACFF2923D06E00D8C6F8 /* Products */;
+					ProjectRef = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
 				},
 				{
 					ProductGroup = 43927FFB275A1FA8008E80C2 /* Products */;
@@ -1064,6 +1117,34 @@
 			fileType = wrapper.cfbundle;
 			path = pEp4iosInternTests.xctest;
 			remoteRef = 43B2ACFA2923CE6E00D8C6F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43B2AD062923D06E00D8C6F8 /* pEpIOSToolbox.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = pEpIOSToolbox.framework;
+			remoteRef = 43B2AD052923D06E00D8C6F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43B2AD082923D06E00D8C6F8 /* pEpIOSToolboxTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = pEpIOSToolboxTests.xctest;
+			remoteRef = 43B2AD072923D06E00D8C6F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43B2AD0A2923D06E00D8C6F8 /* libPEPToolbox_macOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPEPToolbox_macOS.a;
+			remoteRef = 43B2AD092923D06E00D8C6F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43B2AD0C2923D06E00D8C6F8 /* pEpIOSToolboxForExtensions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = pEpIOSToolboxForExtensions.framework;
+			remoteRef = 43B2AD0B2923D06E00D8C6F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1393,6 +1474,11 @@
 			isa = PBXTargetDependency;
 			name = pEp4iosIntern;
 			targetProxy = 43B2ACFC2923CEB700D8C6F8 /* PBXContainerItemProxy */;
+		};
+		43B2AD0E2923D08C00D8C6F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pEpIOSToolboxForExtensions;
+			targetProxy = 43B2AD0D2923D08C00D8C6F8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
