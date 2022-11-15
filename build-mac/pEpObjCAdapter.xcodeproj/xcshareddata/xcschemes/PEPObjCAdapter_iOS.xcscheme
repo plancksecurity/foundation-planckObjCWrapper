@@ -112,10 +112,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1543DC65257943CE0041EFB5"
-               BuildableName = "libPEPObjCAdapter_iOS_orig.a"
-               BlueprintName = "PEPObjCAdapter_iOS_orig"
-               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+               BlueprintIdentifier = "4E5758BE26833D140084F02D"
+               BuildableName = "PEPObjCTypesTests_iOS.xctest"
+               BlueprintName = "PEPObjCTypesTests_iOS"
+               ReferencedContainer = "container:../../src_pEpMime4macOS/pEpObjCAdapter/Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -126,10 +126,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4E5758BE26833D140084F02D"
-               BuildableName = "PEPObjCTypesTests_iOS.xctest"
-               BlueprintName = "PEPObjCTypesTests_iOS"
-               ReferencedContainer = "container:../../src_pEpMime4macOS/pEpObjCAdapter/Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
+               BlueprintIdentifier = "43B2ACC02923AF7700D8C6F8"
+               BuildableName = "libPEPObjCAdapter_iOS.a"
+               BlueprintName = "PEPObjCAdapter_iOS"
+               ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -182,10 +182,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1543DC65257943CE0041EFB5"
-            BuildableName = "libPEPObjCAdapter_iOS_orig.a"
-            BlueprintName = "PEPObjCAdapter_iOS_orig"
-            ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+            BlueprintIdentifier = "19FF460E1B8B4D1400B43179"
+            BuildableName = "CocoaLumberjackSwift.framework"
+            BlueprintName = "CocoaLumberjackSwift"
+            ReferencedContainer = "container:../CocoaLumberjack/Lumberjack.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
