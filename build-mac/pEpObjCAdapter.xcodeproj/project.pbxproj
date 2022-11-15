@@ -106,7 +106,7 @@
 		43B2ACDE2923AF7700D8C6F8 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		43B2ACDF2923AF7700D8C6F8 /* PEPInternalSession+TKA.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147DD6279703E600661780 /* PEPInternalSession+TKA.m */; };
 		43B2ACE02923AF7700D8C6F8 /* PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 434707F524C210CA00E05485 /* PEPSession.m */; };
-		43B2ACE22923AF7700D8C6F8 /* libPEPObjCAdapterProtocols_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43928000275A1FA8008E80C2 /* libPEPObjCAdapterProtocols_macOS.a */; };
+		43B2ACF02923B01200D8C6F8 /* libPEPObjCAdapterProtocols_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43928002275A1FA8008E80C2 /* libPEPObjCAdapterProtocols_iOS.a */; };
 		43D2D5F12632B0FA00088BDC /* XCTestCase+PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
@@ -472,7 +472,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43B2ACE22923AF7700D8C6F8 /* libPEPObjCAdapterProtocols_macOS.a in Frameworks */,
+				43B2ACF02923B01200D8C6F8 /* libPEPObjCAdapterProtocols_iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
