@@ -30,6 +30,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		430AEAFC2923A4B20033E381 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 159805FA26CFC0C500593C9D /* PEPObjCTypes.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E575864268329A20084F02D;
+			remoteInfo = PEPObjCTypes_iOS;
+		};
+		430AEAFE2923A4B80033E381 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1585EACB269850B400B822E1 /* pEpEngine.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 64796A3E1B455AA5004B1C24;
+			remoteInfo = pEpEngine;
+		};
 		43431E0F278D782A00A1AB63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 159805FA26CFC0C500593C9D /* PEPObjCTypes.xcodeproj */;
@@ -303,6 +317,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				430AEAFF2923A4B80033E381 /* PBXTargetDependency */,
+				430AEAFD2923A4B20033E381 /* PBXTargetDependency */,
 			);
 			name = PEPObjCTypeUtils_iOS;
 			productName = PEPObjCTypeUtils_iOS;
@@ -520,6 +536,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		430AEAFD2923A4B20033E381 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PEPObjCTypes_iOS;
+			targetProxy = 430AEAFC2923A4B20033E381 /* PBXContainerItemProxy */;
+		};
+		430AEAFF2923A4B80033E381 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pEpEngine;
+			targetProxy = 430AEAFE2923A4B80033E381 /* PBXContainerItemProxy */;
+		};
 		43431E61278D7FDA00A1AB63 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PEPObjCTypes_macOS;
