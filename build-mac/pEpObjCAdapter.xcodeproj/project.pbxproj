@@ -389,6 +389,13 @@
 			remoteGlobalIDString = 43D3EF23260A0D7E00110971;
 			remoteInfo = pEpIOSToolboxForExtensions;
 		};
+		43B2AD312923E65300D8C6F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 352988A21AEF964100FA7E2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43B2ACC02923AF7700D8C6F8;
+			remoteInfo = PEPObjCAdapter_iOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -933,6 +940,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				43B2AD322923E65300D8C6F8 /* PBXTargetDependency */,
 			);
 			name = pEpObjCAdapterTests;
 			productName = iOSTests;
@@ -1479,6 +1487,11 @@
 			isa = PBXTargetDependency;
 			name = pEpIOSToolboxForExtensions;
 			targetProxy = 43B2AD0D2923D08C00D8C6F8 /* PBXContainerItemProxy */;
+		};
+		43B2AD322923E65300D8C6F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43B2ACC02923AF7700D8C6F8 /* PEPObjCAdapter_iOS */;
+			targetProxy = 43B2AD312923E65300D8C6F8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
