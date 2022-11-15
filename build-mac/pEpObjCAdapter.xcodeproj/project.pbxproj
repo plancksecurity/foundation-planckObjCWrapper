@@ -110,6 +110,7 @@
 		43B2AD3E2923EA3800D8C6F8 /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4392809B275A2511008E80C2 /* libPEPObjCTypes_iOS.a */; };
 		43B2AD3F2923EB1C00D8C6F8 /* libPEPObjCAdapter_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B2ACE72923AF7700D8C6F8 /* libPEPObjCAdapter_iOS.a */; };
 		43B2AD402923EBA300D8C6F8 /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43927FF2275A1F66008E80C2 /* libpEpEngine.a */; };
+		43B2AD412923EC9B00D8C6F8 /* libPEPObjCTypeUtils_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43927FD7275A1E09008E80C2 /* libPEPObjCTypeUtils_iOS.a */; };
 		43D2D5F12632B0FA00088BDC /* XCTestCase+PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
@@ -559,6 +560,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43B2AD412923EC9B00D8C6F8 /* libPEPObjCTypeUtils_iOS.a in Frameworks */,
 				43B2AD402923EBA300D8C6F8 /* libpEpEngine.a in Frameworks */,
 				43B2AD3F2923EB1C00D8C6F8 /* libPEPObjCAdapter_iOS.a in Frameworks */,
 				43B2AD3E2923EA3800D8C6F8 /* libPEPObjCTypes_iOS.a in Frameworks */,
