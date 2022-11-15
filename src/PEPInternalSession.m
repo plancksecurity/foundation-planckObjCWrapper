@@ -611,31 +611,6 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     return idents;
 }
 
-- (BOOL)logTitle:(NSString * _Nonnull)title
-          entity:(NSString * _Nonnull)entity
-     description:(NSString * _Nullable)description
-         comment:(NSString * _Nullable)comment
-           error:(NSError * _Nullable * _Nullable)error
-{
-    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return log_event(session,
-                         [[title precomposedStringWithCanonicalMapping]
-                          UTF8String],
-                         [[entity precomposedStringWithCanonicalMapping]
-                          UTF8String],
-                         [[description precomposedStringWithCanonicalMapping]
-                          UTF8String],
-                         [[comment precomposedStringWithCanonicalMapping]
-                          UTF8String]);
-    }];
-
-    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
     __block char *theChars = NULL;
