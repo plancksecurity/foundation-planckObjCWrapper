@@ -113,8 +113,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1543DC65257943CE0041EFB5"
-               BuildableName = "libPEPObjCAdapter_iOS.a"
-               BlueprintName = "PEPObjCAdapter_iOS"
+               BuildableName = "libPEPObjCAdapter_iOS_orig.a"
+               BlueprintName = "PEPObjCAdapter_iOS_orig"
                ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -183,8 +183,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1543DC65257943CE0041EFB5"
-            BuildableName = "libPEPObjCAdapter_iOS.a"
-            BlueprintName = "PEPObjCAdapter_iOS"
+            BuildableName = "libPEPObjCAdapter_iOS_orig.a"
+            BlueprintName = "PEPObjCAdapter_iOS_orig"
             ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
