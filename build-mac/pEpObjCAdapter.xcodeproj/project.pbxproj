@@ -305,33 +305,33 @@
 			remoteGlobalIDString = 4E575857268329170084F02D;
 			remoteInfo = PEPObjCTypes_macOS;
 		};
-		43B2ACC22923AF7700D8C6F8 /* PBXContainerItemProxy */ = {
+		43B2ACE82923AFC500D8C6F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4392808C275A2511008E80C2 /* PEPObjCTypes.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 4E575857268329170084F02D;
-			remoteInfo = PEPObjCTypes_macOS;
+			remoteGlobalIDString = 4E575864268329A20084F02D;
+			remoteInfo = PEPObjCTypes_iOS;
 		};
-		43B2ACC42923AF7700D8C6F8 /* PBXContainerItemProxy */ = {
+		43B2ACEA2923AFD200D8C6F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43927FFA275A1FA8008E80C2 /* PEPObjCAdapterProtocols.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 4E23E6E52681C7CD00B8F4C2;
-			remoteInfo = PEPObjCAdapterProtocols_macOS;
+			remoteGlobalIDString = 4E23E7032681D5F300B8F4C2;
+			remoteInfo = PEPObjCAdapterProtocols_iOS;
 		};
-		43B2ACC62923AF7700D8C6F8 /* PBXContainerItemProxy */ = {
+		43B2ACEC2923AFE100D8C6F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43927FE9275A1F66008E80C2 /* pEpEngine.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1552DB102577D4F100A92F71;
-			remoteInfo = pEpEngine_macOS;
+			remoteGlobalIDString = 64796A3E1B455AA5004B1C24;
+			remoteInfo = pEpEngine;
 		};
-		43B2ACC82923AF7700D8C6F8 /* PBXContainerItemProxy */ = {
+		43B2ACEE2923AFEF00D8C6F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43927FC6275A1E08008E80C2 /* PEPObjCTypeUtils.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 1585EA7B26984C4300B822E1;
-			remoteInfo = PEPObjCTypeUtils_macOS;
+			remoteGlobalIDString = 1585EB3C2698636C00B822E1;
+			remoteInfo = PEPObjCTypeUtils_iOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -810,10 +810,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				43B2ACC12923AF7700D8C6F8 /* PBXTargetDependency */,
-				43B2ACC32923AF7700D8C6F8 /* PBXTargetDependency */,
-				43B2ACC52923AF7700D8C6F8 /* PBXTargetDependency */,
-				43B2ACC72923AF7700D8C6F8 /* PBXTargetDependency */,
+				43B2ACEF2923AFEF00D8C6F8 /* PBXTargetDependency */,
+				43B2ACED2923AFE100D8C6F8 /* PBXTargetDependency */,
+				43B2ACEB2923AFD200D8C6F8 /* PBXTargetDependency */,
+				43B2ACE92923AFC500D8C6F8 /* PBXTargetDependency */,
 			);
 			name = PEPObjCAdapter_iOS;
 			productName = PEPObjCAdapter_macOS;
@@ -1316,25 +1316,25 @@
 			name = PEPObjCTypes_macOS;
 			targetProxy = 439280A2275A2521008E80C2 /* PBXContainerItemProxy */;
 		};
-		43B2ACC12923AF7700D8C6F8 /* PBXTargetDependency */ = {
+		43B2ACE92923AFC500D8C6F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = PEPObjCTypes_macOS;
-			targetProxy = 43B2ACC22923AF7700D8C6F8 /* PBXContainerItemProxy */;
+			name = PEPObjCTypes_iOS;
+			targetProxy = 43B2ACE82923AFC500D8C6F8 /* PBXContainerItemProxy */;
 		};
-		43B2ACC32923AF7700D8C6F8 /* PBXTargetDependency */ = {
+		43B2ACEB2923AFD200D8C6F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = PEPObjCAdapterProtocols_macOS;
-			targetProxy = 43B2ACC42923AF7700D8C6F8 /* PBXContainerItemProxy */;
+			name = PEPObjCAdapterProtocols_iOS;
+			targetProxy = 43B2ACEA2923AFD200D8C6F8 /* PBXContainerItemProxy */;
 		};
-		43B2ACC52923AF7700D8C6F8 /* PBXTargetDependency */ = {
+		43B2ACED2923AFE100D8C6F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = pEpEngine_macOS;
-			targetProxy = 43B2ACC62923AF7700D8C6F8 /* PBXContainerItemProxy */;
+			name = pEpEngine;
+			targetProxy = 43B2ACEC2923AFE100D8C6F8 /* PBXContainerItemProxy */;
 		};
-		43B2ACC72923AF7700D8C6F8 /* PBXTargetDependency */ = {
+		43B2ACEF2923AFEF00D8C6F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = PEPObjCTypeUtils_macOS;
-			targetProxy = 43B2ACC82923AF7700D8C6F8 /* PBXContainerItemProxy */;
+			name = PEPObjCTypeUtils_iOS;
+			targetProxy = 43B2ACEE2923AFEF00D8C6F8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
