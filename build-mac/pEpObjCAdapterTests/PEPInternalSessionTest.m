@@ -813,50 +813,49 @@
 /**
  ENGINE-381
  */
-// https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/90
-//- (void)testVolatileIdentityRating
-//{
-//    PEPInternalSession *session = [PEPSessionProvider session];
-//
-//    PEPIdentity *identMe = [[PEPIdentity alloc]
-//                            initWithAddress:@"me-myself-and-i@pep-project.org"
-//                            userID:@"me-myself-and-i"
-//                            userName:@"pEp Me"
-//                            isOwn:YES];
-//    NSError *error = nil;
-//    XCTAssertTrue([session mySelf:identMe error:&error]);
-//    XCTAssertNil(error);
-//
-//    XCTAssertNotNil(identMe.fingerPrint);
-//
-//    PEPIdentity *identAlice = [self
-//                               checkImportingKeyFilePath:@"6FF00E97_sec.asc"
-//                               address:@"pep.test.alice@pep-project.org"
-//                               userID:@"alice_user_id"
-//                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
-//                               session: session];
-//    XCTAssertNotNil(identAlice);
-//
-//    dispatch_group_t identityRatingGroup = dispatch_group_create();
-//
-//    void (^ratingBlock)(void) = ^{
-//        PEPInternalSession *innerSession = [PEPSessionProvider session];
-//        PEPRating rating = [self ratingForIdentity:identAlice session:innerSession];
-//        XCTAssertEqual(rating, PEPRatingReliable);
-//    };
-//
-//    for (int i = 0; i < 4; ++i) {
-//        dispatch_group_async(identityRatingGroup,
-//                             dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0),
-//                             ratingBlock);
-//    }
-//
-//    for (int i = 0; i < 4; ++i) {
-//        ratingBlock();
-//    }
-//
-//    dispatch_group_wait(identityRatingGroup, DISPATCH_TIME_FOREVER);
-//}
+- (void)testVolatileIdentityRating
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    PEPIdentity *identAlice = [self
+                               checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                               address:@"pep.test.alice@pep-project.org"
+                               userID:@"alice_user_id"
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                               session: session];
+    XCTAssertNotNil(identAlice);
+
+    dispatch_group_t identityRatingGroup = dispatch_group_create();
+
+    void (^ratingBlock)(void) = ^{
+        PEPInternalSession *innerSession = [PEPSessionProvider session];
+        PEPRating rating = [self ratingForIdentity:identAlice session:innerSession];
+        XCTAssertEqual(rating, PEPRatingReliable);
+    };
+
+    for (int i = 0; i < 4; ++i) {
+        dispatch_group_async(identityRatingGroup,
+                             dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0),
+                             ratingBlock);
+    }
+
+    for (int i = 0; i < 4; ++i) {
+        ratingBlock();
+    }
+
+    dispatch_group_wait(identityRatingGroup, DISPATCH_TIME_FOREVER);
+}
 
 /**
  IOSAD-93, testing for easy error case.
@@ -1133,31 +1132,30 @@
 #pragma mark - leave_device_group
 
 /** Leaving a device group is successful even though none exists. */
-// https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/90
-//- (void)testSuccessfulLeaveDeviceGroup
-//{
-//    PEPInternalSession *session = [PEPSessionProvider session];
-//
-//    PEPIdentity *identMe = [[PEPIdentity alloc]
-//                            initWithAddress:@"me-myself-and-i@pep-project.org"
-//                            userID:@"me-myself-and-i"
-//                            userName:@"pEp Me"
-//                            isOwn:YES];
-//    NSError *error = nil;
-//    XCTAssertTrue([session mySelf:identMe error:&error]);
-//    XCTAssertNil(error);
-//
-//    [self startSync];
-//
-//    error = nil;
-//    XCTAssertTrue([session leaveDeviceGroup:&error]);
-//    XCTAssertNil(error);
-//
-//    // leaving a device group should disable sync
-//    XCTAssertTrue(self.notifyHandshakeDelegate.engineDidShutdownKeySync);
-//
-//    [self shutdownSync];
-//}
+- (void)testSuccessfulLeaveDeviceGroup
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+
+    [self startSync];
+
+    error = nil;
+    XCTAssertTrue([session leaveDeviceGroup:&error]);
+    XCTAssertNil(error);
+
+    // leaving a device group should disable sync
+    XCTAssertTrue(self.notifyHandshakeDelegate.engineDidShutdownKeySync);
+
+    [self shutdownSync];
+}
 
 #pragma mark - enable/disable sync
 

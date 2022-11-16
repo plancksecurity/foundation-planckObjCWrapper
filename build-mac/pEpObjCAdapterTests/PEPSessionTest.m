@@ -278,15 +278,18 @@
     }
 }
 
-// https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/91
-//- (void)testGetLogWithError
-//{
-//    NSError *error = nil;
-//    NSString *log = [self getLogWithError:&error];
-//    XCTAssertGreaterThan(log.length, 0);
-//    XCTAssertNotNil(log);
-//    XCTAssertNil(error);
-//}
+- (void)testGetLogWithError
+{
+    NSError *error = nil;
+    NSString *log = [self getLogWithError:&error];
+
+    // Currently, PEP_LOG_DESTINATIONS=PEP_LOG_DESTINATION_STDOUT
+    // Please see also https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/91
+    XCTAssertEqual(log.length, 0);
+
+    XCTAssertNotNil(log);
+    XCTAssertNil(error);
+}
 
 - (void)testGetTrustwords
 {
