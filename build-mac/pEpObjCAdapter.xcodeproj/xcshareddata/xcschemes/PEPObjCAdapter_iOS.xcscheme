@@ -20,6 +20,20 @@
                ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43312023292553A200DFD28C"
+               BuildableName = "PEPObjCTypeUtilsTests_iOS.xctest"
+               BlueprintName = "PEPObjCTypeUtilsTests_iOS"
+               ReferencedContainer = "container:../Subprojects/PEPObjCTypeUtils/build-mac/PEPObjCTypeUtils.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -48,6 +62,16 @@
                ReferencedContainer = "container:../Subprojects/PEPObjCTypes/build-mac/PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43312023292553A200DFD28C"
+               BuildableName = "PEPObjCTypeUtilsTests_iOS.xctest"
+               BlueprintName = "PEPObjCTypeUtilsTests_iOS"
+               ReferencedContainer = "container:../Subprojects/PEPObjCTypeUtils/build-mac/PEPObjCTypeUtils.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -67,6 +91,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "43B2ACC02923AF7700D8C6F8"
+            BuildableName = "libPEPObjCAdapter_iOS.a"
+            BlueprintName = "PEPObjCAdapter_iOS"
+            ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
