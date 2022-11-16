@@ -161,6 +161,12 @@ static __weak PEPSync *s_pEpSync;
                              [PEPSync injectSyncCallback],
                              [PEPSync ensurePassphraseCallback]);
 
+    // During development, fail as quick as possible.
+    // Make sure ENABLE_NS_ASSERTIONS is correctly handled for the build,
+    // (debug vs release).
+    // it was at the time of writing.
+    NSAssert(status == PEP_STATUS_OK, @"Could not create engine session");
+
     if (status != PEP_STATUS_OK) {
         if (error) {
             *error = [PEPStatusNSErrorUtil errorWithPEPStatus:(PEPStatus) status];
