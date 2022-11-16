@@ -783,7 +783,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
-				INFOPLIST_FILE = PEPObjCTypesTests_iOS/Info.plist;
+				INFOPLIST_FILE = PEPObjCTypesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -804,7 +804,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NQLYU6MGPN;
-				INFOPLIST_FILE = PEPObjCTypesTests_iOS/Info.plist;
+				INFOPLIST_FILE = PEPObjCTypesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
