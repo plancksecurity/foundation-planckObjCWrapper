@@ -25,6 +25,8 @@
 		43DFAAC129265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */; };
 		43DFAAD329265FEE009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
 		43DFAAD429265FF5009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */; };
+		43DFAAD829266274009DABB9 /* NSObject+Equality.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAAD629266274009DABB9 /* NSObject+Equality.m */; };
+		43DFAAD929266274009DABB9 /* NSObject+Equality.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAAD629266274009DABB9 /* NSObject+Equality.m */; };
 		4E57585D268329170084F02D /* PEPObjCTypes_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E57585C268329170084F02D /* PEPObjCTypes_macOS.m */; };
 		4E575869268329A20084F02D /* PEPObjCTypes_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E575868268329A20084F02D /* PEPObjCTypes_iOS.m */; platformFilter = ios; };
 		4E57586A268329A20084F02D /* PEPObjCTypes_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4E575867268329A20084F02D /* PEPObjCTypes_iOS.h */; platformFilter = ios; };
@@ -102,6 +104,8 @@
 		43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMediaKeyPair+SecureCoding+Test.m"; sourceTree = "<group>"; };
 		43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMediaKeyPair.m; sourceTree = "<group>"; };
 		43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMediaKeyPair+SecureCoding.m"; sourceTree = "<group>"; };
+		43DFAAD629266274009DABB9 /* NSObject+Equality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Equality.m"; sourceTree = "<group>"; };
+		43DFAAD729266274009DABB9 /* NSObject+Equality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Equality.h"; sourceTree = "<group>"; };
 		4E575841268328CD0084F02D /* PEPObjCTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes.h; sourceTree = "<group>"; };
 		4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E57585A268329170084F02D /* PEPObjCTypes_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypes_macOS.h; sourceTree = "<group>"; };
@@ -174,6 +178,15 @@
 			path = PEPEqualableTools;
 			sourceTree = "<group>";
 		};
+		43DFAAD529266274009DABB9 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				43DFAAD629266274009DABB9 /* NSObject+Equality.m */,
+				43DFAAD729266274009DABB9 /* NSObject+Equality.h */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
 		4E575835268328CD0084F02D = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +243,7 @@
 		4E57587326832F2F0084F02D /* src */ = {
 			isa = PBXGroup;
 			children = (
+				43DFAAD529266274009DABB9 /* NSObject */,
 				15BD2F9E27342A3500B1B1F5 /* PEPEqualableTools */,
 				1598067926CFE9CF00593C9D /* PEPTransportConfig.m */,
 				4E57587826832F2F0084F02D /* PEPAttachment.m */,
@@ -528,6 +542,7 @@
 				43DFAAC129265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */,
 				1598067C26CFE9CF00593C9D /* PEPTransportConfig.m in Sources */,
 				4E57585D268329170084F02D /* PEPObjCTypes_macOS.m in Sources */,
+				43DFAAD829266274009DABB9 /* NSObject+Equality.m in Sources */,
 				43DFAAC029265B76009DABB9 /* PEPMediaKeyPair.m in Sources */,
 				4E57589A26832F2F0084F02D /* PEPMessage.m in Sources */,
 				15BD2F9C27342A2400B1B1F5 /* PEPEqualableTools.m in Sources */,
@@ -545,6 +560,7 @@
 				4E57589126832F2F0084F02D /* PEPAttachment.m in Sources */,
 				4E57588C26832F2F0084F02D /* PEPIdentity.m in Sources */,
 				1598067D26CFE9CF00593C9D /* PEPTransportConfig.m in Sources */,
+				43DFAAD929266274009DABB9 /* NSObject+Equality.m in Sources */,
 				4E575869268329A20084F02D /* PEPObjCTypes_iOS.m in Sources */,
 				4E57589B26832F2F0084F02D /* PEPMessage.m in Sources */,
 				43DFAAD329265FEE009DABB9 /* PEPMediaKeyPair.m in Sources */,
