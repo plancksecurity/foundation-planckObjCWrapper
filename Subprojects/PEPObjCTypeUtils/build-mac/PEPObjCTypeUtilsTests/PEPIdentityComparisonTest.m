@@ -9,6 +9,7 @@
 #import "PEPObjCTypes.h"
 
 @interface PEPIdentityComparisonTest : XCTestCase
+
 @end
 
 NSString *uppercaseAddress = @"ADDRESS";
