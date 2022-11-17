@@ -193,7 +193,8 @@
 
 // MARK: - Helper
 
-- (PEPMessage *)archiveAndUnarchiveMessage:(PEPMessage *)message {
+- (PEPMessage *)archiveAndUnarchiveMessage:(PEPMessage *)message
+{
     NSError *error;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:message
                                          requiringSecureCoding:YES
@@ -212,13 +213,15 @@
 
 @implementation PEPAttachment (Equatable)
 
-- (BOOL)isEqualToPEPAttachment:(PEPAttachment * _Nonnull)attachment {
+- (BOOL)isEqualToPEPAttachment:(PEPAttachment * _Nonnull)attachment
+{
     NSArray *s_keys = @[@"data", @"size", @"mimeType", @"filename", @"contentDisposition"];
 
     return [self isEqualToObject:attachment basedOnKeys:s_keys];
 }
 
-- (BOOL)isEqual:(id)object {
+- (BOOL)isEqual:(id)object
+{
     if (object == self) {
         return YES;
     }
