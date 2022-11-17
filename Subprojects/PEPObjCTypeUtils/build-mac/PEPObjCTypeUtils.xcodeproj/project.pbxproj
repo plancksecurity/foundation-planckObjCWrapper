@@ -8,14 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		43312028292553A200DFD28C /* libPEPObjCTypeUtils_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EB3D2698636C00B822E1 /* libPEPObjCTypeUtils_iOS.a */; };
-		43312033292553EF00DFD28C /* PEPMessageASN1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */; };
 		43312034292553F200DFD28C /* PEPIdentityAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */; };
 		43312035292553F500DFD28C /* PEPIdentityComparisonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */; };
 		433120362925541400DFD28C /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E12278D782A00A1AB63 /* libPEPObjCTypes_iOS.a */; };
-		43312037292557DA00DFD28C /* libpEpEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E25278D784D00A1AB63 /* libpEpEngine.a */; };
 		43431E6D278D7FED00A1AB63 /* libpEpEngine_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E27278D784D00A1AB63 /* libpEpEngine_macOS.a */; };
 		43B0EAD5274D21E100F5D076 /* libPEPObjCTypeUtils_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1585EA7C26984C4300B822E1 /* libPEPObjCTypeUtils_macOS.a */; };
-		43B0EAE0274D222000F5D076 /* PEPMessageASN1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */; };
 		43D97EF1278D875D005EA014 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E10278D782A00A1AB63 /* libPEPObjCTypes_macOS.a */; };
 		5B11963A27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
 		5B11963B27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
@@ -150,7 +147,6 @@
 		43312024292553A200DFD28C /* PEPObjCTypeUtilsTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypeUtilsTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+ASN1.h"; sourceTree = "<group>"; };
 		43B0EAD1274D21E100F5D076 /* PEPObjCTypeUtilsTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypeUtilsTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMessageASN1Tests.m; sourceTree = "<group>"; };
 		4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+URIAddressScheme.m"; sourceTree = "<group>"; };
 		5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+URIAddressScheme.h"; sourceTree = "<group>"; };
@@ -189,7 +185,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43312037292557DA00DFD28C /* libpEpEngine.a in Frameworks */,
 				433120362925541400DFD28C /* libPEPObjCTypes_iOS.a in Frameworks */,
 				43312028292553A200DFD28C /* libPEPObjCTypeUtils_iOS.a in Frameworks */,
 			);
@@ -287,7 +282,6 @@
 		43B0EAD2274D21E100F5D076 /* PEPObjCTypeUtilsTests */ = {
 			isa = PBXGroup;
 			children = (
-				43B0EADF274D222000F5D076 /* PEPMessageASN1Tests.m */,
 				5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */,
 				5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */,
 			);
@@ -582,7 +576,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				43312034292553F200DFD28C /* PEPIdentityAddressTests.m in Sources */,
-				43312033292553EF00DFD28C /* PEPMessageASN1Tests.m in Sources */,
 				43312035292553F500DFD28C /* PEPIdentityComparisonTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,7 +586,6 @@
 			files = (
 				5B2F476C27BA5CAF003517EC /* PEPIdentityComparisonTest.m in Sources */,
 				5B11964527B50B0A00FDF0B5 /* PEPIdentityAddressTests.m in Sources */,
-				43B0EAE0274D222000F5D076 /* PEPMessageASN1Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
