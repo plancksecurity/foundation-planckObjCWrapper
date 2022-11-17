@@ -218,7 +218,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 + (void)setPerMachineDirectory:(NSURL *)perMachineDir
 {
     if (perMachineDirectory) {
-        free((void *) perMachineDirectory); //BUFF: DIRK??
+        free((void *) perMachineDirectory);
     }
     perMachineDirectory = strdup([perMachineDir path].UTF8String);
 }
