@@ -22,8 +22,6 @@
 		5B29DA3A27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */; };
 		5B29DA3B27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */; };
 		5B2F476C27BA5CAF003517EC /* PEPIdentityComparisonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */; };
-		5B5ACF9827A19B1F00B34412 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */; };
-		5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */; };
 		5B5ACF9A27A19B2100B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
 		5B5ACF9B27A19B2200B34412 /* PEPStatusNSErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */; };
 		5BC7CC7427A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */; };
@@ -145,7 +143,6 @@
 		1585EBC12698A8FC00B822E1 /* PEPObjCTypeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCTypeUtils.h; sourceTree = "<group>"; };
 		159805FA26CFC0C500593C9D /* PEPObjCTypes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PEPObjCTypes.xcodeproj; path = "../../PEPObjCTypes/build-mac/PEPObjCTypes.xcodeproj"; sourceTree = "<group>"; };
 		43312024292553A200DFD28C /* PEPObjCTypeUtilsTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypeUtilsTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+ASN1.h"; sourceTree = "<group>"; };
 		43B0EAD1274D21E100F5D076 /* PEPObjCTypeUtilsTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypeUtilsTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+URIAddressScheme.m"; sourceTree = "<group>"; };
@@ -157,7 +154,6 @@
 		5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+PEPConvert.m"; sourceTree = "<group>"; };
 		5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPIdentityComparisonTest.m; sourceTree = "<group>"; };
 		5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPStatusNSErrorUtil.m; sourceTree = "<group>"; };
-		5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+ASN1.m"; sourceTree = "<group>"; };
 		5BAAF80127A936430037C55E /* PEPStatusNSErrorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPStatusNSErrorUtil.h; sourceTree = "<group>"; };
 		5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+PEPIdentityList.h"; sourceTree = "<group>"; };
 		5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PEPIdentityList.m"; sourceTree = "<group>"; };
@@ -243,7 +239,6 @@
 				5BC7CC7627A3FD190072AC5B /* NSArray+PEPConvert.h */,
 				5BC7CC7027A3F9360072AC5B /* NSArray+PEPIdentityList.h */,
 				5B29DA3627A0466E00D7638E /* PEPIdentity+PEPConvert.h */,
-				43B0EAC2274D1EA700F5D076 /* PEPMessage+ASN1.h */,
 				5B29DA2827A0439F00D7638E /* PEPMessage+PEPConvert.h */,
 				5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */,
 			);
@@ -295,7 +290,6 @@
 				5BC7CC7727A3FD190072AC5B /* NSArray+PEPConvert.m */,
 				5BC7CC7327A3F9760072AC5B /* NSArray+PEPIdentityList.m */,
 				5B29DA3727A0466E00D7638E /* PEPIdentity+PEPConvert.m */,
-				5B5ACE1627A1925800B34412 /* PEPMessage+ASN1.m */,
 				5B29DA2927A0439F00D7638E /* PEPMessage+PEPConvert.m */,
 				5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */,
 			);
@@ -549,7 +543,6 @@
 			files = (
 				5B29DA2C27A0439F00D7638E /* PEPMessage+PEPConvert.m in Sources */,
 				5BC7CC7427A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */,
-				5B5ACF9827A19B1F00B34412 /* PEPMessage+ASN1.m in Sources */,
 				5BC7CC7A27A3FD190072AC5B /* NSArray+PEPConvert.m in Sources */,
 				5B11963A27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */,
 				5B29DA3A27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */,
@@ -563,7 +556,6 @@
 			files = (
 				5B29DA2D27A0439F00D7638E /* PEPMessage+PEPConvert.m in Sources */,
 				5BC7CC7527A3F9760072AC5B /* NSArray+PEPIdentityList.m in Sources */,
-				5B5ACF9927A19B2000B34412 /* PEPMessage+ASN1.m in Sources */,
 				5BC7CC7B27A3FD190072AC5B /* NSArray+PEPConvert.m in Sources */,
 				5B11963B27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */,
 				5B29DA3B27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */,
