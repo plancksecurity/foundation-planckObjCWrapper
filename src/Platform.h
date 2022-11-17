@@ -11,7 +11,7 @@
 
 #ifdef __APPLE__
 #include "TargetConditionals.h"
-#ifdef TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE
 #define IS_IOS_BUILD
 #elif TARGET_IPHONE_SIMULATOR
 #define IS_IOS_BUILD
