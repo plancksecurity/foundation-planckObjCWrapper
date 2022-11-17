@@ -10,7 +10,7 @@
 
 #import "PEPIdentity.h"
 #import "PEPAttachment.h"
-#import "PEPEqualableTools.h"
+#import "NSObject+Equality.h"
 
 @implementation PEPMessage
 
@@ -75,12 +75,12 @@ static NSArray *s_keys;
 
 - (BOOL)isEqualToPEPMessage:(PEPMessage * _Nonnull)message
 {
-    return [PEPEqualableTools object:self isEqualTo:message basedOnKeys:s_keys];
+    return [self isEqualToObject:message basedOnKeys:s_keys];
 }
 
 - (NSUInteger)hash
 {
-    return [PEPEqualableTools hashForObject:self basedOnKeys:s_keys];
+    return [self hashBasedOnKeys:s_keys];
 }
 
 - (BOOL)isEqual:(id)object
