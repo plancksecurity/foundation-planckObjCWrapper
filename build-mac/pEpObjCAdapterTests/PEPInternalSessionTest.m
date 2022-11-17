@@ -1529,11 +1529,7 @@
                                      fingerprint:@"97B69752A72FC5036971F5C83AC51FA45F01DA6C"]
     ];
 
-    PEPInternalSession *session = [PEPSessionProvider session];
-
-    NSError *error = nil;
-    [session configureMediaKeys:mediaKeys error:&error];
-    XCTAssertNil(error);
+    [PEPObjCAdapter configureMediaKeys:mediaKeys];
 }
 
 #pragma mark - Helpers
