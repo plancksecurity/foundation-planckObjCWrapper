@@ -11,6 +11,8 @@
 		1598067D26CFE9CF00593C9D /* PEPTransportConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1598067926CFE9CF00593C9D /* PEPTransportConfig.m */; };
 		15BD319E2742A1B500B1B1F5 /* PEPErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD319B2742A1B500B1B1F5 /* PEPErrors.m */; };
 		15BD319F2742A1B500B1B1F5 /* PEPErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BD319B2742A1B500B1B1F5 /* PEPErrors.m */; };
+		4385184C2926788C00796078 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */; };
+		4385184D2926789F00796078 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */; };
 		439F4C3A275632B2005F278E /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */; };
 		439F4C40275632D7005F278E /* PEPTypesTestUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758D026833F920084F02D /* PEPTypesTestUtil.m */; };
 		439F4C41275632DC005F278E /* PEPAttachment+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CA26833F920084F02D /* PEPAttachment+SecureCodingTest.m */; };
@@ -18,7 +20,6 @@
 		439F4C43275632E2005F278E /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */; };
 		439F4C44275632E6005F278E /* PEPMessage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */; };
 		43D44C842685BEB400638D1C /* pEpObjCTypesModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */; platformFilter = ios; };
-		43DFAABD29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */; };
 		43DFAAC029265B76009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
 		43DFAAC129265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */; };
 		43DFAAD329265FEE009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
@@ -514,6 +515,7 @@
 				439F4C43275632E2005F278E /* PEPLanguage+SecureCodingTest.m in Sources */,
 				439F4C42275632DF005F278E /* PEPIdentity+SecureCodingTest.m in Sources */,
 				439F4C41275632DC005F278E /* PEPAttachment+SecureCodingTest.m in Sources */,
+				4385184D2926789F00796078 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +533,6 @@
 				43DFAAD829266274009DABB9 /* NSObject+Equality.m in Sources */,
 				43DFAAC029265B76009DABB9 /* PEPMediaKeyPair.m in Sources */,
 				4E57589A26832F2F0084F02D /* PEPMessage.m in Sources */,
-				43DFAABD29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +562,7 @@
 				4E5758D126833F920084F02D /* PEPAttachment+SecureCodingTest.m in Sources */,
 				4E5758D526833F920084F02D /* PEPTypesTestUtil.m in Sources */,
 				4E5758D226833F920084F02D /* PEPIdentity+SecureCodingTest.m in Sources */,
+				4385184C2926788C00796078 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
