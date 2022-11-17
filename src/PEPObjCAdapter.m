@@ -33,7 +33,7 @@ const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
  */
 static NSString * const s_pEpHomeComponent = @"pEp_home";
 
-const char* _Nullable perMachineDirectory = NULL;
+const char * _Nullable perMachineDirectory = NULL;
 
 NSURL *s_homeURL;
 
