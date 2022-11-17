@@ -402,6 +402,13 @@
 			remoteGlobalIDString = 43B2ACC02923AF7700D8C6F8;
 			remoteInfo = PEPObjCAdapter_iOS;
 		};
+		43DFAACF29265BD2009DABB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43927FC6275A1E08008E80C2 /* PEPObjCTypeUtils.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 43312024292553A200DFD28C;
+			remoteInfo = PEPObjCTypeUtilsTests_iOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -506,6 +513,9 @@
 		43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpIOSToolbox.xcodeproj; path = "../../pep-toolbox/pEpIOSToolbox.xcodeproj"; sourceTree = "<group>"; };
 		43D2D5EE2632B0FA00088BDC /* XCTestCase+PEPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+PEPSession.h"; sourceTree = "<group>"; };
 		43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+PEPSession.m"; sourceTree = "<group>"; };
+		43DFAAC229265BD2009DABB9 /* PEPObjCAdapter+ReadEchoConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPObjCAdapter+ReadEchoConfig.h"; sourceTree = "<group>"; };
+		43DFAAD129265BD2009DABB9 /* PEPObjCAdapter+ReadMediaKeyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPObjCAdapter+ReadMediaKeyConfig.h"; sourceTree = "<group>"; };
+		43DFAAD229265BD2009DABB9 /* PEPObjCAdapter+ReadConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPObjCAdapter+ReadConfig.h"; sourceTree = "<group>"; };
 		43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A_sec.asc; sourceTree = "<group>"; };
 		43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = A3FC7F0A.asc; sourceTree = "<group>"; };
 		43E1A7AB252B421D00307A7D /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
@@ -747,6 +757,9 @@
 				43E1A7AB252B421D00307A7D /* Logger.h */,
 				15C3089326E8B8550013F39F /* Logger.m */,
 				43B2ACF12923C52000D8C6F8 /* Platform.h */,
+				43DFAAD229265BD2009DABB9 /* PEPObjCAdapter+ReadConfig.h */,
+				43DFAAC229265BD2009DABB9 /* PEPObjCAdapter+ReadEchoConfig.h */,
+				43DFAAD129265BD2009DABB9 /* PEPObjCAdapter+ReadMediaKeyConfig.h */,
 			);
 			name = src;
 			path = ../src;
@@ -783,6 +796,7 @@
 				43927FD5275A1E09008E80C2 /* libPEPObjCTypeUtils_macOS.a */,
 				43927FD7275A1E09008E80C2 /* libPEPObjCTypeUtils_iOS.a */,
 				43927FD9275A1E09008E80C2 /* PEPObjCTypeUtilsTests_macOS.xctest */,
+				43DFAAD029265BD2009DABB9 /* PEPObjCTypeUtilsTests_iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1165,6 +1179,13 @@
 			fileType = wrapper.framework;
 			path = pEpIOSToolboxForExtensions.framework;
 			remoteRef = 43B2AD0B2923D06E00D8C6F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43DFAAD029265BD2009DABB9 /* PEPObjCTypeUtilsTests_iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PEPObjCTypeUtilsTests_iOS.xctest;
+			remoteRef = 43DFAACF29265BD2009DABB9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

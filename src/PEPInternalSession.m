@@ -12,7 +12,7 @@
 
 #import "PEPConstants.h"
 #import "PEPObjCAdapter.h"
-#import "PEPObjCAdapter+Internal.h"
+#import "PEPObjCAdapter+ReadConfig.h"
 #import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Take.h"
@@ -31,8 +31,10 @@
 #import "PEPIdentity+PEPConvert.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
+#import "PEPMediaKeyPair.h"
 
 #import "key_reset.h"
+#import "media_key.h"
 
 @implementation PEPInternalSession
 
@@ -983,6 +985,67 @@ static NSDictionary *stringToRating;
     } else {
         return YES;
     }
+}
+
+- (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error
+{
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return sync_reinit(self.session);
+    }];
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+#pragma mark - Media Key / Echo Protocol
+
+stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys)
+{
+    stringpair_list_t *engineList = NULL;
+    stringpair_list_t *engineListStart = NULL;
+
+    for (PEPMediaKeyPair *pair in mediaKeys) {
+        stringpair_t *engineStringPair = new_stringpair([pair.pattern UTF8String],
+                                                        [pair.fingerprint UTF8String]);
+
+        engineList = stringpair_list_add(engineList, engineStringPair);
+
+        if (engineListStart == NULL) {
+            engineListStart = engineList;
+        }
+    }
+
+    return engineListStart;
+}
+
+- (BOOL)configureMediaKeys:(NSArray<PEPMediaKeyPair *> *)mediaKeys
+                     error:(NSError * _Nullable * _Nullable)error
+{
+    if (error) {
+        *error = nil;
+    }
+
+    PEPStatus theStatus = (PEPStatus) config_media_keys(self.session,
+                                                        stringListFromMediaKeys(mediaKeys));
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    }
+
+    return YES;
+}
+
+- (void)configureEchoProtocolEnabled:(BOOL)enabled
+{
+    config_enable_echo_protocol(self.session, enabled);
+}
+
+- (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
+{
+    config_enable_echo_in_outgoing_message_rating_preview(self.session, enabled);
 }
 
 @end

@@ -76,6 +76,8 @@ NS_ASSUME_NONNULL_BEGIN
      fingerprint:(NSString * _Nullable)fingerprint
            error:(NSError * _Nullable * _Nullable)error;
 
+- (BOOL)syncReinit:(NSError * _Nullable *)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

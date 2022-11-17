@@ -16,6 +16,9 @@
 #import "PEPErrors.h"
 #import "PEPTransportConfig.h"
 
+#import "PEPMediaKeyPair.h"
+#import "PEPMediaKeyPair+SecureCoding.h"
+
 @interface PEPObjCTypes : NSObject
 
 @end
