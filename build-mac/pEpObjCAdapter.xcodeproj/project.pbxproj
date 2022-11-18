@@ -79,6 +79,10 @@
 		4335862E2927AC2200BC2AD2 /* PEPObjCAdapter_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */; };
 		433586302927B21100BC2AD2 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* module.modulemap */; };
 		433586312927B26C00BC2AD2 /* PEPObjCAdapter_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */; };
+		433586322927B4A700BC2AD2 /* PEPObjCAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; };
+		433586332927B4B600BC2AD2 /* PEPSession.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 434707F424C210CA00E05485 /* PEPSession.h */; };
+		433586342927B4C200BC2AD2 /* PEPConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435C0CAA222930340025C6B5 /* PEPConstants.h */; };
+		433586352927B4D400BC2AD2 /* PEPSync.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		433A03FA2627268700758B57 /* PEPInternalSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433A03F92627268700758B57 /* PEPInternalSession+SetIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
@@ -420,6 +424,10 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				433586352927B4D400BC2AD2 /* PEPSync.h in CopyFiles */,
+				433586342927B4C200BC2AD2 /* PEPConstants.h in CopyFiles */,
+				433586332927B4B600BC2AD2 /* PEPSession.h in CopyFiles */,
+				433586322927B4A700BC2AD2 /* PEPObjCAdapter.h in CopyFiles */,
 				433586312927B26C00BC2AD2 /* PEPObjCAdapter_iOS.h in CopyFiles */,
 				433586302927B21100BC2AD2 /* module.modulemap in CopyFiles */,
 			);
