@@ -77,6 +77,8 @@
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
 		4331CE94229C2AAF00DDDC65 /* PEPSizeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */; };
 		4335862E2927AC2200BC2AD2 /* PEPObjCAdapter_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */; };
+		433586302927B21100BC2AD2 /* pEpObjCAdapterModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */; };
+		433586312927B26C00BC2AD2 /* PEPObjCAdapter_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		433A03FA2627268700758B57 /* PEPInternalSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433A03F92627268700758B57 /* PEPInternalSession+SetIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
@@ -410,6 +412,20 @@
 			remoteInfo = PEPObjCTypeUtilsTests_iOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4335862F2927B1E200BC2AD2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				433586312927B26C00BC2AD2 /* PEPObjCAdapter_iOS.h in CopyFiles */,
+				433586302927B21100BC2AD2 /* pEpObjCAdapterModuleMap.modulemap in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1508AEAD1F8792AC001D5230 /* PEPCopyableThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPCopyableThread.h; sourceTree = "<group>"; };
@@ -920,6 +936,7 @@
 			buildPhases = (
 				43B2ACC92923AF7700D8C6F8 /* Sources */,
 				43B2ACE12923AF7700D8C6F8 /* Frameworks */,
+				4335862F2927B1E200BC2AD2 /* CopyFiles */,
 				43B2ACE32923AF7700D8C6F8 /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
