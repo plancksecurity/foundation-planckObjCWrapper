@@ -76,6 +76,7 @@
 		432FA2D71C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */; };
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
 		4331CE94229C2AAF00DDDC65 /* PEPSizeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */; };
+		4335862E2927AC2200BC2AD2 /* PEPObjCAdapter_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		433A03FA2627268700758B57 /* PEPInternalSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433A03F92627268700758B57 /* PEPInternalSession+SetIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
@@ -92,7 +93,6 @@
 		43B2ACCB2923AF7700D8C6F8 /* PEPInternalSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */; };
 		43B2ACCC2923AF7700D8C6F8 /* PEPSessionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CA91F8BA183003FF880 /* PEPSessionProvider.m */; };
 		43B2ACCD2923AF7700D8C6F8 /* PEPCopyableThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 1508AEAE1F8792AC001D5230 /* PEPCopyableThread.m */; };
-		43B2ACCE2923AF7700D8C6F8 /* PEPObjCAdapter_macOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1552D93F2576602D00A92F71 /* PEPObjCAdapter_macOS.m */; };
 		43B2ACCF2923AF7700D8C6F8 /* PEPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 435C0CAB222930340025C6B5 /* PEPConstants.m */; };
 		43B2ACD02923AF7700D8C6F8 /* PEPIdentity+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4326A0AC2553F882001E18C6 /* PEPIdentity+Reset.m */; };
 		43B2ACD12923AF7700D8C6F8 /* PEPPassphraseCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 43589EF624A4A3B70079BEA2 /* PEPPassphraseCache.m */; };
@@ -1370,10 +1370,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B2ACCA2923AF7700D8C6F8 /* PEPInternalConstants.m in Sources */,
+				4335862E2927AC2200BC2AD2 /* PEPObjCAdapter_iOS.m in Sources */,
 				43B2ACCB2923AF7700D8C6F8 /* PEPInternalSession.m in Sources */,
 				43B2ACCC2923AF7700D8C6F8 /* PEPSessionProvider.m in Sources */,
 				43B2ACCD2923AF7700D8C6F8 /* PEPCopyableThread.m in Sources */,
-				43B2ACCE2923AF7700D8C6F8 /* PEPObjCAdapter_macOS.m in Sources */,
 				43B2ACCF2923AF7700D8C6F8 /* PEPConstants.m in Sources */,
 				43B2ACD02923AF7700D8C6F8 /* PEPIdentity+Reset.m in Sources */,
 				43B2ACD12923AF7700D8C6F8 /* PEPPassphraseCache.m in Sources */,
