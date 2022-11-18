@@ -489,6 +489,9 @@
 		432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_pub.asc; sourceTree = "<group>"; };
 		432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meATdontcare_E3BFBCA9248FC681_sec.asc; sourceTree = "<group>"; };
 		4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSizeTest.m; sourceTree = "<group>"; };
+		433586382927BF6300BC2AD2 /* PEPObjCAdapterMediaKeysConfigurationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterMediaKeysConfigurationProtocol.h; sourceTree = "<group>"; };
+		433586392927BF6300BC2AD2 /* PEPObjCAdapterEchoConfigurationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterEchoConfigurationProtocol.h; sourceTree = "<group>"; };
+		4335863A2927BF6300BC2AD2 /* PEPObjCAdapterConfigurationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterConfigurationProtocol.h; sourceTree = "<group>"; };
 		433A03F72627268600758B57 /* PEPInternalSession+SetIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPInternalSession+SetIdentity.h"; sourceTree = "<group>"; };
 		433A03F92627268700758B57 /* PEPInternalSession+SetIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPInternalSession+SetIdentity.m"; sourceTree = "<group>"; };
 		433DFBAA24A5E04000AB373B /* PEPPassphraseCacheEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPPassphraseCacheEntry.h; sourceTree = "<group>"; };
@@ -632,6 +635,9 @@
 		1552D99B257663F200A92F71 /* PublicHeaders */ = {
 			isa = PBXGroup;
 			children = (
+				4335863A2927BF6300BC2AD2 /* PEPObjCAdapterConfigurationProtocol.h */,
+				433586392927BF6300BC2AD2 /* PEPObjCAdapterEchoConfigurationProtocol.h */,
+				433586382927BF6300BC2AD2 /* PEPObjCAdapterMediaKeysConfigurationProtocol.h */,
 				43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */,
 				434707F424C210CA00E05485 /* PEPSession.h */,
 				430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */,
