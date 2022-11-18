@@ -83,6 +83,7 @@
 		433586332927B4B600BC2AD2 /* PEPSession.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 434707F424C210CA00E05485 /* PEPSession.h */; };
 		433586342927B4C200BC2AD2 /* PEPConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435C0CAA222930340025C6B5 /* PEPConstants.h */; };
 		433586352927B4D400BC2AD2 /* PEPSync.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; };
+		433586362927B5A600BC2AD2 /* PEPPassphraseProviderProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		433A03FA2627268700758B57 /* PEPInternalSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433A03F92627268700758B57 /* PEPInternalSession+SetIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
@@ -424,6 +425,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				433586362927B5A600BC2AD2 /* PEPPassphraseProviderProtocol.h in CopyFiles */,
 				433586352927B4D400BC2AD2 /* PEPSync.h in CopyFiles */,
 				433586342927B4C200BC2AD2 /* PEPConstants.h in CopyFiles */,
 				433586332927B4B600BC2AD2 /* PEPSession.h in CopyFiles */,
