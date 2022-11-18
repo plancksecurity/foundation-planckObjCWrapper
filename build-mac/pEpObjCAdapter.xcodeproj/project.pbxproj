@@ -84,6 +84,9 @@
 		433586342927B4C200BC2AD2 /* PEPConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435C0CAA222930340025C6B5 /* PEPConstants.h */; };
 		433586352927B4D400BC2AD2 /* PEPSync.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 430CD9B02292AC4900AAC37F /* PEPSync.h */; };
 		433586362927B5A600BC2AD2 /* PEPPassphraseProviderProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 436E916D24B65805000296FF /* PEPPassphraseProviderProtocol.h */; };
+		4335863B2927C06B00BC2AD2 /* PEPObjCAdapterConfigurationProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4335863A2927BF6300BC2AD2 /* PEPObjCAdapterConfigurationProtocol.h */; };
+		4335863C2927C07300BC2AD2 /* PEPObjCAdapterEchoConfigurationProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 433586392927BF6300BC2AD2 /* PEPObjCAdapterEchoConfigurationProtocol.h */; };
+		4335863D2927C07D00BC2AD2 /* PEPObjCAdapterMediaKeysConfigurationProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 433586382927BF6300BC2AD2 /* PEPObjCAdapterMediaKeysConfigurationProtocol.h */; };
 		4336853F203D5CE60069A451 /* PEPTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D77C2010DDC500A0DA20 /* PEPTestUtils.m */; };
 		433A03FA2627268700758B57 /* PEPInternalSession+SetIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 433A03F92627268700758B57 /* PEPInternalSession+SetIdentity.m */; };
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
@@ -425,6 +428,9 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				4335863D2927C07D00BC2AD2 /* PEPObjCAdapterMediaKeysConfigurationProtocol.h in CopyFiles */,
+				4335863C2927C07300BC2AD2 /* PEPObjCAdapterEchoConfigurationProtocol.h in CopyFiles */,
+				4335863B2927C06B00BC2AD2 /* PEPObjCAdapterConfigurationProtocol.h in CopyFiles */,
 				433586362927B5A600BC2AD2 /* PEPPassphraseProviderProtocol.h in CopyFiles */,
 				433586352927B4D400BC2AD2 /* PEPSync.h in CopyFiles */,
 				433586342927B4C200BC2AD2 /* PEPConstants.h in CopyFiles */,
