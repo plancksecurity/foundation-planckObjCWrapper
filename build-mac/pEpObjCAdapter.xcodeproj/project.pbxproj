@@ -77,7 +77,7 @@
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
 		4331CE94229C2AAF00DDDC65 /* PEPSizeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */; };
 		4335862E2927AC2200BC2AD2 /* PEPObjCAdapter_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */; };
-		433586302927B21100BC2AD2 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* module.modulemap */; };
+		433586302927B21100BC2AD2 /* pEpObjCAdapterModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */; };
 		433586312927B26C00BC2AD2 /* PEPObjCAdapter_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */; };
 		433586322927B4A700BC2AD2 /* PEPObjCAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; };
 		433586332927B4B600BC2AD2 /* PEPSession.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 434707F424C210CA00E05485 /* PEPSession.h */; };
@@ -431,7 +431,7 @@
 				433586332927B4B600BC2AD2 /* PEPSession.h in CopyFiles */,
 				433586322927B4A700BC2AD2 /* PEPObjCAdapter.h in CopyFiles */,
 				433586312927B26C00BC2AD2 /* PEPObjCAdapter_iOS.h in CopyFiles */,
-				433586302927B21100BC2AD2 /* module.modulemap in CopyFiles */,
+				433586302927B21100BC2AD2 /* pEpObjCAdapterModuleMap.modulemap in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +445,7 @@
 		152A9C462010F50400F962ED /* PEPInternalSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTest.m; sourceTree = "<group>"; };
 		1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_iOS.h; sourceTree = "<group>"; };
 		1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter_iOS.m; sourceTree = "<group>"; };
-		1543DD8B257A3C9E0041EFB5 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = pEpObjCAdapterModuleMap.modulemap; sourceTree = "<group>"; };
 		1552D93B2576602D00A92F71 /* libPEPObjCAdapter_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1552D93D2576602D00A92F71 /* PEPObjCAdapter_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_macOS.h; sourceTree = "<group>"; };
 		1552D93F2576602D00A92F71 /* PEPObjCAdapter_macOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter_macOS.m; sourceTree = "<group>"; };
@@ -615,7 +615,7 @@
 			children = (
 				1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */,
 				1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */,
-				1543DD8B257A3C9E0041EFB5 /* module.modulemap */,
+				1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */,
 			);
 			path = PEPObjCAdapter_iOS;
 			sourceTree = "<group>";
