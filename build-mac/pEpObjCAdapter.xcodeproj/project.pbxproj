@@ -947,6 +947,7 @@
 				43B2ACC92923AF7700D8C6F8 /* Sources */,
 				43B2ACE12923AF7700D8C6F8 /* Frameworks */,
 				4335862F2927B1E200BC2AD2 /* CopyFiles */,
+				433586372927B67400BC2AD2 /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */,
 				43B2ACE32923AF7700D8C6F8 /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
@@ -1310,6 +1311,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/lib${PRODUCT_NAME}.a\" ${CUSTOM_BUILD_DIR}\n";
+		};
+		433586372927B67400BC2AD2 /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Rename Module Map File  - Workaround for \"duplicate module definition\" - IOS-2879";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_INCLUDE_DIR=\"${BUILT_PRODUCTS_DIR}/include/PEPObjCAdapter_iOS\"\nmv ${BUILD_INCLUDE_DIR}/pEpObjCAdapterModuleMap.modulemap ${BUILD_INCLUDE_DIR}/module.modulemap\n";
 		};
 		43B2ACE32923AF7700D8C6F8 /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
