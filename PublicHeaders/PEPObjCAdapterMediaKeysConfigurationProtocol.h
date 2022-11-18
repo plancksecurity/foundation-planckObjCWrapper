@@ -8,7 +8,7 @@
 #ifndef PEPObjCAdapterConfigurationProtocol_MediaKeys_h
 #define PEPObjCAdapterConfigurationProtocol_MediaKeys_h
 
-#import "PEPMediaKeyPair.h"
+@class PEPMediaKeyPair;
 
 NS_ASSUME_NONNULL_BEGIN
 
