@@ -448,6 +448,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "BUILD_INCLUDE_DIR=\"${BUILT_PRODUCTS_DIR}/include/PEPObjCTypes_macOS\"\nmv ${BUILD_INCLUDE_DIR}/pEpObjCTypesModuleMap.modulemap ${BUILD_INCLUDE_DIR}/module.modulemap\n";
+			showEnvVarsInLog = 0;
 		};
 		15A9C9332760D86500307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -466,6 +467,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "BUILD_INCLUDE_DIR=\"${BUILT_PRODUCTS_DIR}/include/PEPObjCTypes_iOS\"\nmv ${BUILD_INCLUDE_DIR}/pEpObjCTypesModuleMap.modulemap ${BUILD_INCLUDE_DIR}/module.modulemap\n";
+			showEnvVarsInLog = 0;
 		};
 		4E5758F7268371770084F02D /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
