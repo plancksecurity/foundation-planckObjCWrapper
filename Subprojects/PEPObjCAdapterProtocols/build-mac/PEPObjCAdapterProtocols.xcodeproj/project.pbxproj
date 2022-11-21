@@ -15,7 +15,7 @@
 /* Begin PBXFileReference section */
 		43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocolTKA.h; sourceTree = "<group>"; };
 		43147E0F27970DFE00661780 /* PEPTKADelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTKADelegate.h; sourceTree = "<group>"; };
-		43FE5F66292B79A300F61782 /* PEPObjCAdapterProtocols.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = PEPObjCAdapterProtocols.modulemap; sourceTree = "<group>"; };
+		43FE5F66292B79A300F61782 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		43FE5F67292B79D700F61782 /* PEPObjCAdapterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterProtocols.h; sourceTree = "<group>"; };
 		4E23E6CE2681B70400B8F4C2 /* libPEPObjCAdapterTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCAdapterTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E23E6E62681C7CD00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterProtocols_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +45,7 @@
 		43FE5F64292B79A300F61782 /* PEPObjCAdapterProtocols */ = {
 			isa = PBXGroup;
 			children = (
-				43FE5F66292B79A300F61782 /* PEPObjCAdapterProtocols.modulemap */,
+				43FE5F66292B79A300F61782 /* module.modulemap */,
 				43FE5F67292B79D700F61782 /* PEPObjCAdapterProtocols.h */,
 			);
 			path = PEPObjCAdapterProtocols;
