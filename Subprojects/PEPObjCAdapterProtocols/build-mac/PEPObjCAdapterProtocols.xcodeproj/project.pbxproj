@@ -8,9 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		43FE5F68292B79D700F61782 /* PEPObjCAdapterProtocols.h in Sources */ = {isa = PBXBuildFile; fileRef = 43FE5F67292B79D700F61782 /* PEPObjCAdapterProtocols.h */; };
+		43FE5F6A292B7AA400F61782 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43FE5F66292B79A300F61782 /* module.modulemap */; };
 		4E23E6F32681C7F800B8F4C2 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; };
 		4E23E70F2681D61700B8F4C2 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; platformFilter = ios; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		43FE5F69292B7A8300F61782 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				43FE5F6A292B7AA400F61782 /* module.modulemap in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocolTKA.h; sourceTree = "<group>"; };
@@ -125,6 +139,7 @@
 			buildPhases = (
 				4E23E7002681D5F300B8F4C2 /* Sources */,
 				4E23E7012681D5F300B8F4C2 /* Frameworks */,
+				43FE5F69292B7A8300F61782 /* CopyFiles */,
 				4E23E71A26820DDB00B8F4C2 /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
