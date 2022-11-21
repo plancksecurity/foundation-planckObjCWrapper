@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPSessionProtocol.h>
+#import <PEPObjCAdapterProtocols.h> // module import
 
 NS_ASSUME_NONNULL_BEGIN
 
