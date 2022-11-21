@@ -1,4 +1,4 @@
-module PEPObjCAdapterProtocols {
+module PEPObjCAdapterProtocols_iOS {
     umbrella header "PEPObjCAdapterProtocols.h"
     export *
 }

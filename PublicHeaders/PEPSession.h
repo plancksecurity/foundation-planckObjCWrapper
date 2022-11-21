@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@import PEPObjCAdapterProtocols;
+@import PEPObjCAdapterProtocols_iOS;
 
 NS_ASSUME_NONNULL_BEGIN
 

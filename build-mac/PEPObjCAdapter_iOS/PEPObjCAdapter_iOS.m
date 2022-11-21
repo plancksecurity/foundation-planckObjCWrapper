@@ -8,6 +8,8 @@
 
 #import "PEPObjCAdapter_iOS.h"
 
+@import PEPObjCAdapterProtocols_iOS;
+
 @implementation PEPObjCAdapter_iOS
 
 @end

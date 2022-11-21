@@ -56,12 +56,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43FE5F64292B79A300F61782 /* PEPObjCAdapterProtocols */ = {
+		43FE5F64292B79A300F61782 /* PEPObjCAdapterProtocols_iOS */ = {
 			isa = PBXGroup;
 			children = (
 				43FE5F66292B79A300F61782 /* module.modulemap */,
 			);
-			path = PEPObjCAdapterProtocols;
+			path = PEPObjCAdapterProtocols_iOS;
 			sourceTree = "<group>";
 		};
 		4E23E6CD2681B70400B8F4C2 /* Frameworks */ = {
@@ -77,7 +77,7 @@
 			children = (
 				4EEB4CC02680DCAC00161040 /* PublicHeaders */,
 				4EEB4CAA2680D57A00161040 /* src */,
-				43FE5F64292B79A300F61782 /* PEPObjCAdapterProtocols */,
+				43FE5F64292B79A300F61782 /* PEPObjCAdapterProtocols_iOS */,
 				4EEB4CA92680D57A00161040 /* Products */,
 				4E23E6CD2681B70400B8F4C2 /* Frameworks */,
 			);
