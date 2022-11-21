@@ -6,9 +6,9 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-#import "PEPObjCAdapter_iOS.h"
-
 @import PEPObjCAdapterProtocols_iOS;
+
+#import "PEPObjCAdapter_iOS.h"
 
 @implementation PEPObjCAdapter_iOS
 
