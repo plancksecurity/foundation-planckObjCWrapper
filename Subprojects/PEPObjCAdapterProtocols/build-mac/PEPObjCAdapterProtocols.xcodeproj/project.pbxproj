@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43FE5F68292B79D700F61782 /* PEPObjCAdapterProtocols.h in Sources */ = {isa = PBXBuildFile; fileRef = 43FE5F67292B79D700F61782 /* PEPObjCAdapterProtocols.h */; };
 		4E23E6F32681C7F800B8F4C2 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; };
 		4E23E70F2681D61700B8F4C2 /* PEPSessionProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEB4CC62680DE4800161040 /* PEPSessionProtocol.m */; platformFilter = ios; };
 /* End PBXBuildFile section */
@@ -14,6 +15,8 @@
 /* Begin PBXFileReference section */
 		43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProtocolTKA.h; sourceTree = "<group>"; };
 		43147E0F27970DFE00661780 /* PEPTKADelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPTKADelegate.h; sourceTree = "<group>"; };
+		43FE5F66292B79A300F61782 /* PEPObjCAdapterProtocols.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = PEPObjCAdapterProtocols.modulemap; sourceTree = "<group>"; };
+		43FE5F67292B79D700F61782 /* PEPObjCAdapterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapterProtocols.h; sourceTree = "<group>"; };
 		4E23E6CE2681B70400B8F4C2 /* libPEPObjCAdapterTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCAdapterTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E23E6E62681C7CD00B8F4C2 /* libPEPObjCAdapterProtocols_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterProtocols_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E23E7042681D5F300B8F4C2 /* libPEPObjCAdapterProtocols_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapterProtocols_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +42,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43FE5F64292B79A300F61782 /* PEPObjCAdapterProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				43FE5F66292B79A300F61782 /* PEPObjCAdapterProtocols.modulemap */,
+				43FE5F67292B79D700F61782 /* PEPObjCAdapterProtocols.h */,
+			);
+			path = PEPObjCAdapterProtocols;
+			sourceTree = "<group>";
+		};
 		4E23E6CD2681B70400B8F4C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +64,7 @@
 			children = (
 				4EEB4CC02680DCAC00161040 /* PublicHeaders */,
 				4EEB4CAA2680D57A00161040 /* src */,
+				43FE5F64292B79A300F61782 /* PEPObjCAdapterProtocols */,
 				4EEB4CA92680D57A00161040 /* Products */,
 				4E23E6CD2681B70400B8F4C2 /* Frameworks */,
 			);
@@ -211,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E23E70F2681D61700B8F4C2 /* PEPSessionProtocol.m in Sources */,
+				43FE5F68292B79D700F61782 /* PEPObjCAdapterProtocols.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

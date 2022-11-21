@@ -1,0 +1,4 @@
+module PEPObjCAdapterProtocols {
+    umbrella header "PEPObjCAdapterProtocols.h"
+    export *
+}
