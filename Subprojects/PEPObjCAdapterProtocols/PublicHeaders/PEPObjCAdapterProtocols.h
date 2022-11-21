@@ -1,6 +1,6 @@
 //
-//  PEPObjCAdapterProtocols.m
-//  PEPObjCAdapterProtocols_iOS
+//  PEPObjCAdapterProtocols.h
+//  PEPObjCAdapterProtocols
 //
 //  Created by Dirk Zimmermann on 21.11.22.
 //
