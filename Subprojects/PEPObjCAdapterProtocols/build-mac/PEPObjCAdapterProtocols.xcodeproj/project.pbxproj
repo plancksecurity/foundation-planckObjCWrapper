@@ -59,6 +59,7 @@
 		43FE5F64292B79A300F61782 /* PEPObjCAdapterProtocols_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				43FE5F67292B79D700F61782 /* PEPObjCAdapterProtocols.h */,
 				43FE5F66292B79A300F61782 /* module.modulemap */,
 			);
 			path = PEPObjCAdapterProtocols_iOS;
@@ -107,7 +108,6 @@
 				43147E0F27970DFE00661780 /* PEPTKADelegate.h */,
 				43147DE527970BC600661780 /* PEPSessionProtocolTKA.h */,
 				4EEB4CC22680DCAC00161040 /* PEPSessionProtocol.h */,
-				43FE5F67292B79D700F61782 /* PEPObjCAdapterProtocols.h */,
 			);
 			name = PublicHeaders;
 			path = ../PublicHeaders;
