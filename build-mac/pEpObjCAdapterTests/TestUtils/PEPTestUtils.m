@@ -10,15 +10,11 @@
 
 #import "PEPTestUtils.h"
 
-#import "PEPObjCTypes.h"
-#import "PEPObjCAdapter_iOS.h"
+@import PEPObjCTypes_iOS;
+@import PEPObjCAdapter_iOS;
 
 #import "PEPInternalSession.h"
-#import "PEPMessage.h"
-#import "PEPSession.h"
-#import "PEPAttachment.h"
 #import "PEPSessionProvider.h"
-#import "PEPInternalSession.h"
 
 /**
  For now, safer to use that, until the engine copes with our own.

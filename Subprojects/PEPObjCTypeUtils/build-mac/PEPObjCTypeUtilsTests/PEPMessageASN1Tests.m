@@ -8,7 +8,8 @@
 #import <XCTest/XCTest.h>
 
 #import "PEPMessage+ASN1.h"
-#import "PEPObjCTypes.h"
+
+@import PEPObjCTypes_iOS;
 
 @interface PEPMessageASN1Tests : XCTestCase
 
