@@ -8,16 +8,15 @@
 
 @import PEPObjCAdapterProtocols_iOS;
 @import PEPObjCTypes_iOS;
+@import PEPObjCTypeUtils_iOS;
 
 #import "PEPSession.h"
 
 #import "PEPInternalSession.h"
 #import "PEPInternalSession+TKA.h"
 #import "NSNumber+PEPRating.h"
-#import "PEPIdentity.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalConstants.h"
-#import "PEPObjCTypeUtils.h"
 
 static dispatch_queue_t queue;
 
