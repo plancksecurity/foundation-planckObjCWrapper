@@ -8,7 +8,8 @@
 
 #import "pEpEngine.h"
 
-#import <PEPObjCTypeUtils.h>
+@import PEPObjCTypes_iOS;
+@import PEPObjCTypeUtils_iOS;
 
 #import "PEPSync.h"
 #import "PEPSync_Internal.h"
@@ -17,7 +18,6 @@
 
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
-#import "PEPMessage.h"
 #import "PEPQueue.h"
 #import "PEPObjCAdapter.h"
 #import "PEPSessionProvider.h"
@@ -25,8 +25,6 @@
 #import "PEPPassphraseCache.h"
 #import "PEPPassphraseUtil.h"
 #import "Logger.h"
-#import <PEPIdentity.h>
-#import "PEPMessage.h"
 #import "PEPMessage+PEPConvert.h"
 #import "PEPIdentity+PEPConvert.h"
 

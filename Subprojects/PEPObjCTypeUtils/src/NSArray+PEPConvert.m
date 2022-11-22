@@ -6,7 +6,8 @@
 //
 
 #import "NSArray+PEPConvert.h"
-#import "PEPAttachment.h"
+
+@import PEPObjCTypes_iOS;
 
 @implementation NSArray (PEPConvert)
 
