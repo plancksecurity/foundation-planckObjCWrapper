@@ -10,7 +10,7 @@
 
 #import "PEPInternalSession.h"
 
-#import "PEPTKADelegate.h"
+@import PEPObjCAdapterProtocols_iOS;
 
 NS_ASSUME_NONNULL_BEGIN
 

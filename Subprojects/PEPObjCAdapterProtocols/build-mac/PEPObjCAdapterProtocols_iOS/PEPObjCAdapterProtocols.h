@@ -7,6 +7,5 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTKADelegate.h"
 #import "PEPSessionProtocolTKA.h"
 #import "PEPSessionProtocol.h"
