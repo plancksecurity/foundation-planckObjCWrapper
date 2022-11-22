@@ -1,5 +1,5 @@
 //
-//  pEpiOSAdapter.h
+//  PEPObjCAdapter.h
 //  pEpiOSAdapter
 //
 //  Created by Volker Birk on 28.04.15.
@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPPassphraseProviderProtocol.h"
 #import "PEPObjCAdapterConfigurationProtocol.h"
+#import "PEPSession.h"
+#import "PEPNotifyHandshakeDelegate.h"
+#import "PEPSendMessageDelegate.h"
+#import "PEPSync.h"
+#import "NSNumber+PEPRating.h"
+#import "PEPConstants.h"
+#import "PEPPassphraseProviderProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
