@@ -9,6 +9,4 @@
 
 #import "PEPObjCTypes.h"
 
-@interface PEPObjCTypes_iOS : NSObject
-
 @end

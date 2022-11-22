@@ -7,18 +7,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
+#import "PEPTransportConfig.h"
 #import "PEPEngineTypes.h"
+#import "PEPTypes.h"
 #import "PEPLanguage.h"
 #import "PEPMessage.h"
 #import "PEPAttachment.h"
 #import "PEPIdentity.h"
 #import "PEPErrors.h"
-#import "PEPTransportConfig.h"
 
 #import "PEPMediaKeyPair.h"
 #import "PEPMediaKeyPair+SecureCoding.h"
-
-@interface PEPObjCTypes : NSObject
-
-@end
