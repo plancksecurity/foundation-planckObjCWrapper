@@ -77,9 +77,7 @@
 		432FA2D71C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D51C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc */; };
 		432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2D61C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc */; };
 		4331CE94229C2AAF00DDDC65 /* PEPSizeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */; };
-		4335862E2927AC2200BC2AD2 /* PEPObjCAdapter_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */; };
 		433586302927B21100BC2AD2 /* pEpObjCAdapterModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */; };
-		433586312927B26C00BC2AD2 /* PEPObjCAdapter_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */; };
 		433586322927B4A700BC2AD2 /* PEPObjCAdapter.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */; };
 		433586332927B4B600BC2AD2 /* PEPSession.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 434707F424C210CA00E05485 /* PEPSession.h */; };
 		433586342927B4C200BC2AD2 /* PEPConstants.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435C0CAA222930340025C6B5 /* PEPConstants.h */; };
@@ -438,7 +436,6 @@
 				433586342927B4C200BC2AD2 /* PEPConstants.h in CopyFiles */,
 				433586332927B4B600BC2AD2 /* PEPSession.h in CopyFiles */,
 				433586322927B4A700BC2AD2 /* PEPObjCAdapter.h in CopyFiles */,
-				433586312927B26C00BC2AD2 /* PEPObjCAdapter_iOS.h in CopyFiles */,
 				433586302927B21100BC2AD2 /* pEpObjCAdapterModuleMap.modulemap in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,8 +448,6 @@
 		15206CA81F8BA183003FF880 /* PEPSessionProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPSessionProvider.h; sourceTree = "<group>"; };
 		15206CA91F8BA183003FF880 /* PEPSessionProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPSessionProvider.m; sourceTree = "<group>"; };
 		152A9C462010F50400F962ED /* PEPInternalSessionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTest.m; sourceTree = "<group>"; };
-		1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_iOS.h; sourceTree = "<group>"; };
-		1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter_iOS.m; sourceTree = "<group>"; };
 		1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = pEpObjCAdapterModuleMap.modulemap; sourceTree = "<group>"; };
 		1552D93B2576602D00A92F71 /* libPEPObjCAdapter_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPEPObjCAdapter_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1552D93D2576602D00A92F71 /* PEPObjCAdapter_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter_macOS.h; sourceTree = "<group>"; };
@@ -624,8 +619,6 @@
 		1543DC67257943CE0041EFB5 /* PEPObjCAdapter_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1543DC68257943CE0041EFB5 /* PEPObjCAdapter_iOS.h */,
-				1543DC69257943CF0041EFB5 /* PEPObjCAdapter_iOS.m */,
 				1543DD8B257A3C9E0041EFB5 /* pEpObjCAdapterModuleMap.modulemap */,
 			);
 			path = PEPObjCAdapter_iOS;
@@ -1430,7 +1423,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B2ACCA2923AF7700D8C6F8 /* PEPInternalConstants.m in Sources */,
-				4335862E2927AC2200BC2AD2 /* PEPObjCAdapter_iOS.m in Sources */,
 				43B2ACCB2923AF7700D8C6F8 /* PEPInternalSession.m in Sources */,
 				43B2ACCC2923AF7700D8C6F8 /* PEPSessionProvider.m in Sources */,
 				43B2ACCD2923AF7700D8C6F8 /* PEPCopyableThread.m in Sources */,

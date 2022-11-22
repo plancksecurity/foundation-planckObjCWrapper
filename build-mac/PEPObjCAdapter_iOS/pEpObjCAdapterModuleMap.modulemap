@@ -1,5 +1,5 @@
 module PEPObjCAdapter_iOS {
-    umbrella header "PEPObjCAdapter_iOS.h"
     use PEPObjCTypes_iOS
+    umbrella header "PEPObjCAdapter.h"
     export *
 }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPEngineTypes.h"
+#import "PEPObjTypes.h"
 
 @class PEPMessage;
 
