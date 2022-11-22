@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "PEPInternalSession.h"
+#import "PEPTKADelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
