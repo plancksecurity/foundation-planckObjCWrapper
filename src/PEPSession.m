@@ -6,6 +6,8 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
+@import PEPObjCAdapterProtocols_iOS;
+
 #import "PEPSession.h"
 
 #import "PEPMessage.h"
@@ -17,7 +19,6 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalConstants.h"
 #import "PEPObjCTypeUtils.h"
-#import "PEPTKADelegate.h"
 
 static dispatch_queue_t queue;
 

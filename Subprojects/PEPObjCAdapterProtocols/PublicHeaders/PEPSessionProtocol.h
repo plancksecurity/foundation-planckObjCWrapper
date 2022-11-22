@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
-#import "PEPObjCTypes.h"
+@import PEPObjCTypes_iOS;
+
 #import "PEPSessionProtocolTKA.h"
 
 @class PEPLanguage;

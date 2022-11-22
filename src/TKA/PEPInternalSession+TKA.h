@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@import PEPObjCAdapterProtocols_iOS;
+
 #import "PEPInternalSession.h"
-#import "PEPTKADelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
