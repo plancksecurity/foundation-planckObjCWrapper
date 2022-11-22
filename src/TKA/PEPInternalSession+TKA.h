@@ -10,8 +10,6 @@
 
 #import "PEPInternalSession.h"
 
-@import PEPObjCAdapterProtocols_iOS;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPInternalSession (TKA)

@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@import PEPObjCAdapterProtocols_iOS;
-
 #import "PEPObjCAdapter.h"
 #import "PEPConstants.h"
 #import "PEPSync.h"
