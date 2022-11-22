@@ -14,5 +14,3 @@
 #import "PEPMessage+ASN1.h"
 #import "PEPMessage+PEPConvert.h"
 #import "PEPIdentity+URIAddressScheme.h"
-
-@end
