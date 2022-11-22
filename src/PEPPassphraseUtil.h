@@ -10,7 +10,7 @@
 
 #import "pEpEngine.h"
 
-#import "PEPEngineTypes.h"
+@import PEPObjCTypes_iOS;
 
 NS_ASSUME_NONNULL_BEGIN
 
