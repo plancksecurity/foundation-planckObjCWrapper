@@ -55,6 +55,7 @@
 		15C3089626E8B8550013F39F /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C3089326E8B8550013F39F /* Logger.m */; };
 		15D3D761200F61BB00A0DA20 /* PEPSessionProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D3D760200F61BB00A0DA20 /* PEPSessionProviderTest.m */; };
 		43062BAD24EEC83400489258 /* PEPIdentity+isPEPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 43062BAC24EEC83400489258 /* PEPIdentity+isPEPUser.m */; };
+		430EE24E292CCA10001A9995 /* PEPSendMessageDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 430CD9B52292ADAC00AAC37F /* PEPSendMessageDelegate.h */; };
 		43147DD9279703FA00661780 /* PEPInternalSession+TKA.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147DD6279703E600661780 /* PEPInternalSession+TKA.m */; };
 		43147DDA279703FD00661780 /* PEPInternalSession+TKA.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147DD6279703E600661780 /* PEPInternalSession+TKA.m */; };
 		43147E38279810F400661780 /* PEPInternalSessionTKATest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43147E37279810F400661780 /* PEPInternalSessionTKATest.m */; };
@@ -428,6 +429,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				430EE24E292CCA10001A9995 /* PEPSendMessageDelegate.h in CopyFiles */,
 				4335863D2927C07D00BC2AD2 /* PEPObjCAdapterMediaKeysConfigurationProtocol.h in CopyFiles */,
 				4335863C2927C07300BC2AD2 /* PEPObjCAdapterEchoConfigurationProtocol.h in CopyFiles */,
 				4335863B2927C06B00BC2AD2 /* PEPObjCAdapterConfigurationProtocol.h in CopyFiles */,
