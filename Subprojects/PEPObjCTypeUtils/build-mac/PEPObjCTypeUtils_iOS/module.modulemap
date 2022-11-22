@@ -1,0 +1,4 @@
+module PEPObjCTypeUtils_iOS {
+    umbrella header "PEPObjCTypeUtils.h"
+    export *
+}
