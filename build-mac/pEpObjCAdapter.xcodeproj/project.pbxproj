@@ -95,6 +95,8 @@
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
+		43893B06292D1912008E4EE7 /* PEPNotifyHandshakeDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */; };
+		43893B07292D1913008E4EE7 /* NSNumber+PEPRating.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */; };
 		43928005275A1FBC008E80C2 /* libPEPObjCAdapterProtocols_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43928000275A1FA8008E80C2 /* libPEPObjCAdapterProtocols_macOS.a */; };
 		4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
@@ -427,6 +429,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				43893B06292D1912008E4EE7 /* PEPNotifyHandshakeDelegate.h in CopyFiles */,
+				43893B07292D1913008E4EE7 /* NSNumber+PEPRating.h in CopyFiles */,
 				430EE24E292CCA10001A9995 /* PEPSendMessageDelegate.h in CopyFiles */,
 				4335863D2927C07D00BC2AD2 /* PEPObjCAdapterMediaKeysConfigurationProtocol.h in CopyFiles */,
 				4335863C2927C07300BC2AD2 /* PEPObjCAdapterEchoConfigurationProtocol.h in CopyFiles */,
