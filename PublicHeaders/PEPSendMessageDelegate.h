@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <PEPObjCTypes.h>
+@import PEPObjCTypes_iOS;
 
 @class PEPMessage;
 

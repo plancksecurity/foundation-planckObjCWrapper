@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPEngineTypes.h"
+@import PEPObjCTypes_iOS;
 
 @class PEPIdentity;
 
