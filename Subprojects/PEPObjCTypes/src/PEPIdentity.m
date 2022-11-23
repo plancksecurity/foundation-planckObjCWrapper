@@ -7,7 +7,6 @@
 //
 
 #import "PEPIdentity.h"
-#import "PEPEqualableTools.h"
 
 @implementation PEPIdentity
 

@@ -29,7 +29,7 @@ typedef NS_CLOSED_ENUM(NSUInteger, PEPTransportID) {
 typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
     PEPDecryptFlagsNone = 0x0, // not actually defined in the engine
     PEPDecryptFlagsOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key
-    PEPDecryptFlagsConsume = 0x2, //PEP_decrypt_flag_consume
+    PEPDecryptFlagsConsume = 0x2, // PEP_decrypt_flag_consume
     PEPDecryptFlagsIgnore = 0x4, // PEP_decrypt_flag_ignore
     PEPDecryptFlagsSourceModified = 0x8, // PEP_decrypt_flag_src_modified
     PEPDecryptFlagsUntrustedServer = 0x100, // PEP_decrypt_flag_untrusted_server
@@ -42,6 +42,7 @@ typedef NS_CLOSED_ENUM(int, PEPEncFormat) {
     PEPEncFormatSMIME, // PEP_enc_S_MIME
     PEPEncFormatPGPMIME, // PEP_enc_PGP_MIME
     PEPEncFormatPEP, // PEP_enc_PEP
+    PEPEncFormatMediaKey = PEPEncFormatPEP, // media_key_enc_format
     PEPEncFormatPGPMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1
 };
 
@@ -50,7 +51,8 @@ typedef NS_CLOSED_ENUM(int, PEPRating) {
     PEPRatingCannotDecrypt = 1, // PEP_rating_cannot_decrypt
     PEPRatingHaveNoKey = 2, // PEP_rating_have_no_key
     PEPRatingUnencrypted = 3, // PEP_rating_unencrypted
-    PEPRatingUnreliable = 5, // PEP_rating_unreliable
+    PEPRatingUnreliable = 4, // PEP_rating_unreliable
+    PEPRatingMediaKeyProtected = 5, // PEP_rating_media_key_protected
     PEPRatingReliable = 6, // PEP_rating_reliable
     PEPRatingTrusted = 7, // PEP_rating_trusted
     PEPRatingTrustedAndAnonymized = 8, // PEP_rating_trusted_and_anonymized
@@ -188,9 +190,11 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
 
     PEPSyncHandshakeSignalAcceptedDeviceAdded = 6, // SYNC_NOTIFY_ACCEPTED_DEVICE_ADDED
     PEPSyncHandshakeSignalAcceptedGroupCreated = 7, // SYNC_NOTIFY_ACCEPTED_GROUP_CREATED
-
     PEPSyncHandshakeSignalAcceptedDeviceAccepted = 8, // SYNC_NOTIFY_ACCEPTED_DEVICE_ACCEPTED
 
+    PEPSyncHandshakeSignalOutgoingRatingChange = 64, // SYNC_NOTIFY_OUTGOING_RATING_CHANGE
+
+    PEPSyncHandshakeSignalStart = 126, // SYNC_NOTIFY_START
     PEPSyncHandshakeSignalStop = 127, // SYNC_NOTIFY_STOP
 
     PEPSyncHandshakeSignalPassphraseRequired = 128, // SYNC_PASSPHRASE_REQUIRED
@@ -224,6 +228,7 @@ typedef NS_CLOSED_ENUM(int, PEPCommType) {
     PEPCommTypeMistrusted = 0x0f, // PEP_ct_mistrusted
 
     PEPCommTypeUnconfirmedEncryption = 0x10, // PEP_ct_unconfirmed_encryption
+    PEPCommTypeMediaKey = PEPCommTypeUnconfirmedEncryption, // PEP_comm_type media_key_comm_type
     PEPCommTypeOpenPGPWeakUnconfirmed = 0x11, // PEP_ct_OpenPGP_weak_unconfirmed
 
     PEPCommTypeToBeChecked = 0x20, // PEP_ct_to_be_checked

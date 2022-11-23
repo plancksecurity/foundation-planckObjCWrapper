@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "PEPObjCAdapterEchoConfigurationProtocol.h"
+#import "PEPObjCAdapterMediaKeysConfigurationProtocol.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol PEPObjCAdapterConfigurationProtocol <NSObject>
+@protocol PEPObjCAdapterConfigurationProtocol <PEPObjCAdapterEchoConfigurationProtocol, PEPObjCAdapterMediaKeysConfigurationProtocol>
 
 /// Sets Engine config for unecryptedSubjectEnabled to the given value on all Sessions created by
 /// this adapter.

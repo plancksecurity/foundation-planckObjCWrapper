@@ -576,6 +576,20 @@ successCallback:(void (^)(NSString *log))successCallback
     return [session configurePassphrase:passphrase error:error];
 }
 
+- (void)syncReinit:(void (^)(NSError *error))errorCallback
+   successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session] syncReinit:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 // MARK: - Methods that can be executed syncronously
 
 - (PEPRating)ratingFromString:(NSString * _Nonnull)string

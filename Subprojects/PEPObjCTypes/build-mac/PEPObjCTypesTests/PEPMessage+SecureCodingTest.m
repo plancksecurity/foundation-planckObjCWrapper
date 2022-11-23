@@ -12,7 +12,7 @@
 #import "PEPTypesTestUtil.h"
 #import "PEPIdentity.h"
 #import "PEPAttachment.h"
-#import "PEPEqualableTools.h"
+#import "NSObject+Equality.h"
 
 @interface PEPMessage_SecureCodingTest : XCTestCase
 @end
@@ -193,7 +193,8 @@
 
 // MARK: - Helper
 
-- (PEPMessage *)archiveAndUnarchiveMessage:(PEPMessage *)message {
+- (PEPMessage *)archiveAndUnarchiveMessage:(PEPMessage *)message
+{
     NSError *error;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:message
                                          requiringSecureCoding:YES
@@ -212,13 +213,15 @@
 
 @implementation PEPAttachment (Equatable)
 
-- (BOOL)isEqualToPEPAttachment:(PEPAttachment * _Nonnull)attachment {
+- (BOOL)isEqualToPEPAttachment:(PEPAttachment * _Nonnull)attachment
+{
     NSArray *s_keys = @[@"data", @"size", @"mimeType", @"filename", @"contentDisposition"];
 
-    return [PEPEqualableTools object:self isEqualTo:attachment basedOnKeys:s_keys];
+    return [self isEqualToObject:attachment basedOnKeys:s_keys];
 }
 
-- (BOOL)isEqual:(id)object {
+- (BOOL)isEqual:(id)object
+{
     if (object == self) {
         return YES;
     }
