@@ -134,7 +134,7 @@
 			buildPhases = (
 				4E23E7002681D5F300B8F4C2 /* Sources */,
 				4E23E7012681D5F300B8F4C2 /* Frameworks */,
-				4E23E71A26820DDB00B8F4C2 /* Copy artefacts to custom build dir */,
+				4E23E71A26820DDB00B8F4C2 /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
 			);
@@ -199,7 +199,7 @@
 			shellPath = /bin/sh;
 			shellScript = "CUSTOM_BUILD_DIR=${PROJECT_DIR}/build\nCUSTOM_INCLUDE_DIR=${CUSTOM_BUILD_DIR}/include\nmkdir -p ${CUSTOM_INCLUDE_DIR}\n\ncp \"${PROJECT_DIR}/../PublicHeaders\"/*.h ${CUSTOM_INCLUDE_DIR}\ncp \"${BUILT_PRODUCTS_DIR}/lib${PRODUCT_NAME}.a\" ${CUSTOM_BUILD_DIR}\n";
 		};
-		4E23E71A26820DDB00B8F4C2 /* Copy artefacts to custom build dir */ = {
+		4E23E71A26820DDB00B8F4C2 /* Copy artifacts to custom build dir */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -208,7 +208,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Copy artefacts to custom build dir";
+			name = "Copy artifacts to custom build dir";
 			outputFileListPaths = (
 			);
 			outputPaths = (

@@ -9,6 +9,8 @@
 #ifndef Logger_h
 #define Logger_h
 
+#import "Platform.h"
+
 #ifdef IS_IOS_BUILD
     #import <pEpIOSToolboxForExtensions/pEpIOSToolboxForExtensions-Swift.h>
     #import <pEpIOSToolboxForExtensions/PEPLogger.h>

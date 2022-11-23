@@ -282,7 +282,12 @@
 {
     NSError *error = nil;
     NSString *log = [self getLogWithError:&error];
-    XCTAssertGreaterThan(log.length, 0);
+
+    // Currently, `PEP_LOG_DESTINATIONS=PEP_LOG_DESTINATION_STDOUT`,
+    // so there can't be any log.
+    // Please see also https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/91
+    XCTAssertEqual(log.length, 0);
+
     XCTAssertNotNil(log);
     XCTAssertNil(error);
 }

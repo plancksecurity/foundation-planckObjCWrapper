@@ -14,105 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "19FF460E1B8B4D1400B43179"
-               BuildableName = "CocoaLumberjackSwift.framework"
-               BlueprintName = "CocoaLumberjackSwift"
-               ReferencedContainer = "container:../CocoaLumberjack/Lumberjack.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "19FF46011B8B4CF400B43179"
-               BuildableName = "CocoaLumberjack.framework"
-               BlueprintName = "CocoaLumberjack"
-               ReferencedContainer = "container:../CocoaLumberjack/Lumberjack.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AE6870024FFA5ED00B416ED"
-               BuildableName = "pEp4iosIntern.framework"
-               BlueprintName = "pEp4iosIntern"
-               ReferencedContainer = "container:../pep_for_ios_intern/pEp4iosIntern/pEp4iosIntern.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43D3EF23260A0D7E00110971"
-               BuildableName = "pEpIOSToolboxForExtensions.framework"
-               BlueprintName = "pEpIOSToolboxForExtensions"
-               ReferencedContainer = "container:../pep-toolbox/pEpIOSToolbox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43D3EF23260A0D7E00110971"
-               BuildableName = "pEpIOSToolboxForExtensions.framework"
-               BlueprintName = "pEpIOSToolboxForExtensions"
-               ReferencedContainer = "container:../pep-toolbox/pEpIOSToolbox.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64796A3E1B455AA5004B1C24"
-               BuildableName = "libpEpEngine.a"
-               BlueprintName = "pEpEngine"
-               ReferencedContainer = "container:../pEpEngine/build-mac/pEpEngine.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4E575864268329A20084F02D"
-               BuildableName = "libPEPObjCTypes_iOS.a"
-               BlueprintName = "PEPObjCTypes_iOS"
-               ReferencedContainer = "container:../../src_pEpMime4macOS/pEpObjCAdapter/Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1543DC65257943CE0041EFB5"
+               BlueprintIdentifier = "43B2ACC02923AF7700D8C6F8"
                BuildableName = "libPEPObjCAdapter_iOS.a"
                BlueprintName = "PEPObjCAdapter_iOS"
                ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">
@@ -120,16 +22,16 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4E5758BE26833D140084F02D"
-               BuildableName = "PEPObjCTypesTests_iOS.xctest"
-               BlueprintName = "PEPObjCTypesTests_iOS"
-               ReferencedContainer = "container:../../src_pEpMime4macOS/pEpObjCAdapter/Subprojects/PEPObjCTypes/PEPObjCTypes.xcodeproj">
+               BlueprintIdentifier = "43312023292553A200DFD28C"
+               BuildableName = "PEPObjCTypeUtilsTests_iOS.xctest"
+               BlueprintName = "PEPObjCTypeUtilsTests_iOS"
+               ReferencedContainer = "container:../Subprojects/PEPObjCTypeUtils/build-mac/PEPObjCTypeUtils.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -160,6 +62,16 @@
                ReferencedContainer = "container:../Subprojects/PEPObjCTypes/build-mac/PEPObjCTypes.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43312023292553A200DFD28C"
+               BuildableName = "PEPObjCTypeUtilsTests_iOS.xctest"
+               BlueprintName = "PEPObjCTypeUtilsTests_iOS"
+               ReferencedContainer = "container:../Subprojects/PEPObjCTypeUtils/build-mac/PEPObjCTypeUtils.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -182,7 +94,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1543DC65257943CE0041EFB5"
+            BlueprintIdentifier = "43B2ACC02923AF7700D8C6F8"
             BuildableName = "libPEPObjCAdapter_iOS.a"
             BlueprintName = "PEPObjCAdapter_iOS"
             ReferencedContainer = "container:pEpObjCAdapter.xcodeproj">

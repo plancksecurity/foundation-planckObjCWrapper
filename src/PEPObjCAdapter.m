@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Platform.h"
+
 #ifdef IS_IOS_BUILD
 #import <pEp4iosIntern/pEp4iosIntern.h>
 #endif
@@ -31,7 +33,7 @@ const PEP_decrypt_flags PEP_decrypt_flag_none = 0x0;
  */
 static NSString * const s_pEpHomeComponent = @"pEp_home";
 
-const char* _Nullable perMachineDirectory = NULL;
+const char * _Nullable perMachineDirectory = NULL;
 
 NSURL *s_homeURL;
 
@@ -216,7 +218,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 + (void)setPerMachineDirectory:(NSURL *)perMachineDir
 {
     if (perMachineDirectory) {
-        free((void *) perMachineDirectory); //BUFF: DIRK??
+        free((void *) perMachineDirectory);
     }
     perMachineDirectory = strdup([perMachineDir path].UTF8String);
 }
