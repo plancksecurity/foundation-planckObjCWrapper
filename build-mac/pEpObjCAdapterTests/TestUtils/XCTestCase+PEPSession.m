@@ -6,7 +6,7 @@
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
-@import PEPObjCAdapter_iOS;
+@import PEPObjCAdapter;
 
 #import "XCTestCase+PEPSession.h"
 

@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-@import PEPObjCAdapter_iOS;
+@import PEPObjCAdapter;
 
 #import "PEPInternalSession.h"
 #import "PEPSessionProvider.h"

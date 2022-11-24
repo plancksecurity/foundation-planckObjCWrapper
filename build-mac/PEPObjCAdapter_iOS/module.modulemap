@@ -1,4 +1,4 @@
-module PEPObjCAdapter_iOS {
+module PEPObjCAdapter {
     use PEPObjCTypes
     use PEPObjCAdapterProtocols
 

@@ -6,7 +6,7 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-@import PEPObjCAdapter_iOS;
+@import PEPObjCAdapter;
 
 NS_ASSUME_NONNULL_BEGIN
 

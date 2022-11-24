@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@import PEPObjCAdapter_iOS;
+@import PEPObjCAdapter;
 
 @interface PEPInternalSessionTestNotifyHandshakeDelegate : NSObject<PEPNotifyHandshakeDelegate>
 

@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 
 @import PEPObjCTypes;
-@import PEPObjCAdapter_iOS;
+@import PEPObjCAdapter;
 
 #import "PEPTestUtils.h"
 
