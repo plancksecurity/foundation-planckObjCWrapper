@@ -1387,6 +1387,7 @@
     PEPStatus status = PEPStatusOutOfMemory;
 
     NSArray *nonsensePassphrases = @[@"blah1", @"blah2", @"blah3"];
+    // TODO: All PEPObjCAdapter setPassphraseProvider warnings fixed?
     [PEPObjCAdapter setPassphraseProvider:[[PEPPassphraseProviderMock alloc]
                                            initWithPassphrases:nonsensePassphrases]];
 
