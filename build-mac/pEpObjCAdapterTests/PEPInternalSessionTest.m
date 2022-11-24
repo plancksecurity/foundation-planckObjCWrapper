@@ -8,16 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "PEPObjCTypes.h"
-#import "PEPObjCAdapter_iOS.h"
-
-#import "NSNumber+PEPRating.h"
-#import "PEPObjCAdapter.h"
-#import "PEPMessage.h"
-#import "PEPAttachment.h"
 #import "PEPTestUtils.h"
-#import "PEPSync.h"
-#import "PEPSendMessageDelegate.h"
 
 #import "PEPInternalSessionTestNotifyHandshakeDelegate.h"
 #import "PEPInternalSessionTestSendMessageDelegate.h"
