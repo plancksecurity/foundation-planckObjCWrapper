@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-@import PEPObjCTypeUtils_iOS;
+@import PEPObjCTypeUtils;
 @import PEPObjCTypes;
 
 #import "PEPInternalSession.h"

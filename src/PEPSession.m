@@ -8,7 +8,7 @@
 
 @import PEPObjCAdapterProtocols;
 @import PEPObjCTypes;
-@import PEPObjCTypeUtils_iOS;
+@import PEPObjCTypeUtils;
 
 #import "PEPSession.h"
 

@@ -6,7 +6,7 @@
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
-@import PEPObjCTypeUtils_iOS;
+@import PEPObjCTypeUtils;
 
 #import "PEPInternalSession+SetIdentity.h"
 

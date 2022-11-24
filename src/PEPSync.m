@@ -7,7 +7,7 @@
 //
 
 @import PEPObjCTypes;
-@import PEPObjCTypeUtils_iOS;
+@import PEPObjCTypeUtils;
 
 #import "pEpEngine.h"
 
