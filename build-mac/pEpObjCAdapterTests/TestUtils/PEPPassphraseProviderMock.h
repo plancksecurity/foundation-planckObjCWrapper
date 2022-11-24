@@ -6,7 +6,7 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-#import "PEPPassphraseProviderProtocol.h"
+@import PEPObjCAdapter_iOS;
 
 NS_ASSUME_NONNULL_BEGIN
 
