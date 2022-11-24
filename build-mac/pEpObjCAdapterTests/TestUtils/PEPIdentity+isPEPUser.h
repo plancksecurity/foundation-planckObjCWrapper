@@ -6,9 +6,6 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-#import "PEPObjCAdapter.h"
-#import "PEPObjCTypes.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @class PEPInternalSession;

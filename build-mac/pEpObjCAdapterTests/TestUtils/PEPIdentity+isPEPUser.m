@@ -6,6 +6,8 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
+@import Foundation;
+
 #import "PEPIdentity+isPEPUser.h"
 
 #import "PEPSessionProvider.h"
