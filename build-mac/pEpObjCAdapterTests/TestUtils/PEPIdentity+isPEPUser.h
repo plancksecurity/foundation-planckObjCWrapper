@@ -6,10 +6,11 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
+@import PEPObjCTypes_iOS;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class PEPInternalSession;
-@class PEPIdentity;
 
 @interface PEPIdentity (isPEPUser)
 
