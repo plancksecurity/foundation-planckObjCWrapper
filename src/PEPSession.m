@@ -6,7 +6,7 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
-@import PEPObjCAdapterProtocols_iOS;
+@import PEPObjCAdapterProtocols;
 @import PEPObjCTypes_iOS;
 @import PEPObjCTypeUtils_iOS;
 

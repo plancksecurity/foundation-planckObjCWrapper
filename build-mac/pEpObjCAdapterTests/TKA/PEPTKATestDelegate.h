@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-@import PEPObjCAdapterProtocols_iOS;
+@import PEPObjCAdapterProtocols;
 
 NS_ASSUME_NONNULL_BEGIN
 
