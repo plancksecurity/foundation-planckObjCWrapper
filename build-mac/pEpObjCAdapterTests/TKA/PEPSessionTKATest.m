@@ -12,6 +12,7 @@
 @import PEPObjCAdapter_iOS;
 
 #import "PEPTKATestDelegate.h"
+#import "PEPTestUtils.h"
 
 @interface PEPSessionTKATest : XCTestCase
 
