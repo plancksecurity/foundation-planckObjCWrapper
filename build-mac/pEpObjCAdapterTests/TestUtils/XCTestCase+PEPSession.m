@@ -6,9 +6,9 @@
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
-#import "XCTestCase+PEPSession.h"
-
 @import PEPObjCAdapter_iOS;
+
+#import "XCTestCase+PEPSession.h"
 
 #import "PEPTestUtils.h"
 #import "NSNumber+PEPRating.h"
