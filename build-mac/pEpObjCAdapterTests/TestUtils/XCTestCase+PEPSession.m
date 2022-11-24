@@ -8,7 +8,8 @@
 
 #import "XCTestCase+PEPSession.h"
 
-#import "PEPObjCAdapter_iOS.h"
+@import PEPObjCAdapter_iOS;
+
 #import "PEPTestUtils.h"
 #import "NSNumber+PEPRating.h"
 
