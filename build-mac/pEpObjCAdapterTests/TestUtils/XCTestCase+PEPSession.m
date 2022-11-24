@@ -11,7 +11,6 @@
 #import "XCTestCase+PEPSession.h"
 
 #import "PEPTestUtils.h"
-#import "NSNumber+PEPRating.h"
 
 @implementation XCTestCase (PEPSession)
 
