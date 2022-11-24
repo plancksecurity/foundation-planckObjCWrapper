@@ -30,7 +30,7 @@
 		439F4C42275632DF005F278E /* PEPIdentity+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CB26833F920084F02D /* PEPIdentity+SecureCodingTest.m */; };
 		439F4C43275632E2005F278E /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */; };
 		439F4C44275632E6005F278E /* PEPMessage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */; };
-		43D44C842685BEB400638D1C /* pEpObjCTypesModuleMap.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */; platformFilter = ios; };
+		43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* module.modulemap */; platformFilter = ios; };
 		43DFAAC029265B76009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
 		43DFAAC129265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */; };
 		43DFAAD329265FEE009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
@@ -91,7 +91,7 @@
 				430EE263292CCCF4001A9995 /* PEPErrors.h in CopyFiles */,
 				430EE264292CCCF4001A9995 /* PEPMediaKeyPair.h in CopyFiles */,
 				430EE265292CCCF4001A9995 /* PEPMediaKeyPair+SecureCoding.h in CopyFiles */,
-				43D44C842685BEB400638D1C /* pEpObjCTypesModuleMap.modulemap in CopyFiles */,
+				43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +114,7 @@
 		15BD319A2742A1B500B1B1F5 /* PEPErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPErrors.h; sourceTree = "<group>"; };
 		15BD319B2742A1B500B1B1F5 /* PEPErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPErrors.m; sourceTree = "<group>"; };
 		439F4C36275632B2005F278E /* PEPObjCTypesTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypesTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = pEpObjCTypesModuleMap.modulemap; sourceTree = "<group>"; };
+		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		43DFAABA29265B17009DABB9 /* PEPMediaKeyPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMediaKeyPair.h; sourceTree = "<group>"; };
 		43DFAABB29265B17009DABB9 /* PEPMediaKeyPair+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMediaKeyPair+SecureCoding.h"; sourceTree = "<group>"; };
 		43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMediaKeyPair+SecureCoding+Test.m"; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 		4E575866268329A20084F02D /* PEPObjCTypes_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				43D44C832685BE4300638D1C /* pEpObjCTypesModuleMap.modulemap */,
+				43D44C832685BE4300638D1C /* module.modulemap */,
 			);
 			path = PEPObjCTypes_iOS;
 			sourceTree = "<group>";
@@ -355,7 +355,6 @@
 				4E575861268329A20084F02D /* Sources */,
 				4E575862268329A20084F02D /* Frameworks */,
 				4E575863268329A20084F02D /* CopyFiles */,
-				15A9C9332760D86500307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */,
 				4E5758F8268371B10084F02D /* Copy artifacts to custom build dir */,
 			);
 			buildRules = (
@@ -463,25 +462,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "BUILD_INCLUDE_DIR=\"${BUILT_PRODUCTS_DIR}/include/PEPObjCTypes_macOS\"\nmv ${BUILD_INCLUDE_DIR}/pEpObjCTypesModuleMap.modulemap ${BUILD_INCLUDE_DIR}/module.modulemap\n";
-			showEnvVarsInLog = 0;
-		};
-		15A9C9332760D86500307D3F /* Rename Module Map File  - Workaround for "duplicate module definition" - IOS-2879 */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Rename Module Map File  - Workaround for \"duplicate module definition\" - IOS-2879";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "BUILD_INCLUDE_DIR=\"${BUILT_PRODUCTS_DIR}/include/PEPObjCTypes_iOS\"\nmv ${BUILD_INCLUDE_DIR}/pEpObjCTypesModuleMap.modulemap ${BUILD_INCLUDE_DIR}/module.modulemap\n";
 			showEnvVarsInLog = 0;
 		};
 		4E5758F7268371770084F02D /* Copy artifacts to custom build dir */ = {
