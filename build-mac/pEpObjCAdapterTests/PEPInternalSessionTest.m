@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 
+@import PEPObjCAdapter_iOS;
+
 #import "PEPTestUtils.h"
 
 #import "PEPInternalSessionTestNotifyHandshakeDelegate.h"
