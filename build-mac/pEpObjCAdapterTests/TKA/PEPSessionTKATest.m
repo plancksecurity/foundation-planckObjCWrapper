@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-@import PEPObjCTypes_iOS;
+@import PEPObjCTypes;
 @import PEPObjCAdapter_iOS;
 
 #import "PEPTKATestDelegate.h"

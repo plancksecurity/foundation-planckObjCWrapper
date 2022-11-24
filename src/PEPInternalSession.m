@@ -7,7 +7,7 @@
 //
 
 @import PEPObjCTypeUtils_iOS;
-@import PEPObjCTypes_iOS;
+@import PEPObjCTypes;
 
 #import "PEPInternalSession.h"
 

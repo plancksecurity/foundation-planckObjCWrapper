@@ -6,7 +6,7 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-@import PEPObjCTypes_iOS;
+@import PEPObjCTypes;
 @import PEPObjCTypeUtils_iOS;
 
 #import "pEpEngine.h"

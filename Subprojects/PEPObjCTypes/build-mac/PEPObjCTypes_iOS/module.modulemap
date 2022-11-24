@@ -1,4 +1,4 @@
-module PEPObjCTypes_iOS {
+module PEPObjCTypes {
     umbrella header "PEPObjCTypes.h"
     export *
 }

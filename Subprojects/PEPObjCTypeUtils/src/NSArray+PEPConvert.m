@@ -5,7 +5,7 @@
 //  Created by Martín Brude on 28/1/22.
 //
 
-@import PEPObjCTypes_iOS;
+@import PEPObjCTypes;
 
 #import "NSArray+PEPConvert.h"
 

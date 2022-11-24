@@ -8,7 +8,7 @@
 
 #import "PEPInternalSessionTestSendMessageDelegate.h"
 
-@import PEPObjCTypes_iOS;
+@import PEPObjCTypes;
 
 @implementation PEPInternalSessionTestSendMessageDelegate
 

@@ -7,7 +7,7 @@
 
 #import <XCTest/XCTest.h>
 
-@import PEPObjCTypes_iOS;
+@import PEPObjCTypes;
 
 #import "PEPMessage+ASN1.h"
 
