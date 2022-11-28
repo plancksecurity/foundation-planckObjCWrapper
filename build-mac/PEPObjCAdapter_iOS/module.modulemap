@@ -1,6 +1,6 @@
 module PEPObjCAdapter {
-    use PEPObjCTypes
     use PEPObjCAdapterProtocols
+    use PEPObjCTypeUtils
 
     umbrella header "PEPObjCAdapter.h"
     export *
