@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 
-@import PEPObjCTypes;
 @import PEPObjCAdapter;
 
 #import "PEPTKATestDelegate.h"

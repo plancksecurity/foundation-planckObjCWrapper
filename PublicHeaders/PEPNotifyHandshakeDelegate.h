@@ -10,8 +10,6 @@
 
 @import PEPObjCTypes;
 
-@class PEPIdentity;
-
 /**
  Handles notifications from the engine to the app that involve UI.
  */

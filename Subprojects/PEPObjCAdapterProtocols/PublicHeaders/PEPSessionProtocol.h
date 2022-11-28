@@ -12,10 +12,6 @@
 
 #import "PEPSessionProtocolTKA.h"
 
-@class PEPLanguage;
-@class PEPIdentity;
-@class PEPMessage;
-
 NS_ASSUME_NONNULL_BEGIN
 
 /// Domain for errors indicated by the pEp adapter itself.

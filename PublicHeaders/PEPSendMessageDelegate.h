@@ -10,8 +10,6 @@
 
 @import PEPObjCTypes;
 
-@class PEPMessage;
-
 /**
  Delegate that receives notifications when the engine needs to send out messages on its behalf.
  */

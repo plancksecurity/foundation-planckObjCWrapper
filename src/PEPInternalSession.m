@@ -7,7 +7,6 @@
 //
 
 @import PEPObjCTypeUtils;
-@import PEPObjCTypes;
 
 #import "PEPInternalSession.h"
 
