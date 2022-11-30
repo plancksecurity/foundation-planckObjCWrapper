@@ -6,7 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PEPIdentity.h"
+
+@import PEPObjCTypes;
+
 #import <transport.h>
 
 NS_ASSUME_NONNULL_BEGIN

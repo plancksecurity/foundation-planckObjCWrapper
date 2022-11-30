@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPEngineTypes.h"
-
-@class PEPMessage;
+@import PEPObjCTypes;
 
 /**
  Delegate that receives notifications when the engine needs to send out messages on its behalf.

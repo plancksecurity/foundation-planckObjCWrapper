@@ -6,9 +6,9 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
-#import "pEpEngine.h"
+@import PEPObjCTypeUtils;
 
-#import <PEPObjCTypeUtils.h>
+#import "pEpEngine.h"
 
 #import "PEPSync.h"
 #import "PEPSync_Internal.h"
@@ -17,7 +17,6 @@
 
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
-#import "PEPMessage.h"
 #import "PEPQueue.h"
 #import "PEPObjCAdapter.h"
 #import "PEPSessionProvider.h"
@@ -25,8 +24,6 @@
 #import "PEPPassphraseCache.h"
 #import "PEPPassphraseUtil.h"
 #import "Logger.h"
-#import <PEPIdentity.h>
-#import "PEPMessage.h"
 #import "PEPMessage+PEPConvert.h"
 #import "PEPIdentity+PEPConvert.h"
 

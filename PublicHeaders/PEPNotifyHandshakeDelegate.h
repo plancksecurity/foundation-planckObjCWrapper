@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPEngineTypes.h"
-
-@class PEPIdentity;
+@import PEPObjCTypes;
 
 /**
  Handles notifications from the engine to the app that involve UI.

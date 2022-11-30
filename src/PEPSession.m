@@ -6,17 +6,16 @@
 //  Copyright © 2020 p≡p. All rights reserved.
 //
 
+@import PEPObjCAdapterProtocols;
+@import PEPObjCTypeUtils;
+
 #import "PEPSession.h"
 
-#import "PEPMessage.h"
-#import "PEPEngineTypes.h"
 #import "PEPInternalSession.h"
 #import "PEPInternalSession+TKA.h"
 #import "NSNumber+PEPRating.h"
-#import "PEPIdentity.h"
 #import "PEPSessionProvider.h"
 #import "PEPInternalConstants.h"
-#import <PEPObjCTypeUtils.h>
 
 static dispatch_queue_t queue;
 

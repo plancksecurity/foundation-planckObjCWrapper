@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPMessage.h"
+@import PEPObjCTypes;
 
 NS_ASSUME_NONNULL_BEGIN
 

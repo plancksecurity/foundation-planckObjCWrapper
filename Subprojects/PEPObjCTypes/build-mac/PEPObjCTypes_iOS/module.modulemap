@@ -1,0 +1,4 @@
+module PEPObjCTypes {
+    umbrella header "PEPObjCTypes.h"
+    export *
+}

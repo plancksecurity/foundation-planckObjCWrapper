@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "PEPObjCTypes.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XCTestCase (PEPSession)

@@ -8,14 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
-#import "PEPObjCTypes.h"
-#import "PEPSessionProtocolTKA.h"
+@import PEPObjCTypes;
 
-@class PEPLanguage;
-@class PEPIdentity;
-@class PEPMessage;
+#import "PEPSessionProtocolTKA.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

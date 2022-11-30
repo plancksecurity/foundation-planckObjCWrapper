@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "pEpEngine.h"
+@import PEPObjCTypes;
 
-#import "PEPEngineTypes.h"
+#import "pEpEngine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

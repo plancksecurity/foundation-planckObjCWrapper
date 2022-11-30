@@ -1,4 +1,0 @@
-module PEPObjCAdapter_iOS {
-    umbrella header "PEPObjCAdapter_iOS.h"
-    export *
-}

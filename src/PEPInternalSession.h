@@ -8,18 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
+@import PEPObjCTypes;
 
 #import "sync_api.h"
 
-#import "PEPObjCAdapter.h"
-
-@class PEPLanguage;
-@class PEPIdentity;
-@class PEPMessage;
 @class PEPPassphraseCache;
-@class PEPMediaKeyPair;
 
 NS_ASSUME_NONNULL_BEGIN
 

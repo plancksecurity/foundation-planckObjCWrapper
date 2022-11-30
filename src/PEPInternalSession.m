@@ -6,18 +6,15 @@
 //  Copyright (c) 2015 p≡p. All rights reserved.
 //
 
-#import "PEPInternalSession.h"
+@import PEPObjCTypeUtils;
 
-#import <PEPObjCTypeUtils.h>
+#import "PEPInternalSession.h"
 
 #import "PEPConstants.h"
 #import "PEPObjCAdapter.h"
 #import "PEPObjCAdapter+ReadConfig.h"
-#import "PEPLanguage.h"
 #import "PEPCSVScanner.h"
 #import "NSArray+Take.h"
-#import "PEPIdentity.h"
-#import "PEPMessage.h"
 #import "PEPAutoPointer.h"
 #import "NSNumber+PEPRating.h"
 #import "PEPSync.h"
@@ -31,7 +28,6 @@
 #import "PEPIdentity+PEPConvert.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
-#import "PEPMediaKeyPair.h"
 
 #import "key_reset.h"
 #import "media_key.h"

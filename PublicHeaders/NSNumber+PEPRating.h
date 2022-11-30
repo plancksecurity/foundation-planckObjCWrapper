@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PEPTypes.h"
-#import "PEPEngineTypes.h"
+@import PEPObjCTypes;
 
 /**
  Extension for wrapping the engine's PEP_rating inside a NSNumber.

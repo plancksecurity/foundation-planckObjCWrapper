@@ -5,8 +5,9 @@
 //  Created by Martín Brude on 28/1/22.
 //
 
+@import PEPObjCTypes;
+
 #import "NSArray+PEPConvert.h"
-#import "PEPAttachment.h"
 
 @implementation NSArray (PEPConvert)
 

@@ -6,12 +6,10 @@
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
+@import PEPObjCTypeUtils;
+
 #import "PEPInternalSession+SetIdentity.h"
 
-#import "PEPObjCTypes.h"
-#import "PEPObjCTypeUtils.h"
-
-#import "PEPTypes.h"
 #import "PEPInternalSession.h"
 #import "PEPInternalSession+PassphraseCache.h"
 #import "PEPIdentity+PEPConvert.h"
