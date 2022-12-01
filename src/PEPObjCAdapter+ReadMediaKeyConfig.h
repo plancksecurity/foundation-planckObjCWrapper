@@ -19,9 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray<PEPMediaKeyPair *> * _Nullable)mediaKeys;
 
-/// Gets the currently set delegate for outgoing rating changes, triggered by the processing of echo messages.
-+ (id<PEPNotifyHandshakeDelegate> _Nullable)outgoingRatingChangeDelegate;
-
 @end
 
 NS_ASSUME_NONNULL_END
