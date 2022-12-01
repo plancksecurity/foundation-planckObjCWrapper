@@ -8,8 +8,6 @@
 #ifndef PEPObjCAdapterConfigurationProtocol_Echo_h
 #define PEPObjCAdapterConfigurationProtocol_Echo_h
 
-#import "PEPNotifyHandshakeDelegate.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 /// Echo protocol configuration across all sessions, including existing ones
@@ -27,14 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 /// Ping messages from outgoing_message_rating_preview are enabled by default.
 + (void)setEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled;
-
-/// Sets or unsets the global delegate for outgoing rating changes, that usually gets triggered on
-/// decrypting pong messages (part of the echo protocol) via a handshake notification with the reason
-/// of `SYNC_NOTIFY_OUTGOING_RATING_CHANGE`.
-///
-/// @note Even though the engine, and consequently the adapter, reuse handshake notifications
-/// for rating changes, there is no actual connection between the two.
-+ (void)setEchoOutgoingRatingChangeDelegate:(id<PEPNotifyHandshakeDelegate> _Nullable)delegate;
 
 @end
 
