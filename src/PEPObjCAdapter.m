@@ -131,7 +131,6 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
     // TODO
 }
 
-
 #pragma mark - Echo Protocol Internal API for Reading
 
 + (BOOL)echoProtocolEnabled
