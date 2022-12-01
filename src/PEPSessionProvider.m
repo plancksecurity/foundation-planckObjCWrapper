@@ -134,6 +134,9 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
     BOOL echoInOutgoing = [PEPObjCAdapter echoInOutgoingMessageRatingPreviewEnabled];
     [session configureEchoInOutgoingMessageRatingPreviewEnabled:echoInOutgoing];
+
+    id<PEPNotifyHandshakeDelegate> ratingChangeDelegate = [PEPObjCAdapter outgoingRatingChangeDelegate];
+    // TODO: Set into the session.
 }
 
 + (void)configureMediaKeysOnSession:(PEPInternalSession *)session
