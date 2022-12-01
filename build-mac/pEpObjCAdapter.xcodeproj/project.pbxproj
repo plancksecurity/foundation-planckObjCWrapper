@@ -478,7 +478,6 @@
 		43209B271ECC2ACD007E7E2E /* NSArray+Take.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Take.m"; sourceTree = "<group>"; };
 		43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPCSVScanner.h; sourceTree = "<group>"; };
 		43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPCSVScanner.m; sourceTree = "<group>"; };
-		43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPObjCAdapter+Internal.h"; sourceTree = "<group>"; };
 		43209B2F1ECC2ACD007E7E2E /* PEPObjCAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPObjCAdapter.h; sourceTree = "<group>"; };
 		43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPObjCAdapter.m; sourceTree = "<group>"; };
 		43209B311ECC2ACD007E7E2E /* PEPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPQueue.h; sourceTree = "<group>"; };
@@ -767,7 +766,6 @@
 				438C0EE1254026E200337922 /* Extensions */,
 				43209B281ECC2ACD007E7E2E /* PEPCSVScanner.h */,
 				43209B291ECC2ACD007E7E2E /* PEPCSVScanner.m */,
-				43209B2E1ECC2ACD007E7E2E /* PEPObjCAdapter+Internal.h */,
 				43209B301ECC2ACD007E7E2E /* PEPObjCAdapter.m */,
 				43209B311ECC2ACD007E7E2E /* PEPQueue.h */,
 				43209B321ECC2ACD007E7E2E /* PEPQueue.m */,
