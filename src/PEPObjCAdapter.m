@@ -144,6 +144,11 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
     return s_echoInOutgoingMessageRatingPreviewEnabled;
 }
 
++ (id<PEPNotifyHandshakeDelegate> _Nullable)outgoingRatingChangeDelegate
+{
+    return nil; // TODO
+}
+
 #pragma mark - Media Keys Public API
 
 + (void)configureMediaKeys:(nonnull NSArray<PEPMediaKeyPair *> *)mediaKeys
