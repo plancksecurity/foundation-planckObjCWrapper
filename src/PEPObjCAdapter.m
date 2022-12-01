@@ -126,6 +126,12 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
     s_echoInOutgoingMessageRatingPreviewEnabled = enabled;
 }
 
++ (void)setOutgoingRatingChangeDelegate:(id<PEPNotifyHandshakeDelegate> _Nullable)delegate
+{
+    // TODO
+}
+
+
 + (BOOL)echoProtocolEnabled
 {
     return s_echoProtocolEnabled;
