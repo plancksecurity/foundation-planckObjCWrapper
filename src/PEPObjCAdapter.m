@@ -15,6 +15,11 @@
 #endif
 
 #import "PEPObjCAdapter.h"
+
+#import "PEPObjCAdapter+ReadConfig.h"
+#import "PEPObjCAdapter+ReadEchoConfig.h"
+#import "PEPObjCAdapter+ReadMediaKeyConfig.h"
+
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"  
