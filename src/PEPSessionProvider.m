@@ -135,7 +135,7 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     BOOL echoInOutgoing = [PEPObjCAdapter echoInOutgoingMessageRatingPreviewEnabled];
     [session configureEchoInOutgoingMessageRatingPreviewEnabled:echoInOutgoing];
 
-    id<PEPNotifyHandshakeDelegate> ratingChangeDelegate = [PEPObjCAdapter outgoingRatingChangeDelegate];
+    id<PEPNotifyHandshakeDelegate> ratingChangeDelegate = [PEPObjCAdapter echoOutgoingRatingChangeDelegate];
     // TODO: Set into the session.
 }
 

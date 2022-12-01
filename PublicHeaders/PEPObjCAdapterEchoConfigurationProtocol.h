@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///
 /// @note Even though the engine, and consequently the adapter, reuse handshake notifications
 /// for rating changes, there is no actual connection between the two.
-+ (void)setOutgoingRatingChangeDelegate:(id<PEPNotifyHandshakeDelegate> _Nullable)delegate;
++ (void)setEchoOutgoingRatingChangeDelegate:(id<PEPNotifyHandshakeDelegate> _Nullable)delegate;
 
 @end
 
