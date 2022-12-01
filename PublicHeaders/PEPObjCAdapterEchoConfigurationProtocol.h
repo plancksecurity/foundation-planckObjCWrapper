@@ -8,6 +8,8 @@
 #ifndef PEPObjCAdapterConfigurationProtocol_Echo_h
 #define PEPObjCAdapterConfigurationProtocol_Echo_h
 
+#import "PEPNotifyHandshakeDelegate.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// Echo protocol configuration across all sessions, including existing ones
