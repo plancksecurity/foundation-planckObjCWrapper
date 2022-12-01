@@ -44,6 +44,7 @@ static id<PEPPassphraseProviderProtocol> s_passphraseProvider = nil;
 
 static BOOL s_echoProtocolEnabled = YES;
 static BOOL s_echoInOutgoingMessageRatingPreviewEnabled = YES;
+static id<PEPNotifyHandshakeDelegate> s_outgoinRatingChangeDelegate = nil;
 
 static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
 
@@ -128,7 +129,7 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
 
 + (void)setOutgoingRatingChangeDelegate:(id<PEPNotifyHandshakeDelegate> _Nullable)delegate
 {
-    // TODO
+    s_outgoinRatingChangeDelegate = delegate;
 }
 
 #pragma mark - Echo Protocol Internal API for Reading
@@ -145,7 +146,7 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
 
 + (id<PEPNotifyHandshakeDelegate> _Nullable)outgoingRatingChangeDelegate
 {
-    return nil; // TODO
+    return s_outgoinRatingChangeDelegate;
 }
 
 #pragma mark - Media Keys Public API
