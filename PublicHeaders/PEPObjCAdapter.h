@@ -10,7 +10,6 @@
 
 #import "PEPObjCAdapterConfigurationProtocol.h"
 #import "PEPSession.h"
-#import "PEPNotifyHandshakeDelegate.h"
 #import "PEPSendMessageDelegate.h"
 #import "PEPSync.h"
 #import "NSNumber+PEPRating.h"

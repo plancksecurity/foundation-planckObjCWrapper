@@ -15,7 +15,7 @@
 #endif
 
 #import "PEPObjCAdapter.h"
-#import "PEPObjCAdapter+Internal.h"
+
 #import "NSString+NormalizePassphrase.h"
 #import "PEPInternalSession.h"
 #import "PEPPassphraseCache.h"  
@@ -114,7 +114,7 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
     return s_passphraseProvider;
 }
 
-#pragma mark - Echo Protocol
+#pragma mark - Echo Protocol Public API
 
 + (void)setEchoProtocolEnabled:(BOOL)enabled
 {
@@ -126,6 +126,8 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
     s_echoInOutgoingMessageRatingPreviewEnabled = enabled;
 }
 
+#pragma mark - Echo Protocol Internal API for Reading
+
 + (BOOL)echoProtocolEnabled
 {
     return s_echoProtocolEnabled;
@@ -136,13 +138,15 @@ static NSArray<PEPMediaKeyPair *> *s_mediaKeys = nil;
     return s_echoInOutgoingMessageRatingPreviewEnabled;
 }
 
-#pragma mark - Media Keys
+#pragma mark - Media Keys Public API
 
 + (void)configureMediaKeys:(nonnull NSArray<PEPMediaKeyPair *> *)mediaKeys
 {
     NSArray *ourCopy = [NSArray arrayWithArray:mediaKeys];
     s_mediaKeys = ourCopy;
 }
+
+#pragma mark - Media Keys Internal API for Reading
 
 + (NSArray<PEPMediaKeyPair *> *)mediaKeys
 {

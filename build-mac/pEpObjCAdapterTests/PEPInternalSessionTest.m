@@ -1277,44 +1277,6 @@
     XCTAssertNil(error);
 }
 
-- (void)testNotifyHandshakePassphraseNotRequired
-{
-    NSString *correctPassphrase = @"passphrase_testOwnKeyWithPasswordSendMessage";
-
-    XCTAssertEqual(self.sendMessageDelegate.messages.count, 0);
-    XCTAssertNil(self.sendMessageDelegate.lastMessage);
-
-    NSError *error = nil;
-
-    XCTAssertTrue([PEPObjCAdapter configurePassphraseForNewKeys:correctPassphrase error:&error]);
-    XCTAssertNil(error);
-    error = nil;
-
-    PEPInternalSession *session = [PEPSessionProvider session];
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
-                            userName:@"pEp Me"
-                            isOwn:YES];
-
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-
-    [self startSync];
-
-    XCTKVOExpectation *expHaveMessage1 = [[XCTKVOExpectation alloc]
-                                          initWithKeyPath:@"lastMessage"
-                                          object:self.sendMessageDelegate];
-    [self waitForExpectations:@[expHaveMessage1] timeout:PEPTestInternalSyncTimeout];
-    XCTAssertNotNil(self.sendMessageDelegate.lastMessage);
-    XCTAssertGreaterThan(self.sendMessageDelegate.messages.count, 0);
-
-    XCTAssertEqualObjects(self.sendMessageDelegate.lastMessage.from.address, identMe.address);
-
-    [self shutdownSync];
-}
-
 #pragma mark - Passphrases
 
 /// Use case: No passphrase provider

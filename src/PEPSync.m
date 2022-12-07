@@ -172,6 +172,11 @@ static __weak PEPSync *s_pEpSync;
         return nil;
     }
 
+    // Register the callbacks that should be on _every_ session.
+    // Note that the status is ignored, since it would indicate an error
+    // e.g. for the case when not yet an own identity exists.
+    register_sync_callbacks(session, nil, s_notifyHandshake, nil);
+
     return session;
 }
 
@@ -254,6 +259,9 @@ static __weak PEPSync *s_pEpSync;
     self.syncLoopSession = [PEPSessionProvider session];
 
     if (self.syncLoopSession) {
+        // Register the callbacks that should be on the sync session.
+        // Note that this will be the 2nd call for the sync session
+        // to register callbacks.
         PEP_STATUS status = register_sync_callbacks(self.syncLoopSession.session,
                                                     nil,
                                                     s_notifyHandshake,
@@ -390,7 +398,11 @@ static __weak PEPSync *s_pEpSync;
 {
     if (self.notifyHandshakeDelegate) {
         PEPIdentity *meIdentity = [PEPIdentity fromStruct:me];
+        free_identity(me);
+
         PEPIdentity *partnerIdentity = partner != nil ? [PEPIdentity fromStruct:partner] : nil;
+        free_identity(partner);
+
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity
