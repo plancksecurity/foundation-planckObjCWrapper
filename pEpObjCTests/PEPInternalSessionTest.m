@@ -502,14 +502,12 @@
     // Now let see if it turns back yellow if we add an unconfirmed folk.
     // pEp Test John (test key, don't use) <pep.test.john@pep-project.org>
     // AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"0x70DCF575.asc" session:session]);
-
-    PEPIdentity *identJohn = [[PEPIdentity alloc]
-                              initWithAddress:@"pep.test.john@pep-project.org"
-                              userID:@"101" userName:@"pEp Test John"
-                              isOwn:NO
-                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"];
-
+    PEPIdentity *identJohn = [self
+                              checkImportingKeyFilePath:@"0x70DCF575.asc"
+                              address:@"pep.test.john@pep-project.org"
+                              userID:@"101"
+                              fingerPrint:@"AA2E4BEB93E5FE33DEFD8BE1135CD6D170DCF575"
+                              session:session];
     XCTAssertTrue([session updateIdentity:identJohn error:&error]);
     XCTAssertNil(error);
 
@@ -557,13 +555,12 @@
 
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
     // BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"0xC9C2EE39.asc" session:session]);
-
-    PEPIdentity *identBob = [[PEPIdentity alloc]
-                             initWithAddress:@"pep.test.bob@pep-project.org"
-                             userID:@"42" userName:@"pEp Test Bob"
-                             isOwn:NO
-                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"];
+    PEPIdentity *identBob = [self
+                             checkImportingKeyFilePath:@"0xC9C2EE39.asc"
+                             address:@"pep.test.bob@pep-project.org"
+                             userID:@"42"
+                             fingerPrint:@"BFCDB7F301DEEEBBF947F29659BFF488C9C2EE39"
+                             session:session];
 
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
     XCTAssertNil(error);
@@ -1803,14 +1800,12 @@
     // Partner pubkey for the test:
     // pEp Test Alice (test key don't use) <pep.test.alice@pep-project.org>
     // 4ABE3AAF59AC32CFE4F86500A9411D176FF00E97
-    XCTAssertTrue([PEPTestUtils importBundledKey:@"6FF00E97.asc" session:session]);
-
-    PEPIdentity *identAlice = [[PEPIdentity alloc]
-                               initWithAddress:@"pep.test.alice@pep-project.org"
+    PEPIdentity *identAlice = [self
+                               checkImportingKeyFilePath:@"6FF00E97.asc"
+                               address:@"pep.test.alice@pep-project.org"
                                userID:ownUserId
-                               userName:@"pEp Test Alice"
-                               isOwn:NO
-                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                               fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                               session:session];
     [self updateAndVerifyPartnerIdentity:identAlice session:session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
