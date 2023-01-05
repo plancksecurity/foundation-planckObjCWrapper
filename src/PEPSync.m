@@ -172,11 +172,6 @@ static __weak PEPSync *s_pEpSync;
         return nil;
     }
 
-    // Register the callbacks that should be on _every_ session.
-    // Note that the status is ignored, since it would indicate an error
-    // e.g. for the case when not yet an own identity exists.
-    register_sync_callbacks(session, nil, s_notifyHandshake, nil);
-
     return session;
 }
 
