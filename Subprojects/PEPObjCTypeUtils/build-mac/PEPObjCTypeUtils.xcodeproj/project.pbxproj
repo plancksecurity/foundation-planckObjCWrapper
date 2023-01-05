@@ -735,6 +735,7 @@
 					"-ObjC",
 				);
 				SDKROOT = macosx;
+				SYSTEM_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../../../../pEpEngine/build-mac/Subprojects/pEpASN1/build/include/";
 			};
 			name = Debug;
 		};
@@ -799,6 +800,7 @@
 					"-ObjC",
 				);
 				SDKROOT = macosx;
+				SYSTEM_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../../../../pEpEngine/build-mac/Subprojects/pEpASN1/build/include/";
 			};
 			name = Release;
 		};
