@@ -41,7 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable) NSArray<NSString *> *keywords;
 @property (nonatomic, nullable) PEPIdentity *receivedBy;
 @property (nonatomic) PEPMsgDirection direction;
-@property (nonatomic) PEPRating rating;
 
 /// A copy constructor.
 - (instancetype)initWithMessage:(PEPMessage *)message;
