@@ -247,7 +247,7 @@
 
     XCTAssertTrue([self keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingHaveNoKey);
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
 
     XCTAssertTrue([self keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
@@ -282,10 +282,7 @@
     NSError *error = nil;
     NSString *log = [self getLogWithError:&error];
 
-    // Currently, `PEP_LOG_DESTINATIONS=PEP_LOG_DESTINATION_STDOUT`,
-    // so there can't be any log.
-    // Please see also https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/91
-    XCTAssertEqual(log.length, 0);
+    XCTAssertGreaterThan(log.length, 0);
 
     XCTAssertNotNil(log);
     XCTAssertNil(error);

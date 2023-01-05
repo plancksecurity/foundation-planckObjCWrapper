@@ -118,7 +118,6 @@ static NSArray *s_keys;
                @"sentDate",
                @"shortMessage",
                @"to",
-               @"rating"
                ];
 }
 
