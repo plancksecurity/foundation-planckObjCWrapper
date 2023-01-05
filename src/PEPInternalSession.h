@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** Decrypt a message */
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage *)message
                                    flags:(PEPDecryptFlags * _Nullable)flags
+                                  rating:(PEPRating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error;
