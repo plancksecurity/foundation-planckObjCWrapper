@@ -38,12 +38,14 @@ typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
 
 typedef NS_CLOSED_ENUM(int, PEPEncFormat) {
     PEPEncFormatNone = 0, // PEP_enc_none
-    PEPEncFormatPieces, // PEP_enc_pieces, PEP_enc_inline
+    PEPEncFormatPieces = 1, // PEP_enc_pieces, PEP_enc_inline
+    PEPEncFormatInline = PEPEncFormatPieces,
     PEPEncFormatSMIME, // PEP_enc_S_MIME
     PEPEncFormatPGPMIME, // PEP_enc_PGP_MIME
     PEPEncFormatPEP, // PEP_enc_PEP
-    PEPEncFormatMediaKey = PEPEncFormatPEP, // media_key_enc_format
-    PEPEncFormatPGPMIMEOutlook1 // PEP_enc_PGP_MIME_Outlook1
+    PEPEncFormatPGPMIMEOutlook1, // PEP_enc_PGP_MIME_Outlook1
+    PEPEncFormatInlineEA, // PEP_enc_inline_EA
+    PEPEncFormatAuto = 255, // PEP_enc_auto = 255
 };
 
 typedef NS_CLOSED_ENUM(int, PEPRating) {
