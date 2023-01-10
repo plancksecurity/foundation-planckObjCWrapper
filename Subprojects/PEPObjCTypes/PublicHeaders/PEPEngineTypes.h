@@ -74,18 +74,18 @@ typedef NS_CLOSED_ENUM(int, PEPRating) {
 typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusOK = 0, // PEP_STATUS_OK
 
-    PEPStatusInitCannotLoadGPME = 0x0110, // PEP_INIT_CANNOT_LOAD_GPGME
-    PEPStatusInitGPGMEInitFailed = 0x0111, // PEP_INIT_GPGME_INIT_FAILED
-    PEPStatusInitNoGPGHome = 0x0112, // PEP_INIT_NO_GPG_HOME
-    PEPStatusInitNETPGPInitFailed = 0x0113, // PEP_INIT_NETPGP_INIT_FAILED
-    PEPStatusInitCannotDetermineGPGVersion = 0x0114, // PEP_INIT_CANNOT_DETERMINE_GPG_VERSION
-    PEPStatusInitUnsupportedGPGVersion = 0x0115, // PEP_INIT_UNSUPPORTED_GPG_VERSION
-    PEPStatusInitCannotConfigGPGAgent = 0x0116, // PEP_INIT_CANNOT_CONFIG_GPG_AGENT
+    PEPStatusInitCannotLoadCryptoLib = 0x0110, // PEP_INIT_CANNOT_LOAD_CRYPTO_LIB
+    PEPStatusInitCryptoLibInitFailed = 0x0111, // PEP_INIT_CRYPTO_LIB_INIT_FAILED
+    PEPStatusInitNoCryptoHome = 0x0112, // PEP_INIT_NO_CRYPTO_HOME
 
-    PEPStatusInitSqlite3WithoutMutex = 0x0120, // PEP_INIT_SQLITE3_WITHOUT_MUTEX
+    PEPStatusInitCannotDetermineCryptoVersion = 0x0114, // PEP_INIT_CANNOT_DETERMINE_CRYPTO_VERSION
+    PEPStatusInitUnsupportedCryptoVersion = 0x0115, // PEP_INIT_UNSUPPORTED_CRYPTO_VERSION
+    PEPStatusInitCannotConfigCryptoAgent = 0x0116, // PEP_INIT_CANNOT_CONFIG_CRYPTO_AGENT
+
+
     PEPStatusInitCannotOpenDB = 0x0121, // PEP_INIT_CANNOT_OPEN_DB
     PEPStatusInitCannotOpenSystemDB = 0x0122, // PEP_INIT_CANNOT_OPEN_SYSTEM_DB
-    PEPStatusInitDbDowngradeViolation = 0x0123, // PEP_INIT_DB_DOWNGRADE_VIOLATION
+
     PEPStatusUnknownDBError = 0x01ff, // PEP_UNKNOWN_DB_ERROR
 
     PEPStatusKeyNotFound = 0x0201, // PEP_KEY_NOT_FOUND
@@ -105,7 +105,7 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
 
     PEPStatusCannotFindIdentity = 0x0301, // PEP_CANNOT_FIND_IDENTITY
     PEPStatusCannotSetPerson = 0x0381, // PEP_CANNOT_SET_PERSON
-    PEPStatusCannotSetPGPKeyPair = 0x0382, // PEP_CANNOT_SET_PGP_KEYPAIR
+    PEPStatusCannotSetPGPKeypair = 0x0382, // PEP_CANNOT_SET_PGP_KEYPAIR
     PEPStatusCannotSetIdentity = 0x0383, // PEP_CANNOT_SET_IDENTITY
     PEPStatusCannotSetTrust = 0x0384, // PEP_CANNOT_SET_TRUST
     PEPStatusKeyBlacklisted = 0x0385, // PEP_KEY_BLACKLISTED
@@ -127,6 +127,7 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusCannotReencrypt = 0x0409, // PEP_CANNOT_REENCRYPT
     PEPStatusVerifySignerKeyRevoked = 0x040a, // PEP_VERIFY_SIGNER_KEY_REVOKED
     PEPStatusCannotDecryptUnknown = 0x04ff, // PEP_CANNOT_DECRYPT_UNKNOWN
+
 
     PEPStatusTrustwordNotFound = 0x0501, // PEP_TRUSTWORD_NOT_FOUND
     PEPStatusTrustwordsFPRWrongLength = 0x0502, // PEP_TRUSTWORDS_FPR_WRONG_LENGTH
@@ -164,7 +165,7 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusWrongPassphrase = 0x0a01, // PEP_WRONG_PASSPHRASE
     PEPStatusPassphraseForNewKeysRequired = 0x0a02, // PEP_PASSPHRASE_FOR_NEW_KEYS_REQUIRED
 
-    PEPStatusDistributionIllegalMessage = 0x1002, // PEP_DISTRIBUTION_ILLEGAL_MESSAGE,
+    PEPStatusDistributionIllegalMessage = 0x1002, // PEP_DISTRIBUTION_ILLEGAL_MESSAGE
 
     PEPStatusCommitFailed = 0xff01, // PEP_COMMIT_FAILED
     PEPStatusMessageConsume = 0xff02, // PEP_MESSAGE_CONSUME
