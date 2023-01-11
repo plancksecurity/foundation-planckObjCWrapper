@@ -71,7 +71,7 @@ typedef NS_CLOSED_ENUM(int, PEPDecryptFlags) {
     PEPDecryptFlagsOwnPrivateKey = 0x1, // PEP_decrypt_flag_own_private_key
     PEPDecryptFlagsConsume = 0x2, // PEP_decrypt_flag_consume
     PEPDecryptFlagsIgnore = 0x4, // PEP_decrypt_flag_ignore
-    PEPDecryptFlagsSrcModified = 0x8, // PEP_decrypt_flag_src_modified
+    PEPDecryptFlagsSourceModified = 0x8, // PEP_decrypt_flag_src_modified
     PEPDecryptFlagsUntrustedServer = 0x100, // PEP_decrypt_flag_untrusted_server
     PEPDecryptFlagsDontTriggerSync = 0x200, // PEP_decrypt_flag_dont_trigger_sync
 };
