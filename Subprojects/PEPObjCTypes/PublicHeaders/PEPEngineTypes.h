@@ -89,6 +89,8 @@ typedef NS_CLOSED_ENUM(int, PEPRating) {
     PEPRatingHaveNoKey = 2, // PEP_rating_have_no_key
     PEPRatingUnencrypted = 3, // PEP_rating_unencrypted
     PEPRatingUnreliable = 5, // PEP_rating_unreliable
+    PEPRatingB0rken = -2, // PEP_rating_b0rken
+    PEPRatingReliable = 6, // PEP_rating_reliable
 
     // Keep the rating definition for the app, even though media keys
     // are not actively used.
@@ -96,8 +98,6 @@ typedef NS_CLOSED_ENUM(int, PEPRating) {
     // `const PEP_rating media_key_message_rating = PEP_rating_unreliable`
     PEPRatingMediaKeyProtected = 6,
 
-    PEPRatingB0rken = -2, // PEP_rating_b0rken
-    PEPRatingReliable = 6, // PEP_rating_reliable
     PEPRatingTrusted = 7, // PEP_rating_trusted
     PEPRatingTrustedAndAnonymized = 8, // PEP_rating_trusted_and_anonymized
     PEPRatingFullyAnonymous = 9, // PEP_rating_fully_anonymous
@@ -189,7 +189,7 @@ typedef NS_CLOSED_ENUM(int, PEPEncFormat) {
     PEPEncFormatPGPMime, // PEP_enc_PGP_MIME
     PEPEncFormatPEP, // PEP_enc_PEP
     PEPEncFormatPGPMimeOutlook1, // PEP_enc_PGP_MIME_Outlook1
-    PEPEncFormatInlineEa, // PEP_enc_inline_EA
+    PEPEncFormatInlineEA, // PEP_enc_inline_EA
     PEPEncFormatAuto = 255, // PEP_enc_auto
 };
 
