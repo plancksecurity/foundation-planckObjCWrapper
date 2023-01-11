@@ -118,7 +118,6 @@ typedef NS_CLOSED_ENUM(int, PEPEncryptFlags) {
     PEPEncryptFlagsForceUnsigned = 0x2, // PEP_encrypt_flag_force_unsigned
     PEPEncryptFlagsForceNoAttachedKey = 0x4, // PEP_encrypt_flag_force_no_attached_key
     PEPEncryptFlagsInnerMessage = 0x8, // PEP_encrypt_flag_inner_message
-    // this, // // This
     PEPEncryptFlagsForceVersion1 = 0x10, // PEP_encrypt_flag_force_version_1
     PEPEncryptFlagsKeyResetOnly = 0x20, // PEP_encrypt_flag_key_reset_only
     PEPEncryptReencrypt = 0x40, // PEP_encrypt_reencrypt
