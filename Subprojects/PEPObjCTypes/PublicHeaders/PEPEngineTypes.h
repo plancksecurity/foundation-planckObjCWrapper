@@ -127,7 +127,7 @@ typedef NS_CLOSED_ENUM(int, PEPEncryptFlags) {
 typedef NS_CLOSED_ENUM(int, PEPIdentityFlags) {
     PEPIdentityFlagsNotForSync = 0x0001, // PEP_idf_not_for_sync
     PEPIdentityFlagsList = 0x0002, // PEP_idf_list
-    PEPIdentityFlagsDevicegroup = 0x0100, // PEP_idf_devicegroup
+    PEPIdentityFlagsDeviceGroup = 0x0100, // PEP_idf_devicegroup
 };
 
 typedef NS_CLOSED_ENUM(int, PEPCommType) {
@@ -221,7 +221,7 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusSomeKeysImported = 0x0223, // PEP_SOME_KEYS_IMPORTED
     PEPStatusCannotFindIdentity = 0x0301, // PEP_CANNOT_FIND_IDENTITY
     PEPStatusCannotSetPerson = 0x0381, // PEP_CANNOT_SET_PERSON
-    PEPStatusCannotSetPGPKeypair = 0x0382, // PEP_CANNOT_SET_PGP_KEYPAIR
+    PEPStatusCannotSetPGPKeyPair = 0x0382, // PEP_CANNOT_SET_PGP_KEYPAIR
     PEPStatusCannotSetIdentity = 0x0383, // PEP_CANNOT_SET_IDENTITY
     PEPStatusCannotSetTrust = 0x0384, // PEP_CANNOT_SET_TRUST
     PEPStatusKeyBlacklisted = 0x0385, // PEP_KEY_BLACKLISTED
@@ -242,13 +242,13 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusVerifySignerKeyRevoked = 0x040a, // PEP_VERIFY_SIGNER_KEY_REVOKED
     PEPStatusCannotDecryptUnknown = 0x04ff, // PEP_CANNOT_DECRYPT_UNKNOWN
     PEPStatusTrustwordNotFound = 0x0501, // PEP_TRUSTWORD_NOT_FOUND
-    PEPStatusTrustwordsFprWrongLength = 0x0502, // PEP_TRUSTWORDS_FPR_WRONG_LENGTH
-    PEPStatusTrustwordsDuplicateFpr = 0x0503, // PEP_TRUSTWORDS_DUPLICATE_FPR
+    PEPStatusTrustwordsFPRWrongLength = 0x0502, // PEP_TRUSTWORDS_FPR_WRONG_LENGTH
+    PEPStatusTrustwordsDuplicateFPR = 0x0503, // PEP_TRUSTWORDS_DUPLICATE_FPR
     PEPStatusCannotCreateKey = 0x0601, // PEP_CANNOT_CREATE_KEY
     PEPStatusCannotSendKey = 0x0602, // PEP_CANNOT_SEND_KEY
     PEPStatusPhraseNotFound = 0x0701, // PEP_PHRASE_NOT_FOUND
     PEPStatusSendFunctionNotRegistered = 0x0801, // PEP_SEND_FUNCTION_NOT_REGISTERED
-    PEPStatusContraintsViolated = 0x0802, // PEP_CONTRAINTS_VIOLATED
+    PEPStatusConstraintsViolated = 0x0802, // PEP_CONTRAINTS_VIOLATED
     PEPStatusCannotEncode = 0x0803, // PEP_CANNOT_ENCODE
     PEPStatusSyncNoNotifyCallback = 0x0901, // PEP_SYNC_NO_NOTIFY_CALLBACK
     PEPStatusSyncIllegalMessage = 0x0902, // PEP_SYNC_ILLEGAL_MESSAGE
