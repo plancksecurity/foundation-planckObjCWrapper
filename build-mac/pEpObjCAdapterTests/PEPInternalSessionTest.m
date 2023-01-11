@@ -920,7 +920,7 @@
     PEPIdentityFlags theFlags[] = {
         PEPIdentityFlagsNotForSync,
         PEPIdentityFlagsList,
-        PEPIdentityFlagsDeviceGroup,
+        PEPIdentityFlagsDevicegroup,
         0
     };
 
