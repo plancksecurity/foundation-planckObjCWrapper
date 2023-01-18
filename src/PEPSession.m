@@ -40,6 +40,7 @@ static dispatch_queue_t queue;
        successCallback:(void (^)(PEPMessage *srcMessage,
                                  PEPMessage *dstMessage,
                                  PEPStringList *keyList,
+                                 PEPRating rating,
                                  PEPDecryptFlags flags,
                                  BOOL isFormerlyEncryptedReuploadedMessage))successCallback
 {
@@ -47,22 +48,25 @@ static dispatch_queue_t queue;
         PEPMessage *theMessage = [[PEPMessage alloc] initWithMessage:message];
 
         PEPDecryptFlags theFlags = flags;
+        PEPRating theRating;
         PEPStringList *theExtraKeys = extraKeys;
         PEPStatus status;
         NSError *error = nil;
 
         PEPMessage *newMessage = [[PEPSessionProvider session] decryptMessage:theMessage
                                                                         flags:&theFlags
+                                                                       rating:&theRating
                                                                     extraKeys:&theExtraKeys
                                                                        status:&status
                                                                         error:&error];
 
         if (newMessage) {
             // See IOS-2414 for details
-            BOOL isFormerlyEncryptedReuploadedMessage = (status == PEPStatusUnencrypted) && newMessage.rating >= PEPRatingUnreliable;
+            BOOL isFormerlyEncryptedReuploadedMessage = (status == PEPStatusUnencrypted) && theRating >= PEPRatingUnreliable;
             successCallback(theMessage,
                             newMessage,
                             theExtraKeys,
+                            theRating,
                             theFlags,
                             isFormerlyEncryptedReuploadedMessage);
         } else {

@@ -263,8 +263,7 @@
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
 
-    // key_reset_trust makes the key not being elected anymore
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 }
 
 /// This was once crashing, for historical details, see ENGINE-384.
@@ -300,8 +299,7 @@
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
 
-    // key_reset_trust makes the key not being elected anymore
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 }
 
 - (void)testOutgoingColors
@@ -468,11 +466,11 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
     // Rating is also already reliable, since setIdentity has been called already
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEPRatingReliable);
+    XCTAssertEqual(rating, PEPRatingHaveNoKey);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
@@ -658,15 +656,18 @@
     NSArray *keys;
 
     error = nil;
+
+    PEPRating rating = PEPRatingB0rken;
     PEPMessage *decmsg = [session
                           decryptMessage:encMsg
                           flags:nil
+                          rating:&rating
                           extraKeys:&keys
                           status:nil
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
-    XCTAssertEqual(decmsg.rating, PEPRatingTrustedAndAnonymized);
+    XCTAssertEqual(rating, PEPRatingTrustedAndAnonymized);
 
     // There shouldn't be any attachments
     XCTAssertEqual(decmsg.attachments.count, 0);
@@ -1017,16 +1018,19 @@
     mail.attachments = @[attachment];
 
     error = nil;
+
     PEPStringList *keys;
+    PEPRating rating = PEPRatingB0rken;
     PEPMessage *decmsg = [session
                           decryptMessage:mail
                           flags:nil
+                          rating:&rating
                           extraKeys:&keys
                           status:nil
                           error:&error];
     XCTAssertNotNil(decmsg);
     XCTAssertNil(error);
-    XCTAssertEqual(decmsg.rating, PEPRatingUnencrypted);
+    XCTAssertEqual(rating, PEPRatingUnencrypted);
 
     PEPAttachment *decryptedAttachment = [decmsg.attachments objectAtIndex:0];
     XCTAssertEqualObjects(decryptedAttachment.mimeType, attachment.mimeType);
@@ -1779,16 +1783,19 @@
     XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
 
     error = nil;
+
+    PEPRating rating = PEPRatingB0rken;
     PEPMessage *decMsg = [session
                           decryptMessage:encMessage
                           flags:nil
+                          rating:&rating
                           extraKeys:keys
                           status:nil
                           error:&error];
     XCTAssertNotNil(decMsg);
     XCTAssertNil(error);
 
-    XCTAssertGreaterThanOrEqual(decMsg.rating, PEPRatingReliable);
+    XCTAssertGreaterThanOrEqual(rating, PEPRatingReliable);
 
     XCTAssertEqualObjects(decMsg.shortMessage, shortMessage);
     XCTAssertEqualObjects(decMsg.longMessage, longMessage);
@@ -1857,11 +1864,14 @@
     }
     XCTAssertNotNil(encMsg);
 
-    PEPStringList *keys;
     error = nil;
+
+    PEPStringList *keys;
+    PEPRating rating = PEPRatingB0rken;
     PEPMessage *decMsg = [session
                           decryptMessage:encMsg
                           flags:nil
+                          rating:&rating
                           extraKeys:&keys
                           status:nil
                           error:&error];
@@ -1871,7 +1881,7 @@
     if (!toSelf) {
         // Only check this for outgoing mails. For drafts etc. this rating looks incorrect
         // and the x-encstatus is the relevant one.
-        XCTAssertEqual(decMsg.rating, expectedRating);
+        XCTAssertEqual(rating, expectedRating);
     }
 
     NSArray * encStatusField = nil;

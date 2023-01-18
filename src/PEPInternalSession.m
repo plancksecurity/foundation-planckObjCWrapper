@@ -87,6 +87,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 
 - (PEPMessage * _Nullable)decryptMessage:(PEPMessage * _Nonnull)theMessage
                                    flags:(PEPDecryptFlags * _Nullable)flags
+                                  rating:(PEPRating * _Nullable)rating
                                extraKeys:(PEPStringList * _Nullable * _Nullable)extraKeys
                                   status:(PEPStatus * _Nullable)status
                                    error:(NSError * _Nullable * _Nullable)error
@@ -104,16 +105,15 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         theKeys = [*extraKeys toStringList];
     }
 
-    // Note: According to the engine docs for decrypt_message_2, the destination
-    // message will be NULL on error, and the source message rating will be set regardless.
-    // Since we derive our returned messages from either the destination message or source,
-    // we'll have a correct rating in the returned result regardless.
+    __block PEPRating internalRating = PEPRatingUndefined;
+
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return decrypt_message_2(session,
-                                 src,
-                                 &dst,
-                                 &theKeys,
-                                 (PEP_decrypt_flags *) &theFlags);
+        return decrypt_message(session,
+                               src,
+                               &dst,
+                               &theKeys,
+                               (PEP_rating *) &internalRating,
+                               (PEP_decrypt_flags *) &theFlags);
     }];
 
     if (status) {
@@ -147,6 +147,10 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     decryptMessageFree(src, dst, theKeys);
+
+    if (rating) {
+        *rating = internalRating;
+    }
 
     return dstMessage;
 }
