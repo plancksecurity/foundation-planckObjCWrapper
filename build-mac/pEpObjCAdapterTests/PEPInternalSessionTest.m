@@ -263,7 +263,7 @@
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 }
 
 /// This was once crashing, for historical details, see ENGINE-384.
@@ -299,7 +299,7 @@
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 }
 
 - (void)testOutgoingColors
@@ -466,11 +466,11 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
     // Rating is also already reliable, since setIdentity has been called already
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEPRatingReliable);
+    XCTAssertEqual(rating, PEPRatingHaveNoKey);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
