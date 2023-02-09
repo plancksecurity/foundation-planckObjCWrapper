@@ -676,10 +676,10 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block size_t sizeWritten = 0;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return get_trustwords_for_fprs(session, _fpr1, _fpr2,
-                                       [[language precomposedStringWithCanonicalMapping]
-                                        UTF8String],
-                                       trustwords.charPointerPointer, &sizeWritten, full);
+        return get_xor_trustwords_for_fprs(session, _fpr1, _fpr2,
+                                           [[language precomposedStringWithCanonicalMapping]
+                                            UTF8String],
+                                           trustwords.charPointerPointer, &sizeWritten, full);
     }];
     
     NSString *result = nil;
