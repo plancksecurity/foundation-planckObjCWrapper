@@ -277,17 +277,6 @@
     }
 }
 
-- (void)testGetLogWithError
-{
-    NSError *error = nil;
-    NSString *log = [self getLogWithError:&error];
-
-    XCTAssertGreaterThan(log.length, 0);
-
-    XCTAssertNotNil(log);
-    XCTAssertNil(error);
-}
-
 - (void)testGetTrustwords
 {
     PEPIdentity *partner1Orig = [[PEPIdentity alloc]
