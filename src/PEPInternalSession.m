@@ -640,19 +640,19 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 {
     __block pEp_identity *ident1 = [identity1 toStruct];
     __block pEp_identity *ident2 = [identity2 toStruct];
-    NSArray *identities = @[[NSValue valueWithPointer:ident1], [NSValue valueWithPointer:ident2]];
 
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     __block size_t sizeWritten = 0;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        for (NSValue *valueIdentity in identities) {
-            pEp_identity *ident = [valueIdentity pointerValue];
+        PEP_STATUS updateStatus = update_identity(session, ident1);
+        if (PEP_STATUS_is_error(updateStatus)) {
+            return updateStatus;
+        }
 
-            PEP_STATUS updateStatus = update_identity(session, ident);
-            if (PEP_STATUS_is_error(updateStatus)) {
-                return updateStatus;
-            }
+        updateStatus = update_identity(session, ident2);
+        if (PEP_STATUS_is_error(updateStatus)) {
+            return updateStatus;
         }
 
         return get_trustwords(session, ident1, ident2,
