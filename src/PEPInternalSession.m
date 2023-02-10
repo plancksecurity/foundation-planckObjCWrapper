@@ -663,34 +663,6 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     return result;
 }
 
-- (NSString * _Nullable)getTrustwordsFpr1:(NSString * _Nonnull)fpr1
-                                     fpr2:(NSString * _Nonnull)fpr2
-                                 language:(NSString * _Nullable)language
-                                     full:(BOOL)full
-                                    error:(NSError * _Nullable * _Nullable)error
-{
-    const char *_fpr1 = [fpr1 UTF8String]; // fprs are NFC normalized anyway
-    const char *_fpr2 = [fpr2 UTF8String];
-    
-    PEPAutoPointer *trustwords = [PEPAutoPointer new];
-    __block size_t sizeWritten = 0;
-
-    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return get_xor_trustwords_for_fprs(session, _fpr1, _fpr2,
-                                           [[language precomposedStringWithCanonicalMapping]
-                                            UTF8String],
-                                           trustwords.charPointerPointer, &sizeWritten, full);
-    }];
-    
-    NSString *result = nil;
-    
-    if (![PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
-        result = [NSString stringWithUTF8String:trustwords.charPointer];
-    }
-    
-    return result;
-}
-
 - (NSArray<PEPLanguage *> * _Nullable)languageListWithError:(NSError * _Nullable * _Nullable)error
 {
     PEPAutoPointer *chLangs = [PEPAutoPointer new];

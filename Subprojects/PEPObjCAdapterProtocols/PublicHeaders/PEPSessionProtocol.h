@@ -130,13 +130,6 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                  errorCallback:(void (^)(NSError *error))errorCallback
                successCallback:(void (^)(NSString *trustwords))successCallback;
 
-- (void)getTrustwordsFpr1:(NSString *)fpr1
-                     fpr2:(NSString *)fpr2
-                 language:(NSString *_Nullable)language
-                     full:(BOOL)full
-            errorCallback:(void (^)(NSError *error))errorCallback
-          successCallback:(void (^)(NSString *trustwords))successCallback;
-
 - (void)languageList:(void (^)(NSError *error))errorCallback
      successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback;
 
