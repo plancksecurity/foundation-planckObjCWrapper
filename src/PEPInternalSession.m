@@ -638,13 +638,23 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                           full:(BOOL)full
                                          error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident1 = [identity1 toStruct];
-    pEp_identity *ident2 = [identity2 toStruct];
+    __block pEp_identity *ident1 = [identity1 toStruct];
+    __block pEp_identity *ident2 = [identity2 toStruct];
 
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     __block size_t sizeWritten = 0;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        PEP_STATUS updateStatus = update_identity(session, ident1);
+        if (PEP_STATUS_is_error(updateStatus)) {
+            return updateStatus;
+        }
+
+        updateStatus = update_identity(session, ident2);
+        if (PEP_STATUS_is_error(updateStatus)) {
+            return updateStatus;
+        }
+
         return get_trustwords(session, ident1, ident2,
                               [[language precomposedStringWithCanonicalMapping]
                                UTF8String],
