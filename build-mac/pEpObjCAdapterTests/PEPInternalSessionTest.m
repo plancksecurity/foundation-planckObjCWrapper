@@ -694,24 +694,34 @@
     PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *partner1Orig = [[PEPIdentity alloc]
-                                 initWithAddress:@"partner1@dontcare.me" userID:@"partner1"
+                                 initWithAddress:@"partner1@dontcare.me"
+                                 userID:@"partner1"
                                  userName:@"partner1"
-                                 isOwn:NO fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"];
+                                 isOwn:NO
+                                 fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"];
 
     PEPIdentity *meOrig = [[PEPIdentity alloc]
-                           initWithAddress:@"me@dontcare.me" userID:@"me"
+                           initWithAddress:@"me@dontcare.me"
+                           userID:@"me"
                            userName:@"me"
-                           isOwn:NO fingerPrint:@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"];
+                           isOwn:NO
+                           fingerPrint:@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"];
 
     NSError *error = nil;
-    NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                      language:@"en" full:YES error:&error];
+    NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig
+                                                     identity2:partner1Orig
+                                                      language:@"en"
+                                                          full:YES
+                                                         error:&error];
     XCTAssertNil(error);
     XCTAssertEqualObjects(trustwordsFull,
                           @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
 
-    NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                           language:@"ZZ" full:YES error:&error];
+    NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig
+                                                          identity2:partner1Orig
+                                                           language:@"ZZ"
+                                                               full:YES
+                                                              error:&error];
     XCTAssertNotNil(error);
     XCTAssertNil(trustwordsUndefined);
 }
