@@ -645,12 +645,21 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block size_t sizeWritten = 0;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        PEP_STATUS updateStatus = update_identity(session, ident1);
+        PEP_STATUS (^updateIdentity)(pEp_identity *identity) =
+        ^(pEp_identity *identity) {
+            if (identity->me) {
+                return myself(session, identity);
+            } else {
+                return update_identity(session, identity);
+            }
+        };
+
+        PEP_STATUS updateStatus = updateIdentity(ident1);
         if (PEP_STATUS_is_error(updateStatus)) {
             return updateStatus;
         }
 
-        updateStatus = update_identity(session, ident2);
+        updateStatus = updateIdentity(ident2);
         if (PEP_STATUS_is_error(updateStatus)) {
             return updateStatus;
         }
