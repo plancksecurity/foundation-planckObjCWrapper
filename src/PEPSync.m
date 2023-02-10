@@ -398,8 +398,6 @@ static __weak PEPSync *s_pEpSync;
         PEPIdentity *partnerIdentity = partner != nil ? [PEPIdentity fromStruct:partner] : nil;
         free_identity(partner);
 
-        // TODO: Do NULL `pEp_identity` make even remotely sense?
-
         return (PEP_STATUS) [self.notifyHandshakeDelegate
                              notifyHandshake:NULL
                              me:meIdentity
