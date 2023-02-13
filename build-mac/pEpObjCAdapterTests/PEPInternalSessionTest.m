@@ -691,7 +691,7 @@
     XCTAssertEqual(color, PEPRatingReliable);
 }
 
-- (void)testGetTrustwords
+- (void)testGetTrustwordsFail
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
@@ -714,22 +714,14 @@
 
     NSError *error = nil;
 
-    NSString *trustwordsFull = [session getTrustwordsIdentity1:me
-                                                     identity2:alice
-                                                      language:@"en"
-                                                          full:YES
-                                                         error:&error];
-    XCTAssertNil(error);
-    XCTAssertEqualObjects(trustwordsFull,
-                          @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
-
-    NSString *trustwordsUndefined = [session getTrustwordsIdentity1:me
-                                                          identity2:alice
-                                                           language:@"ZZ"
-                                                               full:YES
-                                                              error:&error];
+    // Expected fail with 3.2, because the partner will be counted as PGP user.
+    XCTAssertNil([session getTrustwordsIdentity1:me
+                                       identity2:alice
+                                        language:@"en"
+                                            full:YES
+                                           error:&error]);
     XCTAssertNotNil(error);
-    XCTAssertNil(trustwordsUndefined);
+    XCTAssertEqual(error.code, PEPStatusTrustwordNotFound);
 }
 
 - (void)testStringToRating
