@@ -263,7 +263,8 @@
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
+    // https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/127
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
 /// This was once crashing, for historical details, see ENGINE-384.
@@ -299,7 +300,8 @@
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
+    // https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/127
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
 - (void)testOutgoingColors
