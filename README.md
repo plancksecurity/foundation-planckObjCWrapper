@@ -47,7 +47,7 @@ Install Xcode (if not installed already)
 
 ### Apple ID
 
-You need to have an Apple ID (connected to pEp team account) configured in Xcode .  Ask `#service`, if you want to be added to the team account. 
+You need to have an Apple ID (connected to pEp team account) configured in Xcode .  Ask `#service`, if you want to be added to the team account.
 
 ## Build Dependencies
 ```
@@ -65,7 +65,7 @@ git clone https://gitea.pep.foundation/pep.foundation/pEpObjCAdapter.git
 
 ## Build for iOS
 
-### iOS Only: Copy System DB 
+### iOS Only: Copy System DB
 
 The `system.db` from the pEpEngine repository must be copied in the bundle that uses the pEpObjCAdapter.a static lib. The ObjCAdapter copies it at runtime in the desired directory.
 
@@ -73,13 +73,13 @@ Backround: Has been introduces to use Apple Shared App Directory of the client A
 
 ### Using Xcode UI
 
-`open pEpObjCAdapter/pEpObjCAdapter.xcworkspace/`
+`open build-mac/pEpObjCAdapter.xcodeproj/`
 
 Build scheme "pEpObjCAdapter_iOS".
 
 ### Using terminal
 
-`xcodebuild -workspace "pEpObjCAdapter.xcworkspace" -scheme "PEPObjCAdapter_iOS" -configuration RELEASE`
+`xcodebuild -workspace "build-mac/pEpObjCAdapter.xcodeproj/" -scheme "PEPObjCAdapter_iOS" -configuration RELEASE`
 
 (or DEBUG)
 
@@ -113,6 +113,6 @@ Build scheme "PEPObjCAdapter_macOS".
 You can find the build artefacts in the `pEpMacOSAdapter/build` folder
 
 
-# HowToBuild pEpObjCAdapter for Linux
+# How to build pEpObjCAdapter for Linux
 
 See pEpObjCAdapter/pEpObjCAdapter/build-linux/README.md
