@@ -462,15 +462,15 @@
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
     XCTAssertNil(error);
 
-    // setIdentity has already been called by the import, so reliable
+    // `setIdentity` has already been called by the import, so message rating should be reliable.
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
-    // Rating is also already reliable, since setIdentity has been called already
+    // Identity rating is also already reliable, since setIdentity has been called already.
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEPRatingHaveNoKey);
+    XCTAssertEqual(rating, PEPRatingReliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
