@@ -695,23 +695,27 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *partner1Orig = [[PEPIdentity alloc]
-                                 initWithAddress:@"partner1@dontcare.me"
-                                 userID:@"partner1"
-                                 userName:@"partner1"
-                                 isOwn:NO
-                                 fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"];
+    PEPIdentity *me = [self
+                       checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
+                       address:@"pep.test.alice@pep-project.org"
+                       userID:@"Alice_User_ID"
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                       session:session];
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
 
-    PEPIdentity *meOrig = [[PEPIdentity alloc]
-                           initWithAddress:@"me@dontcare.me"
-                           userID:@"me"
-                           userName:@"me"
-                           isOwn:NO
-                           fingerPrint:@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"];
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session: session];
+    XCTAssertNotNil(alice);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     NSError *error = nil;
-    NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig
-                                                     identity2:partner1Orig
+
+    NSString *trustwordsFull = [session getTrustwordsIdentity1:me
+                                                     identity2:alice
                                                       language:@"en"
                                                           full:YES
                                                          error:&error];
@@ -719,8 +723,8 @@
     XCTAssertEqualObjects(trustwordsFull,
                           @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
 
-    NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig
-                                                          identity2:partner1Orig
+    NSString *trustwordsUndefined = [session getTrustwordsIdentity1:me
+                                                          identity2:alice
                                                            language:@"ZZ"
                                                                full:YES
                                                               error:&error];
