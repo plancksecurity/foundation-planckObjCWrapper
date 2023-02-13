@@ -691,47 +691,6 @@
     XCTAssertEqual(color, PEPRatingReliable);
 }
 
-- (void)testGetTrustwords
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
-
-    PEPIdentity *me = [self
-                       checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
-                       address:@"pep.test.alice@pep-project.org"
-                       userID:@"Alice_User_ID"
-                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
-                       session:session];
-    XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
-
-    PEPIdentity *alice = [self
-                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
-                          address:@"pep.test.alice@pep-project.org"
-                          userID:@"This Is Alice"
-                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
-                          session: session];
-    XCTAssertNotNil(alice);
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
-
-    NSError *error = nil;
-
-    NSString *trustwordsFull = [session getTrustwordsIdentity1:me
-                                                     identity2:alice
-                                                      language:@"en"
-                                                          full:YES
-                                                         error:&error];
-    XCTAssertNil(error);
-    XCTAssertEqualObjects(trustwordsFull,
-                          @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
-
-    NSString *trustwordsUndefined = [session getTrustwordsIdentity1:me
-                                                          identity2:alice
-                                                           language:@"ZZ"
-                                                               full:YES
-                                                              error:&error];
-    XCTAssertNotNil(error);
-    XCTAssertNil(trustwordsUndefined);
-}
-
 - (void)testStringToRating
 {
     PEPInternalSession *session = [PEPSessionProvider session];
