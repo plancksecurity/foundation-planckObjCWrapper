@@ -247,7 +247,8 @@
 
     XCTAssertTrue([self keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
-    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
+    // https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/127
+    XCTAssertEqual([self ratingForIdentity:alice], PEPRatingHaveNoKey);
 
     XCTAssertTrue([self keyMistrusted:alice error:&error]);
     XCTAssertNil(error);
