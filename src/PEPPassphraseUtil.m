@@ -42,6 +42,8 @@
             // The passphrase worked, so reset its timeout
             [[PEPPassphraseCache sharedInstance] resetTimeoutForPassphrase:passphrase];
 
+            NSLog(@"*** %@ status: %d", [[NSThread currentThread] name], lastStatus);
+
             return (PEPStatus) lastStatus;
         }
     }
@@ -49,7 +51,8 @@
     // If execution lands here, it means we ran out of passwords to set while
     // receiving password-related error codes.
     return [self tryPassphraseProviderSession:session
-                                   lastStatus:lastStatus block:block];
+                                   lastStatus:lastStatus
+                                        block:block];
 }
 
 #pragma mark - Private
