@@ -36,6 +36,8 @@
             return (PEPStatus) status;
         }
 
+        NSLog(@"*** %@ calling ...", [[NSThread currentThread] name]);
+
         lastStatus = block(session);
 
         if (lastStatus != PEP_PASSPHRASE_REQUIRED && lastStatus != PEP_WRONG_PASSPHRASE) {
