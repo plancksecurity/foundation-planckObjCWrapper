@@ -36,15 +36,11 @@
             return (PEPStatus) status;
         }
 
-        NSLog(@"*** %@ calling ...", [[NSThread currentThread] name]);
-
         lastStatus = block(session);
 
         if (lastStatus != PEP_PASSPHRASE_REQUIRED && lastStatus != PEP_WRONG_PASSPHRASE) {
             // The passphrase worked, so reset its timeout
             [[PEPPassphraseCache sharedInstance] resetTimeoutForPassphrase:passphrase];
-
-            NSLog(@"*** %@ status: %d", [[NSThread currentThread] name], lastStatus);
 
             return (PEPStatus) lastStatus;
         }

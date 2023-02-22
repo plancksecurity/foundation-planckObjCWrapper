@@ -32,6 +32,32 @@ static PEPInternalSession *s_sessionForMainThread = nil;
 
 #pragma mark - Public API
 
+void annotatedThreadname(void)
+{
+    pthread_t thread = pthread_self();
+    uint64_t thread_id;
+    int success = pthread_threadid_np(thread, &thread_id);
+    assert(success == 0);
+
+    NSString *label = @"posix";
+    NSString *threadIdString = [NSString stringWithFormat:@"%@ %llu", label, thread_id];
+
+    NSString *threadName = [[NSThread currentThread] name];
+    if (!threadName) {
+        threadName = @"";
+    }
+    if ([threadName isEqualToString:@""]) {
+        [[NSThread currentThread] setName:threadIdString];
+    } else {
+        if (![threadName containsString:label]) {
+            NSString *combinedThreadName = [NSString stringWithFormat:@"%@ (%@)",
+                                            threadName,
+                                            threadIdString];
+            [[NSThread currentThread] setName:combinedThreadName];
+        }
+    }
+}
+
 + (PEPInternalSession * _Nonnull)session
 {
     // Assure a session for the main thread exists and is kept alive before anyother session is created.
@@ -57,29 +83,6 @@ static PEPInternalSession *s_sessionForMainThread = nil;
     [self nullifySessionsOfFinishedThreads];
 
     [[self sessionForThreadLock] unlock];
-
-    pthread_t thread = pthread_self();
-    uint64_t thread_id;
-    int success = pthread_threadid_np(thread, &thread_id);
-    assert(success == 0);
-
-    NSString *label = @"posix";
-    NSString *threadIdString = [NSString stringWithFormat:@"%@ %llu", label, thread_id];
-
-    NSString *threadName = [[NSThread currentThread] name];
-    if (!threadName) {
-        threadName = @"";
-    }
-    if ([threadName isEqualToString:@""]) {
-        [[NSThread currentThread] setName:threadIdString];
-    } else {
-        if (![threadName containsString:label]) {
-            NSString *combinedThreadName = [NSString stringWithFormat:@"%@ (%@)",
-                                            threadName,
-                                            threadIdString];
-            [[NSThread currentThread] setName:combinedThreadName];
-        }
-    }
 
     return newOrExistingSession;
 }
