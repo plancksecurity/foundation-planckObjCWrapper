@@ -664,10 +664,14 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
             return updateStatus;
         }
 
-        return get_trustwords(session, ident1, ident2,
+        return get_trustwords(session,
+                              ident1,
+                              ident2,
                               [[language precomposedStringWithCanonicalMapping]
                                UTF8String],
-                              trustwords.charPointerPointer, &sizeWritten, full);
+                              trustwords.charPointerPointer,
+                              &sizeWritten,
+                              full);
     }];
 
     free_identity(ident1);
