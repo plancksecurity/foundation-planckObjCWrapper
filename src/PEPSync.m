@@ -14,7 +14,6 @@
 #import "PEPSync_Internal.h"
 
 #import "message_api.h"
-#import "pEpEngine.h"
 
 #import "PEPSendMessageDelegate.h"
 #import "PEPNotifyHandshakeDelegate.h"
@@ -388,42 +387,10 @@ static __weak PEPSync *s_pEpSync;
     return 0;
 }
 
-- (void)checkTrustwordsSession:(PEP_SESSION)session
-                        ident1:(pEp_identity *)ident1
-                        ident2:(pEp_identity *)ident2
-{
-    PEP_STATUS statusMyself = myself(session, ident2);
-    NSAssert(statusMyself == PEP_STATUS_OK, @"check status of update_identity");
-
-    PEP_STATUS statusUpdate = update_identity(session, ident2);
-    NSAssert(statusUpdate == PEP_STATUS_OK, @"check status of update_identity");
-
-    char *trustwords;
-    size_t sizeWritten;
-
-    PEP_STATUS status = get_trustwords(session,
-                                       ident1,
-                                       ident2,
-                                       "en",
-                                       &trustwords,
-                                       &sizeWritten,
-                                       YES);
-    NSAssert(status == PEP_STATUS_OK, @"check status of get_trustwords");
-    if (status == PEP_STATUS_OK) {
-        NSLog(@"*** trustwords %s", trustwords);
-    }
-}
-
 - (PEP_STATUS)notifyHandshake:(pEp_identity *)me
                       partner:(pEp_identity *)partner
                        signal:(sync_handshake_signal)signal
 {
-    if (signal == SYNC_NOTIFY_INIT_FORM_GROUP) {
-        [self checkTrustwordsSession:self.syncLoopSession.session
-                              ident1:me
-                              ident2:partner];
-    }
-
     if (self.notifyHandshakeDelegate) {
         PEPIdentity *meIdentity = [PEPIdentity fromStruct:me];
         free_identity(me);
