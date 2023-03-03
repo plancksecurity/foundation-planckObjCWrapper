@@ -49,7 +49,8 @@
     // If execution lands here, it means we ran out of passwords to set while
     // receiving password-related error codes.
     return [self tryPassphraseProviderSession:session
-                                   lastStatus:lastStatus block:block];
+                                   lastStatus:lastStatus
+                                        block:block];
 }
 
 #pragma mark - Private

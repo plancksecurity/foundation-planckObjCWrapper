@@ -6,6 +6,8 @@
 //  Copyright © 2017 p≡p. All rights reserved.
 //
 
+#include <pthread.h>
+
 #import "PEPSessionProvider.h"
 
 #import "PEPObjCAdapter+ReadConfig.h"
@@ -29,6 +31,32 @@ static NSMutableDictionary<PEPCopyableThread*,PEPInternalSession*> *s_sessionFor
 static PEPInternalSession *s_sessionForMainThread = nil;
 
 #pragma mark - Public API
+
+void annotatedThreadname(void)
+{
+    pthread_t thread = pthread_self();
+    uint64_t thread_id;
+    int success = pthread_threadid_np(thread, &thread_id);
+    assert(success == 0);
+
+    NSString *label = @"posix";
+    NSString *threadIdString = [NSString stringWithFormat:@"%@ %llu", label, thread_id];
+
+    NSString *threadName = [[NSThread currentThread] name];
+    if (!threadName) {
+        threadName = @"";
+    }
+    if ([threadName isEqualToString:@""]) {
+        [[NSThread currentThread] setName:threadIdString];
+    } else {
+        if (![threadName containsString:label]) {
+            NSString *combinedThreadName = [NSString stringWithFormat:@"%@ (%@)",
+                                            threadName,
+                                            threadIdString];
+            [[NSThread currentThread] setName:combinedThreadName];
+        }
+    }
+}
 
 + (PEPInternalSession * _Nonnull)session
 {

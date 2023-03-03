@@ -638,17 +638,40 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                           full:(BOOL)full
                                          error:(NSError * _Nullable * _Nullable)error
 {
-    pEp_identity *ident1 = [identity1 toStruct];
-    pEp_identity *ident2 = [identity2 toStruct];
+    __block pEp_identity *ident1 = [identity1 toStruct];
+    __block pEp_identity *ident2 = [identity2 toStruct];
 
     PEPAutoPointer *trustwords = [PEPAutoPointer new];
     __block size_t sizeWritten = 0;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return get_trustwords(session, ident1, ident2,
+        PEP_STATUS (^updateIdentity)(pEp_identity *identity) =
+        ^(pEp_identity *identity) {
+            if (identity->me) {
+                return myself(session, identity);
+            } else {
+                return update_identity(session, identity);
+            }
+        };
+
+        PEP_STATUS updateStatus = updateIdentity(ident1);
+        if (PEP_STATUS_is_error(updateStatus)) {
+            return updateStatus;
+        }
+
+        updateStatus = updateIdentity(ident2);
+        if (PEP_STATUS_is_error(updateStatus)) {
+            return updateStatus;
+        }
+
+        return get_trustwords(session,
+                              ident1,
+                              ident2,
                               [[language precomposedStringWithCanonicalMapping]
                                UTF8String],
-                              trustwords.charPointerPointer, &sizeWritten, full);
+                              trustwords.charPointerPointer,
+                              &sizeWritten,
+                              full);
     }];
 
     free_identity(ident1);
@@ -660,34 +683,6 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         result = [NSString stringWithUTF8String:trustwords.charPointer];
     }
 
-    return result;
-}
-
-- (NSString * _Nullable)getTrustwordsFpr1:(NSString * _Nonnull)fpr1
-                                     fpr2:(NSString * _Nonnull)fpr2
-                                 language:(NSString * _Nullable)language
-                                     full:(BOOL)full
-                                    error:(NSError * _Nullable * _Nullable)error
-{
-    const char *_fpr1 = [fpr1 UTF8String]; // fprs are NFC normalized anyway
-    const char *_fpr2 = [fpr2 UTF8String];
-    
-    PEPAutoPointer *trustwords = [PEPAutoPointer new];
-    __block size_t sizeWritten = 0;
-
-    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return get_trustwords_for_fprs(session, _fpr1, _fpr2,
-                                       [[language precomposedStringWithCanonicalMapping]
-                                        UTF8String],
-                                       trustwords.charPointerPointer, &sizeWritten, full);
-    }];
-    
-    NSString *result = nil;
-    
-    if (![PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
-        result = [NSString stringWithUTF8String:trustwords.charPointer];
-    }
-    
     return result;
 }
 

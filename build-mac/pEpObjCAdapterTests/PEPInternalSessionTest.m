@@ -263,7 +263,8 @@
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
+    // https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/127
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
 /// This was once crashing, for historical details, see ENGINE-384.
@@ -299,7 +300,8 @@
     XCTAssertTrue([session keyResetTrust:alice error:&error]);
     XCTAssertNil(error);
 
-    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
+    // https://gitea.pep.foundation/pEp.foundation/pEpEngine/issues/127
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingHaveNoKey);
 }
 
 - (void)testOutgoingColors
@@ -462,15 +464,15 @@
     XCTAssertTrue([session updateIdentity:identBob error:&error]);
     XCTAssertNil(error);
 
-    // setIdentity has already been called by the import, so reliable
+    // `setIdentity` has already been called by the import, so message rating should be reliable.
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingReliable);
 
-    // Rating is also already reliable, since setIdentity has been called already
+    // Identity rating is also already reliable, since setIdentity has been called already.
     rating = [self ratingForIdentity:identBob session:session];
-    XCTAssertEqual(rating, PEPRatingHaveNoKey);
+    XCTAssertEqual(rating, PEPRatingReliable);
 
     // Let' say we got that handshake, set PEP_ct_confirmed in Bob's identity
     XCTAssertTrue([session trustPersonalKey:identBob error:&error]);
@@ -689,31 +691,37 @@
     XCTAssertEqual(color, PEPRatingReliable);
 }
 
-- (void)testGetTrustwords
+- (void)testGetTrustwordsFail
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *partner1Orig = [[PEPIdentity alloc]
-                                 initWithAddress:@"partner1@dontcare.me" userID:@"partner1"
-                                 userName:@"partner1"
-                                 isOwn:NO fingerPrint:@"F0CD3F7B422E5D587ABD885BF2D281C2789DD7F6"];
+    PEPIdentity *me = [self
+                       checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
+                       address:@"pep.test.alice@pep-project.org"
+                       userID:@"Alice_User_ID"
+                       fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                       session:session];
+    XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
 
-    PEPIdentity *meOrig = [[PEPIdentity alloc]
-                           initWithAddress:@"me@dontcare.me" userID:@"me"
-                           userName:@"me"
-                           isOwn:NO fingerPrint:@"CC1F73F6FB774BF08B197691E3BFBCA9248FC681"];
+    PEPIdentity *alice = [self
+                          checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                          address:@"pep.test.alice@pep-project.org"
+                          userID:@"This Is Alice"
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session: session];
+    XCTAssertNotNil(alice);
+    XCTAssertEqual([self ratingForIdentity:alice session:session], PEPRatingReliable);
 
     NSError *error = nil;
-    NSString *trustwordsFull = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                      language:@"en" full:YES error:&error];
-    XCTAssertNil(error);
-    XCTAssertEqualObjects(trustwordsFull,
-                          @"EMERSON GASPER TOKENISM BOLUS COLLAGE DESPISE BEDDED ENCRYPTION IMAGINE BEDFORD");
 
-    NSString *trustwordsUndefined = [session getTrustwordsIdentity1:meOrig identity2:partner1Orig
-                                                           language:@"ZZ" full:YES error:&error];
+    // Expected fail with 3.2, because the partner will be counted as PGP user.
+    XCTAssertNil([session getTrustwordsIdentity1:me
+                                       identity2:alice
+                                        language:@"en"
+                                            full:YES
+                                           error:&error]);
     XCTAssertNotNil(error);
-    XCTAssertNil(trustwordsUndefined);
+    XCTAssertEqual(error.code, PEPStatusTrustwordNotFound);
 }
 
 - (void)testStringToRating
