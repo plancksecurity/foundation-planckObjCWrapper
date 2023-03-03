@@ -262,7 +262,7 @@ static __weak PEPSync *s_pEpSync;
                                                     s_notifyHandshake,
                                                     s_retrieve_next_sync_event);
         if (status == PEP_STATUS_OK) {
-            status = do_sync_protocol(self.syncLoopSession.session, nil);
+            status = do_sync_protocol(self.syncLoopSession.session);
             if (status != PEP_STATUS_OK) {
                 LogError(@"do_sync_protocol returned PEP_STATUS %d", status);
                 LogInfo(@"sync loop is NOT running");

@@ -45,6 +45,7 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
     PEPSyncHandshakeSignalStart = 126, // SYNC_NOTIFY_START
     PEPSyncHandshakeSignalStop = 127, // SYNC_NOTIFY_STOP
     PEPSyncHandshakeSignalPassphraseRequired = 128, // SYNC_PASSPHRASE_REQUIRED
+    PEPSyncHandshakeSignalGroupInvitation = 192, // SYNC_NOTIFY_GROUP_INVITATION
     PEPSyncHandshakeSignalSole = 254, // SYNC_NOTIFY_SOLE
     PEPSyncHandshakeSignalInGroup = 255, // SYNC_NOTIFY_IN_GROUP
 };
@@ -52,7 +53,7 @@ typedef NS_CLOSED_ENUM(int, PEPSyncHandshakeSignal) {
 typedef NS_CLOSED_ENUM(int, PEPContentDisposition) {
     PEPContentDispositionAttachment = 0, // PEP_CONTENT_DISP_ATTACHMENT
     PEPContentDispositionInline = 1, // PEP_CONTENT_DISP_INLINE
-    PEPContentDispositionOther = -1, // PEP_CONTENT_DISP_OTHER
+    PEPContentDispositionOther, // PEP_CONTENT_DISP_OTHER
 };
 
 typedef NS_CLOSED_ENUM(int, PEPMsgDirection) {
@@ -83,28 +84,6 @@ typedef NS_CLOSED_ENUM(int, PEPColor) {
     PEPColorRed = -1, // PEP_color_red
 };
 
-typedef NS_CLOSED_ENUM(int, PEPRating) {
-    PEPRatingUndefined = 0, // PEP_rating_undefined
-    PEPRatingCannotDecrypt = 1, // PEP_rating_cannot_decrypt
-    PEPRatingHaveNoKey = 2, // PEP_rating_have_no_key
-    PEPRatingUnencrypted = 3, // PEP_rating_unencrypted
-    PEPRatingUnreliable = 5, // PEP_rating_unreliable
-    PEPRatingB0rken = -2, // PEP_rating_b0rken
-    PEPRatingReliable = 6, // PEP_rating_reliable
-
-    // Keep the rating definition for the app, even though media keys
-    // are not actively used.
-    // Engine Release_2.1.64, media_key.c:
-    // `const PEP_rating media_key_message_rating = PEP_rating_unreliable`
-    PEPRatingMediaKeyProtected = 6,
-
-    PEPRatingTrusted = 7, // PEP_rating_trusted
-    PEPRatingTrustedAndAnonymized = 8, // PEP_rating_trusted_and_anonymized
-    PEPRatingFullyAnonymous = 9, // PEP_rating_fully_anonymous
-    PEPRatingMistrust = -1, // PEP_rating_mistrust
-    PEPRatingUnderAttack = -3, // PEP_rating_under_attack
-};
-
 typedef NS_CLOSED_ENUM(int, PEPMessageWrapType) {
     PEPMessageWrapTypeUnwrapped, // PEP_message_unwrapped
     PEPMessageWrapTypeDefault, // PEP_message_default
@@ -127,6 +106,9 @@ typedef NS_CLOSED_ENUM(int, PEPIdentityFlags) {
     PEPIdentityFlagsNotForSync = 0x0001, // PEP_idf_not_for_sync
     PEPIdentityFlagsList = 0x0002, // PEP_idf_list
     PEPIdentityFlagsDeviceGroup = 0x0100, // PEP_idf_devicegroup
+    PEPIdentityFlagsOrgIdent = 0x0200, // PEP_idf_org_ident
+    PEPIdentityFlagsGroupIdent = 0x0400, // PEP_idf_group_ident
+    PEPIdentityFlagsTransportMandatory = 0x0800, // PEP_idf_transport_mandatory
 };
 
 typedef NS_CLOSED_ENUM(int, PEPCommType) {
@@ -180,13 +162,31 @@ typedef NS_CLOSED_ENUM(int, PEPCipherSuite) {
     PEPCipherSuiteRsa8k = 8, // PEP_CIPHER_SUITE_RSA8K
 };
 
+typedef NS_CLOSED_ENUM(int, PEPRating) {
+    PEPRatingUndefined = 0, // PEP_rating_undefined
+    PEPRatingCannotDecrypt = 1, // PEP_rating_cannot_decrypt
+    PEPRatingHaveNoKey = 2, // PEP_rating_have_no_key
+    PEPRatingUnencrypted = 3, // PEP_rating_unencrypted
+    PEPRatingUnreliable = 4, // PEP_rating_unreliable
+    PEPRatingMediaKeyProtected = 5, // PEP_rating_media_key_protected
+    PEPRatingB0rken = -2, // PEP_rating_b0rken
+    PEPRatingReliable = 6, // PEP_rating_reliable
+    PEPRatingTrusted = 7, // PEP_rating_trusted
+    PEPRatingTrustedAndAnonymized = 8, // PEP_rating_trusted_and_anonymized
+    PEPRatingFullyAnonymous = 9, // PEP_rating_fully_anonymous
+    PEPRatingMistrust = -1, // PEP_rating_mistrust
+    PEPRatingUnderAttack = -3, // PEP_rating_under_attack
+};
+
 typedef NS_CLOSED_ENUM(int, PEPEncFormat) {
     PEPEncFormatNone = 0, // PEP_enc_none
     PEPEncFormatPieces = 1, // PEP_enc_pieces
     PEPEncFormatInline = 1, // PEP_enc_inline
-    PEPEncFormatSMime, // PEP_enc_S_MIME
-    PEPEncFormatPGPMime, // PEP_enc_PGP_MIME
-    PEPEncFormatPEP, // PEP_enc_PEP
+    PEPEncFormatSMime = 2, // PEP_enc_S_MIME
+    PEPEncFormatPGPMime = 3, // PEP_enc_PGP_MIME
+    PEPEncFormatPEPMessageV1 = 3, // PEP_enc_PEP_message_v1
+    PEPEncFormatPEP = 4, // PEP_enc_PEP
+    PEPEncFormatPEPMessageV2 = 4, // PEP_enc_PEP_message_v2
     PEPEncFormatPGPMimeOutlook1, // PEP_enc_PGP_MIME_Outlook1
     PEPEncFormatInlineEA, // PEP_enc_inline_EA
     PEPEncFormatAuto = 255, // PEP_enc_auto
@@ -223,11 +223,12 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusCannotSetPGPKeyPair = 0x0382, // PEP_CANNOT_SET_PGP_KEYPAIR
     PEPStatusCannotSetIdentity = 0x0383, // PEP_CANNOT_SET_IDENTITY
     PEPStatusCannotSetTrust = 0x0384, // PEP_CANNOT_SET_TRUST
-    PEPStatusKeyBlacklisted = 0x0385, // PEP_KEY_BLACKLISTED
+    PEPStatusKeyBlacklisted, // PEP_KEY_BLACKLISTED
     PEPStatusCannotFindPerson = 0x0386, // PEP_CANNOT_FIND_PERSON
-    PEPStatusCannotSetPEPVersion = 0X0387, // PEP_CANNOT_SET_PEP_VERSION
+    PEPStatusCannotSetPEPProtocolVersion = 0X0387, // PEP_CANNOT_SET_PEP_PROTOCOL_VERSION
     PEPStatusCannotFindAlias = 0x0391, // PEP_CANNOT_FIND_ALIAS
     PEPStatusCannotSetAlias = 0x0392, // PEP_CANNOT_SET_ALIAS
+    PEPStatusNoOwnUseridFound = 0x0393, // PEP_NO_OWN_USERID_FOUND
     PEPStatusUnencrypted = 0x0400, // PEP_UNENCRYPTED
     PEPStatusVerified = 0x0401, // PEP_VERIFIED
     PEPStatusDecrypted = 0x0402, // PEP_DECRYPTED
@@ -268,18 +269,39 @@ typedef NS_CLOSED_ENUM(int, PEPStatus) {
     PEPStatusPassphraseRequired = 0x0a00, // PEP_PASSPHRASE_REQUIRED
     PEPStatusWrongPassphrase = 0x0a01, // PEP_WRONG_PASSPHRASE
     PEPStatusPassphraseForNewKeysRequired = 0x0a02, // PEP_PASSPHRASE_FOR_NEW_KEYS_REQUIRED
+    PEPStatusCannotCreateGroup = 0x0b00, // PEP_CANNOT_CREATE_GROUP
+    PEPStatusCannotFindGroupEntry = 0x0b01, // PEP_CANNOT_FIND_GROUP_ENTRY
+    PEPStatusGroupExists = 0x0b02, // PEP_GROUP_EXISTS
+    PEPStatusGroupNotFound = 0x0b03, // PEP_GROUP_NOT_FOUND
+    PEPStatusCannotEnableGroup = 0x0b04, // PEP_CANNOT_ENABLE_GROUP
+    PEPStatusCannotDisableGroup = 0x0b05, // PEP_CANNOT_DISABLE_GROUP
+    PEPStatusCannotAddGroupMember = 0x0b06, // PEP_CANNOT_ADD_GROUP_MEMBER
+    PEPStatusCannotDeactivateGroupMember = 0x0b07, // PEP_CANNOT_DEACTIVATE_GROUP_MEMBER
+    PEPStatusNoMembershipStatusFound = 0x0b08, // PEP_NO_MEMBERSHIP_STATUS_FOUND
+    PEPStatusCannotLeaveGroup = 0x0b09, // PEP_CANNOT_LEAVE_GROUP
+    PEPStatusCannotJoinGroup = 0x0b0a, // PEP_CANNOT_JOIN_GROUP
+    PEPStatusCannotRetrieveMembershipInfo = 0x0b0b, // PEP_CANNOT_RETRIEVE_MEMBERSHIP_INFO
     PEPStatusDistributionIllegalMessage = 0x1002, // PEP_DISTRIBUTION_ILLEGAL_MESSAGE
+    PEPStatusStorageIllegalMessage = 0x1102, // PEP_STORAGE_ILLEGAL_MESSAGE
+    PEPStatusPepmessageIllegalMessage = 0x1202, // PEP_PEPMESSAGE_ILLEGAL_MESSAGE
+    PEPStatusTransportCannotInit = 0x2000, // PEP_TRANSPORT_CANNOT_INIT
+    PEPStatusTransportCannotInitSend = 0x2001, // PEP_TRANSPORT_CANNOT_INIT_SEND
+    PEPStatusTransportCannotInitRecv = 0x2002, // PEP_TRANSPORT_CANNOT_INIT_RECV
+    PEPStatusTransportDown = 0x2003, // PEP_TRANSPORT_DOWN
+    PEPStatusTransportError = 0x20ff, // PEP_TRANSPORT_ERROR
     PEPStatusCommitFailed = 0xff01, // PEP_COMMIT_FAILED
     PEPStatusMessageConsume = 0xff02, // PEP_MESSAGE_CONSUME
     PEPStatusMessageIgnore = 0xff03, // PEP_MESSAGE_IGNORE
     PEPStatusCannotConfig = 0xff04, // PEP_CANNOT_CONFIG
+    PEPStatusUnboundEnvironmentVariable = -8, // PEP_UNBOUND_ENVIRONMENT_VARIABLE
+    PEPStatusPathSyntaxError = -7, // PEP_PATH_SYNTAX_ERROR
     PEPStatusRecordNotFound = -6, // PEP_RECORD_NOT_FOUND
     PEPStatusCannotCreateTempFile = -5, // PEP_CANNOT_CREATE_TEMP_FILE
     PEPStatusIllegalValue = -4, // PEP_ILLEGAL_VALUE
     PEPStatusBufferTooSmall = -3, // PEP_BUFFER_TOO_SMALL
     PEPStatusOutOfMemory = -2, // PEP_OUT_OF_MEMORY
     PEPStatusUnknownError = -1, // PEP_UNKNOWN_ERROR
-    PEPStatusVersionMismatch = -7, // PEP_VERSION_MISMATCH
+    PEPStatusVersionMismatch = -9, // PEP_VERSION_MISMATCH
 };
 
 #endif /* PEPEngineTypes_h */
