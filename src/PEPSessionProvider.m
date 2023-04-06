@@ -125,6 +125,7 @@ void annotatedThreadname(void)
     [self setPassphraseForNewKeysOnSession:session];
     [self configureEchoProtocolOnSession:session];
     [self configureMediaKeysOnSession:session];
+    [self configureCipherSuite:session];
 }
 
 + (void)setConfigUnEncryptedSubjectOnSession:(PEPInternalSession *)session
@@ -180,6 +181,11 @@ void annotatedThreadname(void)
             LogError(@"Could not configure the media keys %@", mediaKeys);
         }
     }
+}
+
++ (void)configureCipherSuite:(PEPInternalSession *)session
+{
+    config_cipher_suite(session.session, PEP_CIPHER_SUITE_RSA4K);
 }
 
 #pragma mark -
