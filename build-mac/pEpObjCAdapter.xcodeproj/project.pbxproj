@@ -127,7 +127,6 @@
 		43D2D5F12632B0FA00088BDC /* XCTestCase+PEPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */; };
 		43E02A201C71F65B008F05E9 /* A3FC7F0A_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1C1C71F65B008F05E9 /* A3FC7F0A_sec.asc */; };
 		43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43E02A1D1C71F65B008F05E9 /* A3FC7F0A.asc */; };
-		43EC256329DDA18A00EEE78C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EC255629DDA18A00EEE78C /* libc++.tbd */; };
 		43EC256B29DDA2EC00EEE78C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EC255629DDA18A00EEE78C /* libc++.tbd */; };
 		43F29507273E7BE0009611F8 /* PEPSizeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4331CE93229C2AAF00DDDC65 /* PEPSizeTest.m */; };
 		43F29508273E7BE0009611F8 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
@@ -597,7 +596,6 @@
 				432210112924C33500AE872F /* libPEPObjCTypes_iOS.a in Frameworks */,
 				43B2ACF02923B01200D8C6F8 /* libPEPObjCAdapterProtocols_iOS.a in Frameworks */,
 				432210452924CD9E00AE872F /* pEp4iosIntern.framework in Frameworks */,
-				43EC256329DDA18A00EEE78C /* libc++.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
