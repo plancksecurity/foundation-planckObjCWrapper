@@ -537,13 +537,13 @@
 		352988A11AEF964100FA7E2E = {
 			isa = PBXGroup;
 			children = (
-				4324C2DB2A00F94900293715 /* system.db */,
 				43927FE9275A1F66008E80C2 /* planckCoreV3.xcodeproj */,
 				43927FFA275A1FA8008E80C2 /* PEPObjCAdapterProtocols.xcodeproj */,
 				4392808C275A2511008E80C2 /* PEPObjCTypes.xcodeproj */,
 				43927FC6275A1E08008E80C2 /* PEPObjCTypeUtils.xcodeproj */,
 				43B2ACF22923CE6E00D8C6F8 /* pEp4iosIntern.xcodeproj */,
 				43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */,
+				4324C2DB2A00F94900293715 /* system.db */,
 				1552D99B257663F200A92F71 /* PublicHeaders */,
 				43209B251ECC2ACD007E7E2E /* src */,
 				1552D93C2576602D00A92F71 /* PEPObjCAdapter_macOS */,
