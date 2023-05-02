@@ -804,8 +804,8 @@
 		4350666D2A00E34B00C0A6ED /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				435066752A00E34B00C0A6ED /* libplanckCore.a */,
-				435066772A00E34B00C0A6ED /* libplanckCore_macOS.a */,
+				435066752A00E34B00C0A6ED /* libplanckCoreV3.a */,
+				435066772A00E34B00C0A6ED /* libplanckCoreV3_macOS.a */,
 				435066792A00E34B00C0A6ED /* pEpTrustWords.bundle */,
 			);
 			name = Products;
@@ -1081,14 +1081,14 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		435066752A00E34B00C0A6ED /* libplanckCore.a */ = {
+		435066752A00E34B00C0A6ED /* libplanckCoreV3.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libplanckCoreV3.a;
 			remoteRef = 435066742A00E34B00C0A6ED /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		435066772A00E34B00C0A6ED /* libplanckCore_macOS.a */ = {
+		435066772A00E34B00C0A6ED /* libplanckCoreV3_macOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libplanckCoreV3_macOS.a;
@@ -1717,8 +1717,8 @@
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypes/build-mac/build/include",
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypeUtils/build-mac/build/include",
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCAdapterProtocols/build-mac/build/include",
-					"$(PROJECT_DIR)/../../pEpEngine/build-mac/build/include/",
-					"$(PROJECT_DIR)/../../pEpEngine/build-mac/build/include/pEp",
+					"$(PROJECT_DIR)/../../planckCoreV3/build-mac/build/include/",
+					"$(PROJECT_DIR)/../../planckCoreV3/build-mac/build/include/pEp",
 					"$(PROJECT_DIR)/../../libpEpTransport/build-mac/build/include",
 					"$(PROJECT_DIR)/../../pep_for_ios_intern/pEp4iosIntern",
 				);
@@ -1779,8 +1779,8 @@
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypes/build-mac/build/include",
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCTypeUtils/build-mac/build/include",
 					"$(PROJECT_DIR)/../Subprojects/PEPObjCAdapterProtocols/build-mac/build/include",
-					"$(PROJECT_DIR)/../../pEpEngine/build-mac/build/include/",
-					"$(PROJECT_DIR)/../../pEpEngine/build-mac/build/include/pEp",
+					"$(PROJECT_DIR)/../../planckCoreV3/build-mac/build/include/",
+					"$(PROJECT_DIR)/../../planckCoreV3/build-mac/build/include/pEp",
 					"$(PROJECT_DIR)/../../libpEpTransport/build-mac/build/include",
 					"$(PROJECT_DIR)/../../pep_for_ios_intern/pEp4iosIntern",
 				);
