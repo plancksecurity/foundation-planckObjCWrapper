@@ -125,6 +125,27 @@
 			remoteGlobalIDString = 1585EA7B26984C4300B822E1;
 			remoteInfo = PEPObjCTypeUtils_macOS;
 		};
+		43C252C42A00E71300C42B76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1585EACB269850B400B822E1 /* planckCoreV3.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64796A3F1B455AA5004B1C24;
+			remoteInfo = planckCoreV3;
+		};
+		43C252C62A00E71300C42B76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1585EACB269850B400B822E1 /* planckCoreV3.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1552DB112577D4F100A92F71;
+			remoteInfo = planckCoreV3_macOS;
+		};
+		43C252C82A00E71300C42B76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1585EACB269850B400B822E1 /* planckCoreV3.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 644297BF1BE11C65002BC73B;
+			remoteInfo = pEpTrustWords;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -310,6 +331,16 @@
 			path = PEPObjCTypeUtilsTests;
 			sourceTree = "<group>";
 		};
+		43C252BB2A00E71300C42B76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43C252C52A00E71300C42B76 /* libplanckCoreV3.a */,
+				43C252C72A00E71300C42B76 /* libplanckCoreV3_macOS.a */,
+				43C252C92A00E71300C42B76 /* pEpTrustWords.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5B5ACE1427A1925800B34412 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +470,10 @@
 					ProjectRef = 159805FA26CFC0C500593C9D /* PEPObjCTypes.xcodeproj */;
 				},
 				{
+					ProductGroup = 43C252BB2A00E71300C42B76 /* Products */;
+					ProjectRef = 1585EACB269850B400B822E1 /* planckCoreV3.xcodeproj */;
+				},
+				{
 					ProductGroup = 435066982A00E3C400C0A6ED /* Products */;
 					ProjectRef = 435066972A00E3C400C0A6ED /* planckCoreV3.xcodeproj */;
 				},
@@ -501,6 +536,27 @@
 			fileType = wrapper.cfbundle;
 			path = pEpTrustWords.bundle;
 			remoteRef = 435066A52A00E3C400C0A6ED /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43C252C52A00E71300C42B76 /* libplanckCoreV3.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libplanckCoreV3.a;
+			remoteRef = 43C252C42A00E71300C42B76 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43C252C72A00E71300C42B76 /* libplanckCoreV3_macOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libplanckCoreV3_macOS.a;
+			remoteRef = 43C252C62A00E71300C42B76 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43C252C92A00E71300C42B76 /* pEpTrustWords.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = pEpTrustWords.bundle;
+			remoteRef = 43C252C82A00E71300C42B76 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
