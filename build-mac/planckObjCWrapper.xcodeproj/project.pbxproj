@@ -20,7 +20,8 @@
 		432210462924CE2100AE872F /* pEp4iosIntern.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B2ACF92923CE6E00D8C6F8 /* pEp4iosIntern.framework */; };
 		4324C2DC2A00F94900293715 /* system.db in Resources */ = {isa = PBXBuildFile; fileRef = 4324C2DB2A00F94900293715 /* system.db */; };
 		4324C2DD2A00F97E00293715 /* libplanckCoreV3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435066752A00E34B00C0A6ED /* libplanckCoreV3.a */; };
-		4324C2DE2A00FB9500293715 /* pEpIOSToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B2AD062923D06E00D8C6F8 /* pEpIOSToolbox.framework */; };
+		4324C2DF2A00FCEF00293715 /* pEpIOSToolboxForExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B2AD0C2923D06E00D8C6F8 /* pEpIOSToolboxForExtensions.framework */; };
+		4324C2E02A00FD3B00293715 /* pEpIOSToolboxForExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B2AD0C2923D06E00D8C6F8 /* pEpIOSToolboxForExtensions.framework */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
 		432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
@@ -420,11 +421,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4324C2DE2A00FB9500293715 /* pEpIOSToolbox.framework in Frameworks */,
+				4324C2DF2A00FCEF00293715 /* pEpIOSToolboxForExtensions.framework in Frameworks */,
+				432210452924CD9E00AE872F /* pEp4iosIntern.framework in Frameworks */,
 				432210122924C33E00AE872F /* libPEPObjCTypeUtils_iOS.a in Frameworks */,
 				432210112924C33500AE872F /* libPEPObjCTypes_iOS.a in Frameworks */,
 				43B2ACF02923B01200D8C6F8 /* libPEPObjCAdapterProtocols_iOS.a in Frameworks */,
-				432210452924CD9E00AE872F /* pEp4iosIntern.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,9 +433,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4324C2E02A00FD3B00293715 /* pEpIOSToolboxForExtensions.framework in Frameworks */,
+				432210462924CE2100AE872F /* pEp4iosIntern.framework in Frameworks */,
 				4324C2DD2A00F97E00293715 /* libplanckCoreV3.a in Frameworks */,
 				43B5C20C29FBE9A400E25F7E /* libc++.tbd in Frameworks */,
-				432210462924CE2100AE872F /* pEp4iosIntern.framework in Frameworks */,
 				43B2AD3F2923EB1C00D8C6F8 /* libPlanckObjCWrapper_iOS.a in Frameworks */,
 				43EC256B29DDA2EC00EEE78C /* libc++.tbd in Frameworks */,
 			);
