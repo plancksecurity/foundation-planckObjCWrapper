@@ -111,6 +111,13 @@
 			remoteGlobalIDString = 4E575857268329170084F02D;
 			remoteInfo = PEPObjCTypes_macOS;
 		};
+		43ACF0FC2A0109E7006A11D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1585EACB269850B400B822E1 /* planckCoreV3.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 64796A3E1B455AA5004B1C24;
+			remoteInfo = planckCoreV3;
+		};
 		43B0EAD6274D21E100F5D076 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1585EA7426984C4300B822E1 /* Project object */;
@@ -380,6 +387,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				43ACF0FD2A0109E7006A11D5 /* PBXTargetDependency */,
 				430AEAFD2923A4B20033E381 /* PBXTargetDependency */,
 			);
 			name = PEPObjCTypeUtils_iOS;
@@ -674,6 +682,11 @@
 			isa = PBXTargetDependency;
 			name = PEPObjCTypes_macOS;
 			targetProxy = 43431E60278D7FDA00A1AB63 /* PBXContainerItemProxy */;
+		};
+		43ACF0FD2A0109E7006A11D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = planckCoreV3;
+			targetProxy = 43ACF0FC2A0109E7006A11D5 /* PBXContainerItemProxy */;
 		};
 		43B0EAD7274D21E100F5D076 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
