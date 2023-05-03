@@ -11,6 +11,7 @@
 		43312034292553F200DFD28C /* PEPIdentityAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */; };
 		43312035292553F500DFD28C /* PEPIdentityComparisonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F476B27BA5CAF003517EC /* PEPIdentityComparisonTest.m */; };
 		433120362925541400DFD28C /* libPEPObjCTypes_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E12278D782A00A1AB63 /* libPEPObjCTypes_iOS.a */; };
+		433CE9CB2A026C8A000844EC /* libplanckCoreV3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43C252C52A00E71300C42B76 /* libplanckCoreV3.a */; };
 		439CA04C29262FA7003FAC02 /* PerMachineDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 439CA04B29262FA7003FAC02 /* PerMachineDirectory.m */; };
 		439CA04D29262FA7003FAC02 /* PerMachineDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = 439CA04B29262FA7003FAC02 /* PerMachineDirectory.m */; };
 		43A6D582292CF752004DA26B /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43A6D581292CF6DC004DA26B /* module.modulemap */; };
@@ -216,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				433CE9CB2A026C8A000844EC /* libplanckCoreV3.a in Frameworks */,
 				43C01E0629FBE2BC00386E0D /* libc++.tbd in Frameworks */,
 				433120362925541400DFD28C /* libPEPObjCTypes_iOS.a in Frameworks */,
 				43312028292553A200DFD28C /* libPEPObjCTypeUtils_iOS.a in Frameworks */,
