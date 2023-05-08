@@ -42,9 +42,10 @@
 		4349CD7924ADDB8800A22A13 /* PEPPassphraseCache+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4349CD7824ADDB8800A22A13 /* PEPPassphraseCache+Reset.m */; };
 		43589EFB24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
-		436C003F2A03D1E600C2B3DD /* PlanckToolboxForExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436C003E2A03D1E600C2B3DD /* PlanckToolboxForExtensions.framework */; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
 		436E917724B71E12000296FF /* PEPPassphraseProviderMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 436E917624B71E12000296FF /* PEPPassphraseProviderMock.m */; };
+		43733F932A092949001F3D8B /* PlanckToolboxForExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B86ECC2A09226D0070659C /* PlanckToolboxForExtensions.framework */; };
+		43733FA32A09296C001F3D8B /* pEp4iosIntern.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E18B532A091AAE00AA1E93 /* pEp4iosIntern.framework */; };
 		43893B06292D1912008E4EE7 /* PEPNotifyHandshakeDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 430CD9BA2292AEDD00AAC37F /* PEPNotifyHandshakeDelegate.h */; };
 		43893B07292D1913008E4EE7 /* NSNumber+PEPRating.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */; };
 		4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */; };
@@ -415,7 +416,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				436C003F2A03D1E600C2B3DD /* PlanckToolboxForExtensions.framework in Frameworks */,
+				43733FA32A09296C001F3D8B /* pEp4iosIntern.framework in Frameworks */,
+				43733F932A092949001F3D8B /* PlanckToolboxForExtensions.framework in Frameworks */,
 				4324C2DD2A00F97E00293715 /* libplanckCoreV3.a in Frameworks */,
 				43B5C20C29FBE9A400E25F7E /* libc++.tbd in Frameworks */,
 				43B2AD3F2923EB1C00D8C6F8 /* libPlanckObjCWrapper_iOS.a in Frameworks */,
