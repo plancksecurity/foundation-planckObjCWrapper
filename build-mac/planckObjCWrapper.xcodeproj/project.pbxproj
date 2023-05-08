@@ -18,7 +18,6 @@
 		432210122924C33E00AE872F /* libPEPObjCTypeUtils_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43927FD7275A1E09008E80C2 /* libPEPObjCTypeUtils_iOS.a */; };
 		4324C2DC2A00F94900293715 /* system.db in Resources */ = {isa = PBXBuildFile; fileRef = 4324C2DB2A00F94900293715 /* system.db */; };
 		4324C2DD2A00F97E00293715 /* libplanckCoreV3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435066752A00E34B00C0A6ED /* libplanckCoreV3.a */; };
-		4324C2DF2A00FCEF00293715 /* pEpIOSToolboxForExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B2AD0C2923D06E00D8C6F8 /* pEpIOSToolboxForExtensions.framework */; };
 		432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF6091C58B77900B6782A /* 0xB623F674.asc */; };
 		432EF60E1C58B77900B6782A /* msg_to_B623F674.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432EF60B1C58B77900B6782A /* msg_to_B623F674.asc */; };
 		432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */ = {isa = PBXBuildFile; fileRef = 432FA2CF1C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc */; };
@@ -195,41 +194,6 @@
 			remoteGlobalIDString = 1585EB3C2698636C00B822E1;
 			remoteInfo = PEPObjCTypeUtils_iOS;
 		};
-		43B2AD052923D06E00D8C6F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B7911EB421F7358500D7F66F;
-			remoteInfo = pEpIOSToolbox;
-		};
-		43B2AD072923D06E00D8C6F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B7DB7F57221315BD003968DA;
-			remoteInfo = pEpIOSToolboxTests;
-		};
-		43B2AD092923D06E00D8C6F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 15B220012603B04E0097927A;
-			remoteInfo = PEPToolbox_macOS;
-		};
-		43B2AD0B2923D06E00D8C6F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 43D3EF24260A0D7E00110971;
-			remoteInfo = pEpIOSToolboxForExtensions;
-		};
-		43B2AD0D2923D08C00D8C6F8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 43D3EF23260A0D7E00110971;
-			remoteInfo = pEpIOSToolboxForExtensions;
-		};
 		43B2AD312923E65300D8C6F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 352988A21AEF964100FA7E2E /* Project object */;
@@ -369,7 +333,7 @@
 		43B2ACE72923AF7700D8C6F8 /* libPlanckObjCWrapper_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPlanckObjCWrapper_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		43B2ACF12923C52000D8C6F8 /* Platform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		43B2ACF22923CE6E00D8C6F8 /* pEp4iosIntern.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEp4iosIntern.xcodeproj; path = ../../planckForiOS_intern/pEp4iosIntern/pEp4iosIntern.xcodeproj; sourceTree = "<group>"; };
-		43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pEpIOSToolbox.xcodeproj; path = "../../pep-toolbox/pEpIOSToolbox.xcodeproj"; sourceTree = "<group>"; };
+		43B2ACFE2923D06E00D8C6F8 /* PlanckToolbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlanckToolbox.xcodeproj; path = "../../planck-toolbox/PlanckToolbox.xcodeproj"; sourceTree = "<group>"; };
 		43B5C1FE29FBE91D00E25F7E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/lib/libc++.tbd"; sourceTree = DEVELOPER_DIR; };
 		43D2D5EE2632B0FA00088BDC /* XCTestCase+PEPSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+PEPSession.h"; sourceTree = "<group>"; };
 		43D2D5F02632B0FA00088BDC /* XCTestCase+PEPSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+PEPSession.m"; sourceTree = "<group>"; };
@@ -399,7 +363,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4324C2DF2A00FCEF00293715 /* pEpIOSToolboxForExtensions.framework in Frameworks */,
 				432210122924C33E00AE872F /* libPEPObjCTypeUtils_iOS.a in Frameworks */,
 				432210112924C33500AE872F /* libPEPObjCTypes_iOS.a in Frameworks */,
 				43B2ACF02923B01200D8C6F8 /* libPEPObjCAdapterProtocols_iOS.a in Frameworks */,
@@ -518,7 +481,7 @@
 				4392808C275A2511008E80C2 /* PEPObjCTypes.xcodeproj */,
 				43927FC6275A1E08008E80C2 /* PEPObjCTypeUtils.xcodeproj */,
 				43B2ACF22923CE6E00D8C6F8 /* pEp4iosIntern.xcodeproj */,
-				43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */,
+				43B2ACFE2923D06E00D8C6F8 /* PlanckToolbox.xcodeproj */,
 				4324C2DB2A00F94900293715 /* system.db */,
 				1552D99B257663F200A92F71 /* PublicHeaders */,
 				43209B251ECC2ACD007E7E2E /* src */,
@@ -677,17 +640,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43B2ACFF2923D06E00D8C6F8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				43B2AD062923D06E00D8C6F8 /* pEpIOSToolbox.framework */,
-				43B2AD082923D06E00D8C6F8 /* pEpIOSToolboxTests.xctest */,
-				43B2AD0A2923D06E00D8C6F8 /* libPEPToolbox_macOS.a */,
-				43B2AD0C2923D06E00D8C6F8 /* pEpIOSToolboxForExtensions.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		64415E181BE94FCB00F6CBB2 /* pEpObjCAdapterTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,7 +673,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				43B2AD0E2923D08C00D8C6F8 /* PBXTargetDependency */,
 				43B2ACEF2923AFEF00D8C6F8 /* PBXTargetDependency */,
 				43B2ACEB2923AFD200D8C6F8 /* PBXTargetDependency */,
 				43B2ACE92923AFC500D8C6F8 /* PBXTargetDependency */,
@@ -781,10 +732,6 @@
 			productRefGroup = 352988AB1AEF964100FA7E2E /* Products */;
 			projectDirPath = "";
 			projectReferences = (
-				{
-					ProductGroup = 43B2ACFF2923D06E00D8C6F8 /* Products */;
-					ProjectRef = 43B2ACFE2923D06E00D8C6F8 /* pEpIOSToolbox.xcodeproj */;
-				},
 				{
 					ProductGroup = 43927FFB275A1FA8008E80C2 /* Products */;
 					ProjectRef = 43927FFA275A1FA8008E80C2 /* PEPObjCAdapterProtocols.xcodeproj */;
@@ -893,34 +840,6 @@
 			fileType = wrapper.cfbundle;
 			path = PEPObjCTypesTests_macOS.xctest;
 			remoteRef = 4392809E275A2511008E80C2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		43B2AD062923D06E00D8C6F8 /* pEpIOSToolbox.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = pEpIOSToolbox.framework;
-			remoteRef = 43B2AD052923D06E00D8C6F8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		43B2AD082923D06E00D8C6F8 /* pEpIOSToolboxTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = pEpIOSToolboxTests.xctest;
-			remoteRef = 43B2AD072923D06E00D8C6F8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		43B2AD0A2923D06E00D8C6F8 /* libPEPToolbox_macOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPEPToolbox_macOS.a;
-			remoteRef = 43B2AD092923D06E00D8C6F8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		43B2AD0C2923D06E00D8C6F8 /* pEpIOSToolboxForExtensions.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = pEpIOSToolboxForExtensions.framework;
-			remoteRef = 43B2AD0B2923D06E00D8C6F8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		43DFAAD029265BD2009DABB9 /* PEPObjCTypeUtilsTests_iOS.xctest */ = {
@@ -1054,11 +973,6 @@
 			isa = PBXTargetDependency;
 			name = PEPObjCTypeUtils_iOS;
 			targetProxy = 43B2ACEE2923AFEF00D8C6F8 /* PBXContainerItemProxy */;
-		};
-		43B2AD0E2923D08C00D8C6F8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pEpIOSToolboxForExtensions;
-			targetProxy = 43B2AD0D2923D08C00D8C6F8 /* PBXContainerItemProxy */;
 		};
 		43B2AD322923E65300D8C6F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
