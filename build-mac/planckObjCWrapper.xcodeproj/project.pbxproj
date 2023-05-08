@@ -208,6 +208,20 @@
 			remoteGlobalIDString = 43312024292553A200DFD28C;
 			remoteInfo = PEPObjCTypeUtilsTests_iOS;
 		};
+		43E18B522A091AAE00AA1E93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43B2ACF22923CE6E00D8C6F8 /* pEp4iosIntern.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3AE6870124FFA5ED00B416ED;
+			remoteInfo = pEp4iosIntern;
+		};
+		43E18B542A091AAE00AA1E93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43B2ACF22923CE6E00D8C6F8 /* pEp4iosIntern.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3AE6870A24FFA5ED00B416ED;
+			remoteInfo = pEp4iosInternTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -640,6 +654,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		43E18B4D2A091AAE00AA1E93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43E18B532A091AAE00AA1E93 /* pEp4iosIntern.framework */,
+				43E18B552A091AAE00AA1E93 /* pEp4iosInternTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		64415E181BE94FCB00F6CBB2 /* pEpObjCAdapterTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -732,6 +755,10 @@
 			productRefGroup = 352988AB1AEF964100FA7E2E /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 43E18B4D2A091AAE00AA1E93 /* Products */;
+					ProjectRef = 43B2ACF22923CE6E00D8C6F8 /* pEp4iosIntern.xcodeproj */;
+				},
 				{
 					ProductGroup = 43927FFB275A1FA8008E80C2 /* Products */;
 					ProjectRef = 43927FFA275A1FA8008E80C2 /* PEPObjCAdapterProtocols.xcodeproj */;
@@ -847,6 +874,20 @@
 			fileType = wrapper.cfbundle;
 			path = PEPObjCTypeUtilsTests_iOS.xctest;
 			remoteRef = 43DFAACF29265BD2009DABB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43E18B532A091AAE00AA1E93 /* pEp4iosIntern.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = pEp4iosIntern.framework;
+			remoteRef = 43E18B522A091AAE00AA1E93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		43E18B552A091AAE00AA1E93 /* pEp4iosInternTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = pEp4iosInternTests.xctest;
+			remoteRef = 43E18B542A091AAE00AA1E93 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
