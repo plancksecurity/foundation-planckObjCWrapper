@@ -12,8 +12,8 @@
 #import "Platform.h"
 
 #ifdef IS_IOS_BUILD
-    #import <pEpIOSToolboxForExtensions/pEpIOSToolboxForExtensions-Swift.h>
-    #import <pEpIOSToolboxForExtensions/PEPLogger.h>
+    #import <PlanckToolboxForExtensions/PlanckToolboxForExtensions-Swift.h>
+    #import <PlanckToolboxForExtensions/PEPLogger.h>
 #else
     #ifndef NO_TOOLBOX
         #import "PEPToolbox_macOS-Swift.h"

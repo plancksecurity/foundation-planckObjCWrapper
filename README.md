@@ -1,15 +1,15 @@
-# HowToBuild pEpObjCAdapter for macOS & iOS
+# How to build
 
 ## Deployment
 
+On macOS, please be aware of these environment variables:
+
 ```
-PER_MACHINE_DIRECTORY="/Library/Application Support/pEp"
-PER_USER_DIRECTORY=$HOME/.pEp
+PER_MACHINE_DIRECTORY="/Library/Application Support/planck"
+PER_USER_DIRECTORY=$HOME/.planck
 ```
 
-## Required Tools
-
-For building the engine, you need a working python3 environment and all dependencies:
+## Required build tools
 
 ```
 sudo port install git
@@ -21,20 +21,20 @@ sudo port install wget
 sudo port install capnproto
 
 pushd ~
-git clone https://gitea.pep.foundation/fdik/yml2
+git clone https://git.planck.security/foundation/yml2.git
 popd
 
 curl https://sh.rustup.rs -sSf | sh
 ```
 
-add this to ~/.profile (create if it doesn't exist):
+Add this to ~/.profile or the _equivalent for your shell_ (create if it doesn't exist, but _please be aware of the consequences_):
 
 ```
 source $HOME/.cargo/env
 export PATH="$HOME/.cargo/bin:$PATH"
 ```
 
-restart your Console (!)
+Restart your console or source the changed configuration files.
 
 ```
 sudo port install pkgconfig
@@ -45,74 +45,33 @@ Install Xcode (if not installed already)
 
 ## Apple IDs & Certificates
 
-### Apple ID
+### Set up Xcode
 
-You need to have an Apple ID (connected to pEp team account) configured in Xcode .  Ask `#service`, if you want to be added to the team account.
+You need to have an Apple ID configured in Xcode, for code signing. You can add one in the `Accounts` tab of the settings (menu `Xcode > Preferences...`).
 
-## Build Dependencies
+Your Apple ID needs to be part of your development team.
+
+## Setup instructions
+
 ```
-mkdir src_pEpObjCAdapter
-cd src_pEpObjCAdapter
+mkdir src # parent directory of your choice
+cd src
 
-git clone https://gitea.pep.foundation/buff/common-dependency-build-helpers-4-apple-hardware.git
-git clone http://pep-security.lu/gitlab/iOS/pep-toolbox.git
-git clone https://pep-security.lu/gitlab/iOS/CocoaLumberjack
-git clone https://pep-security.lu/gitlab/misc/libetpan.git
-git clone https://pep-security.lu/gitlab/misc/sqlite.git
-git clone https://gitea.pep.foundation/pEp.foundation/pEpEngine
-git clone https://gitea.pep.foundation/pep.foundation/pEpObjCAdapter.git
+git clone https://git.planck.security/foundation/planckObjCWrapper.git
+
+git clone https://git.planck.security/foundation/planckCoreV3.git
+git clone https://git.planck.security/foundation/libPlanckTransport.git
+git clone https://git.planck.security/foundation/planckCoreSequoiaBackend.git
+git clone https://git.planck.security/foundation/libetpan.git
+git clone https://git.planck.security/foundation/Pantomime.git
+git clone https://git.planck.security/foundation/libAccountsettings.git
+
+git clone https://git.planck.security/misc/ldns.git
+
+git clone https://git.planck.security/iOS/planck-toolbox.git
+git clone https://git.planck.security/iOS/common-dependency-build-helpers-4-apple-hardware.git
+git clone https://git.planck.security/iOS/CocoaLumberjack.git
+
+open planckObjCWrapper/build-mac/planckObjCWrapper.xcodeproj
+
 ```
-
-## Build for iOS
-
-### iOS Only: Copy System DB
-
-The `system.db` from the pEpEngine repository must be copied in the bundle that uses the pEpObjCAdapter.a static lib. The ObjCAdapter copies it at runtime in the desired directory.
-
-Backround: Has been introduces to use Apple Shared App Directory of the client App.
-
-### Using Xcode UI
-
-`open build-mac/pEpObjCAdapter.xcodeproj/`
-
-Build scheme "pEpObjCAdapter_iOS".
-
-### Using terminal
-
-`xcodebuild -workspace "build-mac/pEpObjCAdapter.xcodeproj/" -scheme "PEPObjCAdapter_iOS" -configuration RELEASE`
-
-(or DEBUG)
-
-### Build Dir & Build Artefacts
-
-You can find the build artefacts in the `pEpMacOSAdapter/build` folder
-
-
-## Build for macOS
-
-### Using Xcode UI
-
-`open pEpObjCAdapter/pEpObjCAdapter.xcworkspace/`
-
-Build scheme "PEPObjCAdapter_macOS".
-
-### Using terminal
-
-`xcodebuild -workspace "pEpObjCAdapter.xcworkspace" -scheme "PEPObjCAdapter_macOS" -configuration RELEASE`
-
-(or DEBUG)
-
-### Using terminal
-
-`xcodebuild -workspace "pEpObjCAdapter.xcworkspace" -scheme "PEPObjCAdapter_macOS" -configuration RELEASE`
-
-(or DEBUG)
-
-### Build Dir & Build Artefacts
-
-You can find the build artefacts in the `pEpMacOSAdapter/build` folder
-
-
-# How to build pEpObjCAdapter for Linux
-
-See pEpObjCAdapter/pEpObjCAdapter/build-linux/README.md
