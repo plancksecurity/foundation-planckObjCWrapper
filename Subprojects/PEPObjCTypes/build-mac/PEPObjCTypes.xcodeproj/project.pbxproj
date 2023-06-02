@@ -597,7 +597,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				PRODUCT_BUNDLE_IDENTIFIER = "security.pEp.PEPObjCTypesTests-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "security.planck.PlanckObjCTypesTests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 			};
@@ -619,7 +619,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "security.pEp.PEPObjCTypesTests-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "security.planck.PlanckObjCTypesTests-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 			};
@@ -810,7 +810,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "pep.foundation.PEPObjCTypesTests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "planck.PlanckObjCTypesTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -830,7 +830,7 @@
 					"@loader_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "pep.foundation.PEPObjCTypesTests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "planck.PlanckObjCTypesTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
