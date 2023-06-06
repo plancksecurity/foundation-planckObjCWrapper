@@ -647,11 +647,27 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         PEP_STATUS (^updateIdentity)(pEp_identity *identity) =
         ^(pEp_identity *identity) {
+            // Maximum of 40 hex characters with plenty of space.
+            const size_t max_fpr_length = 120;
+
+            // store the original fpr
+            char original_fpr[max_fpr_length + 1];
+            strncpy(original_fpr, identity->fpr, max_fpr_length);
+            original_fpr[max_fpr_length] = '\0';
+
+            PEP_STATUS status = PEP_UNKNOWN_ERROR;
             if (identity->me) {
-                return myself(session, identity);
+                status = myself(session, identity);
             } else {
-                return update_identity(session, identity);
+                status = update_identity(session, identity);
             }
+
+            if (strncmp(original_fpr, identity->fpr, max_fpr_length)) {
+                free(identity->fpr);
+                identity->fpr = strndup(original_fpr, max_fpr_length);
+            }
+
+            return status;
         };
 
         PEP_STATUS updateStatus = updateIdentity(ident1);
