@@ -430,10 +430,19 @@
         return nil;
     }
 
-    NSNumber *ratingPreview = [[PEPSessionProvider session]
-                               outgoingRatingPreviewForMessage:theMessage
-                               error:error];
-    XCTAssertEqual(ratingOriginal, ratingPreview);
+    PEPRating ratingPreview;
+    BOOL success = [[PEPSession new]
+                    outgoingRatingPreview:&ratingPreview
+                    forMessage:theMessage
+                    error:&theError];
+    XCTAssertTrue(success);
+    XCTAssertNil(theError);
+    XCTAssertEqual(ratingOriginal.pEpRating, ratingPreview);
+
+    NSNumber *ratingPreview1 = [[PEPSessionProvider session]
+                                outgoingRatingPreviewForMessage:theMessage
+                                error:error];
+    XCTAssertEqual(ratingOriginal, ratingPreview1);
 
     return ratingOriginal;
 }
