@@ -213,6 +213,21 @@ static dispatch_queue_t queue;
     });
 }
 
+- (BOOL)outgoingRatingPreview:(PEPRating * _Nonnull)rating
+                   forMessage:(PEPMessage * _Nonnull)theMessage
+                        error:(NSError * _Nullable * _Nullable)error
+{
+    NSNumber *ratingNum = [[PEPSessionProvider session]
+                           outgoingRatingPreviewForMessage:theMessage
+                           error:error];
+    if (!ratingNum) {
+        return NO;
+    }
+
+    *rating = ratingNum.pEpRating;
+    return YES;
+}
+
 - (void)ratingForIdentity:(PEPIdentity *)identity
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback

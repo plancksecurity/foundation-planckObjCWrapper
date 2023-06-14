@@ -78,6 +78,10 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPRating rating))successCallback;
 
+- (BOOL)outgoingRatingPreview:(PEPRating * _Nonnull)rating
+                   forMessage:(PEPMessage * _Nonnull)theMessage
+                        error:(NSError * _Nullable * _Nullable)error;
+
 - (void)ratingForIdentity:(PEPIdentity *)identity
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback;
