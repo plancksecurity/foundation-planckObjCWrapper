@@ -127,7 +127,7 @@
     PEPMessage *encMessage = [self mailWrittenToMySelf];
 
     // ... and assert subject is encrypted
-    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p");
+    XCTAssertEqualObjects(encMessage.shortMessage, @"planck");
 }
 
 - (void)testEncryptAndAttachPrivateKeyIllegalValue

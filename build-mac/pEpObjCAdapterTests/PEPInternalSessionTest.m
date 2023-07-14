@@ -970,7 +970,7 @@
     PEPMessage *encMessage = [self mailWrittenToMySelf];
 
     // ... and assert subject is encrypted
-    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should be encrypted");
+    XCTAssertEqualObjects(encMessage.shortMessage, @"planck", @"Subject should be encrypted");
 }
 
 - (void)testConfigUnencryptedSubjectEncryptedSubjectDisabled
@@ -982,7 +982,7 @@
     PEPMessage *encMessage = [self mailWrittenToMySelf];
 
     // pEp to pEp uses message 2.0, which always encrypts subjects (ENGINE-429)
-    XCTAssertEqualObjects(encMessage.shortMessage, @"p≡p", @"Subject should be encrypted");
+    XCTAssertEqualObjects(encMessage.shortMessage, @"planck", @"Subject should be encrypted");
 }
 
 #pragma mark - Passive mode
