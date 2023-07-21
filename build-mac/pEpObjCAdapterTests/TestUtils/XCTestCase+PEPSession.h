@@ -76,6 +76,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)syncReinit:(NSError * _Nullable *)error;
 
+#pragma mark - Group API
+
+- (PEPGroup *_Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
+                                managerIdentity:(PEPIdentity const *)managerIdentity
+                               memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
+                                          error:(NSError *_Nullable *_Nullable)error;
+
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
+                         error:(NSError *_Nullable *_Nullable)error;
+
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity const *)groupIdentity
+                   managerIdentity:(PEPIdentity const *)managerIdentity
+                             error:(NSError *_Nullable *_Nullable)error;
+
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                                 error:(NSError *_Nullable *_Nullable)error;
+
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                                 error:(NSError *_Nullable *_Nullable)error;
+
+- (NSNumber *_Nullable)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                                managerIdentity:(PEPIdentity const *)managerIdentity
+                                          error:(NSError *_Nullable *_Nullable)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

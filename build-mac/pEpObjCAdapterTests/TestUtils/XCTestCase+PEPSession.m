@@ -263,7 +263,7 @@
     __block BOOL result = NO;
     __block NSError *theError = nil;
     [asyncSession enableSyncForIdentity:identity
-                  errorCallback:^(NSError * _Nonnull error) {
+                          errorCallback:^(NSError * _Nonnull error) {
         result = NO;
         theError = error;
         [exp fulfill];
@@ -444,6 +444,160 @@
     }
 
     return YES;
+}
+
+#pragma mark - Group API
+
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
+                                memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
+                                           error:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block PEPGroup *result = nil;
+    __block NSError *theError = nil;
+    [asyncSession groupCreateGroupIdentity:groupIdentity
+                           managerIdentity:managerIdentity
+                          memberIdentities:memberIdentities
+                             errorCallback:^(NSError *error) {
+        theError = error;
+        [exp fulfill];
+    }
+                           successCallback:^(PEPGroup *group) {
+        result = group;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block BOOL result = NO;
+    __block NSError *theError = nil;
+    [asyncSession groupJoinGroupIdentity:groupIdentity
+                          memberIdentity:memberIdentity
+                           errorCallback:^(NSError * _Nonnull error) {
+        result = NO;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity const *)groupIdentity
+                   managerIdentity:(PEPIdentity const *)managerIdentity
+                             error:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block BOOL result = NO;
+    __block NSError *theError = nil;
+    [asyncSession groupDissolveGroupIdentity:groupIdentity
+                             managerIdentity:managerIdentity
+                               errorCallback:^(NSError * _Nonnull error) {
+        result = NO;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block BOOL result = NO;
+    __block NSError *theError = nil;
+    [asyncSession groupInviteMemberGroupIdentity:groupIdentity
+                                  memberIdentity:memberIdentity
+                                   errorCallback:^(NSError * _Nonnull error) {
+        result = NO;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block BOOL result = NO;
+    __block NSError *theError = nil;
+    [asyncSession groupRemoveMemberGroupIdentity:groupIdentity
+                                  memberIdentity:memberIdentity
+                                   errorCallback:^(NSError * _Nonnull error) {
+        result = NO;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
+}
+
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
+                                           error:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+    __block NSNumber *result = nil;
+    __block NSError *theError = nil;
+    [asyncSession groupRatingGroupIdentity:groupIdentity
+                           managerIdentity:managerIdentity
+                             errorCallback:^(NSError * _Nonnull error) {
+        result = nil;
+        theError = error;
+        [exp fulfill];
+    } successCallback:^(NSNumber *numRating) {
+        result = numRating;
+        [exp fulfill];
+    }];
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = theError;
+    }
+    return result;
 }
 
 @end
