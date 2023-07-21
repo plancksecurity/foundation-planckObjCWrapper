@@ -6,6 +6,8 @@
 //  Copyright © 2021 p≡p. All rights reserved.
 //
 
+@import PEPObjCTypes;
+
 #import "PEPGroup+Convert.h"
 
 #import "PEPIdentity+PEPConvert.h"

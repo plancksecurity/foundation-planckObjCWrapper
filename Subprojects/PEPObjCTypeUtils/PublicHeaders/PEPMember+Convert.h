@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "group.h"
+@import PEPObjCTypes;
 
-#import "PEPMember.h"
+#import "group.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

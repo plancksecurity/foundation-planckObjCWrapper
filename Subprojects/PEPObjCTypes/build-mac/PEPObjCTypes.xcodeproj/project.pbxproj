@@ -38,6 +38,10 @@
 		43D98E172A6AB7F50090F454 /* PEPMember+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98E162A6AB7F50090F454 /* PEPMember+SecureCodingTest.m */; };
 		43D98E1A2A6AB8670090F454 /* XCTestCase+Archive.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98E192A6AB8670090F454 /* XCTestCase+Archive.m */; };
 		43D98E1C2A6ABAAE0090F454 /* PEPGroup+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98E1B2A6ABAAE0090F454 /* PEPGroup+SecureCodingTest.m */; };
+		43D98E5A2A6AC50E0090F454 /* PEPGroup.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D98DF72A6AB6010090F454 /* PEPGroup.h */; };
+		43D98E5B2A6AC50E0090F454 /* PEPGroup+SecureCoding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D98DFA2A6AB6010090F454 /* PEPGroup+SecureCoding.h */; };
+		43D98E5C2A6AC50E0090F454 /* PEPMember.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D98DF92A6AB6010090F454 /* PEPMember.h */; };
+		43D98E5D2A6AC50E0090F454 /* PEPMember+SecureCoding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D98DF82A6AB6010090F454 /* PEPMember+SecureCoding.h */; };
 		43DFAAC029265B76009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
 		43DFAAC129265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */; };
 		43DFAAD329265FEE009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
@@ -87,6 +91,10 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				43D98E5A2A6AC50E0090F454 /* PEPGroup.h in CopyFiles */,
+				43D98E5B2A6AC50E0090F454 /* PEPGroup+SecureCoding.h in CopyFiles */,
+				43D98E5C2A6AC50E0090F454 /* PEPMember.h in CopyFiles */,
+				43D98E5D2A6AC50E0090F454 /* PEPMember+SecureCoding.h in CopyFiles */,
 				430EE25B292CCCF4001A9995 /* PEPObjCTypes.h in CopyFiles */,
 				430EE25C292CCCF4001A9995 /* PEPTransportConfig.h in CopyFiles */,
 				430EE25D292CCCF4001A9995 /* PEPEngineTypes.h in CopyFiles */,
