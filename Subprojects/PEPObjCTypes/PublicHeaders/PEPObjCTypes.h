@@ -18,3 +18,8 @@
 
 #import "PEPMediaKeyPair.h"
 #import "PEPMediaKeyPair+SecureCoding.h"
+
+#import "PEPMember.h"
+#import "PEPMember+SecureCoding.h"
+#import "PEPGroup.h"
+#import "PEPGroup+SecureCoding.h"

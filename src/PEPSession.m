@@ -77,7 +77,7 @@ static dispatch_queue_t queue;
 
 - (void)reEvaluateMessage:(PEPMessage *)message
                  xKeyList:(PEPStringList *_Nullable)xKeyList
-                   originalRating:(PEPRating)originalRating
+           originalRating:(PEPRating)originalRating
             errorCallback:(void (^)(NSError *error))errorCallback
           successCallback:(void (^)(PEPRating rating))successCallback
 {
@@ -640,6 +640,124 @@ successCallback:(void (^)(NSString *log))successCallback
                                                                       error:&error];
         if (success) {
             successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+#pragma mark - Group API
+
+- (void)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
+                 managerIdentity:(PEPIdentity const *)managerIdentity
+                memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(PEPGroup *))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        PEPGroup *group = [[PEPSessionProvider session]
+                           groupCreateGroupIdentity:groupIdentity
+                           managerIdentity:managerIdentity
+                           memberIdentities:memberIdentities
+                           error:&error];
+        if (group) {
+            successCallback(group);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session]
+                        groupJoinGroupIdentity:groupIdentity
+                        memberIdentity:memberIdentity
+                        error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)groupDissolveGroupIdentity:(PEPIdentity const *)groupIdentity
+                   managerIdentity:(PEPIdentity const *)managerIdentity
+                     errorCallback:(void (^)(NSError *error))errorCallback
+                   successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session]
+                        groupDissolveGroupIdentity:groupIdentity
+                        managerIdentity:managerIdentity
+                        error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)groupInviteMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session]
+                        groupInviteMemberGroupIdentity:groupIdentity
+                        memberIdentity:memberIdentity
+                        error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)groupRemoveMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(void))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL success = [[PEPSessionProvider session]
+                        groupRemoveMemberGroupIdentity:groupIdentity
+                        memberIdentity:memberIdentity
+                        error:&error];
+        if (success) {
+            successCallback();
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                 managerIdentity:(PEPIdentity const *)managerIdentity
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(NSNumber *))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSNumber *numRating = [[PEPSessionProvider session]
+                               groupRatingGroupIdentity:groupIdentity
+                               managerIdentity:managerIdentity
+                               error:&error];
+        if (numRating) {
+            successCallback(numRating);
         } else {
             errorCallback(error);
         }

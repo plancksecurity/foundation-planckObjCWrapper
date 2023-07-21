@@ -89,8 +89,8 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                  successCallback:(void (^)(NSArray<NSString *> *trustwords))successCallback;
 
 - (void)mySelf:(PEPIdentity *)identity
-      errorCallback:(void (^)(NSError *error))errorCallback
-    successCallback:(void (^)(PEPIdentity *identity))successCallback;
+ errorCallback:(void (^)(NSError *error))errorCallback
+successCallback:(void (^)(PEPIdentity *identity))successCallback;
 
 - (void)updateIdentity:(PEPIdentity *)identity
          errorCallback:(void (^)(NSError *error))errorCallback
@@ -117,11 +117,11 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
                successCallback:(void (^)(void))successCallback;
 
 - (void)importKey:(NSString *)keydata
-      errorCallback:(void (^)(NSError *error))errorCallback
-    successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback;
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback;
 
 - (void)getLog:(void (^)(NSError *error))errorCallback
-    successCallback:(void (^)(NSString *log))successCallback;
+successCallback:(void (^)(NSString *log))successCallback;
 
 - (void)getTrustwordsIdentity1:(PEPIdentity *)identity1
                      identity2:(PEPIdentity *)identity2
@@ -134,13 +134,13 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
      successCallback:(void (^)(NSArray<PEPLanguage *> *languages))successCallback;
 
 - (void)isPEPUser:(PEPIdentity *)identity
-      errorCallback:(void (^)(NSError *error))errorCallback
-    successCallback:(void (^)(BOOL enabled))successCallback;
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(BOOL enabled))successCallback;
 
 - (void)setOwnKey:(PEPIdentity *)identity
-        fingerprint:(NSString *)fingerprint
-      errorCallback:(void (^)(NSError *error))errorCallback
-    successCallback:(void (^)(void))successCallback;
+      fingerprint:(NSString *)fingerprint
+    errorCallback:(void (^)(NSError *error))errorCallback
+  successCallback:(void (^)(void))successCallback;
 
 - (void)deliverHandshakeResult:(PEPSyncHandshakeResult)result
              identitiesSharing:(NSArray<PEPIdentity *> *_Nullable)identitiesSharing
@@ -158,9 +158,9 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 - (NSString *_Nonnull)stringFromRating:(PEPRating)rating;
 
 - (void)keyReset:(PEPIdentity *)identity
-        fingerprint:(NSString *_Nullable)fingerprint
-      errorCallback:(void (^)(NSError *error))errorCallback
-    successCallback:(void (^)(void))successCallback;
+     fingerprint:(NSString *_Nullable)fingerprint
+   errorCallback:(void (^)(NSError *error))errorCallback
+ successCallback:(void (^)(void))successCallback;
 
 - (void)leaveDeviceGroup:(void (^)(NSError *error))errorCallback
          successCallback:(void (^)(void))successCallback;
@@ -209,6 +209,46 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 
 /// Wraps `disable_all_sync_channels` (sync_api.h).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
+
+#pragma mark - Group API
+
+/// Wraps `group_create`.
+/// - Note: As indicated, all input values are `const`. You can get updated versions out of the resulting `PEPGroup`.
+- (void)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
+                 managerIdentity:(PEPIdentity const *)managerIdentity
+                memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(PEPGroup *))successCallback;
+
+/// Wraps `group_join`.
+- (void)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
+                 errorCallback:(void (^)(NSError *error))errorCallback
+               successCallback:(void (^)(void))successCallback;
+
+/// Wraps `group_dissolve`.
+- (void)groupDissolveGroupIdentity:(PEPIdentity const *)groupIdentity
+                   managerIdentity:(PEPIdentity const *)managerIdentity
+                     errorCallback:(void (^)(NSError *error))errorCallback
+                   successCallback:(void (^)(void))successCallback;
+
+/// Wraps `group_invite_member`.
+- (void)groupInviteMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(void))successCallback;
+
+/// Wraps `group_remove_member`.
+- (void)groupRemoveMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                         errorCallback:(void (^)(NSError *error))errorCallback
+                       successCallback:(void (^)(void))successCallback;
+
+/// Wraps `group_rating`.
+- (void)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                 managerIdentity:(PEPIdentity const *)managerIdentity
+                   errorCallback:(void (^)(NSError *error))errorCallback
+                 successCallback:(void (^)(NSNumber *))successCallback;
 
 @end
 
