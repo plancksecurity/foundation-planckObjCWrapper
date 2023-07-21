@@ -1,5 +1,5 @@
 //
-//  PEPMember+Engine.m
+//  PEPMember+Convert.m
 //  pEpObjCAdapter
 //
 //  Created by Dirk Zimmermann on 01.04.21.
@@ -10,7 +10,7 @@
 
 #import "pEpEngine.h"
 
-#import "PEPMember+Engine.h"
+#import "PEPMember+Convert.h"
 
 @implementation PEPMember (Engine)
 
