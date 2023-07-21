@@ -266,10 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				43DFAAD529266274009DABB9 /* NSObject */,
-				43D98DFD2A6AB61E0090F454 /* PEPGroup.m */,
-				43D98DFB2A6AB61E0090F454 /* PEPGroup+SecureCoding.m */,
-				43D98DFC2A6AB61E0090F454 /* PEPMember.m */,
-				43D98DFE2A6AB61E0090F454 /* PEPMember+SecureCoding.m */,
 				1598067926CFE9CF00593C9D /* PEPTransportConfig.m */,
 				4E57587826832F2F0084F02D /* PEPAttachment.m */,
 				4E57587526832F2F0084F02D /* PEPIdentity.m */,
@@ -278,6 +274,10 @@
 				15BD319B2742A1B500B1B1F5 /* PEPErrors.m */,
 				43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */,
 				43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */,
+				43D98DFD2A6AB61E0090F454 /* PEPGroup.m */,
+				43D98DFB2A6AB61E0090F454 /* PEPGroup+SecureCoding.m */,
+				43D98DFC2A6AB61E0090F454 /* PEPMember.m */,
+				43D98DFE2A6AB61E0090F454 /* PEPMember+SecureCoding.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -285,10 +285,6 @@
 		4E57587E26832F2F0084F02D /* PublicHeaders */ = {
 			isa = PBXGroup;
 			children = (
-				43D98DF72A6AB6010090F454 /* PEPGroup.h */,
-				43D98DFA2A6AB6010090F454 /* PEPGroup+SecureCoding.h */,
-				43D98DF92A6AB6010090F454 /* PEPMember.h */,
-				43D98DF82A6AB6010090F454 /* PEPMember+SecureCoding.h */,
 				4E575841268328CD0084F02D /* PEPObjCTypes.h */,
 				1598067326CFE9B100593C9D /* PEPTransportConfig.h */,
 				4E57587F26832F2F0084F02D /* PEPEngineTypes.h */,
@@ -300,6 +296,10 @@
 				15BD319A2742A1B500B1B1F5 /* PEPErrors.h */,
 				43DFAABA29265B17009DABB9 /* PEPMediaKeyPair.h */,
 				43DFAABB29265B17009DABB9 /* PEPMediaKeyPair+SecureCoding.h */,
+				43D98DF72A6AB6010090F454 /* PEPGroup.h */,
+				43D98DFA2A6AB6010090F454 /* PEPGroup+SecureCoding.h */,
+				43D98DF92A6AB6010090F454 /* PEPMember.h */,
+				43D98DF82A6AB6010090F454 /* PEPMember+SecureCoding.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
