@@ -27,6 +27,7 @@
 		43D97EF1278D875D005EA014 /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43431E10278D782A00A1AB63 /* libPEPObjCTypes_macOS.a */; };
 		43D98E4F2A6ABC9A0090F454 /* NSArray+MemberList.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98E4E2A6ABC9A0090F454 /* NSArray+MemberList.m */; };
 		43D98E512A6ABCED0090F454 /* PEPMember+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98E502A6ABCED0090F454 /* PEPMember+Convert.m */; };
+		43D98E552A6ABEAE0090F454 /* PEPGroup+Convert.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98E542A6ABEAE0090F454 /* PEPGroup+Convert.m */; };
 		5B11963A27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
 		5B11963B27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */; };
 		5B11964527B50B0A00FDF0B5 /* PEPIdentityAddressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B11964427B50B0900FDF0B5 /* PEPIdentityAddressTests.m */; };
@@ -187,6 +188,8 @@
 		43D98E4E2A6ABC9A0090F454 /* NSArray+MemberList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MemberList.m"; sourceTree = "<group>"; };
 		43D98E502A6ABCED0090F454 /* PEPMember+Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMember+Convert.m"; sourceTree = "<group>"; };
 		43D98E522A6ABCF80090F454 /* PEPMember+Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPMember+Convert.h"; sourceTree = "<group>"; };
+		43D98E532A6ABEA10090F454 /* PEPGroup+Convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPGroup+Convert.h"; sourceTree = "<group>"; };
+		43D98E542A6ABEAE0090F454 /* PEPGroup+Convert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPGroup+Convert.m"; sourceTree = "<group>"; };
 		4E51C1F926CD12EE007A2164 /* libPEPObjCTypes_macOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPEPObjCTypes_macOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B11963827B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPIdentity+URIAddressScheme.m"; sourceTree = "<group>"; };
 		5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPIdentity+URIAddressScheme.h"; sourceTree = "<group>"; };
@@ -289,6 +292,7 @@
 				5B11963927B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.h */,
 				43D98E522A6ABCF80090F454 /* PEPMember+Convert.h */,
 				43D98E422A6ABC8D0090F454 /* NSArray+MemberList.h */,
+				43D98E532A6ABEA10090F454 /* PEPGroup+Convert.h */,
 			);
 			path = PublicHeaders;
 			sourceTree = "<group>";
@@ -362,6 +366,7 @@
 				5B5ACE1527A1925800B34412 /* PEPStatusNSErrorUtil.m */,
 				43D98E502A6ABCED0090F454 /* PEPMember+Convert.m */,
 				43D98E4E2A6ABC9A0090F454 /* NSArray+MemberList.m */,
+				43D98E542A6ABEAE0090F454 /* PEPGroup+Convert.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 				43D98E512A6ABCED0090F454 /* PEPMember+Convert.m in Sources */,
 				5B11963B27B41C3000FDF0B5 /* PEPIdentity+URIAddressScheme.m in Sources */,
 				5B29DA3B27A0466E00D7638E /* PEPIdentity+PEPConvert.m in Sources */,
+				43D98E552A6ABEAE0090F454 /* PEPGroup+Convert.m in Sources */,
 				43D98E4F2A6ABC9A0090F454 /* NSArray+MemberList.m in Sources */,
 				5B5ACF9A27A19B2100B34412 /* PEPStatusNSErrorUtil.m in Sources */,
 			);
