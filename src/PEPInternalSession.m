@@ -28,9 +28,11 @@
 #import "PEPIdentity+PEPConvert.h"
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
+#import "PEPGroup+Convert.h"
 
 #import "key_reset.h"
 #import "media_key.h"
+#import "group.h"
 
 @implementation PEPInternalSession
 
@@ -716,22 +718,22 @@ static NSDictionary *stringToRating;
 {
     NSDictionary *ratingToStringIntern =
     @{
-      [NSNumber numberWithInteger:PEPRatingCannotDecrypt]: @"cannot_decrypt",
-      [NSNumber numberWithInteger:PEPRatingHaveNoKey]: @"have_no_key",
-      [NSNumber numberWithInteger:PEPRatingUnencrypted]: @"unencrypted",
-      [NSNumber numberWithInteger:PEPRatingUnreliable]: @"unreliable",
-      [NSNumber numberWithInteger:PEPRatingReliable]: @"reliable",
-      [NSNumber numberWithInteger:PEPRatingTrusted]: @"trusted",
-      [NSNumber numberWithInteger:PEPRatingTrustedAndAnonymized]: @"trusted_and_anonymized",
-      [NSNumber numberWithInteger:PEPRatingFullyAnonymous]: @"fully_anonymous",
-      [NSNumber numberWithInteger:PEPRatingMistrust]: @"mistrust",
-      [NSNumber numberWithInteger:PEPRatingB0rken]: @"b0rken",
-      [NSNumber numberWithInteger:PEPRatingUnderAttack]: @"under_attack",
-      [NSNumber numberWithInteger:PEPRatingUndefined]: kUndefined,
-      };
+        [NSNumber numberWithInteger:PEPRatingCannotDecrypt]: @"cannot_decrypt",
+        [NSNumber numberWithInteger:PEPRatingHaveNoKey]: @"have_no_key",
+        [NSNumber numberWithInteger:PEPRatingUnencrypted]: @"unencrypted",
+        [NSNumber numberWithInteger:PEPRatingUnreliable]: @"unreliable",
+        [NSNumber numberWithInteger:PEPRatingReliable]: @"reliable",
+        [NSNumber numberWithInteger:PEPRatingTrusted]: @"trusted",
+        [NSNumber numberWithInteger:PEPRatingTrustedAndAnonymized]: @"trusted_and_anonymized",
+        [NSNumber numberWithInteger:PEPRatingFullyAnonymous]: @"fully_anonymous",
+        [NSNumber numberWithInteger:PEPRatingMistrust]: @"mistrust",
+        [NSNumber numberWithInteger:PEPRatingB0rken]: @"b0rken",
+        [NSNumber numberWithInteger:PEPRatingUnderAttack]: @"under_attack",
+        [NSNumber numberWithInteger:PEPRatingUndefined]: kUndefined,
+    };
     NSMutableDictionary *stringToRatingMutable = [NSMutableDictionary
                                                   dictionaryWithCapacity:
-                                                  ratingToStringIntern.count];
+                                                      ratingToStringIntern.count];
     for (NSNumber *ratingNumber in ratingToStringIntern.allKeys) {
         NSString *ratingName = [ratingToStringIntern objectForKey:ratingNumber];
         [stringToRatingMutable setObject:ratingNumber forKey:ratingName];
@@ -1022,6 +1024,159 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
 - (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
 {
     config_enable_echo_in_outgoing_message_rating_preview(self.session, enabled);
+}
+
+#pragma mark - Group API
+
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
+                                memberIdentities:(NSArray<PEPIdentity *> * _Nonnull)memberIdentities
+                                           error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *managerIdent = [managerIdentity toStruct];
+    identity_list *memberIdentList = [memberIdentities toIdentityList];
+
+    __block pEp_group *createdGroup = NULL;
+
+    // block for freeing all input values we own
+    void (^freeInputValuesBlock)(void) = ^{
+        free_identity(groupIdent);
+        free_identity(managerIdent);
+        free_identity_list(memberIdentList);
+    };
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_create(self.session,
+                            groupIdent,
+                            managerIdent,
+                            memberIdentList,
+                            &createdGroup);
+    }];
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        freeInputValuesBlock();
+        return nil;
+    } else {
+        PEPGroup *group = nil;
+
+        if (createdGroup) {
+            group = [PEPGroup fromStruct:createdGroup];
+            free_group(createdGroup);
+            freeInputValuesBlock();
+            return group;
+        } else {
+            freeInputValuesBlock();
+            return nil;
+        }
+    }
+}
+
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity const * _Nonnull)groupIdentity
+                memberIdentity:(PEPIdentity const * _Nonnull)memberIdentity
+                         error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *asMemberIdent = [memberIdentity toStruct];
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_join(self.session, groupIdent, asMemberIdent);
+    }];
+
+    free_identity(groupIdent);
+    free_identity(asMemberIdent);
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity const * _Nonnull)groupIdentity
+                   managerIdentity:(PEPIdentity const * _Nonnull)managerIdentity
+                             error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *managerIdent = [managerIdentity toStruct];
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_dissolve(self.session, groupIdent, managerIdent);
+    }];
+
+    free_identity(groupIdent);
+    free_identity(managerIdent);
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity const * _Nonnull)groupIdentity
+                        memberIdentity:(PEPIdentity const * _Nonnull)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *memberIdent = [memberIdentity toStruct];
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_invite_member(self.session, groupIdent, memberIdent);
+    }];
+
+    free_identity(groupIdent);
+    free_identity(memberIdent);
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity const * _Nonnull)groupIdentity
+                        memberIdentity:(PEPIdentity const * _Nonnull)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *memberIdent = [memberIdentity toStruct];
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_remove_member(self.session, groupIdent, memberIdent);
+    }];
+
+    free_identity(groupIdent);
+    free_identity(memberIdent);
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity const * _Nonnull)groupIdentity
+                                 managerIdentity:(PEPIdentity const * _Nonnull)managerIdentity
+                                           error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *groupIdent = [groupIdentity toStruct];
+    pEp_identity *managerIdent = [managerIdentity toStruct];
+
+    __block PEPRating rating;
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return group_rating(self.session, groupIdent, managerIdent, (PEP_rating *) &rating);
+    }];
+
+    free_identity(groupIdent);
+    free_identity(managerIdent);
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        return nil;
+    } else {
+        return [NSNumber numberWithPEPRating:rating];
+    }
 }
 
 @end

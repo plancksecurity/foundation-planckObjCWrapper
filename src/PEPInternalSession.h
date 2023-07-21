@@ -13,6 +13,7 @@
 #import "sync_api.h"
 
 @class PEPPassphraseCache;
+@class PEPGroup;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -246,8 +247,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param result The choice the user made with regards to the currently active handshake dialog.
  @param identitiesSharing The identities that are involved for the user's choice.
-                          That is, the user can chose to respond only for a subset of the
-                          identities that were originally involved in the handshake.
+ That is, the user can chose to respond only for a subset of the
+ identities that were originally involved in the handshake.
  @param error The default cocoa error handling.
  @return `YES` when the call succedded, `NO` otherwise. In the `NO` case, see `error` for details.
  */
@@ -325,6 +326,40 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)configureEchoProtocolEnabled:(BOOL)enabled;
 
 - (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled;
+
+#pragma mark - Group API
+
+/// Wraps `group_create`.
+/// - Note: As indicated, all input values are `const`. You can get updated versions out of the resulting `PEPGroup`.
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
+                                memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
+                                           error:(NSError * _Nullable * _Nullable)error;
+
+/// Wraps `group_join`.
+- (BOOL)groupJoinGroupIdentity:(PEPIdentity const *)groupIdentity
+                memberIdentity:(PEPIdentity const *)memberIdentity
+                         error:(NSError * _Nullable * _Nullable)error;
+
+/// Wraps `group_dissolve`.
+- (BOOL)groupDissolveGroupIdentity:(PEPIdentity const *)groupIdentity
+                   managerIdentity:(PEPIdentity const *)managerIdentity
+                             error:(NSError * _Nullable * _Nullable)error;
+
+/// Wraps `group_invite_member`.
+- (BOOL)groupInviteMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error;
+
+/// Wraps `group_remove_member`.
+- (BOOL)groupRemoveMemberGroupIdentity:(PEPIdentity const *)groupIdentity
+                        memberIdentity:(PEPIdentity const *)memberIdentity
+                                 error:(NSError * _Nullable * _Nullable)error;
+
+/// Wraps `group_rating`.
+- (NSNumber * _Nullable)groupRatingGroupIdentity:(PEPIdentity const *)groupIdentity
+                                 managerIdentity:(PEPIdentity const *)managerIdentity
+                                           error:(NSError * _Nullable * _Nullable)error;
 
 @end
 
