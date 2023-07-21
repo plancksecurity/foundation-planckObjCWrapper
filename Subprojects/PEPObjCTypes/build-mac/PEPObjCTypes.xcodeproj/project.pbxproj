@@ -31,6 +31,10 @@
 		439F4C43275632E2005F278E /* PEPLanguage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */; };
 		439F4C44275632E6005F278E /* PEPMessage+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */; };
 		43D44C842685BEB400638D1C /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43D44C832685BE4300638D1C /* module.modulemap */; platformFilter = ios; };
+		43D98DFF2A6AB61E0090F454 /* PEPGroup+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98DFB2A6AB61E0090F454 /* PEPGroup+SecureCoding.m */; };
+		43D98E002A6AB61E0090F454 /* PEPMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98DFC2A6AB61E0090F454 /* PEPMember.m */; };
+		43D98E012A6AB61E0090F454 /* PEPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98DFD2A6AB61E0090F454 /* PEPGroup.m */; };
+		43D98E022A6AB61E0090F454 /* PEPMember+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98DFE2A6AB61E0090F454 /* PEPMember+SecureCoding.m */; };
 		43DFAAC029265B76009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
 		43DFAAC129265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */; };
 		43DFAAD329265FEE009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
@@ -115,6 +119,14 @@
 		15BD319B2742A1B500B1B1F5 /* PEPErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPErrors.m; sourceTree = "<group>"; };
 		439F4C36275632B2005F278E /* PEPObjCTypesTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypesTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		43D98DF72A6AB6010090F454 /* PEPGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPGroup.h; sourceTree = "<group>"; };
+		43D98DF82A6AB6010090F454 /* PEPMember+SecureCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPMember+SecureCoding.h"; sourceTree = "<group>"; };
+		43D98DF92A6AB6010090F454 /* PEPMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPMember.h; sourceTree = "<group>"; };
+		43D98DFA2A6AB6010090F454 /* PEPGroup+SecureCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PEPGroup+SecureCoding.h"; sourceTree = "<group>"; };
+		43D98DFB2A6AB61E0090F454 /* PEPGroup+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPGroup+SecureCoding.m"; sourceTree = "<group>"; };
+		43D98DFC2A6AB61E0090F454 /* PEPMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMember.m; sourceTree = "<group>"; };
+		43D98DFD2A6AB61E0090F454 /* PEPGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPGroup.m; sourceTree = "<group>"; };
+		43D98DFE2A6AB61E0090F454 /* PEPMember+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMember+SecureCoding.m"; sourceTree = "<group>"; };
 		43DFAABA29265B17009DABB9 /* PEPMediaKeyPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMediaKeyPair.h; sourceTree = "<group>"; };
 		43DFAABB29265B17009DABB9 /* PEPMediaKeyPair+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMediaKeyPair+SecureCoding.h"; sourceTree = "<group>"; };
 		43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMediaKeyPair+SecureCoding+Test.m"; sourceTree = "<group>"; };
@@ -247,6 +259,10 @@
 			isa = PBXGroup;
 			children = (
 				43DFAAD529266274009DABB9 /* NSObject */,
+				43D98DFD2A6AB61E0090F454 /* PEPGroup.m */,
+				43D98DFB2A6AB61E0090F454 /* PEPGroup+SecureCoding.m */,
+				43D98DFC2A6AB61E0090F454 /* PEPMember.m */,
+				43D98DFE2A6AB61E0090F454 /* PEPMember+SecureCoding.m */,
 				1598067926CFE9CF00593C9D /* PEPTransportConfig.m */,
 				4E57587826832F2F0084F02D /* PEPAttachment.m */,
 				4E57587526832F2F0084F02D /* PEPIdentity.m */,
@@ -262,6 +278,10 @@
 		4E57587E26832F2F0084F02D /* PublicHeaders */ = {
 			isa = PBXGroup;
 			children = (
+				43D98DF72A6AB6010090F454 /* PEPGroup.h */,
+				43D98DFA2A6AB6010090F454 /* PEPGroup+SecureCoding.h */,
+				43D98DF92A6AB6010090F454 /* PEPMember.h */,
+				43D98DF82A6AB6010090F454 /* PEPMember+SecureCoding.h */,
 				4E575841268328CD0084F02D /* PEPObjCTypes.h */,
 				1598067326CFE9B100593C9D /* PEPTransportConfig.h */,
 				4E57587F26832F2F0084F02D /* PEPEngineTypes.h */,
@@ -541,11 +561,15 @@
 				43DFAAD429265FF5009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */,
 				4E57589726832F2F0084F02D /* PEPLanguage.m in Sources */,
 				4E57589126832F2F0084F02D /* PEPAttachment.m in Sources */,
+				43D98DFF2A6AB61E0090F454 /* PEPGroup+SecureCoding.m in Sources */,
 				4E57588C26832F2F0084F02D /* PEPIdentity.m in Sources */,
+				43D98E002A6AB61E0090F454 /* PEPMember.m in Sources */,
 				1598067D26CFE9CF00593C9D /* PEPTransportConfig.m in Sources */,
 				43DFAAD929266274009DABB9 /* NSObject+Equality.m in Sources */,
+				43D98E022A6AB61E0090F454 /* PEPMember+SecureCoding.m in Sources */,
 				4E57589B26832F2F0084F02D /* PEPMessage.m in Sources */,
 				43DFAAD329265FEE009DABB9 /* PEPMediaKeyPair.m in Sources */,
+				43D98E012A6AB61E0090F454 /* PEPGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
