@@ -43,19 +43,19 @@
 - (void)testGroupCreate
 {
     PEPIdentity *identityGroup = [[PEPIdentity alloc]
-                                  initWithAddress:@"group@pep.security"
+                                  initWithAddress:@"group@planck.security"
                                   userID:@"group"
                                   userName:@"group"
                                   isOwn:YES];
 
     PEPIdentity *identityManager = [[PEPIdentity alloc]
-                                    initWithAddress:@"manager@pep.security"
+                                    initWithAddress:@"manager@planck.security"
                                     userID:@"manager"
                                     userName:@"manager"
                                     isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@pep.security"
+                                    initWithAddress:@"member1@planck.security"
                                     userID:@"member1"
                                     userName:@"member1"
                                     isOwn:NO];
@@ -90,19 +90,19 @@
 - (void)testGroupJoinNoMember
 {
     PEPIdentity *identityGroup = [[PEPIdentity alloc]
-                                  initWithAddress:@"group@pep.security"
+                                  initWithAddress:@"group@planck.security"
                                   userID:@"group"
                                   userName:@"group"
                                   isOwn:YES];
 
     PEPIdentity *identityManager = [[PEPIdentity alloc]
-                                    initWithAddress:@"manager@pep.security"
+                                    initWithAddress:@"manager@planck.security"
                                     userID:@"manager"
                                     userName:@"manager"
                                     isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@pep.security"
+                                    initWithAddress:@"member1@planck.security"
                                     userID:@"member1"
                                     userName:@"member1"
                                     isOwn:NO];
@@ -134,7 +134,7 @@
     XCTAssertNotNil(group);
 
     PEPIdentity *identityMember2 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member2@pep.security"
+                                    initWithAddress:@"member2@planck.security"
                                     userID:@"member2"
                                     userName:@"member2"
                                     isOwn:YES];
@@ -154,19 +154,19 @@
 - (void)testGroupDissolve
 {
     PEPIdentity *identityGroup = [[PEPIdentity alloc]
-                                  initWithAddress:@"group@pep.security"
+                                  initWithAddress:@"group@planck.security"
                                   userID:@"group"
                                   userName:@"group"
                                   isOwn:YES];
 
     PEPIdentity *identityManager = [[PEPIdentity alloc]
-                                    initWithAddress:@"manager@pep.security"
+                                    initWithAddress:@"manager@planck.security"
                                     userID:@"manager"
                                     userName:@"manager"
                                     isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@pep.security"
+                                    initWithAddress:@"member1@planck.security"
                                     userID:@"member1"
                                     userName:@"member1"
                                     isOwn:NO];
@@ -208,19 +208,19 @@
 - (void)testGroupInviteMemberNoTrust
 {
     PEPIdentity *identityGroup = [[PEPIdentity alloc]
-                                  initWithAddress:@"group@pep.security"
+                                  initWithAddress:@"group@planck.security"
                                   userID:@"group"
                                   userName:@"group"
                                   isOwn:YES];
 
     PEPIdentity *identityManager = [[PEPIdentity alloc]
-                                    initWithAddress:@"manager@pep.security"
+                                    initWithAddress:@"manager@planck.security"
                                     userID:@"manager"
                                     userName:@"manager"
                                     isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@pep.security"
+                                    initWithAddress:@"member1@planck.security"
                                     userID:@"member1"
                                     userName:@"member1"
                                     isOwn:NO];
@@ -252,7 +252,7 @@
     XCTAssertNotNil(group);
 
     PEPIdentity *identityMember2 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member2@pep.security"
+                                    initWithAddress:@"member2@planck.security"
                                     userID:@"member2"
                                     userName:@"member2"
                                     isOwn:YES];
@@ -273,19 +273,19 @@
 - (void)testGroupRemoveMember
 {
     PEPIdentity *identityGroup = [[PEPIdentity alloc]
-                                  initWithAddress:@"group@pep.security"
+                                  initWithAddress:@"group@planck.security"
                                   userID:@"group"
                                   userName:@"group"
                                   isOwn:YES];
 
     PEPIdentity *identityManager = [[PEPIdentity alloc]
-                                    initWithAddress:@"manager@pep.security"
+                                    initWithAddress:@"manager@planck.security"
                                     userID:@"manager"
                                     userName:@"manager"
                                     isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@pep.security"
+                                    initWithAddress:@"member1@planck.security"
                                     userID:@"member1"
                                     userName:@"member1"
                                     isOwn:NO];
@@ -328,19 +328,19 @@
 - (void)testGroupRating
 {
     PEPIdentity *identityGroup = [[PEPIdentity alloc]
-                                  initWithAddress:@"group@pep.security"
+                                  initWithAddress:@"group@planck.security"
                                   userID:@"group"
                                   userName:@"group"
                                   isOwn:YES];
 
     PEPIdentity *identityManager = [[PEPIdentity alloc]
-                                    initWithAddress:@"manager@pep.security"
+                                    initWithAddress:@"manager@planck.security"
                                     userID:@"manager"
                                     userName:@"manager"
                                     isOwn:NO];
 
     PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@pep.security"
+                                    initWithAddress:@"member1@planck.security"
                                     userID:@"member1"
                                     userName:@"member1"
                                     isOwn:NO];
