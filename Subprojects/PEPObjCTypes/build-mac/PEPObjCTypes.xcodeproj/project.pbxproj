@@ -35,6 +35,8 @@
 		43D98E002A6AB61E0090F454 /* PEPMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98DFC2A6AB61E0090F454 /* PEPMember.m */; };
 		43D98E012A6AB61E0090F454 /* PEPGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98DFD2A6AB61E0090F454 /* PEPGroup.m */; };
 		43D98E022A6AB61E0090F454 /* PEPMember+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98DFE2A6AB61E0090F454 /* PEPMember+SecureCoding.m */; };
+		43D98E172A6AB7F50090F454 /* PEPMember+SecureCodingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98E162A6AB7F50090F454 /* PEPMember+SecureCodingTest.m */; };
+		43D98E1A2A6AB8670090F454 /* XCTestCase+Archive.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D98E192A6AB8670090F454 /* XCTestCase+Archive.m */; };
 		43DFAAC029265B76009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
 		43DFAAC129265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABF29265B76009DABB9 /* PEPMediaKeyPair+SecureCoding.m */; };
 		43DFAAD329265FEE009DABB9 /* PEPMediaKeyPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABE29265B76009DABB9 /* PEPMediaKeyPair.m */; };
@@ -127,6 +129,9 @@
 		43D98DFC2A6AB61E0090F454 /* PEPMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPMember.m; sourceTree = "<group>"; };
 		43D98DFD2A6AB61E0090F454 /* PEPGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPGroup.m; sourceTree = "<group>"; };
 		43D98DFE2A6AB61E0090F454 /* PEPMember+SecureCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMember+SecureCoding.m"; sourceTree = "<group>"; };
+		43D98E162A6AB7F50090F454 /* PEPMember+SecureCodingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMember+SecureCodingTest.m"; sourceTree = "<group>"; };
+		43D98E182A6AB8670090F454 /* XCTestCase+Archive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestCase+Archive.h"; sourceTree = "<group>"; };
+		43D98E192A6AB8670090F454 /* XCTestCase+Archive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestCase+Archive.m"; sourceTree = "<group>"; };
 		43DFAABA29265B17009DABB9 /* PEPMediaKeyPair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPMediaKeyPair.h; sourceTree = "<group>"; };
 		43DFAABB29265B17009DABB9 /* PEPMediaKeyPair+SecureCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMediaKeyPair+SecureCoding.h"; sourceTree = "<group>"; };
 		43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PEPMediaKeyPair+SecureCoding+Test.m"; sourceTree = "<group>"; };
@@ -314,6 +319,7 @@
 				4E5758CC26833F920084F02D /* PEPLanguage+SecureCodingTest.m */,
 				4E5758CD26833F920084F02D /* PEPMessage+SecureCodingTest.m */,
 				43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */,
+				43D98E162A6AB7F50090F454 /* PEPMember+SecureCodingTest.m */,
 				4E5758C326833D140084F02D /* Info.plist */,
 			);
 			path = PEPObjCTypesTests;
@@ -322,6 +328,8 @@
 		4E5758CE26833F920084F02D /* TestUtils */ = {
 			isa = PBXGroup;
 			children = (
+				43D98E182A6AB8670090F454 /* XCTestCase+Archive.h */,
+				43D98E192A6AB8670090F454 /* XCTestCase+Archive.m */,
 				4E5758CF26833F920084F02D /* PEPTypesTestUtil.h */,
 				4E5758D026833F920084F02D /* PEPTypesTestUtil.m */,
 			);
@@ -580,7 +588,9 @@
 				4E5758D426833F920084F02D /* PEPMessage+SecureCodingTest.m in Sources */,
 				4E5758D326833F920084F02D /* PEPLanguage+SecureCodingTest.m in Sources */,
 				4E5758D126833F920084F02D /* PEPAttachment+SecureCodingTest.m in Sources */,
+				43D98E1A2A6AB8670090F454 /* XCTestCase+Archive.m in Sources */,
 				4E5758D526833F920084F02D /* PEPTypesTestUtil.m in Sources */,
+				43D98E172A6AB7F50090F454 /* PEPMember+SecureCodingTest.m in Sources */,
 				4E5758D226833F920084F02D /* PEPIdentity+SecureCodingTest.m in Sources */,
 				4385184C2926788C00796078 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */,
 			);

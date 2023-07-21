@@ -11,12 +11,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class PEPIdentity, PEPAttachment, PEPLanguage, PEPMessage;
+@class PEPMember, PEPGroup;
+
 @interface PEPTypesTestUtil : NSObject
 
 + (PEPIdentity *)pEpIdentityWithAllFieldsFilled;
 + (PEPAttachment *)pEpAttachmentWithAllFieldsFilled;
 + (PEPLanguage *)pEpLanguageWithAllFieldsFilled;
 + (PEPMessage *)pEpMessageWithAllFieldsFilled;
++ (PEPMember *)pEpMemberWithAllFieldsFilled;
++ (PEPGroup *)pEpGroupWithAllFieldsFilled;
 
 @end
 
