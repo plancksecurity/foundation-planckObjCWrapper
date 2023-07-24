@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - General utilities
 
+/// Imports a partner key and creates the according identity with the given parameters.
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath
                                    address:(NSString *)address
                                     userID:(NSString *)userID
