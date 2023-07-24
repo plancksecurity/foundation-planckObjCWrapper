@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (PEPGroup *_Nullable)groupCreateMinimal:(NSArray *)members
                                     error:(NSError *_Nullable *_Nullable)error;
 
-#pragma mark - Group API
+#pragma mark - Group API (syncronous)
 
 - (PEPGroup *_Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
                                 managerIdentity:(PEPIdentity const *)managerIdentity

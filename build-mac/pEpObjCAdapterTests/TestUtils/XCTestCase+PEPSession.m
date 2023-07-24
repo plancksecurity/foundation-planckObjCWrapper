@@ -524,7 +524,7 @@
     return group;
 }
 
-#pragma mark - Group API
+#pragma mark - Group API (syncronous)
 
 - (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
                                  managerIdentity:(PEPIdentity const *)managerIdentity
