@@ -20,6 +20,7 @@
 #import "PEPInternalSession.h"
 #import "PEPIdentity+isPEPUser.h"
 #import "PEPInternalSession+SetIdentity.h"
+#import "XCTestCase+PEPSession.h"
 
 @interface PEPInternalSessionTest : XCTestCase
 

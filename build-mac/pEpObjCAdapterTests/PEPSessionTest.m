@@ -150,7 +150,8 @@
                                checkImportingKeyFilePath:@"6FF00E97_sec.asc"
                                address:@"pep.test.alice@pep-project.org"
                                userID:@"alice_user_id"
-                               fingerPrint:fprAlice];
+                               fingerPrint:fprAlice
+                               session:nil];
     XCTAssertNotNil(identAlice);
     XCTAssertEqualObjects(identAlice.fingerPrint, fprAlice);
 
@@ -195,7 +196,8 @@
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
                           address:@"pep.test.alice@pep-project.org"
                           userID:@"This Is Alice"
-                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session:nil];
     XCTAssertNotNil(alice);
 
     XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
@@ -237,7 +239,8 @@
                           checkImportingKeyFilePath:@"6FF00E97_sec.asc"
                           address:@"pep.test.alice@pep-project.org"
                           userID:@"This Is Alice"
-                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"];
+                          fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                          session:nil];
     XCTAssertNotNil(alice);
     XCTAssertEqual([self ratingForIdentity:alice], PEPRatingReliable);
 
@@ -369,7 +372,8 @@
      checkImportingKeyFilePath:@"6FF00E97_sec.asc"
      address:@"pep.test.alice@pep-project.org"
      userID:@"alice_user_id"
-     fingerPrint:fprAlice];
+     fingerPrint:fprAlice
+     session:nil];
 
     [PEPObjCAdapter configureMediaKeys:mediaKeys];
 }
@@ -436,46 +440,6 @@
     XCTAssertEqual(ratingOriginal, ratingPreview);
 
     return ratingOriginal;
-}
-
-- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath
-                                   address:(NSString *)address
-                                    userID:(NSString *)userID
-                               fingerPrint:(NSString *)fingerPrint
-{
-    BOOL success = [self importBundledKey:filePath];
-    XCTAssertTrue(success);
-
-    if (success) {
-        // Our test user:
-        PEPIdentity *identTest = [[PEPIdentity alloc]
-                                  initWithAddress:address
-                                  userID:userID
-                                  userName:[NSString stringWithFormat:@"Some User Name %@", userID]
-                                  isOwn:NO];
-
-        NSError *error = nil;
-        PEPIdentity *identTestUpdated = [self updateIdentity:identTest error:&error];
-        XCTAssertNil(identTestUpdated.fingerPrint); // key election, no key is chosen yet
-
-        PEPInternalSession *session = [PEPInternalSession new];
-        error = nil;
-        identTest.fingerPrint = fingerPrint;
-        [session setIdentity:identTest error:&error];
-        XCTAssertNil(error);
-
-        identTest.fingerPrint = fingerPrint;
-
-        identTestUpdated = [self updateIdentity:identTest error:&error];
-        XCTAssertNil(error);
-        XCTAssertNotNil(identTestUpdated);
-        XCTAssertNotNil(identTestUpdated.fingerPrint);
-        XCTAssertEqualObjects(identTestUpdated.fingerPrint, fingerPrint);
-
-        return identTestUpdated;
-    } else {
-        return nil;
-    }
 }
 
 - (BOOL)importBundledKey:(NSString *)item
