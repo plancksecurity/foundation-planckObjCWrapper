@@ -140,7 +140,6 @@
 
     XCTAssertNil(group);
     XCTAssertEqual(error.code, PEP_CANNOT_ADD_GROUP_MEMBER);
-
 }
 
 - (void)testGroupJoinNoMember
