@@ -55,7 +55,7 @@
     PEPIdentity *identityGroup = [self
                                   checkImportingKeyFilePath:@"Six Replicants on the Run (55F4F533) – Public.asc"
                                   address:@"replicants@planck.security"
-                                  userID:@"replicatns"
+                                  userID:@"replicants"
                                   fingerPrint:@"5047 9D55 150B 788A 9798  0104 D0E6 EA77 55F4 F533"
                                   session:session];
     XCTAssertNotNil(identityGroup);
