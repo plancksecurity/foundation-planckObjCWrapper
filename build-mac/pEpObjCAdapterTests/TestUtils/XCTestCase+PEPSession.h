@@ -17,10 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - General utilities
 
-- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath
+                                   address:(NSString *)address
                                     userID:(NSString *)userID
                                fingerPrint:(NSString *)fingerPrint
-                                   session:(PEPInternalSession *)session;
+                                   session:(PEPInternalSession * _Nullable)session;
 
 #pragma mark - Normal session to async
 
