@@ -39,7 +39,7 @@
 
 #pragma mark - Group API
 
-- (void)testGroupCreate
+- (void)testGroupCreateFail
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
@@ -82,10 +82,9 @@
                                        memberIdentities:@[identityMember1]
                                                   error:&error];
 
-    XCTAssertNotNil(group);
-    XCTAssertNil(error);
+    XCTAssertNil(group);
+    XCTAssertEqual(error.code, PEP_CANNOT_ADD_GROUP_MEMBER);
 
-    XCTAssertNotNil(group);
 }
 
 - (void)testGroupJoinNoMember
