@@ -42,6 +42,9 @@
 		434226811D4F60000083ED79 /* PepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 434226801D4F60000083ED79 /* PepTests.m */; };
 		434707F924C30E9700E05485 /* PEPSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 434707F824C30E9700E05485 /* PEPSessionTest.m */; };
 		4349CD7924ADDB8800A22A13 /* PEPPassphraseCache+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 4349CD7824ADDB8800A22A13 /* PEPPassphraseCache+Reset.m */; };
+		434C8AB82A6E77BF008CE26B /* Harry Bryant (76BAD98F) – Secreta.asc in Resources */ = {isa = PBXBuildFile; fileRef = 434C8AA22A6E77BF008CE26B /* Harry Bryant (76BAD98F) – Secreta.asc */; };
+		434C8AB92A6E77BF008CE26B /* Rickard Deckard (C92BF6F7) – Pública.asc in Resources */ = {isa = PBXBuildFile; fileRef = 434C8AB62A6E77BF008CE26B /* Rickard Deckard (C92BF6F7) – Pública.asc */; };
+		434C8ABA2A6E77BF008CE26B /* Six Replicants on the Run (55F4F533) – Secreta.asc in Resources */ = {isa = PBXBuildFile; fileRef = 434C8AB72A6E77BF008CE26B /* Six Replicants on the Run (55F4F533) – Secreta.asc */; };
 		43589EFB24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 43589EFA24A4ACFC0079BEA2 /* PEPPassphraseCacheTest.m */; };
 		43676B661C57EA1A00233933 /* B623F674_sec.asc in Resources */ = {isa = PBXBuildFile; fileRef = 43676B641C57EA1A00233933 /* B623F674_sec.asc */; };
 		436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */ = {isa = PBXBuildFile; fileRef = 436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */; };
@@ -347,6 +350,9 @@
 		4349CD6E24AC73FC00A22A13 /* NSString+NormalizePassphrase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+NormalizePassphrase.m"; sourceTree = "<group>"; };
 		4349CD7724ADDB8800A22A13 /* PEPPassphraseCache+Reset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPPassphraseCache+Reset.h"; sourceTree = "<group>"; };
 		4349CD7824ADDB8800A22A13 /* PEPPassphraseCache+Reset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPPassphraseCache+Reset.m"; sourceTree = "<group>"; };
+		434C8AA22A6E77BF008CE26B /* Harry Bryant (76BAD98F) – Secreta.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Harry Bryant (76BAD98F) – Secreta.asc"; sourceTree = "<group>"; };
+		434C8AB62A6E77BF008CE26B /* Rickard Deckard (C92BF6F7) – Pública.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Rickard Deckard (C92BF6F7) – Pública.asc"; sourceTree = "<group>"; };
+		434C8AB72A6E77BF008CE26B /* Six Replicants on the Run (55F4F533) – Secreta.asc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Six Replicants on the Run (55F4F533) – Secreta.asc"; sourceTree = "<group>"; };
 		434ED6D4207E27B8000A7590 /* PEPAutoPointer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPAutoPointer.h; sourceTree = "<group>"; };
 		434ED6D5207E27B8000A7590 /* PEPAutoPointer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPAutoPointer.m; sourceTree = "<group>"; };
 		435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+PEPRating.h"; sourceTree = "<group>"; };
@@ -495,6 +501,9 @@
 		15DE372B200F5F93007FBD94 /* Recources */ = {
 			isa = PBXGroup;
 			children = (
+				434C8AA22A6E77BF008CE26B /* Harry Bryant (76BAD98F) – Secreta.asc */,
+				434C8AB62A6E77BF008CE26B /* Rickard Deckard (C92BF6F7) – Pública.asc */,
+				434C8AB72A6E77BF008CE26B /* Six Replicants on the Run (55F4F533) – Secreta.asc */,
 				15921D87261CB474003346B7 /* system.db */,
 				436E917124B714A1000296FF /* Rick Deckard (43F270EC) – Secret.asc */,
 				640F79211C9B517C00DBEC4E /* 5CB2C182_sec.asc */,
@@ -990,11 +999,14 @@
 				640F79241C9B517C00DBEC4E /* 5CB2C182.asc in Resources */,
 				43E02A211C71F65B008F05E9 /* A3FC7F0A.asc in Resources */,
 				432FA2D71C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_pub.asc in Resources */,
+				434C8AB82A6E77BF008CE26B /* Harry Bryant (76BAD98F) – Secreta.asc in Resources */,
+				434C8ABA2A6E77BF008CE26B /* Six Replicants on the Run (55F4F533) – Secreta.asc in Resources */,
 				436E917224B714A2000296FF /* Rick Deckard (43F270EC) – Secret.asc in Resources */,
 				432EF60C1C58B77900B6782A /* 0xB623F674.asc in Resources */,
 				64415E491BEA523300F6CBB2 /* 6FF00E97_sec.asc in Resources */,
 				432FA2D81C884FF500DDF874 /* meATdontcare_E3BFBCA9248FC681_sec.asc in Resources */,
 				64415E481BEA523300F6CBB2 /* 6FF00E97.asc in Resources */,
+				434C8AB92A6E77BF008CE26B /* Rickard Deckard (C92BF6F7) – Pública.asc in Resources */,
 				432FA2D21C884C5F00DDF874 /* partner1_F2D281C2789DD7F6_pub.asc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
