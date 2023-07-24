@@ -8,6 +8,8 @@
 
 #import "PEPIdentity.h"
 
+#import "NSString+FPR.h"
+
 @implementation PEPIdentity
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -22,7 +24,7 @@
         self.userID = userID;
         self.userName = userName;
         self.isOwn = isOwn;
-        self.fingerPrint = fingerPrint;
+        self.fingerPrint = [fingerPrint normalizedFPR];
         self.commType = commType;
         self.language = language;
     }
