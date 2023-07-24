@@ -22,6 +22,8 @@
 		430EE263292CCCF4001A9995 /* PEPErrors.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 15BD319A2742A1B500B1B1F5 /* PEPErrors.h */; };
 		430EE264292CCCF4001A9995 /* PEPMediaKeyPair.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43DFAABA29265B17009DABB9 /* PEPMediaKeyPair.h */; };
 		430EE265292CCCF4001A9995 /* PEPMediaKeyPair+SecureCoding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43DFAABB29265B17009DABB9 /* PEPMediaKeyPair+SecureCoding.h */; };
+		434C8ADA2A6EC0B3008CE26B /* NSString+FPR.m in Sources */ = {isa = PBXBuildFile; fileRef = 434C8AD92A6EC0B3008CE26B /* NSString+FPR.m */; };
+		434C8ADB2A6EC0B3008CE26B /* NSString+FPR.m in Sources */ = {isa = PBXBuildFile; fileRef = 434C8AD92A6EC0B3008CE26B /* NSString+FPR.m */; };
 		4385184C2926788C00796078 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */; };
 		4385184D2926789F00796078 /* PEPMediaKeyPair+SecureCoding+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DFAABC29265B41009DABB9 /* PEPMediaKeyPair+SecureCoding+Test.m */; };
 		439F4C3A275632B2005F278E /* libPEPObjCTypes_macOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E575858268329170084F02D /* libPEPObjCTypes_macOS.a */; };
@@ -128,6 +130,8 @@
 		1598067926CFE9CF00593C9D /* PEPTransportConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPTransportConfig.m; sourceTree = "<group>"; };
 		15BD319A2742A1B500B1B1F5 /* PEPErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPErrors.h; sourceTree = "<group>"; };
 		15BD319B2742A1B500B1B1F5 /* PEPErrors.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPErrors.m; sourceTree = "<group>"; };
+		434C8AD82A6EC0B3008CE26B /* NSString+FPR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+FPR.h"; sourceTree = "<group>"; };
+		434C8AD92A6EC0B3008CE26B /* NSString+FPR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+FPR.m"; sourceTree = "<group>"; };
 		439F4C36275632B2005F278E /* PEPObjCTypesTests_macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPObjCTypesTests_macOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43D44C832685BE4300638D1C /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		43D98DF72A6AB6010090F454 /* PEPGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPGroup.h; sourceTree = "<group>"; };
@@ -215,6 +219,8 @@
 			children = (
 				43DFAAD629266274009DABB9 /* NSObject+Equality.m */,
 				43DFAAD729266274009DABB9 /* NSObject+Equality.h */,
+				434C8AD82A6EC0B3008CE26B /* NSString+FPR.h */,
+				434C8AD92A6EC0B3008CE26B /* NSString+FPR.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -569,6 +575,7 @@
 				43DFAAD829266274009DABB9 /* NSObject+Equality.m in Sources */,
 				43DFAAC029265B76009DABB9 /* PEPMediaKeyPair.m in Sources */,
 				4E57589A26832F2F0084F02D /* PEPMessage.m in Sources */,
+				434C8ADA2A6EC0B3008CE26B /* NSString+FPR.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +591,7 @@
 				4E57588C26832F2F0084F02D /* PEPIdentity.m in Sources */,
 				43D98E002A6AB61E0090F454 /* PEPMember.m in Sources */,
 				1598067D26CFE9CF00593C9D /* PEPTransportConfig.m in Sources */,
+				434C8ADB2A6EC0B3008CE26B /* NSString+FPR.m in Sources */,
 				43DFAAD929266274009DABB9 /* NSObject+Equality.m in Sources */,
 				43D98E022A6AB61E0090F454 /* PEPMember+SecureCoding.m in Sources */,
 				4E57589B26832F2F0084F02D /* PEPMessage.m in Sources */,
