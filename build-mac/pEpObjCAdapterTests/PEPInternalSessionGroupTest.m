@@ -48,7 +48,6 @@
     PEPIdentity *identityGroup = [self
                                   checkMySelfImportingKeyFilePath:@"Six Replicants on the Run (55F4F533) – Secret.asc"
                                   address:@"replicants@planck.security"
-                                  userID:@"replicants"
                                   fingerPrint:@"5047 9D55 150B 788A 9798  0104 D0E6 EA77 55F4 F533"
                                   session:session];
     XCTAssertNotNil(identityGroup);
@@ -56,7 +55,6 @@
     PEPIdentity *identityManager = [self
                                   checkMySelfImportingKeyFilePath:@"Harry Bryant (76BAD98F) – Secret.asc"
                                   address:@"bryant@planck.security"
-                                  userID:@"bryant"
                                   fingerPrint:@"027C C235 A7C1 0EC3 5CB5  9DE6 3DE8 EBB3 76BA D98F"
                                   session:session];
     XCTAssertNotNil(identityManager);

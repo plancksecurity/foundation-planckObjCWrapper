@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// Imports a key pair and makes it an own identity, using the given parameters.
 - (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
                                          address:(NSString *)address
-                                          userID:(NSString *)userID
                                      fingerPrint:(NSString *)fingerPrint
                                          session:(PEPInternalSession *)session;
 

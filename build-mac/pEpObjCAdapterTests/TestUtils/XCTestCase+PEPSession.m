@@ -21,7 +21,6 @@
 
 - (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
                                          address:(NSString *)address
-                                          userID:(NSString *)userID
                                      fingerPrint:(NSString *)fingerPrint
                                          session:(PEPInternalSession *)session
 {
@@ -29,8 +28,8 @@
 
     PEPIdentity *identTest = [[PEPIdentity alloc]
                               initWithAddress:address
-                              userID:userID
-                              userName:[NSString stringWithFormat:@"Own identity %@", userID]
+                              userID:@"pEp_own_userId"
+                              userName:[NSString stringWithFormat:@"Own identity %@", address]
                               isOwn:YES
                               fingerPrint: fingerPrint];
 
@@ -58,7 +57,10 @@
         PEPIdentity *identTest = [[PEPIdentity alloc]
                                   initWithAddress:address
                                   userID:userID
-                                  userName:[NSString stringWithFormat:@"Partner identity %@", userID]
+                                  userName:[NSString
+                                            stringWithFormat:@"Partner identity %@ (%@)",
+                                            userID,
+                                            address]
                                   isOwn:NO];
 
         NSError *error = nil;

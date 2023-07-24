@@ -184,7 +184,6 @@
     PEPIdentity *me = [self
                        checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
                        address:@"pep.test.alice@pep-project.org"
-                       userID:@"Alice_User_ID"
                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                        session:session];
     XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
@@ -318,7 +317,6 @@
     PEPIdentity *identAlice = [self
                                checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
                                address:@"pep.test.alice@pep-project.org"
-                               userID:@"Alice_User_ID"
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                                session:session];
 
@@ -699,7 +697,6 @@
     PEPIdentity *me = [self
                        checkMySelfImportingKeyFilePath:@"6FF00E97_sec.asc"
                        address:@"pep.test.alice@pep-project.org"
-                       userID:@"Alice_User_ID"
                        fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                        session:session];
     XCTAssertEqual([self ratingForIdentity:me session:session], PEPRatingTrustedAndAnonymized);
@@ -1515,7 +1512,6 @@
     *ownIdentity = [self
                     checkMySelfImportingKeyFilePath:@"Rick Deckard (43F270EC) – Secret.asc"
                     address:@"deckard@example.com"
-                    userID:@"deckard_user_id"
                     fingerPrint:fingerprint
                     session:*session];
     XCTAssertNotNil(*ownIdentity);
