@@ -438,7 +438,8 @@
     return ratingOriginal;
 }
 
-- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath
+                                   address:(NSString *)address
                                     userID:(NSString *)userID
                                fingerPrint:(NSString *)fingerPrint
 {

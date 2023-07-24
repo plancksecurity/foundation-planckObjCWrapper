@@ -14,6 +14,8 @@
 #import "PEPInternalSession.h"
 #import "PEPTestUtils.h"
 
+#import "XCTestCase+PEPSession.h"
+
 @interface PEPInternalSessionGroupTest : XCTestCase
 
 @end
@@ -62,6 +64,60 @@
                                     isOwn:NO];
 
     NSError *error = nil;
+
+    for (PEPIdentity *ident in @[identityGroup]) {
+        error = nil;
+        XCTAssertTrue([session mySelf:ident error:&error]);
+        XCTAssertNil(error);
+    }
+
+    for (PEPIdentity *ident in @[identityManager, identityMember1]) {
+        error = nil;
+        XCTAssertTrue([session updateIdentity:ident error:&error]);
+        XCTAssertNil(error);
+    }
+
+    error = nil;
+
+    PEPGroup *group = [session groupCreateGroupIdentity:identityGroup
+                                        managerIdentity:identityManager
+                                       memberIdentities:@[identityMember1]
+                                                  error:&error];
+
+    XCTAssertNil(group);
+    XCTAssertEqual(error.code, PEP_CANNOT_ADD_GROUP_MEMBER);
+
+}
+
+- (void)testGroupCreate
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *identityGroup = [[PEPIdentity alloc]
+                                  initWithAddress:@"group@planck.security"
+                                  userID:@"group"
+                                  userName:@"group"
+                                  isOwn:YES];
+
+    NSError *error = nil;
+
+    XCTAssertTrue([session mySelf:identityGroup error:&error]);
+    XCTAssertNil(error);
+
+    PEPIdentity *identityManager =  [self
+                                     checkImportingKeyFilePath:@"6FF00E97_sec.asc"
+                                     address:@"manager@planck.security"
+                                     userID:@"manager"
+                                     fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
+                                     session: session];
+
+    PEPIdentity *identityMember1 = [[PEPIdentity alloc]
+                                    initWithAddress:@"member1@planck.security"
+                                    userID:@"member1"
+                                    userName:@"member1"
+                                    isOwn:NO];
+
+    error = nil;
 
     for (PEPIdentity *ident in @[identityGroup]) {
         error = nil;

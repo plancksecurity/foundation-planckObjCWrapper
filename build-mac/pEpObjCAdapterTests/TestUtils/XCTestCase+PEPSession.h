@@ -11,7 +11,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PEPInternalSession;
+
 @interface XCTestCase (PEPSession)
+
+#pragma mark - General utilities
+
+- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
+                                    userID:(NSString *)userID
+                               fingerPrint:(NSString *)fingerPrint
+                                   session:(PEPInternalSession *)session;
 
 #pragma mark - Normal session to async
 

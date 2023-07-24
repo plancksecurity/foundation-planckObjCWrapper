@@ -1645,51 +1645,6 @@
     return numRating.pEpRating;
 }
 
-- (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath address:(NSString *)address
-                                    userID:(NSString *)userID
-                               fingerPrint:(NSString *)fingerPrint
-                                   session:(PEPInternalSession *)session
-{
-    if (!session) {
-        session = [PEPSessionProvider session];
-    }
-
-    BOOL success = [PEPTestUtils importBundledKey:filePath session:session];
-    XCTAssertTrue(success);
-
-    if (success) {
-        // Our test user:
-        PEPIdentity *identTest = [[PEPIdentity alloc]
-                                  initWithAddress:address
-                                  userID:userID
-                                  userName:[NSString stringWithFormat:@"Some User Name %@", userID]
-                                  isOwn:NO];
-
-        NSError *error = nil;
-        XCTAssertTrue([session updateIdentity:identTest error:&error]);
-        XCTAssertNil(error);
-        XCTAssertNil(identTest.fingerPrint); // should be nil before setIdentity
-
-        error = nil;
-        identTest.fingerPrint = fingerPrint;
-        XCTAssertTrue([session setIdentity:identTest error:&error]);
-        XCTAssertNil(error);
-
-        // forget the fingerprint
-        identTest.fingerPrint = nil;
-
-        error = nil;
-        XCTAssertTrue([session updateIdentity:identTest error:&error]);
-        XCTAssertNil(error);
-        XCTAssertNotNil(identTest.fingerPrint);
-        XCTAssertEqualObjects(identTest.fingerPrint, fingerPrint);
-
-        return identTest;
-    } else {
-        return nil;
-    }
-}
-
 - (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
                                          address:(NSString *)address
                                           userID:(NSString *)userID
