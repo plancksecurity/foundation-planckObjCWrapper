@@ -93,11 +93,12 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *identityGroup = [[PEPIdentity alloc]
-                                  initWithAddress:@"group@planck.security"
-                                  userID:@"group"
-                                  userName:@"group"
-                                  isOwn:YES];
+    PEPIdentity *identityGroup = [self
+                                  checkMySelfImportingKeyFilePath:@"Six Replicants on the Run (55F4F533) – Secreta.asc"
+                                  address:@"replicants@planck.security"
+                                  userID:@"replicants"
+                                  fingerPrint:@"5047 9D55 150B 788A 9798  0104 D0E6 EA77 55F4 F533"
+                                  session:session];
 
     NSError *error = nil;
 
