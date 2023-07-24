@@ -210,13 +210,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43DFAAD529266274009DABB9 /* NSObject */ = {
+		43DFAAD529266274009DABB9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				43DFAAD629266274009DABB9 /* NSObject+Equality.m */,
 				43DFAAD729266274009DABB9 /* NSObject+Equality.h */,
 			);
-			path = NSObject;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		4E575835268328CD0084F02D = {
@@ -273,7 +273,7 @@
 		4E57587326832F2F0084F02D /* src */ = {
 			isa = PBXGroup;
 			children = (
-				43DFAAD529266274009DABB9 /* NSObject */,
+				43DFAAD529266274009DABB9 /* Extensions */,
 				1598067926CFE9CF00593C9D /* PEPTransportConfig.m */,
 				4E57587826832F2F0084F02D /* PEPAttachment.m */,
 				4E57587526832F2F0084F02D /* PEPIdentity.m */,
