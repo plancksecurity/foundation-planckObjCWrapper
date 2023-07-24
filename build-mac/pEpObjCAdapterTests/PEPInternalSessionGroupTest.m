@@ -109,37 +109,22 @@
                                   session:session];
     XCTAssertNotNil(identityManager);
 
+    PEPIdentity *identityMember1 = [self
+                                    checkImportingKeyFilePath:@"Rickard Deckard (C92BF6F7) – Pública.asc"
+                                    address:@"deckard@planck.security"
+                                    userID:@"deckard"
+                                    fingerPrint:@"04F9 58A9 ECAB 1097 6F28  E0C9 8100 4C00 C92B F6F7"
+                                    session:session];
+    XCTAssertNotNil(identityMember1);
+
     NSError *error = nil;
-
-    PEPIdentity *identityMember1 = [[PEPIdentity alloc]
-                                    initWithAddress:@"member1@planck.security"
-                                    userID:@"member1"
-                                    userName:@"member1"
-                                    isOwn:NO];
-
-    error = nil;
-
-    for (PEPIdentity *ident in @[identityGroup]) {
-        error = nil;
-        XCTAssertTrue([session mySelf:ident error:&error]);
-        XCTAssertNil(error);
-    }
-
-    for (PEPIdentity *ident in @[identityManager, identityMember1]) {
-        error = nil;
-        XCTAssertTrue([session updateIdentity:ident error:&error]);
-        XCTAssertNil(error);
-    }
-
-    error = nil;
-
     PEPGroup *group = [session groupCreateGroupIdentity:identityGroup
                                         managerIdentity:identityManager
                                        memberIdentities:@[identityMember1]
                                                   error:&error];
 
-    XCTAssertNil(group);
-    XCTAssertEqual(error.code, PEP_CANNOT_ADD_GROUP_MEMBER);
+    XCTAssertNotNil(group);
+    XCTAssertNil(error);
 }
 
 - (void)testGroupJoinNoMember
