@@ -94,7 +94,7 @@
     PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identityGroup = [self
-                                  checkMySelfImportingKeyFilePath:@"Six Replicants on the Run (55F4F533) – Secreta.asc"
+                                  checkMySelfImportingKeyFilePath:@"Six Replicants on the Run (55F4F533) – Secret.asc"
                                   address:@"replicants@planck.security"
                                   userID:@"replicants"
                                   fingerPrint:@"5047 9D55 150B 788A 9798  0104 D0E6 EA77 55F4 F533"
@@ -102,7 +102,7 @@
     XCTAssertNotNil(identityGroup);
 
     PEPIdentity *identityManager = [self
-                                  checkMySelfImportingKeyFilePath:@"Harry Bryant (76BAD98F) – Secreta.asc"
+                                  checkMySelfImportingKeyFilePath:@"Harry Bryant (76BAD98F) – Secret.asc"
                                   address:@"bryant@planck.security"
                                   userID:@"bryant"
                                   fingerPrint:@"027C C235 A7C1 0EC3 5CB5  9DE6 3DE8 EBB3 76BA D98F"
@@ -110,7 +110,7 @@
     XCTAssertNotNil(identityManager);
 
     PEPIdentity *identityMember1 = [self
-                                    checkImportingKeyFilePath:@"Rickard Deckard (C92BF6F7) – Pública.asc"
+                                    checkImportingKeyFilePath:@"Rickard Deckard (C92BF6F7) – Public.asc"
                                     address:@"deckard@planck.security"
                                     userID:@"deckard"
                                     fingerPrint:@"04F9 58A9 ECAB 1097 6F28  E0C9 8100 4C00 C92B F6F7"
