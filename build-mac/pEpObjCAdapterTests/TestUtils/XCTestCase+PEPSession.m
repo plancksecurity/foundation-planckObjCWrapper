@@ -497,6 +497,33 @@
     return YES;
 }
 
+#pragma mark - Group Utilities
+
+- (PEPGroup *_Nullable)groupCreateMinimal:(NSArray *)members
+                                    error:(NSError *_Nullable *_Nullable)error
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *identityGroup = [members objectAtIndex:0];
+    PEPIdentity *identityManager = [members objectAtIndex:1];
+
+    NSUInteger index = 0;
+    NSMutableArray *groupMembers = [NSMutableArray array];
+    for (PEPIdentity *member in groupMembers) {
+        if (index > 1) {
+            [groupMembers addObject:member];
+        }
+        index++;
+    }
+
+    PEPGroup *group = [session groupCreateGroupIdentity:identityGroup
+                                        managerIdentity:identityManager
+                                       memberIdentities:groupMembers
+                                                  error:error];
+
+    return group;
+}
+
 #pragma mark - Group API
 
 - (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity

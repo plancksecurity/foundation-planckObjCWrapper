@@ -86,6 +86,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)syncReinit:(NSError * _Nullable *)error;
 
+#pragma mark - Group Utilities
+
+/// Creates a minimal group, using the membes list as blueprint.
+/// - Parameters:
+///   - members: First element is the group ID, then the manager ID, then members.
+///   - error: Cocoa error handling
+- (PEPGroup *_Nullable)groupCreateMinimal:(NSArray *)members
+                                    error:(NSError *_Nullable *_Nullable)error;
+
 #pragma mark - Group API
 
 - (PEPGroup *_Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
