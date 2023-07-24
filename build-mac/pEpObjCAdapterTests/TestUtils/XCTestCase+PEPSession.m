@@ -31,7 +31,7 @@
                               userID:@"pEp_own_userId"
                               userName:[NSString stringWithFormat:@"Own identity %@", address]
                               isOwn:YES
-                              fingerPrint: fingerPrint];
+                              fingerPrint:fingerPrint];
 
     NSError *error;
     XCTAssertTrue([session setOwnKey:identTest fingerprint:fingerPrint error:&error]);
