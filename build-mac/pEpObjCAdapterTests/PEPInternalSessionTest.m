@@ -1646,29 +1646,6 @@
     return numRating.pEpRating;
 }
 
-- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
-                                         address:(NSString *)address
-                                          userID:(NSString *)userID
-                                     fingerPrint:(NSString *)fingerPrint
-                                         session:(PEPInternalSession *)session
-{
-    XCTAssertTrue([PEPTestUtils importBundledKey:filePath session:session]);
-
-    // Our test user:
-    PEPIdentity *identTest = [[PEPIdentity alloc]
-                              initWithAddress:address
-                              userID:userID
-                              userName:[NSString stringWithFormat:@"Some User Name %@", userID]
-                              isOwn:YES
-                              fingerPrint: fingerPrint];
-
-    NSError *error;
-    XCTAssertTrue([session setOwnKey:identTest fingerprint:fingerPrint error:&error]);
-    XCTAssertNil(error);
-
-    return identTest;
-}
-
 /**
  Verifies that a partner ID is really a correct Identity.
  Usually used on identities imported as keys, since the engine has problems with them.

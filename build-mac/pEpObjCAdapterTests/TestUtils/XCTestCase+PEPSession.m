@@ -19,6 +19,28 @@
 
 #pragma mark - General utilities
 
+- (PEPIdentity *)checkMySelfImportingKeyFilePath:(NSString *)filePath
+                                         address:(NSString *)address
+                                          userID:(NSString *)userID
+                                     fingerPrint:(NSString *)fingerPrint
+                                         session:(PEPInternalSession *)session
+{
+    XCTAssertTrue([PEPTestUtils importBundledKey:filePath session:session]);
+
+    PEPIdentity *identTest = [[PEPIdentity alloc]
+                              initWithAddress:address
+                              userID:userID
+                              userName:[NSString stringWithFormat:@"Own identity %@", userID]
+                              isOwn:YES
+                              fingerPrint: fingerPrint];
+
+    NSError *error;
+    XCTAssertTrue([session setOwnKey:identTest fingerprint:fingerPrint error:&error]);
+    XCTAssertNil(error);
+
+    return identTest;
+}
+
 - (PEPIdentity *)checkImportingKeyFilePath:(NSString *)filePath
                                    address:(NSString *)address
                                     userID:(NSString *)userID
@@ -33,11 +55,10 @@
     XCTAssertTrue(success);
 
     if (success) {
-        // Our test user:
         PEPIdentity *identTest = [[PEPIdentity alloc]
                                   initWithAddress:address
                                   userID:userID
-                                  userName:[NSString stringWithFormat:@"Some User Name %@", userID]
+                                  userName:[NSString stringWithFormat:@"Partner identity %@", userID]
                                   isOwn:NO];
 
         NSError *error = nil;
