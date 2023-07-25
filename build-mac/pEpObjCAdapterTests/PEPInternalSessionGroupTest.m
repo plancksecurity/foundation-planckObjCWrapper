@@ -92,6 +92,30 @@
 
     XCTAssertNotNil(group);
     XCTAssertNil(error);
+
+    PEPMessage *messageReliable = [PEPMessage new];
+    messageReliable.direction = PEPMsgDirectionOutgoing;
+    messageReliable.from = identityManager;
+    messageReliable.to = @[identityGroup];
+    messageReliable.shortMessage = @"Reliable";
+
+    error = nil;
+    NSNumber *ratingNum = [session outgoingRatingForMessage:messageReliable error:&error];
+    XCTAssertNotNil(ratingNum);
+    XCTAssertNil(error);
+    XCTAssertEqual([ratingNum pEpRating], PEPRatingReliable);
+
+    PEPMessage *messageMixed = [PEPMessage new];
+    messageMixed.direction = PEPMsgDirectionOutgoing;
+    messageMixed.from = identityManager;
+    messageMixed.to = @[identityGroup, identityManager];
+    messageMixed.shortMessage = @"Also reliable";
+
+    error = nil;
+    NSNumber *ratingNumMixed = [session outgoingRatingForMessage:messageMixed error:&error];
+    XCTAssertNotNil(ratingNumMixed);
+    XCTAssertNil(error);
+    XCTAssertEqual([ratingNumMixed pEpRating], PEPRatingReliable);
 }
 
 @end
