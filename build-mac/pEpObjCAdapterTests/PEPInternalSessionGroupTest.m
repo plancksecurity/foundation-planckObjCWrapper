@@ -13,10 +13,13 @@
 #import "PEPSessionProvider.h"
 #import "PEPInternalSession.h"
 #import "PEPTestUtils.h"
-
 #import "XCTestCase+PEPSession.h"
+#import "PEPInternalSessionTestSendMessageDelegate.h"
 
 @interface PEPInternalSessionGroupTest : XCTestCase
+
+@property (nonatomic) PEPSync *sync;
+@property (nonatomic) PEPInternalSessionTestSendMessageDelegate *sendMessageDelegate;
 
 @end
 
@@ -39,10 +42,22 @@
     [PEPTestUtils cleanUp];
 }
 
+#pragma mark - Key Sync Helper
+
+- (void)startKeySync
+{
+    self.sendMessageDelegate = [PEPInternalSessionTestSendMessageDelegate new];
+    self.sync = [[PEPSync alloc]
+                 initWithSendMessageDelegate:self.sendMessageDelegate
+                 notifyHandshakeDelegate:nil];
+}
+
 #pragma mark - Group API
 
 - (void)testGroupCreate
 {
+    [self startKeySync];
+
     PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identityManager = [self
