@@ -60,12 +60,14 @@
 
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *identityManager = [self
-                                  checkMySelfImportingKeyFilePath:@"Harry Bryant (76BAD98F) – Secret.asc"
-                                  address:@"bryant@planck.security"
-                                  fingerPrint:@"027C C235 A7C1 0EC3 5CB5  9DE6 3DE8 EBB3 76BA D98F"
-                                  session:session];
-    XCTAssertNotNil(identityManager);
+    PEPIdentity *identityManager = [[PEPIdentity alloc]
+                                    initWithAddress:@"bryant@planck.security"
+                                    userID:@"bryant"
+                                    userName:@"Harry Bryant (Group Manager)"
+                                    isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identityManager error:&error]);
+    XCTAssertNil(error);
 
     PEPIdentity *identityGroup = [self
                                   checkImportingKeyFilePath:@"Six Replicants on the Run (55F4F533) – Public.asc"
@@ -83,7 +85,6 @@
                                     session:session];
     XCTAssertNotNil(identityMember1);
 
-    NSError *error = nil;
     PEPGroup *group = [session groupCreateGroupIdentity:identityGroup
                                         managerIdentity:identityManager
                                        memberIdentities:@[identityMember1]
