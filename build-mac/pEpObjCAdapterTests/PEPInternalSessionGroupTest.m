@@ -69,13 +69,11 @@
     XCTAssertTrue([session mySelf:identityManager error:&error]);
     XCTAssertNil(error);
 
-    PEPIdentity *identityGroup = [self
-                                  checkImportingKeyFilePath:@"Six Replicants on the Run (55F4F533) – Public.asc"
-                                  address:@"replicants@planck.security"
-                                  userID:@"replicants"
-                                  fingerPrint:@"5047 9D55 150B 788A 9798  0104 D0E6 EA77 55F4 F533"
-                                  session:session];
-    XCTAssertNotNil(identityGroup);
+    PEPIdentity *identityGroup = [[PEPIdentity alloc]
+                                  initWithAddress:@"replicants@planck.security"
+                                  userID:@"replicants group"
+                                  userName:@"Replicants (Group Manager)"
+                                  isOwn:NO];
 
     PEPIdentity *identityMember1 = [self
                                     checkImportingKeyFilePath:@"Rickard Deckard (C92BF6F7) – Public.asc"
