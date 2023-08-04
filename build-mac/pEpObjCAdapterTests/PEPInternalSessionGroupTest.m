@@ -61,7 +61,7 @@
     PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identityManager = [[PEPIdentity alloc]
-                                    initWithAddress:@"bryant@planck.security"
+                                    initWithAddress:@"bryant@planck.dev"
                                     userID:@"bryant"
                                     userName:@"Harry Bryant (Group Manager)"
                                     isOwn:YES];
@@ -70,14 +70,14 @@
     XCTAssertNil(error);
 
     PEPIdentity *identityGroup = [[PEPIdentity alloc]
-                                  initWithAddress:@"replicants@planck.security"
+                                  initWithAddress:@"replicants@planck.dev"
                                   userID:@"replicants group"
                                   userName:@"Replicants (Group Manager)"
                                   isOwn:NO];
 
     PEPIdentity *identityMember1 = [self
                                     checkImportingKeyFilePath:@"Rickard Deckard (C92BF6F7) – Public.asc"
-                                    address:@"deckard@planck.security"
+                                    address:@"deckard@planck.dev"
                                     userID:@"deckard"
                                     fingerPrint:@"04F9 58A9 ECAB 1097 6F28  E0C9 8100 4C00 C92B F6F7"
                                     session:session];
