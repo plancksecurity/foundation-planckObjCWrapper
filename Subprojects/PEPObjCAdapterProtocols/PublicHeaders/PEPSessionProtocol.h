@@ -215,8 +215,8 @@ successCallback:(void (^)(NSString *log))successCallback;
 /// Wraps `group_create`.
 /// - Note: As indicated, all input values are `const`. You can get updated versions out of the resulting `PEPGroup`.
 - (void)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
-                 managerIdentity:(PEPIdentity const *)managerIdentity
-                memberIdentities:(NSArray<PEPIdentity const *> *)memberIdentities
+                 managerIdentity:(PEPIdentity *)managerIdentity
+                memberIdentities:(NSArray<PEPIdentity *> *)memberIdentities
                    errorCallback:(void (^)(NSError *error))errorCallback
                  successCallback:(void (^)(PEPGroup *))successCallback;
 

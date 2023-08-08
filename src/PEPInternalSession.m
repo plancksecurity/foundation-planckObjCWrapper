@@ -1028,11 +1028,23 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
 
 #pragma mark - Group API
 
-- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity const *)groupIdentity
-                                 managerIdentity:(PEPIdentity const *)managerIdentity
+- (PEPGroup * _Nullable)groupCreateGroupIdentity:(PEPIdentity *)groupIdentity
+                                 managerIdentity:(PEPIdentity *)managerIdentity
                                 memberIdentities:(NSArray<PEPIdentity *> * _Nonnull)memberIdentities
                                            error:(NSError * _Nullable * _Nullable)error
 {
+    BOOL success = [self mySelf:managerIdentity error:error];
+    if (!success) {
+        return nil;
+    }
+    
+    for (PEPIdentity *member in memberIdentities) {
+        BOOL success = [self updateIdentity:member error:error];
+        if (!success) {
+            return nil;
+        }
+    }
+    
     pEp_identity *groupIdent = [groupIdentity toStruct];
     pEp_identity *managerIdent = [managerIdentity toStruct];
     identity_list *memberIdentList = [memberIdentities toIdentityList];
