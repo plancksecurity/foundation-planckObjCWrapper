@@ -29,6 +29,7 @@
 #import "NSArray+PEPConvert.h"
 #import "NSArray+PEPIdentityList.h"
 #import "PEPGroup+Convert.h"
+#import "PEPMessage+Update.h"
 
 #import "key_reset.h"
 #import "media_key.h"
@@ -353,6 +354,8 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 - (NSNumber * _Nullable)outgoingRatingForMessage:(PEPMessage * _Nonnull)theMessage
                                            error:(NSError * _Nullable * _Nullable)error
 {
+    [theMessage updateIdentities];
+
     message *_msg = [theMessage toStruct];
     __block PEPRating rating = PEPRatingUndefined;
 
