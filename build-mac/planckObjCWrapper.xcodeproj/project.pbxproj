@@ -52,6 +52,7 @@
 		43893B07292D1913008E4EE7 /* NSNumber+PEPRating.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435665CA2080A6CB00EC5B10 /* NSNumber+PEPRating.h */; };
 		4396CEB82187196600FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */; };
 		4396CECB2187220200FDD398 /* PEPInternalSessionTestSendMessageDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */; };
+		43A4645A2A8270490004F00C /* PEPMessage+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A464592A8270490004F00C /* PEPMessage+Update.m */; };
 		43B2ACCA2923AF7700D8C6F8 /* PEPInternalConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AD0E2F22E99ECE00D46F56 /* PEPInternalConstants.m */; };
 		43B2ACCB2923AF7700D8C6F8 /* PEPInternalSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 43209B351ECC2ACD007E7E2E /* PEPInternalSession.m */; };
 		43B2ACCC2923AF7700D8C6F8 /* PEPSessionProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 15206CA91F8BA183003FF880 /* PEPSessionProvider.m */; };
@@ -375,6 +376,8 @@
 		4396CEB62187190F00FDD398 /* PEPInternalSessionTestNotifyHandshakeDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestNotifyHandshakeDelegate.m; sourceTree = "<group>"; };
 		4396CEC8218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEPInternalSessionTestSendMessageDelegate.m; sourceTree = "<group>"; };
 		4396CEC9218721F900FDD398 /* PEPInternalSessionTestSendMessageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEPInternalSessionTestSendMessageDelegate.h; sourceTree = "<group>"; };
+		43A464452A82703C0004F00C /* PEPMessage+Update.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPMessage+Update.h"; sourceTree = "<group>"; };
+		43A464592A8270490004F00C /* PEPMessage+Update.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PEPMessage+Update.m"; sourceTree = "<group>"; };
 		43AD0E2E22E99ECE00D46F56 /* PEPInternalConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEPInternalConstants.h; sourceTree = "<group>"; };
 		43AD0E2F22E99ECE00D46F56 /* PEPInternalConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEPInternalConstants.m; sourceTree = "<group>"; };
 		43B2ACE72923AF7700D8C6F8 /* libPlanckObjCWrapper_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPlanckObjCWrapper_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -654,6 +657,8 @@
 				4349CD6E24AC73FC00A22A13 /* NSString+NormalizePassphrase.m */,
 				433DFBB524A61D4B00AB373B /* PEPInternalSession+PassphraseCache.h */,
 				433DFBB624A61D4B00AB373B /* PEPInternalSession+PassphraseCache.m */,
+				43A464452A82703C0004F00C /* PEPMessage+Update.h */,
+				43A464592A8270490004F00C /* PEPMessage+Update.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1047,6 +1052,7 @@
 				43B2ACDB2923AF7700D8C6F8 /* PEPPassphraseUtil.m in Sources */,
 				43B2ACDC2923AF7700D8C6F8 /* PEPObjCAdapter.m in Sources */,
 				43B2ACDD2923AF7700D8C6F8 /* PEPQueue.m in Sources */,
+				43A4645A2A8270490004F00C /* PEPMessage+Update.m in Sources */,
 				43B2ACDE2923AF7700D8C6F8 /* (null) in Sources */,
 				43B2ACDF2923AF7700D8C6F8 /* PEPInternalSession+TKA.m in Sources */,
 				43B2ACE02923AF7700D8C6F8 /* PEPSession.m in Sources */,
