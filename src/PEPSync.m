@@ -399,6 +399,32 @@ static __weak PEPSync *s_pEpSync;
                       partner:(pEp_identity *)partner
                        signal:(sync_handshake_signal)signal
 {
+    // TODO: This is only for DEBUG: Auto-accept group invites.
+    if (signal == SYNC_NOTIFY_GROUP_INVITATION) {
+        PEPInternalSession *session = [PEPSessionProvider session];
+        PEPIdentity *group = [PEPIdentity fromStruct:me];
+
+        identity_list *own_identities;
+        PEP_STATUS status = own_identities_retrieve(session.session, &own_identities);
+        if (status != PEP_STATUS_OK) {
+            NSLog(@"ERROR Cannot get a list of own identities: %d", status);
+        }
+        if (own_identities->ident) {
+            PEPIdentity *member = [PEPIdentity fromStruct:own_identities->ident];
+
+            NSError *error = nil;
+            BOOL success = [session groupJoinGroupIdentity:group memberIdentity:member error:&error];
+            if (!success) {
+                NSLog(@"ERROR joining group: %@", error);
+            }
+        } else {
+            NSLog(@"ERROR Have no single own identity");
+        }
+        free_identity_list(own_identities);
+
+        return PEP_STATUS_OK;
+    }
+
     if (self.notifyHandshakeDelegate) {
         PEPIdentity *meIdentity = [PEPIdentity fromStruct:me];
         free_identity(me);
