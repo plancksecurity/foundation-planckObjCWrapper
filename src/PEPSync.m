@@ -164,6 +164,14 @@ static __weak PEPSync *s_pEpSync;
     // It was at the time of writing.
     NSAssert(status == PEP_STATUS_OK, @"Could not create engine session");
 
+    // The `notifyHandshake_t` handler is needed even on decryption,
+    // e.g. for handling group invitations.
+    status = register_sync_callbacks(session,
+                                     nil,
+                                     s_notifyHandshake,
+                                     nil);
+    NSAssert(status == PEP_STATUS_OK, @"Could not register notifyHandshake on session");
+
     if (status != PEP_STATUS_OK) {
         if (error) {
             *error = [PEPStatusNSErrorUtil errorWithPEPStatus:(PEPStatus) status];
