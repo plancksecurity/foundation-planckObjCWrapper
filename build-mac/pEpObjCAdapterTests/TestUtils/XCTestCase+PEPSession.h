@@ -76,6 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)syncReinit:(NSError * _Nullable *)error;
 
+- (NSArray<NSString *> * _Nullable)importExtraKey:(NSString *)extraKey
+                                            error:(NSError * _Nullable *)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

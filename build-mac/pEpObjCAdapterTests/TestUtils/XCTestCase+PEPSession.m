@@ -263,7 +263,7 @@
     __block BOOL result = NO;
     __block NSError *theError = nil;
     [asyncSession enableSyncForIdentity:identity
-                  errorCallback:^(NSError * _Nonnull error) {
+                          errorCallback:^(NSError * _Nonnull error) {
         result = NO;
         theError = error;
         [exp fulfill];
@@ -444,6 +444,34 @@
     }
 
     return YES;
+}
+
+- (NSArray<NSString *> * _Nullable)importExtraKey:(NSString *)extraKey
+                                            error:(NSError * _Nullable *)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+
+    __block NSError *asyncError = nil;
+    __block NSArray *asyncFingerprints = nil;
+
+    XCTestExpectation *expKeyImported = [self expectationWithDescription:@"expSyncReinit"];
+
+    [asyncSession importExtraKey:extraKey errorCallback:^(NSError * _Nonnull error) {
+        asyncError = error;
+        [expKeyImported fulfill];
+    } successCallback:^(NSArray<NSString *> * _Nonnull fingerprints) {
+        asyncFingerprints = fingerprints;
+        [expKeyImported fulfill];
+    }];
+
+    [self waitForExpectations:@[expKeyImported] timeout:PEPTestInternalSyncTimeout];
+
+    if (asyncError) {
+        *error = asyncError;
+        return nil;
+    }
+
+    return asyncFingerprints;
 }
 
 @end
