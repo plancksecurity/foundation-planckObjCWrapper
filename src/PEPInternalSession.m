@@ -621,7 +621,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         const char *theKeyData = [[keydata precomposedStringWithCanonicalMapping] UTF8String];
         size_t keyDataLen = strlen(theKeyData);
-        return import_key_with_fpr_return(session, theKeyData, keyDataLen, &identList, NULL, NULL);
+        return import_extrakey_with_fpr_return(session, theKeyData, keyDataLen, &identList, NULL, NULL);
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
