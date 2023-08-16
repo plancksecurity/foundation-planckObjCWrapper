@@ -33,8 +33,6 @@ extern const NSInteger PEPTestInternalFastTimeout;
 
 + (BOOL)importBundledKey:(NSString *)item session:(PEPInternalSession *)session;
 
-+ (BOOL)importBundledExtraKey:(NSString *)item session:(PEPInternalSession *)session;
-
 + (NSString *)loadResourceByName:(NSString *)name;
 
 + (NSString *)loadStringFromFileName:(NSString *)fileName;
