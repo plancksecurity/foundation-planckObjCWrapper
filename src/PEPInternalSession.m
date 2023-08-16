@@ -617,11 +617,12 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
                                                error:(NSError * _Nullable * _Nullable)error
 {
     __block identity_list *identList = NULL;
+    __block stringlist_t *fprList = NULL;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         const char *theKeyData = [[keydata precomposedStringWithCanonicalMapping] UTF8String];
         size_t keyDataLen = strlen(theKeyData);
-        return import_extrakey_with_fpr_return(session, theKeyData, keyDataLen, &identList, NULL, NULL);
+        return import_extrakey_with_fpr_return(session, theKeyData, keyDataLen, &identList, &fprList, NULL);
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
@@ -629,6 +630,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return nil;
     }
 
+    free_stringlist(fprList);
     NSArray *idents = [NSArray fromIdentityList:identList];
     free(identList);
 
