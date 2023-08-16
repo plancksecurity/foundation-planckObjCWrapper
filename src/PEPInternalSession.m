@@ -597,9 +597,9 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block identity_list *identList = NULL;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return import_key(session,
-                          [[keydata precomposedStringWithCanonicalMapping] UTF8String],
-                          [keydata length], &identList);
+        const char *theKeyData = [[keydata precomposedStringWithCanonicalMapping] UTF8String];
+        size_t keyDataLen = strlen(theKeyData);
+        return import_key(session, theKeyData, keyDataLen, &identList);
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
@@ -619,12 +619,9 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     __block identity_list *identList = NULL;
 
     PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
-        return import_key_with_fpr_return(session,
-                                          [[keydata precomposedStringWithCanonicalMapping] UTF8String],
-                                          [keydata length],
-                                          &identList,
-                                          NULL,
-                                          NULL);
+        const char *theKeyData = [[keydata precomposedStringWithCanonicalMapping] UTF8String];
+        size_t keyDataLen = strlen(theKeyData);
+        return import_key_with_fpr_return(session, theKeyData, keyDataLen, &identList, NULL, NULL);
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
