@@ -959,6 +959,17 @@
     XCTAssertNil(error);
 }
 
+- (void)testImportExtraKey
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    NSString *txtFileContents = [PEPTestUtils loadStringFromFileName:@"6FF00E97.asc"];
+    NSError *error = nil;
+    NSArray *identities = [session importExtraKey:txtFileContents error:&error];
+    XCTAssertNotNil(identities);
+    XCTAssertNil(error);
+    XCTAssertEqual(identities.count, 1);
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
