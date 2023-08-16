@@ -375,6 +375,21 @@ successCallback:(void (^)(PEPIdentity *identity))successCallback
     });
 }
 
+- (void)importExtraKey:(NSString *)keydata
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(NSArray<NSString *> *fingerprints))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSArray *fingerprints = [[PEPSessionProvider session] importExtraKey:keydata error:&error];
+        if (fingerprints) {
+            successCallback(fingerprints);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 - (void)getLog:(void (^)(NSError *error))errorCallback
 successCallback:(void (^)(NSString *log))successCallback
 {

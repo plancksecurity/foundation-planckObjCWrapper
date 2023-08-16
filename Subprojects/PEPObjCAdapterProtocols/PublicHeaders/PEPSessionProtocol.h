@@ -120,6 +120,10 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
       errorCallback:(void (^)(NSError *error))errorCallback
     successCallback:(void (^)(NSArray<PEPIdentity *> *identities))successCallback;
 
+- (void)importExtraKey:(NSString *)keydata
+         errorCallback:(void (^)(NSError *error))errorCallback
+       successCallback:(void (^)(NSArray<NSString *> *fingerprints))successCallback;
+
 - (void)getLog:(void (^)(NSError *error))errorCallback
     successCallback:(void (^)(NSString *log))successCallback;
 
