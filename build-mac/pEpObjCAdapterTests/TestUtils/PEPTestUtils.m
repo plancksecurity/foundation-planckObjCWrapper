@@ -74,6 +74,22 @@ const NSInteger PEPTestInternalFastTimeout = 5;
     }
 }
 
++ (BOOL)importBundledExtraKey:(NSString *)item session:(PEPInternalSession *)session
+{
+    if (!session) {
+        session = [PEPSessionProvider session];
+    }
+
+    NSString *txtFileContents = [self loadStringFromFileName:item];
+    if (!txtFileContents) {
+        return NO;
+    } else {
+        NSError *error = nil;
+        NSArray<PEPIdentity *> *identities = [session importExtraKey:txtFileContents error:&error];
+        return (identities != nil);
+    }
+}
+
 + (PEPMessage * _Nonnull) mailFrom:(PEPIdentity * _Nullable) fromIdent
                            toIdent: (PEPIdentity * _Nullable) toIdent
                       shortMessage:(NSString *)shortMessage
