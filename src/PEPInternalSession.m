@@ -608,7 +608,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     NSArray *idents = [NSArray fromIdentityList:identList];
-    free(identList);
+    free_identity_list(identList);
 
     return idents;
 }
@@ -865,7 +865,7 @@ static NSDictionary *stringToRating;
                                       identitiesSharingData);
     }];
 
-    free(identitiesSharingData);
+    free_identity_list(identitiesSharingData);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return NO;
