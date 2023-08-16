@@ -613,6 +613,31 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     return idents;
 }
 
+- (NSArray<PEPIdentity *> * _Nullable)importExtraKey:(NSString * _Nonnull)keydata
+                                               error:(NSError * _Nullable * _Nullable)error
+{
+    __block identity_list *identList = NULL;
+
+    PEPStatus status = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return import_key_with_fpr_return(session,
+                                          [[keydata precomposedStringWithCanonicalMapping] UTF8String],
+                                          [keydata length],
+                                          &identList,
+                                          NULL,
+                                          NULL);
+    }];
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        free(identList);
+        return nil;
+    }
+
+    NSArray *idents = [NSArray fromIdentityList:identList];
+    free(identList);
+
+    return idents;
+}
+
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error
 {
     __block char *theChars = NULL;

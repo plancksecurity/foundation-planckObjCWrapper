@@ -168,7 +168,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Disables key sync.
 
- Wraps disable_identity_for_sync.
+ Wraps `disable_identity_for_sync`.
 
  @param identity The (own) identity to disable key sync for.
  @param error The usual cocoa error handling.
@@ -181,6 +181,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** For testing purpose, manual key import */
 - (NSArray<PEPIdentity *> * _Nullable)importKey:(NSString *)keydata
+                                          error:(NSError * _Nullable * _Nullable)error;
+
+/** Wraps `import_extrakey_with_fpr_return`. */
+- (NSArray<PEPIdentity *> * _Nullable)importExtraKey:(NSString *)keydata
                                           error:(NSError * _Nullable * _Nullable)error;
 
 /**
