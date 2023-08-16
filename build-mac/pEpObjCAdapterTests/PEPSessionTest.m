@@ -340,6 +340,18 @@
     XCTAssertNotEqual(fprOriginal, fprAfterReset);
 }
 
+- (void)testImportExtraKey
+{
+    NSString *txtFileContents = [PEPTestUtils loadStringFromFileName:@"6FF00E97.asc"];
+    NSError *error = nil;
+    NSArray *fingerprints = [self importExtraKey:txtFileContents error:&error];
+    XCTAssertNotNil(fingerprints);
+    XCTAssertNil(error);
+    XCTAssertEqual(fingerprints.count, 1);
+    NSString *fingerprint = [fingerprints firstObject];
+    XCTAssertEqualObjects(@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97", fingerprint);
+}
+
 #pragma mark - Sync/sync_reinit
 
 - (void)testSyncReinitWithoutSyncLoop
