@@ -613,7 +613,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     return idents;
 }
 
-- (NSArray<PEPIdentity *> * _Nullable)importExtraKey:(NSString * _Nonnull)keydata
+- (NSArray<NSString *> * _Nullable)importExtraKey:(NSString * _Nonnull)keydata
                                                error:(NSError * _Nullable * _Nullable)error
 {
     __block identity_list *identList = NULL;
@@ -631,10 +631,10 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }
 
     free_stringlist(fprList);
-    NSArray *idents = [NSArray fromIdentityList:identList];
-    free(identList);
+    NSArray *fingerprints = [NSArray fromStringlist:fprList];
+    free_identity_list(identList);
 
-    return idents;
+    return fingerprints;
 }
 
 - (NSString * _Nullable)getLogWithError:(NSError * _Nullable * _Nullable)error

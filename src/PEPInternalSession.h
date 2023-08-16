@@ -184,8 +184,8 @@ NS_ASSUME_NONNULL_BEGIN
                                           error:(NSError * _Nullable * _Nullable)error;
 
 /** Wraps `import_extrakey_with_fpr_return`. */
-- (NSArray<PEPIdentity *> * _Nullable)importExtraKey:(NSString *)keydata
-                                          error:(NSError * _Nullable * _Nullable)error;
+- (NSArray<NSString *> * _Nullable)importExtraKey:(NSString *)keydata
+                                            error:(NSError * _Nullable * _Nullable)error;
 
 /**
  Retrieves the log from the engine, or nil, if there is nothing yet.
