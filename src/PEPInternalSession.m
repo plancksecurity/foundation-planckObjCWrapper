@@ -630,8 +630,8 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
         return nil;
     }
 
-    free_stringlist(fprList);
     NSArray *fingerprints = [NSArray fromStringlist:fprList];
+    free_stringlist(fprList);
     free_identity_list(identList);
 
     return fingerprints;
