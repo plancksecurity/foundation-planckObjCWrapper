@@ -964,10 +964,12 @@
     PEPInternalSession *session = [PEPSessionProvider session];
     NSString *txtFileContents = [PEPTestUtils loadStringFromFileName:@"6FF00E97.asc"];
     NSError *error = nil;
-    NSArray *identities = [session importExtraKey:txtFileContents error:&error];
-    XCTAssertNotNil(identities);
+    NSArray *fingerprints = [session importExtraKey:txtFileContents error:&error];
+    XCTAssertNotNil(fingerprints);
     XCTAssertNil(error);
-    XCTAssertEqual(identities.count, 1);
+    XCTAssertEqual(fingerprints.count, 1);
+    NSString *fingerprint = [fingerprints firstObject];
+    XCTAssertEqualObjects(@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97", fingerprint);
 }
 
 #pragma mark - configUnencryptedSubject
