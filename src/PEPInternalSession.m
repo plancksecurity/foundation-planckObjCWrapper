@@ -626,7 +626,6 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
-        free(identList);
         return nil;
     }
 
