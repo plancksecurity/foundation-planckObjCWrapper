@@ -1919,4 +1919,18 @@
     }
 }
 
+#pragma mark - Signing
+
+- (void)testSimpleSigning
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    NSString *stringToSign = @"Hello, world";
+    NSData *dataToSign = [stringToSign dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *fingerprint = nil;
+    NSError *error = nil;
+    NSData *signedData = [session signData:dataToSign fingerprint:&fingerprint error:&error];
+    XCTAssertNotNil(signedData);
+    XCTAssertNil(error);
+}
+
 @end
