@@ -1933,4 +1933,28 @@
     XCTAssertNotNil(error);
 }
 
+- (void)testSigningWithOwnIdentity
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *identMe = [[PEPIdentity alloc]
+                            initWithAddress:@"own_identity@example.com"
+                            userID:@"own_identity"
+                            userName:@"Test 1"
+                            isOwn:YES];
+
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:identMe error:&error]);
+    XCTAssertNil(error);
+    XCTAssertNotNil(identMe.fingerPrint);
+
+    NSString *stringToSign = @"Hello, world";
+    NSData *dataToSign = [stringToSign dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *fingerprint = nil;
+    error = nil;
+    NSData *signedData = [session signData:dataToSign fingerprint:&fingerprint error:&error];
+    XCTAssertNil(signedData);
+    XCTAssertNotNil(error);
+}
+
 @end
