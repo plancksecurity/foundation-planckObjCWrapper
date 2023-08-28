@@ -336,6 +336,10 @@ NS_ASSUME_NONNULL_BEGIN
            fingerprint:(NSString * _Nonnull * _Nonnull)fingerprint
                  error:(NSError **)error;
 
+- (BOOL)verifyText:(NSString *)textToVerify
+         signature:(NSString *)signature
+             error:(NSError **)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

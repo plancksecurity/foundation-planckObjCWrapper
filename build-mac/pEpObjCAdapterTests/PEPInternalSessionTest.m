@@ -1955,6 +1955,11 @@
     NSString *signedString = [session signData:dataToSign fingerprint:&fingerprint error:&error];
     XCTAssertNotNil(signedString);
     XCTAssertNil(error);
+
+    error = nil;
+    BOOL isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
+    XCTAssertTrue(isCorrectlySigned);
+    XCTAssertNil(error);
 }
 
 @end

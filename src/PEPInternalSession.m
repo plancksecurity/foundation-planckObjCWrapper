@@ -1076,4 +1076,27 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
     return signatureString;
 }
 
+- (BOOL)verifyText:(NSString *)textToVerify
+         signature:(NSString *)signature
+             error:(NSError **)error
+{
+    const char *utf8_text = [[textToVerify precomposedStringWithCanonicalMapping] UTF8String];
+    const char *utf8_signature = [[signature precomposedStringWithCanonicalMapping] UTF8String];
+    PEPStatus status = (PEPStatus) log_verify(self.session,
+                                              utf8_text,
+                                              strlen(utf8_text),
+                                              utf8_signature,
+                                              strlen(utf8_signature));
+
+    if (status == PEP_VERIFIED) {
+        return YES;
+    }
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        return NO;
+    }
+
+    return NO;
+}
+
 @end
