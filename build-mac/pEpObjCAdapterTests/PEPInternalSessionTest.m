@@ -1921,20 +1921,14 @@
 
 #pragma mark - Signing
 
-- (void)testSigningWithoutOwnIdentity
+- (void)testSigningRoundtrip
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     NSString *stringToSign = @"Hello, world";
-    NSString *fingerprint = nil;
     NSError *error = nil;
-    NSString *signedString = [session signText:stringToSign fingerprint:&fingerprint error:&error];
+    NSString *signedString = [session signText:stringToSign error:&error];
     XCTAssertNil(signedString);
     XCTAssertNotNil(error);
-}
-
-- (void)testSigningWithOwnIdentity
-{
-    PEPInternalSession *session = [PEPSessionProvider session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"own_identity@example.com"
@@ -1942,15 +1936,13 @@
                             userName:@"Test 1"
                             isOwn:YES];
 
-    NSError *error = nil;
+    error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
     XCTAssertNotNil(identMe.fingerPrint);
 
-    NSString *stringToSign = @"Hello, world";
-    NSString *fingerprint = nil;
     error = nil;
-    NSString *signedString = [session signText:stringToSign fingerprint:&fingerprint error:&error];
+    signedString = [session signText:stringToSign error:&error];
     XCTAssertNotNil(signedString);
     XCTAssertNil(error);
 
