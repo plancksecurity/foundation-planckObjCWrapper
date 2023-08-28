@@ -1921,7 +1921,7 @@
 
 #pragma mark - Signing
 
-- (void)testSimpleSigning
+- (void)testSigningWithoutOwnIdentity
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     NSString *stringToSign = @"Hello, world";
@@ -1929,8 +1929,8 @@
     NSString *fingerprint = nil;
     NSError *error = nil;
     NSData *signedData = [session signData:dataToSign fingerprint:&fingerprint error:&error];
-    XCTAssertNotNil(signedData);
-    XCTAssertNil(error);
+    XCTAssertNil(signedData);
+    XCTAssertNotNil(error);
 }
 
 @end
