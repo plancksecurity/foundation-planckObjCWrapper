@@ -1054,15 +1054,14 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
          fingerprint:(NSString **)fingerprint
                error:(NSError **)error;
 {
-    const size_t max_fpr_length = 128;
-    char *received_fingerprint[max_fpr_length];
+    char *received_fingerprint;
     size_t size_fingerprint = 0;
     char *signed_data = nil;
     size_t size_signed_data = 0;
     PEPStatus status = (PEPStatus) log_sign(self.session,
                                             dataToSign.bytes,
                                             dataToSign.length,
-                                            received_fingerprint,
+                                            &received_fingerprint,
                                             &size_fingerprint,
                                             &signed_data,
                                             &size_signed_data);
