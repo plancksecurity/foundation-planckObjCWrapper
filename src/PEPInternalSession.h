@@ -332,7 +332,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Signing
 
-- (NSString *)signData:(NSData *)dataToSign
+- (NSString *)signText:(NSString *)stringToSign
            fingerprint:(NSString * _Nonnull * _Nonnull)fingerprint
                  error:(NSError **)error;
 

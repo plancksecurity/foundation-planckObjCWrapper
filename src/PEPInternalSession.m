@@ -1050,17 +1050,18 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
 
 #pragma mark - Signing
 
-- (NSString *)signData:(NSData *)dataToSign
-           fingerprint:(NSString **)fingerprint
-                 error:(NSError **)error;
+- (NSString *)signText:(NSString *)stringToSign
+             fingerprint:(NSString * _Nonnull * _Nonnull)fingerprint
+                   error:(NSError **)error
 {
+    const char *utf8_text_to_sign = [[stringToSign precomposedStringWithCanonicalMapping] UTF8String];
     char *received_fingerprint;
     size_t size_fingerprint = 0;
     char *signed_data = nil;
     size_t size_signed_data = 0;
     PEPStatus status = (PEPStatus) log_sign(self.session,
-                                            dataToSign.bytes,
-                                            dataToSign.length,
+                                            utf8_text_to_sign,
+                                            strlen(utf8_text_to_sign),
                                             &received_fingerprint,
                                             &size_fingerprint,
                                             &signed_data,

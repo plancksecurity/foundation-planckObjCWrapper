@@ -1925,10 +1925,9 @@
 {
     PEPInternalSession *session = [PEPSessionProvider session];
     NSString *stringToSign = @"Hello, world";
-    NSData *dataToSign = [stringToSign dataUsingEncoding:NSUTF8StringEncoding];
     NSString *fingerprint = nil;
     NSError *error = nil;
-    NSString *signedString = [session signData:dataToSign fingerprint:&fingerprint error:&error];
+    NSString *signedString = [session signText:stringToSign fingerprint:&fingerprint error:&error];
     XCTAssertNil(signedString);
     XCTAssertNotNil(error);
 }
@@ -1949,10 +1948,9 @@
     XCTAssertNotNil(identMe.fingerPrint);
 
     NSString *stringToSign = @"Hello, world";
-    NSData *dataToSign = [stringToSign dataUsingEncoding:NSUTF8StringEncoding];
     NSString *fingerprint = nil;
     error = nil;
-    NSString *signedString = [session signData:dataToSign fingerprint:&fingerprint error:&error];
+    NSString *signedString = [session signText:stringToSign fingerprint:&fingerprint error:&error];
     XCTAssertNotNil(signedString);
     XCTAssertNil(error);
 
