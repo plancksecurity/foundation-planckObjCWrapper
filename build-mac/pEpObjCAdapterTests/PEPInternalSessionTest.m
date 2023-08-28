@@ -1928,8 +1928,8 @@
     NSData *dataToSign = [stringToSign dataUsingEncoding:NSUTF8StringEncoding];
     NSString *fingerprint = nil;
     NSError *error = nil;
-    NSData *signedData = [session signData:dataToSign fingerprint:&fingerprint error:&error];
-    XCTAssertNil(signedData);
+    NSString *signedString = [session signData:dataToSign fingerprint:&fingerprint error:&error];
+    XCTAssertNil(signedString);
     XCTAssertNotNil(error);
 }
 
@@ -1952,9 +1952,9 @@
     NSData *dataToSign = [stringToSign dataUsingEncoding:NSUTF8StringEncoding];
     NSString *fingerprint = nil;
     error = nil;
-    NSData *signedData = [session signData:dataToSign fingerprint:&fingerprint error:&error];
-    XCTAssertNil(signedData);
-    XCTAssertNotNil(error);
+    NSString *signedString = [session signData:dataToSign fingerprint:&fingerprint error:&error];
+    XCTAssertNotNil(signedString);
+    XCTAssertNil(error);
 }
 
 @end

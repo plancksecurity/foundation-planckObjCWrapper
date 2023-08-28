@@ -1050,9 +1050,9 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
 
 #pragma mark - Signing
 
-- (NSData *)signData:(NSData *)dataToSign
-         fingerprint:(NSString **)fingerprint
-               error:(NSError **)error;
+- (NSString *)signData:(NSData *)dataToSign
+           fingerprint:(NSString **)fingerprint
+                 error:(NSError **)error;
 {
     char *received_fingerprint;
     size_t size_fingerprint = 0;
@@ -1070,7 +1070,10 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
         return nil;
     }
 
-    return nil;
+    NSString *signatureString = [[NSString alloc] initWithCString:signed_data encoding:NSASCIIStringEncoding];
+    *fingerprint = [[NSString alloc] initWithCString:received_fingerprint encoding:NSASCIIStringEncoding];
+    free(received_fingerprint);
+    return signatureString;
 }
 
 @end
