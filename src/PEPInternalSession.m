@@ -1085,7 +1085,7 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
                                               utf8_signature,
                                               strlen(utf8_signature));
 
-    if (status == PEP_VERIFIED) {
+    if (status == PEP_VERIFIED || status == PEP_VERIFY_SIGNER_KEY_REVOKED) {
         return YES;
     }
 
