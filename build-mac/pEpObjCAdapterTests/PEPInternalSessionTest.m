@@ -1951,6 +1951,30 @@
                                       error:&error];
     XCTAssertFalse(isCorrectlySigned);
     XCTAssertNil(error);
+
+    // NOTE: Core engine constants are used here directly.
+    PEPIdentity *signingIdentity = [[PEPIdentity alloc]
+                                    initWithAddress:@AUDIT_LOG_USER_ADDRESS
+                                    userID:@PEP_OWN_USERID
+                                    userName:@AUDIT_LOG_USER_NAME
+                                    isOwn:YES];
+
+    // Get the fingerprint of the signing identity.
+    error = nil;
+    success = [session mySelf:signingIdentity error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+
+    // Try to reset the signing identity.
+    error = nil;
+    success = [session keyReset:signingIdentity fingerprint:signingIdentity.fingerPrint error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+
+    error = nil;
+    isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
+    XCTAssertTrue(isCorrectlySigned);
+    XCTAssertNil(error);
 }
 
 @end
