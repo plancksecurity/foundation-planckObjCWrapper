@@ -1923,6 +1923,7 @@
 
 - (void)testSigningRoundtrip
 {
+    // Basic signing, without needing an own identity
     PEPInternalSession *session = [PEPSessionProvider session];
     NSString *stringToSign = @"Hello, world";
     NSError *error = nil;
@@ -1930,21 +1931,25 @@
     XCTAssertNotNil(signedString);
     XCTAssertNil(error);
 
+    // Verify the signed text
     error = nil;
     BOOL isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
     XCTAssertTrue(isCorrectlySigned);
     XCTAssertNil(error);
 
+    // Reset all own keys
     error = nil;
     BOOL success = [session keyResetAllOwnKeysError:&error];
     XCTAssertTrue(success);
     XCTAssertNil(error);
 
+    // Verify the signed text
     error = nil;
     isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
     XCTAssertTrue(isCorrectlySigned);
     XCTAssertNil(error);
 
+    // Verification should fail when text and signature don't match, obviously.
     error = nil;
     isCorrectlySigned = [session verifyText:@"This is a very different string"
                                   signature:signedString
@@ -1971,6 +1976,7 @@
     XCTAssertTrue(success);
     XCTAssertNil(error);
 
+    // Verify the signed text
     error = nil;
     isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
     XCTAssertTrue(isCorrectlySigned);
