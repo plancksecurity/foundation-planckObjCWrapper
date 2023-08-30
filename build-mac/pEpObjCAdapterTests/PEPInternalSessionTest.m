@@ -1927,22 +1927,6 @@
     NSString *stringToSign = @"Hello, world";
     NSError *error = nil;
     NSString *signedString = [session signText:stringToSign error:&error];
-    XCTAssertNil(signedString);
-    XCTAssertNotNil(error);
-
-    PEPIdentity *identMe = [[PEPIdentity alloc]
-                            initWithAddress:@"own_identity@example.com"
-                            userID:@"own_identity"
-                            userName:@"Test 1"
-                            isOwn:YES];
-
-    error = nil;
-    XCTAssertTrue([session mySelf:identMe error:&error]);
-    XCTAssertNil(error);
-    XCTAssertNotNil(identMe.fingerPrint);
-
-    error = nil;
-    signedString = [session signText:stringToSign error:&error];
     XCTAssertNotNil(signedString);
     XCTAssertNil(error);
 
