@@ -1054,8 +1054,6 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
                  error:(NSError **)error
 {
     const char *utf8_text_to_sign = [[stringToSign precomposedStringWithCanonicalMapping] UTF8String];
-    char *received_fingerprint;
-    size_t size_fingerprint = 0;
     char *signed_data = nil;
     size_t size_signed_data = 0;
     PEPStatus status = (PEPStatus) log_sign(self.session,
