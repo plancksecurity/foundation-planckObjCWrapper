@@ -1934,6 +1934,16 @@
     BOOL isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
     XCTAssertTrue(isCorrectlySigned);
     XCTAssertNil(error);
+
+    error = nil;
+    BOOL success = [session keyResetAllOwnKeysError:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+
+    error = nil;
+    isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
+    XCTAssertTrue(isCorrectlySigned);
+    XCTAssertNil(error);
 }
 
 @end
