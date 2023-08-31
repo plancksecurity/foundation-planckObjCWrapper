@@ -1281,7 +1281,7 @@
                               initWithAddress:@"partner1@example.com"
                               userID:@"partner1"
                               userName:@"Partner 1"
-                                          isOwn:NO];
+                              isOwn:NO];
 
     PEPMessage *draftMail = [PEPTestUtils
                              mailFrom:identMeWithPassphrase
@@ -1846,10 +1846,10 @@
     [self updateAndVerifyPartnerIdentity:identAlice session:session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
-                               initWithAddress:@"me-myself-and-i@pep-project.org"
-                               userID:@"me-myself-and-i"
-                               userName:@"pEp Me"
-                               isOwn:YES];
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
@@ -1981,6 +1981,25 @@
     isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
     XCTAssertTrue(isCorrectlySigned);
     XCTAssertNil(error);
+}
+
+- (void)testSigningUTF8
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    NSString *stringToSign = @"Hello, world. Здравствуй, мир.";
+    NSError *error = nil;
+    NSString *signedString = [session signText:stringToSign error:&error];
+    XCTAssertNotNil(signedString);
+    XCTAssertNil(error);
+
+    error = nil;
+    BOOL isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
+    XCTAssertTrue(isCorrectlySigned);
+    XCTAssertNil(error);
+
+    error = nil;
+    isCorrectlySigned = [session verifyText:@"Здравствуй, мир." signature:signedString error:&error];
+    XCTAssertFalse(isCorrectlySigned);
 }
 
 @end

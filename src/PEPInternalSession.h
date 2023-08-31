@@ -335,6 +335,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)signText:(NSString *)stringToSign
                  error:(NSError **)error;
 
+/// @Note This method can return `NO` without setting an error.
 - (BOOL)verifyText:(NSString *)textToVerify
          signature:(NSString *)signature
              error:(NSError **)error;

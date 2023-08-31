@@ -1077,6 +1077,7 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
 {
     const char *utf8_text = [[textToVerify precomposedStringWithCanonicalMapping] UTF8String];
     const char *utf8_signature = [[signature precomposedStringWithCanonicalMapping] UTF8String];
+
     PEPStatus status = (PEPStatus) verify_signature(self.session,
                                                     utf8_text,
                                                     strlen(utf8_text),
