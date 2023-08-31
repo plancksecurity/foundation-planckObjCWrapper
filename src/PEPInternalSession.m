@@ -1073,6 +1073,7 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
 
 - (BOOL)verifyText:(NSString *)textToVerify
          signature:(NSString *)signature
+          verified:(BOOL *)verified
              error:(NSError **)error
 {
     const char *utf8_text = [[textToVerify precomposedStringWithCanonicalMapping] UTF8String];
@@ -1085,6 +1086,7 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
                                                     strlen(utf8_signature));
 
     if (status == PEP_VERIFIED) {
+        *verified = YES;
         return YES;
     }
 
@@ -1092,7 +1094,8 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
         return NO;
     }
 
-    return NO;
+    *verified = NO;
+    return YES;
 }
 
 @end

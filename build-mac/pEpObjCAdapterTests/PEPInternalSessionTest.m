@@ -1932,10 +1932,15 @@
     XCTAssertNil(error);
 
     // Verify the signed text
+    BOOL verified = NO;
     error = nil;
-    BOOL isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
-    XCTAssertTrue(isCorrectlySigned);
+    BOOL sucess = [session verifyText:stringToSign
+                            signature:signedString
+                             verified:&verified
+                                error:&error];
+    XCTAssertTrue(sucess);
     XCTAssertNil(error);
+    XCTAssertTrue(verified);
 
     // Reset all own keys
     error = nil;
@@ -1945,17 +1950,23 @@
 
     // Verify the signed text
     error = nil;
-    isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
-    XCTAssertTrue(isCorrectlySigned);
+    success = [session verifyText:stringToSign
+                        signature:signedString
+                         verified:&verified
+                            error:&error];
+    XCTAssertTrue(sucess);
     XCTAssertNil(error);
+    XCTAssertTrue(verified);
 
     // Verification should fail when text and signature don't match, obviously.
     error = nil;
-    isCorrectlySigned = [session verifyText:@"This is a very different string"
-                                  signature:signedString
-                                      error:&error];
-    XCTAssertFalse(isCorrectlySigned);
+    success = [session verifyText:@"This is a very different string"
+                        signature:signedString
+                         verified:&verified
+                            error:&error];
+    XCTAssertTrue(sucess);
     XCTAssertNil(error);
+    XCTAssertFalse(verified);
 
     // NOTE: Core engine constants are used here directly.
     PEPIdentity *signingIdentity = [[PEPIdentity alloc]
@@ -1978,9 +1989,13 @@
 
     // Verify the signed text
     error = nil;
-    isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
-    XCTAssertTrue(isCorrectlySigned);
+    success = [session verifyText:stringToSign
+                        signature:signedString
+                         verified:&verified
+                            error:&error];
+    XCTAssertTrue(sucess);
     XCTAssertNil(error);
+    XCTAssertTrue(verified);
 }
 
 - (void)testSigningUTF8
@@ -1992,14 +2007,25 @@
     XCTAssertNotNil(signedString);
     XCTAssertNil(error);
 
-    error = nil;
-    BOOL isCorrectlySigned = [session verifyText:stringToSign signature:signedString error:&error];
-    XCTAssertTrue(isCorrectlySigned);
-    XCTAssertNil(error);
+    BOOL verified = NO;
 
     error = nil;
-    isCorrectlySigned = [session verifyText:@"Здравствуй, мир." signature:signedString error:&error];
-    XCTAssertFalse(isCorrectlySigned);
+    BOOL success = [session verifyText:stringToSign
+                             signature:signedString
+                              verified:&verified
+                                 error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+
+    error = nil;
+    success = [session verifyText:@"Здравствуй, мир."
+                        signature:signedString
+                         verified:&verified
+                            error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+    XCTAssertFalse(verified);
 }
 
 @end
