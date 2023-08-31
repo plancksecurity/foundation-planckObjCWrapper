@@ -1959,9 +1959,9 @@
 
     // NOTE: Core engine constants are used here directly.
     PEPIdentity *signingIdentity = [[PEPIdentity alloc]
-                                    initWithAddress:@AUDIT_LOG_USER_ADDRESS
+                                    initWithAddress:@SIGNING_IDENTITY_USER_ADDRESS
                                     userID:@PEP_OWN_USERID
-                                    userName:@AUDIT_LOG_USER_NAME
+                                    userName:@SIGNING_IDENTITY_USER_NAME
                                     isOwn:YES];
 
     // Get the fingerprint of the signing identity.
