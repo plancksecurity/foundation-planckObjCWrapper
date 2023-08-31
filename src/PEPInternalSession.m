@@ -31,7 +31,7 @@
 
 #import "key_reset.h"
 #import "media_key.h"
-#import "log_sign.h"
+#import "signature.h"
 
 @implementation PEPInternalSession
 
@@ -1056,11 +1056,11 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
     const char *utf8_text_to_sign = [[stringToSign precomposedStringWithCanonicalMapping] UTF8String];
     char *signed_data = nil;
     size_t size_signed_data = 0;
-    PEPStatus status = (PEPStatus) log_sign(self.session,
-                                            utf8_text_to_sign,
-                                            strlen(utf8_text_to_sign),
-                                            &signed_data,
-                                            &size_signed_data);
+    PEPStatus status = (PEPStatus) signature_for_text(self.session,
+                                                      utf8_text_to_sign,
+                                                      strlen(utf8_text_to_sign),
+                                                      &signed_data,
+                                                      &size_signed_data);
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
         return nil;
@@ -1077,11 +1077,11 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
 {
     const char *utf8_text = [[textToVerify precomposedStringWithCanonicalMapping] UTF8String];
     const char *utf8_signature = [[signature precomposedStringWithCanonicalMapping] UTF8String];
-    PEPStatus status = (PEPStatus) log_verify(self.session,
-                                              utf8_text,
-                                              strlen(utf8_text),
-                                              utf8_signature,
-                                              strlen(utf8_signature));
+    PEPStatus status = (PEPStatus) verify_signature(self.session,
+                                                    utf8_text,
+                                                    strlen(utf8_text),
+                                                    utf8_signature,
+                                                    strlen(utf8_signature));
 
     if (status == PEP_VERIFIED) {
         return YES;
