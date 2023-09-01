@@ -1066,7 +1066,10 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
         return nil;
     }
 
-    NSString *signatureString = [[NSString alloc] initWithCString:signed_data encoding:NSASCIIStringEncoding];
+    NSString *signatureString = [[NSString alloc]
+                                 initWithBytes:signed_data
+                                 length:size_signed_data
+                                 encoding:NSASCIIStringEncoding];
 
     return signatureString;
 }
