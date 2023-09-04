@@ -214,6 +214,17 @@ extern NSString *const _Nonnull PEPObjCAdapterErrorDomain;
 /// Wraps `disable_all_sync_channels` (sync_api.h).
 - (BOOL)disableAllSyncChannels:(NSError * _Nullable * _Nullable)error;
 
+#pragma mark - Signing
+
+- (void)signText:(NSString *)stringToSign
+   errorCallback:(void (^)(NSError *error))errorCallback
+ successCallback:(void (^)(NSString *signature))successCallback;
+
+- (void)verifyText:(NSString *)textToVerify
+         signature:(NSString *)signature
+     errorCallback:(void (^)(NSError *error))errorCallback
+   successCallback:(void (^)(BOOL verified))successCallback;
+
 @end
 
 NS_ASSUME_NONNULL_END
