@@ -25,6 +25,9 @@ const NSInteger PEPTestInternalSyncTimeout = 20;
 
 const NSInteger PEPTestInternalFastTimeout = 5;
 
+NSString * const SigningIdentityAddress = @"signing_identity@planck.security";
+NSString * const SigningIdentityUserName = @"Signing Identity";
+
 @implementation PEPTestUtils
 
 + (PEPIdentity *)foreignPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;

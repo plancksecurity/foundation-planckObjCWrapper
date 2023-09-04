@@ -25,6 +25,12 @@ extern const NSInteger PEPTestInternalSyncTimeout;
 /// Timeout for relatively quick internal operations.
 extern const NSInteger PEPTestInternalFastTimeout;
 
+/// @Note: This must match SIGNING_IDENTITY_USER_ADDRESS from signature.h (core).
+extern NSString * const SigningIdentityAddress;
+
+/// @Note: This must match SIGNING_IDENTITY_USER_NAME from signature.h (core).
+extern NSString * const SigningIdentityUserName;
+
 @interface PEPTestUtils : NSObject
 
 + (PEPIdentity *)foreignPepIdentityWithAddress:(NSString *)address userName:(NSString *)username;

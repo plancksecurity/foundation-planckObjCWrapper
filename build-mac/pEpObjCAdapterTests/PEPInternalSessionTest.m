@@ -1968,11 +1968,10 @@
     XCTAssertNil(error);
     XCTAssertFalse(verified);
 
-    // NOTE: Core engine constants are used here directly.
     PEPIdentity *signingIdentity = [[PEPIdentity alloc]
-                                    initWithAddress:@SIGNING_IDENTITY_USER_ADDRESS
+                                    initWithAddress:SigningIdentityAddress
                                     userID:@PEP_OWN_USERID
-                                    userName:@SIGNING_IDENTITY_USER_NAME
+                                    userName:SigningIdentityUserName
                                     isOwn:YES];
 
     // Get the fingerprint of the signing identity.
