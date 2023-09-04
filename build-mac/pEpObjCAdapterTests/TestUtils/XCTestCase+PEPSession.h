@@ -79,6 +79,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<NSString *> * _Nullable)importExtraKey:(NSString *)extraKey
                                             error:(NSError * _Nullable *)error;
 
+#pragma mark - Signing
+
+- (NSString *)signText:(NSString *)stringToSign
+                 error:(NSError **)error;
+
+- (BOOL)verifyText:(NSString *)textToVerify
+         signature:(NSString *)signature
+          verified:(BOOL *)verified
+             error:(NSError **)error;
+
 @end
 
 NS_ASSUME_NONNULL_END
