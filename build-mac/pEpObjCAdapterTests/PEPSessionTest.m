@@ -386,6 +386,113 @@
     [PEPObjCAdapter configureMediaKeys:mediaKeys];
 }
 
+#pragma mark - Signing
+
+- (void)testSigningRoundtrip
+{
+    // Basic signing, without needing an own identity
+    NSString *stringToSign = @"Hello, world";
+    NSError *error = nil;
+    NSString *signedString = [self signText:stringToSign error:&error];
+    XCTAssertNotNil(signedString);
+    XCTAssertNil(error);
+
+    // Verify the signed text
+    BOOL verified = NO;
+    error = nil;
+    BOOL sucess = [self verifyText:stringToSign
+                         signature:signedString
+                          verified:&verified
+                             error:&error];
+    XCTAssertTrue(sucess);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+
+    // Reset all own keys
+    error = nil;
+    BOOL success = [self keyResetAllOwnKeysError:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+
+    // Verify the signed text
+    error = nil;
+    success = [self verifyText:stringToSign
+                     signature:signedString
+                      verified:&verified
+                         error:&error];
+    XCTAssertTrue(sucess);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+
+    // Verification should fail when text and signature don't match, obviously.
+    error = nil;
+    success = [self verifyText:@"This is a very different string"
+                     signature:signedString
+                      verified:&verified
+                         error:&error];
+    XCTAssertTrue(sucess);
+    XCTAssertNil(error);
+    XCTAssertFalse(verified);
+
+    // NOTE: Core engine constants are used here directly.
+    PEPIdentity *signingIdentity = [[PEPIdentity alloc]
+                                    initWithAddress:@SIGNING_IDENTITY_USER_ADDRESS
+                                    userID:@PEP_OWN_USERID
+                                    userName:@SIGNING_IDENTITY_USER_NAME
+                                    isOwn:YES];
+
+    // Get the fingerprint of the signing identity.
+    error = nil;
+    signingIdentity = [self mySelf:signingIdentity error:&error];
+    XCTAssertNotNil(signingIdentity);
+    XCTAssertNil(error);
+
+    // Try to reset the signing identity.
+    error = nil;
+    success = [self keyReset:signingIdentity fingerprint:signingIdentity.fingerPrint error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+
+    // Verify the signed text
+    error = nil;
+    success = [self verifyText:stringToSign
+                     signature:signedString
+                      verified:&verified
+                         error:&error];
+    XCTAssertTrue(sucess);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+}
+
+- (void)testSigningUTF8
+{
+    NSString *stringToSign = @"Hello, world. Здравствуй, мир.";
+    NSError *error = nil;
+    NSString *signedString = [self signText:stringToSign error:&error];
+    XCTAssertNotNil(signedString);
+    XCTAssertNil(error);
+
+    BOOL verified = NO;
+
+    error = nil;
+    BOOL success = [self verifyText:stringToSign
+                          signature:signedString
+                           verified:&verified
+                              error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+
+    error = nil;
+    success = [self verifyText:@"Здравствуй, мир."
+                     signature:signedString
+                      verified:&verified
+                         error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+    XCTAssertFalse(verified);
+}
+
 #pragma mark - Helpers
 
 - (PEPMessage *)mailWrittenToMySelf

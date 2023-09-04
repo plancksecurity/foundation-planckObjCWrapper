@@ -422,6 +422,31 @@
     return result;
 }
 
+- (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+
+    __block BOOL result = NO;
+    __block NSError *asyncError = nil;
+
+    [asyncSession keyResetAllOwnKeys:^(NSError * _Nonnull error) {
+        asyncError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = asyncError;
+    }
+
+    return result;
+}
+
 - (BOOL)syncReinit:(NSError * _Nullable *)error
 {
     PEPSession *asyncSession = [PEPSession new];

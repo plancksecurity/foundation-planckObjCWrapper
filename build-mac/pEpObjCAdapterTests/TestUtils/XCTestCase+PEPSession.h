@@ -74,6 +74,8 @@ NS_ASSUME_NONNULL_BEGIN
      fingerprint:(NSString * _Nullable)fingerprint
            error:(NSError * _Nullable * _Nullable)error;
 
+- (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error;
+
 - (BOOL)syncReinit:(NSError * _Nullable *)error;
 
 - (NSArray<NSString *> * _Nullable)importExtraKey:(NSString *)extraKey
