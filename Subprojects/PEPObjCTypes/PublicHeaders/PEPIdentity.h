@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *address;
 
 /// The user ID.
-@property (nonatomic) NSString *userID;
+@property (nonatomic, nullable) NSString *userID;
 
 /// The (optional) user name.
 @property (nonatomic, nullable) NSString *userName;
