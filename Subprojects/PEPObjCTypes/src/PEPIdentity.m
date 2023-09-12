@@ -35,8 +35,13 @@
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
 {
-    return [self initWithAddress:address userID:userID userName:userName isOwn:isOwn
-                     fingerPrint:fingerPrint commType:PEPCommTypeUnknown language:nil];
+    return [self initWithAddress:address
+                          userID:userID
+                        userName:userName
+                           isOwn:isOwn
+                     fingerPrint:fingerPrint
+                        commType:PEPCommTypeUnknown
+                        language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -44,14 +49,24 @@
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
 {
-    return [self initWithAddress:address userID:userID userName:userName
-                           isOwn:isOwn fingerPrint:nil commType:PEPCommTypeUnknown language:nil];
+    return [self initWithAddress:address
+                          userID:userID
+                        userName:userName
+                           isOwn:isOwn
+                     fingerPrint:nil
+                        commType:PEPCommTypeUnknown
+                        language:nil];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
 {
-    return [self initWithAddress:address userID:nil userName:nil isOwn:NO fingerPrint:nil
-                        commType:PEPCommTypeUnknown language:nil];
+    return [self initWithAddress:address
+                          userID:nil
+                        userName:nil
+                           isOwn:NO
+                     fingerPrint:nil
+                        commType:PEPCommTypeUnknown
+                        language:nil];
 }
 
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity
@@ -81,10 +96,13 @@
 
 - (id)mutableCopyWithZone:(nullable NSZone *)zone
 {
-    return [[PEPIdentity alloc] initWithAddress:self.address userID:self.userID
-                                       userName:self.userName isOwn:self.isOwn
+    return [[PEPIdentity alloc] initWithAddress:self.address
+                                         userID:self.userID
+                                       userName:self.userName
+                                          isOwn:self.isOwn
                                     fingerPrint:self.fingerPrint
-                                       commType:self.commType language:self.language];
+                                       commType:self.commType
+                                       language:self.language];
 }
 
 // MARK: - Debug
