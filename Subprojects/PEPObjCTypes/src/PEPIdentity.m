@@ -13,6 +13,8 @@
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
+                           majorVersion:(unsigned int)majorVersion
+                           minorVersion:(unsigned int)minorVersion
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEPCommType)commType
@@ -21,6 +23,8 @@
         self.address = address;
         self.userID = userID;
         self.userName = userName;
+        self.majorVersion = majorVersion;
+        self.minorVersion = minorVersion;
         self.isOwn = isOwn;
         self.fingerPrint = fingerPrint;
         self.commType = commType;
@@ -38,6 +42,8 @@
     return [self initWithAddress:address
                           userID:userID
                         userName:userName
+                    majorVersion:0
+                    minorVersion:0
                            isOwn:isOwn
                      fingerPrint:fingerPrint
                         commType:PEPCommTypeUnknown
@@ -52,6 +58,8 @@
     return [self initWithAddress:address
                           userID:userID
                         userName:userName
+                    majorVersion:0
+                    minorVersion:0
                            isOwn:isOwn
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
@@ -63,6 +71,8 @@
     return [self initWithAddress:address
                           userID:nil
                         userName:nil
+                    majorVersion:0
+                    minorVersion:0
                            isOwn:NO
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
@@ -73,6 +83,8 @@
 {
     return [self initWithAddress:identity.address userID:identity.userID
                         userName:identity.userName
+                    majorVersion:0
+                    minorVersion:0
                            isOwn:identity.isOwn
                      fingerPrint:identity.fingerPrint
                         commType:identity.commType
@@ -99,6 +111,8 @@
     return [[PEPIdentity alloc] initWithAddress:self.address
                                          userID:self.userID
                                        userName:self.userName
+                                   majorVersion:0
+                                   minorVersion:0
                                           isOwn:self.isOwn
                                     fingerPrint:self.fingerPrint
                                        commType:self.commType

@@ -48,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
+                           majorVersion:(unsigned int)majorVersion
+                           minorVersion:(unsigned int)minorVersion
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEPCommType)commType
