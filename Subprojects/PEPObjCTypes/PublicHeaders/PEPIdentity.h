@@ -14,39 +14,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PEPIdentity : NSObject <NSMutableCopying, NSSecureCoding>
 
-/**
- The network address of this identity
- */
+/// The network address of this identity
 @property (nonatomic) NSString *address;
 
-/**
- The user ID.
- */
+/// The user ID.
 @property (nonatomic) NSString *userID;
 
-/**
- The (optional) user name.
- */
+/// The (optional) user name.
 @property (nonatomic, nullable) NSString *userName;
 
-/**
- The (optional) fingerprint.
- */
+/// The (optional) fingerprint.
 @property (nonatomic, nullable) NSString *fingerPrint;
 
-/**
- The (optional) language that this identity uses.
- */
+/// The (optional) language that this identity uses.
 @property (nonatomic, nullable) NSString *language;
 
-/**
- The comm type of this identity.
- */
+/// The comm type of this identity.
 @property PEPCommType commType;
 
-/**
- Is this one of our own identities?
- */
+/// Is this one of our own identities?
 @property BOOL isOwn;
 
 /// Flags controlling pEp sync behaviour, consisting of PEPIdentityFlags enums
@@ -80,9 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nonnull instancetype)initWithAddress:(NSString *)address;
 
-/**
- Copy constructor.
- */
+/// Copy constructor.
 - (nonnull instancetype)initWithIdentity:(PEPIdentity *)identity;
 
 @end
