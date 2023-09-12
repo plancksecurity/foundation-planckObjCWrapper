@@ -53,6 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// ORed together.
 @property int flags;
 
+/// `major_ver` from `pEp_identity`
+@property unsigned int majorVersion;
+
+/// `minor_ver` from `pEp_identity`
+@property unsigned int minorVersion;
+
 - (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
