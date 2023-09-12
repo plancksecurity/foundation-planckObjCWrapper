@@ -10,17 +10,19 @@
 
 #import "PEPEngineTypes.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PEPIdentity : NSObject <NSMutableCopying, NSSecureCoding>
 
 /**
  The network address of this identity
  */
-@property (nonatomic, nonnull) NSString *address;
+@property (nonatomic) NSString *address;
 
 /**
  The user ID.
  */
-@property (nonatomic, nonnull) NSString *userID;
+@property (nonatomic) NSString *userID;
 
 /**
  The (optional) user name.
@@ -51,7 +53,7 @@
 /// ORed together.
 @property int flags;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+- (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
@@ -59,22 +61,24 @@
                                commType:(PEPCommType)commType
                                language:(NSString * _Nullable)language;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+- (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+- (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
+- (nonnull instancetype)initWithAddress:(NSString *)address;
 
 /**
  Copy constructor.
  */
-- (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
+- (nonnull instancetype)initWithIdentity:(PEPIdentity *)identity;
 
 @end
+
+NS_ASSUME_NONNULL_END
