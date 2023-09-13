@@ -8,11 +8,13 @@
 
 #import "PEPIdentity.h"
 
-/// The major core version at the time when the member `majorVersion` was introduced.
-const unsigned int kCoreMajorVersion = 3;
+/// The major core version at the time when the member `majorVersion` was introduced,
+/// default value when nothing else is available.
+const unsigned int kCoreMajorVersionDefault = 3;
 
-/// The minor core version at the time when the member `minorVersion` was introduced.
-const unsigned int kCoreMinorVersion = 3;
+/// The minor core version at the time when the member `minorVersion` was introduced,
+/// default value when nothing else is available.
+const unsigned int kCoreMinorVersionDefault = 3;
 
 @implementation PEPIdentity
 
@@ -50,8 +52,8 @@ const unsigned int kCoreMinorVersion = 3;
     return [self initWithAddress:address
                           userID:userID
                         userName:userName
-                    majorVersion:kCoreMajorVersion // default value
-                    minorVersion:kCoreMinorVersion // default value
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
                            isOwn:isOwn
                      fingerPrint:fingerPrint
                         commType:PEPCommTypeUnknown
@@ -67,8 +69,8 @@ const unsigned int kCoreMinorVersion = 3;
     return [self initWithAddress:address
                           userID:userID
                         userName:userName
-                    majorVersion:kCoreMajorVersion // default value
-                    minorVersion:kCoreMinorVersion // default value
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
                            isOwn:isOwn
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
@@ -81,8 +83,8 @@ const unsigned int kCoreMinorVersion = 3;
     return [self initWithAddress:address
                           userID:nil
                         userName:nil
-                    majorVersion:kCoreMajorVersion // default value
-                    minorVersion:kCoreMinorVersion // default value
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
                            isOwn:NO
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
