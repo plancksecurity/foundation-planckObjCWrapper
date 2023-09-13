@@ -48,6 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// `enc_format` from `pEp_identity`
 @property PEPEncFormat encryptionFormat;
 
+/// `flags` from `pEp_identity`
+@property PEPIdentityFlags identityFlags;
+
 - (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
@@ -57,7 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
                                language:(NSString * _Nullable)language
                            majorVersion:(unsigned int)majorVersion
                            minorVersion:(unsigned int)minorVersion
-                       encryptionFormat:(PEPEncFormat)encryptionFormat;
+                       encryptionFormat:(PEPEncFormat)encryptionFormat
+                          identityFlags:(PEPIdentityFlags)identityFlags;
 
 - (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID

@@ -28,18 +28,20 @@ const unsigned int kCoreMinorVersionDefault = 3;
                            majorVersion:(unsigned int)majorVersion
                            minorVersion:(unsigned int)minorVersion
                        encryptionFormat:(PEPEncFormat)encryptionFormat
+                          identityFlags:(PEPIdentityFlags)identityFlags
 {
     if (self = [super init]) {
         self.address = address;
         self.userID = userID;
         self.userName = userName;
-        self.majorVersion = majorVersion;
-        self.minorVersion = minorVersion;
         self.isOwn = isOwn;
         self.fingerPrint = fingerPrint;
         self.commType = commType;
-        self.encryptionFormat = encryptionFormat;
         self.language = language;
+        self.majorVersion = majorVersion;
+        self.minorVersion = minorVersion;
+        self.encryptionFormat = encryptionFormat;
+        self.identityFlags = identityFlags;
     }
     return self;
 }
@@ -59,7 +61,8 @@ const unsigned int kCoreMinorVersionDefault = 3;
                         language:nil
                     majorVersion:kCoreMajorVersionDefault
                     minorVersion:kCoreMinorVersionDefault
-                encryptionFormat:PEPEncFormatAuto];
+                encryptionFormat:PEPEncFormatAuto
+                   identityFlags:PEPIdentityFlagsDefault];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -76,7 +79,8 @@ const unsigned int kCoreMinorVersionDefault = 3;
                         language:nil
                     majorVersion:kCoreMajorVersionDefault
                     minorVersion:kCoreMinorVersionDefault
-                encryptionFormat:PEPEncFormatAuto];
+                encryptionFormat:PEPEncFormatAuto
+                   identityFlags:PEPIdentityFlagsDefault];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -90,7 +94,8 @@ const unsigned int kCoreMinorVersionDefault = 3;
                         language:nil
                     majorVersion:kCoreMajorVersionDefault
                     minorVersion:kCoreMinorVersionDefault
-                encryptionFormat:PEPEncFormatAuto];
+                encryptionFormat:PEPEncFormatAuto
+                   identityFlags:PEPIdentityFlagsDefault];
 }
 
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity
@@ -103,7 +108,8 @@ const unsigned int kCoreMinorVersionDefault = 3;
                         language:identity.language
                     majorVersion:identity.majorVersion
                     minorVersion:identity.minorVersion
-                encryptionFormat:PEPEncFormatAuto];
+                encryptionFormat:PEPEncFormatAuto
+                   identityFlags:PEPIdentityFlagsDefault];
 }
 
 // MARK: - Equality
@@ -132,7 +138,8 @@ const unsigned int kCoreMinorVersionDefault = 3;
                                        language:self.language
                                    majorVersion:self.majorVersion
                                    minorVersion:self.minorVersion
-                               encryptionFormat:PEPEncFormatAuto];
+                               encryptionFormat:PEPEncFormatAuto
+                                  identityFlags:PEPIdentityFlagsDefault];
 }
 
 // MARK: - Debug

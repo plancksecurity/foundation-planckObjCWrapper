@@ -103,6 +103,7 @@ typedef NS_CLOSED_ENUM(int, PEPEncryptFlags) {
 };
 
 typedef NS_CLOSED_ENUM(int, PEPIdentityFlags) {
+    PEPIdentityFlagsDefault = 0x0000, // PEP_idf_default
     PEPIdentityFlagsNotForSync = 0x0001, // PEP_idf_not_for_sync
     PEPIdentityFlagsList = 0x0002, // PEP_idf_list
     PEPIdentityFlagsDeviceGroup = 0x0100, // PEP_idf_devicegroup
