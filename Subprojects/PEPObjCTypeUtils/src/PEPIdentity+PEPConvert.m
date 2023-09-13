@@ -52,6 +52,8 @@
 
     pEpIdentity.majorVersion = identityStruct->major_ver;
     pEpIdentity.minorVersion = identityStruct->minor_ver;
+
+    pEpIdentity.encryptionFormat = identityStruct->enc_format;
 }
 
 - (pEp_identity *)toStruct
@@ -76,6 +78,8 @@
 
     ident->major_ver = self.majorVersion;
     ident->minor_ver = self.minorVersion;
+
+    ident->enc_format = self.encryptionFormat;
 
     return ident;
 }

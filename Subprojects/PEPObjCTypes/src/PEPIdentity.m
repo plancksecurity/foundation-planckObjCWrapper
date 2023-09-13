@@ -24,6 +24,7 @@ const unsigned int kCoreMinorVersion = 3;
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEPCommType)commType
+                       encryptionFormat:(PEPEncFormat)encryptionFormat
                                language:(NSString * _Nullable)language {
     if (self = [super init]) {
         self.address = address;
@@ -34,6 +35,7 @@ const unsigned int kCoreMinorVersion = 3;
         self.isOwn = isOwn;
         self.fingerPrint = fingerPrint;
         self.commType = commType;
+        self.encryptionFormat = encryptionFormat;
         self.language = language;
     }
     return self;
@@ -53,6 +55,7 @@ const unsigned int kCoreMinorVersion = 3;
                            isOwn:isOwn
                      fingerPrint:fingerPrint
                         commType:PEPCommTypeUnknown
+                encryptionFormat:PEPEncFormatAuto
                         language:nil];
 }
 
@@ -69,6 +72,7 @@ const unsigned int kCoreMinorVersion = 3;
                            isOwn:isOwn
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
+                encryptionFormat:PEPEncFormatAuto
                         language:nil];
 }
 
@@ -82,6 +86,7 @@ const unsigned int kCoreMinorVersion = 3;
                            isOwn:NO
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
+                encryptionFormat:PEPEncFormatAuto
                         language:nil];
 }
 
@@ -94,6 +99,7 @@ const unsigned int kCoreMinorVersion = 3;
                            isOwn:identity.isOwn
                      fingerPrint:identity.fingerPrint
                         commType:identity.commType
+                encryptionFormat:PEPEncFormatAuto
                         language:identity.language];
 }
 
@@ -122,6 +128,7 @@ const unsigned int kCoreMinorVersion = 3;
                                           isOwn:self.isOwn
                                     fingerPrint:self.fingerPrint
                                        commType:self.commType
+                               encryptionFormat:PEPEncFormatAuto
                                        language:self.language];
 }
 

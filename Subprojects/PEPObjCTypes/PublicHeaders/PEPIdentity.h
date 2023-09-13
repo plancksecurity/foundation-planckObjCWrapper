@@ -45,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// `minor_ver` from `pEp_identity`
 @property unsigned int minorVersion;
 
+/// `enc_format` from `pEp_identity`
+@property PEPEncFormat encryptionFormat;
+
 - (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
@@ -53,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEPCommType)commType
+                       encryptionFormat:(PEPEncFormat)encryptionFormat
                                language:(NSString * _Nullable)language;
 
 - (nonnull instancetype)initWithAddress:(NSString *)address
