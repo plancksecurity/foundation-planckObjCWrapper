@@ -8,6 +8,12 @@
 
 #import "PEPIdentity.h"
 
+/// The major core version at the time when the member `majorVersion` was introduced.
+const unsigned int kCoreMajorVersion = 3;
+
+/// The minor core version at the time when the member `minorVersion` was introduced.
+const unsigned int kCoreMinorVersion = 3;
+
 @implementation PEPIdentity
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -42,8 +48,8 @@
     return [self initWithAddress:address
                           userID:userID
                         userName:userName
-                    majorVersion:0
-                    minorVersion:0
+                    majorVersion:kCoreMajorVersion // default value
+                    minorVersion:kCoreMinorVersion // default value
                            isOwn:isOwn
                      fingerPrint:fingerPrint
                         commType:PEPCommTypeUnknown
@@ -58,8 +64,8 @@
     return [self initWithAddress:address
                           userID:userID
                         userName:userName
-                    majorVersion:0
-                    minorVersion:0
+                    majorVersion:kCoreMajorVersion // default value
+                    minorVersion:kCoreMinorVersion // default value
                            isOwn:isOwn
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
@@ -71,8 +77,8 @@
     return [self initWithAddress:address
                           userID:nil
                         userName:nil
-                    majorVersion:0
-                    minorVersion:0
+                    majorVersion:kCoreMajorVersion // default value
+                    minorVersion:kCoreMinorVersion // default value
                            isOwn:NO
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
@@ -83,8 +89,8 @@
 {
     return [self initWithAddress:identity.address userID:identity.userID
                         userName:identity.userName
-                    majorVersion:0
-                    minorVersion:0
+                    majorVersion:identity.majorVersion
+                    minorVersion:identity.minorVersion
                            isOwn:identity.isOwn
                      fingerPrint:identity.fingerPrint
                         commType:identity.commType
@@ -111,8 +117,8 @@
     return [[PEPIdentity alloc] initWithAddress:self.address
                                          userID:self.userID
                                        userName:self.userName
-                                   majorVersion:0
-                                   minorVersion:0
+                                   majorVersion:self.majorVersion
+                                   minorVersion:self.minorVersion
                                           isOwn:self.isOwn
                                     fingerPrint:self.fingerPrint
                                        commType:self.commType
