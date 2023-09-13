@@ -51,13 +51,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
-                           majorVersion:(unsigned int)majorVersion
-                           minorVersion:(unsigned int)minorVersion
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEPCommType)commType
-                       encryptionFormat:(PEPEncFormat)encryptionFormat
-                               language:(NSString * _Nullable)language;
+                               language:(NSString * _Nullable)language
+                           majorVersion:(unsigned int)majorVersion
+                           minorVersion:(unsigned int)minorVersion
+                       encryptionFormat:(PEPEncFormat)encryptionFormat;
 
 - (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID

@@ -21,13 +21,14 @@ const unsigned int kCoreMinorVersionDefault = 3;
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
-                           majorVersion:(unsigned int)majorVersion
-                           minorVersion:(unsigned int)minorVersion
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEPCommType)commType
+                               language:(NSString * _Nullable)language
+                           majorVersion:(unsigned int)majorVersion
+                           minorVersion:(unsigned int)minorVersion
                        encryptionFormat:(PEPEncFormat)encryptionFormat
-                               language:(NSString * _Nullable)language {
+{
     if (self = [super init]) {
         self.address = address;
         self.userID = userID;
@@ -52,13 +53,13 @@ const unsigned int kCoreMinorVersionDefault = 3;
     return [self initWithAddress:address
                           userID:userID
                         userName:userName
-                    majorVersion:kCoreMajorVersionDefault
-                    minorVersion:kCoreMinorVersionDefault
                            isOwn:isOwn
                      fingerPrint:fingerPrint
                         commType:PEPCommTypeUnknown
-                encryptionFormat:PEPEncFormatAuto
-                        language:nil];
+                        language:nil
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
+                encryptionFormat:PEPEncFormatAuto];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -69,13 +70,13 @@ const unsigned int kCoreMinorVersionDefault = 3;
     return [self initWithAddress:address
                           userID:userID
                         userName:userName
-                    majorVersion:kCoreMajorVersionDefault
-                    minorVersion:kCoreMinorVersionDefault
                            isOwn:isOwn
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
-                encryptionFormat:PEPEncFormatAuto
-                        language:nil];
+                        language:nil
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
+                encryptionFormat:PEPEncFormatAuto];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -83,26 +84,26 @@ const unsigned int kCoreMinorVersionDefault = 3;
     return [self initWithAddress:address
                           userID:nil
                         userName:nil
-                    majorVersion:kCoreMajorVersionDefault
-                    minorVersion:kCoreMinorVersionDefault
                            isOwn:NO
                      fingerPrint:nil
                         commType:PEPCommTypeUnknown
-                encryptionFormat:PEPEncFormatAuto
-                        language:nil];
+                        language:nil
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
+                encryptionFormat:PEPEncFormatAuto];
 }
 
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity
 {
     return [self initWithAddress:identity.address userID:identity.userID
                         userName:identity.userName
-                    majorVersion:identity.majorVersion
-                    minorVersion:identity.minorVersion
                            isOwn:identity.isOwn
                      fingerPrint:identity.fingerPrint
                         commType:identity.commType
-                encryptionFormat:PEPEncFormatAuto
-                        language:identity.language];
+                        language:identity.language
+                    majorVersion:identity.majorVersion
+                    minorVersion:identity.minorVersion
+                encryptionFormat:PEPEncFormatAuto];
 }
 
 // MARK: - Equality
@@ -125,13 +126,13 @@ const unsigned int kCoreMinorVersionDefault = 3;
     return [[PEPIdentity alloc] initWithAddress:self.address
                                          userID:self.userID
                                        userName:self.userName
-                                   majorVersion:self.majorVersion
-                                   minorVersion:self.minorVersion
                                           isOwn:self.isOwn
                                     fingerPrint:self.fingerPrint
                                        commType:self.commType
-                               encryptionFormat:PEPEncFormatAuto
-                                       language:self.language];
+                                       language:self.language
+                                   majorVersion:self.majorVersion
+                                   minorVersion:self.minorVersion
+                               encryptionFormat:PEPEncFormatAuto];
 }
 
 // MARK: - Debug
@@ -146,7 +147,8 @@ const unsigned int kCoreMinorVersionDefault = 3;
 
 // MARK: - NSSecureCoding
 
-- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder
+{
     if (self = [self init]) {
         self.address = [decoder decodeObjectOfClass:[NSString class] forKey:@"address"];
         self.userID = [decoder decodeObjectOfClass:[NSString class] forKey:@"userID"];
@@ -161,7 +163,8 @@ const unsigned int kCoreMinorVersionDefault = 3;
     return self;
 }
 
-- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+- (void)encodeWithCoder:(nonnull NSCoder *)coder
+{
     [coder encodeObject:self.address forKey:@"address"];
     [coder encodeObject:self.userID forKey:@"userID"];
     [coder encodeObject:self.userName forKey:@"userName"];
@@ -172,7 +175,8 @@ const unsigned int kCoreMinorVersionDefault = 3;
     [coder encodeInt:self.flags forKey:@"flags"];
 }
 
-+ (BOOL)supportsSecureCoding {
++ (BOOL)supportsSecureCoding
+{
     return YES;
 }
 
