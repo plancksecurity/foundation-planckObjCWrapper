@@ -49,6 +49,9 @@
 
     pEpIdentity.isOwn = identityStruct->me;
     pEpIdentity.flags = identityStruct->flags;
+
+    pEpIdentity.majorVersion = identityStruct->major_ver;
+    pEpIdentity.minorVersion = identityStruct->minor_ver;
 }
 
 - (pEp_identity *)toStruct
@@ -70,6 +73,9 @@
     }
 
     ident->comm_type = (PEP_comm_type) self.commType;
+
+    ident->major_ver = self.majorVersion;
+    ident->minor_ver = self.minorVersion;
 
     return ident;
 }
