@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// The network address of this identity
 @property (nonatomic) NSString *address;
 
-/// The user ID.
+/// The (optional) user ID.
 @property (nonatomic, nullable) NSString *userID;
 
 /// The (optional) user name.
