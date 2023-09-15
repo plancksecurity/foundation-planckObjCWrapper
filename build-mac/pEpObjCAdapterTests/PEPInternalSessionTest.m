@@ -691,7 +691,7 @@
     XCTAssertEqual(color, PEPRatingReliable);
 }
 
-- (void)testGetTrustwordsFail
+- (void)testGetTrustwords
 {
     PEPInternalSession *session = [PEPSessionProvider session];
 
@@ -714,14 +714,13 @@
 
     NSError *error = nil;
 
-    // Expected fail with 3.2, because the partner will be counted as PGP user.
-    XCTAssertNil([session getTrustwordsIdentity1:me
-                                       identity2:alice
-                                        language:@"en"
-                                            full:YES
-                                           error:&error]);
-    XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, PEPStatusTrustwordNotFound);
+    XCTAssertNotNil([session getTrustwordsIdentity1:me
+                                          identity2:alice
+                                           language:@"en"
+                                               full:YES
+                                              error:&error]);
+    XCTAssertNil(error);
+    XCTAssertEqual(error.code, PEPStatusOK);
 }
 
 - (void)testStringToRating
