@@ -10,71 +10,75 @@
 
 #import "PEPEngineTypes.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PEPIdentity : NSObject <NSMutableCopying, NSSecureCoding>
 
-/**
- The network address of this identity
- */
-@property (nonatomic, nonnull) NSString *address;
+/// The network address of this identity
+@property (nonatomic) NSString *address;
 
-/**
- The user ID.
- */
-@property (nonatomic, nonnull) NSString *userID;
+/// The (optional) user ID.
+@property (nonatomic, nullable) NSString *userID;
 
-/**
- The (optional) user name.
- */
+/// The (optional) user name.
 @property (nonatomic, nullable) NSString *userName;
 
-/**
- The (optional) fingerprint.
- */
+/// The (optional) fingerprint.
 @property (nonatomic, nullable) NSString *fingerPrint;
 
-/**
- The (optional) language that this identity uses.
- */
+/// The (optional) language that this identity uses.
 @property (nonatomic, nullable) NSString *language;
 
-/**
- The comm type of this identity.
- */
+/// The comm type of this identity.
 @property PEPCommType commType;
 
-/**
- Is this one of our own identities?
- */
+/// Is this one of our own identities?
 @property BOOL isOwn;
 
 /// Flags controlling pEp sync behaviour, consisting of PEPIdentityFlags enums
 /// ORed together.
 @property int flags;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+/// `major_ver` from `pEp_identity`
+@property unsigned int majorVersion;
+
+/// `minor_ver` from `pEp_identity`
+@property unsigned int minorVersion;
+
+/// `enc_format` from `pEp_identity`
+@property PEPEncFormat encryptionFormat;
+
+/// `flags` from `pEp_identity`
+@property PEPIdentityFlags identityFlags;
+
+- (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEPCommType)commType
-                               language:(NSString * _Nullable)language;
+                               language:(NSString * _Nullable)language
+                           majorVersion:(unsigned int)majorVersion
+                           minorVersion:(unsigned int)minorVersion
+                       encryptionFormat:(PEPEncFormat)encryptionFormat
+                          identityFlags:(PEPIdentityFlags)identityFlags;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+- (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
+- (nonnull instancetype)initWithAddress:(NSString *)address
                                  userID:(NSString * _Nullable)userID
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn;
 
-- (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address;
+- (nonnull instancetype)initWithAddress:(NSString *)address;
 
-/**
- Copy constructor.
- */
-- (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity;
+/// Copy constructor.
+- (nonnull instancetype)initWithIdentity:(PEPIdentity *)identity;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,14 @@
 
 #import "PEPIdentity.h"
 
+/// The major core version at the time when the member `majorVersion` was introduced,
+/// default value when nothing else is available.
+const unsigned int kCoreMajorVersionDefault = 3;
+
+/// The minor core version at the time when the member `minorVersion` was introduced,
+/// default value when nothing else is available.
+const unsigned int kCoreMinorVersionDefault = 3;
+
 @implementation PEPIdentity
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -16,7 +24,12 @@
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
                                commType:(PEPCommType)commType
-                               language:(NSString * _Nullable)language {
+                               language:(NSString * _Nullable)language
+                           majorVersion:(unsigned int)majorVersion
+                           minorVersion:(unsigned int)minorVersion
+                       encryptionFormat:(PEPEncFormat)encryptionFormat
+                          identityFlags:(PEPIdentityFlags)identityFlags
+{
     if (self = [super init]) {
         self.address = address;
         self.userID = userID;
@@ -25,6 +38,10 @@
         self.fingerPrint = fingerPrint;
         self.commType = commType;
         self.language = language;
+        self.majorVersion = majorVersion;
+        self.minorVersion = minorVersion;
+        self.encryptionFormat = encryptionFormat;
+        self.identityFlags = identityFlags;
     }
     return self;
 }
@@ -35,8 +52,17 @@
                                   isOwn:(BOOL)isOwn
                             fingerPrint:(NSString * _Nullable)fingerPrint
 {
-    return [self initWithAddress:address userID:userID userName:userName isOwn:isOwn
-                     fingerPrint:fingerPrint commType:PEPCommTypeUnknown language:nil];
+    return [self initWithAddress:address
+                          userID:userID
+                        userName:userName
+                           isOwn:isOwn
+                     fingerPrint:fingerPrint
+                        commType:PEPCommTypeUnknown
+                        language:nil
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
+                encryptionFormat:PEPEncFormatAuto
+                   identityFlags:PEPIdentityFlagsDefault];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
@@ -44,14 +70,32 @@
                                userName:(NSString * _Nullable)userName
                                   isOwn:(BOOL)isOwn
 {
-    return [self initWithAddress:address userID:userID userName:userName
-                           isOwn:isOwn fingerPrint:nil commType:PEPCommTypeUnknown language:nil];
+    return [self initWithAddress:address
+                          userID:userID
+                        userName:userName
+                           isOwn:isOwn
+                     fingerPrint:nil
+                        commType:PEPCommTypeUnknown
+                        language:nil
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
+                encryptionFormat:PEPEncFormatAuto
+                   identityFlags:PEPIdentityFlagsDefault];
 }
 
 - (nonnull instancetype)initWithAddress:(NSString * _Nonnull)address
 {
-    return [self initWithAddress:address userID:nil userName:nil isOwn:NO fingerPrint:nil
-                        commType:PEPCommTypeUnknown language:nil];
+    return [self initWithAddress:address
+                          userID:nil
+                        userName:nil
+                           isOwn:NO
+                     fingerPrint:nil
+                        commType:PEPCommTypeUnknown
+                        language:nil
+                    majorVersion:kCoreMajorVersionDefault
+                    minorVersion:kCoreMinorVersionDefault
+                encryptionFormat:PEPEncFormatAuto
+                   identityFlags:PEPIdentityFlagsDefault];
 }
 
 - (nonnull instancetype)initWithIdentity:(PEPIdentity * _Nonnull)identity
@@ -61,7 +105,11 @@
                            isOwn:identity.isOwn
                      fingerPrint:identity.fingerPrint
                         commType:identity.commType
-                        language:identity.language];
+                        language:identity.language
+                    majorVersion:identity.majorVersion
+                    minorVersion:identity.minorVersion
+                encryptionFormat:PEPEncFormatAuto
+                   identityFlags:PEPIdentityFlagsDefault];
 }
 
 // MARK: - Equality
@@ -81,10 +129,17 @@
 
 - (id)mutableCopyWithZone:(nullable NSZone *)zone
 {
-    return [[PEPIdentity alloc] initWithAddress:self.address userID:self.userID
-                                       userName:self.userName isOwn:self.isOwn
+    return [[PEPIdentity alloc] initWithAddress:self.address
+                                         userID:self.userID
+                                       userName:self.userName
+                                          isOwn:self.isOwn
                                     fingerPrint:self.fingerPrint
-                                       commType:self.commType language:self.language];
+                                       commType:self.commType
+                                       language:self.language
+                                   majorVersion:self.majorVersion
+                                   minorVersion:self.minorVersion
+                               encryptionFormat:PEPEncFormatAuto
+                                  identityFlags:PEPIdentityFlagsDefault];
 }
 
 // MARK: - Debug
@@ -99,7 +154,8 @@
 
 // MARK: - NSSecureCoding
 
-- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder
+{
     if (self = [self init]) {
         self.address = [decoder decodeObjectOfClass:[NSString class] forKey:@"address"];
         self.userID = [decoder decodeObjectOfClass:[NSString class] forKey:@"userID"];
@@ -114,7 +170,8 @@
     return self;
 }
 
-- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+- (void)encodeWithCoder:(nonnull NSCoder *)coder
+{
     [coder encodeObject:self.address forKey:@"address"];
     [coder encodeObject:self.userID forKey:@"userID"];
     [coder encodeObject:self.userName forKey:@"userName"];
@@ -125,7 +182,8 @@
     [coder encodeInt:self.flags forKey:@"flags"];
 }
 
-+ (BOOL)supportsSecureCoding {
++ (BOOL)supportsSecureCoding
+{
     return YES;
 }
 
