@@ -250,8 +250,8 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param result The choice the user made with regards to the currently active handshake dialog.
  @param identitiesSharing The identities that are involved for the user's choice.
-                          That is, the user can chose to respond only for a subset of the
-                          identities that were originally involved in the handshake.
+ That is, the user can chose to respond only for a subset of the
+ identities that were originally involved in the handshake.
  @param error The default cocoa error handling.
  @return `YES` when the call succedded, `NO` otherwise. In the `NO` case, see `error` for details.
  */
@@ -329,6 +329,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)configureEchoProtocolEnabled:(BOOL)enabled;
 
 - (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled;
+
+#pragma mark - Signing
+
+- (NSString *)signText:(NSString *)stringToSign
+                 error:(NSError **)error;
+
+- (BOOL)verifyText:(NSString *)textToVerify
+         signature:(NSString *)signature
+          verified:(BOOL *)verified
+             error:(NSError **)error;
 
 @end
 

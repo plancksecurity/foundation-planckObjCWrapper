@@ -661,4 +661,41 @@ successCallback:(void (^)(NSString *log))successCallback
     });
 }
 
+#pragma mark - Signing
+
+- (void)signText:(NSString *)stringToSign
+   errorCallback:(void (^)(NSError *error))errorCallback
+ successCallback:(void (^)(NSString *signature))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        NSString *signature = [[PEPSessionProvider session] signText:stringToSign error:&error];
+        if (signature) {
+            successCallback(signature);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
+- (void)verifyText:(NSString *)textToVerify
+         signature:(NSString *)signature
+     errorCallback:(void (^)(NSError *error))errorCallback
+   successCallback:(void (^)(BOOL verified))successCallback
+{
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        BOOL verified;
+        BOOL success = [[PEPSessionProvider session] verifyText:textToVerify
+                                                      signature:signature
+                                                       verified:&verified
+                                                          error:&error];
+        if (success) {
+            successCallback(verified);
+        } else {
+            errorCallback(error);
+        }
+    });
+}
+
 @end

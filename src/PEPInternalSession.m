@@ -31,6 +31,7 @@
 
 #import "key_reset.h"
 #import "media_key.h"
+#import "signature.h"
 
 @implementation PEPInternalSession
 
@@ -614,7 +615,7 @@ void decryptMessageFree(message *src, message *dst, stringlist_t *extraKeys)
 }
 
 - (NSArray<NSString *> * _Nullable)importExtraKey:(NSString * _Nonnull)keydata
-                                               error:(NSError * _Nullable * _Nullable)error
+                                            error:(NSError * _Nullable * _Nullable)error
 {
     __block identity_list *identList = NULL;
     __block stringlist_t *fprList = NULL;
@@ -739,22 +740,22 @@ static NSDictionary *stringToRating;
 {
     NSDictionary *ratingToStringIntern =
     @{
-      [NSNumber numberWithInteger:PEPRatingCannotDecrypt]: @"cannot_decrypt",
-      [NSNumber numberWithInteger:PEPRatingHaveNoKey]: @"have_no_key",
-      [NSNumber numberWithInteger:PEPRatingUnencrypted]: @"unencrypted",
-      [NSNumber numberWithInteger:PEPRatingUnreliable]: @"unreliable",
-      [NSNumber numberWithInteger:PEPRatingReliable]: @"reliable",
-      [NSNumber numberWithInteger:PEPRatingTrusted]: @"trusted",
-      [NSNumber numberWithInteger:PEPRatingTrustedAndAnonymized]: @"trusted_and_anonymized",
-      [NSNumber numberWithInteger:PEPRatingFullyAnonymous]: @"fully_anonymous",
-      [NSNumber numberWithInteger:PEPRatingMistrust]: @"mistrust",
-      [NSNumber numberWithInteger:PEPRatingB0rken]: @"b0rken",
-      [NSNumber numberWithInteger:PEPRatingUnderAttack]: @"under_attack",
-      [NSNumber numberWithInteger:PEPRatingUndefined]: kUndefined,
-      };
+        [NSNumber numberWithInteger:PEPRatingCannotDecrypt]: @"cannot_decrypt",
+        [NSNumber numberWithInteger:PEPRatingHaveNoKey]: @"have_no_key",
+        [NSNumber numberWithInteger:PEPRatingUnencrypted]: @"unencrypted",
+        [NSNumber numberWithInteger:PEPRatingUnreliable]: @"unreliable",
+        [NSNumber numberWithInteger:PEPRatingReliable]: @"reliable",
+        [NSNumber numberWithInteger:PEPRatingTrusted]: @"trusted",
+        [NSNumber numberWithInteger:PEPRatingTrustedAndAnonymized]: @"trusted_and_anonymized",
+        [NSNumber numberWithInteger:PEPRatingFullyAnonymous]: @"fully_anonymous",
+        [NSNumber numberWithInteger:PEPRatingMistrust]: @"mistrust",
+        [NSNumber numberWithInteger:PEPRatingB0rken]: @"b0rken",
+        [NSNumber numberWithInteger:PEPRatingUnderAttack]: @"under_attack",
+        [NSNumber numberWithInteger:PEPRatingUndefined]: kUndefined,
+    };
     NSMutableDictionary *stringToRatingMutable = [NSMutableDictionary
                                                   dictionaryWithCapacity:
-                                                  ratingToStringIntern.count];
+                                                      ratingToStringIntern.count];
     for (NSNumber *ratingNumber in ratingToStringIntern.allKeys) {
         NSString *ratingName = [ratingToStringIntern objectForKey:ratingNumber];
         [stringToRatingMutable setObject:ratingNumber forKey:ratingName];
@@ -1045,6 +1046,59 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
 - (void)configureEchoInOutgoingMessageRatingPreviewEnabled:(BOOL)enabled
 {
     config_enable_echo_in_outgoing_message_rating_preview(self.session, enabled);
+}
+
+#pragma mark - Signing
+
+- (NSString *)signText:(NSString *)stringToSign
+                 error:(NSError **)error
+{
+    const char *utf8_text_to_sign = [[stringToSign precomposedStringWithCanonicalMapping] UTF8String];
+    char *signed_data = nil;
+    size_t size_signed_data = 0;
+    PEPStatus status = (PEPStatus) signature_for_text(self.session,
+                                                      utf8_text_to_sign,
+                                                      strlen(utf8_text_to_sign),
+                                                      &signed_data,
+                                                      &size_signed_data);
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        return nil;
+    }
+
+    NSString *signatureString = [[NSString alloc]
+                                 initWithBytes:signed_data
+                                 length:size_signed_data
+                                 encoding:NSASCIIStringEncoding];
+
+    return signatureString;
+}
+
+- (BOOL)verifyText:(NSString *)textToVerify
+         signature:(NSString *)signature
+          verified:(BOOL *)verified
+             error:(NSError **)error
+{
+    const char *utf8_text = [[textToVerify precomposedStringWithCanonicalMapping] UTF8String];
+    const char *utf8_signature = [[signature precomposedStringWithCanonicalMapping] UTF8String];
+
+    PEPStatus status = (PEPStatus) verify_signature(self.session,
+                                                    utf8_text,
+                                                    strlen(utf8_text),
+                                                    utf8_signature,
+                                                    strlen(utf8_signature));
+
+    if (status == PEP_VERIFIED) {
+        *verified = YES;
+        return YES;
+    }
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:status]) {
+        return NO;
+    }
+
+    *verified = NO;
+    return YES;
 }
 
 @end

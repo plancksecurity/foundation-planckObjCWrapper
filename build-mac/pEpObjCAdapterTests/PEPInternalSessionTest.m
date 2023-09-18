@@ -1280,7 +1280,7 @@
                               initWithAddress:@"partner1@example.com"
                               userID:@"partner1"
                               userName:@"Partner 1"
-                                          isOwn:NO];
+                              isOwn:NO];
 
     PEPMessage *draftMail = [PEPTestUtils
                              mailFrom:identMeWithPassphrase
@@ -1845,10 +1845,10 @@
     [self updateAndVerifyPartnerIdentity:identAlice session:session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
-                               initWithAddress:@"me-myself-and-i@pep-project.org"
-                               userID:@"me-myself-and-i"
-                               userName:@"pEp Me"
-                               isOwn:YES];
+                            initWithAddress:@"me-myself-and-i@pep-project.org"
+                            userID:@"me-myself-and-i"
+                            userName:@"pEp Me"
+                            isOwn:YES];
     NSError *error = nil;
     XCTAssertTrue([session mySelf:identMe error:&error]);
     XCTAssertNil(error);
@@ -1916,6 +1916,114 @@
         PEPRating outgoingRating = [session ratingFromString:encStatusField[1]];
         XCTAssertEqual(outgoingRating, expectedRating);
     }
+}
+
+#pragma mark - Signing
+
+- (void)testSigningRoundtrip
+{
+    // Basic signing, without needing an own identity
+    PEPInternalSession *session = [PEPSessionProvider session];
+    NSString *stringToSign = @"Hello, world";
+    NSError *error = nil;
+    NSString *signedString = [session signText:stringToSign error:&error];
+    XCTAssertNotNil(signedString);
+    XCTAssertNil(error);
+
+    // Verify the signed text
+    BOOL verified = NO;
+    error = nil;
+    BOOL sucess = [session verifyText:stringToSign
+                            signature:signedString
+                             verified:&verified
+                                error:&error];
+    XCTAssertTrue(sucess);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+
+    // Reset all own keys
+    error = nil;
+    BOOL success = [session keyResetAllOwnKeysError:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+
+    // Verify the signed text
+    error = nil;
+    success = [session verifyText:stringToSign
+                        signature:signedString
+                         verified:&verified
+                            error:&error];
+    XCTAssertTrue(sucess);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+
+    // Verification should fail when text and signature don't match, obviously.
+    error = nil;
+    success = [session verifyText:@"This is a very different string"
+                        signature:signedString
+                         verified:&verified
+                            error:&error];
+    XCTAssertTrue(sucess);
+    XCTAssertNil(error);
+    XCTAssertFalse(verified);
+
+    PEPIdentity *signingIdentity = [[PEPIdentity alloc]
+                                    initWithAddress:SigningIdentityAddress
+                                    userID:@PEP_OWN_USERID
+                                    userName:SigningIdentityUserName
+                                    isOwn:YES];
+
+    // Get the fingerprint of the signing identity.
+    error = nil;
+    success = [session mySelf:signingIdentity error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+
+    // Try to reset the signing identity.
+    error = nil;
+    success = [session keyReset:signingIdentity fingerprint:signingIdentity.fingerPrint error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+
+    // Verify the signed text
+    error = nil;
+    success = [session verifyText:stringToSign
+                        signature:signedString
+                         verified:&verified
+                            error:&error];
+    XCTAssertTrue(sucess);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+}
+
+- (void)testSigningUTF8
+{
+    PEPInternalSession *session = [PEPSessionProvider session];
+    NSString *stringToSign = @"Hello, world. Здравствуй, мир.";
+    NSError *error = nil;
+    NSString *signedString = [session signText:stringToSign error:&error];
+    XCTAssertNotNil(signedString);
+    XCTAssertNil(error);
+
+    BOOL verified = NO;
+
+    error = nil;
+    BOOL success = [session verifyText:stringToSign
+                             signature:signedString
+                              verified:&verified
+                                 error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+    XCTAssertTrue(verified);
+
+    error = nil;
+    success = [session verifyText:@"Здравствуй, мир."
+                        signature:signedString
+                         verified:&verified
+                            error:&error];
+    XCTAssertTrue(success);
+    XCTAssertNil(error);
+    XCTAssertFalse(verified);
 }
 
 @end

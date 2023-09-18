@@ -422,6 +422,31 @@
     return result;
 }
 
+- (BOOL)keyResetAllOwnKeysError:(NSError * _Nullable * _Nullable)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+
+    XCTestExpectation *exp = [self expectationWithDescription:@"exp"];
+
+    __block BOOL result = NO;
+    __block NSError *asyncError = nil;
+
+    [asyncSession keyResetAllOwnKeys:^(NSError * _Nonnull error) {
+        asyncError = error;
+        [exp fulfill];
+    } successCallback:^{
+        result = YES;
+        [exp fulfill];
+    }];
+
+    [self waitForExpectations:@[exp] timeout:PEPTestInternalSyncTimeout];
+    if (error) {
+        *error = asyncError;
+    }
+
+    return result;
+}
+
 - (BOOL)syncReinit:(NSError * _Nullable *)error
 {
     PEPSession *asyncSession = [PEPSession new];
@@ -472,6 +497,71 @@
     }
 
     return asyncFingerprints;
+}
+
+#pragma mark - Signing
+
+- (NSString *)signText:(NSString *)stringToSign
+                 error:(NSError **)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+
+    __block NSError *asyncError = nil;
+    __block NSString *resultingSignature = nil;
+
+    XCTestExpectation *expectation = [self expectationWithDescription:@"expectation"];
+
+    [asyncSession signText:stringToSign
+             errorCallback:^(NSError * _Nonnull error) {
+        asyncError = error;
+        [expectation fulfill];
+    } successCallback:^(NSString * _Nonnull signature) {
+        resultingSignature = signature;
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectations:@[expectation] timeout:PEPTestInternalSyncTimeout];
+
+    if (asyncError) {
+        *error = asyncError;
+        return nil;
+    }
+
+    return resultingSignature;
+}
+
+- (BOOL)verifyText:(NSString *)textToVerify
+         signature:(NSString *)signature
+          verified:(BOOL *)verified
+             error:(NSError **)error
+{
+    PEPSession *asyncSession = [PEPSession new];
+
+    __block NSError *asyncError = nil;
+    __block BOOL asyncVerified = NO;
+
+    XCTestExpectation *expectation = [self expectationWithDescription:@"expectation"];
+
+    [asyncSession verifyText:textToVerify
+                   signature:signature
+               errorCallback:^(NSError * _Nonnull error) {
+        asyncError = error;
+        [expectation fulfill];
+    } successCallback:^(BOOL verified) {
+        asyncVerified = verified;
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectations:@[expectation] timeout:PEPTestInternalSyncTimeout];
+
+    if (asyncError) {
+        *error = asyncError;
+        return NO;
+    }
+
+    *verified = asyncVerified;
+
+    return YES;
 }
 
 @end
