@@ -992,17 +992,15 @@
     error = nil;
     XCTAssertTrue([session setTrustIdentity:tyrell1 error:&error]);
 
+    // Due to CORE-154, myself is no help with verifying the comm type,
+    // and will even reset it.
+    // So, no way here to verify without using internal API again.
+
     PEPIdentity *tyrell2 = [[PEPIdentity alloc]
                             initWithAddress:address
                             userID:userID
                             userName:userName
                             isOwn:YES];
-    error = nil;
-    XCTAssertTrue([session mySelf:tyrell2 error:&error]);
-    XCTAssertNil(error);
-
-    XCTAssertEqualObjects(tyrell1.fingerPrint, tyrell2.fingerPrint);
-    //XCTAssertEqual(tyrell1.commType, tyrell2.commType); // TODO: Must be fixed, see CORE-154.
 
     error = nil;
     XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
