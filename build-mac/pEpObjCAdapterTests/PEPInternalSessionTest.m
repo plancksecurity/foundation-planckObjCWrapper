@@ -971,7 +971,7 @@
     XCTAssertEqualObjects(@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97", fingerprint);
 }
 
-- (void)testSetTrust
+- (void)testResetOwnKeysAfterSetTrustToUnconfirmed
 {
     NSString *address = @"tyrell@example.com";
     NSString *userID = @"tyrell";
@@ -1003,6 +1003,10 @@
 
     XCTAssertEqualObjects(tyrell1.fingerPrint, tyrell2.fingerPrint);
     //XCTAssertEqual(tyrell1.commType, tyrell2.commType); // TODO: Must be fixed, see CORE-154.
+
+    error = nil;
+    XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
+    XCTAssertNil(error);
 }
 
 #pragma mark - configUnencryptedSubject
