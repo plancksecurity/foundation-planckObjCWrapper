@@ -971,6 +971,40 @@
     XCTAssertEqualObjects(@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97", fingerprint);
 }
 
+- (void)testSetTrust
+{
+    NSString *address = @"tyrell@example.com";
+    NSString *userID = @"tyrell";
+    NSString *userName = @"Eldon Tyrell";
+
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *tyrell1 = [[PEPIdentity alloc]
+                            initWithAddress:address
+                            userID:userID
+                            userName:userName
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:tyrell1 error:&error]);
+    XCTAssertNil(error);
+
+    tyrell1.commType = PEPCommTypePEPUnconfirmed;
+    error = nil;
+    XCTAssertTrue([session setTrustIdentity:tyrell1 error:&error]);
+
+    PEPIdentity *tyrell2 = [[PEPIdentity alloc]
+                            initWithAddress:address
+                            userID:userID
+                            userName:userName
+                            isOwn:YES];
+    error = nil;
+    XCTAssertTrue([session mySelf:tyrell2 error:&error]);
+    XCTAssertNil(error);
+
+    XCTAssertEqualObjects(tyrell1.fingerPrint, tyrell2.fingerPrint);
+    //XCTAssertEqual(tyrell1.commType, tyrell2.commType); // TODO: Must be fixed, see CORE-154.
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
