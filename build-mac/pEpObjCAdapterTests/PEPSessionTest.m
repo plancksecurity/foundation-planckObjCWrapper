@@ -340,6 +340,28 @@
     XCTAssertNotEqual(fprOriginal, fprAfterReset);
 }
 
+- (void)testKeyResetAllOwn
+{
+    NSString *address = @"tyrell@example.com";
+    NSString *userID = @"tyrell";
+    NSString *userName = @"Eldon Tyrell";
+
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPIdentity *tyrell1 = [[PEPIdentity alloc]
+                            initWithAddress:address
+                            userID:userID
+                            userName:userName
+                            isOwn:YES];
+    NSError *error = nil;
+    XCTAssertTrue([session mySelf:tyrell1 error:&error]);
+    XCTAssertNil(error);
+
+    error = nil;
+    XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
+    XCTAssertNil(error);
+}
+
 - (void)testImportExtraKey
 {
     NSString *txtFileContents = [PEPTestUtils loadStringFromFileName:@"6FF00E97.asc"];
