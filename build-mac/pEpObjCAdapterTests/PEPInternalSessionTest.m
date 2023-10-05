@@ -971,7 +971,7 @@
     XCTAssertEqualObjects(@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97", fingerprint);
 }
 
-- (void)testResetOwnKeysAfterSetTrustToUnconfirmed
+- (void)testResetOwnKeysWithWeirdCommTypes
 {
     NSString *address = @"tyrell@example.com";
     NSString *userID = @"tyrell";
@@ -979,32 +979,64 @@
 
     PEPInternalSession *session = [PEPSessionProvider session];
 
-    PEPIdentity *tyrell1 = [[PEPIdentity alloc]
-                            initWithAddress:address
-                            userID:userID
-                            userName:userName
-                            isOwn:YES];
-    NSError *error = nil;
-    XCTAssertTrue([session mySelf:tyrell1 error:&error]);
-    XCTAssertNil(error);
+    PEPCommType commTypes[] = {
+        PEPCommTypeUnknown,
+        PEPCommTypeNoEncryption,
+        PEPCommTypeNoEncryptedChannel,
+        PEPCommTypeKeyNotFound,
+        PEPCommTypeKeyExpired,
+        PEPCommTypeKeyRevoked,
+        PEPCommTypeKeyB0rken,
+        PEPCommTypeKeyExpiredButConfirmed,
+        PEPCommTypeMyKeyNotIncluded,
+        PEPCommTypeSecurityByObscurity,
+        PEPCommTypeB0rkenCrypto,
+        PEPCommTypeKeyTooShort,
+        PEPCommTypeCompromised,
+        PEPCommTypeCompromized,
+        PEPCommTypeMistrusted,
+        PEPCommTypeUnconfirmedEncryption,
+        PEPCommTypeOpenPGPWeakUnconfirmed,
+        PEPCommTypeToBeChecked,
+        PEPCommTypeSmimeUnconfirmed,
+        PEPCommTypeCmsUnconfirmed,
+        PEPCommTypeStrongButUnconfirmed,
+        PEPCommTypeOpenPGPUnconfirmed,
+        PEPCommTypeOtrUnconfirmed,
+        PEPCommTypeUnconfirmedEncAnon,
+        PEPCommTypePEPUnconfirmed,
+        PEPCommTypeConfirmed,
+        PEPCommTypeConfirmedEncryption,
+        PEPCommTypeOpenPGPWeak,
+        PEPCommTypeToBeCheckedConfirmed,
+        PEPCommTypeSmime,
+        PEPCommTypeCms,
+        PEPCommTypeStrongEncryption,
+        PEPCommTypeOpenPGP,
+        PEPCommTypeOtr,
+        PEPCommTypeConfirmedEncAnon,
+        PEPCommTypePEP
+    };
+    size_t commTypesLen = sizeof(commTypes) / sizeof(PEPCommType);
 
-    tyrell1.commType = PEPCommTypePEPUnconfirmed;
-    error = nil;
-    XCTAssertTrue([session setTrustIdentity:tyrell1 error:&error]);
+    for (NSUInteger commTypeIndex = 0; commTypeIndex < commTypesLen; ++commTypeIndex) {
+        PEPIdentity *tyrell1 = [[PEPIdentity alloc]
+                                initWithAddress:address
+                                userID:userID
+                                userName:userName
+                                isOwn:YES];
+        NSError *error = nil;
+        XCTAssertTrue([session mySelf:tyrell1 error:&error]);
+        XCTAssertNil(error);
 
-    // Due to CORE-154, myself is no help with verifying the comm type,
-    // and will even reset it.
-    // So, no way here to verify without using internal API again.
+        tyrell1.commType = commTypes[commTypeIndex];
+        error = nil;
+        XCTAssertTrue([session setTrustIdentity:tyrell1 error:&error]);
 
-    PEPIdentity *tyrell2 = [[PEPIdentity alloc]
-                            initWithAddress:address
-                            userID:userID
-                            userName:userName
-                            isOwn:YES];
-
-    error = nil;
-    XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
-    XCTAssertNil(error);
+        error = nil;
+        XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
+        XCTAssertNil(error);
+    }
 }
 
 #pragma mark - configUnencryptedSubject
