@@ -1018,7 +1018,10 @@
     };
     size_t commTypesLen = sizeof(commTypes) / sizeof(PEPCommType);
 
-    for (NSUInteger commTypeIndex = 0; commTypeIndex < commTypesLen; ++commTypeIndex) {
+    for (NSUInteger i = 0; i < 3; ++i) {
+        uint32_t index = arc4random() % commTypesLen;
+        PEPCommType randomCommType = commTypes[index];
+
         PEPIdentity *tyrell1 = [[PEPIdentity alloc]
                                 initWithAddress:address
                                 userID:ownUserId
@@ -1028,7 +1031,7 @@
         XCTAssertTrue([session mySelf:tyrell1 error:&error]);
         XCTAssertNil(error);
 
-        tyrell1.commType = commTypes[commTypeIndex];
+        tyrell1.commType = randomCommType;
         error = nil;
         XCTAssertTrue([session setTrustIdentity:tyrell1 error:&error]);
 
