@@ -971,10 +971,9 @@
     XCTAssertEqualObjects(@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97", fingerprint);
 }
 
-- (void)testResetOwnKeysWithWeirdCommTypes
+- (void)testResetOwnKeysWithWeirdCommTypesOwnUserId:(NSString *)ownUserId
 {
     NSString *address = @"tyrell@example.com";
-    NSString *userID = @"tyrell";
     NSString *userName = @"Eldon Tyrell";
 
     PEPInternalSession *session = [PEPSessionProvider session];
@@ -1022,7 +1021,7 @@
     for (NSUInteger commTypeIndex = 0; commTypeIndex < commTypesLen; ++commTypeIndex) {
         PEPIdentity *tyrell1 = [[PEPIdentity alloc]
                                 initWithAddress:address
-                                userID:userID
+                                userID:ownUserId
                                 userName:userName
                                 isOwn:YES];
         NSError *error = nil;
@@ -1037,6 +1036,16 @@
         XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
         XCTAssertNil(error);
     }
+}
+
+- (void)testResetOwnKeysWithWeirdCommTypesUserDefinedOwnUserId
+{
+    [self testResetOwnKeysWithWeirdCommTypesOwnUserId:@"tyrell"];
+}
+
+- (void)testResetOwnKeysWithWeirdCommTypesDefaultOwnUserId
+{
+    [self testResetOwnKeysWithWeirdCommTypesOwnUserId:@PEP_OWN_USERID];
 }
 
 #pragma mark - configUnencryptedSubject
