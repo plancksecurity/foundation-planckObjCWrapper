@@ -19,7 +19,7 @@
  For now, safer to use that, until the engine copes with our own.
  Should mimick the value of PEP_OWN_USERID.
  */
-NSString * const ownUserId = @"pEp_own_userId";
+NSString * const ownUserId = @PEP_OWN_USERID;
 
 const NSInteger PEPTestInternalSyncTimeout = 20;
 
