@@ -319,6 +319,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Wraps `sync_reinit` (sync_api.h).
 - (BOOL)syncReinit:(NSError * _Nullable * _Nullable)error;
 
+- (BOOL)setTrustIdentity:(const PEPIdentity *)identity
+                   error:(NSError * _Nullable * _Nullable)error;
+
 #pragma mark - Media Key / Echo Protocol
 
 /// Wraps `config_media_keys`.

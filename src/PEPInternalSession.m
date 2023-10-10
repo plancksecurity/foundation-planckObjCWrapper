@@ -32,6 +32,7 @@
 #import "key_reset.h"
 #import "media_key.h"
 #import "signature.h"
+#import "pEpEngine_internal.h"
 
 @implementation PEPInternalSession
 
@@ -991,6 +992,22 @@ static NSDictionary *stringToRating;
 {
     PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
         return sync_reinit(self.session);
+    }];
+
+    if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (BOOL)setTrustIdentity:(const PEPIdentity *)identity
+                   error:(NSError * _Nullable * _Nullable)error
+{
+    pEp_identity *ident = [identity toStruct];
+
+    PEPStatus theStatus = (PEPStatus) [self runWithPasswords:^PEP_STATUS(PEP_SESSION session) {
+        return set_trust(self.session, ident);
     }];
 
     if ([PEPStatusNSErrorUtil setError:error fromPEPStatus:theStatus]) {

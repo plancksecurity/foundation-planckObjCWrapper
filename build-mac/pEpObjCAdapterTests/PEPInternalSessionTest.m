@@ -969,6 +969,86 @@
     XCTAssertEqualObjects(@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97", fingerprint);
 }
 
+- (void)testResetOwnKeysWithWeirdCommTypesOwnUserId:(NSString *)ownUserId
+{
+    NSString *address = @"tyrell@example.com";
+    NSString *userName = @"Eldon Tyrell";
+
+    PEPInternalSession *session = [PEPSessionProvider session];
+
+    PEPCommType commTypes[] = {
+        PEPCommTypeUnknown,
+        PEPCommTypeNoEncryption,
+        PEPCommTypeNoEncryptedChannel,
+        PEPCommTypeKeyNotFound,
+        PEPCommTypeKeyExpired,
+        PEPCommTypeKeyRevoked,
+        PEPCommTypeKeyB0rken,
+        PEPCommTypeKeyExpiredButConfirmed,
+        PEPCommTypeMyKeyNotIncluded,
+        PEPCommTypeSecurityByObscurity,
+        PEPCommTypeB0rkenCrypto,
+        PEPCommTypeKeyTooShort,
+        PEPCommTypeCompromised,
+        PEPCommTypeCompromized,
+        PEPCommTypeMistrusted,
+        PEPCommTypeUnconfirmedEncryption,
+        PEPCommTypeOpenPGPWeakUnconfirmed,
+        PEPCommTypeToBeChecked,
+        PEPCommTypeSmimeUnconfirmed,
+        PEPCommTypeCmsUnconfirmed,
+        PEPCommTypeStrongButUnconfirmed,
+        PEPCommTypeOpenPGPUnconfirmed,
+        PEPCommTypeOtrUnconfirmed,
+        PEPCommTypeUnconfirmedEncAnon,
+        PEPCommTypePEPUnconfirmed,
+        PEPCommTypeConfirmed,
+        PEPCommTypeConfirmedEncryption,
+        PEPCommTypeOpenPGPWeak,
+        PEPCommTypeToBeCheckedConfirmed,
+        PEPCommTypeSmime,
+        PEPCommTypeCms,
+        PEPCommTypeStrongEncryption,
+        PEPCommTypeOpenPGP,
+        PEPCommTypeOtr,
+        PEPCommTypeConfirmedEncAnon,
+        PEPCommTypePEP
+    };
+    size_t commTypesLen = sizeof(commTypes) / sizeof(PEPCommType);
+
+    for (NSUInteger i = 0; i < 3; ++i) {
+        uint32_t index = arc4random() % commTypesLen;
+        PEPCommType randomCommType = commTypes[index];
+
+        PEPIdentity *tyrell = [[PEPIdentity alloc]
+                               initWithAddress:address
+                               userID:ownUserId
+                               userName:userName
+                               isOwn:YES];
+        NSError *error = nil;
+        XCTAssertTrue([session mySelf:tyrell error:&error]);
+        XCTAssertNil(error);
+
+        tyrell.commType = randomCommType;
+        error = nil;
+        XCTAssertTrue([session setTrustIdentity:tyrell error:&error]);
+
+        error = nil;
+        XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
+        XCTAssertNil(error);
+    }
+}
+
+- (void)testResetOwnKeysWithWeirdCommTypesUserDefinedOwnUserId
+{
+    [self testResetOwnKeysWithWeirdCommTypesOwnUserId:@"tyrell"];
+}
+
+- (void)testResetOwnKeysWithWeirdCommTypesDefaultOwnUserId
+{
+    [self testResetOwnKeysWithWeirdCommTypesOwnUserId:@PEP_OWN_USERID];
+}
+
 #pragma mark - configUnencryptedSubject
 
 - (void)testConfigUnencryptedSubject
