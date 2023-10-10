@@ -1022,18 +1022,18 @@
         uint32_t index = arc4random() % commTypesLen;
         PEPCommType randomCommType = commTypes[index];
 
-        PEPIdentity *tyrell1 = [[PEPIdentity alloc]
-                                initWithAddress:address
-                                userID:ownUserId
-                                userName:userName
-                                isOwn:YES];
+        PEPIdentity *tyrell = [[PEPIdentity alloc]
+                               initWithAddress:address
+                               userID:ownUserId
+                               userName:userName
+                               isOwn:YES];
         NSError *error = nil;
-        XCTAssertTrue([session mySelf:tyrell1 error:&error]);
+        XCTAssertTrue([session mySelf:tyrell error:&error]);
         XCTAssertNil(error);
 
-        tyrell1.commType = randomCommType;
+        tyrell.commType = randomCommType;
         error = nil;
-        XCTAssertTrue([session setTrustIdentity:tyrell1 error:&error]);
+        XCTAssertTrue([session setTrustIdentity:tyrell error:&error]);
 
         error = nil;
         XCTAssertTrue([session keyResetAllOwnKeysError:&error]);
