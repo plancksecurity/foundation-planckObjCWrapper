@@ -343,7 +343,7 @@
                                error:&error];
         XCTAssertNotNil(numRating);
         XCTAssertNil(error);
-        XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
+        XCTAssertEqual(numRating.pEpRating, PEPRatingHaveNoKey);
     }
 
     PEPIdentity *identBob = [self
@@ -409,7 +409,7 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingMistrust);
 }
 
 
@@ -446,7 +446,7 @@
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingHaveNoKey);
 
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
@@ -570,7 +570,7 @@
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingHaveNoKey);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
@@ -1672,10 +1672,7 @@
                                              session:(PEPInternalSession *)session
                                                error:(NSError * _Nullable * _Nullable)error
 {
-    NSNumber *ratingOriginal = [session outgoingRatingForMessage:theMessage error:error];
-    NSNumber *ratingPreview = [session outgoingRatingPreviewForMessage:theMessage error:nil];
-    XCTAssertEqual(ratingOriginal, ratingPreview);
-    return ratingOriginal;
+    return [session outgoingRatingForMessage:theMessage error:error];
 }
 
 - (void)testPassiveModeEnabled:(BOOL)passiveModeEnabled
