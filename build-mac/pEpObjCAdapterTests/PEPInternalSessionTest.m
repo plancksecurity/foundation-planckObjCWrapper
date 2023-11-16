@@ -1211,7 +1211,7 @@
     NSError *error = nil;
     [session syncReinit:&error];
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, PEPStatusStatemachineError);
+    XCTAssertEqual(error.code, PEPStatusCannotFindIdentity);
 }
 
 /// @Note This test only proves that `sync_reinit` can be called without errors.
