@@ -380,7 +380,7 @@
     NSError *error = nil;
     [self syncReinit:&error];
     XCTAssertNotNil(error);
-    XCTAssertEqual(error.code, PEPStatusStatemachineError);
+    XCTAssertEqual(error.code, PEPStatusCannotFindIdentity);
 }
 
 #pragma mark - Media Key / Echo Protocol
