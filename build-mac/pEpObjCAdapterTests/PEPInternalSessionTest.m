@@ -343,7 +343,7 @@
                                error:&error];
         XCTAssertNotNil(numRating);
         XCTAssertNil(error);
-        XCTAssertEqual(numRating.pEpRating, PEPRatingHaveNoKey);
+        XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
     }
 
     PEPIdentity *identBob = [self
@@ -409,7 +409,7 @@
     numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingMistrust);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 }
 
 
@@ -446,7 +446,7 @@
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingHaveNoKey);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
     // Now let see with bob's pubkey already known
     // pEp Test Bob (test key, don't use) <pep.test.bob@pep-project.org>
@@ -570,7 +570,7 @@
     NSNumber *numRating = [self testOutgoingRatingForMessage:msg session:session error:&error];
     XCTAssertNotNil(numRating);
     XCTAssertNil(error);
-    XCTAssertEqual(numRating.pEpRating, PEPRatingHaveNoKey);
+    XCTAssertEqual(numRating.pEpRating, PEPRatingUnencrypted);
 
     PEPMessage *encMsg = [session encryptMessage:msg extraKeys:nil status:nil error:&error];
     XCTAssertNotNil(encMsg);
