@@ -347,9 +347,6 @@ static __weak PEPSync *s_pEpSync;
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
     PEP_STATUS status = [self messageToSendHelper:msg];
-    if (status == PEP_STATUS_OK) {
-        free(msg);
-    }
     return status;
 }
 
