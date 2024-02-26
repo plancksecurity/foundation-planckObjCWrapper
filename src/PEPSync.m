@@ -6,6 +6,10 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+// Changelog
+//
+// 26.02.2024/DZ - Don't free in messageToSend
+
 @import PEPObjCTypeUtils;
 
 #import "pEpEngine.h"
