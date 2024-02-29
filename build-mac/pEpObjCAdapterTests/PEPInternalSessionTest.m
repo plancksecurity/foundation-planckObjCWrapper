@@ -6,6 +6,10 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+// Changelog
+//
+// 26.02.2024/DZ - Adapt tests
+
 #import <XCTest/XCTest.h>
 
 @import PEPObjCAdapter;
@@ -1914,14 +1918,14 @@
     PEPIdentity *identAlice = [self
                                checkImportingKeyFilePath:@"6FF00E97.asc"
                                address:@"pep.test.alice@pep-project.org"
-                               userID:ownUserId
+                               userID:@"userid_alice"
                                fingerPrint:@"4ABE3AAF59AC32CFE4F86500A9411D176FF00E97"
                                session:session];
     [self updateAndVerifyPartnerIdentity:identAlice session:session];
 
     PEPIdentity *identMe = [[PEPIdentity alloc]
                             initWithAddress:@"me-myself-and-i@pep-project.org"
-                            userID:@"me-myself-and-i"
+                            userID:ownUserId
                             userName:@"pEp Me"
                             isOwn:YES];
     NSError *error = nil;

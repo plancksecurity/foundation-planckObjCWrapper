@@ -6,6 +6,10 @@
 //  Copyright © 2018 p≡p. All rights reserved.
 //
 
+// Changelog
+//
+// 26.02.2024/DZ - Don't free in messageToSend
+
 @import PEPObjCTypeUtils;
 
 #import "pEpEngine.h"
@@ -347,9 +351,6 @@ static __weak PEPSync *s_pEpSync;
 - (PEP_STATUS)messageToSend:(struct _message * _Nullable)msg
 {
     PEP_STATUS status = [self messageToSendHelper:msg];
-    if (status == PEP_STATUS_OK) {
-        free(msg);
-    }
     return status;
 }
 
