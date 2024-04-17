@@ -1088,6 +1088,8 @@ stringpair_list_t *stringListFromMediaKeys(NSArray<PEPMediaKeyPair *> *mediaKeys
                                  length:size_signed_data
                                  encoding:NSASCIIStringEncoding];
 
+    free(signed_data);
+
     return signatureString;
 }
 
